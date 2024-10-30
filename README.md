@@ -8,3 +8,11 @@ La repository è organizzata in 4 cartelle:
 -   **RTB**: Contiene tutti i documenti compilati presentati per la _Requirements & Technologies Baseline_
 -   **PB**: Contiene tutti i documenti compilati presentati per la _Product Baseline_
 -   **src**: Contiene tutti i file sorgente dei documenti presenti nelle cartelle precedenti. L'organizzazione dei file è speculare a quella dei file compilati.
+
+## FileManager
+
+Un semplice script python che permette di gestire la sincronizzazione dei file compilati tra le cartelle.
+
+```bash
+python3 .\filemanager.py
+```
