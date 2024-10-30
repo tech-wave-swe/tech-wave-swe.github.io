@@ -1,0 +1,55 @@
+\documentclass{TWReport}
+
+\title{Verbale 28 ottobre 2024 - Ergon}
+
+\author{Giulia Marcon}
+\participant[present]{Carraro Agnese}
+\participant[present]{Dal Bianco Riccardo}
+\participant[present]{Marcon Giulia}
+\participant[present]{Monetti Luca}
+\participant[present]{Piola Andrea}
+\participant[present]{Pistori Gaia}
+\participant[absent]{Vasquez Manuel Felipe}
+
+\editor{Giulia Marcon}
+
+\reviewer{Luca Monetti}
+\classification{Esterno}
+\version{1.0}
+
+\begin{document}
+
+\frontmatter
+
+\showPartecipants
+
+\section*{Ordine del giorno}
+Meeting con l'azienda per chiarimenti su:
+\begin{itemize}
+    \item Fase di preprocessing e gestione dei dati errati.
+    \item Collegamento tra i dati processati nel database e i file originali.
+    \item Struttura dell'interfaccia web per la configurazione degli utenti.
+    \item Template delle domande e modalità di suggerimento per l’utente.
+    \item Gestione dei feedback degli utenti.
+    \item Metodi di comunicazione tra il team e l'azienda durante lo svolgimento del progetto.
+\end{itemize}
+
+\section*{Resoconto}
+\begin{itemize}
+    \item È stato chiarito che la fase di preprocessing include il rilevamento di formati errati, lingue non riconosciute o documenti vuoti. In caso di dati errati, verranno scartati automaticamente o, dove possibile, verranno corretti manualmente.
+    \item Eventuali modifiche sui file originali comporterebbero l’aggiornamento dei dati nel database, con possibilità di riaddestramento dell'assistente (opzionale).
+    \item Il login dell'interfaccia web deve consentire agli amministratori (admin) di approvare nuovi utenti e permettere a utenti generici di accedere all’assistente virtuale. Saranno previste funzionalità per la creazione e gestione di utenti, l'addestramento del modello AI e la gestione dei template nel backend.
+    \item Durante l’uso, l'assistente virtuale confronterà ogni domanda posta dall'utente con dei template: se trova una corrispondenza, genererà una risposta basata su quel template; in caso contrario, produrrà autonomamente una risposta per l’utente.
+    \item L’assistente virtuale sarà strutturato su un unico flusso di conversazione, in cui le interazioni non verranno salvate a meno che l'utente non fornisca un feedback. Il feedback sarà possibile tramite un sistema di valutazione semplice (pollice su/giù o voto numerico) e potrà includere un commento testuale. Gli admin potranno monitorare questi feedback per valutare l’efficacia del sistema.
+    \item Le risposte saranno testuali, con possibilità di integrazione di immagini (opzionale).
+    \item L'azienda fornirà dati specifici per costruire il contenuto dell'assistente e un pacchetto di domande che l’utente potrà porre, centrato sul settore beverage/food.
+    \item Il progetto prevede lo sviluppo dell’assistente virtuale tramite una web app dedicata al backoffice e un’applicazione per la chat, che sarà sviluppata come app mobile o come web app.
+    \item Si è ipotizzato un incontro settimanale, in presenza o su Zoom, con la possibilità di variazione tramite comunicazione via email. Il team Ergon fornirà supporto attraverso corsi offline sulle tecnologie richieste e affiancherà il team durante il progetto.
+
+\end{itemize}
+
+\vspace*{\fill}\hspace*{\fill}
+\includegraphics[width=.4\textwidth]{images/firma.png}
+
+
+\end{document}
