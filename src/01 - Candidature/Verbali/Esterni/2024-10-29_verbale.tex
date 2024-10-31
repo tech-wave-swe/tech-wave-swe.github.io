@@ -1,0 +1,48 @@
+\documentclass{TWReport}
+
+\title{Verbale 29 Ottobre 2024 - BlueWind}
+
+\author{Vasquez Manuel Felipe}
+\participant[absent]{Carraro Agnese}
+\participant[present]{Dal Bianco Riccardo}
+\participant[present]{Marcon Giulia}
+\participant[present]{Monetti Luca}
+\participant[present]{Piola Andrea}
+\participant[present]{Pistori Gaia}
+\participant[present]{Vasquez Manuel Felipe}
+
+\editor{Vasquez Manuel Felipe}
+
+\reviewer{Marcon Giulia}
+\reviewer{Pistori Gaia}
+\classification{Esterno}
+\version{1.1}
+
+\begin{document}
+	
+	\frontmatter
+	
+	\showPartecipants
+	
+	\section*{Ordine del giorno}
+	Meeting con l'azienda per chiarimenti sui vari temi:
+	\begin{itemize}
+		\item Gestione dei requisiti e i loro formati
+		\item Modalità e frequenza di comunicazione tra il team e l'azienda per feedback durante il processo di sviluppo del progetto
+		\item Requisiti minimi per il POC
+		\item Tipologia di LLM e framework per interfacciarsi
+		\item Gestione delle possibili risposte da parte del modello nel suo livello di certezza nella risposta
+	\end{itemize}
+	
+	\section*{Resoconto}
+	\begin{itemize}
+		\item È stato indicato che i requisiti richiesti da parte dell'utente sono scritti in linguaggio naturale e inseriti all'interno del plug-in in due possibili formati (.csv, .reqif).
+		\item L'azienda BlueWind adotta il workflow Agile Scrum per lo sviluppo e la gestione dei suoi progetti interfacciandolo, di volta in volta, con le necessità dei clienti. In quest'ottica non è stato richiesta l'adozione di un workflow particolare quanto un contatto frequente tramite meeting sia in sede che da remoto, al fine di analizzare i progressi conseguiti e raccogliere eventuali feedback.
+		\item Per il POC è stato suggerito di partire dalla ricerca e approfondimento dei blocchi principali che lo costituiscono, individuandone il potenziale grado di difficoltà nello sviluppo, per focalizzarsi in primo luogo su quelli più complessi. È stato inoltre indicato che verrà fornito un progetto di esempio su cui si potrà testare il funzionamento del plug-in.
+		\item Per il modello di intelligenza artificiale verrà utilizzata la piattaforma Ollama, che dovrà essere gestito in locale da parte del team di sviluppo affinché si possa garantire un adeguato livello di riservatezza del codice sorgente nel momento in cui esso verrà esposto al modello durante l'utilizzo del plug-in.
+		\item Il modello devrà presentare un livello minimo di conoscenza degli argomenti di programmazione embedded trattati nei manuali delle librerie interessate, che saranno presenti all'interno della codebase di riferimento. Il modello deve essere in grado di riconoscere, analizzare e formulare risposte attinenti ai requisiti indicati, accompagnate da un report sul livello di comprensione individuale di ogni requisito. In questo modo, in caso di incomprensione o valutazione errata, l'utente potrà fornire chiarimenti e ottenere una riformulazione della risposta in modo più preciso.
+		
+	\end{itemize}
+	
+	\signature{L'Azienda Proponente}
+\end{document}
