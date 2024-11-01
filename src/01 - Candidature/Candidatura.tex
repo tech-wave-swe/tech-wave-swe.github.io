@@ -1,0 +1,101 @@
+\documentclass{TWDocumentFull}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{amsmath}
+
+\title{Candidatura gruppo 5}
+\author{Pistori Gaia}
+
+\editor{Carraro Agnese}
+\editor{Marcon Giulia}
+\editor{Pistori Gaia}
+\editor{Vasquez Manuel Felipe}
+
+\reviewer{Monetti Luca}
+\reviewer{Piola Andrea}
+\reviewer{Dal Bianco Riccardo}
+\classification{Esterno}
+\version{1.0}
+
+\begin{document}
+    \frontmatter
+    
+    
+    \section*{Scelta Capitolato}
+     
+    {Dopo un'attenta valutazione delle proposte delle aziende, durante la quale il gruppo ha analizzato i contenuti, i requisiti, i punti di forza e le criticità di ognuna di esse, si è giunti alla conclusione di scegliere il capitolato C8: \textit{“\textbf{Requirement Tracker - Plug-in VSCode}”} dell'azienda BlueWind. $\\$ Abbiamo avuto modo di approfondire i requisiti del loro capitolato inizialmente con uno scambio di mail e successivamente con un incontro online il 29 Ottobre 2024.}
+
+    \section*{Motivazioni della scelta}
+    {Le motivazioni alla base di tale scelta sono le seguenti:}
+    \begin{itemize}
+        \item {Il progetto si contraddistingue dagli altri capitolati sia per la tipologia di prodotto, ovvero un plug-in per l'IDE VSCode, sia perché pensato come supporto alla programmazione embedded.}
+        \item{L'azienda si è resa molto disponibile e paziente nel fornire chiarimenti su un ampio spettro di domande, con esempi e riferimenti reali.}
+        \item{L'azienda si impegna a fornire un caso di studio realistico per supportarci nella creazione del PoC.}
+        \item{L'azienda ha proposto un piano di lavoro realistico, in linea con quello da noi preventivato. È prevista una fase iniziale di affiancamento con il team aziendale per acquisire familiarità con i linguaggi e le tecnologie proposte. Successivamente verrà svolta l'analisi dei requisiti e la scelta condivisa delle funzionalità minime da implementare.}
+        \item{L'azienda considera inoltre un possibile utilizzo reale dell'applicativo, prevedendone l'impiego in progetti proprietari dei loro clienti. Per questo motivo privilegiano l'utilizzo di Ollama ( Self-Hosted ) rispetto ad alternative in cloud come OpenAI}
+    \end{itemize}
+
+    \section*{Valutazione dei capitolati}
+    \begin{itemize}
+        \item \href{https://github.com/tech-wave-swe/Docs/tree/main/01%20-%20Candidature}{https://github.com/tech-wave-swe/Docs/tree/main/01\%20-\%20Candidature}
+    \end{itemize}
+
+    \newpage \section*{Dichiarazione impegni}
+    {Ciascuno membro del team si impegna a lavorare 90 ore produttive per l'intera durata del progetto. $\\$ Ci impegniamo a completare lo sviluppo del progetto entro la data 21 marzo 2025. $\\$ Il preventivo della spesa totale ammonta a 12.800€ e deriva dalla seguente previsione di distribuzione delle ore di lavoro nei vari ruoli:}
+
+    \renewcommand{\arraystretch}{1.5}
+    
+    \begin{table}[H]
+        \begin{tabularx}{\textwidth}{|X|X|X|X|} \hline 
+            \rowcolor{twlightblue}
+             \LabelText{Ruolo}  & \LabelText{Costo} & \LabelText{Ore previste} & \LabelText{Totale} \\ \hline
+             Responsabile   & 30€ & 75  & 2250€\\ \hline 
+             Amministratore & 20€ & 85  & 1700€\\ \hline 
+             Analista       & 25€ & 90  & 2250€\\ \hline 
+             Progettista    & 25€ & 90  & 2250€\\ \hline 
+             Programmatore  & 15€ & 170 & 2550€\\ \hline 
+             Verificatore   & 15€ & 120 & 1800€\\ \hline
+             % \rowcolor{twlightblue}
+             \multicolumn{3}{|l|}{\LabelText{Totale}}& 12800€\\ \hline
+        \end{tabularx}
+    \end{table}
+
+    \section*{Calendario di massima del progetto}
+        \subsection*{Prima Fase: Novembre - Dicembre}
+        {In questa prima fase, come concordato con l'azienda durante il meeting, il team si impegnerà in una prima “iterazione” di:}
+            \begin{itemize}
+                \item Formazione sulle nuove tecnologie
+                \item Creazione di un PoC
+                \item Analisi dei Requisiti
+            \end{itemize}
+        \subsection*{Seconda Fase: Gennaio - Marzo}
+        {In questa seconda fase il team si concentrerà sulla pianificazione e sullo sviluppo dell'MVP ( Minimum Viable Product ) per rispondere alle richieste dell'azienda. L'obiettivo sarà garantire un prodotto funzionale allineato con le richieste individuate in fase di Analisi dei Requisiti.}
+        
+    \section*{Rischi attesi e mitigazioni}
+       \begin{table}[H]
+        \centering
+        \begin{tabularx}{\textwidth}{|X|X|}
+            \hline 
+            \rowcolor{twlightblue}
+            \LabelText{Rischio Individuato} & \LabelText{Possibile Mitigazione} \\
+            \hline
+            \textbf{Avanzamento lento:}
+            specialmente nel primo periodo di formazione e di creazione del PoC considerando la richiesta di tecnologie non conosciute da alcuni membri del gruppo.
+            &
+            Questo rischio può essere mitigato attraverso la pianificazione di incontri frequenti con l'azienda BlueWind che si è resa disponibile a fornire formazione e supporto. Inoltre, vogliamo scegliere un modello di sviluppo incrementale che si integri con il modello AGILE scrum dell'azienda.\\ \hline
+            \textbf{Ritardi dovuti a problemi individuali:}
+            Un elemento del gruppo potrebbe non essere in grado di completare il lavoro pianificato entro la data prevista creando rallentamenti nel flusso di lavoro.
+            &
+            Questo rischio può essere mitigato attraverso la comunicazione costante tra i vari membri del gruppo. Questo ci permetterà di individuare difficoltà o ritardi prima che essi possano trasformarsi in problemi.\\
+            \hline 
+            \textbf{Mancanza di conoscenze tecniche:}
+            Alcuni membri del gruppo potrebbero non aver familiarità con tutte le tecnologie utilizzate durante lo sviluppo o la gestione del progetto.
+            &
+            Questo rischio può essere mitigato attraverso una stretta collaborazione tra i membri del team e l'azienda proponente mirando alla creazione di un ambiente di collaborazione e condivisione delle conoscenze acquisite.\\
+            \hline
+        \end{tabularx}
+    \end{table}
+
+\end{document}
+	
+\end{document}
