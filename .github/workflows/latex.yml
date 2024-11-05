@@ -1,4 +1,4 @@
-name: Compile LaTeX and Deploy to GitHub Pages
+name: Compile LaTeX and Push to Main Branch
 
 on:
   push:
@@ -58,19 +58,3 @@ jobs:
           git add public/
           git commit -m "Update compiled LaTeX files in public folder"
           git push origin main
-
-  deploy:
-    needs: compile
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: "./public"
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
