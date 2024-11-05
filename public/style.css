@@ -1,0 +1,153 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* COLORS */
+    --color-primary: #0D1117;
+    --color-primary-light: #161B22;
+    --color-secondary: #ffffff;
+    --color-accent: #35A8F6;
+    --color-accent-secondary: #C6EBBE;
+
+    --bg-color-primary: var(--color-primary);
+    --bg-color-secondary: var(--color-primary-light);
+
+    --text-color-primary: var(--color-secondary);
+    --text-color-link: var(--color-accent);
+    --text-color-link-visited: var(--color-accent-secondary);
+
+    /* SIZES */
+    --width-max-content: 1200px;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    background-color: var(--bg-color-primary);
+    color: var(--text-color-primary);
+}
+
+a {
+    color: var(--text-color-link);
+    text-decoration: none;
+}
+
+/* a:visited {
+    color: var(--text-color-link-visited);
+} */
+
+h1 {
+    font-size: 50px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+.logo {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    color: var(--text-color-primary);
+}
+
+.logo img {
+    width: 50px;
+}
+
+.logo h1 {
+    font-size: 16px;
+}
+
+.logo h2 {
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.content-width {
+    max-width: var(--width-max-content);
+    margin: 0 auto;
+    padding: 0 1rem;
+    ;
+}
+
+header>div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 80px;
+}
+
+header nav a {
+    margin-left: 0.5rem;
+    color: white;
+    text-transform: uppercase;
+}
+
+.hero-container {
+    background-color: var(--bg-color-secondary);
+}
+
+.hero-container>div {
+    padding: 2rem 0;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.hero-container img {
+    width: 120px;
+}
+
+@media screen and (max-width: 768px) {
+
+    .hero-container>div {
+        flex-direction: column;
+    }
+
+}
+
+.doc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+main>div>div {
+    padding-bottom: 4rem;
+}
+
+main>div>div:first-child {
+    padding-top: 4rem;
+}
+
+main ul {
+    list-style: none;
+}
+
+main h2 {
+    margin-bottom: 1rem;
+}
+
+main ul li {
+    padding-top: 0.5rem;
+}
+
+.list-label {
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 768px) {
+    .doc-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .list {
+        margin-top: 1rem;
+    }
+
+}

@@ -18,7 +18,7 @@
 
 % GRAPHICS
 \RequirePackage{graphicx}
-\graphicspath{{./images}}
+\graphicspath{{../public/images}}
 \newcommand{\@mainlogo}{logo.png}
 
 % PAGE MARGINS
