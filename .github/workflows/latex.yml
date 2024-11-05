@@ -1,4 +1,4 @@
-name: Compile LaTeX and Deploy to Public Folder on Main Branch
+name: Compile LaTeX and Deploy to GitHub Pages
 
 on:
   push:
@@ -9,15 +9,18 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
-  compile-and-deploy:
+  compile:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
           fetch-depth: 0
 
       - name: Install LaTeX
@@ -25,16 +28,23 @@ jobs:
           sudo apt-get update && \
           sudo apt-get install -y texlive-base texlive-lang-italian texlive-fonts-recommended texlive-latex-extra
 
-      - name: Compile .tex files
+      - name: Identify modified .tex files
+        id: modified-files
+        run: |
+          git diff --name-only HEAD^ HEAD | grep '^src/.*\.tex$' | sed 's|^src/||' > modified_files.txt || true
+
+      - name: Compile modified .tex files
         run: |
           mkdir -p output
           cd src
-          find . -name "*.tex" ! -path "./Candidature/Verbali/Esterni/*"| while read tex_file; do
-            output_dir="../output/$(dirname "$tex_file")"
-            mkdir -p "$output_dir"
-            pdflatex -interaction=nonstopmode -output-directory "$output_dir" "$tex_file" || true
-            pdflatex -interaction=nonstopmode -output-directory "$output_dir" "$tex_file" || true
-          done
+          while IFS= read -r tex_file; do
+            if [ -f "$tex_file" ]; then
+              output_dir="../output/$(dirname "$tex_file")"
+              mkdir -p "$output_dir"
+              pdflatex -interaction=nonstopmode -output-directory "$output_dir" "$tex_file" || true
+              pdflatex -interaction=nonstopmode -output-directory "$output_dir" "$tex_file" || true
+            fi
+          done < ../modified_files.txt
 
       - name: Copy Compiled Files to Public Folder
         run: |
@@ -48,3 +58,19 @@ jobs:
           git add public/
           git commit -m "Update compiled LaTeX files in public folder"
           git push origin main
+
+  deploy:
+    needs: compile
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "./public"
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
