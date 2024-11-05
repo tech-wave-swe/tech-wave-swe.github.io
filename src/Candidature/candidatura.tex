@@ -1,15 +1,14 @@
-\documentclass{TWDocumentFull}
+\documentclass{TWDocumentNoVersion}
 \usepackage{float}
-\usepackage{hyperref}
-\usepackage{amsmath}
-
 \title{Candidatura gruppo 5}
-\author{Pistori Gaia}
 
 \editor{Carraro Agnese}
 \editor{Marcon Giulia}
 \editor{Pistori Gaia}
 \editor{Vasquez Manuel Felipe}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{amsmath}
 
 \reviewer{Monetti Luca}
 \reviewer{Piola Andrea}
@@ -20,9 +19,18 @@
 \begin{document}
     \frontmatter
     
+    \section*{Partecipanti}
+    \begin{itemize}
+        \item {Agnese Carraro (2068226)}
+        \item{Riccardo Dal Bianco (2042385)}
+        \item{Giulia Marcon (2075541)}
+        \item{Luca Monetti (2069429)}
+        \item{Andrea Piola (2068241)}
+        \item{Gaia Pistori (2075531)}
+        \item{Manuel Felipe Vasquez (2076425)}
+    \end{itemize}
     
     \section*{Scelta Capitolato}
-     
     {Dopo un'attenta valutazione delle proposte delle aziende, durante la quale il gruppo ha analizzato i contenuti, i requisiti, i punti di forza e le criticità di ognuna di esse, si è giunti alla conclusione di scegliere il capitolato C8: \textit{“\textbf{Requirement Tracker - Plug-in VSCode}”} dell'azienda BlueWind. $\\$ Abbiamo avuto modo di approfondire i requisiti del loro capitolato inizialmente con uno scambio di mail e successivamente con un incontro online il 29 Ottobre 2024.}
 
     \section*{Motivazioni della scelta}
@@ -37,11 +45,19 @@
 
     \section*{Valutazione dei capitolati}
     \begin{itemize}
-        \item \href{https://github.com/tech-wave-swe/Docs/tree/main/01%20-%20Candidature}{https://github.com/tech-wave-swe/Docs/tree/main/01\%20-\%20Candidature}
+        \item \href{https://tech-wave-swe.github.io/Docs}{https://tech-wave-swe.github.io/Docs}
     \end{itemize}
 
-    \newpage \section*{Dichiarazione impegni}
-    {Ciascuno membro del team si impegna a lavorare 90 ore produttive per l'intera durata del progetto. $\\$ Ci impegniamo a completare lo sviluppo del progetto entro la data 21 marzo 2025. $\\$ Il preventivo della spesa totale ammonta a 12.800€ e deriva dalla seguente previsione di distribuzione delle ore di lavoro nei vari ruoli:}
+    \newpage\section*{Dichiarazione impegni}
+    {Ci impegniamo a completare lo sviluppo del progetto entro la data 21 marzo 2025. $\\$ Ciascuno membro del team si impegna a lavorare 90 ore produttive per l'intera durata del progetto. $\\$ Si presume che durante il progetto durerà circa 18 settimane produttive, con intensità variabile:}
+    \begin{itemize}
+        \item{5 settimane con intensità bassa (periodo della sessione: dal 20/01 al 23/02) con un impegno medio individuale di 3 ore produttive a settimana per componente,}
+        \item{9 settimane con intensità media (periodo delle lezioni: dal 4/11 al 21/12 e dal 7/01 al 19/01) con un impegno medio individuale di 5 ore produttive a settimana per componente,}
+        \item{4 settimane con intensità alta (ultimo mese: dal 24/02 al 21/03) con un impegno medio individuale di 8 ore produttive a settimana per componente,}
+        \item{2 settimane di pausa per le vacanze di Natale (dal 22/12 al 6/01).}
+    \end{itemize}
+    
+    {Il preventivo della spesa totale ammonta a 12.800€ e deriva dalla seguente previsione di distribuzione delle ore di lavoro nei vari ruoli:}
 
     \renewcommand{\arraystretch}{1.5}
     
@@ -59,6 +75,14 @@
              \multicolumn{3}{|l|}{\LabelText{Totale}}& 12800€\\ \hline
         \end{tabularx}
     \end{table}
+
+    \begin{itemize}
+        \item{\textbf{Responsabile}: questo ruolo è necessario per l'organizzazione del team. Si occupa inoltre della comunicazione con l'esterno. Stimiamo quindi che sia necessario un impiego settimanale medio di circa 4 ore per tutta la durata del progetto.}
+        \item{\textbf{Amministratore}: questo ruolo richiede un impegno maggiore nelle prime settimane durante le quali dovrà configurare l'ambiente di sviluppo del gruppo. Sarà sempre necessario il suo intervento per attuare modifiche in caso di necessità.}
+        \item{\textbf{Analista} e \textbf{progettista}: questi ruoli hanno una richiesta di lavoro equivalente in quanto si concentreranno all'inizio con la creazione del PoC e poi all'avvio della progettazione dell'MVP. Durante questi periodi queste figure lavoreranno a stretto contatto alternando fasi di analisi e progettazione.}
+        \item{\textbf{Programmatore}: secondo le nostre previsioni questo ruolo costituirà una delle parti più onerose, a livello di tempo. Stimiamo che, in media, per ogni ora dedicata alla progettazione di una funzionalità siano necessarie circa 2 ore di programmazione per la sua implementazione.}
+        \item{\textbf{Verificatore}: questo ruolo è in parte legato a quello del programmatore. Stimiamo che per ogni funzionalità implementata sia necessario dedicare almeno la metà del tempo necessaria al suo sviluppo alla fase di test. Sono inoltre previste delle ore aggiuntive dedicate alla verifica di tutti gli altri artefatti prodotti.}
+    \end{itemize}
 
     \section*{Calendario di massima del progetto}
         \subsection*{Prima Fase: Novembre - Dicembre}
