@@ -3,7 +3,7 @@ name: Compile LaTeX and Push to Main Branch
 on:
   push:
     branches:
-      - main
+      - develop
     paths:
       - "src/**"
 

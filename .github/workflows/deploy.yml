@@ -1,10 +1,11 @@
 name: Deploy to GitHub Pages
 
 on:
-  workflow_run:
-    workflows: ["Compile LaTeX and Push to Main Branch"]
-    types:
-      - completed
+  push:
+    branches:
+      - main
+    paths:
+      - "public/**"
   workflow_dispatch:
 
 permissions:
