@@ -14,6 +14,7 @@
 
 % GENERAL PACKAGES
 \usepackage{etoolbox, titlesec}
+\usepackage{tabularx}
 
 % GRAPHICS
 \RequirePackage{graphicx}
@@ -78,7 +79,7 @@
     TechWave - \@title/\@version
   \end{minipage}%
   \hfill
-  \thepage\ of \PlainPageRef{LastPage}
+  \thepage\ of \pageref{LastPage}
   \hspace*{\tabcolsep}\newline
   \@separator
 }
@@ -144,6 +145,9 @@
 % CLASSIFICAZIONE
 \newcommand{\classification}[1]{\def\@classification{#1}}
 
+% DURATA
+\newcommand{\duration}[1]{\def\@duration{#1}}
+
 % VERSIONE
 \newcommand{\version}[1]{\def\@version{#1}}
 
@@ -180,7 +184,9 @@
 
         \noindent\parbox{\textwidth}{\@labeltext{Redatto da:} \@LabelValue{\editorlist}}
         \noindent\parbox{\textwidth}{\@labeltext{Revisionato da:} \@LabelValue{\reviewerlist}}
-        \noindent\parbox{\textwidth}{\@labeltext{Classificazione:} \@LabelValue{\@classification}}
+        \noindent\parbox{\textwidth}{\@labeltext{Durata riunione:} \@LabelValue{\@duration}}
+        \noindent\parbox{\textwidth}
+        {\@labeltext{Classificazione:} \@LabelValue{\@classification}}
         \noindent\parbox{\textwidth}{\@labeltext{Versione:} \@LabelValue{\@version}}
 
 
