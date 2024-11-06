@@ -1,4 +1,4 @@
-name: Compile LaTeX and Push to Main Branch
+name: Compile LaTeX and Push to Develop Branch
 
 on:
   push:
@@ -48,10 +48,10 @@ jobs:
           mkdir -p public
           cp -r output/* public/
 
-      - name: Commit and Push to Main Branch
+      - name: Commit and Push to Develop Branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add public/
           git commit -m "Update compiled LaTeX files in public folder"
-          git push origin main
+          git push origin develop

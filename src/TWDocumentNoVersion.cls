@@ -37,11 +37,11 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{slantsc}
-\usepackage{relsize} 
+\usepackage{relsize}
 
 \renewcommand*\familydefault{\sfdefault}
 \usefont{T1}{lmss}{m}{n}\selectfont
-\DeclareFontShape{T1}{lmss}{m}{sc}{<->ssub*lmss/m/n}{} 
+\DeclareFontShape{T1}{lmss}{m}{sc}{<->ssub*lmss/m/n}{}
 
 \newcommand{\@labeltext}[1]{\textbf{\scriptsize #1}}
 \newcommand{\@LabelText}[1]{\MakeUppercase{\@labeltext{#1}}}
@@ -79,7 +79,7 @@
     TechWave - \@title
   \end{minipage}%
   \hfill
-  \thepage\ of \PlainPageRef{LastPage}
+  \thepage\ of \pageref{LastPage}
   \hspace*{\tabcolsep}\newline
   \@separator
 }
@@ -100,7 +100,7 @@
 \newcommand{\@tasktable}{}
 \newcommand{\tasklist}{%
   \subsection*{Attività Assegnate}%
-  \vspace{-\baselineskip} 
+  \vspace{-\baselineskip}
   \begin{longtable}{rp{0.55\textwidth}p{0.2\textwidth}l}
     \multicolumn{4}{@{}c@{}}{\@separator}\\*
     \@LabelText{\#} & \@LabelText{Task} &
@@ -120,7 +120,7 @@
 
 % REDATTORI
 % Initialize an empty list for editors
-\newcommand{\editorlist}{} 
+\newcommand{\editorlist}{}
 \newcommand{\firsteditor}{true} % A flag to check if it's the first editor
 
 % Define the \editor command to add a new editor to the list
@@ -132,7 +132,7 @@
 
 % VERIFICATORI
 % Initialize an empty list for editors
-\newcommand{\reviewerlist}{} 
+\newcommand{\reviewerlist}{}
 \newcommand{\firstreviewer}{true} % A flag to check if it's the first editor
 
 % Define the \editor command to add a new editor to the list
@@ -158,7 +158,7 @@
 
     \newgeometry{left=3.5cm, right=3.5cm}%
 
-    \begin{titlepage}      
+    \begin{titlepage}
         \begin{center}
 
             \raisebox{1cm}{\includegraphics[height=3cm]{logo_unipd.png}}
@@ -185,11 +185,11 @@
         \noindent\parbox{\textwidth}{\@labeltext{Redatto da:} \@LabelValue{\editorlist}}
         \noindent\parbox{\textwidth}{\@labeltext{Revisionato da:} \@LabelValue{\reviewerlist}}
         \noindent\parbox{\textwidth}{\@labeltext{Classificazione:} \@LabelValue{\@classification}}
-        
 
 
-        
-     
+
+
+
 
     \end{titlepage}
 
