@@ -1,0 +1,8 @@
+{
+    "label": "Verbali Interni",
+    "position": 1,
+    "link": {
+        "type": "generated-index",
+        "description": "Tutti i verbali interni prodotti durante le riunioni di preparazione."
+    }
+}
