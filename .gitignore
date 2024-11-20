@@ -8,3 +8,5 @@
 src/**/*.pdf
 output/**/*.pdf
 modified_files.txt
+node_modules
+out
