@@ -2,11 +2,27 @@
 
 Questa repository contiene tutta la documentazione prodotta durante lo sviluppo del progetto di Ingegneria del Software (SWE) dal gruppo 5 TechWave.
 
-La repository è organizzata in 2 cartelle:
--   **public**: Contiene tutti i documenti pubblici e i file per la visualizzazione della pagina web.
--   **src**: Contiene tutti i file sorgente dei documenti presenti nella cartella `public`. L'organizzazione dei file è speculare a quella dei file compilati.
 
-A loro volta, esse contengono 3 cartelle per i documenti principali:
+La documentazione è situata nella cartella docs, insieme ai file di configurazione per Docusaurus
+
+A sua volta, la sottocartella docs contiene 3 cartelle per i documenti principali:
 -   **Candidature**: Contiene tutti i documenti compilati presentati per la cadidatura.
 -   **RTB**: Contiene tutti i documenti compilati presentati per la _Requirements & Technologies Baseline_
 -   **PB**: Contiene tutti i documenti compilati presentati per la _Product Baseline_
+
+## How to run
+
+Requisiti:
+- Node.js
+- TypeScript compiler (tsc)
+- Visual Studio Code
+
+### Steps
+
+1) Clonare questa repo localmente
+
+2) Eseguire il seguente comando
+	```bash
+	npm install
+	```
+3) Premere F5 o andare sulla sezione "Run and Debug" ed eseguire la task "Run Extension"
