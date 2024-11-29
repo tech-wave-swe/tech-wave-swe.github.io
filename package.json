@@ -1,0 +1,63 @@
+{
+	"name": "requirements-tracker",
+	"description": "Requirements Tracker - A Webview View API Sample",
+	"version": "0.0.1",
+	"private": true,
+	"license": "MIT",
+	"engines": {
+		"vscode": "^1.95.0"
+	},
+	"extensionKind": [
+		"ui",
+		"workspace"
+	],
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [],
+	"main": "./out/extension.js",
+	"contributes": {
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "requirementsTracker",
+					"title": "Requirements Tracker",
+					"icon": "media/logo.svg"
+				}
+			]
+		},
+		"views": {
+			"requirementsTracker": [
+				{
+					"type": "webview",
+					"id": "requirementsTracker.trackerView",
+					"name": "Requirements"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "requirements-tracker.openSidebar",
+				"title": "Open Requirements Tracker Sidebar"
+			},
+			{
+				"command": "requirements-tracker.interrogate",
+				"title": "Interrogate LLM on Requirements"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint",
+		"watch": "tsc -w -p ./"
+	},
+	"devDependencies": {
+		"@eslint/js": "9.15.0",
+		"@stylistic/eslint-plugin": "2.11.0",
+		"@types/vscode": "1.95.0",
+		"eslint": "9.15.0",
+		"typescript": "^5.6.3",
+		"typescript-eslint": "8.15.0"
+	}
+}
