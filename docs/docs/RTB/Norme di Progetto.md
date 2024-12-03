@@ -205,7 +205,7 @@ Ogni sprint avrà durata, per lo meno nella prima parte del progetto, di due set
 
     -   Suddividere le attività tra i vari componenti del gruppo.
 
--   **Sprint Review:** revisione di ciò che è avvenuto durante l\'ultimo sprint, in presenza di tutto il gruppo. Le attività che compongono questa fase sono:
+-   **Sprint Review:** revisione di ciò che è avvenuto durante l'ultimo sprint, in presenza di tutto il gruppo. Le attività che compongono questa fase sono:
 
     -   Obiettivi raggiunti: tutte le task e gli obiettivi portati a compimento nello sprint.
 
