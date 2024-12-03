@@ -5,8 +5,8 @@
 
 | Data | Versione | Descrizione | Autore | Data Verifica | Verificatore |
 |------|----------|-------------|---------|------------------|-------------|
-| 20/11/2024 | 0.1.1 | Aggiunta sezione 4 | Piola Andrea |  |  |
-| 14/11/2024 | 0.1.0 | Prima stesura del documento con indice e sezione 1 | Piola Andrea |  |  |
+| 20/11/2024 | 0.1.1 | Aggiunta sezione 4 | Piola Andrea | 03/12/2024 | Monetti Luca |
+| 14/11/2024 | 0.1.0 | Prima stesura del documento con indice e sezione 1 | Piola Andrea | 19/11/2024 | Monetti Luca |
 
 </details>
 
