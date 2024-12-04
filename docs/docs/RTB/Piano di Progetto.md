@@ -5,7 +5,7 @@
 
 | Data | Versione | Descrizione | Autore | Data Verifica | Verificatore |
 |------|----------|-------------|---------|------------------|-------------|
-| 02/12/2024 | 0.1.2 | Aggiunta sezione 2 e 6 | Piola Andrea | 03/12/2024 | Pistori Gaia |
+| 02/12/2024 | 0.1.2 | Aggiunta sezione 2 | Piola Andrea | 04/12/2024 | Pistori Gaia |
 | 27/11/2024 | 0.1.1 | Aggiunta sezione 3 e 4 con primo sprint | Piola Andrea | 28/11/2024 | Pistori Gaia |
 | 24/11/2024 | 0.1.0 | Prima stesura del documento con indice e sezione 1 | Piola Andrea | 25/11/2024 | Pistori Gaia |
 
@@ -21,11 +21,15 @@
 
     1.4 Riferimenti
 
-**2. Analisi dei rischi**
+**2. Analisi dei rischi e mitigazione**
 
     2.1 Rischi organizzativi ed interpersonali
 
     2.2 Rischi tecnologici
+
+    2.3 Mitigazione dei rischi organizzativi ed interpersonali
+
+    2.4 Mitigazione dei rischi tecnologici    
 
 **3. Modello di sviluppo e Pianificazione**
 
@@ -46,12 +50,6 @@
     5.1 Verso la RTB
 
     5.2 Verso la PB
-
-**6.Mitigazione dei rischi**
-
-    6.1 Mitigazione dei rischi organizzativi ed interpersonali
-
-    6.2 Mitigazione dei rischi tecnologici
 
 # **1. Introduzione**
 
@@ -93,7 +91,7 @@ Riferimenti informativi:
 # **2. Analisi dei rischi**
 
 Questa sezione del Piano di Progetto si occupa di analizzare le difficoltà che si possono incontrare per evitare che si pongano problemi nell’avanzamento o rallentamenti che possono ostacolare le attività. Consapevoli di queste possibilità, si decide di analizzare ciascun rischio, fornendo una descrizione, un grado di rischio sull'avvenire dello stesso (da 1 a 5 dove 1 indica molto basso e 5 molto alto), e la pericolosità in modo tabellare, in modo tale da aiutare l’identificazione di ognuno con un monitoraggio facile e continuo. Per facilitare l’identificazione e l’analisi, le categorie indicate sono principalmente due: le difficoltà interpersonali ed organizzative e le difficoltà tecnologiche.  
-Le mitigazione di questi rischi si trovano nella sezione 6 del documento.
+Le mitigazione di questi rischi si trovano alla fine della sezione.
 
 ## 2.1 Rischi organizzativi ed interpersonali
 
@@ -111,6 +109,22 @@ A seguito viene riportata la tabella contenente i rischi relativi all'organizzaz
 | Rischio | Descrizione | Grado di rischio | Pericolosità |
 |-----------|----------------|-------|----------|
 | **Mancanza di conoscenze tecniche** |  Alcuni membri del gruppo potrebbero non aver familiarità con tutte le tecnologie utilizzate durante lo sviluppo o la gestione del progetto | 4 | Bassa |
+
+## 2.3 Mitigazione dei rischi organizzativi ed interpersonali
+
+| Rischio | Mitigazione |
+|-----------|----------------|
+| **Avanzamento lento per mancanza di esperienza** | Questo rischio può essere mitigato attraverso la pianificazione di incontri frequenti con l'azienda BlueWind che si è resa disponibile a fornire formazione e supporto. Inoltre, vogliamo scegliere un modello di sviluppo incrementale che si integri con il modello AGILE scrum dell'azienda |
+| **Ritardi dovuti a problemi individuali** | Questo rischio può essere mitigato attraverso la comunicazione costante tra i vari membri del gruppo. Questo ci permetterà di individuare difficoltà o ritardi prima che essi possano trasformarsi in problemi |
+| **Problemi personali tra membri del gruppo** | Questo rischio può essere mitigato creando un tavolo di confronto tra i membri coinvolti per cercare di dissipare tutte le problematiche nate tra loro; ci si affida anche al buonsenso delle stesse nella cooperazione, per il bene di tutto il gruppo |
+| **Ritardi dovuti a problemi di comunicazione con l'azienda** | Questo rischio può essere mitigato accordandosi sulla data dell'incontro successivo con l'azienda prima dell'inizio dell'incontro presente |
+
+
+## 2.4 Mitigazione dei rischi tecnologici
+
+| Rischio | Mitigazione |
+|-----------|----------------|
+| **Mancanza di conoscenze tecniche** | Questo rischio può essere mitigato attraverso una stretta collaborazione tra i membri del team e l'azienda proponente mirando alla creazione di un ambiente di collaborazione e condivisione delle conoscenze acquisite |
 
 # **3. Modello di sviluppo e Pianificazione**
 
@@ -168,23 +182,3 @@ A seguito si riporta la tabella del preventivo per il primo sprint
 | Bilancio || 12 410 |
 
 # **5 Consuntivo**
-
-# **6 Mitigazione dei rischi**
-
-A seguito viene riportate le tabelle contenenti i rischi descritti nella sezione 2 del documento con le possibili mitigazioni degli stessi
-
-## 6.1 Mitigazione dei rischi organizzativi ed interpersonali
-
-| Rischio | Mitigazione |
-|-----------|----------------|
-| **Avanzamento lento per mancanza di esperienza** | Questo rischio può essere mitigato attraverso la pianificazione di incontri frequenti con l'azienda BlueWind che si è resa disponibile a fornire formazione e supporto. Inoltre, vogliamo scegliere un modello di sviluppo incrementale che si integri con il modello AGILE scrum dell'azienda |
-| **Ritardi dovuti a problemi individuali** | Questo rischio può essere mitigato attraverso la comunicazione costante tra i vari membri del gruppo. Questo ci permetterà di individuare difficoltà o ritardi prima che essi possano trasformarsi in problemi |
-| **Problemi personali tra membri del gruppo** | Questo rischio può essere mitigato creando un tavolo di confronto tra i membri coinvolti per cercare di dissipare tutte le problematiche nate tra loro; ci si affida anche al buonsenso delle stesse nella cooperazione, per il bene di tutto il gruppo |
-| **Ritardi dovuti a problemi di comunicazione con l'azienda** | Questo rischio può essere mitigato accordandosi sulla data dell'incontro successivo con l'azienda prima dell'inizio dell'incontro presente |
-
-
-## 6.2 Mitigazione dei rischi tecnologici
-
-| Rischio | Mitigazione |
-|-----------|----------------|
-| **Mancanza di conoscenze tecniche** | Questo rischio può essere mitigato attraverso una stretta collaborazione tra i membri del team e l'azienda proponente mirando alla creazione di un ambiente di collaborazione e condivisione delle conoscenze acquisite |
