@@ -1,8 +1,9 @@
 {
-    "label": "Candidatura",
-    "position": 2,
+    "label": "RTB",
+    "position": 3,
     "link": {
         "type": "generated-index",
         "description": "Tutti i verbali interni prodotti durante le riunioni di preparazione."
     }
 }
+
