@@ -5,7 +5,7 @@
 
 | Data | Versione | Descrizione | Autore | Data Verifica | Verificatore |
 |------|----------|-------------|---------|------------------|-------------|
-| 13/12/2024 | 0.1.0 | Prima stesura del documento | Pistori Gaia | ??/12/2024 | ?revisore |
+| 13/12/2024 | 0.1.0 | Prima stesura del documento | Pistori Gaia | 13/12/2024 | Luca Monetti |
 
 </details>
 
