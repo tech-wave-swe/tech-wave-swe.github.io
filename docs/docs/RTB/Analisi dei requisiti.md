@@ -9,26 +9,8 @@
 
 </details>
 
-**1. Introduzione**
-
-    1.1 Scopo del Documento
-
-    1.2. Scopo del Prodotto
-
-**2. Analisi dei requisiti**
-
-	2.1 Requisiti funzionali 
-
-		2.1.1 Requisiti funzionali obbligatori
-		2.1.2 Requisiti funzionali opzionali
-
-	2.2 Requisiti non funzionali 
-		2.2.1 Requisiti non funzionali obbligatori
-		2.2.2 Requisiti non funzionali opzionali
-
-	2.3 Requisiti tecnici 
-		2.3.1 Requisiti tecnici obbligatori
-		2.3.2 Requisiti tecnici opzionali
+import TOCInline from '@theme/TOCInline';
+<TOCInline toc={toc} />
 
 # 1. Introduzione
 
