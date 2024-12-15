@@ -27,7 +27,7 @@ Nello sviluppo di software per sistemi embedded la parte di controllo dell'imple
 ## 2.1 Requisiti funzionali 
 
 ### 2.1.1 Requisiti funzionali obbligatori
-- L'applicativo deve permettere di impostare il suo ambiente di lavoro indicato il file dei requisiti e la cartella con il codice scritto dagli sviluppatori in C / C++dove effettuare il controllo utilizzando una semplice interfaccia grafica.
+- L'applicativo deve permettere di impostare il suo ambiente di lavoro indicando il file dei requisiti e la cartella con il codice scritto dagli sviluppatori in C / C++ dove effettuare il controllo utilizzando una semplice interfaccia grafica.
 - L'applicativo deve essere in grado di estrapolare le informazioni necessarie all'analisi a partire da un file dei requisiti in formato *.csv*.
 - L'applicativo deve, una volta ottenuti i requisiti, avviare un processo di ricerca (in buona parte svolto da un LLM) nella cartella, contenente i file di codice, per generare in output la lista dei requisiti e il loro stato di implementazione. Per stato di implementazione si intende: il testo del requisito, la sua descrizione e una indicazione sul frammento di codice (funzione o parte di essa) dove potrebbe essere implementato.
 - Il large language model (LLM) deve subire un processo di addestramento specifico sugli argomenti relativi allo sviluppo dell'azienda Bluewind a partire dai manuali forniti.
