@@ -33,7 +33,7 @@ Nello sviluppo di software per sistemi embedded la parte di controllo dell'imple
 - Il large language model (LLM) deve subire un processo di addestramento specifico sugli argomenti relativi allo sviluppo dell'azienda Bluewind a partire dai manuali forniti.
 
 ### 2.1.2 Requisiti funzionali opzionali
-- L'applicativo deve essere in grado di estrapolare le informazioni necessarie all'analisi a partire da un file dei requisiti in formato *.requif*.
+- L'applicativo deve essere in grado di estrapolare le informazioni necessarie all'analisi a partire da un file dei requisiti in formato *.reqif*.
 - L'utente programmatore, una volta ottenuto in output può valutare la risposta ottenuta indicando se la posizione di implementazione del requisito suggerita è corretta o no. Questa informazione può essere memorizzata e utilizzata per miglioramenti futuri del modello.
 - L'applicativo deve essere in grado di fornire suggerimenti per l'implementazione di un requisito selezionato.
 
