@@ -1,6 +1,9 @@
 import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -22,7 +25,7 @@ const config: Config = {
 	deploymentBranch: "gh-pages",
 	trailingSlash: false,
 
-	onBrokenLinks: "throw",
+	onBrokenLinks: "warn",
 	onBrokenMarkdownLinks: "warn",
 
 	// Even if you don't use internationalization, you can use this field to set
@@ -40,11 +43,38 @@ const config: Config = {
 				docs: {
 					sidebarPath: "./sidebars.ts",
 					exclude: ["**/private/**"],
+					remarkPlugins: [remarkMath],
+					rehypePlugins: [rehypeKatex],
 				},
 				theme: {
 					customCss: "./src/css/custom.css",
 				},
 			} satisfies Preset.Options,
+		],
+	],
+
+	// Stylesheets
+
+	stylesheets: [
+		{
+		  href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
+		  type: 'text/css',
+		  integrity:
+			'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
+		  crossorigin: 'anonymous',
+		},
+	  ],
+
+	// Plugins
+
+	plugins: [
+		[
+			"@lunaticmuch/docusaurus-terminology",
+			{
+				termsDir: "./docs/RTB/Termini",
+				termsUrl: "/docs/RTB/Termini",
+				glossaryFilepath: "./docs/RTB/Glossario.md",
+			}
 		],
 	],
 
@@ -74,6 +104,8 @@ const config: Config = {
 			theme: prismThemes.github,
 			darkTheme: prismThemes.dracula,
 		},
+
+
 	} satisfies Preset.ThemeConfig,
 };
 

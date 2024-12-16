@@ -13,7 +13,8 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                              | Autore                | Data Verifica | Verificatore          |
 |------------|----------|------------------------------------------|-----------------------|---------------|-----------------------|
-| 08/12/2024 | 1.0.0    | Prima stesura del documento              | Manuel Felipe Vasquez | 10/12/2024    |                       |
+| 16/12/2024 | 1.1.0    | aggiunta qualità di processo             | Giulia Marcon         | 17/12/2024    |                       |
+| 08/12/2024 | 1.0.0    | Prima stesura del documento              | Manuel Felipe Vasquez | 10/12/2024    | Luca Monetti          |
 
 </details>
 
@@ -25,6 +26,10 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 ### Scopo del Documento
 
 Questo documento delinea le strategie di verifica, validazione e quality assurance adottate durante lo sviluppo del progetto, definendo gli obiettivi qualitativi e le relative metriche di misurazione. Include la documentazione dettagliata delle procedure di verifica, dei processi di controllo qualità, e delle metodologie di test implementate nelle varie fasi del ciclo di sviluppo, garantendo la conformità del prodotto con i requisiti specificati e gli standard qualitativi prestabiliti dal team.
+Si concentra su:
+- La qualità dei processi, in termini di aderenza agli standard e alle pratiche di gestione del ciclo di vita del software.
+- La qualità del prodotto, attraverso la definizione di metriche misurabili e verificabili.
+- L'adozione di un modello a V per la pianificazione e l'esecuzione delle attività di test e validazione.
 
 ### Glossario
 
@@ -33,6 +38,127 @@ Per una definizione dei termini tecnici utilizzati in questo documento, consulta
 ## Qualità di Processo
 
 Per garantire la qualità dei processi, il team adotta il modello di riferimento ISO/IEC 12207, che definisce i processi di ciclo di vita del software e le attività di supporto necessarie per lo sviluppo di un prodotto software.
+
+### Processi Primari
+
+| Metrica | Nome                           | Descrizione                                                        | Obiettivo                                           | Valore Accettabile | Valore Desiderabile |
+|---------|--------------------------------|--------------------------------------------------------------------|-----------------------------------------------------|--------------------|---------------------|
+| MPCR01  | **Budget Variance**            | Differenza tra il budget pianificato e quello effettivamente speso | Monitorare il controllo dei costi del progetto      | ≤ 5%               | ≤ 2%                |
+| MPCR02  | **Earned Value**               | Valore del lavoro effettivamente svolto                            | Monitorare l'avanzamento economico del progetto     | ≥ Actual Cost      | -                   |
+| MPCR03  | **Actual Cost**                | Costo effettivo sostenuto per il lavoro svolto                     | Controllare le spese del progetto                   | ≤ Budget previsto  | < Budget previsto   |
+| MPCR04  | **Planned Value**              | Valore del lavoro pianificato fino a una data specifica            | Comparare il progresso pianificato con quello reale | N/A                | N/A                 |
+| MPCR05  | **Cost Variance**              | Differenza tra il valore acquisito e il costo effettivo            | Valutare l'efficienza economica del progetto        | ≥ -5%              | ≥ 0%                |
+| MPCR06  | **Schedule Variance**          | Differenza tra il valore acquisito e il valore pianificato         | Valutare l'aderenza ai tempi di progetto            | ≥ -5%              | ≥ 0%                |
+
+#### Budget Variance
+
+**Metrica**: MPCR01
+
+**Formula:** $\text{Budget Variance} = 100 \times \dfrac{\text{Budget Consuntivo} − \text{Budget Pianificato}}{\text{Budget Pianificato}}$
+- Questo indice misura la differenza tra il budget pianificato e quello effettivamente speso.
+- Un valore positivo indica un risparmio rispetto al budget, mentre un valore negativo indica un costo superiore a quanto preventivato.
+---
+#### Earned Value
+
+**Metrica**: MPCR02
+
+**Formula:** $\text{Earned Value} = \sum (\text{Percentuale Completamento} \times \text{Budget Pianificato})$
+- Il valore del lavoro effettivamente completato, calcolato moltiplicando la percentuale di completamento di ciascuna attività per il suo budget pianificato.
+- Rappresenta quanto valore è stato prodotto in base al lavoro effettivamente svolto.
+---
+#### Actual Cost
+
+**Metrica**: MPCR03
+
+**Formula:** $\text{Actual Cost} = \overset{\text{n° sprint}}{\underset{i=0}{\sum}} (\text{Budget Consuntivo}_i)$
+- Somma di tutti i costi realmente sostenuti per il lavoro completato fino ad oggi.
+- Include costi diretti e indiretti effettivamente spesi nel progetto.
+---
+#### Planned Value
+
+**Metrica**: MPR04
+
+**Formula**: $\text{Planned Value} = \text{Actual Cost}_{i-1} + \text{Budget Pianificato}_i$
+- $i$ è il numero corrente di sprint.
+- Rappresenta il budget autorizzato assegnato al lavoro pianificato.
+- Indica quanto lavoro dovrebbe essere stato completato ad una determinata data.
+---
+#### Cost Variance
+
+**Metrica**: MPR05
+
+**Formula**: $\text{Cost Variance} = \text{Earned Value} - \text{Actual Cost}$
+- Misura la differenza tra il valore del lavoro completato e il suo costo effettivo.
+- Un valore positivo indica che il progetto sta spendendo meno del previsto.
+---
+#### Schedule Variance
+
+**Metrica**: MPCR06
+
+**Formula**: $\text{Schedule Variance} = \text{Earned Value} - \text{Planned Value}$
+- Misura la differenza tra il lavoro completato e quello pianificato.
+- Un valore positivo indica che il progetto è in anticipo sulla schedulazione.
+
+### Processi di Supporto
+
+| Metrica | Nome                       | Descrizione                                        | Obiettivo                                                       | Valore Accettabile         | Valore Desiderabile          |
+|---------|----------------------------|----------------------------------------------------|-----------------------------------------------------------------|----------------------------|------------------------------|
+| MPCS01  | **Estimate At Completion** | Stima dei costi per il completamento del progetto  | Prevedere i costi rimanenti e pianificare le risorse necessarie | ≤ Budget At Completion     | Corrispondente al preventivo |
+| MPCS02  | **Estimate To Complete**   | Costo stimato per completare le attività rimanenti | Supportare la pianificazione finanziaria e delle risorse        | ≤ Budget At Completion     | ≤ Estimate At Completion     |
+| MPCS03  | **Budget At Completion**   | Totale del budget allocato per il progetto         | Gestire e controllare le risorse finanziarie complessive        | ≤ +10% del budget iniziale | Corrispondente al preventivo |
+
+#### Estimate At Completion
+
+**Metrica**: MPCS01
+
+**Formula**: $\text{Estimate At Completion} = \text{Actual Cost} + \text{Estimate To Complete}$
+- Stima del costo totale del progetto al suo completamento
+- Combina i costi già sostenuti (AC) con la stima dei costi rimanenti (ETC)
+- Utile per prevedere il budget finale necessario e identificare potenziali sforamenti
+---
+#### Estimate To Complete
+
+**Metrica**: MPCS02
+
+**Formula**: $\text{Estimate To Complete} = \dfrac{\text{Budget At Completion} - \text{Earned Value}}{\text{Cost Performance Index}}$
+- Stima del costo necessario per completare il lavoro rimanente
+- Tiene conto dell'efficienza attuale del progetto attraverso il CPI
+- Permette di pianificare le risorse necessarie per il completamento
+---
+#### Budget At Completion
+
+**Metrica**: MPCS03
+
+**Formula**: $\text{Budget At Completion} = \sum \text{(Budget Pianificato) per ogni attività}$
+- Rappresenta il budget totale autorizzato per il progetto
+- Serve come baseline per valutare le performance di costo
+- Include tutte le riserve di contingenza allocate
+
+### Processi Organizzativi
+
+| Metrica | Nome                        | Descrizione                                          | Obiettivo                                                  | Valore Accettabile | Valore Desiderabile |
+|---------|-----------------------------|------------------------------------------------------|------------------------------------------------------------|--------------------|---------------------|
+| MPCO01  | **Rischi non preventivati** | Numero di rischi emersi non pianificati inizialmente | Identificare e gestire tempestivamente nuovi rischi        | ≤ 3                | 0                   |
+| MPCO02  | **Correttezza documenti**   | Percentuale di documenti privi di errori             | Garantire la qualità e l'affidabilità della documentazione | ≥ 70%              | 100%                |
+
+#### Rischi non preventivati
+
+**Metrica**: MPCO01
+
+**Formula**: $\text{Rischi non preventivati} = \text{Numero totale rischi emersi} - \text{Numero rischi previsti}$
+- Monitora l'efficacia del processo di risk management
+- Aiuta a valutare la completezza dell'analisi dei rischi iniziale
+- Un numero elevato può indicare la necessità di migliorare il processo di identificazione dei rischi
+---
+#### Correttezza documenti
+
+**Metrica**: MPCO02
+
+**Formula**: $\text{Correttezza} = 100 \times \dfrac{\text{Numero documenti senza errori}}{\text{Numero totale documenti}}$
+- Misura la qualità complessiva della documentazione prodotta
+- Include errori di forma, contenuto e conformità agli standard
+- Importante per garantire la comunicazione efficace e la manutenibilità del progetto
+- Gli errori vengono identificati durante le revisioni e le verifiche formali
 
 ## Qualità di Prodotto
 
