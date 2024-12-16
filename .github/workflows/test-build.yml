@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - main
+      - develop
     paths:
       - "docs/**"
 
@@ -18,21 +19,26 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          
+
       - name: List directory contents for debugging
-        run: ls -la docs  # This will show the contents of the 'docs' folder
+        run: ls -la docs # This will show the contents of the 'docs' folder
 
       - name: Show PWD
         run: pwd
-          
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
           cache-dependency-path: "docs/package-lock.json"
-          
+
       - name: Install dependencies
         run: npm ci
+
+      - name: Test Glossary
+        run: |
+          npm run docusaurus parse
+          npm run docusaurus glossary
 
       - name: Test build website
         run: npm run build
