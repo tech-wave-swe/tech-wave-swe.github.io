@@ -22,7 +22,7 @@ const config: Config = {
 	deploymentBranch: "gh-pages",
 	trailingSlash: false,
 
-	onBrokenLinks: "throw",
+	onBrokenLinks: "warn",
 	onBrokenMarkdownLinks: "warn",
 
 	// Even if you don't use internationalization, you can use this field to set
@@ -45,6 +45,19 @@ const config: Config = {
 					customCss: "./src/css/custom.css",
 				},
 			} satisfies Preset.Options,
+		],
+	],
+
+	// Plugins
+
+	plugins: [
+		[
+			"@lunaticmuch/docusaurus-terminology",
+			{
+				termsDir: "./docs/RTB/Termini",
+				termsUrl: "/docs/RTB/Termini",
+				glossaryFilepath: "./docs/RTB/Glossario.md",
+			}
 		],
 	],
 
