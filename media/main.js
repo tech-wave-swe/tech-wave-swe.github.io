@@ -32,12 +32,16 @@
     }
   });
 
-  /**
-   * @param {string} message
-   */
-  function log(message) {
+  function warn(message) {
     vscode.postMessage({
-      type: "log",
+      type: "warning",
+      message: message,
+    });
+  }
+
+  function error(message) {
+    vscode.postMessage({
+      type: "error",
       message: message,
     });
   }
@@ -45,7 +49,7 @@
   function parseFile() {
     const file = document.getElementById("requirements-file-input");
     if (!file) {
-      log("File input not found");
+      warn("File input not found");
       return;
     }
 
@@ -54,46 +58,60 @@
       : null;
 
     if (!csvFile) {
-      log("No file selected");
+      warn("No file selected");
       return;
     }
     if (!(csvFile.name.endsWith(".csv") || csvFile.name.endsWith(".reqif"))) {
-      log("Please select a .csv or a .reqif file");
+      error("Please select a .csv or a .reqif file");
       return;
     }
-
     const tableElement = document.getElementById("requirements-table");
     if (!tableElement) {
       return;
     }
-
     const reader = new FileReader();
     reader.onload = function () {
       const content = reader.result;
       if (typeof content === "string") {
         const rows = content.split("\n");
-        const header = rows[0];
-        header.split(",").forEach((cell) => {
-          const cellElement = document.createElement("th");
-          cellElement.textContent = cell;
-          tableElement.appendChild(cellElement);
+        const header = rows[0].split("$");
+        const dataRows = rows.slice(1).map((row) => {
+          const cells = row.split("$");
+          let doc = {};
+          header.forEach((key, index) => {
+            doc[key.trim()] = cells[index] ? cells[index].trim() : "";
+          });
+          return doc;
         });
 
-        const contentRows = rows.slice(1);
-        contentRows.forEach((row) => {
+        tableElement.innerHTML = "";
+
+        const headerRow = document.createElement("tr");
+        header.forEach((cell) => {
+          const cellElement = document.createElement("th");
+          cellElement.textContent = cell;
+          headerRow.appendChild(cellElement);
+        });
+        tableElement.appendChild(headerRow);
+
+        dataRows.forEach((doc) => {
           const rowElement = document.createElement("tr");
-          row.split(",").forEach((cell) => {
+          header.forEach((key) => {
             const cellElement = document.createElement("td");
-            cellElement.textContent = cell;
+            cellElement.textContent = doc[key] || "";
             rowElement.appendChild(cellElement);
           });
           tableElement.appendChild(rowElement);
         });
-      } else {
-        log("Failed to read file");
-      }
 
-      vscode.setState({ table: tableElement });
+        vscode.postMessage({
+          type: "addDocuments",
+          documents: dataRows,
+        });
+      } else {
+        error("Failed to read file");
+      }
+      vscode.setState({ table: tableElement.innerHTML });
     };
 
     reader.readAsText(csvFile);
