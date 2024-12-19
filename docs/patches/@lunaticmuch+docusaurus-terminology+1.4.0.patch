@@ -1,0 +1,69 @@
+diff --git a/node_modules/@lunaticmuch/docusaurus-terminology/lib/commands/glossary.js b/node_modules/@lunaticmuch/docusaurus-terminology/lib/commands/glossary.js
+index 82e5a72..143cc52 100644
+--- a/node_modules/@lunaticmuch/docusaurus-terminology/lib/commands/glossary.js
++++ b/node_modules/@lunaticmuch/docusaurus-terminology/lib/commands/glossary.js
+@@ -28,10 +28,20 @@ export async function glossary(options) {
+     // sort termsData alphabetically
+     sortFiles(termsByType);
+     // append terms to the glossary
++
++    // Track the current letter
++    let currentLetter = '';
++
+     for (const term of termsByType) {
+         const current_file_path = path.resolve(process.cwd(), options.glossaryFilepath);
+         const relativePath = getRelativePath(current_file_path, term.filepath, options);
+         const glossaryTerm = getGlossaryTerm(term, relativePath);
++
++        if (currentLetter !== term.title[0]) {
++            currentLetter = term.title[0];
++            glossaryContent = glossaryContent + `\n\n## ${currentLetter}\n`;
++        }
++
+         glossaryContent = glossaryContent + glossaryTerm;
+     }
+     if (options.dryRun) {
+@@ -57,5 +67,4 @@ export async function glossary(options) {
+     }
+     console.log(`\u2713 ${termsByType.length} terms found.`);
+ }
+-module.exports = glossary;
+ //# sourceMappingURL=glossary.js.map
+\ No newline at end of file
+diff --git a/node_modules/@lunaticmuch/docusaurus-terminology/lib/lib.js b/node_modules/@lunaticmuch/docusaurus-terminology/lib/lib.js
+index 9483bfd..825d384 100644
+--- a/node_modules/@lunaticmuch/docusaurus-terminology/lib/lib.js
++++ b/node_modules/@lunaticmuch/docusaurus-terminology/lib/lib.js
+@@ -127,8 +127,8 @@ export function getGlossaryTerm(term, path) {
+         hover = term.hoverText != undefined ? term.hoverText : '';
+     }
+     return hover.length > 0
+-        ? `\n\n### [${term.title}](${path}) \n${hover}\n`
+-        : `\n\n### [${term.title}](${path})`;
++        ? `\n- [${term.title}](${path}): ${hover}`
++        : `\n- [${term.title}](${path})`;
+ }
+ export function getOrCreateGlossaryFile(path) {
+     let fileContent = '';
+@@ -149,8 +149,9 @@ export function getOrCreateGlossaryFile(path) {
+     else {
+         // TODO: Replace with async fs function
+         try {
++            const separator = '# Glossario';
+             const content = fs.readFileSync(path, { encoding: 'utf8' });
+-            const index = content.indexOf('---', 1) + '---'.length;
++            const index = content.indexOf(separator, 1) + separator.length;
+             fileContent = content.slice(0, index);
+         }
+         catch (err) {
+@@ -172,7 +173,8 @@ export function getRelativePath(_, target, opts) {
+     //  ? "." + target.substr(target.lastIndexOf("/"))
+     //  : relative_url + target.substr(target.lastIndexOf("/"));
+     //console.log(new_rel_url, new_final_url);
++
+     //  remove .mdx suffix
+-    return final_url.replace(/(\.mdx?)/g, '');
++    return final_url.replace(/(\.mdx?)/g, '');
+ }
+ //# sourceMappingURL=lib.js.map
+\ No newline at end of file
