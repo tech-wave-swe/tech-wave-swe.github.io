@@ -62,6 +62,13 @@
       return;
     }
 
+    const inputElement = /** @type {HTMLInputElement} */ (document.getElementById("delimiter-input"));
+    const delimiter = inputElement ? inputElement.value : ",";
+    if (!delimiter) {
+      log("Delimiter not specified");
+      return;
+    }
+
     const tableElement = document.getElementById("requirements-table");
     if (!tableElement) {
       return;
@@ -73,18 +80,20 @@
       if (typeof content === "string") {
         const rows = content.split("\n");
         const header = rows[0];
-        header.split(",").forEach((cell) => {
+        const headerRow = document.createElement("tr");
+        header.split(delimiter).forEach((cell) => {
           const cellElement = document.createElement("th");
           cellElement.textContent = cell;
-          tableElement.appendChild(cellElement);
+          headerRow.appendChild(cellElement);
         });
+        tableElement.appendChild(headerRow);
 
         const contentRows = rows.slice(1);
         contentRows.forEach((row) => {
           const rowElement = document.createElement("tr");
-          row.split(",").forEach((cell) => {
+          row.split(delimiter).forEach((cell) => {
             const cellElement = document.createElement("td");
-            cellElement.textContent = cell;
+            cellElement.textContent = cell.trim();
             rowElement.appendChild(cellElement);
           });
           tableElement.appendChild(rowElement);

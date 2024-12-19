@@ -124,8 +124,11 @@ class RequirementsTrackerViewProvider implements vscode.WebviewViewProvider {
 
 				<h1>Requirement Tracker</h1>
 
-  				<label for="myfile">Select a file to insert the requirements:</label>
+  			<label for="myfile">Select a file to insert the requirements:</label>
 				<input type="file" id="requirements-file-input" name="requirements-file-input">
+
+        <label for="delimiter-input">Delimiter:</label>
+        <input type="text" id="delimiter-input" value="$" placeholder="Enter delimiter" />
 
 				<button id="requirements-confirmation-button">Apply requirements</button>
 
