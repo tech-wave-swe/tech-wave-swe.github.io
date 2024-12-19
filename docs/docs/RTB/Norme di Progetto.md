@@ -102,6 +102,101 @@ Le riunioni **esterne** avvengono tra gruppo e committente o proponente. Queste 
 
 Il lavoro personale è organizzato individualmente da ogni componente del gruppo per poter lasciare libertà in quanto impegnati con questioni accademiche, personali e seguendo quanto dichiarato nella candidatura alla sezione di dichiarazione impegni. Ovviamente l'organizzazione dovrà essere consona agli impegni totali del gruppo per evitare ritardi dovuti ad un singolo elemento. In caso di problematiche di indisponibilità che porteranno al non compimento degli impegni di progetto presi in carico dal singolo membro, questo si impegna ad avvisare prontamente il Responsabile che cercherà di ridistribuire il lavoro contattando singolarmente i membri oppure indicendo una riunione di gruppo.
 
+#### Procedure
+
+##### Utilizzo del repository
+
+Per garantire la standardizzazione nell'utilizzo di GitHub durante il ciclo di sviluppo, vengono definite le seguenti procedure operative per le attività principali.
+
+###### Implementazione Ticket
+
+Per avviare lo sviluppo di una nuova funzionalità, i membri del team devono seguire i passaggi descritti di seguito:
+
+**1. Selezione del Ticket**: Accedere a JIRA e selezionare il ticket corrispondente alla funzionalità da implementare. Assicurarsi di aggiornare lo stato del ticket secondo il workflow definito.
+
+**2. Creazione della Branch**: Creare un nuovo branch a partire dal branch develop, utilizzando la seguente convenzione di denominazione seguente.
+
+:::info
+Convenzione per la nomenclatura dei branch:
+
+[CodiceTicket]-[NomeFunzionalità]
+
+- **CodiceTicket**: l'identificativo unico del ticket in JIRA (es. TWD-123).
+- **NomeFunzionalità**: una descrizione concisa e leggibile della funzionalità (es. nuova-feature).
+
+:::
+Per la creazione del branch in locale:
+
+```bash
+git checkout develop
+git pull origin develop
+git checkout -b TWD-123-gestione-utenti
+```
+
+Alternativamente è possibile utilizzare la funzione offerta da JIRA cliccando sulla voce _Crea Branch_ presente nel ticket.
+
+**3. Preparazione dell'Ambiente di Lavoro**: Aggiornare il repository locale e sincronizzarlo per garantire l'allineamento con l'ultima versione del codice.
+
+Se il branch è stato creato in locale è possibile saltare questo passaggio.
+
+```bash
+git fetch
+git checkout TWD-123-gestione-utenti
+```
+
+**4. Inizio dello Sviluppo**: Procedere con l'implementazione seguendo gli standard di codice e i principi definiti nelle norme di progetto.
+
+###### Merge di un Branch
+
+Ciascun membro del team deve sviluppare le funzionalità assegnate in un branch dedicato. Al completamento dello sviluppo, è necessario avviare una Pull Request verso il branch `develop`, utilizzando l'interfaccia web di GitHub o la CLI.
+
+L'apertura di una Pull Request innesca l'esecuzione di una GitHub Action preconfigurata, responsabile dell'esecuzione automatica dei test sul codice proposto. Per completare il merge, è obbligatoria l'approvazione da parte di un _Verificatore_.
+
+Ciascun membro del team è tenuto a identificare e segnalare i file che richiedono l'aggiunta di una marcatura temporale da parte del _Verificatore_, il quale deve compilare tali informazioni seguendo le modalità descritte nella sezione appropriata delle norme.
+
+###### Verifica di una Pull Request
+
+Ogni Pull Request deve essere sottoposta a verifica da parte di un _Verificatore_ prima di essere approvata e unita al branch `develop`. Di seguito sono riportati i passaggi e i comandi necessari per eseguire correttamente la verifica.
+
+**1. Accesso alla Pull Request**
+
+Il _Verificatore_ può accedere alla PR tramite l'interfaccia web di GitHub o utilizzando la **GitHub CLI**.
+
+- **Interfaccia web di GitHub**: Per verificare rapidamente il codice in un ambiente isolato, è possibile avviare un Codespace direttamente dalla PR. Dall'interfaccia web è possibile selezionare la voce: `File Changed > Review in codespaces`.
+- **Locale**: Per verificare la Pull request in locale sarà necessario:
+
+  - Accedere alla Pull request tramite Github CLI:
+
+    ```bash
+    gh pr checkout <ID-PR>
+    ```
+
+  - Installare le dipendenze necessarie:
+
+    ```bash
+    npm install
+    ```
+
+**2. Ispezione Manuale**
+Analizzare il codice per verificare la qualità e la conformità agli standard di progetto:
+
+**3. Feedback / Approvazione**
+
+- **Interfaccia Web**: Utilizzando la voce `Review Changes` è possibile approvare i cambiamenti apportati o inviare feedback.
+- **Locale**
+
+  - Per approvare il codice:
+
+    ```bash
+    gh pr review <ID_PR> --approve
+    ```
+
+  - Per richiedere modifiche:
+
+    ```bash
+    gh pr review <ID_PR> --request-changes --body "Modifiche necessarie"
+    ```
+
 #### Pianificazione
 
 **Ruoli di progetto**
