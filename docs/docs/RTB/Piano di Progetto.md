@@ -5,6 +5,7 @@
 
 | Data | Versione | Descrizione | Autore | Data Verifica | Verificatore |
 |------|----------|-------------|---------|------------------|-------------|
+| 19/12/2024 | 0.1.3 | Integrazione sezione 3, 4, 5 con secondo sprint | Dal Bianco Riccardo | 20/12/2024 | * |
 | 02/12/2024 | 0.1.2 | Aggiunta sezione 2 | Piola Andrea | 04/12/2024 | Pistori Gaia |
 | 27/11/2024 | 0.1.1 | Aggiunta sezione 3 e 4 con primo sprint | Piola Andrea | 28/11/2024 | Pistori Gaia |
 | 24/11/2024 | 0.1.0 | Prima stesura del documento con indice e sezione 1 | Piola Andrea | 25/11/2024 | Pistori Gaia |
@@ -162,6 +163,14 @@ Periodo: 18/11/2024 - 06/12/2024
 
 Iniziato a seguito dell'aggiudicazione del capitolato d'appalto; in questo sprint l'obiettivo principale è quello di organizzare al meglio tutti gli strumenti da utilizzare durante tutto il progetto es. Jira, GitHub... . Inoltre si vuole anche cominciare a produrre la documentazione quale: Norme di progetto, Piano di Progetto, Glossario e Piano di Qualifica. A seguito della prima riunione con l'azienda proponente, buona parte del tempo che i membri utilizzeranno sarà destinato allo studio delle tecnologie concordate con l'azienda. Inizialmente lo sprint doveva avere durata di due settimane ma si è deciso di allungarlo a seguito di un prolungamento dovuto allo spostamento della riunione con l'azienda alla settimana successiva. Durante questa settimana si è deciso di cominciare con l'analisi dei requisiti attraverso gli use case.
 
+**Sprint 2**
+
+Periodo 06/12/2024 - 20/12/2024
+
+In questo periodo, il gruppo si concentrerà su attività fondamentali per proseguire lo sviluppo e l'avvicinamento al Proof of Concept. In primo luogo, verrà dato seguito alla scrittura della documentazione avviata in precedenza, con particolare attenzione all'aggiornamento e al completamento delle Norme di Progetto, del Piano di Progetto, del Glossario e del Piano di Qualifica.
+Parallelamente, si continuerà l'analisi delle tecnologie già avviata nel periodo precedente. A questa analisi saranno integrate nuove tecnologie emerse durante le recenti riunioni, con l'obiettivo di valutarne l'efficacia e l'applicabilità alle esigenze del progetto. Il gruppo, inoltre procederà nella stesura del diagramma use case.
+Infine, una parte del tempo sarà dedicata ad attività di ricerca focalizzate su questioni architetturali cruciali, con l'obiettivo di individuare soluzioni tecniche preliminari che garantiscano un'architettura modulare e scalabile. Questo lavoro iniziale consentirà di orientare le decisioni progettuali, valutando le possibili alternative e ponendo le basi per lo sviluppo del sistema.
+
 # **4 Preventivo**
 
 ## 4.1 Verso la RTB
@@ -181,4 +190,33 @@ A seguito si riporta la tabella del preventivo per il primo sprint
 | Totale || 390 |
 | Bilancio || 12 410 |
 
-# **5 Consuntivo**
+**Sprint 2**
+
+A seguito si riporta la tabella del preventivo per il secondo sprint
+
+| Ruolo | Ore svolte | Costo |
+|------|----------|-------------|
+| Responsabile di progetto | 4 | 120 |
+| Amministratore di sistema | 4 | 80 |
+| Analista | 6 | 150 |
+| Progettista | 1 | 25 |
+| Programmatore | 1 | 15 |
+| Verificatore | 6 | 90 |
+| Totale || 480 |
+| Bilancio || 11 930 |
+
+## **5 Consuntivo**
+
+Di seguito vengono indicate le spese effettive nelle fasi del progetto
+
+| Ruolo | Totale ore ruolo | Diff. ore | Costo orario | Costo | Diff. costo |
+|-----------|--------|-------------|--------|-------|----------|
+| Responsabile di progetto | 8 |  | 30 | 240 |  |
+| Amministratore di sistema | 8 |  | 20 | 160 |  |
+| Analista | 10 |  | 25 | 250 |  |
+| Progettista | 1 |  | 25 | 25 |  |
+| Programmatore | 2 |  | 15 | 30 |  |
+| Verificatore | 11 |  | 15 | 165 |  |
+| Totale consultivo | |  |  | 870 |  |
+
+## 5.1 Resoconto 
