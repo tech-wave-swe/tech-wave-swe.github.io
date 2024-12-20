@@ -6,6 +6,9 @@ title: Nome di Progetto
 import TOCInlineWrapper from "@site/src/components/TOCInlineWrapper.jsx";
 import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Documento delle Norme di Progetto
 
 <details>
@@ -13,7 +16,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                                        | Autore       | Data Verifica | Verificatore |
 | ---------- | -------- | -------------------------------------------------- | ------------ | ------------- | ------------ |
-| 16/12/24   | 0.2.0    | Revisione struttura + Aggiunta sezione GitHub      | Luca Monetti |               |              |
+| 19/12/2024 | 0.2.0    | Revisione struttura + Aggiunta sezione GitHub      | Luca Monetti |               |              |
 | 20/11/2024 | 0.1.1    | Aggiunta sezione 4                                 | Piola Andrea | 03/12/2024    | Pistori Gaia |
 | 14/11/2024 | 0.1.0    | Prima stesura del documento con indice e sezione 1 | Piola Andrea | 19/11/2024    | Pistori Gaia |
 
@@ -108,6 +111,12 @@ Il lavoro personale è organizzato individualmente da ogni componente del gruppo
 
 Per garantire la standardizzazione nell'utilizzo di GitHub durante il ciclo di sviluppo, vengono definite le seguenti procedure operative per le attività principali.
 
+Il workflow per l'implementazione di una nuova feature è il seguente:
+
+1. Implementazione Ticket in un branch separato
+2. Revisione e Merge su `develop`
+3. Revisione complessiva ( Può riguardare diverse modifiche ) e Merge su `main` (Rilascio).
+
 ###### Implementazione Ticket
 
 Per avviare lo sviluppo di una nuova funzionalità, i membri del team devono seguire i passaggi descritti di seguito:
@@ -125,6 +134,7 @@ Convenzione per la nomenclatura dei branch:
 - **NomeFunzionalità**: una descrizione concisa e leggibile della funzionalità (es. nuova-feature).
 
 :::
+
 Per la creazione del branch in locale:
 
 ```bash
@@ -150,13 +160,15 @@ git checkout TWD-123-gestione-utenti
 
 Ciascun membro del team deve sviluppare le funzionalità assegnate in un branch dedicato. Al completamento dello sviluppo, è necessario avviare una Pull Request verso il branch `develop`, utilizzando l'interfaccia web di GitHub o la CLI.
 
-L'apertura di una Pull Request innesca l'esecuzione di una GitHub Action preconfigurata, responsabile dell'esecuzione automatica dei test sul codice proposto. Per completare il merge, è obbligatoria l'approvazione da parte di un _Verificatore_.
+L'apertura di una Pull Request innesca l'esecuzione di una GitHub Action preconfigurata, responsabile dell'esecuzione automatica dei test sul codice proposto. Per completare il merge, è obbligatoria l'approvazione da parte di almeno un _Verificatore_.
 
-Ciascun membro del team è tenuto a identificare e segnalare i file che richiedono l'aggiunta di una marcatura temporale da parte del _Verificatore_, il quale deve compilare tali informazioni seguendo le modalità descritte nella sezione appropriata delle norme.
+Ciascun membro del team è tenuto a identificare e segnalare i file che richiedono l'aggiunta di una marcatura temporale da parte del _Verificatore_ all'interno della descrizione della Pull Request.
+
+Il _Verificatore_ dovrà compilare tali informazioni seguendo le modalità descritte nella sezione appropriata delle norme.
 
 ###### Verifica di una Pull Request
 
-Ogni Pull Request deve essere sottoposta a verifica da parte di un _Verificatore_ prima di essere approvata e unita al branch `develop`. Di seguito sono riportati i passaggi e i comandi necessari per eseguire correttamente la verifica.
+Ogni Pull Request deve essere sottoposta a verifica da parte di un _Verificatore_ prima di essere approvata e unita al branch `develop` o `main`. Di seguito sono riportati i passaggi e i comandi necessari per eseguire correttamente la verifica.
 
 **1. Accesso alla Pull Request**
 
