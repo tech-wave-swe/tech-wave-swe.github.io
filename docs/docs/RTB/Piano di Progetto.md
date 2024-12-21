@@ -198,25 +198,33 @@ A seguito si riporta la tabella del preventivo per il secondo sprint
 |------|----------|-------------|
 | Responsabile di progetto | 4 | 120 |
 | Amministratore di sistema | 4 | 80 |
-| Analista | 6 | 150 |
-| Progettista | 1 | 25 |
+| Analista | 7 | 175 |
+| Progettista | 0 | 0 |
 | Programmatore | 1 | 15 |
 | Verificatore | 6 | 90 |
 | Totale || 480 |
 | Bilancio || 11 930 |
 
+
 ## **5 Consuntivo**
 
-Di seguito vengono indicate le spese effettive nelle fasi del progetto
+## 5.1 Verso la RTB
+
+**Consultivo sprint 1**
+
+Di seguito vengono indicate le spese effettive del primo sprint 
 
 | Ruolo | Totale ore ruolo | Diff. ore | Costo orario | Costo | Diff. costo |
 |-----------|--------|-------------|--------|-------|----------|
-| Responsabile di progetto | 8 |  | 30 | 240 |  |
-| Amministratore di sistema | 8 |  | 20 | 160 |  |
-| Analista | 10 |  | 25 | 250 |  |
-| Progettista | 1 |  | 25 | 25 |  |
-| Programmatore | 2 |  | 15 | 30 |  |
-| Verificatore | 11 |  | 15 | 165 |  |
-| Totale consultivo | |  |  | 870 |  |
+| Responsabile di progetto | 4 | 0 | 30 | 120 |  |
+| Amministratore di sistema | 3 | -1 | 20 | 60 | -20 |
+| Analista | 6 | +2 | 25 | 150 | +50 |
+| Progettista | 0 | 0 | 25 | 0 |  |
+| Programmatore | 2 | +1 | 15 | 30 | +15 |
+| Verificatore | 6 | +1 | 15 | 90 | +15 |
+| Totale consultivo | | +3 |  | 450 | +70 |
 
-## 5.1 Resoconto 
+**Resoconto**
+
+Essendo il primo sprint, abbiamo riscontrato alcune discrepanze tra preventivo e consuntivo, con un aumento complessivo di 3 ore e una differenza di costo pari a 70 unità. Le maggiori variazioni hanno riguardato i ruoli di Analista (+2 ore), Programmatore e Verificatore (+1 ora), dovute a una sottostima delle attività. Al contrario, il ruolo di Amministratore di sistema ha richiesto meno ore del previsto (-1 ora).
+Queste differenze sono tipiche del primo ciclo e rappresentano un'opportunità per affinare la capacità di stima nei prossimi sprint
