@@ -1,7 +1,7 @@
 {
   "name": "requirements-tracker",
   "publisher": "tech-wave-swe",
-  "description": "Requirements Tracker - A Webview View API Sample",
+  "description": "A Requirements Tracker Extension",
   "version": "0.0.1",
   "private": true,
   "license": "MIT",
@@ -16,6 +16,7 @@
     "Other"
   ],
   "activationEvents": [],
+
   "main": "./out/extension.js",
   "contributes": {
     "viewsContainers": {
@@ -42,18 +43,30 @@
         "title": "ReqTracker: Open Requirements Tracker Sidebar"
       },
       {
-        "command": "requirements-tracker.interrogate",
+        "command": "requirements-tracker.interrogateOnCode",
+        "title": "ReqTracker: Interrogate LLM on Code"
+      },
+      {
+        "command": "requirements-tracker.interrogateOnRequirements",
         "title": "ReqTracker: Interrogate LLM on Requirements"
       },
       {
-        "command": "requirements-tracker.settings",
+        "command": "requirements-tracker.openSettings",
         "title": "ReqTracker: Open Settings"
-      },
-      {
-        "command": "requirements-tracker.debug-settings",
-        "title": "ReqTracker: Debug settings"
       }
     ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "requirements-tracker.interrogateOnRequirements",
+          "title": "Interrogate LLM on Requirements"
+        },
+        {
+          "command": "requirements-tracker.interrogateOnCode",
+          "title": "Interrogate LLM on Code"
+        }
+      ]
+    },
     "configuration": [
       {
         "title": "Requirements Tracker",
@@ -86,12 +99,12 @@
           "reqTracker.embeddingModel": {
             "type": "string",
             "enum": [
-              "mxbai-embed-large",
-              "nomic-embed-text",
-              "all-minilm",
+              "mxbai-embed-large:latest",
+              "nomic-embed-text:latest",
+              "all-minilm:latest",
               "custom"
             ],
-            "default": "nomic-embed-text",
+            "default": "nomic-embed-text:latest",
             "description": "Ollama model to use for embeddings",
             "order": 4
           },
@@ -114,6 +127,30 @@
             "order": 7
           }
         }
+      }
+    ],
+    "walkthroughs": [
+      {
+        "id": "requirements-tracker-walkthrough",
+        "title": "Welcome to Requirements Tracker",
+        "description": "This is a an extension that helps you track requirements in your codebase using Ollama",
+        "steps": [
+          {
+            "id": "overview",
+            "title": "Overview",
+            "description": "This extension provides a Requirements Tracker view that can be used to track requirements",
+            "media": {
+              "image": "./media/logo.svg",
+              "altText": "Overview"
+            }
+          },
+          {
+            "id": "changesetting",
+            "title": "Change Setting",
+            "description": "In order for this extension to function you need to setup your Ollama enviroment here:\n[Change Setting](command:requirements-tracker.openSettings)",
+            "media": {"image": "./media/logo.svg", "altText": "Change Setting"}
+          }
+        ]
       }
     ]
   },

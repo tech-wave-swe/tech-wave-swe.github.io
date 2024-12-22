@@ -3,8 +3,98 @@ import { Ollama } from "@langchain/ollama";
 import { Ollama as OllamaClient } from "ollama";
 import { DocumentManager } from "./models";
 import { PromptTemplate } from "@langchain/core/prompts";
-import { StringOutputParser } from "@langchain/core/output_parsers";
 import { Config } from "./config";
+
+import { z } from "zod";
+import { zodToJsonSchema } from "zod-to-json-schema";
+
+
+/*
+ * Checks if the given model exists in Ollama. If the model does not exist, the user is prompted to pull the model.
+ * @param model The model to check.
+ * @returns Promise<boolean> True if the model exists, false otherwise.
+*/
+async function checkOllamaModel(model: string): Promise<boolean> {
+  const config = Config.getInstance();
+  
+  const ollama = new OllamaClient({ host: config.endpoint });
+  const models = await ollama.list();
+
+  if (!models.models.some((mod) => mod.name === model)) {
+    const userChoice = await vscode.window.showQuickPick(["Yes", "No"], {
+      title:
+        "Model " +
+        model +
+        " not found, do you want to try pulling the model?",
+    });
+    if (userChoice === "Yes") {
+      try {
+        vscode.window.showInformationMessage(
+          "Pulling model " + model + " ...",
+        );
+        const res = await ollama.pull({ model: model });
+        if (res.status == "success") {
+          vscode.window.showInformationMessage("Model pulled successfully.");
+          return true;
+        }
+      } catch (error) {
+        vscode.window.showErrorMessage("Failed to pull model: " + error);
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+  return true;
+}
+
+export interface CodeCompletion {
+  code_text: string;
+}
+
+export type CodeCompletionList = CodeCompletion[];
+
+/*
+ * Interrogates Ollama with a given prompt.
+ * @param codeContext The code to send to Ollama for code completion.
+ * @returns Promise<CodeCompletionList> The response from Ollama.
+ */
+export async function autocompleteOllama(
+  codeContext: string,
+): Promise<CodeCompletionList> {
+  const config = Config.getInstance();
+
+  if (!(await checkOllamaModel(config.model))) {
+    return [];
+  }
+
+  const CodeCompletionListSchema = z.array(
+    z.object({
+      code_text: z.string(),
+    }),
+  );
+
+  const messageContent = `You are a LLM model tasked with replying with the most accurate inline code completion using the given context.
+    Return all your answers inside a json list with each object having only one propriety called code_text,
+    with each response being only the additional code to add at the <CURSOR> position in raw text no markdown-style wrapping
+
+    <context>${codeContext}</context>
+    `;
+
+  const ollama = new OllamaClient({ host: config.endpoint });
+  const structuredResponse = await ollama.chat({
+    model: config.model,
+    messages: [{ role: "user", content: messageContent }],
+    format: zodToJsonSchema(CodeCompletionListSchema),
+    options: { temperature: config.temperature },
+  });
+
+  const response = CodeCompletionListSchema.parse(
+    JSON.parse(structuredResponse.message.content),
+  );
+  vscode.window.showInformationMessage(structuredResponse.message.content);
+  return response;
+}
 
 /*
  * Interrogates Ollama with a given prompt.
@@ -14,30 +104,8 @@ import { Config } from "./config";
 export async function interrogateOllama(prompt: string): Promise<string> {
   const config = Config.getInstance();
 
-  const ollama = new OllamaClient({ host: config.endpoint });
-  const models = await ollama.list();
-  if (!models.models.some((model) => model.name === config.model)) {
-    const userChoice = await vscode.window.showQuickPick(["Yes", "No"], {
-      title:
-        "Model " +
-        config.model +
-        " not found, do you want to try pulling the model?",
-    });
-    if (userChoice === "Yes") {
-      try {
-        vscode.window.showInformationMessage(
-          "Pulling model " + config.model + " ...",
-        );
-        const res = await ollama.pull({ model: config.model });
-        if (res.status == "success") {
-          vscode.window.showInformationMessage("Model pulled successfully.");
-        }
-      } catch (error) {
-        vscode.window.showErrorMessage("Failed to pull model: " + error);
-      }
-    } else {
-      return "Stopped interrogating Ollama.";
-    }
+  if (!(await checkOllamaModel(config.model))) {
+    return "Failed to interrogate Ollama.";
   }
 
   const ollamaModel = new Ollama({
@@ -45,34 +113,9 @@ export async function interrogateOllama(prompt: string): Promise<string> {
     model: config.model,
   });
 
-  const simpleQuestionPrompt = PromptTemplate.fromTemplate(`
-    For the following user question, convert it into a standalone question:
-    {userQuestion}`);
-
-  const simpleQuestionChain = simpleQuestionPrompt
-    .pipe(ollamaModel)
-    .pipe(new StringOutputParser());
-
-  let standaloneQuestion: string;
-  try {
-    standaloneQuestion = await simpleQuestionChain.invoke({
-      userQuestion: prompt,
-    });
-    console.log("Standalone Question:", standaloneQuestion);
-  } catch (error) {
-    console.error("Error generating standalone question:", error);
-    return "Error generating standalone question.";
-  }
-
   const documentManager = DocumentManager.getInstance();
 
-  let topN = documentManager.getEmbeddingNumber() / 4;
-  topN = topN > 10 ? 10 : topN;
-
-  const retrievedDocs = await documentManager.retrieveDocuments(
-    standaloneQuestion,
-    topN,
-  );
+  const retrievedDocs = await documentManager.retrieveDocuments(prompt);
   console.log(`Retrieved ${retrievedDocs.length} documents.`);
 
   const combinedDocs = retrievedDocs.map((doc) => doc.pageContent).join("\n\n");

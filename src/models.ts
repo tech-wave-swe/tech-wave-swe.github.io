@@ -48,7 +48,7 @@ export class DocumentManager {
    * @param topN Number of top documents to retrieve.
    * @returns Array of top N Document objects.
    */
-  public async retrieveDocuments(query: string, topN = 5): Promise<Document[]> {
+  public async retrieveDocuments(query: string, topN = 3): Promise<Document[]> {
     try {
       const config = Config.getInstance();
 
