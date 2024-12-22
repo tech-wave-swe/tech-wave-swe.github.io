@@ -14,11 +14,11 @@ import TabItem from '@theme/TabItem';
 <details>
   <summary>Changelog</summary>
 
-| Data       | Versione | Descrizione                                        | Autore       | Data Verifica | Verificatore |
-| ---------- | -------- | -------------------------------------------------- | ------------ | ------------- | ------------ |
-| 19/12/2024 | 0.2.0    | Revisione struttura + Aggiunta sezione GitHub      | Luca Monetti |               |              |
-| 20/11/2024 | 0.1.1    | Aggiunta sezione 4                                 | Piola Andrea | 03/12/2024    | Pistori Gaia |
-| 14/11/2024 | 0.1.0    | Prima stesura del documento con indice e sezione 1 | Piola Andrea | 19/11/2024    | Pistori Gaia |
+| Data       | Versione | Descrizione                                        | Autore       | Data Verifica | Verificatore          |
+| ---------- | -------- | -------------------------------------------------- | ------------ | ------------- | --------------------- |
+| 19/12/2024 | 0.2.0    | Revisione struttura + Aggiunta sezione GitHub      | Luca Monetti | 22/12/2024    | Manuel Felipe Vasquez |
+| 20/11/2024 | 0.1.1    | Aggiunta sezione 4                                 | Piola Andrea | 03/12/2024    | Pistori Gaia          |
+| 14/11/2024 | 0.1.0    | Prima stesura del documento con indice e sezione 1 | Piola Andrea | 19/11/2024    | Pistori Gaia          |
 
 </details>
 
