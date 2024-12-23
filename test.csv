@@ -1,0 +1,42 @@
+GUID$Name$Notes$Type$Version
+{31A38164-4AD9-4ec4-BF4F-7877AB2FC7B1}$REQ-0$$Requirement$1.0
+{DEA4AB3D-B7F5-4ac6-A522-27D8FD6DA667}$REQ-1$The system shall enable the ADC1 internal voltage regulator before any conversions are performed.$Requirement$1.0
+{1CC22054-EC4F-4a9b-9FAC-A4288B537E32}$REQ-2$The ADC1 system shall perform self-calibration and verify its completion using `LL_ADC_IsCalibrationOnGoing()` before activation.$Requirement$1.0
+{24D8A651-AE32-4959-BA13-5249A01EB060}$REQ-3$The ADC1 activation process shall confirm the ADC is disabled using `LL_ADC_IsEnabled()` before proceeding to enable the ADC.$Requirement$1.0
+{838DAF80-4B3A-43a2-902C-21EC55E273B4}$REQ-4$The ADC1 resolution shall be configurable to 12, 10, 8, or 6 bits based on application requirements.$Requirement$1.0
+{B56FAAC6-5415-4653-9469-CAEB41466172}$REQ-5$The system shall configure the ADC1 trigger source to software mode using `LL_ADC_REG_TRIG_SOFTWARE`.$Requirement$1.0
+{4991A8FC-C945-4b5f-8490-DD9869A85FB7}$REQ-6$ADC1 data alignment shall be configurable to either right or left using `LL_ADC_DATA_ALIGN_RIGHT` or `LL_ADC_DATA_ALIGN_LEFT`.$Requirement$1.0
+{2CD59817-6E85-4212-9A92-F6569F995752}$REQ-7$During calibration, the ADC1 DMA transfers shall be disabled using `LL_ADC_REG_DMA_TRANSFER_NONE` to prevent data corruption.$Requirement$1.0
+{F999F843-9DAD-43b4-A97C-7C0F34EEB4E6}$REQ-8$The ADC1 shall overwrite existing data in case of overrun, as defined by `LL_ADC_REG_OVR_DATA_OVERWRITTEN`.$Requirement$1.0
+{26B316CE-592F-4e24-856E-773CB675F5E3}$REQ-9$The ADC conversion process shall verify the End of Conversion (EOC) flag using `LL_ADC_IsActiveFlag_EOC()` before retrieving data.$Requirement$1.0
+{FE6692E0-B191-42ac-9EE2-7EDAD63BCEFD}$REQ-10$The ADC1 clock source shall support configuration to synchronous or asynchronous modes using the `LL_ADC_CLOCK_*` macros.$Requirement$1.0
+{34A9D463-944D-4eed-B232-E349FD99FB3C}$REQ-11$DMA data transfer for ADC1 shall match the resolution and data alignment settings configured for ADC conversions.$Requirement$1.0
+{E2D9D450-A782-4e73-B776-783771620FC3}$REQ-12$GPIO pins used for ADC input channels shall be initialized in analog mode using `LL_GPIO_MODE_ANALOG`.$Requirement$1.0
+{B7560839-D6DB-411f-A5EF-1118A957EB3E}$REQ-13$The system shall define timeout handling for calibration, activation, and conversion processes using timeout macros such as `ADC_CALIBRATION_TIMEOUT_MS`.$Requirement$1.0
+{953F23E9-C8E0-4946-ADDC-2CC91E600B1D}$REQ-14$The ADC1 shall support single and continuous conversion modes configured with `LL_ADC_REG_CONV_SINGLE` or `LL_ADC_REG_CONV_CONTINUOUS`.$Requirement$1.0
+{51A093C3-E403-44a6-A061-AB97FFF1B6D5}$REQ-15$If ADC calibration fails, the system shall invoke the `Error_Handler()` function to handle the failure.$Requirement$1.0
+{B62A7844-0BE8-43f9-B1FB-65DFD1864214}$REQ-16$The ADC DMA transfer mode shall be configurable using macros such as `LL_ADC_REG_DMA_TRANSFER_NONE` or `LL_ADC_REG_DMA_TRANSFER_UNLIMITED`.$Requirement$1.0
+{62D57A4B-0D19-4b07-A8E8-8C95EFC16B46}$REQ-17$The ADC1 deinitialization process shall reset all configurations and states to their default values.$Requirement$1.0
+{AEEE1353-11CC-408f-8AE4-008E63042377}$REQ-18$The ADC sequencer length shall be configurable to enable sampling of one or multiple channels.$Requirement$1.0
+{F307AAA2-17BC-4f0e-B52E-9EAE885787EC}$REQ-19$The ADC interrupt handler shall clear the End of Conversion (EOC) flag after processing using `LL_ADC_ClearFlag_EOC()`.$Requirement$1.0
+{5815A1A4-E2A9-4ff1-8D2D-BFB089F1AF5A}$REQ-20$The ADC1 system shall use an internal reference voltage defined as `VDDA_APPLI`.$Requirement$1.0
+{AA66EA0F-E84B-4e46-8ADF-31B2FA291250}$REQ-21$ADC sampling times shall be configurable using macros such as `LL_ADC_SAMPLINGTIME_*` to accommodate application-specific requirements.$Requirement$1.0
+{B2AE77AA-D5E0-4432-BD56-C5D10E9FC5E2}$REQ-22$GPIO pins used for LED indicators shall be configured in output mode using `LL_GPIO_MODE_OUTPUT`.$Requirement$1.0
+{0C269DC7-EF0B-47b5-8E37-17F23D3D7AB2}$REQ-23$The ADC sequencer shall assign ranks to input channels based on application requirements using `LL_ADC_REG_SetSequencerRanks()`.$Requirement$1.0
+{530DD9A3-63F2-4e2e-B159-E1B079319819}$REQ-24$NVIC priority levels for ADC interrupts shall be configured during initialization.$Requirement$1.0
+{50D69C2B-914E-4a84-A6EC-7881E5C3FEAD}$REQ-25$The system shall blink an error indicator LED when ADC activation fails.$Requirement$1.0
+{EE830201-22D0-407a-B17E-C4D75D49F6F1}$REQ-26$User button GPIO pins shall be initialized with pull-up resistors and falling-edge event detection.$Requirement$1.0
+{35D2D3EC-F7B8-4c43-BB84-5B7A93AD2F96}$REQ-27$The ADC internal regulator stabilization delay shall be calculated using `LL_ADC_DELAY_INTERNAL_REGUL_STAB_US`.$Requirement$1.0
+{507E8590-E56E-48cc-99D6-51D3A761CD1A}$REQ-28$The ADC regular group shall disable discontinuous mode by default using `LL_ADC_REG_SEQ_DISCONT_DISABLE`.$Requirement$1.0
+{F7090131-FEE8-4f63-85AB-7A4E91DE7F5A}$REQ-29$ADC overrun errors shall trigger an interrupt using `LL_ADC_EnableIT_OVR()` to allow error handling.$Requirement$1.0
+{FBB5E6F1-5296-4b5c-B9F0-C436770D6332}$REQ-30$The ADC regular group trigger source shall default to software mode but allow external trigger configurations if required.$Requirement$1.0
+{481A1E91-0675-481d-8B65-114FC238489B}$REQ-31$The ADC group regular shall support channel configuration for single or multi-channel sampling.$Requirement$1.0
+{CD76D65A-636C-4bdc-B61C-63AFE1BFF208}$REQ-32$The system shall reset ADC calibration settings during deinitialization.$Requirement$1.0
+{EEF19925-9811-4af4-AA5E-D3DCB7359EC9}$REQ-33$ADC interrupts shall be configured for End of Conversion (EOC), overrun, and calibration completion.$Requirement$1.0
+{E8CE9A38-1382-4304-991C-907A8C670E1F}$REQ-34$The ADC internal clock source shall be configurable between asynchronous and synchronous options.$Requirement$1.0
+{7AF6E197-82FA-4f64-9F6C-573AAB11092F}$REQ-35$The ADC system shall support runtime reconfiguration of channels and sampling times without requiring a reset.$Requirement$1.0
+{11ADD443-5F39-4d1b-8915-82AFF00895F9}$REQ-36$The ADC sequencer ranks shall be cleared during deinitialization to avoid undefined states.$Requirement$1.0
+{789F0E93-83DF-45cf-99EA-12CDDBED1365}$REQ-37$The ADC calibration factor shall be recalibrated during reinitialization to ensure accurate conversions.$Requirement$1.0
+{8438FA73-9960-43f9-BEC5-8C678037ADC7}$REQ-38$The ADC DMA settings shall synchronize with ADC resolution to prevent data misalignment during transfers.$Requirement$1.0
+{B4BC92E3-A4A0-4e93-91C6-A9FFF65B9656}$REQ-39$ADC oversampling features shall be disabled by default during initialization.$Requirement$1.0
+{3571A2B9-1ACC-420b-8094-8C1CFEBF6A50}$REQ-40$The ADC system shall ensure sequencer ranks are updated when channel configurations are changed during runtime.$Requirement$1.0
