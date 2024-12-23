@@ -65,6 +65,14 @@
       error("Please select a .csv or a .reqif file");
       return;
     }
+    const inputElement = /** @type {HTMLInputElement} */ (
+      document.getElementById("delimiter-input")
+    );
+    const delimiter = inputElement ? inputElement.value : ",";
+    if (!delimiter) {
+      error("Delimiter not specified");
+      return;
+    }
     const tableElement = document.getElementById("requirements-table");
     if (!tableElement) {
       return;
@@ -74,9 +82,9 @@
       const content = reader.result;
       if (typeof content === "string") {
         const rows = content.split("\n");
-        const header = rows[0].split("$");
+        const header = rows[0].split(delimiter);
         const dataRows = rows.slice(1).map((row) => {
-          const cells = row.split("$");
+          const cells = row.split(delimiter);
           let doc = {};
           header.forEach((key, index) => {
             doc[key.trim()] = cells[index] ? cells[index].trim() : "";

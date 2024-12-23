@@ -1,8 +1,7 @@
-import * as vscode from "vscode";
 import { OllamaEmbeddings } from "@langchain/ollama";
-import { Ollama } from "ollama";
 import { cosineSimilarity } from "./utils";
 import { Config } from "./config";
+import { checkOllamaModel } from "./client";
 
 export interface Document {
   id: string;
@@ -52,35 +51,8 @@ export class DocumentManager {
     try {
       const config = Config.getInstance();
 
-      const ollama = new Ollama({ host: config.endpoint });
-      const models = await ollama.list();
-
-      if (
-        !models.models.some((model) => model.name === config.embeddingModel)
-      ) {
-        const userChoice = await vscode.window.showQuickPick(["Yes", "No"], {
-          title:
-            "Model " +
-            config.embeddingModel +
-            " not found, do you want to try pulling the model?",
-        });
-        if (userChoice === "Yes") {
-          try {
-            vscode.window.showInformationMessage(
-              "Pulling model " + config.embeddingModel + " ...",
-            );
-            const res = await ollama.pull({ model: config.embeddingModel });
-            if (res.status == "success") {
-              vscode.window.showInformationMessage(
-                "Model pulled successfully.",
-              );
-            }
-          } catch (error) {
-            vscode.window.showErrorMessage("Failed to pull model: " + error);
-          }
-        } else {
-          return [];
-        }
+      if (!(await checkOllamaModel(config.embeddingModel))) {
+        throw new Error("Model not found.");
       }
 
       const ollamaEmbeddings = new OllamaEmbeddings({
@@ -113,6 +85,11 @@ export class DocumentManager {
   private async generateEmbedding(text: string): Promise<number[]> {
     try {
       const config = Config.getInstance();
+
+      if (!(await checkOllamaModel(config.embeddingModel))) {
+        throw new Error("Model not found.");
+      }
+
       const ollamaEmbeddings = new OllamaEmbeddings({
         baseUrl: config.endpoint,
         model: config.embeddingModel,

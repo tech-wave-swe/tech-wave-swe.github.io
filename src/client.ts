@@ -8,30 +8,25 @@ import { Config } from "./config";
 import { z } from "zod";
 import { zodToJsonSchema } from "zod-to-json-schema";
 
-
 /*
  * Checks if the given model exists in Ollama. If the model does not exist, the user is prompted to pull the model.
  * @param model The model to check.
  * @returns Promise<boolean> True if the model exists, false otherwise.
-*/
-async function checkOllamaModel(model: string): Promise<boolean> {
+ */
+export async function checkOllamaModel(model: string): Promise<boolean> {
   const config = Config.getInstance();
-  
+
   const ollama = new OllamaClient({ host: config.endpoint });
   const models = await ollama.list();
 
   if (!models.models.some((mod) => mod.name === model)) {
     const userChoice = await vscode.window.showQuickPick(["Yes", "No"], {
       title:
-        "Model " +
-        model +
-        " not found, do you want to try pulling the model?",
+        "Model " + model + " not found, do you want to try pulling the model?",
     });
     if (userChoice === "Yes") {
       try {
-        vscode.window.showInformationMessage(
-          "Pulling model " + model + " ...",
-        );
+        vscode.window.showInformationMessage("Pulling model " + model + " ...");
         const res = await ollama.pull({ model: model });
         if (res.status == "success") {
           vscode.window.showInformationMessage("Model pulled successfully.");
