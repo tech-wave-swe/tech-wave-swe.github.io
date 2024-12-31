@@ -4,6 +4,8 @@ import { Ollama as OllamaClient } from "ollama";
 import { DocumentManager } from "./models";
 import { PromptTemplate } from "@langchain/core/prompts";
 import { Config } from "./config";
+import { StringOutputParser } from "@langchain/core/output_parsers";
+import { RunnableSequence } from "@langchain/core/runnables";
 
 import { z } from "zod";
 import { zodToJsonSchema } from "zod-to-json-schema";
@@ -96,11 +98,15 @@ export async function autocompleteOllama(
  * @param prompt The prompt to send to Ollama.
  * @returns The response from Ollama. If an error occurs, the following message is returned: "Failed to interrogate Ollama."
  */
-export async function interrogateOllama(prompt: string): Promise<string> {
+export async function interrogateOllama(
+  prompt: string,
+  onToken: (token: string) => void,
+): Promise<void> {
   const config = Config.getInstance();
 
   if (!(await checkOllamaModel(config.model))) {
-    return "Failed to interrogate Ollama.";
+    onToken("Failed to interrogate Ollama.");
+    return;
   }
 
   const ollamaModel = new Ollama({
@@ -109,14 +115,16 @@ export async function interrogateOllama(prompt: string): Promise<string> {
   });
 
   const documentManager = DocumentManager.getInstance();
+  try {
+    const retrievedDocs = await documentManager.retrieveDocuments(prompt);
+    console.log(`Retrieved ${retrievedDocs.length} documents.`);
 
-  const retrievedDocs = await documentManager.retrieveDocuments(prompt);
-  console.log(`Retrieved ${retrievedDocs.length} documents.`);
+    const combinedDocs = retrievedDocs
+      .map((doc) => doc.pageContent)
+      .join("\n\n");
+    console.log("Combined Documents for Context:", combinedDocs);
 
-  const combinedDocs = retrievedDocs.map((doc) => doc.pageContent).join("\n\n");
-  console.log("Combined Documents for Context:", combinedDocs);
-
-  const questionTemplate = PromptTemplate.fromTemplate(`
+    const questionTemplate = PromptTemplate.fromTemplate(`
     You are a LLM model tasked with analyzing the given context which can be in form of documentation, requirements to follow or code.
     Answer the following question using the given context.
 
@@ -126,17 +134,22 @@ export async function interrogateOllama(prompt: string): Promise<string> {
 
     Question: {userQuestion}`);
 
-  const answerChain = questionTemplate.pipe(ollamaModel);
+    const streamingChain = RunnableSequence.from([
+      questionTemplate,
+      ollamaModel,
+      new StringOutputParser(),
+    ]);
 
-  let llmResponse: string;
-  try {
-    llmResponse = await answerChain.invoke({
+    const stream = await streamingChain.stream({
       context: combinedDocs,
       userQuestion: prompt,
     });
-    return llmResponse;
+
+    for await (const chunk of stream) {
+      onToken(chunk);
+    }
   } catch (error) {
     console.error("Error generating LLM response:", error);
-    return "Error generating LLM response.";
+    onToken(`Error generating LLM response: ${error}`);
   }
 }
