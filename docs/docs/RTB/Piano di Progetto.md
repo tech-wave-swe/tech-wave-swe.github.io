@@ -4,6 +4,7 @@ title: "Piano di Progetto"
 ---
 
 import TOCInlineWrapper from "@site/src/components/TOCInlineWrapper.jsx";
+import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 # Documento del Piano di Progetto
 
@@ -20,7 +21,7 @@ import TOCInlineWrapper from "@site/src/components/TOCInlineWrapper.jsx";
 
 </details>
 
-<TOCInlineWrapper toc={toc} />
+<TOCInlineWrapper toc={toc} numbered={true}/>
 
 <NumberedWrapper toc={toc}>
 
