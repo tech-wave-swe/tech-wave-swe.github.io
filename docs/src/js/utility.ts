@@ -37,6 +37,7 @@ function addEnumeration(toc: TOCItem[]): TOCItem[] {
         break;
     }
 
+    item.value = item.value.replace(/^\d+(\.\d+)*\s/, "");
     item.value = cnum.join(".") + " " + item.value;
   });
 
