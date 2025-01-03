@@ -1,5 +1,9 @@
 {
     "label": "PB",
-    "position": 4
+    "position": 4,
+    "link": {
+        "type": "generated-index",
+        "description": "Questa pagina contiene tutta la documentazione prodotta dal gruppo TechWave durante la fase PB del progetto di Ingegneria del Software."
+    }
   }
   
