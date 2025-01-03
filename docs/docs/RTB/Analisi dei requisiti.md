@@ -29,33 +29,33 @@ Nello sviluppo di software per sistemi embedded la parte di controllo dell'imple
 
 #### 2.1.1 Requisiti funzionali obbligatori
 
--   L'applicativo deve permettere di impostare il suo ambiente di lavoro indicando il file dei requisiti e la cartella con il codice scritto dagli sviluppatori in C / C++ dove effettuare il controllo utilizzando una semplice interfaccia grafica.
--   L'applicativo deve essere in grado di estrapolare le informazioni necessarie all'analisi a partire da un file dei requisiti in formato _.csv_.
--   L'applicativo deve, una volta ottenuti i requisiti, avviare un processo di ricerca nella cartella contenente i file di codice producendo in output una lista che associa ogni requisito con il suo stato di implementazione. Per stato di implementazione si intende: il testo del requisito, la sua descrizione e una indicazione sul frammento di codice (funzione o parte di essa) dove potrebbe essere implementato. La ricerca si articolerà in due fasi: una prima fase di filtro, in cui verranno selezionati i file con maggiore probabilità di contenere l'implementazione del requisito, e una seconda fase, eseguita tramite LLM, per individuare con precisione la posizione all'interno del file.
--   Il large language model (LLM) deve subire un processo di addestramento specifico sugli argomenti relativi allo sviluppo dell'azienda Bluewind a partire dai manuali forniti.
+- L'applicativo deve permettere di impostare il suo ambiente di lavoro indicando il file dei requisiti e la cartella con il codice scritto dagli sviluppatori in C / C++ dove effettuare il controllo utilizzando una semplice interfaccia grafica.
+- L'applicativo deve essere in grado di estrapolare le informazioni necessarie all'analisi a partire da un file dei requisiti in formato _.csv_.
+- L'applicativo deve, una volta ottenuti i requisiti, avviare un processo di ricerca nella cartella contenente i file di codice producendo in output una lista che associa ogni requisito con il suo stato di implementazione. Per stato di implementazione si intende: il testo del requisito, la sua descrizione e una indicazione sul frammento di codice (funzione o parte di essa) dove potrebbe essere implementato. La ricerca si articolerà in due fasi: una prima fase di filtro, in cui verranno selezionati i file con maggiore probabilità di contenere l'implementazione del requisito, e una seconda fase, eseguita tramite LLM, per individuare con precisione la posizione all'interno del file.
+- Il large language model (LLM) deve subire un processo di addestramento specifico sugli argomenti relativi allo sviluppo dell'azienda Bluewind a partire dai manuali forniti.
 
 #### 2.1.2 Requisiti funzionali opzionali
 
--   L'applicativo deve essere in grado di estrapolare le informazioni necessarie all'analisi a partire da un file dei requisiti in formato _.reqif_.
--   L'utente programmatore, una volta ottenuto in output può valutare la risposta ottenuta indicando se la posizione di implementazione del requisito suggerita è corretta o no. Questa informazione può essere memorizzata e utilizzata per miglioramenti futuri del modello.
--   L'applicativo deve essere in grado di fornire suggerimenti per l'implementazione di un requisito selezionato.
+- L'applicativo deve essere in grado di estrapolare le informazioni necessarie all'analisi a partire da un file dei requisiti in formato _.reqif_.
+- L'utente programmatore, una volta ottenuto in output può valutare la risposta ottenuta indicando se la posizione di implementazione del requisito suggerita è corretta o no. Questa informazione può essere memorizzata e utilizzata per miglioramenti futuri del modello.
+- L'applicativo deve essere in grado di fornire suggerimenti per l'implementazione di un requisito selezionato.
 
 ### 2.2 Requisiti non funzionali
 
 #### 2.2.1 Requisiti non funzionali obbligatori
 
--   L'applicativo deve avere una struttura modulare: gli step da effettuare per l'analisi dei requisiti devono essere modificabili (scelta dei filtri sui file, delle azioni da svolgere e del modello da utilizzare da una lista definita di opzioni).
--   L'applicativo deve avere una struttura estensibile: deve essere facile aggiungere funzionalità (integrazione di nuovi modelli e funzioni nella lista delle opzioni).
+- L'applicativo deve avere una struttura modulare: gli step da effettuare per l'analisi dei requisiti devono essere modificabili (scelta dei filtri sui file, delle azioni da svolgere e del modello da utilizzare da una lista definita di opzioni).
+- L'applicativo deve avere una struttura estensibile: deve essere facile aggiungere funzionalità (integrazione di nuovi modelli e funzioni nella lista delle opzioni).
 
 #### 2.2.2 Requisiti non funzionali opzionali
 
--   L'applicativo può fornire delle statistiche di correttezza per il confronto dei modelli messi a disposizione tra le opzioni.
+- L'applicativo può fornire delle statistiche di correttezza per il confronto dei modelli messi a disposizione tra le opzioni.
 
 ### 2.3 Requisiti tecnici
 
 #### 2.3.1 Requisiti tecnici obbligatori
 
--   L'applicativo deve essere un'estensione di Visual Studio Code.
--   L'applicativo deve essere eseguibile interamente in locale. Viene richiesto, quindi, di utilizzare Ollama come interfaccia per l'interrogazione e l'addestramento dei modelli.
+- L'applicativo deve essere un'estensione di Visual Studio Code.
+- L'applicativo deve essere eseguibile interamente in locale. Viene richiesto, quindi, di utilizzare Ollama come interfaccia per l'interrogazione e l'addestramento dei modelli.
 
 #### 2.3.2 Requisiti tecnici opzionali
