@@ -13,7 +13,8 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                              | Autore                | Data Verifica | Verificatore          |
 |------------|----------|------------------------------------------|-----------------------|---------------|-----------------------|
-| 22/12/2024 | 1.2.0    | Aggiunte metriche di qualità di Prodotto | Gaia Pistori          | 24/12/2024    |                       |
+| 03/01/2025 | 1.3.0    | Modifica descrizione e riferimenti       | Manuel Felipe Vasquez | 06/01/2025    |                       |
+| 22/12/2024 | 1.2.0    | Aggiunte metriche di qualità di Prodotto | Gaia Pistori          | 24/12/2024    | Manuel Felipe Vasquez |
 | 16/12/2024 | 1.1.0    | aggiunta qualità di processo             | Giulia Marcon         | 17/12/2024    | Agnese Carraro        |
 | 08/12/2024 | 1.0.0    | Prima stesura del documento              | Manuel Felipe Vasquez | 10/12/2024    | Luca Monetti          |
 
@@ -28,6 +29,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 Questo documento delinea le strategie di verifica, validazione e quality assurance adottate durante lo sviluppo del progetto, definendo gli obiettivi qualitativi e le relative metriche di misurazione. Include la documentazione dettagliata delle procedure di verifica, dei processi di controllo qualità, e delle metodologie di test implementate nelle varie fasi del ciclo di sviluppo, garantendo la conformità del prodotto con i requisiti specificati e gli standard qualitativi prestabiliti dal team.
 Si concentra su:
+
 - La qualità dei processi, in termini di aderenza agli standard e alle pratiche di gestione del ciclo di vita del software.
 - La qualità del prodotto, attraverso la definizione di metriche misurabili e verificabili.
 - L'adozione di un modello a V per la pianificazione e l'esecuzione delle attività di test e validazione.
@@ -35,6 +37,27 @@ Si concentra su:
 ### Glossario
 
 Per una definizione dei termini tecnici utilizzati in questo documento, consultare il [Glossario](./Glossario.md).
+
+### Riferimenti
+
+#### Riferimenti Normativi
+
+- **Norme di Progetto**: [Norme di Progetto](./Norme%20di%20Progetto.md)
+- **Capitolato d'Appalto C8: Requirement Tracker- Plug-in VS Code**: https://www.math.unipd.it/~tullio/IS-1/2024/Progetto/C8.pdf
+
+#### Riferimenti Informativi
+
+- T2 - I processi di ciclo di vita del software (https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T02.pdf)
+- T7 - Qualità del software (https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T07.pdf)
+- T8 - Qualità di processo (https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T08.pdf)
+- T9 - Verifica e Validazione (https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T09.pdf)
+- T10 - Analisi Statica (https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T10.pdf)
+- T11 - Analisi Dinamica (https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T11.pdf)
+
+- **ISO/IEC 9126**: "Software engineering - Product quality - Part 1: Quality model"
+- **ISO/IEC 12207**: "Information technology - Software life cycle processes"
+- **ISO/IEC 14598**: "Information technology - Software product evaluation"
+- **ISO/IEC 25010**: "Systems and software engineering - Systems and software Quality Requirements and Evaluation (SQuaRE) - System and software quality models"
 
 ## Qualità di Processo
 
