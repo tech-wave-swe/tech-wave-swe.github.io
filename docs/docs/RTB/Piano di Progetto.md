@@ -1,3 +1,8 @@
+---
+id: piano_di_progetto
+title: "Piano di Progetto"
+---
+
 import TOCInlineWrapper from "@site/src/components/TOCInlineWrapper.jsx";
 
 # Documento del Piano di Progetto
