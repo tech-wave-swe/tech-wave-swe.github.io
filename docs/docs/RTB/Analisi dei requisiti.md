@@ -1,3 +1,8 @@
+---
+id: analisi_dei_requisiti
+title: "Analisi dei requisiti"
+---
+
 import TOCInlineWrapper from "@site/src/components/TOCInlineWrapper.jsx";
 
 # Documento dell'analisi dei requisiti
