@@ -13,8 +13,8 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                 | Autore       | Data Verifica | Verificatore |
 | ---------- | -------- | --------------------------- | ------------ | ------------- | ------------ |
-| 03/01/2025 | 0.1.1    | Aggiunta termini glossario  | Pistori Gaia | 04/01/2025    | Luca Monetti |
-| 13/12/2024 | 0.1.0    | Prima stesura del documento | Pistori Gaia | 13/12/2024    | Luca Monetti |
+| 03/01/2025 | 1.1.0    | Aggiunta termini glossario  | Pistori Gaia | 04/01/2025    | Luca Monetti |
+| 13/12/2024 | 1.0.0    | Prima stesura del documento | Pistori Gaia | 13/12/2024    | Luca Monetti |
 
 </details>
 
