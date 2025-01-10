@@ -1,3 +1,11 @@
+---
+id: piano_di_progetto
+title: "Piano di Progetto"
+---
+
+import TOCInlineWrapper from "@site/src/components/TOCInlineWrapper.jsx";
+import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
+
 # Documento del Piano di Progetto
 
 <details>
@@ -14,62 +22,26 @@
 
 </details>
 
-**1. Introduzione**
+<TOCInlineWrapper toc={toc} numbered={true}/>
 
-    1.1 Scopo del Documento
+<NumberedWrapper toc={toc}>
 
-    1.2 Scopo del Prodotto
+## Introduzione
 
-    1.3 Glossario
-
-    1.4 Riferimenti
-
-**2. Analisi dei rischi e mitigazione**
-
-    2.1 Rischi organizzativi ed interpersonali
-
-    2.2 Rischi tecnologici
-
-    2.3 Mitigazione dei rischi organizzativi ed interpersonali
-
-    2.4 Mitigazione dei rischi tecnologici
-
-**3. Modello di sviluppo e Pianificazione**
-
-    3.1. Modello di sviluppo
-
-    3.2 Pianificazione
-
-    3.3 Sprint
-
-**4. Preventivo**
-
-    4.1 Verso la RTB
-
-    4.2 Verso la PB
-
-**5. Consuntivo**
-
-    5.1 Verso la RTB
-
-    5.2 Verso la PB
-
-# **1. Introduzione**
-
-## 1.1 Scopo del Documento
+### Scopo del Documento
 
 Il Piano di Progetto è un documento il cui scopo è quello di pianificare in modo preciso lo svolgimento dello stesso cercando di normare i tempi ed i modi. Più precisamente, nel Piano di Progetto ci sono sezioni dedicate all'analisi generale dei rischi ed all\'individuazione delle possibili mitigazioni; e sezioni dedicate alla pianificazione dei periodi, individuati come sprint, in cui sono indicati i preventivi riguardanti ore/costi ed i consuntivi di ciò che effettivamente è stato svolto. Questo documento è redatto seguendo un approccio incrementale, in quanto durante tutta la durata del progetto andrà aggiornato per seguire l'andamento degli sprint.
 
-## 1.2 Scopo del Prodotto
+### Scopo del Prodotto
 
 Nello sviluppo di software per sistemi embedded la parte di controllo dell'implementazione di tutti i requisiti necessari al corretto funzionamento dello stesso risulta costosa e ripetitiva da parte dello sviluppatore, inoltre può risultare non esaustiva a causa di distrazioni o dimenticanze. Il capitolato **_Requirement Tracker - Plug-in VSCode_** propone lo sviluppo di un plugin per VSCode che permetta di tracciare i requisiti derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari requisiti in modo esaustivo, ed in caso di mancata implementazione dia
 un avviso per avvertire dell'effettiva assenza.
 
-## 1.3 Glossario
+### Glossario
 
 Per evitare incomprensioni riguardanti la terminologia utilizzata all'interno dei vari documenti, viene fornito un Glossario che racchiude tutti i vari termini tecnici, potenzialmente ambigui, con la propria definizione precisa. I termini presenti all'interno del glossario verranno evidenziati nei documenti tramite _("Come?")_.
 
-## 1.4 Riferimenti
+### Riferimenti
 
 Riferimenti normativi:
 
@@ -91,12 +63,12 @@ Riferimenti informativi:
 
 > [https://www.math.unipd.it/\~tullio/IS-1/2024/Dispense/T04.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T02.pdf)
 
-# **2. Analisi dei rischi**
+## Analisi dei rischi
 
 Questa sezione del Piano di Progetto si occupa di analizzare le difficoltà che si possono incontrare per evitare che si pongano problemi nell’avanzamento o rallentamenti che possono ostacolare le attività. Consapevoli di queste possibilità, si decide di analizzare ciascun rischio, fornendo una descrizione, un grado di rischio sull'avvenire dello stesso (da 1 a 5 dove 1 indica molto basso e 5 molto alto), e la pericolosità in modo tabellare, in modo tale da aiutare l’identificazione di ognuno con un monitoraggio facile e continuo. Per facilitare l’identificazione e l’analisi, le categorie indicate sono principalmente due: le difficoltà interpersonali ed organizzative e le difficoltà tecnologiche.  
 Le mitigazione di questi rischi si trovano alla fine della sezione.
 
-## 2.1 Rischi organizzativi ed interpersonali
+### Rischi organizzativi ed interpersonali
 
 A seguito viene riportata la tabella contenente i rischi relativi all'organizzazione ed ai rapporti tra i vari membri del gruppo e verso l'esterno.
 
@@ -107,13 +79,13 @@ A seguito viene riportata la tabella contenente i rischi relativi all'organizzaz
 | **Problemi personali tra membri del gruppo**                 | Uno o più elementi del gruppo potrebbero non essere in grado di completare il lavoro pianificato entro la data prevista, per cause legati a problemi personali con un altro membro, creando rallentamenti nel flusso | 1                | Alta         |
 | **Ritardi dovuti a problemi di comunicazione con l'azienda** | Il gruppo può ritrovarsi a dover rallentare il ritmo delle attività a causa della necessità di attendere un feedback dall'azienda che non lo fornisce nel breve periodo                                              | 2                | Alta         |
 
-## 2.2 Rischi tecnologici
+### Rischi tecnologici
 
 | Rischio                             | Descrizione                                                                                                                                | Grado di rischio | Pericolosità |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ---------------- | ------------ |
 | **Mancanza di conoscenze tecniche** | Alcuni membri del gruppo potrebbero non aver familiarità con tutte le tecnologie utilizzate durante lo sviluppo o la gestione del progetto | 4                | Bassa        |
 
-## 2.3 Mitigazione dei rischi organizzativi ed interpersonali
+### Mitigazione dei rischi organizzativi ed interpersonali
 
 | Rischio                                                      | Mitigazione                                                                                                                                                                                                                                                                                    |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -122,15 +94,15 @@ A seguito viene riportata la tabella contenente i rischi relativi all'organizzaz
 | **Problemi personali tra membri del gruppo**                 | Questo rischio può essere mitigato creando un tavolo di confronto tra i membri coinvolti per cercare di dissipare tutte le problematiche nate tra loro; ci si affida anche al buonsenso delle stesse nella cooperazione, per il bene di tutto il gruppo                                        |
 | **Ritardi dovuti a problemi di comunicazione con l'azienda** | Questo rischio può essere mitigato accordandosi sulla data dell'incontro successivo con l'azienda prima dell'inizio dell'incontro presente                                                                                                                                                     |
 
-## 2.4 Mitigazione dei rischi tecnologici
+### Mitigazione dei rischi tecnologici
 
 | Rischio                             | Mitigazione                                                                                                                                                                                                             |
 | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Mancanza di conoscenze tecniche** | Questo rischio può essere mitigato attraverso una stretta collaborazione tra i membri del team e l'azienda proponente mirando alla creazione di un ambiente di collaborazione e condivisione delle conoscenze acquisite |
 
-# **3. Modello di sviluppo e Pianificazione**
+## Modello di sviluppo e Pianificazione
 
-## 3.1 Modello di sviluppo
+### Modello di sviluppo
 
 Il gruppo utilizza un modello Agile basato sul framework SCRUM utilizzato in maniera semplificata. I macroperiodi sono divisi in sprint più piccoli, da due settimane, che permettono rilasci continui così da portare ad un incremento continuo del prodotto. In ogni sprint sono ben chiare le task che i membri dovranno portare a termine contenute nel backlog; ciò porta ad una facile individuazione dei requisiti già sviluppati e di quelli ancora da sviluppare da parte del team.
 
@@ -144,7 +116,7 @@ I punti di forza di questo modello di sviluppo sono:
 
 Le documentazioni prodotte nelle fasi di sviluppo saranno aggiornate procedendo con lo sviluppo stesso, in modo da inserire e/o modificare le informazioni presenti.
 
-## 3.2 Pianificazione
+### Pianificazione
 
 Per definire al meglio la pianificazione degli eventi, vengono individuate tre fasi ciascuna con una specifica revisione al completamento:
 
@@ -154,11 +126,11 @@ Per definire al meglio la pianificazione degli eventi, vengono individuate tre f
 
 - CA (Customer Acceptance)
 
-## 3.3 Sprint
+### Sprint
 
-**Verso la RTB**
+#### Verso la RTB
 
-**Sprint 1**
+##### Sprint 1
 
 Periodo: 18/11/2024 - 06/12/2024
 
@@ -168,7 +140,7 @@ A seguito della prima riunione svolta con l'azienda proponente, buona parte dell
 
 Durante il tempo aggiuntivo, il team ha deciso di sfruttare l'opportunità per avviare la redazione dell'Analisi dei Requisiti attraverso la definizione degli use case.
 
-**Sprint 2**
+##### Sprint 2
 
 Periodo 06/12/2024 - 22/12/2024
 
@@ -179,18 +151,7 @@ Una parte del tempo sarà dedicata ad attività di ricerca focalizzate su questi
 
 Infine, verrà avviata la prima fase di sviluppo del PoC, con l'obiettivo di creare una struttura di base per lo sviluppo dell'estensione.
 
-**Sprint 2**
-
-Periodo 06/12/2024 - 22/12/2024
-
-In questo periodo, il gruppo si concentrerà su attività fondamentali per proseguire lo sviluppo e l'avvicinamento al PoC. In primo luogo, verrà dato seguito alla scrittura della documentazione avviata in precedenza, con particolare attenzione all'aggiornamento e al completamento delle Norme di Progetto, del Piano di Progetto, del Glossario e del Piano di Qualifica.
-
-Parallelamente, si continuerà l'analisi delle tecnologie già avviata nel periodo precedente. A questa analisi saranno integrate nuove tecnologie emerse durante le recenti riunioni, con l'obiettivo di valutarne l'efficacia e l'applicabilità alle esigenze del progetto. Il gruppo, inoltre procederà nella stesura del diagramma use case.
-Una parte del tempo sarà dedicata ad attività di ricerca focalizzate su questioni architetturali, con l'obiettivo di individuare soluzioni tecniche preliminari che garantiscano un'architettura modulare e scalabile. Questo lavoro iniziale consentirà di orientare le decisioni progettuali, valutando le possibili alternative e ponendo le basi per lo sviluppo del sistema.
-
-Infine, verrà avviata la prima fase di sviluppo del PoC, con l'obiettivo di creare una struttura di base per lo sviluppo dell'estensione.
-
-**Sprtin 3**
+#### Sprtin 3
 
 Periodo 22/12/2024 - 12/01/2025
 
@@ -201,9 +162,9 @@ In parallelo, il team continuerà lo sviluppo di alcune funzionalità richieste 
 
 # **4 Preventivo**
 
-## 4.1 Verso la RTB
+### Verso la RTB
 
-**Sprint 1**
+#### Sprint 1
 
 A seguito si riporta la tabella del preventivo per il primo sprint
 
@@ -218,7 +179,7 @@ A seguito si riporta la tabella del preventivo per il primo sprint
 | Totale                    | 18         | 390       |
 | Bilancio                  |            | 12.410,00 |
 
-**Sprint 2**
+#### Sprint 2
 
 A seguito si riporta la tabella del preventivo per il secondo sprint
 
@@ -250,9 +211,9 @@ A seguito si riporta la tabella del preventivo per il secondo sprint
 
 ## **5 Consuntivo**
 
-## 5.1 Verso la RTB
+### Verso la RTB
 
-**Consultivo sprint 1**
+#### Consultivo sprint 1
 
 Di seguito vengono indicate le spese effettive del primo sprint
 
