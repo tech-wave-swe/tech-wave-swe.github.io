@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 
 | Data       | Versione | Descrizione                                        | Autore       | Data Verifica | Verificatore          |
 | ---------- | -------- | -------------------------------------------------- | ------------ | ------------- | --------------------- |
-| 19/12/2024 | 1.2.0    | Revisione struttura + Aggiunta sezione GitHub      | Luca Monetti | 22/12/2024    | Manuel Felipe Vasquez |
+| 19/12/2024 | 1.2.0    | Revisione struttura + Aggiunta sezione GitHub      | Monetti Luca | 22/12/2024    | Vasquez Manuel Felipe |
 | 20/11/2024 | 1.1.0    | Aggiunta sezione 4                                 | Piola Andrea | 03/12/2024    | Pistori Gaia          |
 | 14/11/2024 | 1.0.0    | Prima stesura del documento con indice e sezione 1 | Piola Andrea | 19/11/2024    | Pistori Gaia          |
 

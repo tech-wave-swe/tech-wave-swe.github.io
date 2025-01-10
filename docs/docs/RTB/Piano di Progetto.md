@@ -13,7 +13,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                                        | Autore              | Data Verifica | Verificatore   |
 | ---------- | -------- | -------------------------------------------------- | ------------------- | ------------- | -------------- |
-| 03/12/2024 | 2.0.0    | Aggiunta TOC automatica                            | Luca Monetti        |               |                |
+| 03/12/2024 | 2.0.0    | Aggiunta TOC automatica                            | Monetti Luca        | 10/01/2025    | Pistori Gaia   |
 | 21/12/2024 | 1.3.0    | Integrazione sezione 3, 4, 5 con secondo sprint    | Dal Bianco Riccardo | 22/12/2024    | Carraro Agnese |
 | 02/12/2024 | 1.2.0    | Aggiunta sezione 2                                 | Piola Andrea        | 04/12/2024    | Pistori Gaia   |
 | 27/11/2024 | 1.1.0    | Aggiunta sezione 3 e 4 con primo sprint            | Piola Andrea        | 28/11/2024    | Pistori Gaia   |
