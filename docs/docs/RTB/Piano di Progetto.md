@@ -5,7 +5,8 @@
 
 | Data       | Versione | Descrizione                                                        | Autore              | Data Verifica | Verificatore   |
 | ---------- | -------- | ------------------------------------------------------------------ | ------------------- | ------------- | -------------- |
-| 09/01/2025 | 1.0.0    | Sistemazione Preventivo e Consuntivo Primo Sprint e Secondo Sprint | Luca Monetti        |               |                |
+| 10/01/2025 | 1.0.1    | Aggiunta Preventivo terzo Sprint                                   | Monetti Luca        |               |                |
+| 09/01/2025 | 1.0.0    | Sistemazione Preventivo e Consuntivo Primo Sprint e Secondo Sprint | Monetti Luca        |               |                |
 | 21/12/2024 | 0.1.3    | Integrazione sezione 3, 4, 5 con secondo sprint                    | Dal Bianco Riccardo | 22/12/2024    | Carraro Agnese |
 | 02/12/2024 | 0.1.2    | Aggiunta sezione 2                                                 | Piola Andrea        | 04/12/2024    | Pistori Gaia   |
 | 27/11/2024 | 0.1.1    | Aggiunta sezione 3 e 4 con primo sprint                            | Piola Andrea        | 28/11/2024    | Pistori Gaia   |
@@ -178,6 +179,26 @@ Una parte del tempo sarà dedicata ad attività di ricerca focalizzate su questi
 
 Infine, verrà avviata la prima fase di sviluppo del PoC, con l'obiettivo di creare una struttura di base per lo sviluppo dell'estensione.
 
+**Sprint 2**
+
+Periodo 06/12/2024 - 22/12/2024
+
+In questo periodo, il gruppo si concentrerà su attività fondamentali per proseguire lo sviluppo e l'avvicinamento al PoC. In primo luogo, verrà dato seguito alla scrittura della documentazione avviata in precedenza, con particolare attenzione all'aggiornamento e al completamento delle Norme di Progetto, del Piano di Progetto, del Glossario e del Piano di Qualifica.
+
+Parallelamente, si continuerà l'analisi delle tecnologie già avviata nel periodo precedente. A questa analisi saranno integrate nuove tecnologie emerse durante le recenti riunioni, con l'obiettivo di valutarne l'efficacia e l'applicabilità alle esigenze del progetto. Il gruppo, inoltre procederà nella stesura del diagramma use case.
+Una parte del tempo sarà dedicata ad attività di ricerca focalizzate su questioni architetturali, con l'obiettivo di individuare soluzioni tecniche preliminari che garantiscano un'architettura modulare e scalabile. Questo lavoro iniziale consentirà di orientare le decisioni progettuali, valutando le possibili alternative e ponendo le basi per lo sviluppo del sistema.
+
+Infine, verrà avviata la prima fase di sviluppo del PoC, con l'obiettivo di creare una struttura di base per lo sviluppo dell'estensione.
+
+**Sprtin 3**
+
+Periodo 22/12/2024 - 12/01/2025
+
+In questo periodo, caratterizzato dalla presenza di festività e da una conseguente riduzione del tempo operativo disponibile, il team si dedicherà principalmente alle attività di documentazione concentrandosi su: Norme di Progetto e Analisi dei Requisiti.
+Questo permetterà di implementare i consigli forniti dall'azienda proponente e dal Prof. Cardin nei rispettivi incontri, migliorando così la qualità della documentazione.
+
+In parallelo, il team continuerà lo sviluppo di alcune funzionalità richieste dall'azienda per il PoC, con l'obiettivo di garantire il rispetto delle tempistiche e dei requisiti concordati.
+
 # **4 Preventivo**
 
 ## 4.1 Verso la RTB
@@ -186,31 +207,46 @@ Infine, verrà avviata la prima fase di sviluppo del PoC, con l'obiettivo di cre
 
 A seguito si riporta la tabella del preventivo per il primo sprint
 
-| Ruolo                     | Ore svolte | Costo  |
-| ------------------------- | ---------- | ------ |
-| Responsabile di progetto  | 4          | 120    |
-| Amministratore di sistema | 4          | 80     |
-| Analista                  | 4          | 100    |
-| Progettista               | 0          | 0      |
-| Programmatore             | 1          | 15     |
-| Verificatore              | 5          | 75     |
-| Totale                    | 18         | 390    |
-| Bilancio                  |            | 12.410 |
+| Ruolo                     | Ore svolte | Costo     |
+| ------------------------- | ---------- | --------- |
+| Responsabile di progetto  | 4          | 120       |
+| Amministratore di sistema | 4          | 80        |
+| Analista                  | 4          | 100       |
+| Progettista               | 0          | 0         |
+| Programmatore             | 1          | 15        |
+| Verificatore              | 5          | 75        |
+| Totale                    | 18         | 390       |
+| Bilancio                  |            | 12.410,00 |
 
 **Sprint 2**
 
 A seguito si riporta la tabella del preventivo per il secondo sprint
 
-| Ruolo                     | Ore svolte | Costo  |
-| ------------------------- | ---------- | ------ |
-| Responsabile di progetto  | 6          | 180    |
-| Amministratore di sistema | 6          | 120    |
-| Analista                  | 17         | 425    |
-| Progettista               | 0          | 0      |
-| Programmatore             | 5          | 75     |
-| Verificatore              | 5          | 75     |
-| Totale                    | 39         | 875    |
-| Bilancio                  |            | 11.030 |
+| Ruolo                     | Ore svolte | Costo     |
+| ------------------------- | ---------- | --------- |
+| Responsabile di progetto  | 6          | 180       |
+| Amministratore di sistema | 6          | 120       |
+| Analista                  | 17         | 425       |
+| Progettista               | 0          | 0         |
+| Programmatore             | 5          | 75        |
+| Verificatore              | 5          | 75        |
+| Totale                    | 39         | 875       |
+| Bilancio                  |            | 11.030,00 |
+
+**Sprint 3**
+
+A seguito si riporta la tabella del preventivo per il secondo sprint
+
+| Ruolo                     | Ore svolte | Costo     |
+| ------------------------- | ---------- | --------- |
+| Responsabile di progetto  | 4          | 120       |
+| Amministratore di sistema | 4          | 80        |
+| Analista                  | 10         | 250       |
+| Progettista               | 0          | 0         |
+| Programmatore             | 5          | 75        |
+| Verificatore              | 5          | 75        |
+| Totale                    | 28         | 600       |
+| Bilancio                  |            | 10.597,50 |
 
 ## **5 Consuntivo**
 
@@ -252,8 +288,8 @@ Di seguito vengono indicate le spese effettive del primo sprint
 | Analista                  | 14               | -3        | 25           | 350   | -75         |
 | Progettista               | 0                | 0         | 25           | 0     | 0           |
 | Programmatore             | 9                | +4        | 15           | 135   | +60         |
-| Verificatore              | 3,5              | -1,5      | 15           | 52,5  | -22,5       |
-| Totale consuntivo         | 33.5             | -5.5      |              | 707,5 | -167,5      |
+| Verificatore              | 3,5              | -1,5      | 15           | 52,5  | -22,50      |
+| Totale consuntivo         | 33.5             | -5.5      |              | 707,5 | -167,50     |
 
 Considerando il costo di **707,50€** il residuo disponibile ammonta a **11.197,50€**.
 
