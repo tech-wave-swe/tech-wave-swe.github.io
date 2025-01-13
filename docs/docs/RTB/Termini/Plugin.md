@@ -6,4 +6,4 @@ hoverText: Componente software aggiuntivo che estende le funzionalità di un'app
 
 ### Spiegazione del termine
 
-Componente software aggiuntivo che estende le funzionalità di un'applicazione principale.
+Componente software aggiuntivo che estende le %%funzionalità|funzionalità%% di un'applicazione principale.

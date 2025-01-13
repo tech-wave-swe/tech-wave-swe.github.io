@@ -6,7 +6,8 @@ title: "Piano di Progetto"
 import TOCInlineWrapper from "@site/src/components/TOCInlineWrapper.jsx";
 import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
-# Documento del Piano di Progetto
+
+# Documento del Piano di %%Progetto|progetto%%
 
 <details>
   <summary>Changelog</summary>
@@ -29,11 +30,11 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 ### Scopo del Documento
 
-Il Piano di Progetto è un documento il cui scopo è quello di pianificare in modo preciso lo svolgimento dello stesso cercando di normare i tempi ed i modi. Più precisamente, nel Piano di Progetto ci sono sezioni dedicate all'analisi generale dei rischi ed all\'individuazione delle possibili mitigazioni; e sezioni dedicate alla pianificazione dei periodi, individuati come sprint, in cui sono indicati i preventivi riguardanti ore/costi ed i consuntivi di ciò che effettivamente è stato svolto. Questo documento è redatto seguendo un approccio incrementale, in quanto durante tutta la durata del progetto andrà aggiornato per seguire l'andamento degli sprint.
+Il Piano di %%Progetto|progetto%% è un documento il cui scopo è quello di pianificare in modo preciso lo svolgimento dello stesso cercando di normare i tempi ed i modi. Più precisamente, nel Piano di %%Progetto|progetto%% ci sono sezioni dedicate all'analisi generale dei rischi ed all'individuazione delle possibili mitigazioni; e sezioni dedicate alla pianificazione dei periodi, individuati come %%sprint|sprint%%, in cui sono indicati i preventivi riguardanti ore/costi ed i consuntivi di ciò che effettivamente è stato svolto. Questo documento è redatto seguendo un approccio incrementale, in quanto durante tutta la durata del %%progetto|progetto%% andrà aggiornato per seguire l'andamento degli %%sprint|sprint%%.
 
 ### Scopo del Prodotto
 
-Nello sviluppo di software per sistemi embedded la parte di controllo dell'implementazione di tutti i requisiti necessari al corretto funzionamento dello stesso risulta costosa e ripetitiva da parte dello sviluppatore, inoltre può risultare non esaustiva a causa di distrazioni o dimenticanze. Il capitolato **_Requirement Tracker - Plug-in VSCode_** propone lo sviluppo di un plugin per VSCode che permetta di tracciare i requisiti derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari requisiti in modo esaustivo, ed in caso di mancata implementazione dia
+Nello sviluppo di software per sistemi embedded la parte di controllo dell'implementazione di tutti i requisiti necessari al corretto funzionamento dello stesso risulta costosa e ripetitiva da parte dello sviluppatore, inoltre può risultare non esaustiva a causa di distrazioni o dimenticanze. Il %%capitolato|capitolato%% **_Requirement Tracker - Plug-in VSCode_** propone lo sviluppo di un %%plugin|plugin%% per %%VSCode|vscode%% che permetta di tracciare i requisiti derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari requisiti in modo esaustivo, ed in caso di mancata implementazione dia
 un avviso per avvertire dell'effettiva assenza.
 
 ### Glossario
@@ -44,11 +45,11 @@ Per evitare incomprensioni riguardanti la terminologia utilizzata all'interno de
 
 Riferimenti normativi:
 
-- Capitolato d'appalto C8
+- %%Capitolato|capitolato%% d'appalto C8
 
 > [https://www.math.unipd.it/\~tullio/IS-1/2024/Progetto/C8.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Progetto/C8.pdf)
 
-- Norme di progetto
+- Norme di %%progetto|progetto%%
 
 > _"Inserire link al file norme di progetto"_
 
@@ -58,14 +59,14 @@ Riferimenti informativi:
 
 > [https://www.math.unipd.it/\~tullio/IS-1/2024/Dispense/T02.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T02.pdf)
 
-- Corso di Ingegneria del software - Gestione di progetto
+- Corso di Ingegneria del software - Gestione di %%progetto|progetto%%
 
 > [https://www.math.unipd.it/\~tullio/IS-1/2024/Dispense/T04.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T02.pdf)
 
 ## Analisi dei rischi
 
-Questa sezione del Piano di Progetto si occupa di analizzare le difficoltà che si possono incontrare per evitare che si pongano problemi nell’avanzamento o rallentamenti che possono ostacolare le attività. Consapevoli di queste possibilità, si decide di analizzare ciascun rischio, fornendo una descrizione, un grado di rischio sull'avvenire dello stesso (da 1 a 5 dove 1 indica molto basso e 5 molto alto), e la pericolosità in modo tabellare, in modo tale da aiutare l’identificazione di ognuno con un monitoraggio facile e continuo. Per facilitare l’identificazione e l’analisi, le categorie indicate sono principalmente due: le difficoltà interpersonali ed organizzative e le difficoltà tecnologiche.  
-Le mitigazione di questi rischi si trovano alla fine della sezione.
+Questa sezione del Piano di %%Progetto|progetto%% si occupa di analizzare le difficoltà che si possono incontrare per evitare che si pongano problemi nell"avanzamento o rallentamenti che possono ostacolare le %%attività|attività%%. Consapevoli di queste possibilità, si decide di analizzare ciascun %%rischio|rischio%%, fornendo una descrizione, un grado di %%rischio|rischio%% sull'avvenire dello stesso (da 1 a 5 dove 1 indica molto basso e 5 molto alto), e la pericolosità in modo tabellare, in modo tale da aiutare l’identificazione di ognuno con un monitoraggio facile e continuo. Per facilitare l’identificazione e l’analisi, le categorie indicate sono principalmente due: le difficoltà interpersonali ed organizzative e le difficoltà tecnologiche.  
+Le %%mitigazione|mitigazione%% di questi rischi si trovano alla fine della sezione.
 
 ### Rischi organizzativi ed interpersonali
 
@@ -86,7 +87,7 @@ A seguito viene riportata la tabella contenente i rischi relativi all'organizzaz
 
 ### Mitigazione dei rischi organizzativi ed interpersonali
 
-| Rischio                                                      | Mitigazione                                                                                                                                                                                                                                                                                    |
+| Rischio                                                   | Mitigazione                                                                                                                                                                                                                                                                                    |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Avanzamento lento per mancanza di esperienza**             | Questo rischio può essere mitigato attraverso la pianificazione di incontri frequenti con l'azienda BlueWind che si è resa disponibile a fornire formazione e supporto. Inoltre, vogliamo scegliere un modello di sviluppo incrementale che si integri con il modello AGILE scrum dell'azienda |
 | **Ritardi dovuti a problemi individuali**                    | Questo rischio può essere mitigato attraverso la comunicazione costante tra i vari membri del gruppo. Questo ci permetterà di individuare difficoltà o ritardi prima che essi possano trasformarsi in problemi                                                                                 |
@@ -95,7 +96,7 @@ A seguito viene riportata la tabella contenente i rischi relativi all'organizzaz
 
 ### Mitigazione dei rischi tecnologici
 
-| Rischio                             | Mitigazione                                                                                                                                                                                                             |
+| Rischio                             | Mitigazione                                                                                                                                                                                                           |
 | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Mancanza di conoscenze tecniche** | Questo rischio può essere mitigato attraverso una stretta collaborazione tra i membri del team e l'azienda proponente mirando alla creazione di un ambiente di collaborazione e condivisione delle conoscenze acquisite |
 
@@ -103,15 +104,15 @@ A seguito viene riportata la tabella contenente i rischi relativi all'organizzaz
 
 ### Modello di sviluppo
 
-Il gruppo utilizza un modello Agile basato sul framework SCRUM utilizzato in maniera semplificata. I macroperiodi sono divisi in sprint più piccoli, da due settimane, che permettono rilasci continui così da portare ad un incremento continuo del prodotto. In ogni sprint sono ben chiare le task che i membri dovranno portare a termine contenute nel backlog; ciò porta ad una facile individuazione dei requisiti già sviluppati e di quelli ancora da sviluppare da parte del team.
+Il gruppo utilizza un modello Agile basato sul framework %%SCRUM|scrum%% utilizzato in maniera semplificata. I macroperiodi sono divisi in %%sprint|sprint%% più piccoli, da due settimane, che permettono rilasci continui così da portare ad un incremento continuo del %%prodotto|prodotto%%. In ogni %%sprint|sprint%% sono ben chiare le %%task|task%% che i membri dovranno portare a termine contenute nel %%backlog|backlog%%; ciò porta ad una facile individuazione dei requisiti già sviluppati e di quelli ancora da sviluppare da parte del team.
 
 I punti di forza di questo modello di sviluppo sono:
 
-- Dare priorità allo sviluppo di funzionalità principali, garantendone la verifica costante anche da parte del proponente.
+- Dare priorità allo sviluppo di %%funzionalità|funzionalità%% principali, garantendone la %%verifica|verifica%% costante anche da parte del %%proponente|proponente%%.
 
-- Ottima risposta ai cambiamenti, con la possibilità di definizione di categorie che avanzano durante tutta la durata del progetto in maniera collaborativa e adattabile.
+- Ottima risposta ai cambiamenti, con la possibilità di definizione di categorie che avanzano durante tutta la durata del %%progetto|progetto%% in maniera collaborativa e adattabile.
 
-- I test e la verifica sono più semplici, in quanto fanno riferimento alle attività svolte durante lo specifico sprint.
+- I %%test|test%% e la %%verifica|verifica%% sono più semplici, in quanto fanno riferimento alle %%attività|attività%% svolte durante lo specifico %%sprint|sprint%%.
 
 Le documentazioni prodotte nelle fasi di sviluppo saranno aggiornate procedendo con lo sviluppo stesso, in modo da inserire e/o modificare le informazioni presenti.
 
@@ -119,9 +120,9 @@ Le documentazioni prodotte nelle fasi di sviluppo saranno aggiornate procedendo 
 
 Per definire al meglio la pianificazione degli eventi, vengono individuate tre fasi ciascuna con una specifica revisione al completamento:
 
-- RTB (Requirements and Technology Baseline)
+- %%RTB|rtb%% (Requirements and Technology Baseline)
 
-- PB (Product Baseline)
+- %%PB|pb%% (Product Baseline)
 
 - CA (Customer Acceptance)
 
@@ -133,15 +134,15 @@ Per definire al meglio la pianificazione degli eventi, vengono individuate tre f
 
 Periodo: 18/11/2024 - 06/12/2024
 
-Iniziato a seguito dell'aggiudicazione del capitolato d'appalto; in questo sprint l'obiettivo principale è quello di organizzare al meglio tutti gli strumenti da utilizzare durante tutto il progetto es. Jira, GitHub... . Inoltre si vuole anche cominciare a produrre la documentazione quale: Norme di progetto, Piano di Progetto, Glossario e Piano di Qualifica. A seguito della prima riunione con l'azienda proponente, buona parte del tempo che i membri utilizzeranno sarà destinato allo studio delle tecnologie concordate con l'azienda. Inizialmente lo sprint doveva avere durata di due settimane ma si è deciso di allungarlo a seguito di un prolungamento dovuto allo spostamento della riunione con l'azienda alla settimana successiva. Durante questa settimana si è deciso di cominciare con l'analisi dei requisiti attraverso gli use case.
+Iniziato a seguito dell'aggiudicazione del %%capitolato|capitolato%% d'appalto; in questo %%sprint|sprint%% l'obiettivo principale è quello di organizzare al meglio tutti gli strumenti da utilizzare durante tutto il %%progetto|progetto%% es. %%Jira|jira%%, %%GitHub|github%%... . Inoltre si vuole anche cominciare a produrre la documentazione quale: Norme di %%progetto|progetto%%, Piano di %%Progetto|progetto%%, Glossario e Piano di Qualifica. A seguito della prima riunione con l'azienda %%proponente|proponente%%, buona parte del tempo che i membri utilizzeranno sarà destinato allo studio delle tecnologie concordate con l'azienda. Inizialmente lo %%sprint|sprint%% doveva avere durata di due settimane ma si è deciso di allungarlo a seguito di un prolungamento dovuto allo spostamento della riunione con l'azienda alla settimana successiva. Durante questa settimana si è deciso di cominciare con l'%%analisi dei requisiti|analisi_dei_requisiti%% attraverso gli use case.
 
 ##### Sprint 2
 
 Periodo 06/12/2024 - 22/12/2024
 
-In questo periodo, il gruppo si concentrerà su attività fondamentali per proseguire lo sviluppo e l'avvicinamento al Proof of Concept. In primo luogo, verrà dato seguito alla scrittura della documentazione avviata in precedenza, con particolare attenzione all'aggiornamento e al completamento delle Norme di Progetto, del Piano di Progetto, del Glossario e del Piano di Qualifica.
-Parallelamente, si continuerà l'analisi delle tecnologie già avviata nel periodo precedente. A questa analisi saranno integrate nuove tecnologie emerse durante le recenti riunioni, con l'obiettivo di valutarne l'efficacia e l'applicabilità alle esigenze del progetto. Il gruppo, inoltre procederà nella stesura del diagramma use case.
-Infine, una parte del tempo sarà dedicata ad attività di ricerca focalizzate su questioni architetturali cruciali, con l'obiettivo di individuare soluzioni tecniche preliminari che garantiscano un'architettura modulare e scalabile. Questo lavoro iniziale consentirà di orientare le decisioni progettuali, valutando le possibili alternative e ponendo le basi per lo sviluppo del sistema.
+In questo periodo, il gruppo si concentrerà su %%attività|attività%% fondamentali per proseguire lo sviluppo e l'avvicinamento al Proof of Concept. In primo luogo, verrà dato seguito alla scrittura della documentazione avviata in precedenza, con particolare attenzione all'aggiornamento e al completamento delle Norme di %%Progetto|progetto%%, del Piano di %%Progetto|progetto%%, del Glossario e del Piano di Qualifica.
+Parallelamente, si continuerà l'analisi delle tecnologie già avviata nel periodo precedente. A questa analisi saranno integrate nuove tecnologie emerse durante le recenti riunioni, con l'obiettivo di valutarne l'%%efficacia|efficacia%% e l'applicabilità alle esigenze del %%progetto|progetto%%. Il gruppo, inoltre procederà nella stesura del diagramma use case.
+Infine, una parte del tempo sarà dedicata ad %%attività|attività%% di ricerca focalizzate su questioni architetturali cruciali, con l'obiettivo di individuare soluzioni tecniche preliminari che garantiscano un'%%architettura|architettura%% modulare e scalabile. Questo lavoro iniziale consentirà di orientare le decisioni progettuali, valutando le possibili alternative e ponendo le basi per lo sviluppo del sistema.
 
 ## Preventivo
 
@@ -149,7 +150,7 @@ Infine, una parte del tempo sarà dedicata ad attività di ricerca focalizzate s
 
 #### Sprint 1
 
-A seguito si riporta la tabella del preventivo per il primo sprint
+A seguito si riporta la tabella del %%preventivo|preventivo%% per il primo %%sprint|sprint%%
 
 | Ruolo                     | Ore svolte | Costo  |
 | ------------------------- | ---------- | ------ |
@@ -164,7 +165,7 @@ A seguito si riporta la tabella del preventivo per il primo sprint
 
 #### Sprint 2
 
-A seguito si riporta la tabella del preventivo per il secondo sprint
+A seguito si riporta la tabella del %%preventivo|preventivo%% per il secondo %%sprint|sprint%%
 
 | Ruolo                     | Ore svolte | Costo  |
 | ------------------------- | ---------- | ------ |
@@ -183,21 +184,21 @@ A seguito si riporta la tabella del preventivo per il secondo sprint
 
 #### Consultivo sprint 1
 
-Di seguito vengono indicate le spese effettive del primo sprint
+Di seguito vengono indicate le spese effettive del primo %%sprint|sprint%%
 
-| Ruolo                     | Totale ore ruolo | Diff. ore | Costo orario | Costo | Diff. costo |
-| ------------------------- | ---------------- | --------- | ------------ | ----- | ----------- |
-| Responsabile di progetto  | 3                | -1        | 30           | 90    | -30         |
-| Amministratore di sistema | 2                | -2        | 20           | 40    | -40         |
-| Analista                  | 1                | -3        | 25           | 25    | -75         |
-| Progettista               | 7                | +7        | 25           | 175   | +175        |
-| Programmatore             | 0                | -1        | 15           | 0     | -15         |
-| Verificatore              | 2                | -3        | 15           | 30    | -45         |
-| Totale consuntivo         |                  | -3        |              | 360   | -30         |
+| Ruolo                     		| Totale ore ruolo | Diff. ore | Costo orario | Costo | Diff. costo |
+| ------------------------------------- | ---------------- | --------- | ------------ | ----- | ----------- |
+| Responsabile di progetto | 3                | -1        | 30           | 90    | -30         |
+| Amministratore di sistema 		| 2                | -2        | 20           | 40    | -40         |
+| Analista                  		| 1                | -3        | 25           | 25    | -75         |
+| Progettista               		| 7                | +7        | 25           | 175   | +175        |
+| Programmatore            		| 0                | -1        | 15           | 0     | -15         |
+| Verificatore              		| 2                | -3        | 15           | 30    | -45         |
+| Totale consuntivo      |                  | -3        |              | 360   | -30         |
 
 **Resoconto**
 
-Essendo il primo sprint, abbiamo riscontrato alcune discrepanze tra preventivo e consuntivo, evidenzia una riduzione complessiva di 3 ore rispetto alle stime iniziali, accompagnata da una diminuzione dei costi totali di 30 €. Il Progettista è l’unico ruolo con un incremento significativo di ore (+7), comportando un aumento di 175 € nei costi. In contrasto, tutte le altre figure hanno lavorato meno del previsto, con il Verificatore (-3 ore) e l’Analista (-3 ore) che mostrano le variazioni più significative in termini di impegno.
-Queste differenze sono tipiche del primo ciclo e rappresentano un'opportunità per affinare la capacità di stima nei prossimi sprint.
+Essendo il primo %%sprint|sprint%%, abbiamo riscontrato alcune discrepanze tra %%preventivo|preventivo%% e %%consuntivo|consuntivo%%, evidenzia una riduzione complessiva di 3 ore rispetto alle stime iniziali, accompagnata da una diminuzione dei costi totali di 30 €. Il Progettista è l’unico ruolo con un incremento significativo di ore (+7), comportando un aumento di 175 € nei costi. In contrasto, tutte le altre figure hanno lavorato meno del previsto, con il Verificatore (-3 ore) e l’Analista (-3 ore) che mostrano le variazioni più significative in termini di impegno.
+Queste differenze sono tipiche del primo ciclo e rappresentano un'opportunità per affinare la capacità di stima nei prossimi %%sprint|sprint%%.
 
 </NumberedWrapper>

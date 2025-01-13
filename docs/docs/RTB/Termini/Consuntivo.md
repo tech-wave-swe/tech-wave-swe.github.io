@@ -6,4 +6,4 @@ hoverText: Rendiconto dei risultati di un determinato periodo di attività.
 
 ### Spiegazione del termine
 
-Rendiconto dei risultati di un determinato periodo di attività.
+Rendiconto dei risultati di un determinato periodo di %%attività|attività%%.

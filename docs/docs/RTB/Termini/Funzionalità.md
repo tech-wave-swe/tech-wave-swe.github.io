@@ -6,4 +6,4 @@ hoverText: Caratteristica funzionale propria di un prodotto software.
 
 ### Spiegazione del termine
 
-Caratteristica funzionale propria di un prodotto software.
+Caratteristica funzionale propria di un %%prodotto|prodotto%% software.

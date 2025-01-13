@@ -6,5 +6,4 @@ hoverText: Elenco di requisiti che il team di sviluppo deve completare durante i
 
 ### Spiegazione del termine
 
-Elenco di requisiti che il team di sviluppo deve completare durante il progetto. Il product backlog contiene i requisiti e le funzionalità del prodotto, mentre lo sprint backlog contiene solo l'insieme delle funzionalità da implementare in un singolo sprint.
-
+Elenco di requisiti che il team di sviluppo deve completare durante il %%progetto|progetto%%. Il product %%backlog|backlog%% contiene i requisiti e le %%funzionalità|funzionalità%% del %%prodotto|prodotto%%, mentre lo %%sprint|sprint%% %%backlog|backlog%% contiene solo l'insieme delle %%funzionalità|funzionalità%% da implementare in un singolo %%sprint|sprint%%.

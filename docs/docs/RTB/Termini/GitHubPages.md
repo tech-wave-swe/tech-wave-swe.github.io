@@ -6,4 +6,4 @@ hoverText: Servizio di hosting che prende file HTML, CSS e JavaScript direttamen
 
 ### Spiegazione del termine
 
-Servizio di hosting che prende file HTML, CSS e JavaScript direttamente da un repository su GitHub e pubblica un sito web.
+Servizio di hosting che prende file HTML, CSS e JavaScript direttamente da un %%repository|repository%% su %%GitHub|github%% e pubblica un sito web.
