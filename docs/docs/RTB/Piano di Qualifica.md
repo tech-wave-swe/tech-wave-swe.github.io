@@ -13,7 +13,8 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                              | Autore                | Data Verifica | Verificatore          |
 |------------|----------|------------------------------------------|-----------------------|---------------|-----------------------|
-| 03/01/2025 | 1.3.0    | Modifica descrizione e riferimenti       | Manuel Felipe Vasquez | 06/01/2025    |                       |
+| 16/01/2025 | 1.4.0    | Aggiunte misure                          | Luca Monetti          | 17/01/2025    |                       |
+| 03/01/2025 | 1.3.0    | Modifica descrizione e riferimenti       | Manuel Felipe Vasquez | 06/01/2025    | Luca Monetti          |
 | 22/12/2024 | 1.2.0    | Aggiunte metriche di qualità di Prodotto | Gaia Pistori          | 24/12/2024    | Manuel Felipe Vasquez |
 | 16/12/2024 | 1.1.0    | aggiunta qualità di processo             | Giulia Marcon         | 17/12/2024    | Agnese Carraro        |
 | 08/12/2024 | 1.0.0    | Prima stesura del documento              | Manuel Felipe Vasquez | 10/12/2024    | Luca Monetti          |
@@ -73,6 +74,8 @@ Per garantire la qualità dei processi, il team adotta il modello di riferimento
 | MPCR04  | **Planned Value**              | Valore del lavoro pianificato fino a una data specifica            | Comparare il progresso pianificato con quello reale | N/A                | N/A                 |
 | MPCR05  | **Cost Variance**              | Differenza tra il valore acquisito e il costo effettivo            | Valutare l'efficienza economica del progetto        | ≥ -5%              | ≥ 0%                |
 | MPCR06  | **Schedule Variance**          | Differenza tra il valore acquisito e il valore pianificato         | Valutare l'aderenza ai tempi di progetto            | ≥ -5%              | ≥ 0%                |
+| MPCR07  | **Cost Performance Index**     | Rapporto tra il valore acquisito e il costo effettivo              | Misurare l'efficienza dei costi                     | ≥ 0.95             | ≥ 1.0               |
+| MPCR08  | **Schedule Performance Index** | Rapporto tra il valore acquisito e il valore pianificato           | Misurare l'efficienza temporale                     | ≥ 0.95             | ≥ 1.0               |
 
 #### Budget Variance
 
@@ -122,6 +125,23 @@ Per garantire la qualità dei processi, il team adotta il modello di riferimento
 **Formula**: $\text{Schedule Variance} = \text{Earned Value} - \text{Planned Value}$
 - Misura la differenza tra il lavoro completato e quello pianificato.
 - Un valore positivo indica che il progetto è in anticipo sulla schedulazione.
+---
+#### Cost Performance Index
+
+**Metrica**: MPCR07
+
+**Formula**: $\text{Cost Performance Index} = \dfrac{\text{Earned Value}}{\text{Actual Cost}}$
+- Indica l'efficienza nell'utilizzo delle risorse.
+- Un valore maggiore di 1 indica che si sta spendendo meno del previsto per il lavoro completato.
+---
+#### Schedule Performance Index
+
+**Metrica**: MPCR08
+
+**Formula**: $\text{Schedule Performance Index} = \dfrac{\text{Earned Value}}{\text{Planned Value}}$
+- Indica l'efficienza nel rispetto dei tempi pianificati.
+- Un valore maggiore di 1 indica che il progetto sta procedendo più velocemente del previsto.
+
 
 ### Processi di Supporto
 
@@ -130,6 +150,7 @@ Per garantire la qualità dei processi, il team adotta il modello di riferimento
 | MPCS01  | **Estimate At Completion** | Stima dei costi per il completamento del progetto  | Prevedere i costi rimanenti e pianificare le risorse necessarie | ≤ Budget At Completion     | Corrispondente al preventivo |
 | MPCS02  | **Estimate To Complete**   | Costo stimato per completare le attività rimanenti | Supportare la pianificazione finanziaria e delle risorse        | ≤ Budget At Completion     | ≤ Estimate At Completion     |
 | MPCS03  | **Budget At Completion**   | Totale del budget allocato per il progetto         | Gestire e controllare le risorse finanziarie complessive        | ≤ +10% del budget iniziale | Corrispondente al preventivo |
+| MPCS04  | **Indice Gulpease**        | Indice di leggibilità dei documenti                | Garantire la comprensibilità della documentazione               | ≥ 40                       | ≥ 60                         |
 
 #### Estimate At Completion
 
@@ -157,6 +178,17 @@ Per garantire la qualità dei processi, il team adotta il modello di riferimento
 - Rappresenta il budget totale autorizzato per il progetto
 - Serve come baseline per valutare le performance di costo
 - Include tutte le riserve di contingenza allocate
+---
+#### Indice Gulpease
+
+**Metrica**: MPCS04
+
+**Formula**: $\text{Indice Gulpease} = 89 + \dfrac{300 \times \text{numero frasi} - 10 \times \text{numero lettere}}{\text{numero parole}}$
+- Misura la leggibilità dei documenti in italiano
+- Scala da 0 (minima leggibilità) a 100 (massima leggibilità)
+- Valori ottimali variano in base al livello di istruzione del target:
+  - 40-50 per testi tecnici
+  - \>60 per documenti destinati a un pubblico generale
 
 ### Processi Organizzativi
 
