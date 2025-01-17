@@ -251,7 +251,7 @@ Di seguito vengono indicate le spese effettive del secondo %%sprint|sprint%%
 | Verificatore              | 3,5                  | -1,5          | 15               | 52,5      | -22,50          |
 | Totale consuntivo         | 33.5                 | -5.5          |                  | 697,5     | -177,50         |
 
-Considerando il costo di **707,50€** il residuo disponibile ammonta a **11.197,50€**.
+Considerando il costo di **697,50€** il residuo disponibile ammonta a **11.207,50€**.
 
 **Resoconto**
 
