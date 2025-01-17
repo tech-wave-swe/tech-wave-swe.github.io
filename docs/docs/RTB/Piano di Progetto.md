@@ -258,7 +258,7 @@ Considerando il costo di **707,50€** il residuo disponibile ammonta a **11.197
 Il secondo %%sprint|sprint%% ha dimostrato un progresso significativo nella gestione delle risorse e una maggiore aderenza al piano progettuale dimostrando che le azioni correttive introdotte dopo il primo %%sprint|sprint%% hanno avuto un impatto positivo.
 
 La principale variazione si è registrata sui ruoli di Programmatore (+4 ore) in quanto è stata sottostimato il tempo necessario allo sviluppo di una base per il %%PoC|poc%%.
-Abbiamo invece sovrastimato il ruolo dell'Analista e del Responsabile (-3 ore).
+Abbiamo invece sovrastimato il ruolo dell'Analista  (-3 ore) e del Responsabile (-4 ore).
 
 In conclusione, Il secondo %%sprint|sprint%% ha mostrato un miglioramento nella gestione delle attività e un maggior allineamento rispetto al preventivo iniziale.
 
