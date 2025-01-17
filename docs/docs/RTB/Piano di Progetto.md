@@ -239,7 +239,7 @@ In conclusione, il primo %%sprint|sprint%% ha permesso di identificare aree crit
 
 #### Consultivo sprint 2
 
-Di seguito vengono indicate le spese effettive del primo %%sprint|sprint%%
+Di seguito vengono indicate le spese effettive del secondo %%sprint|sprint%%
 
 | Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
 | ------------------------- | -------------------- | ------------- | ---------------- | --------- | --------------- |
