@@ -195,7 +195,7 @@ A seguito si riporta la tabella del preventivo per il secondo %%sprint|sprint%%
 
 #### Sprint 3
 
-A seguito si riporta la tabella del preventivo per il secondo %%sprint|sprint%%
+A seguito si riporta la tabella del preventivo per il terzo %%sprint|sprint%%
 
 | Ruolo                     | Ore svolte (h) | Costo (€) |
 | ------------------------- | -------------- | --------- |
