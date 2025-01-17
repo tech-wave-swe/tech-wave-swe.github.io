@@ -243,7 +243,7 @@ Di seguito vengono indicate le spese effettive del secondo %%sprint|sprint%%
 
 | Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
 | ------------------------- | -------------------- | ------------- | ---------------- | --------- | --------------- |
-| Responsabile di progetto  | 3                    | -3            | 30               | 90        | -90             |
+| Responsabile di progetto  | 2                    | -4            | 30               | 60        | -120            |
 | Amministratore di sistema | 5                    | -1            | 20               | 100       | -20             |
 | Analista                  | 14                   | -3            | 25               | 350       | -75             |
 | Progettista               | 0                    | 0             | 25               | 0         | 0               |
