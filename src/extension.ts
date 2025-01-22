@@ -1,14 +1,19 @@
 import * as vscode from "vscode";
 import { Config } from "./config";
+import { StateManager } from "./stateManager";
 
 import * as commandModules from "./commands/index";
 import commandConfig from "../package.json";
 
 import { CustomInlineCompletionItemProvider } from "./providers/inlineCompletionProvider";
-import { RequirementsTrackerViewProvider } from "./providers/webviewViewProvider";
+import { ChatViewProvider } from "./providers/chatViewProvider";
+import { RequirementsTrackerViewProvider } from "./providers/trackerViewProvider";
 
 export function activate(context: vscode.ExtensionContext) {
-  const provider = new RequirementsTrackerViewProvider(context.extensionUri);
+  const trackerViewProvider = new RequirementsTrackerViewProvider(
+    context.extensionUri,
+  );
+  const chatViewProvider = new ChatViewProvider(context.extensionUri);
 
   try {
     const config = Config.getInstance();
@@ -22,7 +27,6 @@ export function activate(context: vscode.ExtensionContext) {
       );
     }
   }
-
   context.subscriptions.push(
     vscode.languages.registerInlineCompletionItemProvider(
       { scheme: "file", language: "*" },
@@ -33,9 +37,18 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.window.registerWebviewViewProvider(
       RequirementsTrackerViewProvider.viewType,
-      provider,
+      trackerViewProvider,
     ),
   );
+
+  context.subscriptions.push(
+    vscode.window.registerWebviewViewProvider(
+      ChatViewProvider.viewType,
+      chatViewProvider,
+    ),
+  );
+
+  StateManager.getInstance().setContext(context);
 
   const commands = commandConfig.contributes.commands || [];
   const modules = Object(commandModules);

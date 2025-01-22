@@ -1,3 +1,6 @@
+import { marked } from "marked";
+import { sanitize } from "dompurify";
+
 /**
  * Computes the cosine similarity between two vectors.
  * @param vecA First vector.
@@ -14,3 +17,12 @@ export function cosineSimilarity(vecA: number[], vecB: number[]): number {
   return dotProduct / (magnitudeA * magnitudeB);
 }
 
+export function convertMarkdownToHtml(markdown: string): string {
+  marked.setOptions({
+    gfm: true,
+    breaks: true,
+  });
+
+  const html = marked(markdown).toString();
+  return sanitize(html);
+}
