@@ -1,13 +1,20 @@
 {
-	"compilerOptions": {
-		"module": "commonjs",
-		"target": "es2020",
-		"lib": ["es2020", "dom"],
-		"outDir": "out",
-		"sourceMap": true,
-		"strict": true,
-		"rootDir": "src"
-	},
-	"include": ["src/**/*"],
-	"exclude": ["node_modules", ".vscode-test"]
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "out",
+    "target": "ES2020",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "lib": ["es2020", "dom"],
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", ".vscode-test"]
 }
