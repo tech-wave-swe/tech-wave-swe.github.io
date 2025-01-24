@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'none'; style-src {{styleSrc}}; script-src 'nonce-{{nonce}}';"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="{{styleResetUri}}" rel="stylesheet" />
+        <link href="{{styleVSCodeUri}}" rel="stylesheet" />
+        <link href="{{styleMainUri}}" rel="stylesheet" />
+        <title>Requirement Tracker</title>
+    </head>
+    <body>
+        <div class="chatbot-container">
+            <h3>Chat</h3>
+            <button id="clear-history" class="clear-history-button">Clear History</button>
+        </div>
+        <div id="chatbot-messages" class="chatbot-messages"></div>
+        <textarea placeholder="Type a message..." id="chatbot-input"></textarea>
+        <script nonce="{{nonce}}" src="{{scriptUri}}"></script>
+    </body>
+</html>

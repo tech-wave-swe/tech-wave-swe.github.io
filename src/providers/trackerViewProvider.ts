@@ -1,5 +1,6 @@
 import * as vscode from "vscode";
 import { DocumentManager } from "../models";
+import * as fs from "fs";
 
 export class RequirementsTrackerViewProvider
   implements vscode.WebviewViewProvider
@@ -98,29 +99,21 @@ export class RequirementsTrackerViewProvider
 
     const nonce = this.getNonce();
 
-    return `<!DOCTYPE html>
-			  <html lang="en">
-			  <head>
-				  <meta charset="UTF-8">
-				  <meta http-equiv="Content-Security-Policy" content="default-src 'none';
-			style-src ${webview.cspSource};
-			script-src 'nonce-${nonce}';">
-				  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-				  <link href="${styleResetUri}" rel="stylesheet">
-				  <link href="${styleVSCodeUri}" rel="stylesheet">
-				  <link href="${styleMainUri}" rel="stylesheet">
-				  <title>Requirement Tracker</title>
-			  </head>
-			  <body>
-				  <h1>Requirement Tracker</h1>
-				  <label for="myfile">Select a file to insert the requirements:</label>
-				  <input type="file" id="requirements-file-input" name="requirements-file-input">
-					<label for="delimiter-input">Delimiter:</label>
-          <input type="text" id="delimiter-input" value="$" placeholder="Enter delimiter" />
-				  <button id="requirements-confirmation-button">Apply requirements</button>
-				  <table id="requirements-table"></table>
-				  <script nonce="${nonce}" src="${scriptUri}"></script>
-			  </body>
-			  </html>`;
+    const htmlPath = vscode.Uri.joinPath(
+      this._extensionUri,
+      "media",
+      "tracker.html",
+    ).fsPath;
+    let html = fs.readFileSync(htmlPath, "utf8");
+
+    html = html
+      .replace("{{styleSrc}}", webview.cspSource)
+      .replace(/{{nonce}}/g, nonce)
+      .replace("{{scriptUri}}", scriptUri.toString())
+      .replace("{{styleResetUri}}", styleResetUri.toString())
+      .replace("{{styleVSCodeUri}}", styleVSCodeUri.toString())
+      .replace("{{styleMainUri}}", styleMainUri.toString());
+
+    return html;
   }
 }
