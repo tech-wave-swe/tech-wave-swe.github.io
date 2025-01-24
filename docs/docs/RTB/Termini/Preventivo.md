@@ -6,4 +6,4 @@ hoverText: Documento in cui si trovano le stime del costo di determinate attivit
 
 ### Spiegazione del termine
 
-Documento in cui si trovano le stime del costo di determinate attività.
+Documento in cui si trovano le stime del costo di determinate %%attività|attività%%.

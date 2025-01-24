@@ -27,11 +27,11 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 ### Scopo del Documento
 
-Lo scopo del documento è quello di definire i requisiti che il gruppo di sviluppo TechWave dovrà rispettare per consegnare il prodotto **_Requirement Tracker - Plug-in VSCode_** rispettando le aspettative dell'azienda Bluewind.
+Lo scopo del documento è quello di definire i requisiti che il gruppo di sviluppo TechWave dovrà rispettare per consegnare il %%prodotto|prodotto%% **_Requirement Tracker - Plug-in %%VSCode|vscode%% rispettando le aspettative dell'azienda Bluewind.
 
 ### Scopo del Prodotto
 
-Nello sviluppo di software per sistemi embedded la parte di controllo dell'implementazione di tutti i requisiti necessari al corretto funzionamento dello stesso risulta costosa e ripetitiva da parte dello sviluppatore, inoltre può risultare non esaustiva a causa di distrazioni o dimenticanze. Il %%Capitolato|capitolato%% **_Requirement Tracker - Plug-in VSCode_** propone lo sviluppo di un %%Plugin|plugin%% per %%VS Code|vs_code%% che permetta di tracciare i requisiti derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari requisiti in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
+Nello sviluppo di software per sistemi embedded la parte di controllo dell'implementazione di tutti i requisiti necessari al corretto funzionamento dello stesso risulta costosa e ripetitiva da parte dello sviluppatore, inoltre può risultare non esaustiva a causa di distrazioni o dimenticanze. Il %%Capitolato|capitolato%% **_Requirement Tracker - Plug-in VSCode_** propone lo sviluppo di un %%Plugin|plugin%% per %%VSCode|vscode%% che permetta di tracciare i requisiti derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari requisiti in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
 
 ## Analisi dei requisiti
 
@@ -40,9 +40,9 @@ Nello sviluppo di software per sistemi embedded la parte di controllo dell'imple
 I requisiti vengono identificati ciascuno da un codice identificativo nel formato Rxz_n:
 
 - tipologia del requisito 
-  - F = funzionale: indicano funzionalità che l'%%Applicativo|applicativo%% deve fornire
+  - F = funzionale: indicano %%funzionalità|funzionalità%% che l'%%Applicativo|applicativo%% deve fornire
   - T = tecnico: indicano vincoli riguardo le tecnologie che l'%%Applicativo|applicativo%% deve utilizzare
-  - Q = qualitativo: indicano vincoli riguardo obbiettivi minimi di qualità
+  - Q = qualitativo: indicano vincoli riguardo obbiettivi minimi di %%qualità|qualità%%
 - obbligatorietà del requisito
   - O = obbligatorio : irrinunciabile per qualcuno degli stakeholder
   - D = desiderabili : non strettamente necessario ma con valore aggiunto riconoscibile
@@ -57,10 +57,10 @@ I requisiti vengono identificati ciascuno da un codice identificativo nel format
   - RFD_4: L'utente può scegliere di utilizzare un modello custom.
   - RFO_5: L'utente può selezionare uno dei modelli proposti.
   - RFD_6: L'utente può impostare la temperature di ogni modello.
-  - RFP_7: L'utente può inserire un Bearer Token per usare Ollama in un server esterno.
+  - RFP_7: L'utente può inserire un Bearer Token per usare %%Ollama|ollama%% in un server esterno.
   - RFO_8: L'%%Applicativo|applicativo%%, in caso di errori dati da input scorretti da parte dell'utente, deve generare una notifica d'errore e permettere il reinserimento del dato.
-- L'utente per utilizzare l'%%Applicativo|applicativo%% deve indicare da interfaccia grafica le specifiche del progetto, in particolare:
-  - RFO_9: L'utente deve indicare la cartella del progetto.
+- L'utente per utilizzare l'%%Applicativo|applicativo%% deve indicare da interfaccia grafica le specifiche del %%progetto|progetto%%, in particolare:
+  - RFO_9: L'utente deve indicare la cartella del %%progetto|progetto%%.
   - RFO_10: L'utente deve indicare il file con presente la lista dei requisiti.
   - RFD_11: L'utente può effettuare una selezione dei requisiti da analizzare.
   - RFD_12: L'utente può specificare dei filtri per selezionare i file sui quali effettuare la ricerca.
@@ -75,7 +75,7 @@ I requisiti vengono identificati ciascuno da un codice identificativo nel format
   - RFD_20: L'%%Applicativo|applicativo%% per ogni requisito applica il filtro corrispondente, se presente.
   - RFD_21: L'%%Applicativo|applicativo%% deve generare una notifica di errore se i filtri indicati dall'utente non sono applicabili.
   - RFO_22: L'%%Applicativo|applicativo%% per ogni requisito selezionato produce il codice corrispondente interrogando il modello selezionato per la generazione del codice.
-  - RFO_23: L'%%Applicativo|applicativo%% deve effettuare, per ogni requisito selezionato, il pattern matching utilizzando il modello selezionato tra il codice generato (modello) e il codice del progetto (programmatore) dei file filtrati.
+  - RFO_23: L'%%Applicativo|applicativo%% deve effettuare, per ogni requisito selezionato, il pattern matching utilizzando il modello selezionato tra il codice generato (modello) e il codice del %%progetto|progetto%% (programmatore) dei file filtrati.
   - RFO_24: L'%%Applicativo|applicativo%% deve generare una notifica di errore se una o più richieste ai modelli sono fallite.
   - RFO_25: L'%%Applicativo|applicativo%%, alla fine dell'esecuzione, deve aggiornare la struttura dati, modificando lo stato di implementazione e il puntatore al codice.
 - Al termine dell'esecuzione:
@@ -96,8 +96,8 @@ I requisiti vengono identificati ciascuno da un codice identificativo nel format
 - RTP_8: Il file con la lista dei requisiti può essere in formato _.reqif_.
 
 ### Requisiti qualitativi
-- RQO_1: L'%%Applicativo|applicativo%% prodotto e tutta la documentazione relativa deve rispettare quanto indicato in Norme di Progetto.
-- RQO_2: L'%%Applicativo|applicativo%% prodotto e tutta la documentazione relativa deve rispettare quanto indicato in Piano di Qualifica.
-- RQO_3: L'%%Applicativo|applicativo%% prodotto deve essere accompagnato dalla sua documentazione tecnica.
+- RQO_1: L'%%Applicativo|applicativo%% %%prodotto|prodotto%% e tutta la documentazione relativa deve rispettare quanto indicato in Norme di %%Progetto|progetto%%.
+- RQO_2: L'%%Applicativo|applicativo%% %%prodotto|prodotto%% e tutta la documentazione relativa deve rispettare quanto indicato in Piano di Qualifica.
+- RQO_3: L'%%Applicativo|applicativo%% %%prodotto|prodotto%% deve essere accompagnato dalla sua documentazione tecnica.
 
  </NumberedWrapper>

@@ -6,4 +6,4 @@ hoverText: Attività di un processo di sviluppo che consiste nell'analizzare e i
 
 ### Spiegazione del termine
 
-Attività di un processo di sviluppo che consiste nell'analizzare e individuare le funzionalità che il prodotto software dovrà soddisfare.
+%%Attività|attività%% di un %%processo|processo%% di sviluppo che consiste nell'analizzare e individuare le %%funzionalità|funzionalità%% che il %%prodotto|prodotto%% software dovrà soddisfare.

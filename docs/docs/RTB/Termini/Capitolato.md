@@ -6,4 +6,4 @@ hoverText: Documento che descrive in modo dettagliato i requisiti, le specifiche
 
 ### Spiegazione del termine
 
-Documento che descrive in modo dettagliato i requisiti, le specifiche e le aspettative di un progetto.
+Documento che descrive in modo dettagliato i requisiti, le specifiche e le aspettative di un %%progetto|progetto%%.
