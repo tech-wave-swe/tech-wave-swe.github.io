@@ -13,7 +13,8 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                              | Autore                | Data Verifica | Verificatore          |
 |------------|----------|------------------------------------------|-----------------------|---------------|-----------------------|
-| 16/01/2025 | 1.4.0    | Aggiunte misure                          | Luca Monetti          | 17/01/2025    |                       |
+| 24/01/2025 | 1.5.0    | Aggiunti test                            | Giulia Marcon         | 26/01/2025    |                       |
+| 16/01/2025 | 1.4.0    | Aggiunte misure                          | Luca Monetti          | 17/01/2025    | Manuel Felipe Vasquez |
 | 03/01/2025 | 1.3.0    | Modifica descrizione e riferimenti       | Manuel Felipe Vasquez | 06/01/2025    | Luca Monetti          |
 | 22/12/2024 | 1.2.0    | Aggiunte metriche di qualità di Prodotto | Gaia Pistori          | 24/12/2024    | Manuel Felipe Vasquez |
 | 16/12/2024 | 1.1.0    | aggiunta qualità di processo             | Giulia Marcon         | 17/12/2024    | Agnese Carraro        |
@@ -273,6 +274,43 @@ Per garantire la qualità del prodotto, il team adotta il modello di riferimento
 ## Specifica dei Test
 
 I test di verifica e validazione vengono eseguiti in tutte le fasi del ciclo di sviluppo, garantendo la conformità del prodotto con i requisiti specificati e gli standard qualitativi prestabiliti dal team. I test vengono classificati in quattro categorie principali: test di unità, test di integrazione, test di sistema e test di accettazione.
+
+### Test Di Sistema
+
+| ID   | Descrizione                                                          | ID Requisito        | Stato            |
+|------|----------------------------------------------------------------------|---------------------|------------------|
+| TS01 | Verifica selezione e configurazione dei modelli LLM                  | RFO_1,2,4           | Non Implementato |
+| TS02 | Verifica configurazione temperature e modelli custom                 | RFD_3               | Non Implementato |
+| TS02 | Verifica configurazione modelli custom                               | RFD_5               | Non Implementato |
+| TS03 | Verifica gestione Bearer Token per server Ollama esterno             | RFP_6               | Non Implementato |
+| TS04 | Verifica gestione errori input utente                                | RFO_7               | Non Implementato |
+| TS05 | Verifica selezione cartella progetto e file requisiti                | RFO_8,9             | Non Implementato |
+| TS06 | Verifica funzionalità di selezione e filtro                          | RFD_10,11,12,RFO_13 | Non Implementato |
+| TS07 | Verifica parsing documento requisiti                                 | RFO_15              | Non Implementato |
+| TS07 | Verifica embedding dei documenti                                     | RFO_16              | Non Implementato |
+| TS08 | Verifica gestione errori parsing                                     | RFO_17              | Non Implementato |
+| TS07 | Verifica generazione struttura dati sui requisiti                    | RFO_18              | Non Implementato |
+| TS07 | Verifica applicazione filtro sui requisiti                           | RFO_19              | Non Implementato |
+| TS07 | Verifica gestione errori sull' applicazione dei filtri sui requisiti | RFO_20              | Non Implementato |
+| TS09 | Verifica generazione codice e analisi da parte del modello LLM       | RFO_21,22           | Non Implementato |
+| TS10 | Verifica gestione errori modelli LLM                                 | RFO_23              | Non Implementato |
+| TS11 | Verifica aggiornamento dello stato dei requisiti e struttura dati    | RFO_24              | Non Implementato |
+| TS12 | Verifica interfaccia visualizzazione risultati                       | RFO_25              | Non Implementato |
+| TS13 | Verifica gestione errori generazione codice e analisi                | RFO_26,28           | Non Implementato |
+| TS14 | Verifica funzionalità di feedback sulla certezza della risposta      | RFP_27,29           | Non Implementato |
+
+### Test Di Accettazione
+
+| ID   | Descrizione                                      | ID Requisito | Stato            |
+|------|--------------------------------------------------|--------------|------------------|
+| TA01 | Verifica funzionalità come estensione in VS Code | RTO_1        | Non Implementato |
+| TA02 | Verifica esecuzione locale dell'applicativo      | RTO_2        | Non Implementato |
+| TA03 | Verifica integrazione con Ollama                 | RTO_3,4      | Non Implementato |
+| TA04 | Verifica analisi di codice in linguaggio C/C++   | RTO_5        | Non Implementato |
+| TA05 | Verifica analisi di codice in linguaggio Rust    | RTP_6        | Non Implementato |
+| TA06 | Verifica supporto formato file requisiti .csv    | RTO_7        | Non Implementato |
+| TA06 | Verifica supporto formato file requisiti .reqif  | RTP_8        | Non Implementato |
+| TA07 | Verifica usabilità interfaccia grafica           | RFO_14,15    | Non Implementato |
 
 ## Cruscotto di valutazione
 
