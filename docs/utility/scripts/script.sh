@@ -14,8 +14,9 @@ template_file=$(find $utility_dir | grep "template.latex")
 remove_block_filter=$(find $filters_dir | grep "remove-blocks-filter.lua")
 modify_glossary_filter=$(find $filters_dir | grep "modify-glossary-filter.lua")
 images_filter=$(find $filters_dir | grep "images-filter.lua")
+header_filter=$(find $filters_dir | grep "header-filter.lua")
 
-filters="-L $remove_block_filter -L $modify_glossary_filter -L $images_filter"
+filters="-L $remove_block_filter -L $modify_glossary_filter -L $images_filter -L $header_filter"
 
 if [ $1 == "pdf" ]; then
     echo "Creating PDFs..."

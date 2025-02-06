@@ -22,6 +22,7 @@ $-- section numbering
 $--
 $if(numbersections)$
 \setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
+\setcounter{section}{0}
 $else$
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 $endif$
@@ -97,9 +98,6 @@ $include-before$
 
 $endfor$
 $if(toc)$
-$if(toc-title)$
-\renewcommand*\contentsname{$toc-title$}
-$endif$
 {
 $if(colorlinks)$
 \hypersetup{linkcolor=$if(toccolor)$$toccolor$$else$$endif$}
@@ -109,7 +107,7 @@ $endif$
 }
 $endif$
 $if(lof)$
-\listoffigures
+\fullpageLoF
 $endif$
 $if(lot)$
 \listoftables
