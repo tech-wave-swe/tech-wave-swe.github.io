@@ -18,7 +18,7 @@ function generate_tabularray(tbl)
 	  local align = col_spec[1]
 	  local width = col_spec[2]
 
-	  if width > 0.5 then
+	  if width ~= nil and width > 0.5 then
 		width = 2
 	  else
 		width = 1
