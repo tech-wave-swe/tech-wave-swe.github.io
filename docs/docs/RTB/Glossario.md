@@ -17,14 +17,17 @@ classification: Esterno
 
 | Data       | Versione | Descrizione                               | Autore         | Data Approvazione | Approvatore    |
 | ---------- | -------- | ----------------------------------------- | -------------- | ----------------- | -------------- |
-| 13/01/2025 | 2.1.0    | Aggiunti nuovi termini                    | Agnese Carraro | 13/01/2025        | Giulia Marcon  |
-| 16/12/2024 | 2.0.0    | Implementazione di docusaurus-terminology | Luca Monetti   | 19/12/2024        | Gaia Pistori   |
-| 18/11/2024 | 1.0.0    | Prima stesura del documento               | Giulia Marcon  | 19/11/2024        | Agnese Carraro |
+| 04/02/2025 | 2.2.0    | Aggiunta versione PDF                     | Monetti Luca   |                   |                |
+| 13/01/2025 | 2.1.0    | Aggiunti nuovi termini                    | Carraro Agnese | 13/01/2025        | Marcon Giulia  |
+| 16/12/2024 | 2.0.0    | Implementazione di docusaurus-terminology | Monetti Luca   | 19/12/2024        | Pistori Gaia   |
+| 18/11/2024 | 1.0.0    | Prima stesura del documento               | Marcon Giulia  | 19/11/2024        | Carraro Agnese |
+
+Table: Changelog
 
 <!-- ::: {.no-export} -->
 
 </details>
 
-# Glossario
-
 <!-- ::: -->
+
+# Glossario
