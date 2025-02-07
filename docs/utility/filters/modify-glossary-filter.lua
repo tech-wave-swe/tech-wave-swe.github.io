@@ -13,7 +13,28 @@ function Str(el)
 end
 
 function Para(el)
-    local inlines = el.content
+    return check_multi_glossary(el)
+end
+
+function Inlines(el)
+	
+	local str = pandoc.utils.stringify(el)
+
+	local pattern = "([^%%]+)%%([^|]+)|.*%%(.*)"
+	before, match, after = string.match(str, pattern)
+
+	if match then
+		print(str)
+		print("-- After: ", after)
+		el = pandoc.Inlines({before, pandoc.Emph({string.sub(match, 2), pandoc.Subscript(pandoc.Str("[G]"))}), after})
+	end
+
+	return el
+
+end
+
+function check_multi_glossary(el)
+	local inlines = el.content
     local new_inlines = {}
 	local last_i = nil
 	local check = false
@@ -39,6 +60,7 @@ function Para(el)
 				end
 			else
 				local before, w1 = text:match(pattern)
+
 				if w1 then
 					check = true
 					last_i = i
