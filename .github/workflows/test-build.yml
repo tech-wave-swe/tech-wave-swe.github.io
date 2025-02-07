@@ -37,6 +37,7 @@ jobs:
             -e PR_SHA=${{ github.sha }} \
             lucamonetti/tw-latex:latest bash -c "
               ls -la
+              cd docs
               npm ci
               mkdir static/pdfs
               npm run postinstall
