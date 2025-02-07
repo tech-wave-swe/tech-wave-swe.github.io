@@ -19,6 +19,23 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Create target directory
+        run: mkdir -p ~/texmf/tex/latex/commonstuff/
+
+      - name: Clone the repository into ~/texmf/tex/latex/commonstuff/
+        run: git clone https://github.com/tech-wave-swe/DocumentStyle.git ~/texmf/tex/latex/commonstuff/
+
+      - name: Install Pandoc
+        run: sudo apt-get update && sudo apt-get install -y pandoc
+
+      - name: Install LaTeX (TexLive)
+        run: sudo apt-get install -y texlive texlive-latex-extra texlive-fonts-recommended texlive-xetex texlive-luatex latexmk
+
+      - name: Check installed versions
+        run: |
+          pandoc --version
+          latex --version
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -28,11 +45,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Create Glossary
+      - name: Generate PDFS
         run: |
           npm run postinstall
-          npm run docusaurus parse
           npm run docusaurus glossary
+          chmod +x utility/scripts/script.sh
+          utility/scripts/script.sh pdf
+
+      - name: Parse Glossary
+        run: |
+          npm run docusaurus parse
 
       - name: Build website
         run: npm run build
