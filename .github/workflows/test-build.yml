@@ -20,48 +20,38 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Create target directory
-        run: mkdir -p ~/texmf/tex/latex/commonstuff/
+      - name: Debug
+        run: ls -la
 
-      - name: Clone the repository into ~/texmf/tex/latex/commonstuff/
-        run: git clone https://github.com/tech-wave-swe/DocumentStyle.git ~/texmf/tex/latex/commonstuff/
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Pull prebuilt Docker container
+        run: |
+          docker pull lucamonetti/tw-latex:latest
+
+      - name: Run commands inside the Docker container
+        run: |
+          docker run --rm -v ${{ github.workspace }}:/app \
+            -e PR_REF=${{ github.ref }} \
+            -e PR_SHA=${{ github.sha }} \
+            lucamonetti/tw-latex:latest bash -c "
+              ls -la
+              npm ci
+              mkdir static/pdfs
+              npm run postinstall
+              npm run docusaurus glossary
+              chmod +x utility/scripts/script.sh
+              utility/scripts/script.sh pdf
+              npm run docusaurus parse
+              npm run build
+              cp ./build /app/build
+            "
 
       - name: List directory contents for debugging
-        run: ls -la docs # This will show the contents of the 'docs' folder
+        run: |
+          ls -la
+          ls -la build
 
       - name: Show PWD
         run: pwd
-
-      - name: Install Pandoc
-        run: sudo apt-get update && sudo apt-get install -y pandoc
-
-      - name: Install LaTeX (TexLive)
-        run: sudo apt-get install -y texlive texlive-latex-extra texlive-fonts-recommended texlive-xetex texlive-luatex latexmk
-
-      - name: Check installed versions
-        run: |
-          pandoc --version
-          latex --version
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-          cache-dependency-path: "docs/package-lock.json"
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Test PDFs
-        run: |
-          npm run postinstall
-          npm run docusaurus glossary
-          chmod +x utility/scripts/script.sh
-          utility/scripts/script.sh pdf
-
-      - name: Test Glossary
-        run: |
-          npm run docusaurus parse
-
-      - name: Test build website
-        run: npm run build
