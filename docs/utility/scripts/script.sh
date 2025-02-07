@@ -1,6 +1,17 @@
 # I want to retrive all the file in a specific directory
 # and then compress them into a zip file.
 
+check_link=true
+
+for arg in "$@"; do
+    case $arg in
+        --no-link)
+        check_link=false
+        shift
+        ;;
+    esac
+done
+
 root_dir=$(pwd)
 utility_dir="$root_dir/utility"
 docs_dir="$root_dir/docs"
@@ -65,11 +76,13 @@ echo "$files" | while read -r file; do
     # pandoc "$file" -f markdown -t markdown -o "$pdf_out"
     pandoc "$file" --listings --resource-path=./static $filters -f markdown --template "$template_file" -o "$pdf_out"
 
-    #  # Controllo se la sezione è presente
-    # if ! (grep -q "$SECTION" "$file"); then
-    #     echo "" >> "$file"
-    #     echo "" >> "$file"
-    #     echo $SECTION >> "$file"
-    #     echo "[Visualizza Versione PDF](/pdfs/$(basename "$file" .md).pdf)" >> "$file"
-    # fi
+    if ($check_link); then
+        if ! (grep -q "$SECTION" "$file"); then
+            echo "" >> "$file"
+            echo "" >> "$file"
+            echo $SECTION >> "$file"
+            echo "" >> "$file"
+            echo "> <a target='\_blank' href={ require('/pdfs/$(basename "$file" .md).pdf').default } download>Versione PDF</a>" >> "$file"
+        fi
+    fi
 done
