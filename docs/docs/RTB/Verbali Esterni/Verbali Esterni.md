@@ -14,3 +14,4 @@ Qui è possibile trovare i link ai pdf di ogni incontro con l'azienda BlueWind:
 - [Verbale 2024-11-15](./2024-11-15.pdf)
 - [Verbale 2024-12-06](./2024-12-06.pdf)
 - [Verbale 2024-12-20](./2024-12-20.pdf)
+- [Verbale 2025-01-22](./2025-01-22.pdf)
