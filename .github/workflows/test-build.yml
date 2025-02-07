@@ -46,7 +46,6 @@ jobs:
               utility/scripts/script.sh pdf
               npm run docusaurus parse
               npm run build
-              cp ./build /app/build
             "
 
       - name: List directory contents for debugging
