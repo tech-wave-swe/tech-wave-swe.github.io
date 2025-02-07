@@ -1,30 +1,44 @@
 ---
 id: norme_di_progetto
-title: Norme di Progetto
+title: "Norme di Progetto"
+documentclass: TWDocumentFull
+toc: true
+lof: true
+numbersections: true
+version: 1.3.0
+classification: Interno
 ---
+
+<!-- ::: {.no-export} -->
 
 import TOCInlineWrapper from "@site/src/components/TOCInlineWrapper.jsx";
 import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 # Documento delle Norme di Progetto
 
 <details>
   <summary>Changelog</summary>
 
+<!-- ::: -->
+
 | Data       | Versione | Descrizione                                        | Autore       | Data Verifica | Verificatore          |
 | ---------- | -------- | -------------------------------------------------- | ------------ | ------------- | --------------------- |
+| 04/02/2025 | 1.3.0    | Corretta la formattazione del documento            | Monetti Luca |               |                       |
 | 19/12/2024 | 1.2.0    | Revisione struttura + Aggiunta sezione GitHub      | Monetti Luca | 22/12/2024    | Vasquez Manuel Felipe |
 | 20/11/2024 | 1.1.0    | Aggiunta sezione 4                                 | Piola Andrea | 03/12/2024    | Pistori Gaia          |
 | 14/11/2024 | 1.0.0    | Prima stesura del documento con indice e sezione 1 | Piola Andrea | 19/11/2024    | Pistori Gaia          |
+
+Table: Changelog
+
+<!-- ::: {.no-export} -->
 
 </details>
 
 <TOCInlineWrapper toc={toc} numbered={true}/>
 
 <NumberedWrapper toc={toc}>
+
+<!-- ::: -->
 
 ## Introduzione
 
@@ -34,7 +48,7 @@ Lo scopo del documento è quello di definire le norme che ogni componente del gr
 
 ### Scopo del Prodotto
 
-Nello sviluppo di software per sistemi embedded la parte di controllo dell'implementazione di tutti i requisiti necessari al corretto funzionamento dello stesso risulta costosa e ripetitiva da parte dello sviluppatore, inoltre può risultare non esaustiva a causa di distrazioni o dimenticanze. Il %%capitolato|capitolato%% **_Requirement Tracker - Plug-in VSCode_** propone lo sviluppo di un %%plugin|plugin%% per %%VSCode|vscode%% che permetta di tracciare i requisiti derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari requisiti in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
+Nello sviluppo di software per sistemi embedded la parte di controllo dell'implementazione di tutti i requisiti necessari al corretto funzionamento dello stesso risulta costosa e ripetitiva da parte dello sviluppatore, inoltre può risultare non esaustiva a causa di distrazioni o dimenticanze. Il %%capitolato|capitolato%% **Requirement Tracker - Plug-in VSCode** propone lo sviluppo di un %%plugin|plugin%% per %%VSCode|vscode%% che permetta di tracciare i requisiti derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari requisiti in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
 
 ### Glossario
 
@@ -64,9 +78,9 @@ Riferimenti informativi:
 
 #### Coordinamento
 
-**_Comunicazioni_**
+##### Comunicazioni
 
-Le comunicazioni si dividono in 2 tipi: **_Interne_**, **_Esterne_**.
+Le comunicazioni si dividono in 2 tipi: **Interne**, **Esterne**.
 
 Le comunicazioni **interne** avvengono tra i vari membri del gruppo su canali appositamente predisposti attraverso riunioni comunitarie e scambi di messaggi tra singoli individui, ovviamente verrà utilizzato un registro adeguato e saranno seguite alcune convenzioni (decise nella sezione 4.2 Infrastruttura):
 
@@ -83,25 +97,25 @@ Le comunicazioni **interne** avvengono tra i vari membri del gruppo su canali ap
 
   - **Singola:** scambio di messaggi informali tra membri.
 
-Le comunicazioni **esterne** avvengono tra il gruppo ed il %%proponente|proponente%% e %%committente|committente%%. Queste hanno, generalmente, un valore importante e vengono adeguatamente preparate tramite riunioni di gruppo. Gli strumenti utilizzati per queste comunicazioni sono: **%%Zoom|zoom%%** e **Google Mail** (tramite l'indirizzo [techwave.unipd@gmail.com](mailto:techwave.unipd@gmail.com)). Il registro è sempre formale ed il mediatore predisposto per questo tipo di comunicazioni è il _Responsabile di Progetto_.
+Le comunicazioni _esterne_ avvengono tra il gruppo ed il %%proponente|proponente%% e %%committente|committente%%. Queste hanno, generalmente, un valore importante e vengono adeguatamente preparate tramite riunioni di gruppo. Gli strumenti utilizzati per queste comunicazioni sono: %%Zoom|zoom%% e _Google Mail_ (tramite l'indirizzo [techwave.unipd@gmail.com](mailto:techwave.unipd@gmail.com)). Il registro è sempre formale ed il mediatore predisposto per questo tipo di comunicazioni è il _Responsabile di Progetto_.
 
-**_Riunioni_**
+##### Riunioni
 
 Le riunioni **interne** avvengono tra i membri del gruppo. Per quanto riguarda la frequenza non è definita ma avviene a seconda delle necessità, solitamente ne avviene almeno una a settimana. Questo tipo di riunioni sono concordate sul gruppo %%telegram|telegram%% e si cerca di svolgere in giorni in cui tutti i membri siano disponibili, in caso ciò non fosse possibile i membri assenti potranno comunque sapere tutto quello che è accaduto e che è stato deciso tramite i verbali prodotti, se necessario il Responsabile si renderà disponibile a chiarire qualsiasi dubbio.
 
 Per sfruttare efficacemente il tempo di lavoro sincrono delle riunioni interne, si adottano queste accortezze:
 
-- _Scaletta_: questa rappresenta l'ordine del giorno ed indica gli argomenti da trattare.
+- **Scaletta**: questa rappresenta l'ordine del giorno ed indica gli argomenti da trattare.
 
-- _Organizzazione_: il Responsabile sarà tenuto a mantenere l'ordine durante la riunione ed verrà designato uno scriba con il compito di tenere traccia di ciò che avviene durante la riunione e redigere il %%verbale|verbale%%.
+- **Organizzazione**: il Responsabile sarà tenuto a mantenere l'ordine durante la riunione ed verrà designato uno scriba con il compito di tenere traccia di ciò che avviene durante la riunione e redigere il %%verbale|verbale%%.
 
-- _Preparazione_: ogni membro del gruppo si impegna ad arrivare sufficientemente preparato sugli argomenti, soprattutto di carattere tecnico, che sono discussi durante la riunione con domande e spiegazioni, inoltre si mantiene un impegno attivo e produttivo durante tutta la sua durata.
+- **Preparazione**: ogni membro del gruppo si impegna ad arrivare sufficientemente preparato sugli argomenti, soprattutto di carattere tecnico, che sono discussi durante la riunione con domande e spiegazioni, inoltre si mantiene un impegno attivo e produttivo durante tutta la sua durata.
 
 Gli argomenti in scaletta saranno tratti dal %%backlog|backlog%% dello %%sprint|sprint%% e verrà ovviamente riservato un momento finale dove poter parlare di argomenti non in scaletta, ovviamente comunque inerenti al %%progetto|progetto%%.
 
 Le riunioni **esterne** avvengono tra gruppo e %%committente|committente%% o %%proponente|proponente%%. Queste servono soprattutto per valutare il lavoro svolto fino a quel momento e pianificare gli step successivi da seguire per poter continuare a lavorare nel modo più efficace ed efficiente possibile. Anche in questo caso i membri del gruppo si impegnano ad essere preparati a sufficienza per poter discutere con "personale esperto" di argomenti solitamente di non facile comprensione inerenti al %%progetto|progetto%%. Verranno ovviamente stilati verbali esterni per fissare il punto su ciò di cui si è trattato ed a cui si avrà approvazione dalla parte "esterna" al gruppo coinvolta nella discussione.
 
-**_Disponibilità_**
+##### Disponibilità
 
 Il lavoro personale è organizzato individualmente da ogni componente del gruppo per poter lasciare libertà in quanto impegnati con questioni accademiche, personali e seguendo quanto dichiarato nella candidatura alla sezione di dichiarazione impegni. Ovviamente l'organizzazione dovrà essere consona agli impegni totali del gruppo per evitare ritardi dovuti ad un singolo elemento. In caso di problematiche di indisponibilità che porteranno al non compimento degli impegni di %%progetto|progetto%% presi in carico dal singolo membro, questo si impegna ad avvisare prontamente il Responsabile che cercherà di ridistribuire il lavoro contattando singolarmente i membri oppure indicendo una riunione di gruppo.
 
@@ -121,9 +135,9 @@ Il workflow per l'implementazione di una nuova feature è il seguente:
 
 Per avviare lo sviluppo di una nuova %%funzionalità|funzionalità%%, i membri del team devono seguire i passaggi descritti di seguito:
 
-**1. Selezione del Ticket**: Accedere a %%JIRA|jira%% e selezionare il ticket corrispondente alla %%funzionalità|funzionalità%% da implementare. Assicurarsi di aggiornare lo stato del ticket secondo il workflow definito.
+1. **Selezione del Ticket**: Accedere a %%JIRA|jira%% e selezionare il ticket corrispondente alla %%funzionalità|funzionalità%% da implementare. Assicurarsi di aggiornare lo stato del ticket secondo il workflow definito.
 
-**2. Creazione della Branch**: Creare un nuovo branch a partire dal branch develop, utilizzando la seguente convenzione di denominazione seguente.
+2. **Creazione della Branch**: Creare un nuovo branch a partire dal branch develop, utilizzando la seguente convenzione di denominazione seguente.
 
 :::info
 Convenzione per la nomenclatura dei branch:
@@ -145,7 +159,7 @@ git checkout -b TWD-123-gestione-utenti
 
 Alternativamente è possibile utilizzare la funzione offerta da %%JIRA|jira%% cliccando sulla voce _Crea Branch_ presente nel ticket.
 
-**3. Preparazione dell'Ambiente di Lavoro**: Aggiornare il %%repository|repository%% locale e sincronizzarlo per garantire l'allineamento con l'ultima versione del codice.
+3. **Preparazione dell'Ambiente di Lavoro**: Aggiornare il %%repository|repository%% locale e sincronizzarlo per garantire l'allineamento con l'ultima versione del codice.
 
 Se il branch è stato creato in locale è possibile saltare questo passaggio.
 
@@ -154,7 +168,7 @@ git fetch
 git checkout TWD-123-gestione-utenti
 ```
 
-**4. Inizio dello Sviluppo**: Procedere con l'implementazione seguendo gli standard di codice e i principi definiti nelle norme di %%progetto|progetto%%.
+4. **Inizio dello Sviluppo**: Procedere con l'implementazione seguendo gli standard di codice e i principi definiti nelle norme di %%progetto|progetto%%.
 
 ###### Merge di un Branch
 
@@ -170,7 +184,7 @@ Il _Verificatore_ dovrà compilare tali informazioni seguendo le modalità descr
 
 Ogni Pull Request deve essere sottoposta a %%verifica|verifica%% da parte di un _Verificatore_ prima di essere approvata e unita al branch `develop` o `main`. Di seguito sono riportati i passaggi e i comandi necessari per eseguire correttamente la %%verifica|verifica%%.
 
-**1. Accesso alla Pull Request**
+1. **Accesso alla Pull Request**
 
 Il _Verificatore_ può accedere alla PR tramite l'interfaccia web di %%GitHub|github%% o utilizzando la **%%GitHub|github%% CLI**.
 
@@ -189,10 +203,10 @@ Il _Verificatore_ può accedere alla PR tramite l'interfaccia web di %%GitHub|gi
     npm install
     ```
 
-**2. Ispezione Manuale**
-Analizzare il codice per verificare la %%qualità|qualità%% e la conformità agli standard di %%progetto|progetto%%:
+2. **Ispezione Manuale**
+   Analizzare il codice per verificare la %%qualità|qualità%% e la conformità agli standard di %%progetto|progetto%%:
 
-**3. Feedback / Approvazione**
+3. **Feedback / Approvazione**
 
 - **Interfaccia Web**: Utilizzando la voce `Review Changes` è possibile approvare i cambiamenti apportati o inviare feedback.
 - **Locale**
@@ -211,11 +225,11 @@ Analizzare il codice per verificare la %%qualità|qualità%% e la conformità ag
 
 #### Pianificazione
 
-**Ruoli di %%progetto|progetto%%**
+##### Ruoli di %%progetto|progetto%%
 
 I ruoli che ogni membro dovrà assumere almeno una volta durante tutta la durata del %%progetto|progetto%%, rispettando quanto preventivato nella candidatura, sono:
 
-- **_Responsabile di %%progetto|progetto%%:_** figura di riferimento per il gruppo, %%committente|committente%% e %%proponente|proponente%% con lo scopo di mediare durante tutte le tipologie di comunicazioni. Ha il ruolo di guidare il %%progetto|progetto%% a livello macroscopico gestendo i vari processi, in particolare:
+- **Responsabile di %%progetto|progetto%%:** figura di riferimento per il gruppo, %%committente|committente%% e %%proponente|proponente%% con lo scopo di mediare durante tutte le tipologie di comunicazioni. Ha il ruolo di guidare il %%progetto|progetto%% a livello macroscopico gestendo i vari processi, in particolare:
 
   - Pianificare e coordinare le %%task|task%% di %%progetto|progetto%%;
 
@@ -225,7 +239,7 @@ I ruoli che ogni membro dovrà assumere almeno una volta durante tutta la durata
 
   - Approvare qualsiasi %%task|task%% completata e verificata.
 
-- **_Amministratore (sysAdmin):_** figura professionale incaricata di amministrare l'ambiente di lavoro e garantire il rispetto delle norme del _way of working_ per assicurare l'%%efficacia|efficacia%% ed %%efficienza|efficienza%% dei processi, in particolare:
+- **Amministratore (sysAdmin):** figura professionale incaricata di amministrare l'ambiente di lavoro e garantire il rispetto delle norme del _way of working_ per assicurare l'%%efficacia|efficacia%% ed %%efficienza|efficienza%% dei processi, in particolare:
 
   - Studiare ed implementare risorse per il miglioramento dell'ambiente di lavoro cercando di automatizzare i processi dove è possibile;
 
@@ -235,7 +249,7 @@ I ruoli che ogni membro dovrà assumere almeno una volta durante tutta la durata
 
   - Far rispettare il way of working ai vari membri.
 
-- **_Progettista:_** figura professionale incaricata di gestire la progettazione del %%prodotto|prodotto%% software. I suoi incarichi sono:
+- **Progettista:** figura professionale incaricata di gestire la progettazione del %%prodotto|prodotto%% software. I suoi incarichi sono:
 
   - Produrre un'%%architettura|architettura%% che rispetti e soddisfi l'%%analisi dei requisiti|analisi_dei_requisiti%%;
 
@@ -243,7 +257,7 @@ I ruoli che ogni membro dovrà assumere almeno una volta durante tutta la durata
 
   - Redigere i documenti di specifica tecnica del %%prodotto|prodotto%% software.
 
-- **_Analista:_** figura professionale incaricata di svolgere l'omonima %%analisi dei requisiti|analisi_dei_requisiti%% comprendendo le necessità dell'azienda %%proponente|proponente%%. I suoi incarichi sono:
+- **Analista:** figura professionale incaricata di svolgere l'omonima %%analisi dei requisiti|analisi_dei_requisiti%% comprendendo le necessità dell'azienda %%proponente|proponente%%. I suoi incarichi sono:
 
   - Redigere i documenti riguardanti l'%%analisi dei requisiti|analisi_dei_requisiti%%;
 
@@ -251,7 +265,7 @@ I ruoli che ogni membro dovrà assumere almeno una volta durante tutta la durata
 
   - Definire la complessità del problema e suddividerlo da un livello macroscopico ed un livello microscopico, individuando le %%task|task%% richieste.
 
-- **_Programmatore:_** figura professionale incaricata di implementare tramite codice l'%%architettura|architettura%% definita in fase di _design._ I suoi incarichi sono:
+- **Programmatore:** figura professionale incaricata di implementare tramite codice l'%%architettura|architettura%% definita in fase di _design._ I suoi incarichi sono:
 
   - Produrre codice che soddisfi i requisiti analizzati;
 
@@ -259,21 +273,21 @@ I ruoli che ogni membro dovrà assumere almeno una volta durante tutta la durata
 
   - Realizzare strumenti per la %%verifica|verifica%% del software %%prodotto|prodotto%%;
 
-- **_Verificatore:_** figura professionale incaricata di verificare che le %%attività|attività%%, documentazione e software prodotti seguano le regole e rispettino il livello di %%qualità|qualità%% atteso; ovviamente il verificatore non può verificare materiale %%prodotto|prodotto%% da lui stesso. I suoi incarichi sono:
+- **Verificatore:** figura professionale incaricata di verificare che le %%attività|attività%%, documentazione e software prodotti seguano le regole e rispettino il livello di %%qualità|qualità%% atteso; ovviamente il verificatore non può verificare materiale %%prodotto|prodotto%% da lui stesso. I suoi incarichi sono:
 
   - Esaminare il materiale in fase di revisione utilizzando tecniche e strumenti specificate nelle norma di %%progetto|progetto%%;
 
   - Segnalare errori con consigli di miglioramento.
 
-**Gestione delle %%task|task%%/ticket**
+##### Gestione delle %%task|task%%/ticket
 
 Per la gestione delle %%task|task%%/ticket si utilizza come software _Jira_. Questo software permette di visualizzare un %%backlog|backlog%% generale in cui il Responsabile di %%progetto|progetto%% andrà, via via, ad inserire tutte le %%task|task%% che saranno svolte durante tutta la durata del %%progetto|progetto%%. %%Jira|jira%% permette anche di creare degli %%sprint|sprint%%, di lunghezze anche diverse tra loro, in cui è presente lo _Sprint Backlog_ contenente tutte le %%task|task%% da svolgere durante lo %%sprint|sprint%%. Ogni %%task|task%% può ricevere un assegnatario al momento della creazione oppure il singolo membro può assegnarsi autonomamente le %%task|task%% ed è possibile rendicontare le ore svolte per la singola %%task|task%%.
 
-**Gestione della %%repository|repository%%**
+##### Gestione della %%repository|repository%%
 
 La %%repository|repository%% di riferimento del gruppo si trova su %%GitHub|github%% ed è fruibile dall'esterno tramite _GitHub Pages_ organizzate tramite _Docusaurus_. La repo è suddivisa in tre sezioni principali: candidatura, %%rtb|rtb%% e %%pb|pb%%; al cui interno sono presenti sottocartelle contenenti documentazione, codice, script...
 
-**Metodo di lavoro**
+##### Metodo di lavoro
 
 Per mantenere organizzato al meglio il lavoro il gruppo ha scelto di adottare la tecnica degli _Sprint_ tipica del framework _Scrum_; che permette di suddividere il totale delle %%task|task%% contenuto nel _Product Backlog_ in parti più piccole, che potranno poi essere prese in carico da ogni membro del gruppo, contenute nello _Sprint Backlog_.
 
@@ -301,7 +315,7 @@ Ogni %%sprint|sprint%% avrà durata, per lo meno nella prima parte del %%progett
 
 Fanno parte dell'infrastruttura organizzativa tutti gli strumenti che permettono al gruppo di attuare in modo efficace ed efficiente i processi organizzativi. In particolare strumenti che permettono la **comunicazione**, il **coordinamento** e la **pianificazione**.
 
-**%%Discord|discord%%**
+#### %%Discord|discord%%
 
 Strumento di **comunicazione interna sincrona**. Vengono usati due canali principali:
 
@@ -311,7 +325,7 @@ Strumento di **comunicazione interna sincrona**. Vengono usati due canali princi
 
 Ogni categoria di canale può avere un numero variabile di sottocanali utilizzati a seconda delle necessità.
 
-**%%Telegram|telegram%%**
+#### %%Telegram|telegram%%
 
 Strumento di **comunicazione interna testuale asincrona**. Viene utilizzato in due modalità:
 
@@ -319,27 +333,27 @@ Strumento di **comunicazione interna testuale asincrona**. Viene utilizzato in d
 
 - **Individuale:** chat utilizzata per contattare singolarmente un membro del gruppo per evitare "disturbi" a tutti gli altri membri.
 
-**Google Drive**
+#### Google Drive
 
 Strumento utilizzato come **directory condivisa** dai membri del gruppo per archiviazione di file temporanei o non ufficiali. In questa directory si ha accesso alla _suite Google_ con _Docs_, _Sheets_, _Slides_.
 
-**Google Mail**
+#### Google Mail
 
 Strumento per lo scambio di email mediante l'indirizzo di posta condiviso [techwave.unipd@gmail.com](mailto:techwave.unipd@gmail.com) utilizzato per **comunicazioni esterne** con %%proponente|proponente%% e %%committente|committente%%.
 
-**%%Zoom|zoom%%**
+#### %%Zoom|zoom%%
 
 Strumento di **comunicazione video sincrona** con il %%proponente|proponente%%.
 
-**%%Miro|miro%%**
+#### %%Miro|miro%%
 
 Strumento di **collaborazione digitale** utilizzato durante le riunioni con il %%proponente|proponente%% per facilitare la comunicazione e fissare gli argomenti trattati nell'incontro.
 
-**%%Jira|jira%%**
+#### %%Jira|jira%%
 
 Strumento utilizzato per il **ticketing e la gestione delle %%task|task%%** con cui si programmano i vari %%sprint|sprint%%, ci si divide le %%task|task%% e si rendicontano le ore produttive dei membri.
 
-**%%GitHub|github%%**
+#### %%GitHub|github%%
 
 Strumento di **controllo di versione** dove è situata la %%repository|repository%% ufficiale contenente tutta la documentazione di %%progetto|progetto%% ed il codice %%prodotto|prodotto%%.
 
@@ -369,4 +383,8 @@ Vengono riportati, di seguito, riferimenti alla documentazione dei vari strument
 
 > [https://scrumguides.org/scrum-guide.html](https://scrumguides.org/scrum-guide.html)
 
+<!-- ::: {.no-export} -->
+
 </NumberedWrapper>
+
+<!-- ::: -->
