@@ -13,33 +13,925 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                 | Autore       | Data Verifica | Verificatore |
 | ---------- | -------- | --------------------------- | ------------ | ------------- | ------------ |
+| 04/02/2025 | 2.1.0    | Aggiunta Use Cases          | Monetti Luca |               |              |
 | 10/01/2025 | 2.0.0    | Riscrittura del documento   | Pistori Gaia | 10/01/2025    | Luca Monetti |
 | 03/01/2025 | 1.1.0    | Aggiunta termini glossario  | Pistori Gaia | 04/01/2025    | Luca Monetti |
 | 13/12/2024 | 1.0.0    | Prima stesura del documento | Pistori Gaia | 13/12/2024    | Luca Monetti |
 
 </details>
 
-<TOCInlineWrapper toc={toc} />
+<TOCInlineWrapper toc={toc} numbered={true} />
 <NumberedWrapper toc={toc}>
-
 
 ## Introduzione
 
 ### Scopo del Documento
 
-Lo scopo del documento è quello di definire i requisiti che il gruppo di sviluppo TechWave dovrà rispettare per consegnare il %%prodotto|prodotto%% **_Requirement Tracker - Plug-in %%VSCode|vscode%% rispettando le aspettative dell'azienda Bluewind.
+Lo scopo del documento è quello di definire i requisiti che il gruppo di sviluppo TechWave dovrà rispettare per consegnare il %%prodotto|prodotto%% \*\*\_Requirement Tracker - Plug-in %%VSCode|vscode%% rispettando le aspettative dell'azienda Bluewind.
 
 ### Scopo del Prodotto
 
 Nello sviluppo di software per sistemi embedded la parte di controllo dell'implementazione di tutti i requisiti necessari al corretto funzionamento dello stesso risulta costosa e ripetitiva da parte dello sviluppatore, inoltre può risultare non esaustiva a causa di distrazioni o dimenticanze. Il %%Capitolato|capitolato%% **_Requirement Tracker - Plug-in VSCode_** propone lo sviluppo di un %%Plugin|plugin%% per %%VSCode|vscode%% che permetta di tracciare i requisiti derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari requisiti in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
 
-## Analisi dei requisiti
+## Casi d'uso
+
+### Introduzione
+
+### Attori
+
+### Eleco casi d'uso
+
+#### UC1 - Configurazione dell'estensione
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore si trova nella scheda dedicata alle configurazioni
+
+**Postcondizioni:**
+
+- L’Applicativo è stato configurato
+
+**Scenario principale:**
+
+1. L’Utente Programmatore visualizza tutte le impostazioni modificabili.
+2. L’Utente Programmatore inserisce l’endpoint di Ollama (UC1.1)
+3. L’Utente Programmatore seleziona il modello per la generazione del codice (UC1.2)
+4. L’Utente Programmatore seleziona il modello di embedding (UC1.3)
+5. L’Utente Programmatore seleziona la ‘temperature’ del modello (UC1.4)
+6. L’Utente Programmatore inserisce il bearer token (UC1.5)
+7. La modifica viene applicata.
+
+**User Story:**
+
+Come Utente Programmatore devo poter configurare l’estensione modificando le impostazioni disponibili tramite valori predefiniti o personalizzati per adattarne il funzionamento al sistema utilizzato.
+
+#### UC1.1 - Inserimento endpoint Ollama
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore sta effettuando la configurazione dell’estensione (UC1)
+
+**Postcondizioni:**
+
+- L’endpoint di Ollama è stato configurato
+
+**Scenario principale:**
+
+1. L’Utente Programmatore seleziona la voce per modificare l’endpoint
+2. L’Utente Programmatore indica l’endpoint dell’applicativo Ollama
+
+**Estensioni:**
+
+- UC2 - Visualizzazione errore Ollama non installato
+- UC3 - Visualizzazione errore endpoint non raggiungibile
+
+**User Story:**
+
+Come Utente Programmatore devo poter indicare l’endpoint dell’applicativo Ollama necessario per l’interrogazione dei modelli durante l’esecuzione dell’estensione.
+
+#### UC1.2 - Selezione di un modello di generazione del codice
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore sta effettuando la configurazione dell’estensione (UC1)
+
+**Postcondizioni:**
+
+- Il modello di generazione del codice è stato configurato
+
+**Scenario principale:**
+
+1. L’Utente Programmatore seleziona la voce per modificare il modello di generazione del codice
+2. L’Utente Programmatore sceglie il modello da utilizzare
+
+**User Story:**
+
+Come Utente Programmatore devo poter scegliere il modello che verrà utilizzato per generare il codice a partire dai requisiti che verranno inseriti.
+
+#### UC1.3 - Selezione di un modello di embedding
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore sta effettuando la configurazione dell’estensione (UC1)
+
+**Postcondizioni:**
+
+- Il modello di embedding è stato configurato
+
+**Scenario principale:**
+
+1. L’Utente Programmatore seleziona la voce per modificare il modello di embedding
+2. L’Utente Programmatore sceglie il modello da utilizzare
+
+**User Story:**
+
+Come Utente Programmatore devo poter scegliere il modello che verrà utilizzato per l’embedding del file generato a partire dai requisiti che verranno inseriti.
+
+#### UC1.4 - Selezione ‘temperature’ modello
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore sta effettuando la configurazione dell’estensione (UC1)
+
+**Postcondizioni:**
+
+- La ‘temperature’ dei modelli è stata configurata
+
+**Scenario principale:**
+
+1. L’Utente Programmatore seleziona la voce per modificare la ‘temperature’
+2. L’Utente Programmatore indica un valore numerico per la ‘temperature’
+
+**User Story:**
+
+Come Utente Programmatore devo poter indicare la ‘temperature’ dei modelli necessaria per determinare il livello di casualità della risposta.
+
+#### UC1.5 - Inserimento di bearer token
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore sta effettuando la configurazione dell’estensione (UC1)
+
+**Postcondizioni:**
+
+- Il bearer token è stato configurato
+
+**Scenario principale:**
+
+1. L’Utente Programmatore seleziona la voce per modificare il bearer token
+2. L’Utente Programmatore indica il bearer token
+
+**Estensioni:**
+
+- UC6 - Visualizzazione errore di autorizzazione
+
+**User Story:**
+
+Come Utente Programmatore devo poter indicare un bearer token necessario per l’autenticazione per utilizzare server protetti e/o remoti.
+
+#### UC4 - Selezione di un modello di default per la generazione del codice
+
+**Generalizza:**
+
+- UC1.2 - Selezione modello di generazione codice
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore sta effettuando la configurazione dell’estensione (UC1)
+- L’utente Programmatore sta scegliendo il modello per la generazione del codice (UC1.2)
+
+**Postcondizioni:**
+
+- Il modello è stato configurato con un modello di default
+
+**Scenario principale:**
+
+1. L’Utente Programmatore visualizza una lista di modelli proposti
+2. L’Utente Programmatore sceglie un modello tra quelli proposti
+
+**Estensioni:**
+
+- UC8 - Visualizzazione errore modello non installato
+
+**User Story:**
+
+Come Utente Programmatore devo poter selezionare un modello tra una selezione proposta per poter personalizzare il modo con il quale vengono generate le risposte.
+
+#### UC5 - Selezione di un modello custom per la generazione del codice
+
+**Generalizza:**
+
+- UC1.2 - Selezione modello di generazione codice
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore sta effettuando la configurazione dell’estensione (UC1)
+- L’utente Programmatore sta scegliendo il modello per la generazione del codice (UC1.2)
+
+**Postcondizioni:**
+
+- Il modello è stato configurato con un modello custom
+
+**Scenario principale:**
+
+1. L’Utente Programmatore inserisce il nome di un modello custom
+
+**Estensioni:**
+
+- UC8 - Visualizzazione errore modello non installato
+- UC9 - Visualizzazione errore modello custom non esistente
+
+**User Story:**
+
+Come Utente Programmatore devo poter inserire il nome di un modello custom per poter personalizzare il modo con il quale vengono generate le risposte.
+
+#### UC6 - Selezione di un modello custom di embedding
+
+**Generalizza:**
+
+- UC1.3 - Selezione modello di embedding
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore sta effettuando la configurazione dell’estensione (UC1)
+- L’utente Programmatore sta scegliendo il modello di embedding (UC1.3)
+
+**Postcondizioni:**
+
+- Il modello è stato configurato con un modello custom
+
+**Scenario principale:**
+
+1. L’Utente Programmatore inserisce il nome di un modello custom
+
+**Estensioni:**
+
+- UC8 - Visualizzazione errore modello non installato
+- UC9 - Visualizzazione errore modello custom non esistente
+
+**User Story:**
+
+Come Utente Programmatore devo poter inserire il nome di un modello custom per poter personalizzare il modo con il quale vengono generate le risposte.
+
+#### UC7 - Selezione di un modello di default di embedding
+
+**Generalizza:**
+
+- UC1.3 - Selezione modello di embedding
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore sta effettuando la configurazione dell’estensione (UC1)
+- L’utente Programmatore sta scegliendo il modello di embedding (UC1.3)
+
+**Postcondizioni:**
+
+- Il modello è stato configurato con un modello di default
+
+**Scenario principale:**
+
+1. L’Utente Programmatore visualizza una lista di modelli proposti
+2. L’Utente Programmatore sceglie un modello tra quelli proposti
+
+**Estensioni:**
+
+- UC8 - Visualizzazione errore modello non installato
+
+**User Story:**
+
+Come Utente Programmatore devo poter selezionare un modello tra una selezione proposta per poter personalizzare il modo con il quale vengono generate le risposte.
+
+#### UC2 - Visualizzazione errore di Ollama non installato
+
+**Estende:**
+
+- UC1.1 - Inserimento endpoint Ollama
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore sta effettuando la configurazione dell’estensione (UC1)
+- L'Utente Programmatore sta configurando l'endpoint di Ollama (UC1.1)
+- Ollama non è installato nell’endpoint indicato
+
+**Postcondizioni:**
+
+- L’Utente Programmatore visualizza un messaggio di errore significativo
+
+**Scenario principale:**
+
+1. L’applicativo visualizza un messaggio contenente l’errore riportato
+
+**User Story:**
+Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se l’applicativo Ollama non è installato nell’endpoint indicato.
+
+#### UC3 - Visualizzazione errore endpoint non raggiungibile
+
+**Estende:**
+
+- UC1.1 - Inserimento endpoint Ollama
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore sta effettuando la configurazione dell’estensione (UC1)
+- L'Utente Programmatore sta configurando l'endpoint di Ollama (UC1.1)
+- L’endpoint indicato non è raggiungibile
+
+**Postcondizioni:**
+
+- L’Utente Programmatore visualizza un messaggio di errore significativo
+
+**Scenario principale:**
+
+1. L’applicativo visualizza un messaggio contenente l’errore riportato
+
+**User Story:**
+Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se l’endpoint indicato non fa riferimento ad una destinazione raggiungibile.
+
+#### UC8 - Visualizzazione errore di modello non installato
+
+**Estende:**
+
+- UC4 - Selezione modello di default per generazione codice
+- UC5 - Selezione modello custom per generazione codice
+- UC6 - Selezione modello custom di embedding
+- UC7 - Selezione modello di default di embedding
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore ha selezionato un modello
+- Il modello non è installato nell’endpoint
+
+**Postcondizioni:**
+
+- L’Utente Programmatore visualizza un messaggio di errore significativo
+
+**Scenario principale:**
+
+1. L’applicativo visualizza un messaggio contenente l’errore riportato
+
+**User Story:**
+Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se il modello a cui voglio fare la richiesta non è installato nell’endpoint.
+
+#### UC9 - Visualizzazione errore di modello custom non esistente
+
+**Estende:**
+
+- UC5 - Selezione modello custom per generazione codice
+- UC6 - Selezione modello custom di embedding
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore ha inserito un modello custom
+- Il modello inserito non esiste
+
+**Postcondizioni:**
+
+- L’Utente Programmatore visualizza un messaggio di errore significativo
+
+**Scenario principale:**
+
+1. L’applicativo visualizza un messaggio contenente l’errore riportato
+
+**User Story:**
+Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se il modello a cui voglio fare la richiesta non esiste.
+
+#### UC10 - Visualizzazione errore di autorizzazione
+
+**Estende:**
+
+- UC1.5 - Inserimento bearer token
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore sta effettuando la configurazione dell’estensione (UC1)
+- L’Utente Programmatore ha inserito un bearer token (UC1.5)
+- Il token non consente l’autorizzazione
+
+**Postcondizioni:**
+
+- L’Utente Programmatore visualizza un messaggio di errore significativo
+
+**Scenario principale:**
+
+1. L’applicativo visualizza un messaggio contenente l’errore riportato
+
+**User Story:**
+Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se il bearer token inserito non consente l’autorizzazione.
+
+#### UC11 - Apertura di un progetto
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore ha configurato l’estensione (UC1)
+
+**Postcondizioni:**
+
+- L’Utente Programmatore ha aperto un progetto
+- L’Applicativo aggiorna la struttura dati a seguito del controllo dell’implementazione dei requisiti
+
+**Scenario principale:**
+
+1. L’Utente Programmatore apre la cartella di progetto (UC11.1)
+2. L’Utente Programmatore carica il file dei requisiti (UC11.2)
+3. L’Utente Programmatore inserisce i filtri per il progetto corrente (UC11.3)
+4. L’Applicativo avvia il controllo dell’implementazione dei requisiti (UC15)
+
+**User Story:**
+Come Utente Programmatore devo poter aprire un progetto su cui poi verranno effettuati i controlli di implementazione dei requisiti.
+
+#### UC11.1 - Apertura della cartella del progetto
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore sta aprendo un nuovo progetto (UC11)
+
+**Postcondizioni:**
+
+- L’Utente Programmatore ha aperto la cartella contenente i file del progetto
+
+**Scenario principale:**
+
+1. L’Utente Programmatore si reca nell’area dedicata
+2. L’Utente Programmatore seleziona la cartella contenente i file del progetto
+3. L’Utente Programmatore apre la cartella
+
+**User Story:**
+
+Come Utente Programmatore devo poter aprire una cartella che conterrà i file del progetto su cui andrò a fare il controllo dell’implementazione dei requisiti
+
+#### UC11.2 - Caricamento file dei requisiti
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore sta aprendo un nuovo progetto (UC11)
+
+**Postcondizioni:**
+
+- L’Utente Programmatore ha caricato il file contenente i requisiti del progetto
+
+**Scenario principale:**
+
+1. L’Utente Programmatore si reca nell’area dedicata
+2. L’Utente Programmatore seleziona il file contenente i requisiti del progetto
+3. L’Utente Programmatore carica il file
+
+**Estensioni:**
+
+- UC12 - Visualizzazione errore di parsing dei dati
+
+**User Story:**
+
+Come Utente Programmatore devo poter caricare il file che conterrà i requisiti del progetto, che verranno analizzati durante il controllo della loro implementazione
+
+#### UC11.3 - Inserimento filtri per il progetto corrente
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore sta aprendo un nuovo progetto (UC11)
+
+**Postcondizioni:**
+
+- L’Utente Programmatore ha inserito i filtri per facilitare il controllo dell’implementazione dei requisiti
+
+**Scenario principale:**
+
+1. L’Utente Programmatore si reca nella scheda dedicata
+2. L’Utente Programmatore seleziona i filtri da applicare al progetto corrente
+
+**Estensioni:**
+
+- UC13 - Visualizzazione errore filtro non trovato
+- UC14 - Visualizzazione errore di esecuzione del filtro
+
+**User Story:**
+
+Come Utente Programmatore devo poter selezionare i filtri che applicherò al progetto corrente per ridurre il quantitativo di file su cui andrò a fare il controllo dell’implementazione dei requisiti
+
+#### UC12 - Visualizzazione errore di parsing dei dati
+
+**Estende:**
+
+- UC11.2 - Caricamento file dei requisiti
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore ha caricato il file dei requisiti (UC11.2)
+- Il file dei requisiti non risulta valido
+
+**Postcondizioni:**
+
+- L’Utente Programmatore visualizza un messaggio di errore significativo
+
+**Scenario principale:**
+
+1. L’applicativo visualizza un messaggio contenente l’errore riportato
+
+**User Story:**
+
+Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se il file dei requisiti contiene dati che non si trovano in uno stato consistente.
+
+#### UC13 - Visualizzazione errore filtro non trovato
+
+**Estende:**
+
+- UC11.3 - Inserimento filtri per il progetto corrente
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore ha inserito i filtri per il progetto corrente (UC11.3)
+- Almeno uno dei filtri non viene trovato dall’Applicativo
+
+**Postcondizioni:**
+
+- L’Utente Programmatore visualizza un messaggio di errore significativo
+
+**Scenario principale:**
+
+1. L’applicativo visualizza un messaggio contenente l’errore riportato
+
+**User Story:**
+
+Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se il filtro inserito non viene trovato dall’Applicativo.
+
+#### UC14 - Visualizzazione errore di esecuzione filtro
+
+**Estende:**
+
+- UC11.3 - Inserimento filtri per il progetto corrente
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore ha inserito i filtri per il progetto corrente (UC11.3)
+- L'esecuzione di almeno un filtro non termina correttamente
+
+**Postcondizioni:**
+
+- L’Utente Programmatore visualizza un messaggio di errore significativo
+
+**Scenario principale:**
+
+1. L’applicativo visualizza un messaggio contenente l’errore riportato
+
+**User Story:**
+
+Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se il filtro inserito non viene eseguito in modo corretto scatenando un errore.
+
+#### UC15 - Controllo implementazione requisiti
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Attore secondario:**
+
+- Ollama
+
+**Precondizioni:**
+
+- L’Utente Programmatore ha configurato l’estensione (UC1)
+- L’Utente Programmatore ha aperto un nuovo progetto (UC11)
+- L’Utente Programmatore si trova nella scheda dedicata
+
+**Postcondizioni:**
+
+- Lo stato di tutti i requisiti caricati (UC11.2) è aggiornato con la situazione effettiva all’interno del codice.
+
+**Scenario principale:**
+
+1. L’Utente Programmatore seleziona i requisiti per i quali vuole effettuare il controllo (UC15.1)
+2. L’Utente Programmatore avvia la procedura di controllo del codice.
+3. L’Utente Programmatore fornisce feedback sui risultati forniti dal sistema (UC15.2)
+4. L’Applicativo aggiorna la struttura dati
+
+**Estensioni:**
+
+- UC18 - Visualizzazione errore di richiesta al modello
+
+**User Story:**
+
+Come Utente Programmatore devo poter avviare un controllo dello stato di implementazione dei requisiti caricati al fine di aggiornare la struttura dati.
+
+#### UC16 - Controllo implementazione dei requisiti su una parte del codice
+
+**Generalizza:**
+
+- UC15 - Controllo implementazione requisiti
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore ha configurato l’estensione (UC1)
+- L’Utente Programmatore ha aperto un nuovo progetto (UC11)
+- L’Utente Programmatore ha un file del progetto aperto.
+
+**Postcondizioni:**
+
+- L’Utente Programmatore ha selezionato la porzione di codice nella quale eseguire il controllo dell’implementazione dei requisiti.
+
+**Scenario principale:**
+
+1. L’Utente Programmatore seleziona una parte di codice nel file aperto.
+2. L’Utente Programmatore avvia il controllo sul codice selezionato (UC15)
+
+**User Story:**
+Come Utente Programmatore devo poter selezionare una porzione di codice in cui eseguire il controllo dell’implementazione dei requisiti al fine di aggiornare la struttura dati.
+
+#### UC17 - Controllo implementazione dei requisiti su tutto il codice
+
+**Generalizza:**
+
+- UC15 - Controllo implementazione requisiti
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore ha configurato l’estensione (UC1)
+- L’Utente Programmatore ha aperto un nuovo progetto (UC11)
+
+**Postcondizioni:**
+
+- L’Utente Programmatore ha selezionato tutto il codice per eseguire il controllo dell’implementazione dei requisiti.
+
+**Scenario principale:**
+
+1. L’Utente Programmatore seleziona tutto il codice del progetto.
+2. L’Utente Programmatore avvia il controllo sul codice selezionato (UC11)
+
+**User Story:**
+Come Utente Programmatore devo poter selezionare tutto il codice del progetto per eseguire il controllo dell’implementazione dei requisiti al fine di aggiornare la struttura dati.
+
+#### UC15.1 - Selezione dei requisiti da includere nella ricerca
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore ha configurato l’estensione (UC1)
+- L’Utente Programmatore ha aperto un nuovo progetto (UC11)
+- L’Utente Programmatore si trova nella scheda dedicata
+
+**Postcondizioni:**
+
+- L’Utente Programmatore ha selezionato i requisiti per i quali vuole verificare lo stato di implementazione
+
+**Scenario principale:**
+
+1. L’Utente Programmatore visualizza tutti i requisiti caricati
+2. L’Utente Programmatore seleziona i requisiti per i quali vuole effettuare il controllo.
+
+**User Story:**
+Come Utente Programmatore devo poter selezionare tutti i requisiti sui quali voglio effettuare il controllo dello stato di implementazione.
+
+#### UC15.2 - Richiesta di Feedback all’utente
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore ha configurato l’estensione (UC1)
+- L’Utente Programmatore ha aperto un nuovo progetto (UC11)
+- L’Utente Programmatore si trova nella scheda dedicata
+
+**Postcondizioni:**
+
+- Tutti i risultati forniti dall’Applicativo sono stati revisionati dall’Utente Programmatore
+
+**Scenario principale:**
+
+1. L’Utente Programmatore visualizza lo stato di implementazione fornito dal controllo
+2. L’Utente Programmatore visualizza la porzione di codice proposta (UC19)
+3. L’Utente Programmatore revisiona la risposta fornita.
+
+**User Story:**
+Come Utente Programmatore devo poter revisionare la risposta fornita dall’Applicativo durante il controllo dell’implementazione.
+
+#### UC18 - Visualizzazione errore di richiesta al modello
+
+**Estende:**
+
+- UC15 - Controllo implementazione requisiti
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore ha configurato l’estensione (UC1)
+- L’Utente Programmatore ha aperto un nuovo progetto (UC11)
+- L’Applicativo ha avviato un Controllo di implementazione dei requisiti (UC15)
+- L’attore secondario Ollama non è riuscito ad elaborare la richiesta.
+
+**Postcondizioni:**
+
+- L’Utente Programmatore visualizza un messaggio di errore significativo.
+
+**Scenario principale:**
+
+1. L’Applicativo invia la richiesta ad Ollama
+2. Se viene restituito un errore viene visualizzato un messaggio contenente l’errore riportato.
+
+**User Story:**
+Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se la richiesta al modello non può essere soddisfatta.
+
+#### UC19 - Visualizzazione porzione di codice che implementa un requisito
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore ha configurato l’estensione (UC1)
+- L’Utente Programmatore ha aperto un nuovo progetto (UC11)
+- L’Utente Programmatore ha aperto la scheda dedicata
+
+**Postcondizioni:**
+
+- L’Utente Programmatore visualizza, per ogni requisito che risulta implementato, la porzione di codice indicata come implementazione.
+
+**Scenario principale:**
+
+1. L’Utente Programmatore seleziona un requisito che risulta implementato.
+2. L’Utente Programmatore può visualizzare la porzione di codice che lo implementa.
+
+**Estensioni:**
+
+- UC20 - Visualizzazione errore di riferimento alla porzione di codice che implementa il requisito
+
+**User Story:**
+Come Utente Programmatore devo poter visualizzare, per ogni requisito che risulta implementato all’interno dell'Applicativo, il relativo codice sorgente che lo implementa.
+
+#### UC20 - Visualizzazione errore di riferimento alla porzione di codice che implementa il requisito
+
+**Estende:**
+
+- UC19 - Visualizzazione porzione di codice che implementa un requisito
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore ha configurato l’estensione (UC1)
+- L’Utente Programmatore ha aperto un nuovo progetto (UC11)
+- L’Utente Programmatore vuole visualizzare il codice che implementa un requisito (UC19)
+- L’Applicativo non è in grado di visualizzare la porzione di codice corrispondente
+
+**Postcondizioni:**
+
+- L’Utente Programmatore visualizza un messaggio di errore significativo.
+
+**Scenario principale:**
+
+1. L’Applicativo esegue la procedura di visualizzazione della porzione di codice.
+2. Se si verifica un errore, viene visualizzato un messaggio che descrive il problema riscontrato.
+
+**User Story:**
+Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se l’Applicativo non è in grado di visualizzare la porzione di codice che implementa il requisito selezionato.
+
+#### UC21 - Visualizzazione della struttura dati
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore ha configurato l’estensione (UC1)
+- L’Utente Programmatore ha aperto un nuovo progetto (UC11)
+- L'Utente Programmatore si trova nella scheda dedicata
+
+**Postcondizioni:**
+
+- L’Utente Programmatore visualizza, in forma tabellare, tutti i requisiti con il loro stato di implementazione.
+
+**Scenario principale:**
+
+1. L’Utente Programmatore visualizza, in forma tabellare, tutti i requisiti caricati con il loro stato di implementazione.
+
+**Estensioni:**
+
+- UC22 - Visualizzazione errore nella rappresentazione della struttura dati
+
+**User Story:**
+Come Utente Programmatore devo poter visualizzare in ogni momento una tabella con lo stato di implementazione di ogni requisito al fine di avere una chiara percezione dello stato del progetto.
+
+#### UC22 - Visualizzazione errore nella rappresentazione della struttura dati
+
+**Estende:**
+
+- UC21 - Visualizzazione della struttura dati
+
+**Attore primario:**
+
+- Utente Programmatore
+
+**Precondizioni:**
+
+- L’Utente Programmatore ha configurato l’estensione (UC1)
+- L’Utente Programmatore ha aperto un nuovo progetto (UC11)
+- L’Utente Programmatore vuole visualizzare la struttura dati (UC21).
+- L’Applicativo non è in grado di visualizzare la struttura dati
+
+**Postcondizioni:**
+
+- L’Utente Programmatore visualizza un messaggio di errore significativo.
+
+**Scenario principale:**
+
+1. L’Applicativo esegue la procedura di visualizzazione della struttura dati.
+2. Se si verifica un errore, viene visualizzato un messaggio che descrive il problema riscontrato.
+
+**User Story:**
+Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se l’Applicativo non è in grado di visualizzare la struttura dati.
+
+## Requisiti
 
 ### Scelta dell'identificativo
 
 I requisiti vengono identificati ciascuno da un codice identificativo nel formato Rxz_n:
 
-- tipologia del requisito 
+- tipologia del requisito
   - F = funzionale: indicano %%funzionalità|funzionalità%% che l'%%Applicativo|applicativo%% deve fornire
   - T = tecnico: indicano vincoli riguardo le tecnologie che l'%%Applicativo|applicativo%% deve utilizzare
   - Q = qualitativo: indicano vincoli riguardo obbiettivi minimi di %%qualità|qualità%%
@@ -50,6 +942,7 @@ I requisiti vengono identificati ciascuno da un codice identificativo nel format
 - n: numero progressivo
 
 ### Requisiti funzionali
+
 - L'utente deve poter configurare l'%%Applicativo|applicativo%% da interfaccia grafica, in particolare:
   - RFO_1: L'utente può scegliere il modello da utilizzare per generare codice.
   - RFO_2: L'utente può scegliere il modello da utilizzare per ricercare keyword.
@@ -86,18 +979,20 @@ I requisiti vengono identificati ciascuno da un codice identificativo nel format
   - RFP_30: L'%%Applicativo|applicativo%% può fornire delle statistiche di correttezza per il confronto dei modelli messi a disposizione tra le opzioni.
 
 ### Requisiti tecnici e di vincolo
+
 - RTO_1: L'%%Applicativo|applicativo%% deve essere un'estensione di Visual Studio Code.
 - RTO_2: L'%%Applicativo|applicativo%% deve essere eseguibile interamente in locale.
 - RTO_3: L'%%Applicativo|applicativo%% deve utilizzare %%Ollama|ollama%% come interfaccia per l'interrogazione dei modelli.
 - RTO_4: I modelli utilizzati sono dei large language model (%%LLM|llm%%).
 - RTO_5: Il codice analizzato deve essere in linguaggio C o C++.
 - RTP_6: Il codice analizzato deve essere in linguaggio Rust.
-- RTO_7: Il file con la lista dei requisiti può essere in formato _.csv_.
-- RTP_8: Il file con la lista dei requisiti può essere in formato _.reqif_.
+- RTO*7: Il file con la lista dei requisiti può essere in formato *.csv\_.
+- RTP*8: Il file con la lista dei requisiti può essere in formato *.reqif\_.
 
 ### Requisiti qualitativi
+
 - RQO_1: L'%%Applicativo|applicativo%% %%prodotto|prodotto%% e tutta la documentazione relativa deve rispettare quanto indicato in Norme di %%Progetto|progetto%%.
 - RQO_2: L'%%Applicativo|applicativo%% %%prodotto|prodotto%% e tutta la documentazione relativa deve rispettare quanto indicato in Piano di Qualifica.
 - RQO_3: L'%%Applicativo|applicativo%% %%prodotto|prodotto%% deve essere accompagnato dalla sua documentazione tecnica.
 
- </NumberedWrapper>
+</NumberedWrapper>
