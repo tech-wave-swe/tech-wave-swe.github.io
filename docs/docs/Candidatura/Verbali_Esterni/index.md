@@ -1,6 +1,5 @@
 ---
 title: "Verbali Esterni"
-position: 3
 ---
 
 # Verbali Esterni
@@ -13,8 +12,8 @@ Qui è possibile trovare i link ai pdf di ogni incontro suddiviso per azienda:
 
 ### BlueWind
 
--   [Verbale 2024-10-29](./2024-10-29.pdf)
+- [Verbale 2024-10-29](./2024-10-29.pdf)
 
 ### Ergon
 
--   [Vebale 2024-10-28](./2024-10-28.pdf)
+- [Vebale 2024-10-28](./2024-10-28.pdf)

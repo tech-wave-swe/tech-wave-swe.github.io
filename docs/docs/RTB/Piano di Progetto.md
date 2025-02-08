@@ -1,19 +1,29 @@
 ---
 id: piano_di_progetto
 title: "Piano di Progetto"
+documentclass: TWDocumentFull
+toc: true
+lof: true
+numbersections: true
+version: 2.1.1
+classification: Esterno
 ---
+
+<!-- ::: {.no-export} -->
 
 import TOCInlineWrapper from "@site/src/components/TOCInlineWrapper.jsx";
 import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
-
 
 # Documento del Piano di %%Progetto|progetto%%
 
 <details>
   <summary>Changelog</summary>
 
+<!-- ::: -->
+
 | Data       | Versione | Descrizione                                                                            | Autore              | Data Verifica | Verificatore   |
 | ---------- | -------- | -------------------------------------------------------------------------------------- | ------------------- | ------------- | -------------- |
+| 10/01/2025 | 2.1.1    | Corretta la formattazione del documento                                                | Monetti Luca        |               |                |
 | 10/01/2025 | 2.0.1    | Aggiunta termini Glossario                                                             | Monetti Luca        |               |                |
 | 09/01/2025 | 2.0.0    | Ristrutturazione documento, sistemazione consuntivi 1° e 2° Sprint, aggiunta 3° Sprint | Monetti Luca        |               |                |
 | 21/12/2024 | 1.3.0    | Integrazione sezione 3, 4, 5 con secondo sprint                                        | Dal Bianco Riccardo | 22/12/2024    | Carraro Agnese |
@@ -21,10 +31,16 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 | 27/11/2024 | 1.1.0    | Aggiunta sezione 3 e 4 con primo sprint                                                | Piola Andrea        | 28/11/2024    | Pistori Gaia   |
 | 24/11/2024 | 1.0.0    | Prima stesura del documento con indice e sezione 1                                     | Piola Andrea        | 25/11/2024    | Pistori Gaia   |
 
+Table: Changelog
+
+<!-- ::: {.no-export} -->
+
 </details>
 
 <TOCInlineWrapper toc={toc} numbered={true}/>
 <NumberedWrapper toc={toc}>
+
+<!-- ::: -->
 
 ## Introduzione
 
@@ -34,7 +50,7 @@ Il Piano di %%Progetto|progetto%% è un documento il cui scopo è quello di pian
 
 ### Scopo del Prodotto
 
-Nello sviluppo di software per sistemi embedded la parte di controllo dell'implementazione di tutti i requisiti necessari al corretto funzionamento dello stesso risulta costosa e ripetitiva da parte dello sviluppatore, inoltre può risultare non esaustiva a causa di distrazioni o dimenticanze. Il %%capitolato|capitolato%% \*\*\_Requirement Tracker - Plug-in VSCode_\*\*\* propone lo sviluppo di un %%plugin|plugin%% per %%VSCode|vscode%% che permetta di tracciare i requisiti derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari requisiti in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
+Nello sviluppo di software per sistemi embedded la parte di controllo dell'implementazione di tutti i requisiti necessari al corretto funzionamento dello stesso risulta costosa e ripetitiva da parte dello sviluppatore, inoltre può risultare non esaustiva a causa di distrazioni o dimenticanze. Il %%capitolato|capitolato%% **Requirement Tracker - Plug-in VSCode** propone lo sviluppo di un %%plugin|plugin%% per %%VSCode|vscode%% che permetta di tracciare i requisiti derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari requisiti in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
 
 ### Glossario
 
@@ -78,26 +94,34 @@ A seguito viene riportata la tabella contenente i rischi relativi all'organizzaz
 | **Problemi personali tra membri del gruppo**                 | Uno o più elementi del gruppo potrebbero non essere in grado di completare il lavoro pianificato entro la data prevista, per cause legati a problemi personali con un altro membro, creando rallentamenti nel flusso | 1                | Alta         |
 | **Ritardi dovuti a problemi di comunicazione con l'azienda** | Il gruppo può ritrovarsi a dover rallentare il ritmo delle attività a causa della necessità di attendere un feedback dall'azienda che non lo fornisce nel breve periodo                                              | 2                | Alta         |
 
+Table: Rischi Organizzativi e interpersonali
+
 ### Rischi tecnologici
 
 | Rischio                             | Descrizione                                                                                                                                | Grado di rischio | Pericolosità |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ---------------- | ------------ |
 | **Mancanza di conoscenze tecniche** | Alcuni membri del gruppo potrebbero non aver familiarità con tutte le tecnologie utilizzate durante lo sviluppo o la gestione del progetto | 4                | Bassa        |
 
+Table: Rischi Tecnologici
+
 ### Mitigazione dei rischi organizzativi ed interpersonali
 
-| Rischio                                                   | Mitigazione                                                                                                                                                                                                                                                                                    |
+| Rischio                                                      | Mitigazione                                                                                                                                                                                                                                                                                    |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Avanzamento lento per mancanza di esperienza**             | Questo rischio può essere mitigato attraverso la pianificazione di incontri frequenti con l'azienda BlueWind che si è resa disponibile a fornire formazione e supporto. Inoltre, vogliamo scegliere un modello di sviluppo incrementale che si integri con il modello AGILE scrum dell'azienda |
 | **Ritardi dovuti a problemi individuali**                    | Questo rischio può essere mitigato attraverso la comunicazione costante tra i vari membri del gruppo. Questo ci permetterà di individuare difficoltà o ritardi prima che essi possano trasformarsi in problemi                                                                                 |
 | **Problemi personali tra membri del gruppo**                 | Questo rischio può essere mitigato creando un tavolo di confronto tra i membri coinvolti per cercare di dissipare tutte le problematiche nate tra loro; ci si affida anche al buonsenso delle stesse nella cooperazione, per il bene di tutto il gruppo                                        |
 | **Ritardi dovuti a problemi di comunicazione con l'azienda** | Questo rischio può essere mitigato accordandosi sulla data dell'incontro successivo con l'azienda prima dell'inizio dell'incontro presente                                                                                                                                                     |
 
+Table: Mitigazione rischi organizzativi ed interpersonali
+
 ### Mitigazione dei rischi tecnologici
 
-| Rischio                             | Mitigazione                                                                                                                                                                                                           |
+| Rischio                             | Mitigazione                                                                                                                                                                                                             |
 | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Mancanza di conoscenze tecniche** | Questo rischio può essere mitigato attraverso una stretta collaborazione tra i membri del team e l'azienda proponente mirando alla creazione di un ambiente di collaborazione e condivisione delle conoscenze acquisite |
+
+Table: Mitigazione rischi tecnologici
 
 ## Modello di sviluppo e Pianificazione
 
@@ -178,6 +202,8 @@ A seguito si riporta la tabella del %%preventivo|preventivo%% per il primo %%spr
 | Totale                    | 18             | 390       |
 | Bilancio                  |                | 12.410,00 |
 
+Table: Preventivo Sprint 1
+
 #### Sprint 2
 
 A seguito si riporta la tabella del %%preventivo|preventivo%% per il secondo %%sprint|sprint%%
@@ -192,6 +218,8 @@ A seguito si riporta la tabella del %%preventivo|preventivo%% per il secondo %%s
 | Verificatore              | 5              | 75        |
 | Totale                    | 39             | 875       |
 | Bilancio                  |                | 11.030,00 |
+
+Table: Preventivo Sprint 2
 
 #### Sprint 3
 
@@ -208,11 +236,13 @@ A seguito si riporta la tabella del preventivo per il terzo %%sprint|sprint%%
 | Totale                    | 33             | 725       |
 | Bilancio                  |                | 10.472,50 |
 
+Table: Preventivo Sprint 3
+
 ## 5 Consuntivo
 
 ### Verso la RTB
 
-#### Consultivo sprint 1
+#### Consuntivo sprint 1
 
 Di seguito vengono indicate le spese effettive del primo %%sprint|sprint%%
 
@@ -226,9 +256,11 @@ Di seguito vengono indicate le spese effettive del primo %%sprint|sprint%%
 | Verificatore              | 5                    | 0             | 15               | 75        | 0               |
 | Totale consuntivo         | 38                   | +20           |                  | 895       | +505            |
 
+Table: Consuntivo Sprint 1
+
 Considerando il costo di **895,00€** il residuo disponibile ammonta a **11.905,00€**.
 
-**Resoconto**
+##### Resoconto
 
 Il primo %%sprint|sprint%% ha evidenziato una maggiore complessità rispetto alle aspettative iniziali, soprattutto per quanto riguarda le %%attività|attività%% di analisi. Tuttavia, tali variazioni sono in linea con i principi di %%SCRUM|scrum%%, dove gli aggiustamenti iniziali sono necessari e rappresentano un'opportunità per affinare la capacità di stima nei prossimi %%sprint|sprint%%.
 
@@ -251,15 +283,21 @@ Di seguito vengono indicate le spese effettive del secondo %%sprint|sprint%%
 | Verificatore              | 3,5                  | -1,5          | 15               | 52,5      | -22,50          |
 | Totale consuntivo         | 33.5                 | -5.5          |                  | 697,5     | -177,50         |
 
+Table: Consuntivo Sprint 2
+
 Considerando il costo di **697,50€** il residuo disponibile ammonta a **11.207,50€**.
 
-**Resoconto**
+##### Resoconto
 
 Il secondo %%sprint|sprint%% ha dimostrato un progresso significativo nella gestione delle risorse e una maggiore aderenza al piano progettuale dimostrando che le azioni correttive introdotte dopo il primo %%sprint|sprint%% hanno avuto un impatto positivo.
 
 La principale variazione si è registrata sui ruoli di Programmatore (+4 ore) in quanto è stata sottostimato il tempo necessario allo sviluppo di una base per il %%PoC|poc%%.
-Abbiamo invece sovrastimato il ruolo dell'Analista  (-3 ore) e del Responsabile (-4 ore).
+Abbiamo invece sovrastimato il ruolo dell'Analista (-3 ore) e del Responsabile (-4 ore).
 
 In conclusione, Il secondo %%sprint|sprint%% ha mostrato un miglioramento nella gestione delle %%attività|attività%% e un maggior allineamento rispetto al %%preventivo|preventivo%% iniziale.
 
+<!-- ::: {.no-export} -->
+
 </NumberedWrapper>
+
+<!-- ::: -->
