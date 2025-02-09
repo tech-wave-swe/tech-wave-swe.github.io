@@ -13,7 +13,8 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                              | Autore                | Data Verifica | Verificatore          |
 |------------|----------|------------------------------------------|-----------------------|---------------|-----------------------|
-| 31/01/2025 | 1.6.0    | Inserimento cruscotto                    | Gaia Pistori          |               |                       |
+| 09/02/2025 | 1.7.0    | Note di auto-miglioramento               | Manuel Felipe Vasquez |               |                       |
+| 31/01/2025 | 1.6.0    | Inserimento cruscotto                    | Gaia Pistori          | 05/02/2025    | Manuel Felipe Vasquez |
 | 24/01/2025 | 1.5.0    | Aggiunti test                            | Giulia Marcon         | 26/01/2025    | Gaia Pistori          |
 | 16/01/2025 | 1.4.0    | Aggiunte misure                          | Luca Monetti          | 17/01/2025    | Manuel Felipe Vasquez |
 | 03/01/2025 | 1.3.0    | Modifica descrizione e riferimenti       | Manuel Felipe Vasquez | 06/01/2025    | Luca Monetti          |
@@ -350,5 +351,35 @@ I test di verifica e validazione vengono eseguiti in tutte le fasi del ciclo di 
 
 ### Condition Coverage
 <iframe width="800" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0txzzEKqHdhrji9fd49Hd7k4zLchkVRCsBk1Oil4yILOSzL3kxO2DtdxCC9W1ni5uqytaJaVwcHAV/pubchart?oid=1162915206&amp;format=interactive"></iframe>
+
+## Valutazione di miglioramento
+
+L'adozione di un processo di valutazione di miglioramento continuo permette di monitorare sistematicamente l'efficacia e l'efficienza dei processi organizzativi e di sviluppo. Questo approccio favorisce l'identificazione tempestiva di criticità e opportunità di ottimizzazione, contribuendo a:
+
+- Incrementare la qualità dei processi e del prodotto finale.
+- Ridurre i costi attraverso azioni correttive mirate.
+- Promuovere un ambiente di lavoro orientato alla crescita costante.
+- Supportare il processo decisionale con dati oggettivi e misurabili.
+
+### Valutazione sull'organizzazione
+
+| Problema                | Descrizione                                                                                                         | Gravità | Soluzione                                                                                                                                 |
+|-------------------------|---------------------------------------------------------------------------------------------------------------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| Rotazione dei ruoli     | Difficoltà nel mantenere una rotazione efficace dei ruoli tra i membri del team, con squilibri nel carico di lavoro | Media   | Adottare un sistema di rotazione per ricoprire ruoli differenti ad ogni sprint, permettendo così l'acquisizione di competenze trasversali |
+| Coordinamento asincrono | Sfide nella comunicazione e nel coordinamento quando i membri lavorano in momenti diversi                           | Alta    | Adottare strumenti di collaborazione asincrona e stabilire procedure chiare per la documentazione delle attività                          |
+
+### Valutazione sui ruoli
+
+| Problema     | Descrizione                                                                                                      | Gravità | Soluzione                                                                                        |
+|--------------|------------------------------------------------------------------------------------------------------------------|---------|--------------------------------------------------------------------------------------------------|
+| Analista     | Difficoltà nell'identificazione e documentazione corretta dei requisiti di sistema                               | Media   | Si è deciso di porre maggiore attenzione alla fase di analisi attraverso revisioni più frequenti |
+| Verificatore | Criticità nell'esecuzione delle verifiche formali, con conseguente necessità di multiple iterazioni di revisione | Bassa   | Implementato un processo di verifica più approfondito in sviluppo e rilascio                     |
+
+### Valutazione sugli strumenti e le tecnologie utilizzate
+
+| Problema    | Descrizione                                                                                            | Gravità | Soluzione                                                                                      |
+|-------------|--------------------------------------------------------------------------------------------------------|---------|------------------------------------------------------------------------------------------------|
+| Typescript  | La maggior parte dei membri del gruppo non è ancora familiare con questo linguaggio di programmazione. | Bassa   | Ogni membro ha seguito autonimamente un breve tutorial per acquisire le nozioni di base.       |
+| API VS Code | La maggior parte dei membri del gruppo non conosce a fondo l'integrazione delle API in VS Code.        | Media   | Fornire documentazione dedicata e workshop per supportare l’integrazione delle API in VS Code. |
 
 </NumberedWrapper>
