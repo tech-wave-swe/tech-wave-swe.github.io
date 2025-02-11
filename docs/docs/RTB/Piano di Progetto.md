@@ -21,15 +21,15 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 <!-- ::: -->
 
-| Data       | Versione | Descrizione                                                                            | Autore              | Data Verifica | Verificatore   |
-| ---------- | -------- | -------------------------------------------------------------------------------------- | ------------------- | ------------- | -------------- |
-| 10/01/2025 | 2.1.1    | Corretta la formattazione del documento                                                | Monetti Luca        |               |                |
-| 10/01/2025 | 2.0.1    | Aggiunta termini Glossario                                                             | Monetti Luca        |               |                |
-| 09/01/2025 | 2.0.0    | Ristrutturazione documento, sistemazione consuntivi 1° e 2° Sprint, aggiunta 3° Sprint | Monetti Luca        |               |                |
-| 21/12/2024 | 1.3.0    | Integrazione sezione 3, 4, 5 con secondo sprint                                        | Dal Bianco Riccardo | 22/12/2024    | Carraro Agnese |
-| 02/12/2024 | 1.2.0    | Aggiunta sezione 2                                                                     | Piola Andrea        | 04/12/2024    | Pistori Gaia   |
-| 27/11/2024 | 1.1.0    | Aggiunta sezione 3 e 4 con primo sprint                                                | Piola Andrea        | 28/11/2024    | Pistori Gaia   |
-| 24/11/2024 | 1.0.0    | Prima stesura del documento con indice e sezione 1                                     | Piola Andrea        | 25/11/2024    | Pistori Gaia   |
+| Data       | Versione | Descrizione                                                                            | Autore              | Data Verifica | Verificatore        |
+| ---------- | -------- | -------------------------------------------------------------------------------------- | ------------------- | ------------- | ------------------- |
+| 27/01/2025 | 2.1.0    | Aggiunta consultivo sprint 3 e preventivo sprint 4                                     | Dal Bianco Riccardo |               |                     |
+| 10/01/2025 | 2.0.1    | Aggiunta termini Glossario                                                             | Monetti Luca        | 16/01/2025    | Dal Bianco Riccardo |
+| 09/01/2025 | 2.0.0    | Ristrutturazione documento, sistemazione consuntivi 1° e 2° Sprint, aggiunta 3° Sprint | Monetti Luca        | 16/01/2025    | Dal Bianco Riccardo |
+| 21/12/2024 | 1.3.0    | Integrazione sezione 3, 4, 5 con secondo sprint                                        | Dal Bianco Riccardo | 22/12/2024    | Carraro Agnese      |
+| 02/12/2024 | 1.2.0    | Aggiunta sezione 2                                                                     | Piola Andrea        | 04/12/2024    | Pistori Gaia        |
+| 27/11/2024 | 1.1.0    | Aggiunta sezione 3 e 4 con primo sprint                                                | Piola Andrea        | 28/11/2024    | Pistori Gaia        |
+| 24/11/2024 | 1.0.0    | Prima stesura del documento con indice e sezione 1                                     | Piola Andrea        | 25/11/2024    | Pistori Gaia        |
 
 Table: Changelog
 
@@ -183,6 +183,15 @@ Questo permetterà di implementare i consigli forniti dall'azienda proponente e 
 
 In parallelo, il team continuerà lo sviluppo di alcune funzionalità richieste dall'azienda per il %%PoC|poc%%, con l'obiettivo di garantire il rispetto delle tempistiche e dei %%requisiti|requisito_software%% concordati.
 
+#### Sprint 4
+
+Periodo 13/01/2025 - 27/01/2025
+
+In questo periodo, il gruppo si concentrerà sul completamento quasi definitivo della documentazione, con particolare attenzione all'analisi dei requisiti e al piano di qualifica.
+Parallelamente, apporteremo gli ultimi ritocchi al %%PoC|poc%%, integrando i feedback ricevuti dall'azienda durante la riunione.
+
+L'obiettivo principale è avvicinarsi in modo significativo alla conclusione dell'RTB, garantendo un avanzamento concreto del lavoro.
+
 ## 4 Preventivo
 
 ### Verso la RTB
@@ -237,6 +246,23 @@ A seguito si riporta la tabella del preventivo per il terzo %%sprint|sprint%%
 | Bilancio                  |                | 10.472,50 |
 
 Table: Preventivo Sprint 3
+
+#### Sprint 4
+
+A seguito si riporta la tabella del preventivo per il quarto %%sprint|sprint%%
+
+| Ruolo                     | Ore svolte (h) | Costo (€) |
+| ------------------------- | -------------- | --------- |
+| Responsabile di progetto  | 3              | 120       |
+| Amministratore di sistema | 10             | 200       |
+| Analista                  | 25             | 625       |
+| Progettista               | 0              | 0         |
+| Programmatore             | 4              | 60        |
+| Verificatore              | 6              | 90        |
+| Totale                    | 48             | 1095      |
+| Bilancio                  |                | 9.522,50  |
+
+Table: Preventivo Sprint 4
 
 ## 5 Consuntivo
 
@@ -295,6 +321,32 @@ La principale variazione si è registrata sui ruoli di Programmatore (+4 ore) in
 Abbiamo invece sovrastimato il ruolo dell'Analista (-3 ore) e del Responsabile (-4 ore).
 
 In conclusione, Il secondo %%sprint|sprint%% ha mostrato un miglioramento nella gestione delle %%attività|attività%% e un maggior allineamento rispetto al %%preventivo|preventivo%% iniziale.
+
+#### Consultivo sprint 3
+
+Di seguito vengono indicate le spese effettive del terzo %%sprint|sprint%% 22/12 12/01
+
+| Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
+| ------------------------- | -------------------- | ------------- | ---------------- | --------- | --------------- |
+| Responsabile di progetto  | 1                    | -3            | 30               | 30        | -90             |
+| Amministratore di sistema | 5                    | +1            | 20               | 100       | +20             |
+| Analista                  | 13                   | -2            | 25               | 325       | -50             |
+| Progettista               | 0                    | 0             | 25               | 0         | 0               |
+| Programmatore             | 7                    | +2            | 15               | 105       | +30             |
+| Verificatore              | 2                    | -3            | 15               | 30        | -45             |
+| Totale consuntivo         | 33.5                 | -5            |                  | 590       | -135            |
+
+Table: Consuntivo Sprint 3
+
+Considerando il costo di **590€** il residuo disponibile ammonta a **10.617,50€**.
+
+**Resoconto**
+
+Il terzo %%sprint|sprint%%, svolto durante il periodo delle vacanze natalizie, ha risentito della disponibilità limitata delle risorse, ma ha comunque permesso di registrare progressi verso gli obiettivi prefissati.
+
+La principale variazione si è osservata nel ruolo di Programmatore (+2 ore), a causa di una sottostima del tempo necessario per implementare le modifiche al %%PoC|poc%% . Al contrario, il ruolo di Analista (-2 ore) e di Responsabile (-3 ore) hanno registrato un impiego inferiore rispetto alle previsioni.
+
+In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni nei tempi stimati, ma ha consentito un avanzamento concreto nelle attività prioritarie.
 
 <!-- ::: {.no-export} -->
 
