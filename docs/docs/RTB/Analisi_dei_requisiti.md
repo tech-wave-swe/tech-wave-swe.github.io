@@ -67,7 +67,7 @@ Nello sviluppo di software per sistemi embedded la parte di controllo dell'imple
 
 **Precondizioni:**
 
-- L"Utente Programmatore si trova nella scheda dedicata alle configurazioni
+- L'Utente Programmatore si trova nella scheda dedicata alle configurazioni
 
 **Postcondizioni:**
 
