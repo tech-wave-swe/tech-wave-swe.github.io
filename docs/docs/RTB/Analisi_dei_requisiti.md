@@ -67,19 +67,19 @@ Nello sviluppo di software per sistemi embedded la parte di controllo dell'imple
 
 **Precondizioni:**
 
-- L’Utente Programmatore si trova nella scheda dedicata alle configurazioni
+- L"Utente Programmatore si trova nella scheda dedicata alle configurazioni
 
 **Postcondizioni:**
 
-- L’Applicativo è stato configurato
+- L’%%Applicativo|applicativo%% è stato configurato
 
 **Scenario principale:**
 
 1. L’Utente Programmatore visualizza tutte le impostazioni modificabili.
-2. L’Utente Programmatore inserisce l’endpoint di Ollama (UC1.1)
+2. L’Utente Programmatore inserisce l’endpoint di %%Ollama|ollama%% (UC1.1)
 3. L’Utente Programmatore seleziona il modello per la generazione del codice (UC1.2)
 4. L’Utente Programmatore seleziona il modello di embedding (UC1.3)
-5. L’Utente Programmatore seleziona la ‘temperature’ del modello (UC1.4)
+5. L’Utente Programmatore seleziona la "temperature’ del modello (UC1.4)
 6. L’Utente Programmatore inserisce il bearer token (UC1.5)
 7. La modifica viene applicata.
 
@@ -101,27 +101,27 @@ Come Utente Programmatore devo poter configurare l’estensione modificando le i
 
 **Postcondizioni:**
 
-- L’endpoint di Ollama è stato configurato
+- L’endpoint di %%Ollama|ollama%% è stato configurato
 
 **Scenario principale:**
 
 1. L’Utente Programmatore seleziona la voce per modificare l’endpoint
-2. L’Utente Programmatore indica l’endpoint dell’applicativo Ollama
+2. L’Utente Programmatore indica l’endpoint dell’%%applicativo|applicativo%% %%Ollama|ollama%%
 
 **Estensioni:**
 
-- UC2 - Visualizzazione errore Ollama non installato
+- UC2 - Visualizzazione errore %%Ollama|ollama%% non installato
 - UC3 - Visualizzazione errore endpoint non raggiungibile
 
 **User Story:**
 
-Come Utente Programmatore devo poter indicare l’endpoint dell’applicativo Ollama necessario per l’interrogazione dei modelli durante l’esecuzione dell’estensione.
+Come Utente Programmatore devo poter indicare l’endpoint dell’%%applicativo|applicativo%% %%Ollama|ollama%% necessario per l’interrogazione dei modelli durante l’esecuzione dell’estensione.
 
 #### UC2 - Visualizzazione errore di Ollama non installato
 
 **Estende:**
 
-- UC1.1 - Inserimento endpoint Ollama
+- UC1.1 - Inserimento endpoint %%Ollama|ollama%%
 
 **Attore primario:**
 
@@ -130,8 +130,8 @@ Come Utente Programmatore devo poter indicare l’endpoint dell’applicativo Ol
 **Precondizioni:**
 
 - L’Utente Programmatore sta effettuando la configurazione dell’estensione (UC1)
-- L'Utente Programmatore sta configurando l'endpoint di Ollama (UC1.1)
-- Ollama non è installato nell’endpoint indicato
+- L'Utente Programmatore sta configurando l'endpoint di %%Ollama|ollama%% (UC1.1)
+- %%Ollama|ollama%% non è installato nell’endpoint indicato
 
 **Postcondizioni:**
 
@@ -139,16 +139,16 @@ Come Utente Programmatore devo poter indicare l’endpoint dell’applicativo Ol
 
 **Scenario principale:**
 
-1. L’applicativo visualizza un messaggio contenente l’errore riportato
+1. L’%%applicativo|applicativo%% visualizza un messaggio contenente l’errore riportato
 
 **User Story:**
-Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se l’applicativo Ollama non è installato nell’endpoint indicato.
+Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se l’%%applicativo|applicativo%% %%Ollama|ollama%% non è installato nell’endpoint indicato.
 
 #### UC3 - Visualizzazione errore endpoint non raggiungibile
 
 **Estende:**
 
-- UC1.1 - Inserimento endpoint Ollama
+- UC1.1 - Inserimento endpoint %%Ollama|ollama%%
 
 **Attore primario:**
 
@@ -157,7 +157,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 **Precondizioni:**
 
 - L’Utente Programmatore sta effettuando la configurazione dell’estensione (UC1)
-- L'Utente Programmatore sta configurando l'endpoint di Ollama (UC1.1)
+- L'Utente Programmatore sta configurando l'endpoint di %%Ollama|ollama%% (UC1.1)
 - L’endpoint indicato non è raggiungibile
 
 **Postcondizioni:**
@@ -166,7 +166,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 
 **Scenario principale:**
 
-1. L’applicativo visualizza un messaggio contenente l’errore riportato
+1. L’%%applicativo|applicativo%% visualizza un messaggio contenente l’errore riportato
 
 **User Story:**
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se l’endpoint indicato non fa riferimento ad una destinazione raggiungibile.
@@ -284,7 +284,7 @@ Come Utente Programmatore devo poter inserire il nome di un modello custom per p
 
 **Scenario principale:**
 
-1. L’applicativo visualizza un messaggio contenente l’errore riportato
+1. L’%%applicativo|applicativo%% visualizza un messaggio contenente l’errore riportato
 
 **User Story:**
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se il modello a cui voglio fare la richiesta non è installato nell’endpoint.
@@ -311,7 +311,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 
 **Scenario principale:**
 
-1. L’applicativo visualizza un messaggio contenente l’errore riportato
+1. L’%%applicativo|applicativo%% visualizza un messaggio contenente l’errore riportato
 
 **User Story:**
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se il modello a cui voglio fare la richiesta non esiste.
@@ -481,7 +481,7 @@ Come Utente Programmatore devo poter indicare un bearer token necessario per l�
 
 **Scenario principale:**
 
-1. L’applicativo visualizza un messaggio contenente l’errore riportato
+1. L’%%applicativo|applicativo%% visualizza un messaggio contenente l’errore riportato
 
 **User Story:**
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se il bearer token inserito non consente l’autorizzazione.
@@ -500,18 +500,18 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 
 **Postcondizioni:**
 
-- L’Utente Programmatore ha aperto un progetto
-- L’Applicativo aggiorna la struttura dati a seguito del controllo dell’implementazione dei requisiti
+- L’Utente Programmatore ha aperto un %%progetto|progetto%%
+- L’%%Applicativo|applicativo%% aggiorna la struttura dati a seguito del controllo dell’implementazione dei requisiti
 
 **Scenario principale:**
 
-1. L’Utente Programmatore apre la cartella di progetto (UC11.1)
+1. L’Utente Programmatore apre la cartella di %%progetto|progetto%% (UC11.1)
 2. L’Utente Programmatore carica il file dei requisiti (UC11.2)
-3. L’Utente Programmatore inserisce i filtri per il progetto corrente (UC11.3)
-4. L’Applicativo avvia il controllo dell’implementazione dei requisiti (UC15)
+3. L’Utente Programmatore inserisce i filtri per il %%progetto|progetto%% corrente (UC11.3)
+4. L’%%Applicativo|applicativo%% avvia il controllo dell’implementazione dei requisiti (UC15)
 
 **User Story:**
-Come Utente Programmatore devo poter aprire un progetto su cui poi verranno effettuati i controlli di implementazione dei requisiti.
+Come Utente Programmatore devo poter aprire un %%progetto|progetto%% su cui poi verranno effettuati i controlli di implementazione dei requisiti.
 
 <img src="/img/UseCases/UC11.1.png" alt="Apertura della cartella del progetto" data-width="70%" />
 
@@ -523,21 +523,21 @@ Come Utente Programmatore devo poter aprire un progetto su cui poi verranno effe
 
 **Precondizioni:**
 
-- L’Utente Programmatore sta aprendo un nuovo progetto (UC11)
+- L’Utente Programmatore sta aprendo un nuovo %%progetto|progetto%% (UC11)
 
 **Postcondizioni:**
 
-- L’Utente Programmatore ha aperto la cartella contenente i file del progetto
+- L’Utente Programmatore ha aperto la cartella contenente i file del %%progetto|progetto%%
 
 **Scenario principale:**
 
 1. L’Utente Programmatore si reca nell’area dedicata
-2. L’Utente Programmatore seleziona la cartella contenente i file del progetto
+2. L’Utente Programmatore seleziona la cartella contenente i file del %%progetto|progetto%%
 3. L’Utente Programmatore apre la cartella
 
 **User Story:**
 
-Come Utente Programmatore devo poter aprire una cartella che conterrà i file del progetto su cui andrò a fare il controllo dell’implementazione dei requisiti
+Come Utente Programmatore devo poter aprire una cartella che conterrà i file del %%progetto|progetto%% su cui andrò a fare il controllo dell’implementazione dei requisiti
 
 <img src="/img/UseCases/UC11.2.png" alt="Caricamento file dei requisiti" data-width="70%" />
 
@@ -549,16 +549,16 @@ Come Utente Programmatore devo poter aprire una cartella che conterrà i file de
 
 **Precondizioni:**
 
-- L’Utente Programmatore sta aprendo un nuovo progetto (UC11)
+- L’Utente Programmatore sta aprendo un nuovo %%progetto|progetto%% (UC11)
 
 **Postcondizioni:**
 
-- L’Utente Programmatore ha caricato il file contenente i requisiti del progetto
+- L’Utente Programmatore ha caricato il file contenente i requisiti del %%progetto|progetto%%
 
 **Scenario principale:**
 
 1. L’Utente Programmatore si reca nell’area dedicata
-2. L’Utente Programmatore seleziona il file contenente i requisiti del progetto
+2. L’Utente Programmatore seleziona il file contenente i requisiti del %%progetto|progetto%%
 3. L’Utente Programmatore carica il file
 
 **Estensioni:**
@@ -567,7 +567,7 @@ Come Utente Programmatore devo poter aprire una cartella che conterrà i file de
 
 **User Story:**
 
-Come Utente Programmatore devo poter caricare il file che conterrà i requisiti del progetto, che verranno analizzati durante il controllo della loro implementazione
+Come Utente Programmatore devo poter caricare il file che conterrà i requisiti del %%progetto|progetto%%, che verranno analizzati durante il controllo della loro implementazione
 
 #### UC12 - Visualizzazione errore di parsing dei dati
 
@@ -590,7 +590,7 @@ Come Utente Programmatore devo poter caricare il file che conterrà i requisiti 
 
 **Scenario principale:**
 
-1. L’applicativo visualizza un messaggio contenente l’errore riportato
+1. L’%%applicativo|applicativo%% visualizza un messaggio contenente l’errore riportato
 
 **User Story:**
 
@@ -606,7 +606,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 
 **Precondizioni:**
 
-- L’Utente Programmatore sta aprendo un nuovo progetto (UC11)
+- L’Utente Programmatore sta aprendo un nuovo %%progetto|progetto%% (UC11)
 
 **Postcondizioni:**
 
@@ -615,7 +615,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 **Scenario principale:**
 
 1. L’Utente Programmatore si reca nella scheda dedicata
-2. L’Utente Programmatore seleziona i filtri da applicare al progetto corrente
+2. L’Utente Programmatore seleziona i filtri da applicare al %%progetto|progetto%% corrente
 
 **Estensioni:**
 
@@ -624,13 +624,13 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 
 **User Story:**
 
-Come Utente Programmatore devo poter selezionare i filtri che applicherò al progetto corrente per ridurre il quantitativo di file su cui andrò a fare il controllo dell’implementazione dei requisiti
+Come Utente Programmatore devo poter selezionare i filtri che applicherò al %%progetto|progetto%% corrente per ridurre il quantitativo di file su cui andrò a fare il controllo dell’implementazione dei requisiti
 
 #### UC13 - Visualizzazione errore filtro non trovato
 
 **Estende:**
 
-- UC11.3 - Inserimento filtri per il progetto corrente
+- UC11.3 - Inserimento filtri per il %%progetto|progetto%% corrente
 
 **Attore primario:**
 
@@ -638,8 +638,8 @@ Come Utente Programmatore devo poter selezionare i filtri che applicherò al pro
 
 **Precondizioni:**
 
-- L’Utente Programmatore ha inserito i filtri per il progetto corrente (UC11.3)
-- Almeno uno dei filtri non viene trovato dall’Applicativo
+- L’Utente Programmatore ha inserito i filtri per il %%progetto|progetto%% corrente (UC11.3)
+- Almeno uno dei filtri non viene trovato dall’%%Applicativo|applicativo%%
 
 **Postcondizioni:**
 
@@ -647,17 +647,17 @@ Come Utente Programmatore devo poter selezionare i filtri che applicherò al pro
 
 **Scenario principale:**
 
-1. L’applicativo visualizza un messaggio contenente l’errore riportato
+1. L’%%applicativo|applicativo%% visualizza un messaggio contenente l’errore riportato
 
 **User Story:**
 
-Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se il filtro inserito non viene trovato dall’Applicativo.
+Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se il filtro inserito non viene trovato dall’%%Applicativo|applicativo%%.
 
 #### UC14 - Visualizzazione errore di esecuzione filtro
 
 **Estende:**
 
-- UC11.3 - Inserimento filtri per il progetto corrente
+- UC11.3 - Inserimento filtri per il %%progetto|progetto%% corrente
 
 **Attore primario:**
 
@@ -665,7 +665,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 
 **Precondizioni:**
 
-- L’Utente Programmatore ha inserito i filtri per il progetto corrente (UC11.3)
+- L’Utente Programmatore ha inserito i filtri per il %%progetto|progetto%% corrente (UC11.3)
 - L'esecuzione di almeno un filtro non termina correttamente
 
 **Postcondizioni:**
@@ -674,7 +674,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 
 **Scenario principale:**
 
-1. L’applicativo visualizza un messaggio contenente l’errore riportato
+1. L’%%applicativo|applicativo%% visualizza un messaggio contenente l’errore riportato
 
 **User Story:**
 
@@ -690,12 +690,12 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 
 **Attore secondario:**
 
-- Ollama
+- %%Ollama|ollama%%
 
 **Precondizioni:**
 
 - L’Utente Programmatore ha configurato l’estensione (UC1)
-- L’Utente Programmatore ha aperto un nuovo progetto (UC11)
+- L’Utente Programmatore ha aperto un nuovo %%progetto|progetto%% (UC11)
 - L’Utente Programmatore si trova nella scheda dedicata
 
 **Postcondizioni:**
@@ -707,7 +707,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 1. L’Utente Programmatore seleziona i requisiti per i quali vuole effettuare il controllo (UC15.1)
 2. L’Utente Programmatore avvia la procedura di controllo del codice.
 3. L’Utente Programmatore fornisce feedback sui risultati forniti dal sistema (UC15.2)
-4. L’Applicativo aggiorna la struttura dati
+4. L’%%Applicativo|applicativo%% aggiorna la struttura dati
 
 **Estensioni:**
 
@@ -730,8 +730,8 @@ Come Utente Programmatore devo poter avviare un controllo dello stato di impleme
 **Precondizioni:**
 
 - L’Utente Programmatore ha configurato l’estensione (UC1)
-- L’Utente Programmatore ha aperto un nuovo progetto (UC11)
-- L’Utente Programmatore ha un file del progetto aperto.
+- L’Utente Programmatore ha aperto un nuovo %%progetto|progetto%% (UC11)
+- L’Utente Programmatore ha un file del %%progetto|progetto%% aperto.
 
 **Postcondizioni:**
 
@@ -758,7 +758,7 @@ Come Utente Programmatore devo poter selezionare una porzione di codice in cui e
 **Precondizioni:**
 
 - L’Utente Programmatore ha configurato l’estensione (UC1)
-- L’Utente Programmatore ha aperto un nuovo progetto (UC11)
+- L’Utente Programmatore ha aperto un nuovo %%progetto|progetto%% (UC11)
 
 **Postcondizioni:**
 
@@ -766,11 +766,11 @@ Come Utente Programmatore devo poter selezionare una porzione di codice in cui e
 
 **Scenario principale:**
 
-1. L’Utente Programmatore seleziona tutto il codice del progetto.
+1. L’Utente Programmatore seleziona tutto il codice del %%progetto|progetto%%.
 2. L’Utente Programmatore avvia il controllo sul codice selezionato (UC11)
 
 **User Story:**
-Come Utente Programmatore devo poter selezionare tutto il codice del progetto per eseguire il controllo dell’implementazione dei requisiti al fine di aggiornare la struttura dati.
+Come Utente Programmatore devo poter selezionare tutto il codice del %%progetto|progetto%% per eseguire il controllo dell’implementazione dei requisiti al fine di aggiornare la struttura dati.
 
 #### UC18 - Visualizzazione errore di richiesta al modello
 
@@ -785,9 +785,9 @@ Come Utente Programmatore devo poter selezionare tutto il codice del progetto pe
 **Precondizioni:**
 
 - L’Utente Programmatore ha configurato l’estensione (UC1)
-- L’Utente Programmatore ha aperto un nuovo progetto (UC11)
-- L’Applicativo ha avviato un Controllo di implementazione dei requisiti (UC15)
-- L’attore secondario Ollama non è riuscito ad elaborare la richiesta.
+- L’Utente Programmatore ha aperto un nuovo %%progetto|progetto%% (UC11)
+- L’%%Applicativo|applicativo%% ha avviato un Controllo di implementazione dei requisiti (UC15)
+- L’attore secondario %%Ollama|ollama%% non è riuscito ad elaborare la richiesta.
 
 **Postcondizioni:**
 
@@ -795,7 +795,7 @@ Come Utente Programmatore devo poter selezionare tutto il codice del progetto pe
 
 **Scenario principale:**
 
-1. L’Applicativo invia la richiesta ad Ollama
+1. L’%%Applicativo|applicativo%% invia la richiesta ad %%Ollama|ollama%%
 2. Se viene restituito un errore viene visualizzato un messaggio contenente l’errore riportato.
 
 **User Story:**
@@ -812,7 +812,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 **Precondizioni:**
 
 - L’Utente Programmatore ha configurato l’estensione (UC1)
-- L’Utente Programmatore ha aperto un nuovo progetto (UC11)
+- L’Utente Programmatore ha aperto un nuovo %%progetto|progetto%% (UC11)
 - L’Utente Programmatore si trova nella scheda dedicata
 
 **Postcondizioni:**
@@ -838,12 +838,12 @@ Come Utente Programmatore devo poter selezionare tutti i requisiti sui quali vog
 **Precondizioni:**
 
 - L’Utente Programmatore ha configurato l’estensione (UC1)
-- L’Utente Programmatore ha aperto un nuovo progetto (UC11)
+- L’Utente Programmatore ha aperto un nuovo %%progetto|progetto%% (UC11)
 - L’Utente Programmatore si trova nella scheda dedicata
 
 **Postcondizioni:**
 
-- Tutti i risultati forniti dall’Applicativo sono stati revisionati dall’Utente Programmatore
+- Tutti i risultati forniti dall’%%Applicativo|applicativo%% sono stati revisionati dall’Utente Programmatore
 
 **Scenario principale:**
 
@@ -852,7 +852,7 @@ Come Utente Programmatore devo poter selezionare tutti i requisiti sui quali vog
 3. L’Utente Programmatore revisiona la risposta fornita.
 
 **User Story:**
-Come Utente Programmatore devo poter revisionare la risposta fornita dall’Applicativo durante il controllo dell’implementazione.
+Come Utente Programmatore devo poter revisionare la risposta fornita dall’%%Applicativo|applicativo%% durante il controllo dell’implementazione.
 
 <img src="/img/UseCases/UC19.png" alt="Visualizzazione porzione di codice che implementa un requisito" data-width="70%" />
 
@@ -865,7 +865,7 @@ Come Utente Programmatore devo poter revisionare la risposta fornita dall’Appl
 **Precondizioni:**
 
 - L’Utente Programmatore ha configurato l’estensione (UC1)
-- L’Utente Programmatore ha aperto un nuovo progetto (UC11)
+- L’Utente Programmatore ha aperto un nuovo %%progetto|progetto%% (UC11)
 - L’Utente Programmatore ha aperto la scheda dedicata
 
 **Postcondizioni:**
@@ -882,7 +882,7 @@ Come Utente Programmatore devo poter revisionare la risposta fornita dall’Appl
 - UC20 - Visualizzazione errore di riferimento alla porzione di codice che implementa il requisito
 
 **User Story:**
-Come Utente Programmatore devo poter visualizzare, per ogni requisito che risulta implementato all’interno dell'Applicativo, il relativo codice sorgente che lo implementa.
+Come Utente Programmatore devo poter visualizzare, per ogni requisito che risulta implementato all’interno dell'%%Applicativo|applicativo%%, il relativo codice sorgente che lo implementa.
 
 #### UC20 - Visualizzazione errore di riferimento alla porzione di codice che implementa il requisito
 
@@ -897,9 +897,9 @@ Come Utente Programmatore devo poter visualizzare, per ogni requisito che risult
 **Precondizioni:**
 
 - L’Utente Programmatore ha configurato l’estensione (UC1)
-- L’Utente Programmatore ha aperto un nuovo progetto (UC11)
+- L’Utente Programmatore ha aperto un nuovo %%progetto|progetto%% (UC11)
 - L’Utente Programmatore vuole visualizzare il codice che implementa un requisito (UC19)
-- L’Applicativo non è in grado di visualizzare la porzione di codice corrispondente
+- L’%%Applicativo|applicativo%% non è in grado di visualizzare la porzione di codice corrispondente
 
 **Postcondizioni:**
 
@@ -907,11 +907,11 @@ Come Utente Programmatore devo poter visualizzare, per ogni requisito che risult
 
 **Scenario principale:**
 
-1. L’Applicativo esegue la procedura di visualizzazione della porzione di codice.
-2. Se si verifica un errore, viene visualizzato un messaggio che descrive il problema riscontrato.
+1. L’%%Applicativo|applicativo%% esegue la procedura di visualizzazione della porzione di codice.
+2. Se si %%verifica|verifica%% un errore, viene visualizzato un messaggio che descrive il problema riscontrato.
 
 **User Story:**
-Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se l’Applicativo non è in grado di visualizzare la porzione di codice che implementa il requisito selezionato.
+Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se l’%%Applicativo|applicativo%% non è in grado di visualizzare la porzione di codice che implementa il requisito selezionato.
 
 <img src="/img/UseCases/UC21.png" alt="Visualizzazione della struttura dati" data-width="70%" />
 
@@ -924,7 +924,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 **Precondizioni:**
 
 - L’Utente Programmatore ha configurato l’estensione (UC1)
-- L’Utente Programmatore ha aperto un nuovo progetto (UC11)
+- L’Utente Programmatore ha aperto un nuovo %%progetto|progetto%% (UC11)
 - L'Utente Programmatore si trova nella scheda dedicata
 
 **Postcondizioni:**
@@ -940,7 +940,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 - UC22 - Visualizzazione errore nella rappresentazione della struttura dati
 
 **User Story:**
-Come Utente Programmatore devo poter visualizzare in ogni momento una tabella con lo stato di implementazione di ogni requisito al fine di avere una chiara percezione dello stato del progetto.
+Come Utente Programmatore devo poter visualizzare in ogni momento una tabella con lo stato di implementazione di ogni requisito al fine di avere una chiara percezione dello stato del %%progetto|progetto%%.
 
 #### UC22 - Visualizzazione errore nella rappresentazione della struttura dati
 
@@ -955,9 +955,9 @@ Come Utente Programmatore devo poter visualizzare in ogni momento una tabella co
 **Precondizioni:**
 
 - L’Utente Programmatore ha configurato l’estensione (UC1)
-- L’Utente Programmatore ha aperto un nuovo progetto (UC11)
+- L’Utente Programmatore ha aperto un nuovo %%progetto|progetto%% (UC11)
 - L’Utente Programmatore vuole visualizzare la struttura dati (UC21).
-- L’Applicativo non è in grado di visualizzare la struttura dati
+- L’%%Applicativo|applicativo%% non è in grado di visualizzare la struttura dati
 
 **Postcondizioni:**
 
@@ -965,12 +965,11 @@ Come Utente Programmatore devo poter visualizzare in ogni momento una tabella co
 
 **Scenario principale:**
 
-1. L’Applicativo esegue la procedura di visualizzazione della struttura dati.
-2. Se si verifica un errore, viene visualizzato un messaggio che descrive il problema riscontrato.
+1. L’%%Applicativo|applicativo%% esegue la procedura di visualizzazione della struttura dati.
+2. Se si %%verifica|verifica%% un errore, viene visualizzato un messaggio che descrive il problema riscontrato.
 
 **User Story:**
-Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se l’Applicativo non è in grado di visualizzare la struttura dati.
-
+Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se l’%%Applicativo|applicativo%% non è in grado di visualizzare la struttura dati.
 ## Analisi dei requisiti
 
 ### Scelta dell'identificativo
