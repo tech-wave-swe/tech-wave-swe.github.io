@@ -21,13 +21,15 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 <!-- ::: -->
 
-| Data       | Versione | Descrizione                             | Autore       | Data Verifica | Verificatore |
-| ---------- | -------- | --------------------------------------- | ------------ | ------------- | ------------ |
-| 05/02/2025 | 2.2.0    | Aggiunta Use Cases                      | Monetti Luca |               |              |
-| 04/02/2025 | 2.1.0    | Corretta la formattazione del documento | Monetti Luca |               |              |
-| 10/01/2025 | 2.0.0    | Riscrittura del documento               | Pistori Gaia | 10/01/2025    | Monetti Luca |
-| 03/01/2025 | 1.1.0    | Aggiunta termini glossario              | Pistori Gaia | 04/01/2025    | Monetti Luca |
-| 13/12/2024 | 1.0.0    | Prima stesura del documento             | Pistori Gaia | 13/12/2024    | Monetti Luca |
+| Data       | Versione | Descrizione                             | Autore                | Data Verifica | Verificatore          |
+|------------|----------|-----------------------------------------|-----------------------|---------------|-----------------------|
+| 14/02/2025 | 2.4.0    | Correzioni documento                    | Vasquez Manuel Felipe |               |                       |
+| 09/02/2025 | 2.3.0    | Aggiunta Use Cases                      | Monetti Luca          | 14/02/2025    | Vasquez Manuel Felipe |
+| 05/02/2025 | 2.2.0    | Aggiunta Use Cases                      | Monetti Luca          | 14/02/2025    | Vasquez Manuel Felipe |
+| 04/02/2025 | 2.1.0    | Corretta la formattazione del documento | Monetti Luca          | 14/02/2025    | Vasquez Manuel Felipe |
+| 10/01/2025 | 2.0.0    | Riscrittura del documento               | Pistori Gaia          | 10/01/2025    | Monetti Luca          |
+| 03/01/2025 | 1.1.0    | Aggiunta termini glossario              | Pistori Gaia          | 04/01/2025    | Monetti Luca          |
+| 13/12/2024 | 1.0.0    | Prima stesura del documento             | Pistori Gaia          | 13/12/2024    | Monetti Luca          |
 
 Table: Changelog
 
@@ -53,7 +55,7 @@ Nello sviluppo di software per sistemi embedded la parte di controllo dell'imple
 
 ### Attori
 
-### Eleco casi d'uso
+### Elenco casi d'uso
 
 <img src="/img/UseCases/UC1.png" alt="Configurazione dell'estensione" data-width="70%" />
 
@@ -451,7 +453,7 @@ Come Utente Programmatore devo poter indicare la ‘temperature’ dei modelli n
 
 **Estensioni:**
 
-- UC6 - Visualizzazione errore di autorizzazione
+- UC10 - Visualizzazione errore di autorizzazione
 
 **User Story:**
 
@@ -975,11 +977,11 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 
 I requisiti vengono identificati ciascuno da un codice identificativo nel formato Rxz_n:
 
-- tipologia del requisito
+- **x**: tipologia del requisito
   - **F** = funzionale: indicano %%funzionalità|funzionalità%% che l'%%Applicativo|applicativo%% deve fornire
   - **T** = tecnico: indicano vincoli riguardo le tecnologie che l'%%Applicativo|applicativo%% deve utilizzare
   - **Q** = qualitativo: indicano vincoli riguardo obbiettivi minimi di %%qualità|qualità%%
-- obbligatorietà del requisito
+- **z**: obbligatorietà del requisito
   - **O** = obbligatorio : irrinunciabile per qualcuno degli stakeholder
   - **D** = desiderabili : non strettamente necessario ma con valore aggiunto riconoscibile
   - **P** = opzionali : utile o contrattabile più avanti
@@ -1019,7 +1021,7 @@ I requisiti vengono identificati ciascuno da un codice identificativo nel format
   - **RFO_26**: L'%%Applicativo|applicativo%% deve generare una notifica di errore se la struttura dati non è leggibile (es. file cancellato o corrotto).
   - **RFP_27**: L'%%Applicativo|applicativo%% richiede all'utente di fornire un feedback riguardo la correttezza dei risultati della ricerca memorizzati nella struttura dati mostrata.
   - **RFO_28**: L'%%Applicativo|applicativo%% deve generare una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile (es. puntatore scorretto, file cancellato o corrotto).
-  - **RFP_39**: L'%%Applicativo|applicativo%% può fornire delle statistiche di correttezza per il confronto dei modelli messi a disposizione tra le opzioni.
+  - **RFP_29**: L'%%Applicativo|applicativo%% può fornire delle statistiche di correttezza per il confronto dei modelli messi a disposizione tra le opzioni.
 
 ### Requisiti tecnici e di vincolo
 
