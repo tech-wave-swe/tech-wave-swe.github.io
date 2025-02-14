@@ -55,7 +55,7 @@ Nello sviluppo di software per sistemi embedded la parte di controllo dell'imple
 
 ### Eleco casi d'uso
 
-![Configurazione dell'estensione](/img/UseCases/UC1.png)
+<img src="/img/UseCases/UC1.png" alt="Configurazione dell'estensione" data-width="70%" />
 
 #### UC1 - Configurazione dell'estensione
 
@@ -85,7 +85,7 @@ Nello sviluppo di software per sistemi embedded la parte di controllo dell'imple
 
 Come Utente Programmatore devo poter configurare l’estensione modificando le impostazioni disponibili tramite valori predefiniti o personalizzati per adattarne il funzionamento al sistema utilizzato.
 
-![Inserimento endpoint Ollama](/img/UseCases/UC1.1.png)
+<img src="/img/UseCases/UC1.1.png" alt="Inserimento endpoint Ollama" data-width="70%" />
 
 #### UC1.1 - Inserimento endpoint Ollama
 
@@ -169,7 +169,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 **User Story:**
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se l’endpoint indicato non fa riferimento ad una destinazione raggiungibile.
 
-![Selezione di un modello di generazione del codice](/img/UseCases/UC1.2.png)
+<img src="/img/UseCases/UC1.2.png" alt="Selezione di un modello di generazione del codice" data-width="70%" />
 
 #### UC1.2 - Selezione di un modello di generazione del codice
 
@@ -314,7 +314,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 **User Story:**
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se il modello a cui voglio fare la richiesta non esiste.
 
-![Selezione di un modello di embedding](/img/UseCases/UC1.3.png)
+<img src="/img/UseCases/UC1.3.png" alt="Selezione di un modello di embedding" data-width="70%" />
 
 #### UC1.3 - Selezione di un modello di embedding
 
@@ -403,7 +403,7 @@ Come Utente Programmatore devo poter inserire il nome di un modello custom per p
 
 Come Utente Programmatore devo poter selezionare un modello tra una selezione proposta per poter personalizzare il modo con il quale vengono generate le risposte.
 
-![Selezione ‘temperature’ modello](/img/UseCases/UC1.4.png)
+<img src="/img/UseCases/UC1.4.png" alt="Selezione 'temperature' modello" data-width="70%" />
 
 #### UC1.4 - Selezione ‘temperature’ modello
 
@@ -428,7 +428,7 @@ Come Utente Programmatore devo poter selezionare un modello tra una selezione pr
 
 Come Utente Programmatore devo poter indicare la ‘temperature’ dei modelli necessaria per determinare il livello di casualità della risposta.
 
-![Inserimento di bearer token](/img/UseCases/UC1.5.png)
+<img src="/img/UseCases/UC1.5.png" alt="Inserimento di bearer token" data-width="70%" />
 
 #### UC1.5 - Inserimento di bearer token
 
@@ -484,7 +484,7 @@ Come Utente Programmatore devo poter indicare un bearer token necessario per l�
 **User Story:**
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se il bearer token inserito non consente l’autorizzazione.
 
-![Apertura di un progetto](/img/UseCases/UC11.png)
+<img src="/img/UseCases/UC11.png" alt="Apertura di un progetto" data-width="70%" />
 
 #### UC11 - Apertura di un progetto
 
@@ -511,7 +511,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 **User Story:**
 Come Utente Programmatore devo poter aprire un progetto su cui poi verranno effettuati i controlli di implementazione dei requisiti.
 
-![Apertura della cartella del progetto](/img/UseCases/UC11.1.png)
+<img src="/img/UseCases/UC11.1.png" alt="Apertura della cartella del progetto" data-width="70%" />
 
 #### UC11.1 - Apertura della cartella del progetto
 
@@ -537,7 +537,7 @@ Come Utente Programmatore devo poter aprire un progetto su cui poi verranno effe
 
 Come Utente Programmatore devo poter aprire una cartella che conterrà i file del progetto su cui andrò a fare il controllo dell’implementazione dei requisiti
 
-![Caricamento file dei requisiti](/img/UseCases/UC11.2.png)
+<img src="/img/UseCases/UC11.2.png" alt="Caricamento file dei requisiti" data-width="70%" />
 
 #### UC11.2 - Caricamento file dei requisiti
 
@@ -594,7 +594,7 @@ Come Utente Programmatore devo poter caricare il file che conterrà i requisiti 
 
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se il file dei requisiti contiene dati che non si trovano in uno stato consistente.
 
-![Inserimento filtri per il progetto corrente](/img/UseCases/UC11.3.png)
+<img src="/img/UseCases/UC11.3.png" alt="Inserimento filtri per il progetto corrente" data-width="70%" />
 
 #### UC11.3 - Inserimento filtri per il progetto corrente
 
@@ -678,7 +678,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se il filtro inserito non viene eseguito in modo corretto scatenando un errore.
 
-![Controllo implementazione requisiti](/img/UseCases/UC15.png)
+<img src="/img/UseCases/UC15.png" alt="Controllo implementazione requisiti" data-width="70%" />
 
 #### UC15 - Controllo implementazione requisiti
 
@@ -799,7 +799,7 @@ Come Utente Programmatore devo poter selezionare tutto il codice del progetto pe
 **User Story:**
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se la richiesta al modello non può essere soddisfatta.
 
-![Selezione dei requisiti da includere nella ricerca](/img/UseCases/UC15.1.png)
+<img src="/img/UseCases/UC15.1.png" alt="Selezione dei requisiti da includere nella ricerca" data-width="70%" />
 
 #### UC15.1 - Selezione dei requisiti da includere nella ricerca
 
@@ -825,7 +825,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 **User Story:**
 Come Utente Programmatore devo poter selezionare tutti i requisiti sui quali voglio effettuare il controllo dello stato di implementazione.
 
-![Richiesta di Feedback all’utente](/img/UseCases/UC15.2.png)
+<img src="/img/UseCases/UC15.2.png" alt="Richiesta di feedback all'utente" data-width="70%" />
 
 #### UC15.2 - Richiesta di Feedback all’utente
 
@@ -852,7 +852,7 @@ Come Utente Programmatore devo poter selezionare tutti i requisiti sui quali vog
 **User Story:**
 Come Utente Programmatore devo poter revisionare la risposta fornita dall’Applicativo durante il controllo dell’implementazione.
 
-![Visualizzazione porzione di codice che implementa un requisito](/img/UseCases/UC19.png)
+<img src="/img/UseCases/UC19.png" alt="Visualizzazione porzione di codice che implementa un requisito" data-width="70%" />
 
 #### UC19 - Visualizzazione porzione di codice che implementa un requisito
 
@@ -911,7 +911,7 @@ Come Utente Programmatore devo poter visualizzare, per ogni requisito che risult
 **User Story:**
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se l’Applicativo non è in grado di visualizzare la porzione di codice che implementa il requisito selezionato.
 
-![Visualizzazione della struttura dati](/img/UseCases/UC21.png)
+<img src="/img/UseCases/UC21.png" alt="Visualizzazione della struttura dati" data-width="70%" />
 
 #### UC21 - Visualizzazione della struttura dati
 
@@ -989,38 +989,37 @@ I requisiti vengono identificati ciascuno da un codice identificativo nel format
 
 - L'utente deve poter configurare l'%%Applicativo|applicativo%% da interfaccia grafica, in particolare:
   - **RFO_1**: L'utente può scegliere il modello da utilizzare per generare codice.
-  - **RFO_2**: L'utente può scegliere il modello da utilizzare per ricercare keyword.
-  - **RFO_3**: L'utente può scegliere il modello da utilizzare per fare pattern matching.
-  - **RFD_4**: L'utente può scegliere di utilizzare un modello custom.
-  - **RFO_5**: L'utente può selezionare uno dei modelli proposti.
-  - **RFD_6**: L'utente può impostare la temperature di ogni modello.
-  - **RFP_7**: L'utente può inserire un Bearer Token per usare %%Ollama|ollama%% in un server esterno.
-  - **RFO_8**: L'%%Applicativo|applicativo%%, in caso di errori dati da input scorretti da parte dell'utente, deve generare una notifica d'errore e permettere il reinserimento del dato.
+  - **RFO_2**: L'utente può scegliere il modello da utilizzare per l'embedding.
+  - **RFD_3**: L'utente può scegliere di utilizzare un modello custom.
+  - **RFO_4**: L'utente può selezionare uno dei modelli proposti.
+  - **RFD_5**: L'utente può impostare la temperature di ogni modello.
+  - **RFP_6**: L'utente può inserire un Bearer Token per usare %%Ollama|ollama%% in un server esterno.
+  - **RFO_7**: L'%%Applicativo|applicativo%%, in caso di errori dati da input scorretti da parte dell'utente, deve generare una notifica d'errore e permettere il reinserimento del dato.
 - L'utente per utilizzare l'%%Applicativo|applicativo%% deve indicare da interfaccia grafica le specifiche del %%progetto|progetto%%, in particolare:
-  - **RFO_9**: L'utente deve indicare la cartella del %%progetto|progetto%%.
-  - **RFO_10**: L'utente deve indicare il file con presente la lista dei requisiti.
-  - **RFD_11**: L'utente può effettuare una selezione dei requisiti da analizzare.
-  - **RFD_12**: L'utente può specificare dei filtri per selezionare i file sui quali effettuare la ricerca.
-  - **RFD_13**: L'utente può selezionare una porzione di codice sulla quale eseguire nuovamente la ricerca.
-  - **RFO_14**: L'utente può effettuare una nuova ricerca su tutto il codice.
-  - **RFO_15**: L'utente può visualizzare, tramite interfaccia grafica, la porzione di codice che implementa un requisito.
+  - **RFO_8**: L'utente deve indicare la cartella del %%progetto|progetto%%.
+  - **RFO_9**: L'utente deve indicare il file con presente la lista dei requisiti.
+  - **RFD_10**: L'utente può effettuare una selezione dei requisiti da analizzare.
+  - **RFD_11**: L'utente può specificare dei filtri per selezionare i file sui quali effettuare la ricerca.
+  - **RFD_12**: L'utente può selezionare una porzione di codice sulla quale eseguire nuovamente la ricerca.
+  - **RFO_13**: L'utente può effettuare una nuova ricerca su tutto il codice.
+  - **RFO_14**: L'utente può visualizzare, tramite interfaccia grafica, la porzione di codice che implementa un requisito.
 - L'esecuzione dell'%%Applicativo|applicativo%% deve consistere nel:
-  - **RFO_16**: L'%%Applicativo|applicativo%% deve effettuare il parsing del documento dei requisiti.
-  - **RFO_17**: L'%%Applicativo|applicativo%% deve generare una struttura dati a partire dal parsing del documento dei requisiti.
-  - **RFO_18**: L'%%Applicativo|applicativo%% deve generare una notifica di errore se il parsing non è andato a buon fine (es. formato file scorretto o non supportato).
-  - **RFO_19**: La struttura dati memorizza per ogni requisito: codice identificativo, testo del requisito, stato di implementazione (implementato o non implementato) e il puntatore al frammento di codice (funzione o parte di essa) dove presume sia implementato.
-  - **RFD_20**: L'%%Applicativo|applicativo%% per ogni requisito applica il filtro corrispondente, se presente.
-  - **RFD_21**: L'%%Applicativo|applicativo%% deve generare una notifica di errore se i filtri indicati dall'utente non sono applicabili.
-  - **RFO_22**: L'%%Applicativo|applicativo%% per ogni requisito selezionato produce il codice corrispondente interrogando il modello selezionato per la generazione del codice.
-  - **RFO_23**: L'%%Applicativo|applicativo%% deve effettuare, per ogni requisito selezionato, il pattern matching utilizzando il modello selezionato tra il codice generato (modello) e il codice del %%progetto|progetto%% (programmatore) dei file filtrati.
-  - **RFO_24**: L'%%Applicativo|applicativo%% deve generare una notifica di errore se una o più richieste ai modelli sono fallite.
-  - **RFO_25**: L'%%Applicativo|applicativo%%, alla fine dell'esecuzione, deve aggiornare la struttura dati, modificando lo stato di implementazione e il puntatore al codice.
+  - **RFO_15**: L'%%Applicativo|applicativo%% deve effettuare il parsing del documento dei requisiti.
+  - **RFO_16**: L'%%Applicativo|applicativo%% deve generare una struttura dati a partire dal parsing del documento dei requisiti.
+  - **RFO_17**: L'%%Applicativo|applicativo%% deve generare una notifica di errore se il parsing non è andato a buon fine (es. formato file scorretto o non supportato).
+  - **RFO_18**: La struttura dati memorizza per ogni requisito: codice identificativo, testo del requisito, stato di implementazione (implementato o non implementato) e il puntatore al frammento di codice (funzione o parte di essa) dove presume sia implementato.
+  - **RFD_19**: L'%%Applicativo|applicativo%% per ogni requisito applica il filtro corrispondente, se presente.
+  - **RFD_20**: L'%%Applicativo|applicativo%% deve generare una notifica di errore se i filtri indicati dall'utente non sono applicabili.
+  - **RFO_21**: L'%%Applicativo|applicativo%% per ogni requisito selezionato produce il codice corrispondente interrogando il modello selezionato per la generazione del codice.
+  - **RFO_22**: L'%%Applicativo|applicativo%% deve effettuare, per ogni requisito selezionato, il pattern matching utilizzando il modello selezionato tra il codice generato (modello) e il codice del %%progetto|progetto%% (programmatore) dei file filtrati.
+  - **RFO_23**: L'%%Applicativo|applicativo%% deve generare una notifica di errore se una o più richieste ai modelli sono fallite.
+  - **RFO_24**: L'%%Applicativo|applicativo%%, alla fine dell'esecuzione, deve aggiornare la struttura dati, modificando lo stato di implementazione e il puntatore al codice.
 - Al termine dell'esecuzione:
-  - **RFO_26**: L'%%Applicativo|applicativo%% deve fornire un'interfaccia grafica per la visualizzazione della struttura dati.
-  - **RFO_27**: L'%%Applicativo|applicativo%% deve generare una notifica di errore se la struttura dati non è leggibile (es. file cancellato o corrotto).
-  - **RFP_28**: L'%%Applicativo|applicativo%% richiede all'utente di fornire un feedback riguardo la correttezza dei risultati della ricerca memorizzati nella struttura dati mostrata.
-  - **RFO_29**: L'%%Applicativo|applicativo%% deve generare una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile (es. puntatore scorretto, file cancellato o corrotto).
-  - **RFP_30**: L'%%Applicativo|applicativo%% può fornire delle statistiche di correttezza per il confronto dei modelli messi a disposizione tra le opzioni.
+  - **RFO_25**: L'%%Applicativo|applicativo%% deve fornire un'interfaccia grafica per la visualizzazione della struttura dati.
+  - **RFO_26**: L'%%Applicativo|applicativo%% deve generare una notifica di errore se la struttura dati non è leggibile (es. file cancellato o corrotto).
+  - **RFP_27**: L'%%Applicativo|applicativo%% richiede all'utente di fornire un feedback riguardo la correttezza dei risultati della ricerca memorizzati nella struttura dati mostrata.
+  - **RFO_28**: L'%%Applicativo|applicativo%% deve generare una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile (es. puntatore scorretto, file cancellato o corrotto).
+  - **RFP_39**: L'%%Applicativo|applicativo%% può fornire delle statistiche di correttezza per il confronto dei modelli messi a disposizione tra le opzioni.
 
 ### Requisiti tecnici e di vincolo
 
