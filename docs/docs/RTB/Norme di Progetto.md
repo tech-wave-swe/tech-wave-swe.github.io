@@ -238,7 +238,7 @@ Di seguito vengono elencati tutti i metadati utilizzabili all'interno dei docume
     status: present | absent
 ```
 
-- **duration**: Metadato presente solo all'interno dei verbali interni ed esterni. Rappresenta la durata della riunione scritta nel formato **[numero ore]h**.
+- **duration**: Metadato presente solo all'interno dei verbali interni ed esterni. Rappresenta la durata della riunione scritta nel formato **\[numero ore\]h**.
 
 ###### Intestazione
 
@@ -335,13 +335,13 @@ Il documento dell'%%Analisi dei Requisiti|analisi_dei_requisiti%% è il risultat
     - **Opzionali**: utile o contrattabile più avanti.
 - la **lista degli Use Case**, ciascuno descritto tramite il rispettivo use case diagram (UML) e accompagnato dalla sua descrizione testuale dove vengono specificati:
   - **Attori primari**: utente principale.
-  - **Attori secondari** [se presenti]: utente secondario.
+  - **Attori secondari** \[se presenti\]: utente secondario.
   - **Precondizioni**
   - **Postcondizioni**
   - **Scenario principale**
   - **User story**
-  - **Generalizza** [se presente]: use case genitore.
-  - **Estensioni** [se presenti]: use case che arrivano dal costrutto extend.
+  - **Generalizza** \[se presente\]: use case genitore.
+  - **Estensioni** \[se presenti\]: use case che arrivano dal costrutto extend.
 
 ###### Documento di Piano di Progetto
 
@@ -387,7 +387,7 @@ Per i documenti in versione pdf:
   - Titoli delle sezioni
 - Corsivo:
   - Parole o frasi da enfatizzare
-- Corsivo seguito da pendice [G]:
+- Corsivo seguito da pendice \[G\]:
   - Parola appartenente al glossario
 
 #### Strumenti
@@ -466,16 +466,16 @@ I Test di Accettazione sono progettati per dimostrare che i requisiti individuat
 
 ###### Codici identificativi
 
-Ad ogni test viene associato un codice identificativo al fine di permettere il riferimento univoco ad un test. Questo codice rispetta la seguente struttura: **T[ Tipologia ][ ID ]**
+Ad ogni test viene associato un codice identificativo al fine di permettere il riferimento univoco ad un test. Questo codice rispetta la seguente struttura: **T\[ Tipologia \]\[ ID \]**
 
 Dove:
 
-- [ Tipologia ]: Rappresenta il tipo di test:
+- \[ Tipologia \]: Rappresenta il tipo di test:
   - U: Unità
   - I: Integrazione
   - S: Sistema
   - A: Accettazione
-- [ ID ]: Numero progressivo associato al test all'interno del suo tipo.
+- \[ ID \]: Numero progressivo associato al test all'interno del suo tipo.
 
 ###### Stato dei test
 
@@ -573,9 +573,9 @@ All'interno di un repository esistono diverse tipologie di branch:
 
 - **main**: Rappresenta il branch principale. Contiene l'ultima versione approvata del %%prodotto|prodotto%% e della documentazione annessa.
 - **develop**: Rappresenta il branch principale di sviluppo. Contiene tutti i file sorgente che hanno passato il processo di verifica. Il branch develop è l'unico branch che può richiedere una Pull Request al branch main.
-- **feature**: Ogni branch feature rappresenta una funzionalità alla quale stanno lavorando uno o più membri del gruppo. Ogni branche feature è legato ad un ticket su Jira e deve possedere la seguente nomenclatura: **[CODICE-TICKET]-[BREVE-DESCRIZIONE]**.
-  - [CODICE-TICKET]: Indica il codice del ticket su Jira corrispondente.
-  - [BREVE-DESCRIZIONE]: Indica una breve descrizione del compito.
+- **feature**: Ogni branch feature rappresenta una funzionalità alla quale stanno lavorando uno o più membri del gruppo. Ogni branche feature è legato ad un ticket su Jira e deve possedere la seguente nomenclatura: **\[CODICE-TICKET\]-\[BREVE-DESCRIZIONE\]**.
+  - \[CODICE-TICKET\]: Indica il codice del ticket su Jira corrispondente.
+  - \[BREVE-DESCRIZIONE\]: Indica una breve descrizione del compito.
 
 ##### Flusso generale di sviluppo
 
@@ -607,11 +607,11 @@ I rischi individuati all'interno del %%progetto|progetto%% sono specificati all'
 
 Per identificare univocamente ogni rischio esso viene associato ad un codice identificativo basato sulla seguente convenzione: **R [ Tipologia ] [ Indice ] - [ Nome Associato ]**, dove:
 
-- [ Tipologia ] : Rappresenta il tipo di rischio descritto.
+- \[ Tipologia \] : Rappresenta il tipo di rischio descritto.
   - T: Rischio Tecnico
   - O: Rischio Organizzativo
-- [ Indice ] : Numero progressivo interno alla Tipologia.
-- [ Nome Associato ] : Nome che descrive brevemente il rischio.
+- \[ Indice \] : Numero progressivo interno alla Tipologia.
+- \[ Nome Associato \] : Nome che descrive brevemente il rischio.
 
 #### Identificazione dei problemi
 
@@ -646,13 +646,13 @@ L'%%attività|attività%% di miglioramento continuo e correzione adotta il ciclo
 
 #### Struttura e identificazione delle metriche
 
-Ogni metrica definita all'interno del Piano di Qualifica è identificata da un codice che rispetta la seguente convenzione: **M [ Tipologia ] [ Codice ] [P|S|Q] [ Abbreviazione ]**, dove:
+Ogni metrica definita all'interno del Piano di Qualifica è identificata da un codice che rispetta la seguente convenzione: **M \[ Tipologia \] \[ Codice \] \[P|S|Q\] \[ Abbreviazione \]**, dove:
 
-- [ Tipologia ]: Rappresenta la tipologia di metrica considerata
+- \[ Tipologia \]: Rappresenta la tipologia di metrica considerata
   - PC
   - PR
-- [ Codice ]: Codice numerico progressivo interno alla Tipologia.
-- [ Abbreviazione ]: Iniziali del nome della metrica.
+- \[ Codice \]: Codice numerico progressivo interno alla Tipologia.
+- \[ Abbreviazione \]: Iniziali del nome della metrica.
 
 Ad ogni metrica è inoltre associato:
 
