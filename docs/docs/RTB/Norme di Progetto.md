@@ -523,9 +523,9 @@ Ogni %%progetto|progetto%% sarà interamente contenuto all’interno di un unico
 Di seguito sono elencati tutti i repository attualmente presenti:
 
 - tech-wave-swe.github.io: Repository principale che raccoglie tutto il codice sorgente %%prodotto|prodotto%% durante il ciclo di vita del %%progetto|progetto%%. La separazione tra documentazione e software è garantita da una struttura organizzata in cartelle dedicate, mentre l’utilizzo delle Github Action consente di gestire le diverse automazioni in modo autonomo ed efficiente.
-  Riferimento: <https://github.com/tech-wave-swe/tech-wave-swe.github.io>.
+  Riferimento: [https://github.com/tech-wave-swe/tech-wave-swe.github.io](https://github.com/tech-wave-swe/tech-wave-swe.github.io).
 - DocumentStyle: Contiene le classi utilizzate per la generazione dei PDF.
-  Riferimento: <https://github.com/tech-wave-swe/DocumentStyle>.
+  Riferimento: [https://github.com/tech-wave-swe/DocumentStyle](https://github.com/tech-wave-swe/DocumentStyle).
 
 #### Sincronizzazione e Branching
 
@@ -798,7 +798,7 @@ Le comunicazioni interne avvengono tra i vari membri del gruppo su canali apposi
   - gruppo: scambio di messaggi semi-formali strettamente inerenti al %%progetto|progetto%%.
   - singola: scambio di messaggi informali tra membri.
 
-Le comunicazioni esterne avvengono tra il gruppo ed il proponente e %%committente|committente%%. Queste hanno, generalmente, un valore importante e vengono adeguatamente preparate tramite riunioni di gruppo. Gli strumenti utilizzati per queste comunicazioni sono: **Zoom** e **Google Mail** (tramite l'indirizzo <techwave.unipd@gmail.com>). Il registro è sempre formale e il mediatore predisposto per questo tipo di comunicazioni è il Responsabile di %%Progetto|progetto%%.
+Le comunicazioni esterne avvengono tra il gruppo ed il proponente e %%committente|committente%%. Queste hanno, generalmente, un valore importante e vengono adeguatamente preparate tramite riunioni di gruppo. Gli strumenti utilizzati per queste comunicazioni sono: **Zoom** e **Google Mail** (tramite l'indirizzo [techwave.unipd@gmail.com](techwave.unipd@gmail.com)). Il registro è sempre formale e il mediatore predisposto per questo tipo di comunicazioni è il Responsabile di %%Progetto|progetto%%.
 
 ##### Riunioni
 
@@ -839,7 +839,7 @@ Ogni categoria di canale può avere un numero variabile di sottocanali utilizzat
   Strumento utilizzato come directory condivisa dai membri del gruppo per archiviazione di file temporanei o non ufficiali. In questa directory si ha accesso alla suite Google con Docs, Sheets, Slides.
 
 - **Google Mail**:
-  Strumento per lo scambio di email mediante l'indirizzo di posta condiviso <techwave.unipd@gmail.com> utilizzato per comunicazioni esterne con proponente e %%committente|committente%%.
+  Strumento per lo scambio di email mediante l'indirizzo di posta condiviso [techwave.unipd@gmail.com](techwave.unipd@gmail.com) utilizzato per comunicazioni esterne con proponente e %%committente|committente%%.
 
 - **Zoom**:
   Strumento di comunicazione video sincrona con il proponente.
@@ -874,13 +874,13 @@ Per garantire che tutti i membri del gruppo possano lavorare alla stessa velocit
 
 Vengono riportati, di seguito, riferimenti alla documentazione dei vari strumenti/framework utilizzati:
 
-LaTeX: <https://www.overleaf.com/learn>.
+LaTeX: [https://www.overleaf.com/learn](https://www.overleaf.com/learn).
 
-GitHub: <https://docs.github.com>.
+GitHub: [https://docs.github.com](https://docs.github.com).
 
-Jira: <https://www.atlassian.com/software/jira/guides/getting-started/introduction>.
+Jira: [https://www.atlassian.com/software/jira/guides/getting-started/introduction](https://www.atlassian.com/software/jira/guides/getting-started/introduction).
 
-Framework SCRUM: <https://scrumguides.org/scrum-guide.html>.
+Framework SCRUM: [https://scrumguides.org/scrum-guide.html](https://scrumguides.org/scrum-guide.html).
 
 ## Standard per la qualità
 
