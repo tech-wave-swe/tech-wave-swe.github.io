@@ -21,7 +21,10 @@ jobs:
           fetch-depth: 0
 
       - name: Debug
-        run: ls -la
+        run: |
+          ls -la
+          ls -la ${{ github.workspace }}
+          git clean -fdx
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
