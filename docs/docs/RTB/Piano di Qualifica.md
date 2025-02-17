@@ -1,7 +1,15 @@
 ---
 id: piano_di_qualifica
 title: "Piano di Qualifica"
+documentclass: TWDocumentFull
+toc: true
+lof: true
+numbersections: true
+version: 1.7.0
+classification: Esterno
 ---
+
+<!-- ::: {.no-export} -->
 
 import TOCInlineWrapper from "@site/src/components/TOCInlineWrapper.jsx";
 import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
@@ -10,6 +18,8 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 <details>
   <summary>Changelog</summary>
+
+<!-- ::: -->
 
 | Data       | Versione | Descrizione                              | Autore                | Data Verifica | Verificatore          |
 |------------|----------|------------------------------------------|-----------------------|---------------|-----------------------|
@@ -22,10 +32,16 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 | 16/12/2024 | 1.1.0    | aggiunta qualità di processo             | Giulia Marcon         | 17/12/2024    | Agnese Carraro        |
 | 08/12/2024 | 1.0.0    | Prima stesura del documento              | Manuel Felipe Vasquez | 10/12/2024    | Luca Monetti          |
 
+Table: Changelog
+
+<!-- ::: {.no-export} -->
+
 </details>
 
 <TOCInlineWrapper toc={toc} numbered={true}/>
 <NumberedWrapper toc={toc}>
+
+<!-- ::: -->
 
 ## Introduzione
 
@@ -47,16 +63,16 @@ Per una definizione dei termini tecnici utilizzati in questo documento, consulta
 #### Riferimenti Normativi
 
 - **Norme di Progetto**: [Norme di Progetto](./Norme%20di%20Progetto.md)
-- **Capitolato d'Appalto C8: Requirement Tracker- Plug-in VS Code**: https://www.math.unipd.it/~tullio/IS-1/2024/Progetto/C8.pdf
+- **Capitolato d'Appalto C8: Requirement Tracker- Plug-in VS Code**: [https://www.math.unipd.it/~tullio/IS-1/2024/Progetto/C8.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Progetto/C8.pdf)
 
 #### Riferimenti Informativi
 
-- T2 - I processi di ciclo di vita del software (https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T02.pdf)
-- T7 - Qualità del software (https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T07.pdf)
-- T8 - Qualità di processo (https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T08.pdf)
-- T9 - Verifica e Validazione (https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T09.pdf)
-- T10 - Analisi Statica (https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T10.pdf)
-- T11 - Analisi Dinamica (https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T11.pdf)
+- T2 - I processi di ciclo di vita del software [https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T02.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T02.pdf)
+- T7 - Qualità del software [https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T07.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T07.pdf)
+- T8 - Qualità di processo [https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T08.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T08.pdf)
+- T9 - Verifica e Validazione [https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T09.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T09.pdf)
+- T10 - Analisi Statica [https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T10.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T10.pdf)
+- T11 - Analisi Dinamica [https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T11.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T11.pdf)
 
 - **ISO/IEC 9126**: "Software engineering - Product quality - Part 1: Quality model"
 - **ISO/IEC 12207**: "Information technology - Software life cycle processes"
@@ -79,6 +95,8 @@ Per garantire la qualità dei processi, il team adotta il modello di riferimento
 | MPCR06  | **Schedule Variance**          | Differenza tra il valore acquisito e il valore pianificato         | Valutare l'aderenza ai tempi di progetto            | ≥ -5%              | ≥ 0%                |
 | MPCR07  | **Cost Performance Index**     | Rapporto tra il valore acquisito e il costo effettivo              | Misurare l'efficienza dei costi                     | ≥ 0.95             | ≥ 1.0               |
 | MPCR08  | **Schedule Performance Index** | Rapporto tra il valore acquisito e il valore pianificato           | Misurare l'efficienza temporale                     | ≥ 0.95             | ≥ 1.0               |
+
+Table: Metriche per i processi primari
 
 #### Budget Variance
 
@@ -155,6 +173,8 @@ Per garantire la qualità dei processi, il team adotta il modello di riferimento
 | MPCS03  | **Budget At Completion**   | Totale del budget allocato per il progetto         | Gestire e controllare le risorse finanziarie complessive        | ≤ +10% del budget iniziale | Corrispondente al preventivo |
 | MPCS04  | **Indice Gulpease**        | Indice di leggibilità dei documenti                | Garantire la comprensibilità della documentazione               | ≥ 40                       | ≥ 60                         |
 
+Table: Metriche per i processi di supporto
+
 #### Estimate At Completion
 
 **Metrica**: MPCS01
@@ -200,6 +220,8 @@ Per garantire la qualità dei processi, il team adotta il modello di riferimento
 | MPCO01  | **Rischi non preventivati** | Numero di rischi emersi non pianificati inizialmente | Identificare e gestire tempestivamente nuovi rischi        | ≤ 3                | 0                   |
 | MPCO02  | **Correttezza documenti**   | Percentuale di documenti privi di errori             | Garantire la qualità e l'affidabilità della documentazione | ≥ 70%              | 100%                |
 
+Table: Metriche per i processi organizzativi
+
 #### Rischi non preventivati
 
 **Metrica**: MPCO01
@@ -231,6 +253,8 @@ Per garantire la qualità del prodotto, il team adotta il modello di riferimento
 | MPRF02  | Requisiti Desiderabili | Percentuale soddisfazione requisiti desiderabili | Fornire funzionalità aggiuntive   | ≥ 0%               | ≥ 80%               |
 | MPRF03  | Requisiti Opzionali    | Percentuale soddisfazione requisiti opzionali    | Implementare funzionalità extra   | ≥ 0%               | ≥ 50%               |
 
+Table: Metriche di funzionalità per la qualità di prodotto
+
 ### Affidabilità
 
 | Metrica | Nome               | Descrizione                                 | Obiettivo                   | Valore Accettabile | Valore Desiderabile |
@@ -240,6 +264,8 @@ Per garantire la qualità del prodotto, il team adotta il modello di riferimento
 | MPRA03  | Condition Coverage | Copertura dei test le condition             | Assicurare testing completo | ≥ 80%              | ≥ 90%               |
 | MPRA03  | Gestione Errori    | Percentuale di errori gestiti correttamente | Garantire robustezza        | ≥ 80%              | ≥ 90%               |
 
+Table: Metriche di affidabilità per la qualità di prodotto
+
 ### Usabilità
 
 | Metrica | Nome               | Descrizione                                   | Obiettivo            | Valore Accettabile | Valore Desiderabile |
@@ -248,6 +274,8 @@ Per garantire la qualità del prodotto, il team adotta il modello di riferimento
 | MPRU02  | Errori Utente      | Tasso di errori utente per operazione         | Minimizzare errori   | ≤ 10%              | ≤ 5%                |
 | MPRU03  | Prevenzione Errori | Percentuale di azioni utente errate prevenute | Proteggere da errori | ≥ 80%              | ≥ 90%               |
 
+Table: Metriche di usabilità per la qualità di prodotto
+
 ### Efficienza
 
 | Metrica | Nome                 | Descrizione                           | Obiettivo             | Valore Accettabile | Valore Desiderabile |
@@ -255,6 +283,8 @@ Per garantire la qualità del prodotto, il team adotta il modello di riferimento
 | MPRE01  | Profondità Gerarchie | Livelli di profondità delle gerarchie | Ottimizzare struttura | ≤ 7                | ≤ 5                 |
 | MPRE02  | Utilizzo Risorse     | Consumo medio CPU/memoria             | Minimizzare risorse   | ≤ 30%              | ≤ 20%               |
 | MPRE03  | Capacità             | Numero massimo di requisiti gestibili | Garantire scalabilità | ≥ 50               | ≥ 100               |
+
+Table: Metriche di efficienza per la qualità di prodotto
 
 ### Manutenibilità
 
@@ -265,6 +295,8 @@ Per garantire la qualità del prodotto, il team adotta il modello di riferimento
 | MPRM03  | Complessità | Complessità ciclomatica media per modulo | Mantenere semplicità | ≤ 10               | ≤ 7                 |
 | MPRM04  | Testabilità | Percentuale di codice coperto da test    | Facilitare testing   | ≥ 70%              | ≥ 85%               |
 
+Table: Metriche di manutenibilità per la qualità di prodotto
+
 ### Portabilità
 
 | Metrica | Nome           | Descrizione                        | Obiettivo              | Valore Accettabile | Valore Desiderabile |
@@ -272,6 +304,8 @@ Per garantire la qualità del prodotto, il team adotta il modello di riferimento
 | MPRP01  | Adattabilità   | Effort per cambio ambiente (ore)   | Facilitare portabilità | ≤ 2h               | ≤ 1h                |
 | MPRP02  | Installabilità | Tempo medio di installazione       | Semplificare setup     | ≤ 15min            | ≤ 5min              |
 | MPRP03  | Sostituibilità | Effort per sostituire impostazioni | Facilitare modifiche   | ≤ 10m              | ≤ 5min              |
+
+Table: Metriche di portabilità per la qualità di prodotto
 
 ## Specifica dei Test
 
@@ -301,6 +335,8 @@ I test di verifica e validazione vengono eseguiti in tutte le fasi del ciclo di 
 | TS13 | Verifica gestione errori generazione codice e analisi                | RFO_26,28           | Non Implementato |
 | TS14 | Verifica funzionalità di feedback sulla certezza della risposta      | RFP_27,29           | Non Implementato |
 
+Table: Test di sistema
+
 ### Test Di Accettazione
 
 | ID   | Descrizione                                      | ID Requisito | Stato            |
@@ -313,6 +349,8 @@ I test di verifica e validazione vengono eseguiti in tutte le fasi del ciclo di 
 | TA06 | Verifica supporto formato file requisiti .csv    | RTO_7        | Non Implementato |
 | TA06 | Verifica supporto formato file requisiti .reqif  | RTP_8        | Non Implementato |
 | TA07 | Verifica usabilità interfaccia grafica           | RFO_14,15    | Non Implementato |
+
+Table: Test di Accettazione
 
 ## Cruscotto di valutazione
 
@@ -368,12 +406,16 @@ L'adozione di un processo di valutazione di miglioramento continuo permette di m
 | Rotazione dei ruoli     | Difficoltà nel mantenere una rotazione efficace dei ruoli tra i membri del team, con squilibri nel carico di lavoro | Media   | Adottare un sistema di rotazione per ricoprire ruoli differenti ad ogni sprint, permettendo così l'acquisizione di competenze trasversali |
 | Coordinamento asincrono | Sfide nella comunicazione e nel coordinamento quando i membri lavorano in momenti diversi                           | Alta    | Adottare strumenti di collaborazione asincrona e stabilire procedure chiare per la documentazione delle attività                          |
 
+Table: Valutazione organizzazione
+
 ### Valutazione sui ruoli
 
 | Problema     | Descrizione                                                                                                      | Gravità | Soluzione                                                                                        |
 |--------------|------------------------------------------------------------------------------------------------------------------|---------|--------------------------------------------------------------------------------------------------|
 | Analista     | Difficoltà nell'identificazione e documentazione corretta dei requisiti di sistema                               | Media   | Si è deciso di porre maggiore attenzione alla fase di analisi attraverso revisioni più frequenti |
 | Verificatore | Criticità nell'esecuzione delle verifiche formali, con conseguente necessità di multiple iterazioni di revisione | Bassa   | Implementato un processo di verifica più approfondito in sviluppo e rilascio                     |
+
+Table: Valutazione sui ruoli
 
 ### Valutazione sugli strumenti e le tecnologie utilizzate
 
@@ -382,4 +424,10 @@ L'adozione di un processo di valutazione di miglioramento continuo permette di m
 | Typescript  | La maggior parte dei membri del gruppo non è ancora familiare con questo linguaggio di programmazione. | Bassa   | Ogni membro ha seguito autonimamente un breve tutorial per acquisire le nozioni di base.       |
 | API VS Code | La maggior parte dei membri del gruppo non conosce a fondo l'integrazione delle API in VS Code.        | Media   | Fornire documentazione dedicata e workshop per supportare l’integrazione delle API in VS Code. |
 
+Table: Valutazione delle tecnologie
+
+<!-- ::: {.no-export} -->
+
 </NumberedWrapper>
+
+<!-- ::: -->
