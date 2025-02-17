@@ -5,7 +5,7 @@ documentclass: TWDocumentFull
 toc: true
 lof: true
 numbersections: true
-version: 1.3.0
+version: 1.6.0
 classification: Interno
 ---
 
@@ -233,9 +233,10 @@ Di seguito vengono elencati tutti i metadati utilizzabili all'interno dei docume
 - **participants**: Metadato presente solo all'interno dei verbali interni ed esterni. Rappresenta i membri del gruppo presenti durante il meeting. Deve essere scritto utilizzando il seguente formato:
 
 ```markdown
-  partecipants:
-  - name: Cognome Nome
-    status: present | absent
+partecipants:
+
+- name: Cognome Nome
+  status: present | absent
 ```
 
 - **duration**: Metadato presente solo all'interno dei verbali interni ed esterni. Rappresenta la durata della riunione scritta nel formato **\[numero ore\]h**.
