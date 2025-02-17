@@ -23,7 +23,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                             | Autore                | Data Verifica | Verificatore          |
 | ---------- | -------- | --------------------------------------- | --------------------- | ------------- | --------------------- |
-| 14/02/2025 | 2.4.0    | Correzioni documento                    | Vasquez Manuel Felipe |               |                       |
+| 14/02/2025 | 2.4.0    | Correzioni documento                    | Vasquez Manuel Felipe | 15/02/2025    | Monetti Luca          |
 | 09/02/2025 | 2.3.0    | Aggiunta Use Cases                      | Monetti Luca          | 14/02/2025    | Vasquez Manuel Felipe |
 | 05/02/2025 | 2.2.0    | Aggiunta Use Cases                      | Monetti Luca          | 14/02/2025    | Vasquez Manuel Felipe |
 | 04/02/2025 | 2.1.0    | Corretta la formattazione del documento | Monetti Luca          | 14/02/2025    | Vasquez Manuel Felipe |
