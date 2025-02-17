@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # I want to retrive all the file in a specific directory
 # and then compress them into a zip file.
 
