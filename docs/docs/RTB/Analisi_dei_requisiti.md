@@ -22,7 +22,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 <!-- ::: -->
 
 | Data       | Versione | Descrizione                             | Autore                | Data Verifica | Verificatore          |
-|------------|----------|-----------------------------------------|-----------------------|---------------|-----------------------|
+| ---------- | -------- | --------------------------------------- | --------------------- | ------------- | --------------------- |
 | 14/02/2025 | 2.4.0    | Correzioni documento                    | Vasquez Manuel Felipe |               |                       |
 | 09/02/2025 | 2.3.0    | Aggiunta Use Cases                      | Monetti Luca          | 14/02/2025    | Vasquez Manuel Felipe |
 | 05/02/2025 | 2.2.0    | Aggiunta Use Cases                      | Monetti Luca          | 14/02/2025    | Vasquez Manuel Felipe |
@@ -53,7 +53,17 @@ Nello sviluppo di software per sistemi embedded la parte di controllo dell'imple
 
 ### Introduzione
 
+Questa sezione illustra i casi d’uso delineati dopo l’analisi del Capitolato, il confronto con il %%proponente|proponente%% e le discussioni svolte durante le riunioni interne.
+
 ### Attori
+
+L'%%Applicativo|applicativo%% si interfaccia con un singolo attore primario:
+
+- **Utente Programmatore**: Utente principale dell'%%applicativo|applicativo%%. Ha accesso a tutte le funzionalità previste e utilizza l'%%applicativo|applicativo%% durante il flusso di lavoro.
+
+L'%%Applicativo|applicativo%% si intefaccia con un singolo attore secondario:
+
+- **%%Ollama|ollama%%**: Strumento o framework per lavorare con modelli di IA in un contesto integrato.
 
 ### Elenco casi d'uso
 
@@ -87,6 +97,8 @@ Nello sviluppo di software per sistemi embedded la parte di controllo dell'imple
 
 Come Utente Programmatore devo poter configurare l’estensione modificando le impostazioni disponibili tramite valori predefiniti o personalizzati per adattarne il funzionamento al sistema utilizzato.
 
+---
+
 <img src="/img/UseCases/UC1.1.png" alt="Inserimento endpoint Ollama" data-width="70%" />
 
 #### UC1.1 - Inserimento endpoint Ollama
@@ -117,6 +129,8 @@ Come Utente Programmatore devo poter configurare l’estensione modificando le i
 
 Come Utente Programmatore devo poter indicare l’endpoint dell’%%applicativo|applicativo%% %%Ollama|ollama%% necessario per l’interrogazione dei modelli durante l’esecuzione dell’estensione.
 
+---
+
 #### UC2 - Visualizzazione errore di Ollama non installato
 
 **Estende:**
@@ -143,6 +157,8 @@ Come Utente Programmatore devo poter indicare l’endpoint dell’%%applicativo|
 
 **User Story:**
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se l’%%applicativo|applicativo%% %%Ollama|ollama%% non è installato nell’endpoint indicato.
+
+---
 
 #### UC3 - Visualizzazione errore endpoint non raggiungibile
 
@@ -171,6 +187,8 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 **User Story:**
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se l’endpoint indicato non fa riferimento ad una destinazione raggiungibile.
 
+---
+
 <img src="/img/UseCases/UC1.2.png" alt="Selezione di un modello di generazione del codice" data-width="70%" />
 
 #### UC1.2 - Selezione di un modello di generazione del codice
@@ -195,6 +213,8 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 **User Story:**
 
 Come Utente Programmatore devo poter scegliere il modello che verrà utilizzato per generare il codice a partire dai requisiti che verranno inseriti.
+
+---
 
 #### UC4 - Selezione di un modello di default per la generazione del codice
 
@@ -228,6 +248,8 @@ Come Utente Programmatore devo poter scegliere il modello che verrà utilizzato 
 
 Come Utente Programmatore devo poter selezionare un modello tra una selezione proposta per poter personalizzare il modo con il quale vengono generate le risposte.
 
+---
+
 #### UC5 - Selezione di un modello custom per la generazione del codice
 
 **Generalizza:**
@@ -260,6 +282,8 @@ Come Utente Programmatore devo poter selezionare un modello tra una selezione pr
 
 Come Utente Programmatore devo poter inserire il nome di un modello custom per poter personalizzare il modo con il quale vengono generate le risposte.
 
+---
+
 #### UC8 - Visualizzazione errore di modello non installato
 
 **Estende:**
@@ -289,6 +313,8 @@ Come Utente Programmatore devo poter inserire il nome di un modello custom per p
 **User Story:**
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se il modello a cui voglio fare la richiesta non è installato nell’endpoint.
 
+---
+
 #### UC9 - Visualizzazione errore di modello custom non esistente
 
 **Estende:**
@@ -316,6 +342,8 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 **User Story:**
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se il modello a cui voglio fare la richiesta non esiste.
 
+---
+
 <img src="/img/UseCases/UC1.3.png" alt="Selezione di un modello di embedding" data-width="70%" />
 
 #### UC1.3 - Selezione di un modello di embedding
@@ -340,6 +368,8 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 **User Story:**
 
 Come Utente Programmatore devo poter scegliere il modello che verrà utilizzato per l’embedding del file generato a partire dai requisiti che verranno inseriti.
+
+---
 
 #### UC6 - Selezione di un modello custom di embedding
 
@@ -373,6 +403,8 @@ Come Utente Programmatore devo poter scegliere il modello che verrà utilizzato 
 
 Come Utente Programmatore devo poter inserire il nome di un modello custom per poter personalizzare il modo con il quale vengono generate le risposte.
 
+---
+
 #### UC7 - Selezione di un modello di default di embedding
 
 **Generalizza:**
@@ -405,6 +437,8 @@ Come Utente Programmatore devo poter inserire il nome di un modello custom per p
 
 Come Utente Programmatore devo poter selezionare un modello tra una selezione proposta per poter personalizzare il modo con il quale vengono generate le risposte.
 
+---
+
 <img src="/img/UseCases/UC1.4.png" alt="Selezione 'temperature' modello" data-width="70%" />
 
 #### UC1.4 - Selezione ‘temperature’ modello
@@ -429,6 +463,8 @@ Come Utente Programmatore devo poter selezionare un modello tra una selezione pr
 **User Story:**
 
 Come Utente Programmatore devo poter indicare la ‘temperature’ dei modelli necessaria per determinare il livello di casualità della risposta.
+
+---
 
 <img src="/img/UseCases/UC1.5.png" alt="Inserimento di bearer token" data-width="70%" />
 
@@ -459,6 +495,8 @@ Come Utente Programmatore devo poter indicare la ‘temperature’ dei modelli n
 
 Come Utente Programmatore devo poter indicare un bearer token necessario per l’autenticazione per utilizzare server protetti e/o remoti.
 
+---
+
 #### UC10 - Visualizzazione errore di autorizzazione
 
 **Estende:**
@@ -485,6 +523,8 @@ Come Utente Programmatore devo poter indicare un bearer token necessario per l�
 
 **User Story:**
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se il bearer token inserito non consente l’autorizzazione.
+
+---
 
 <img src="/img/UseCases/UC11.png" alt="Apertura di un progetto" data-width="70%" />
 
@@ -513,6 +553,8 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 **User Story:**
 Come Utente Programmatore devo poter aprire un %%progetto|progetto%% su cui poi verranno effettuati i controlli di implementazione dei requisiti.
 
+---
+
 <img src="/img/UseCases/UC11.1.png" alt="Apertura della cartella del progetto" data-width="70%" />
 
 #### UC11.1 - Apertura della cartella del progetto
@@ -538,6 +580,8 @@ Come Utente Programmatore devo poter aprire un %%progetto|progetto%% su cui poi 
 **User Story:**
 
 Come Utente Programmatore devo poter aprire una cartella che conterrà i file del %%progetto|progetto%% su cui andrò a fare il controllo dell’implementazione dei requisiti
+
+---
 
 <img src="/img/UseCases/UC11.2.png" alt="Caricamento file dei requisiti" data-width="70%" />
 
@@ -569,6 +613,8 @@ Come Utente Programmatore devo poter aprire una cartella che conterrà i file de
 
 Come Utente Programmatore devo poter caricare il file che conterrà i requisiti del %%progetto|progetto%%, che verranno analizzati durante il controllo della loro implementazione
 
+---
+
 #### UC12 - Visualizzazione errore di parsing dei dati
 
 **Estende:**
@@ -595,6 +641,8 @@ Come Utente Programmatore devo poter caricare il file che conterrà i requisiti 
 **User Story:**
 
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se il file dei requisiti contiene dati che non si trovano in uno stato consistente.
+
+---
 
 <img src="/img/UseCases/UC11.3.png" alt="Inserimento filtri per il progetto corrente" data-width="70%" />
 
@@ -626,6 +674,8 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 
 Come Utente Programmatore devo poter selezionare i filtri che applicherò al %%progetto|progetto%% corrente per ridurre il quantitativo di file su cui andrò a fare il controllo dell’implementazione dei requisiti
 
+---
+
 #### UC13 - Visualizzazione errore filtro non trovato
 
 **Estende:**
@@ -653,6 +703,8 @@ Come Utente Programmatore devo poter selezionare i filtri che applicherò al %%p
 
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se il filtro inserito non viene trovato dall’%%Applicativo|applicativo%%.
 
+---
+
 #### UC14 - Visualizzazione errore di esecuzione filtro
 
 **Estende:**
@@ -679,6 +731,8 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 **User Story:**
 
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se il filtro inserito non viene eseguito in modo corretto scatenando un errore.
+
+---
 
 <img src="/img/UseCases/UC15.png" alt="Controllo implementazione requisiti" data-width="70%" />
 
@@ -717,6 +771,8 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 
 Come Utente Programmatore devo poter avviare un controllo dello stato di implementazione dei requisiti caricati al fine di aggiornare la struttura dati.
 
+---
+
 #### UC16 - Controllo implementazione dei requisiti su una parte del codice
 
 **Generalizza:**
@@ -745,6 +801,8 @@ Come Utente Programmatore devo poter avviare un controllo dello stato di impleme
 **User Story:**
 Come Utente Programmatore devo poter selezionare una porzione di codice in cui eseguire il controllo dell’implementazione dei requisiti al fine di aggiornare la struttura dati.
 
+---
+
 #### UC17 - Controllo implementazione dei requisiti su tutto il codice
 
 **Generalizza:**
@@ -771,6 +829,8 @@ Come Utente Programmatore devo poter selezionare una porzione di codice in cui e
 
 **User Story:**
 Come Utente Programmatore devo poter selezionare tutto il codice del %%progetto|progetto%% per eseguire il controllo dell’implementazione dei requisiti al fine di aggiornare la struttura dati.
+
+---
 
 #### UC18 - Visualizzazione errore di richiesta al modello
 
@@ -801,6 +861,8 @@ Come Utente Programmatore devo poter selezionare tutto il codice del %%progetto|
 **User Story:**
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se la richiesta al modello non può essere soddisfatta.
 
+---
+
 <img src="/img/UseCases/UC15.1.png" alt="Selezione dei requisiti da includere nella ricerca" data-width="70%" />
 
 #### UC15.1 - Selezione dei requisiti da includere nella ricerca
@@ -826,6 +888,8 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 
 **User Story:**
 Come Utente Programmatore devo poter selezionare tutti i requisiti sui quali voglio effettuare il controllo dello stato di implementazione.
+
+---
 
 <img src="/img/UseCases/UC15.2.png" alt="Richiesta di feedback all'utente" data-width="70%" />
 
@@ -853,6 +917,8 @@ Come Utente Programmatore devo poter selezionare tutti i requisiti sui quali vog
 
 **User Story:**
 Come Utente Programmatore devo poter revisionare la risposta fornita dall’%%Applicativo|applicativo%% durante il controllo dell’implementazione.
+
+---
 
 <img src="/img/UseCases/UC19.png" alt="Visualizzazione porzione di codice che implementa un requisito" data-width="70%" />
 
@@ -884,6 +950,8 @@ Come Utente Programmatore devo poter revisionare la risposta fornita dall’%%Ap
 **User Story:**
 Come Utente Programmatore devo poter visualizzare, per ogni requisito che risulta implementato all’interno dell'%%Applicativo|applicativo%%, il relativo codice sorgente che lo implementa.
 
+---
+
 #### UC20 - Visualizzazione errore di riferimento alla porzione di codice che implementa il requisito
 
 **Estende:**
@@ -912,6 +980,8 @@ Come Utente Programmatore devo poter visualizzare, per ogni requisito che risult
 
 **User Story:**
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se l’%%Applicativo|applicativo%% non è in grado di visualizzare la porzione di codice che implementa il requisito selezionato.
+
+---
 
 <img src="/img/UseCases/UC21.png" alt="Visualizzazione della struttura dati" data-width="70%" />
 
@@ -942,6 +1012,8 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 **User Story:**
 Come Utente Programmatore devo poter visualizzare in ogni momento una tabella con lo stato di implementazione di ogni requisito al fine di avere una chiara percezione dello stato del %%progetto|progetto%%.
 
+---
+
 #### UC22 - Visualizzazione errore nella rappresentazione della struttura dati
 
 **Estende:**
@@ -970,6 +1042,7 @@ Come Utente Programmatore devo poter visualizzare in ogni momento una tabella co
 
 **User Story:**
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se l’%%Applicativo|applicativo%% non è in grado di visualizzare la struttura dati.
+
 ## Analisi dei requisiti
 
 ### Scelta dell'identificativo
