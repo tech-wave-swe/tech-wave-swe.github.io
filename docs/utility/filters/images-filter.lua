@@ -44,11 +44,12 @@ function RawInline(el)
 	if (el.format == "html") then
 		local options = {}
 
-		print(el.text)
 		local pattern = "<img src=\"(.-)\" alt=\"(.-)\" .*\"(.-)\".*>"
 
 		local src, alt, width = string.match(el.text, pattern)
-		
+		print(src)
+
+
 		if (src) then
 
 			local caption = alt

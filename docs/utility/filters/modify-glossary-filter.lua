@@ -24,8 +24,6 @@ function Inlines(el)
 	before, match, after = string.match(str, pattern)
 
 	if match then
-		print(str)
-		print("-- After: ", after)
 		el = pandoc.Inlines({before, pandoc.Emph({string.sub(match, 2), pandoc.Subscript(pandoc.Str("[G]"))}), after})
 	end
 
@@ -64,7 +62,6 @@ function check_multi_glossary(el)
 				if w1 then
 					check = true
 					last_i = i
-					print(before, w1, text)
 					table.insert(new_inlines, pandoc.Str(before))
 					table.insert(new_inlines, pandoc.Emph(string.sub(w1, 2)))
 				else

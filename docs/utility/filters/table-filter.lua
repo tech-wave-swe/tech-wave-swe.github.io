@@ -7,8 +7,6 @@ function generate_tabularray(tbl)
 	  table_class = tbl.attributes['tablename']
 	end
 
-	print(pandoc.utils.stringify(tbl.caption.long))
-  
 	local caption = pandoc.utils.stringify(tbl.caption.long)
   
 	-- COLSPECS
