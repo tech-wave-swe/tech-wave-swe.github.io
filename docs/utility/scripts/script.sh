@@ -18,6 +18,10 @@ docs_dir="$root_dir/docs"
 filters_dir="$utility_dir/filters"
 pdfs_out_dir="$root_dir/static/pdfs"
 
+cd ~/texmf/tex/latex/commonstuff/DocumentStyle
+git pull
+cd $(root_dir)
+
 excluded_file=$(find $utility_dir | grep "excluded.conf")
 template_file=$(find $utility_dir | grep "template.latex")
 
