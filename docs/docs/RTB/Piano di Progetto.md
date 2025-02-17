@@ -5,7 +5,7 @@ documentclass: TWDocumentFull
 toc: true
 lof: true
 numbersections: true
-version: 2.1.1
+version: 2.2.0
 classification: Esterno
 ---
 
@@ -89,39 +89,39 @@ Le %%mitigazione|mitigazione%% di questi rischi si trovano alla fine della sezio
 
 A seguito viene riportata la tabella contenente i rischi relativi all'organizzazione ed ai rapporti tra i vari membri del gruppo e verso l'esterno.
 
-| Codice    | Rischio                                                  | Descrizione                                                                                                                                                                                                          | Grado di rischio | Pericolosità |
-| --------- | -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ------------ |
-| **RO1**   |Avanzamento lento per mancanza di esperienza              | Soprattutto durante il primo periodo i membri del gruppo non sono avvezzi alla parte di organizzazione del progetto; ciò può ovviamente portare un rallentamento all'avanzamento dei lavori che con il tempo ridurrà | 5                | Media/Alta   |
-| **RO2**   |Ritardi dovuti a problemi individuali                     | Uno o più elementi del gruppo potrebbero non essere in grado di completare il lavoro pianificato entro la data prevista, per cause di qualsiasi natura, creando rallentamenti nel flusso di lavoro                   | 2                | Media        |
-| **RO3**   |Problemi personali tra membri del gruppo                  | Uno o più elementi del gruppo potrebbero non essere in grado di completare il lavoro pianificato entro la data prevista, per cause legati a problemi personali con un altro membro, creando rallentamenti nel flusso | 1                | Alta         |
-| **RO4**   |Ritardi dovuti a problemi di comunicazione con l'azienda  | Il gruppo può ritrovarsi a dover rallentare il ritmo delle attività a causa della necessità di attendere un feedback dall'azienda che non lo fornisce nel breve periodo                                              | 2                | Alta         |
+| Codice  | Rischio                                                  | Descrizione                                                                                                                                                                                                          | Grado di rischio | Pericolosità |
+| ------- | -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ------------ |
+| **RO1** | Avanzamento lento per mancanza di esperienza             | Soprattutto durante il primo periodo i membri del gruppo non sono avvezzi alla parte di organizzazione del progetto; ciò può ovviamente portare un rallentamento all'avanzamento dei lavori che con il tempo ridurrà | 5                | Media/Alta   |
+| **RO2** | Ritardi dovuti a problemi individuali                    | Uno o più elementi del gruppo potrebbero non essere in grado di completare il lavoro pianificato entro la data prevista, per cause di qualsiasi natura, creando rallentamenti nel flusso di lavoro                   | 2                | Media        |
+| **RO3** | Problemi personali tra membri del gruppo                 | Uno o più elementi del gruppo potrebbero non essere in grado di completare il lavoro pianificato entro la data prevista, per cause legati a problemi personali con un altro membro, creando rallentamenti nel flusso | 1                | Alta         |
+| **RO4** | Ritardi dovuti a problemi di comunicazione con l'azienda | Il gruppo può ritrovarsi a dover rallentare il ritmo delle attività a causa della necessità di attendere un feedback dall'azienda che non lo fornisce nel breve periodo                                              | 2                | Alta         |
 
 Table: Rischi Organizzativi e interpersonali
 
 ### Rischi tecnologici
 
-| Codice    | Rischio                             | Descrizione                                                                                                                                | Grado di rischio | Pericolosità |
-| --------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ---------------- | ------------ |
-| **RT1**   | **Mancanza di conoscenze tecniche** | Alcuni membri del gruppo potrebbero non aver familiarità con tutte le tecnologie utilizzate durante lo sviluppo o la gestione del progetto | 4                | Bassa        |
+| Codice  | Rischio                             | Descrizione                                                                                                                                | Grado di rischio | Pericolosità |
+| ------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ---------------- | ------------ |
+| **RT1** | **Mancanza di conoscenze tecniche** | Alcuni membri del gruppo potrebbero non aver familiarità con tutte le tecnologie utilizzate durante lo sviluppo o la gestione del progetto | 4                | Bassa        |
 
 Table: Rischi Tecnologici
 
 ### Mitigazione dei rischi organizzativi ed interpersonali
 
-| Codice    | Rischio                                                      | Mitigazione                                                                                                                                                                                                                                                                                    |
-| --------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **RO1**   | **Avanzamento lento per mancanza di esperienza**             | Questo rischio può essere mitigato attraverso la pianificazione di incontri frequenti con l'azienda BlueWind che si è resa disponibile a fornire formazione e supporto. Inoltre, vogliamo scegliere un modello di sviluppo incrementale che si integri con il modello AGILE scrum dell'azienda |
-| **RO2**   | **Ritardi dovuti a problemi individuali**                    | Questo rischio può essere mitigato attraverso la comunicazione costante tra i vari membri del gruppo. Questo ci permetterà di individuare difficoltà o ritardi prima che essi possano trasformarsi in problemi                                                                                 |
-| **RO3**   | **Problemi personali tra membri del gruppo**                 | Questo rischio può essere mitigato creando un tavolo di confronto tra i membri coinvolti per cercare di dissipare tutte le problematiche nate tra loro; ci si affida anche al buonsenso delle stesse nella cooperazione, per il bene di tutto il gruppo                                        |
-| **RO4**   | **Ritardi dovuti a problemi di comunicazione con l'azienda** | Questo rischio può essere mitigato accordandosi sulla data dell'incontro successivo con l'azienda prima dell'inizio dell'incontro presente                                                                                                                                                     |
+| Codice  | Rischio                                                      | Mitigazione                                                                                                                                                                                                                                                                                    |
+| ------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **RO1** | **Avanzamento lento per mancanza di esperienza**             | Questo rischio può essere mitigato attraverso la pianificazione di incontri frequenti con l'azienda BlueWind che si è resa disponibile a fornire formazione e supporto. Inoltre, vogliamo scegliere un modello di sviluppo incrementale che si integri con il modello AGILE scrum dell'azienda |
+| **RO2** | **Ritardi dovuti a problemi individuali**                    | Questo rischio può essere mitigato attraverso la comunicazione costante tra i vari membri del gruppo. Questo ci permetterà di individuare difficoltà o ritardi prima che essi possano trasformarsi in problemi                                                                                 |
+| **RO3** | **Problemi personali tra membri del gruppo**                 | Questo rischio può essere mitigato creando un tavolo di confronto tra i membri coinvolti per cercare di dissipare tutte le problematiche nate tra loro; ci si affida anche al buonsenso delle stesse nella cooperazione, per il bene di tutto il gruppo                                        |
+| **RO4** | **Ritardi dovuti a problemi di comunicazione con l'azienda** | Questo rischio può essere mitigato accordandosi sulla data dell'incontro successivo con l'azienda prima dell'inizio dell'incontro presente                                                                                                                                                     |
 
 Table: Mitigazione rischi organizzativi ed interpersonali
 
 ### Mitigazione dei rischi tecnologici
 
-| Codice    | Rischio                             | Mitigazione                                                                                                                                                                                                             |
-| --------- | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **RT1**   | **Mancanza di conoscenze tecniche** | Questo rischio può essere mitigato attraverso una stretta collaborazione tra i membri del team e l'azienda proponente mirando alla creazione di un ambiente di collaborazione e condivisione delle conoscenze acquisite |
+| Codice  | Rischio                             | Mitigazione                                                                                                                                                                                                             |
+| ------- | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **RT1** | **Mancanza di conoscenze tecniche** | Questo rischio può essere mitigato attraverso una stretta collaborazione tra i membri del team e l'azienda proponente mirando alla creazione di un ambiente di collaborazione e condivisione delle conoscenze acquisite |
 
 Table: Mitigazione rischi tecnologici
 
@@ -152,22 +152,25 @@ Per definire al meglio la pianificazione degli eventi, vengono individuate tre f
 - CA (Customer Acceptance)
 
 ### Sprint
+
 In questa sezione sono elencati gli sprint appartenenti ai vari periodi di lavori suddivisi per le milestone del progetto didattico. Ogni milestone è divisa in più sprint seguendo le norme legate alla metodologia di lavoro Agile, con riferimento al modello Scrum. Sono inoltre analizzate le variazione delle ore e dei costi preventivati rispetto a quelli effettivamente impiegati al completamento delle varie attività svolte per capirne l'andamento e valutare se le previsioni fatte siano poi congruenti con la realtà.
 
 #### Preventivo Candidatura
+
 Durante la fase di candidatura il seguente preventivo realizzato riporta la ripartizione oraria per i vari ruoli con costi annessi:
 
-| Ruolo         | Costo | Ore previste  | Totale    |
-|---------------|-------|---------------|-----------|
-| Responsabile  |30€    |75             | 2250€     |
-| Amministratore|20€    |85             | 1700€     |
-| Analista      |25€    |90             | 2250€     |
-| Progettista   |25€    |90             | 2250€     |
-| Programmatore |15€    |170            | 2550€     |
-| Verificatore  |15€    |120            | 1800€     |
-| **Totale**    |       |               | **12800€**|
+| Ruolo          | Costo | Ore previste | Totale     |
+| -------------- | ----- | ------------ | ---------- |
+| Responsabile   | 30€   | 75           | 2250€      |
+| Amministratore | 20€   | 85           | 1700€      |
+| Analista       | 25€   | 90           | 2250€      |
+| Progettista    | 25€   | 90           | 2250€      |
+| Programmatore  | 15€   | 170          | 2550€      |
+| Verificatore   | 15€   | 120          | 1800€      |
+| **Totale**     |       |              | **12800€** |
 
 #### Struttura degli sprint
+
 Nella propria sezione dedicata ogni sprint è descritto seguendo la seguente struttura:
 
 - Periodo: data di inizio e di fine sprint;
@@ -179,6 +182,7 @@ Nella propria sezione dedicata ogni sprint è descritto seguendo la seguente str
 - Consuntivo: tabella che contiene le ore ed i costi a consuntivo per ciascun ruolo;
 
 #### Verso la RTB
+
 Alla fine della la fase di candidatura con aggiudicazione del capitolato, il gruppo ha ritenuto opportuno sfruttare il tempo compreso tra l'assegnazione del capitolato e la prima riunione con il proponente per cominciare a prendere dimestichezza con la stesura dei documento di progetto e la familiarizzazione con i diversi ruoli del team per poter poi avviare più rapidamente il primo sprint.
 
 ##### Sprint 1
@@ -194,6 +198,7 @@ A seguito della prima riunione svolta con l'azienda proponente, buona parte dell
 Durante il tempo aggiuntivo, il team ha deciso di sfruttare l'opportunità per avviare la redazione dell'Analisi dei Requisiti attraverso la definizione degli use case.
 
 ###### Ruoli
+
 A seguito si riporta la tabella con la suddivisione dei ruoli:
 
 | **Ruolo**                 | **Membri**                                                                            |
@@ -267,16 +272,17 @@ Una parte del tempo sarà dedicata ad attività di ricerca focalizzate su questi
 Infine, verrà avviata la prima fase di sviluppo del %%PoC|poc%%, con l'obiettivo di creare una struttura di base per lo sviluppo dell'estensione.
 
 ###### Ruoli
+
 A seguito si riporta la tabella con la suddivisione dei ruoli:
 
-| **Ruolo**                 | **Membri**                                       |
-| ------------------------- | ------------------------------------------------ |
-| Responsabile di progetto  | Marcon Giulia                                    |
-| Amministratore di sistema | Marcon Giulia, Dal Bianco Riccardo               |
-| Analista                  | Piola Andrea, Pistori Gaia, Dal Bianco Riccardo  |
-| Progettista               |                                                  |
-| Programmatore             | Monetti Luca, Manuel Felipe Vasquez              |
-| Verificatore              | Carraro Agnese, Pistori Gaia, Monetti Luca       |
+| **Ruolo**                 | **Membri**                                      |
+| ------------------------- | ----------------------------------------------- |
+| Responsabile di progetto  | Marcon Giulia                                   |
+| Amministratore di sistema | Marcon Giulia, Dal Bianco Riccardo              |
+| Analista                  | Piola Andrea, Pistori Gaia, Dal Bianco Riccardo |
+| Progettista               |                                                 |
+| Programmatore             | Monetti Luca, Manuel Felipe Vasquez             |
+| Verificatore              | Carraro Agnese, Pistori Gaia, Monetti Luca      |
 
 Table: Suddivisione ruoli Sprint 2
 
@@ -302,7 +308,7 @@ Table: Preventivo Sprint 2
 Il secondo %%sprint|sprint%% ha dimostrato un progresso significativo nella gestione delle risorse e una maggiore aderenza al piano progettuale dimostrando che le azioni correttive introdotte dopo il primo %%sprint|sprint%% hanno avuto un impatto positivo.
 
 La principale variazione si è registrata sui ruoli di Programmatore (+4 ore) in quanto è stata sottostimato il tempo necessario allo sviluppo di una base per il %%PoC|poc%%.
-Abbiamo invece sovrastimato il ruolo dell'Analista  (-3 ore) e del Responsabile (-4 ore).
+Abbiamo invece sovrastimato il ruolo dell'Analista (-3 ore) e del Responsabile (-4 ore).
 
 ###### Conclusione
 
@@ -338,6 +344,7 @@ Questo permetterà di implementare i consigli forniti dall'azienda proponente e 
 In parallelo, il team continuerà lo sviluppo di alcune funzionalità richieste dall'azienda per il %%PoC|poc%%, con l'obiettivo di garantire il rispetto delle tempistiche e dei %%requisiti|requisito_software%% concordati.
 
 ###### Ruoli
+
 A seguito si riporta la tabella con la suddivisione dei ruoli:
 
 | **Ruolo**                 | **Membri**                               |
@@ -408,6 +415,7 @@ Parallelamente, apporteremo gli ultimi ritocchi al %%PoC|poc%%, integrando i fee
 L'obiettivo principale è avvicinarsi in modo significativo alla conclusione dell'RTB, garantendo un avanzamento concreto del lavoro.
 
 ###### Ruoli
+
 A seguito si riporta la tabella con la suddivisione dei ruoli:
 
 | **Ruolo**                 | **Membri**                                                     |
