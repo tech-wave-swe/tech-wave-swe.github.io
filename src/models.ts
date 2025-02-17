@@ -19,6 +19,9 @@ export class DocumentManager {
     }
     return this.instance;
   }
+  public isEmpty(): boolean {
+    return this.documents.length === 0;
+  }
 
   public getEmbeddingNumber(): number {
     return this.documents.length;

@@ -6,4 +6,4 @@ hoverText: Prove effettuate per controllare il funzionamento di un prodotto soft
 
 ### Spiegazione del termine
 
-Prove effettuate per controllare il funzionamento di un prodotto software con l'obiettivo di trovare possibili anomalie. 
+Prove effettuate per controllare il funzionamento di un %%prodotto|prodotto%% software con l'obiettivo di trovare possibili anomalie. 

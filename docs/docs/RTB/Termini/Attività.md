@@ -6,4 +6,4 @@ hoverText: Azioni da compiere per attuare un processo.
 
 ### Spiegazione del termine
 
-Azioni da compiere per attuare un processo.
+Azioni da compiere per attuare un %%processo|processo%%.

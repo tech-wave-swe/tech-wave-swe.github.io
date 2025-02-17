@@ -6,4 +6,4 @@ hoverText: Archivio digitale in cui il codice sorgente e altri file di progetto 
 
 ### Spiegazione del termine
 
-Archivio digitale in cui il codice sorgente e altri file di progetto vengono conservati e gestiti.
+Archivio digitale in cui il codice sorgente e altri file di %%progetto|progetto%% vengono conservati e gestiti.

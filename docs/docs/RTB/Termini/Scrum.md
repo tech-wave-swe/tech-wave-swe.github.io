@@ -6,4 +6,4 @@ hoverText: Framework agile per la gestione di progetti complessi, suddivisi in i
 
 ### Spiegazione del termine
 
-Framework agile per la gestione di progetti complessi, suddivisi in iterazioni chiamate sprint per favorire lo sviluppo incrementale.
+Framework agile per la gestione di progetti complessi, suddivisi in iterazioni chiamate %%sprint|sprint%% per favorire lo sviluppo incrementale.

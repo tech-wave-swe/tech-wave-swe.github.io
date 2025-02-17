@@ -6,4 +6,4 @@ hoverText: Design. Consiste nell'individuazione e nella definizione del funziona
 
 ### Spiegazione del termine
 
-Design. Consiste nell'individuazione e nella definizione del funzionamento delle parti di un prodotto software.
+Design. Consiste nell'individuazione e nella definizione del funzionamento delle parti di un %%prodotto|prodotto%% software.

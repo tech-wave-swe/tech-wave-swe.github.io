@@ -6,4 +6,4 @@ hoverText: Processo di gestione delle diverse versioni delle componenti di un pr
 
 ### Spiegazione del termine
 
-Processo di gestione delle diverse versioni delle componenti di un progetto software, per tenere traccia delle modifiche e consentire la collaborazione.
+%%Processo|processo%% di gestione delle diverse versioni delle componenti di un %%progetto|progetto%% software, per tenere traccia delle modifiche e consentire la collaborazione.

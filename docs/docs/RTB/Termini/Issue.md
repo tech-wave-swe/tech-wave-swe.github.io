@@ -6,4 +6,4 @@ hoverText: Azione da svolgere definita per poter pianificare e monitorare lo svo
 
 ### Spiegazione del termine
 
-Azione da svolgere definita per poter pianificare e monitorare lo svolgimento di un progetto (ticket).
+Azione da svolgere definita per poter pianificare e monitorare lo svolgimento di un %%progetto|progetto%% (ticket).

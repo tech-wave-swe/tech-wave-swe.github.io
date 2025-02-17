@@ -19,23 +19,44 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-          cache-dependency-path: "docs/package-lock.json"
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Create Glossary
+      - name: Debug
         run: |
-          npm run postinstall
-          npm run docusaurus parse
-          npm run docusaurus glossary
+          ls -la
+          ls -la ${{ github.workspace }}
+          git clean -fdx
 
-      - name: Build website
-        run: npm run build
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Pull prebuilt Docker container
+        run: |
+          docker pull lucamonetti/tw-latex:latest
+
+      - name: Run commands inside the Docker container
+        run: |
+          docker run --rm -v ${{ github.workspace }}:/app \
+            -e PR_REF=${{ github.ref }} \
+            -e PR_SHA=${{ github.sha }} \
+            lucamonetti/tw-latex:latest bash -c "
+              ls -la
+              cd docs
+              npm ci
+              mkdir static/pdfs
+              npm run postinstall
+              npm run docusaurus glossary
+              chmod +x utility/scripts/script.sh
+              utility/scripts/script.sh pdf
+              npm run docusaurus parse
+              npm run build
+            "
+
+      - name: List directory contents for debugging
+        run: |
+          ls -la
+          ls -la build
+
+      - name: Show PWD
+        run: pwd
 
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
