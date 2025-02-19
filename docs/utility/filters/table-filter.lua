@@ -39,7 +39,7 @@ function generate_tabularray(tbl)
 	  col_specs_latex = col_specs_latex .. ']'
 	end
   
-	local result = pandoc.List:new{pandoc.RawBlock("latex", '\\noindent\\begin{table}[h]\\centering\\caption{' .. caption .. '}\\begin{'..table_class..'}{width=1\\linewidth,colspec={'..col_specs_latex..'}}')}
+	local result = pandoc.List:new{pandoc.RawBlock("latex", '\\noindent\\begin{table}[H]\\centering\\caption{' .. caption .. '}\\begin{'..table_class..'}{width=1\\linewidth,colspec={'..col_specs_latex..'}}')}
   
 	-- HEADER
 	local header_latex = get_rows_data(tbl.head.rows)
@@ -49,6 +49,8 @@ function generate_tabularray(tbl)
 	local rows_latex = ''
 	for j, tablebody in ipairs(tbl.bodies) do
 	  rows_latex = get_rows_data(tablebody.body)
+	  rows_latex = string.gsub(rows_latex, "%%", "\\%%")
+	  rows_latex = string.gsub(rows_latex, "_", "\\_")
 	end
 	result = result .. pandoc.List:new{pandoc.RawBlock("latex", rows_latex)}
   

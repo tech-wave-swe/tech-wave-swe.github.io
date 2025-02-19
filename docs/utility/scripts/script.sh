@@ -76,7 +76,7 @@ echo "$files" | while read -r file; do
     pdf_out="$pdfs_out_dir/$(basename "$file" .md).$file_type"
 
     # pandoc "$file" -f markdown -t markdown -o "$pdf_out"
-    pandoc "$file" --listings --resource-path=./static $filters -f markdown --template "$template_file" -o "$pdf_out"
+    pandoc "$file" --listings --from=markdown+escaped_line_breaks --resource-path=./static $filters -f markdown --template "$template_file" -o "$pdf_out"
 
     if ($check_link); then
         if ! (grep -q "$SECTION" "$file"); then

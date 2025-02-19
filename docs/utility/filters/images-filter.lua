@@ -47,8 +47,6 @@ function RawInline(el)
 		local pattern = "<img src=\"(.-)\" alt=\"(.-)\" .*\"(.-)\".*>"
 
 		local src, alt, width = string.match(el.text, pattern)
-		print(src)
-
 
 		if (src) then
 
@@ -128,4 +126,17 @@ function Image(el)
 		latexstring = string.format(beg_v.." \\%s[%s]{%s} \\captionof{figure}{%s} " ..end_v ,includefile,table.concat(options,","),el.src,caption)
 	end
 	return pandoc.RawInline("latex", latexstring)
+end
+
+function HorizontalRule(el)
+	return {}
+end
+
+function String(el)
+	if (string.match(el.content, "%")) then
+		print(el.content)
+	end
+	-- el.content = string.gsub(el.content, "%", "%%")
+
+	return el
 end

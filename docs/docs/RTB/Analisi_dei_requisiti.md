@@ -22,7 +22,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 <!-- ::: -->
 
 | Data       | Versione | Descrizione                             | Autore                | Data Verifica | Verificatore          |
-|------------|----------|-----------------------------------------|-----------------------|---------------|-----------------------|
+| ---------- | -------- | --------------------------------------- | --------------------- | ------------- | --------------------- |
 | 14/02/2025 | 2.4.0    | Correzioni documento                    | Vasquez Manuel Felipe |               |                       |
 | 09/02/2025 | 2.3.0    | Aggiunta Use Cases                      | Monetti Luca          | 14/02/2025    | Vasquez Manuel Felipe |
 | 05/02/2025 | 2.2.0    | Aggiunta Use Cases                      | Monetti Luca          | 14/02/2025    | Vasquez Manuel Felipe |
@@ -970,6 +970,7 @@ Come Utente Programmatore devo poter visualizzare in ogni momento una tabella co
 
 **User Story:**
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se l’%%Applicativo|applicativo%% non è in grado di visualizzare la struttura dati.
+
 ## Analisi dei requisiti
 
 ### Scelta dell'identificativo
