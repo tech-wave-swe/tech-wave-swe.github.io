@@ -23,6 +23,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                                        | Autore         | Data Verifica | Verificatore          |
 | ---------- | -------- | -------------------------------------------------- | -------------- | ------------- | --------------------- |
+| 20/02/2025 | 1.7.0    | Aggiunto tracciamento e rendicontazione delle ore  | Marcon Giulia  |     |         |
 | 06/02/2025 | 1.6.0    | Aggiunta processi di Supporto                      | Monetti Luca   | 08/02/2025    | Carraro Agnese        |
 | 20/01/2025 | 1.5.0    | Aggiunta processi Primari                          | Pistori Gaia   | 21/01/2025    | Monetti Luca          |
 | 30/12/2024 | 1.4.0    | Completamento processi Organizzativi               | Carraro Agnese | 30/12/2024    | Pistori Gaia          |
@@ -818,6 +819,58 @@ Le **riunioni esterne** avvengono tra gruppo e %%committente|committente%% o pro
 ##### Disponibilità
 
 Il lavoro personale è organizzato individualmente da ogni componente del gruppo per poter lasciare libertà in quanto impegnati con questioni accademiche, personali e seguendo quanto dichiarato nella candidatura nella sezione di dichiarazione impegni. Ovviamente l'organizzazione dovrà essere consona agli impegni totali del gruppo per evitare ritardi dovuti ad un singolo elemento. In caso di problematiche di indisponibilità che porteranno al non compimento degli impegni di %%progetto|progetto%% presi in carico dal singolo membro, questo si impegna ad avvisare prontamente il Responsabile che cercherà di ridistribuire il lavoro contattando singolarmente i membri oppure indicendo una riunione di gruppo.
+
+### Tracciamento e rendicontazione delle ore
+
+#### Introduzione
+
+La gestione delle ore è un aspetto cruciale per il successo del %%progetto|progetto%%, poiché consente di monitorare l'avanzamento delle %%attività|attività%%, garantire il rispetto delle tempistiche e ottimizzare l'utilizzo delle risorse. Questo %%processo|processo%% si basa su una corretta pianificazione, tracciamento e rendicontazione delle ore lavorative da parte di tutti i membri del team.
+
+#### Pianificazione delle ore
+
+Durante la fase di %%Sprint|sprint%% Planning, il Responsabile di %%Progetto|progetto%%, in collaborazione con il team, definisce le %%attività|attività%% da svolgere e stima le ore necessarie per ciascuna di esse. Le ore preventivate vengono registrate nel Piano di %%Progetto|progetto%% e suddivise in base ai ruoli e alle competenze dei membri del team.
+
+#### Tracciamento delle ore su Jira
+
+Ogni ticket su %%Jira|jira%% rappresenta una specifica %%attività|attività%% o %%task|task%%. Per tracciare le ore lavorative, i membri del team devono seguire questi passaggi:
+
+- **Aprire il ticket**: accedere al ticket su %%Jira|jira%% a cui si sta lavorando.
+- **Registrare le ore**:
+  - Utilizzare la %%funzionalità|funzionalità%% Log Work di Timetracker per inserire le ore lavorative.
+  - Specificare:
+    - **Tempo impiegato**: ore e minuti dedicati all'%%attività|attività%%.
+    - **Ruolo ricoperto**: selezionare il ruolo svolto durante l'%%attività|attività%%.
+    - **Data e orario**: indicare la data e l'orario in cui è stato svolto il lavoro.
+
+#### Assegnazione dei ruoli
+
+Ogni ora lavorativa deve essere associata a un ruolo specifico:
+
+- **Analista**: per %%attività|attività%% di %%analisi dei requisiti|analisi_dei_requisiti%% e studio del dominio.
+- **Progettista**: per %%attività|attività%% di progettazione architetturale e di dettaglio.
+- **Programmatore**: per %%attività|attività%% di codifica e sviluppo del software.
+- **Verificatore**: per %%attività|attività%% di %%verifica|verifica%% e testing.
+- **Responsabile di %%Progetto|progetto%%**: per %%attività|attività%% di coordinamento e gestione del %%progetto|progetto%%.
+
+#### Monitoraggio delle ore
+
+Il monitoraggio delle ore lavorative viene effettuato attraverso:
+
+- **Report di %%Jira|jira%%**: generati automaticamente per visualizzare le ore totali impiegate su ciascun ticket, %%sprint|sprint%% o %%progetto|progetto%%.
+- **Confronto con il Piano di %%Progetto|progetto%%**: per valutare se le ore effettive sono in linea con quelle preventivate.
+- **Analisi dei ruoli**: per verificare la distribuzione delle ore tra i diversi ruoli e identificare eventuali squilibri.
+
+#### Strumenti utilizzati
+
+- **%%Jira|jira%%**: per la gestione dei ticket e il tracciamento delle ore.
+- **Timetracker**: per la registrazione delle ore lavorative.
+- **Google Sheets**: per la creazione di report e il monitoraggio delle ore preventivate vs effettive.
+
+#### Ruoli e responsabilità
+
+- **Responsabile di %%Progetto|progetto%%**: supervisiona il tracciamento delle ore, %%verifica|verifica%% il rispetto delle tempistiche e approva la rendicontazione.
+- **Amministratore**: garantisce che gli strumenti di tracciamento siano configurati correttamente e accessibili a tutti i membri del team.
+- **Membri del Team**: sono responsabili di registrare le ore lavorative in modo accurato e tempestivo, associando il ruolo ricoperto.
 
 ### Infrastruttura
 
