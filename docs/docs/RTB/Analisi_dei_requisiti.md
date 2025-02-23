@@ -47,7 +47,11 @@ Table: Changelog
 
 Lo scopo del documento è quello di definire i requisiti che il gruppo di sviluppo TechWave dovrà rispettare per consegnare il %%prodotto|prodotto%% **Requirement Tracker - Plug-in %%VSCode|vscode%%** rispettando le aspettative dell'azienda Bluewind.
 
-Nello sviluppo di software per sistemi embedded la parte di controllo dell'implementazione di tutti i requisiti necessari al corretto funzionamento dello stesso risulta costosa e ripetitiva da parte dello sviluppatore, inoltre può risultare non esaustiva a causa di distrazioni o dimenticanze. Il %%Capitolato|capitolato%% **_Requirement Tracker - Plug-in VSCode_** propone lo sviluppo di un %%Plugin|plugin%% per %%VSCode|vscode%% che permetta di tracciare i requisiti derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari requisiti in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
+### Scopo del Prodotto
+
+Nello sviluppo di software per sistemi embedded il controllo e tracciamento dell'implementazione di tutti i requisiti necessari al corretto funzionamento dello stesso risulta costosa e ripetitiva da parte dello sviluppatore. Può inoltre risultare non esaustiva a causa di distrazioni o dimenticanze. Il %%Capitolato|capitolato%% **Requirement Tracker - Plug-in VSCode** propone lo sviluppo di un %%Plugin|plugin%% per %%VSCode|vscode%% che permetta di tracciare i requisiti derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari requisiti in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
+
+Il %%capitolato|capitolato%% prevede la realizzazione di un supporto agli sviluppattori che permetta loro di controllare e tracciare l'implementazione di requisiti software all'interno di un %%progetto|progetto%%. Tramite questa estensione lo sviluppatore potrà caricare un file, in formato _.csv_ o _.reqif_, contenente i requisiti individuati e visualizzare lo stato implementativo di ognuno. Utilizzando l'Intellegenza Artificiale, nello specifico un modello %%LLM|llm££, l'estensione analizzerà l'intero codice sorgente del %%progetto|progetto%% e restituirà lo stato di implementazione di ogni requisito segnalando, se presente, la porzione di codice che lo implementa.
 
 ## Casi d'uso
 
@@ -63,7 +67,7 @@ L'%%Applicativo|applicativo%% si interfaccia con un singolo attore primario:
 
 L'%%Applicativo|applicativo%% si intefaccia con un singolo attore secondario:
 
-- **%%Ollama|ollama%%**: Strumento o framework per lavorare con modelli di IA in un contesto integrato.
+- **%%Ollama|ollama%%**: Software gratuito e open source che consente di eseguire in locale diversi modelli %%LLM|llm%%.
 
 ### Elenco casi d'uso
 
@@ -127,7 +131,7 @@ Come Utente Programmatore devo poter configurare l’estensione modificando le i
 
 **User Story:**
 
-Come Utente Programmatore devo poter indicare l’endpoint dell’%%applicativo|applicativo%% %%Ollama|ollama%% necessario per l’interrogazione dei modelli durante l’esecuzione dell’estensione.
+Come Utente Programmatore devo poter indicare l’endpoint in cui è installato %%Ollama|ollama%% per l’interrogazione dei modelli durante l’esecuzione dell’estensione.
 
 ---
 
@@ -246,7 +250,7 @@ Come Utente Programmatore devo poter scegliere il modello che verrà utilizzato 
 
 **User Story:**
 
-Come Utente Programmatore devo poter selezionare un modello tra una selezione proposta per poter personalizzare il modo con il quale vengono generate le risposte.
+Come Utente Programmatore devo poter selezionare un modello da una lista proposta per la generazione delle risposte.
 
 ---
 
@@ -280,7 +284,7 @@ Come Utente Programmatore devo poter selezionare un modello tra una selezione pr
 
 **User Story:**
 
-Come Utente Programmatore devo poter inserire il nome di un modello custom per poter personalizzare il modo con il quale vengono generate le risposte.
+Come Utente Programmatore devo poter inserire il nome di un modello custom per modificare il modello utilizzato per la generazione delle risposte.
 
 ---
 
@@ -367,7 +371,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 
 **User Story:**
 
-Come Utente Programmatore devo poter scegliere il modello che verrà utilizzato per l’embedding del file generato a partire dai requisiti che verranno inseriti.
+Come Utente Programmatore devo poter scegliere il modello che verrà utilizzato per l’embedding dei documenti all'interno dell'estensione.
 
 ---
 
@@ -401,7 +405,7 @@ Come Utente Programmatore devo poter scegliere il modello che verrà utilizzato 
 
 **User Story:**
 
-Come Utente Programmatore devo poter inserire il nome di un modello custom per poter personalizzare il modo con il quale vengono generate le risposte.
+Come Utente Programmatore devo poter inserire il nome di un modello custom per modificare il modello utilizzato per l'embedding dei documenti.
 
 ---
 
@@ -435,7 +439,7 @@ Come Utente Programmatore devo poter inserire il nome di un modello custom per p
 
 **User Story:**
 
-Come Utente Programmatore devo poter selezionare un modello tra una selezione proposta per poter personalizzare il modo con il quale vengono generate le risposte.
+Come Utente Programmatore devo poter selezionare un modello da una lista proposta per l'embedding dei documenti.
 
 ---
 
@@ -540,18 +544,18 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 
 **Postcondizioni:**
 
-- L’Utente Programmatore ha aperto un %%progetto|progetto%%
+- L’Utente Programmatore ha aperto un progetto software
 - L’%%Applicativo|applicativo%% aggiorna la struttura dati a seguito del controllo dell’implementazione dei requisiti
 
 **Scenario principale:**
 
-1. L’Utente Programmatore apre la cartella di %%progetto|progetto%% (UC11.1)
+1. L’Utente Programmatore apre la cartella di progetto software (UC11.1)
 2. L’Utente Programmatore carica il file dei requisiti (UC11.2)
-3. L’Utente Programmatore inserisce i filtri per il %%progetto|progetto%% corrente (UC11.3)
+3. L’Utente Programmatore inserisce i filtri per il progetto software corrente (UC11.3)
 4. L’%%Applicativo|applicativo%% avvia il controllo dell’implementazione dei requisiti (UC15)
 
 **User Story:**
-Come Utente Programmatore devo poter aprire un %%progetto|progetto%% su cui poi verranno effettuati i controlli di implementazione dei requisiti.
+Come Utente Programmatore devo poter aprire un progetto software su cui poi verranno effettuati i controlli di implementazione dei requisiti.
 
 ---
 
@@ -565,21 +569,21 @@ Come Utente Programmatore devo poter aprire un %%progetto|progetto%% su cui poi 
 
 **Precondizioni:**
 
-- L’Utente Programmatore sta aprendo un nuovo %%progetto|progetto%% (UC11)
+- L’Utente Programmatore sta aprendo un nuovo progetto software (UC11)
 
 **Postcondizioni:**
 
-- L’Utente Programmatore ha aperto la cartella contenente i file del %%progetto|progetto%%
+- L’Utente Programmatore ha aperto la cartella contenente i file del progetto software
 
 **Scenario principale:**
 
 1. L’Utente Programmatore si reca nell’area dedicata
-2. L’Utente Programmatore seleziona la cartella contenente i file del %%progetto|progetto%%
+2. L’Utente Programmatore seleziona la cartella contenente i file del progetto software
 3. L’Utente Programmatore apre la cartella
 
 **User Story:**
 
-Come Utente Programmatore devo poter aprire una cartella che conterrà i file del %%progetto|progetto%% su cui andrò a fare il controllo dell’implementazione dei requisiti
+Come Utente Programmatore devo poter aprire una cartella che conterrà i file del progetto software su cui andrò a fare il controllo dell’implementazione dei requisiti
 
 ---
 
@@ -593,16 +597,16 @@ Come Utente Programmatore devo poter aprire una cartella che conterrà i file de
 
 **Precondizioni:**
 
-- L’Utente Programmatore sta aprendo un nuovo %%progetto|progetto%% (UC11)
+- L’Utente Programmatore sta aprendo un nuovo progetto software (UC11)
 
 **Postcondizioni:**
 
-- L’Utente Programmatore ha caricato il file contenente i requisiti del %%progetto|progetto%%
+- L’Utente Programmatore ha caricato il file contenente i requisiti del progetto software
 
 **Scenario principale:**
 
 1. L’Utente Programmatore si reca nell’area dedicata
-2. L’Utente Programmatore seleziona il file contenente i requisiti del %%progetto|progetto%%
+2. L’Utente Programmatore seleziona il file contenente i requisiti del progetto software
 3. L’Utente Programmatore carica il file
 
 **Estensioni:**
@@ -611,7 +615,7 @@ Come Utente Programmatore devo poter aprire una cartella che conterrà i file de
 
 **User Story:**
 
-Come Utente Programmatore devo poter caricare il file che conterrà i requisiti del %%progetto|progetto%%, che verranno analizzati durante il controllo della loro implementazione
+Come Utente Programmatore devo poter caricare il file che conterrà i requisiti del progetto software, che verranno analizzati durante il controllo della loro implementazione
 
 ---
 
@@ -654,7 +658,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 
 **Precondizioni:**
 
-- L’Utente Programmatore sta aprendo un nuovo %%progetto|progetto%% (UC11)
+- L’Utente Programmatore sta aprendo un nuovo progetto software (UC11)
 
 **Postcondizioni:**
 
@@ -663,7 +667,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 **Scenario principale:**
 
 1. L’Utente Programmatore si reca nella scheda dedicata
-2. L’Utente Programmatore seleziona i filtri da applicare al %%progetto|progetto%% corrente
+2. L’Utente Programmatore seleziona i filtri da applicare al progetto software corrente
 
 **Estensioni:**
 
@@ -672,7 +676,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 
 **User Story:**
 
-Come Utente Programmatore devo poter selezionare i filtri che applicherò al %%progetto|progetto%% corrente per ridurre il quantitativo di file su cui andrò a fare il controllo dell’implementazione dei requisiti
+Come Utente Programmatore devo poter selezionare i filtri che applicherò al progetto software corrente per ridurre il quantitativo di file su cui andrò a fare il controllo dell’implementazione dei requisiti
 
 ---
 
@@ -680,7 +684,7 @@ Come Utente Programmatore devo poter selezionare i filtri che applicherò al %%p
 
 **Estende:**
 
-- UC11.3 - Inserimento filtri per il %%progetto|progetto%% corrente
+- UC11.3 - Inserimento filtri per il progetto corrente
 
 **Attore primario:**
 
@@ -688,7 +692,7 @@ Come Utente Programmatore devo poter selezionare i filtri che applicherò al %%p
 
 **Precondizioni:**
 
-- L’Utente Programmatore ha inserito i filtri per il %%progetto|progetto%% corrente (UC11.3)
+- L’Utente Programmatore ha inserito i filtri per il progetto software corrente (UC11.3)
 - Almeno uno dei filtri non viene trovato dall’%%Applicativo|applicativo%%
 
 **Postcondizioni:**
@@ -709,7 +713,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 
 **Estende:**
 
-- UC11.3 - Inserimento filtri per il %%progetto|progetto%% corrente
+- UC11.3 - Inserimento filtri per il progetto corrente
 
 **Attore primario:**
 
@@ -717,7 +721,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 
 **Precondizioni:**
 
-- L’Utente Programmatore ha inserito i filtri per il %%progetto|progetto%% corrente (UC11.3)
+- L’Utente Programmatore ha inserito i filtri per il progetto software corrente (UC11.3)
 - L'esecuzione di almeno un filtro non termina correttamente
 
 **Postcondizioni:**
@@ -749,7 +753,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 **Precondizioni:**
 
 - L’Utente Programmatore ha configurato l’estensione (UC1)
-- L’Utente Programmatore ha aperto un nuovo %%progetto|progetto%% (UC11)
+- L’Utente Programmatore ha aperto un nuovo progetto software (UC11)
 - L’Utente Programmatore si trova nella scheda dedicata
 
 **Postcondizioni:**
@@ -786,8 +790,8 @@ Come Utente Programmatore devo poter avviare un controllo dello stato di impleme
 **Precondizioni:**
 
 - L’Utente Programmatore ha configurato l’estensione (UC1)
-- L’Utente Programmatore ha aperto un nuovo %%progetto|progetto%% (UC11)
-- L’Utente Programmatore ha un file del %%progetto|progetto%% aperto.
+- L’Utente Programmatore ha aperto un nuovo progetto software (UC11)
+- L’Utente Programmatore ha un file del progetto software aperto.
 
 **Postcondizioni:**
 
@@ -816,7 +820,7 @@ Come Utente Programmatore devo poter selezionare una porzione di codice in cui e
 **Precondizioni:**
 
 - L’Utente Programmatore ha configurato l’estensione (UC1)
-- L’Utente Programmatore ha aperto un nuovo %%progetto|progetto%% (UC11)
+- L’Utente Programmatore ha aperto un nuovo progetto software (UC11)
 
 **Postcondizioni:**
 
@@ -824,11 +828,11 @@ Come Utente Programmatore devo poter selezionare una porzione di codice in cui e
 
 **Scenario principale:**
 
-1. L’Utente Programmatore seleziona tutto il codice del %%progetto|progetto%%.
+1. L’Utente Programmatore seleziona tutto il codice del progetto software.
 2. L’Utente Programmatore avvia il controllo sul codice selezionato (UC11)
 
 **User Story:**
-Come Utente Programmatore devo poter selezionare tutto il codice del %%progetto|progetto%% per eseguire il controllo dell’implementazione dei requisiti al fine di aggiornare la struttura dati.
+Come Utente Programmatore devo poter selezionare tutto il codice del progetto software per eseguire il controllo dell’implementazione dei requisiti al fine di aggiornare la struttura dati.
 
 ---
 
@@ -845,7 +849,7 @@ Come Utente Programmatore devo poter selezionare tutto il codice del %%progetto|
 **Precondizioni:**
 
 - L’Utente Programmatore ha configurato l’estensione (UC1)
-- L’Utente Programmatore ha aperto un nuovo %%progetto|progetto%% (UC11)
+- L’Utente Programmatore ha aperto un nuovo progetto software (UC11)
 - L’%%Applicativo|applicativo%% ha avviato un Controllo di implementazione dei requisiti (UC15)
 - L’attore secondario %%Ollama|ollama%% non è riuscito ad elaborare la richiesta.
 
@@ -874,7 +878,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 **Precondizioni:**
 
 - L’Utente Programmatore ha configurato l’estensione (UC1)
-- L’Utente Programmatore ha aperto un nuovo %%progetto|progetto%% (UC11)
+- L’Utente Programmatore ha aperto un nuovo progetto software (UC11)
 - L’Utente Programmatore si trova nella scheda dedicata
 
 **Postcondizioni:**
@@ -887,7 +891,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 2. L’Utente Programmatore seleziona i requisiti per i quali vuole effettuare il controllo.
 
 **User Story:**
-Come Utente Programmatore devo poter selezionare tutti i requisiti sui quali voglio effettuare il controllo dello stato di implementazione.
+Come Utente Programmatore devo poter selezionare tutti i requisiti per i quali voglio effettuare il controllo dello stato di implementazione.
 
 ---
 
@@ -902,7 +906,7 @@ Come Utente Programmatore devo poter selezionare tutti i requisiti sui quali vog
 **Precondizioni:**
 
 - L’Utente Programmatore ha configurato l’estensione (UC1)
-- L’Utente Programmatore ha aperto un nuovo %%progetto|progetto%% (UC11)
+- L’Utente Programmatore ha aperto un nuovo progetto software (UC11)
 - L’Utente Programmatore si trova nella scheda dedicata
 
 **Postcondizioni:**
@@ -931,7 +935,7 @@ Come Utente Programmatore devo poter revisionare la risposta fornita dall’%%Ap
 **Precondizioni:**
 
 - L’Utente Programmatore ha configurato l’estensione (UC1)
-- L’Utente Programmatore ha aperto un nuovo %%progetto|progetto%% (UC11)
+- L’Utente Programmatore ha aperto un nuovo progetto software (UC11)
 - L’Utente Programmatore ha aperto la scheda dedicata
 
 **Postcondizioni:**
@@ -965,7 +969,7 @@ Come Utente Programmatore devo poter visualizzare, per ogni requisito che risult
 **Precondizioni:**
 
 - L’Utente Programmatore ha configurato l’estensione (UC1)
-- L’Utente Programmatore ha aperto un nuovo %%progetto|progetto%% (UC11)
+- L’Utente Programmatore ha aperto un nuovo progetto software (UC11)
 - L’Utente Programmatore vuole visualizzare il codice che implementa un requisito (UC19)
 - L’%%Applicativo|applicativo%% non è in grado di visualizzare la porzione di codice corrispondente
 
@@ -976,7 +980,7 @@ Come Utente Programmatore devo poter visualizzare, per ogni requisito che risult
 **Scenario principale:**
 
 1. L’%%Applicativo|applicativo%% esegue la procedura di visualizzazione della porzione di codice.
-2. Se si %%verifica|verifica%% un errore, viene visualizzato un messaggio che descrive il problema riscontrato.
+2. Se si verifica un errore, viene visualizzato un messaggio che descrive il problema riscontrato.
 
 **User Story:**
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se l’%%Applicativo|applicativo%% non è in grado di visualizzare la porzione di codice che implementa il requisito selezionato.
@@ -994,7 +998,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 **Precondizioni:**
 
 - L’Utente Programmatore ha configurato l’estensione (UC1)
-- L’Utente Programmatore ha aperto un nuovo %%progetto|progetto%% (UC11)
+- L’Utente Programmatore ha aperto un nuovo progetto software (UC11)
 - L'Utente Programmatore si trova nella scheda dedicata
 
 **Postcondizioni:**
@@ -1010,7 +1014,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 - UC22 - Visualizzazione errore nella rappresentazione della struttura dati
 
 **User Story:**
-Come Utente Programmatore devo poter visualizzare in ogni momento una tabella con lo stato di implementazione di ogni requisito al fine di avere una chiara percezione dello stato del %%progetto|progetto%%.
+Come Utente Programmatore devo poter visualizzare in ogni momento una tabella con lo stato di implementazione di ogni requisito al fine di avere una chiara percezione del loro stato di implementazione.
 
 ---
 
@@ -1027,7 +1031,7 @@ Come Utente Programmatore devo poter visualizzare in ogni momento una tabella co
 **Precondizioni:**
 
 - L’Utente Programmatore ha configurato l’estensione (UC1)
-- L’Utente Programmatore ha aperto un nuovo %%progetto|progetto%% (UC11)
+- L’Utente Programmatore ha aperto un nuovo progetto software (UC11)
 - L’Utente Programmatore vuole visualizzare la struttura dati (UC21).
 - L’%%Applicativo|applicativo%% non è in grado di visualizzare la struttura dati
 
@@ -1038,7 +1042,7 @@ Come Utente Programmatore devo poter visualizzare in ogni momento una tabella co
 **Scenario principale:**
 
 1. L’%%Applicativo|applicativo%% esegue la procedura di visualizzazione della struttura dati.
-2. Se si %%verifica|verifica%% un errore, viene visualizzato un messaggio che descrive il problema riscontrato.
+2. Se si verifica un errore, viene visualizzato un messaggio che descrive il problema riscontrato.
 
 **User Story:**
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se l’%%Applicativo|applicativo%% non è in grado di visualizzare la struttura dati.
@@ -1047,17 +1051,17 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 
 ### Scelta dell'identificativo
 
-I requisiti vengono identificati ciascuno da un codice identificativo nel formato Rxz_n:
+I requisiti vengono identificati ciascuno da un codice identificativo nel formato **R \[X\]\[Z\]\_\[N\]**:
 
-- **x**: tipologia del requisito
+- **X**: tipologia del requisito
   - **F** = funzionale: indicano %%funzionalità|funzionalità%% che l'%%Applicativo|applicativo%% deve fornire
   - **T** = tecnico: indicano vincoli riguardo le tecnologie che l'%%Applicativo|applicativo%% deve utilizzare
   - **Q** = qualitativo: indicano vincoli riguardo obbiettivi minimi di %%qualità|qualità%%
-- **z**: obbligatorietà del requisito
-  - **O** = obbligatorio : irrinunciabile per qualcuno degli stakeholder
+- **Z**: obbligatorietà del requisito
+  - **O** = obbligatorio : requisito irrinunciabile
   - **D** = desiderabili : non strettamente necessario ma con valore aggiunto riconoscibile
   - **P** = opzionali : utile o contrattabile più avanti
-- **n**: numero progressivo
+- **N**: numero progressivo
 
 ### Requisiti funzionali
 
@@ -1069,8 +1073,8 @@ I requisiti vengono identificati ciascuno da un codice identificativo nel format
   - **RFD_5**: L'utente può impostare la temperature di ogni modello.
   - **RFP_6**: L'utente può inserire un Bearer Token per usare %%Ollama|ollama%% in un server esterno.
   - **RFO_7**: L'%%Applicativo|applicativo%%, in caso di errori dati da input scorretti da parte dell'utente, deve generare una notifica d'errore e permettere il reinserimento del dato.
-- L'utente per utilizzare l'%%Applicativo|applicativo%% deve indicare da interfaccia grafica le specifiche del %%progetto|progetto%%, in particolare:
-  - **RFO_8**: L'utente deve indicare la cartella del %%progetto|progetto%%.
+- L'utente per utilizzare l'%%Applicativo|applicativo%% deve indicare da interfaccia grafica le specifiche del progetto software, in particolare:
+  - **RFO_8**: L'utente deve indicare la cartella del progetto software.
   - **RFO_9**: L'utente deve indicare il file con presente la lista dei requisiti.
   - **RFD_10**: L'utente può effettuare una selezione dei requisiti da analizzare.
   - **RFD_11**: L'utente può specificare dei filtri per selezionare i file sui quali effettuare la ricerca.
@@ -1085,7 +1089,7 @@ I requisiti vengono identificati ciascuno da un codice identificativo nel format
   - **RFD_19**: L'%%Applicativo|applicativo%% per ogni requisito applica il filtro corrispondente, se presente.
   - **RFD_20**: L'%%Applicativo|applicativo%% deve generare una notifica di errore se i filtri indicati dall'utente non sono applicabili.
   - **RFO_21**: L'%%Applicativo|applicativo%% per ogni requisito selezionato produce il codice corrispondente interrogando il modello selezionato per la generazione del codice.
-  - **RFO_22**: L'%%Applicativo|applicativo%% deve effettuare, per ogni requisito selezionato, il pattern matching utilizzando il modello selezionato tra il codice generato (modello) e il codice del %%progetto|progetto%% (programmatore) dei file filtrati.
+  - **RFO_22**: L'%%Applicativo|applicativo%% deve effettuare, per ogni requisito selezionato, il pattern matching tra il codice generato e il codice del progetto utilizzando il modello selezionato.
   - **RFO_23**: L'%%Applicativo|applicativo%% deve generare una notifica di errore se una o più richieste ai modelli sono fallite.
   - **RFO_24**: L'%%Applicativo|applicativo%%, alla fine dell'esecuzione, deve aggiornare la struttura dati, modificando lo stato di implementazione e il puntatore al codice.
 - Al termine dell'esecuzione:
@@ -1108,9 +1112,9 @@ I requisiti vengono identificati ciascuno da un codice identificativo nel format
 
 ### Requisiti qualitativi
 
-- **RQO_1**: L'%%Applicativo|applicativo%% %%prodotto|prodotto%% e tutta la documentazione relativa deve rispettare quanto indicato in Norme di %%Progetto|progetto%%.
-- **RQO_2**: L'%%Applicativo|applicativo%% %%prodotto|prodotto%% e tutta la documentazione relativa deve rispettare quanto indicato in Piano di Qualifica.
-- **RQO_3**: L'%%Applicativo|applicativo%% %%prodotto|prodotto%% deve essere accompagnato dalla sua documentazione tecnica.
+- **RQO_1**: L'%%Applicativo|applicativo%% prodotto e tutta la documentazione relativa deve rispettare quanto indicato nel documento _Norme di progetto_.
+- **RQO_2**: L'%%Applicativo|applicativo%% prodotto e tutta la documentazione relativa deve rispettare quanto indicato nel _Piano di Qualifica_.
+- **RQO_3**: L'%%Applicativo|applicativo%% prodotto deve essere accompagnato dalla sua documentazione tecnica.
 
 <!-- ::: {.no-export} -->
 
