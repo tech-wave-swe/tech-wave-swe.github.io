@@ -1,9 +1,9 @@
 ---
 id: applicativo
 title: Applicativo
-hoverText: Plugin che il gruppo deve sviluppare.
+hoverText: Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software.
 ---
 
 ### Spiegazione del termine
 
-%%Plugin|plugin%% che il gruppo deve sviluppare.
+Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software.
