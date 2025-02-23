@@ -45,13 +45,13 @@ Table: Changelog
 
 ### Scopo del Documento
 
-Lo scopo del documento è quello di definire i requisiti che il gruppo di sviluppo TechWave dovrà rispettare per consegnare il %%prodotto|prodotto%% **Requirement Tracker - Plug-in %%VSCode|vscode%%** rispettando le aspettative dell'azienda Bluewind.
+Lo scopo del documento è quello di definire i requisiti che il gruppo di sviluppo TechWave dovrà rispettare per consegnare il %%prodotto|prodotto%% **Requirement Tracker - Plug-in VSCode** rispettando le aspettative dell'azienda Bluewind.
 
 ### Scopo del Prodotto
 
-Nello sviluppo di software per sistemi embedded il controllo e tracciamento dell'implementazione di tutti i requisiti necessari al corretto funzionamento dello stesso risulta costosa e ripetitiva da parte dello sviluppatore. Può inoltre risultare non esaustiva a causa di distrazioni o dimenticanze. Il %%Capitolato|capitolato%% **Requirement Tracker - Plug-in VSCode** propone lo sviluppo di un %%Plugin|plugin%% per %%VSCode|vscode%% che permetta di tracciare i requisiti derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari requisiti in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
+Nello sviluppo di software per sistemi embedded il controllo e tracciamento dell'implementazione di tutti i requisiti necessari al corretto funzionamento dello stesso risulta costosa e ripetitiva da parte dello sviluppatore. Può inoltre risultare non esaustiva a causa di distrazioni o dimenticanze. Il %%Capitolato|capitolato%% **Requirement Tracker - Plug-in VSCode** propone lo sviluppo di una estensione per %%VSCode|vscode%% che permetta di tracciare i requisiti derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari requisiti in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
 
-Il %%capitolato|capitolato%% prevede la realizzazione di un supporto agli sviluppattori che permetta loro di controllare e tracciare l'implementazione di requisiti software all'interno di un %%progetto|progetto%%. Tramite questa estensione lo sviluppatore potrà caricare un file, in formato _.csv_ o _.reqif_, contenente i requisiti individuati e visualizzare lo stato implementativo di ognuno. Utilizzando l'Intellegenza Artificiale, nello specifico un modello %%LLM|llm££, l'estensione analizzerà l'intero codice sorgente del %%progetto|progetto%% e restituirà lo stato di implementazione di ogni requisito segnalando, se presente, la porzione di codice che lo implementa.
+Il %%capitolato|capitolato%% prevede la realizzazione di un supporto agli sviluppattori che permetta loro di controllare e tracciare l'implementazione di requisiti software all'interno di un progetto. Tramite questa estensione lo sviluppatore potrà caricare un file, in formato _.csv_ o _.reqif_, contenente i requisiti individuati e visualizzare lo stato implementativo di ognuno. Utilizzando l'Intellegenza Artificiale, nello specifico un modello %%LLM|llm%%, l'estensione analizzerà l'intero codice sorgente del progetto e restituirà lo stato di implementazione di ogni requisito segnalando, se presente, la porzione di codice che lo implementa.
 
 ## Casi d'uso
 
@@ -122,7 +122,7 @@ Come Utente Programmatore devo poter configurare l’estensione modificando le i
 **Scenario principale:**
 
 1. L’Utente Programmatore seleziona la voce per modificare l’endpoint
-2. L’Utente Programmatore indica l’endpoint dell’%%applicativo|applicativo%% %%Ollama|ollama%%
+2. L’Utente Programmatore indica l’endpoint in cui è installato %%Ollama|ollama%%
 
 **Estensioni:**
 
@@ -160,7 +160,8 @@ Come Utente Programmatore devo poter indicare l’endpoint in cui è installato 
 1. L’%%applicativo|applicativo%% visualizza un messaggio contenente l’errore riportato
 
 **User Story:**
-Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se l’%%applicativo|applicativo%% %%Ollama|ollama%% non è installato nell’endpoint indicato.
+
+Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se %%Ollama|ollama%% non è installato nell’endpoint indicato.
 
 ---
 
@@ -189,6 +190,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 1. L’%%applicativo|applicativo%% visualizza un messaggio contenente l’errore riportato
 
 **User Story:**
+
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se l’endpoint indicato non fa riferimento ad una destinazione raggiungibile.
 
 ---
@@ -315,6 +317,7 @@ Come Utente Programmatore devo poter inserire il nome di un modello custom per m
 1. L’%%applicativo|applicativo%% visualizza un messaggio contenente l’errore riportato
 
 **User Story:**
+
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se il modello a cui voglio fare la richiesta non è installato nell’endpoint.
 
 ---
@@ -344,6 +347,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 1. L’%%applicativo|applicativo%% visualizza un messaggio contenente l’errore riportato
 
 **User Story:**
+
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se il modello a cui voglio fare la richiesta non esiste.
 
 ---
@@ -526,6 +530,7 @@ Come Utente Programmatore devo poter indicare un bearer token necessario per l�
 1. L’%%applicativo|applicativo%% visualizza un messaggio contenente l’errore riportato
 
 **User Story:**
+
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se il bearer token inserito non consente l’autorizzazione.
 
 ---
@@ -555,6 +560,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 4. L’%%Applicativo|applicativo%% avvia il controllo dell’implementazione dei requisiti (UC15)
 
 **User Story:**
+
 Come Utente Programmatore devo poter aprire un progetto software su cui poi verranno effettuati i controlli di implementazione dei requisiti.
 
 ---
@@ -803,6 +809,7 @@ Come Utente Programmatore devo poter avviare un controllo dello stato di impleme
 2. L’Utente Programmatore avvia il controllo sul codice selezionato (UC15)
 
 **User Story:**
+
 Come Utente Programmatore devo poter selezionare una porzione di codice in cui eseguire il controllo dell’implementazione dei requisiti al fine di aggiornare la struttura dati.
 
 ---
@@ -832,6 +839,7 @@ Come Utente Programmatore devo poter selezionare una porzione di codice in cui e
 2. L’Utente Programmatore avvia il controllo sul codice selezionato (UC11)
 
 **User Story:**
+
 Come Utente Programmatore devo poter selezionare tutto il codice del progetto software per eseguire il controllo dell’implementazione dei requisiti al fine di aggiornare la struttura dati.
 
 ---
@@ -863,6 +871,7 @@ Come Utente Programmatore devo poter selezionare tutto il codice del progetto so
 2. Se viene restituito un errore viene visualizzato un messaggio contenente l’errore riportato.
 
 **User Story:**
+
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se la richiesta al modello non può essere soddisfatta.
 
 ---
@@ -891,6 +900,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 2. L’Utente Programmatore seleziona i requisiti per i quali vuole effettuare il controllo.
 
 **User Story:**
+
 Come Utente Programmatore devo poter selezionare tutti i requisiti per i quali voglio effettuare il controllo dello stato di implementazione.
 
 ---
@@ -920,6 +930,7 @@ Come Utente Programmatore devo poter selezionare tutti i requisiti per i quali v
 3. L’Utente Programmatore revisiona la risposta fornita.
 
 **User Story:**
+
 Come Utente Programmatore devo poter revisionare la risposta fornita dall’%%Applicativo|applicativo%% durante il controllo dell’implementazione.
 
 ---
@@ -952,6 +963,7 @@ Come Utente Programmatore devo poter revisionare la risposta fornita dall’%%Ap
 - UC20 - Visualizzazione errore di riferimento alla porzione di codice che implementa il requisito
 
 **User Story:**
+
 Come Utente Programmatore devo poter visualizzare, per ogni requisito che risulta implementato all’interno dell'%%Applicativo|applicativo%%, il relativo codice sorgente che lo implementa.
 
 ---
@@ -983,6 +995,7 @@ Come Utente Programmatore devo poter visualizzare, per ogni requisito che risult
 2. Se si verifica un errore, viene visualizzato un messaggio che descrive il problema riscontrato.
 
 **User Story:**
+
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se l’%%Applicativo|applicativo%% non è in grado di visualizzare la porzione di codice che implementa il requisito selezionato.
 
 ---
@@ -1014,6 +1027,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 - UC22 - Visualizzazione errore nella rappresentazione della struttura dati
 
 **User Story:**
+
 Come Utente Programmatore devo poter visualizzare in ogni momento una tabella con lo stato di implementazione di ogni requisito al fine di avere una chiara percezione del loro stato di implementazione.
 
 ---
@@ -1045,6 +1059,7 @@ Come Utente Programmatore devo poter visualizzare in ogni momento una tabella co
 2. Se si verifica un errore, viene visualizzato un messaggio che descrive il problema riscontrato.
 
 **User Story:**
+
 Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se l’%%Applicativo|applicativo%% non è in grado di visualizzare la struttura dati.
 
 ## Analisi dei requisiti
