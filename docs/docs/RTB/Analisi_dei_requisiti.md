@@ -52,7 +52,7 @@ Lo scopo del documento è quello di descrivere i casi d'uso ed i requisiti del %
 Per evitare incomprensioni riguardanti la terminologia utilizzata all'interno dei vari documenti, viene fornito un Glossario che racchiude tutti i vari termini tecnici, potenzialmente ambigui, con la propria definizione precisa. I termini presenti all'interno del glossario verranno evidenziati nei documenti tramite:
 
 - **Sito Web**: Grassetto Colorato.
-- **PDF**: Corsivo con pensice \[G\].
+- **PDF**: Corsivo con pendice \[G\].
 
 ### Riferimenti
 
@@ -91,7 +91,7 @@ L'estensione **Requirements Tracker** permetterà agli sviluppatori di controlla
 
 - **TypeScript**: Linguaggio di programmazione scelto per lo sviluppo dell'estensione.
 - **Ollama**: Software gratuito e open source che consente di eseguire in locale diversi modelli %%LLM|llm%%.
-- **CSV e ReqIF**: Tipologia di formati per i file dei requisiti.
+- **CSV e Reqif**: Tipologia di formati per i file dei requisiti.
 - **Vector Embeddings**: Rappresentazione numerica, sotto forma di array, di dati non matematici, come parole o immagini, che possono essere interpretati dai modelli %%LLM|llm%%.
 - **VS Code Extension API**: Set di strumenti e interfacce che consente agli sviluppatori di creare estensioni per Visual Studio Code.
 
@@ -1135,6 +1135,8 @@ I requisiti vengono identificati ciascuno da un codice identificativo nel format
 | **RFP_7** | L'utente può inserire un endpoint specifico a cui indirizzare le richieste di ollama.                                                                      | **UC1.1**                                    |
 | **RFO_8** | L'Applicativo, in caso di errori dati da input scorretti da parte dell'utente, deve generare una notifica d'errore e permettere il reinserimento del dato. | **UC2**, **UC3**, **UC8**, **UC9**, **UC10** |
 
+Table: Requisiti funzionali per la configurazione dell'estensione
+
 - L'utente per utilizzare l'%%Applicativo|applicativo%% deve indicare da interfaccia grafica le specifiche del progetto software, in particolare:
 
 | ID         | Descrizione                                                                                               | Use Cases  |
@@ -1146,6 +1148,8 @@ I requisiti vengono identificati ciascuno da un codice identificativo nel format
 | **RFD_13** | L'utente può selezionare una porzione di codice sulla quale eseguire nuovamente la ricerca                | **UC16**   |
 | **RFO_14** | L'utente può effettuare una nuova ricerca su tutto il codice                                              | **UC17**   |
 | **RFO_15** | L'utente può visualizzare, tramite interfaccia grafica, la porzione di codice che implementa un requisito | **UC19**   |
+
+Table: Requisiti funzionali per le funzionalità di controllo
 
 - L'esecuzione dell'%%Applicativo|applicativo%% deve consistere nel:
 
@@ -1162,6 +1166,8 @@ I requisiti vengono identificati ciascuno da un codice identificativo nel format
 | **RFO_24** | L'Applicativo deve generare una notifica di errore se una o più richieste ai modelli sono fallite.                                                                                                                                                     | **UC18**             |
 | **RFO_25** | L'Applicativo, alla fine dell'esecuzione, deve aggiornare la struttura dati, modificando lo stato di implementazione e il puntatore al codice.                                                                                                         | **UC15**, **UC21**   |
 
+Table: Requisiti funzionali per l'esecuzione dell'estensione
+
 - Al termine dell'esecuzione:
 
 | ID         | Descrizione                                                                                                                                                                        | Use Cases  |
@@ -1171,6 +1177,8 @@ I requisiti vengono identificati ciascuno da un codice identificativo nel format
 | **RFP_28** | L'Applicativo richiede all'utente di fornire un feedback riguardo la correttezza dei risultati della ricerca memorizzati nella struttura dati mostrata.                            | **UC15.2** |
 | **RFO_29** | L'Applicativo deve generare una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile (es. puntatore scorretto, file cancellato o corrotto). | **UC20**   |
 | **RFP_30** | L'Applicativo può fornire delle statistiche di correttezza per il confronto dei modelli messi a disposizione tra le opzioni.                                                       |            |
+
+Table: Requisiti funzionali per l'output dei risultati dell'esecuzione
 
 ### Requisiti tecnici e di vincolo
 
@@ -1185,6 +1193,8 @@ I requisiti vengono identificati ciascuno da un codice identificativo nel format
 | **RTO_7** | Il file con la lista dei requisiti può essere in formato .csv.                          |
 | **RTP_8** | Il file con la lista dei requisiti può essere in formato .reqif.                        |
 
+Table: Requisiti tecnici e di vincolo
+
 ### Requisiti qualitativi
 
 | ID        | Descrizione                                                                                                                  |
@@ -1192,6 +1202,8 @@ I requisiti vengono identificati ciascuno da un codice identificativo nel format
 | **RQO_1** | L'Applicativo prodotto e tutta la documentazione relativa deve rispettare quanto indicato nel documento _Norme di progetto_. |
 | **RQO_2** | L'Applicativo prodotto e tutta la documentazione relativa deve rispettare quanto indicato nel _Piano di Qualifica_.          |
 | **RQO_3** | L'Applicativo prodotto deve essere accompagnato dalla sua documentazione tecnica.                                            |
+
+Table: Requisiti qualitativi
 
 <!-- ::: {.no-export} -->
 
