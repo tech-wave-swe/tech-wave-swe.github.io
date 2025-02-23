@@ -481,7 +481,7 @@ Considerando il costo di **714,05** il residuo disponibile ammonta a **10.280,15
 ###### Pianificazione
 
 In questo periodo, il gruppo si concentrerà sul completamento della documentazione e sul recuperare tutte le task ancora incomplete.
-Parallelamente, apporteremo gli ultimi ritocchi alle metriche.
+Parallelamente, effettueremo gli ultimi controlli sulle metriche utilizzate.
 
 L'obiettivo principale consiste nella completamento degli obiettivi proposti in vista della %%RTB|rtb%%.
 
