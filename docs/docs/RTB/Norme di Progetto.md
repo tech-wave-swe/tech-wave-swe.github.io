@@ -23,7 +23,8 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                                        | Autore         | Data Verifica | Verificatore          |
 | ---------- | -------- | -------------------------------------------------- | -------------- | ------------- | --------------------- |
-| 20/02/2025 | 1.7.0    | Aggiunto tracciamento e rendicontazione delle ore  | Marcon Giulia  |     |         |
+| 23/02/2025 | 1.7.1    | Procedure per la rendicontazione delle ore         | Pistori Gaia   |               |                       |
+| 20/02/2025 | 1.7.0    | Aggiunto tracciamento e rendicontazione delle ore  | Marcon Giulia  |               |                       |
 | 06/02/2025 | 1.6.0    | Aggiunta processi di Supporto                      | Monetti Luca   | 08/02/2025    | Carraro Agnese        |
 | 20/01/2025 | 1.5.0    | Aggiunta processi Primari                          | Pistori Gaia   | 21/01/2025    | Monetti Luca          |
 | 30/12/2024 | 1.4.0    | Completamento processi Organizzativi               | Carraro Agnese | 30/12/2024    | Pistori Gaia          |
@@ -747,6 +748,8 @@ Ogni task presenta:
   - "completato" se è stato fatto il merge con il branch main su GitHub.
 - lo **sprint** a cui appartengono;
 - l'**assegnatario**;
+- la **stima originale** del tempo per completarlo;
+- il punteggio **%%story points|story_points%%** con una valore da 1 a 5 per indicare il valore del task;
 - la **priorità**.
 
 Una volta che viene completato un task, la persona o le persone che hanno contribuito al suo completamento segnalano il tempo produttivo che hanno speso e il ruolo che hanno ricoperto durante il suo svolgimento, usando un'applicazione di Jira chiamata Timetracker. Su Timetracker, le ore di %%progetto|progetto%% svolte sono facilmente consultabili anche in base alla persona o al ruolo. Inoltre, i task sono organizzati in epic (liste di task) a seconda della loro tipologia, che può essere, ad esempio, "documentazione di %%progetto|progetto%%, "gestione repo", ecc.
@@ -828,7 +831,7 @@ La gestione delle ore è un aspetto cruciale per il successo del %%progetto|prog
 
 #### Pianificazione delle ore
 
-Durante la fase di %%Sprint|sprint%% Planning, il Responsabile di %%Progetto|progetto%%, in collaborazione con il team, definisce le %%attività|attività%% da svolgere e stima le ore necessarie per ciascuna di esse. Le ore preventivate vengono registrate nel Piano di %%Progetto|progetto%% e suddivise in base ai ruoli e alle competenze dei membri del team.
+Durante la fase di %%Sprint|sprint%% Planning, il Responsabile di %%Progetto|progetto%%, in collaborazione con il team, definisce le %%attività|attività%% da svolgere e stima le ore necessarie per ciascuna di esse e lo %%story points|story_points%%. Le ore preventivate vengono registrate nel Piano di %%Progetto|progetto%% e suddivise in base ai ruoli e alle competenze dei membri del team.
 
 #### Tracciamento delle ore su Jira
 
@@ -852,13 +855,21 @@ Ogni ora lavorativa deve essere associata a un ruolo specifico:
 - **Verificatore**: per %%attività|attività%% di %%verifica|verifica%% e testing.
 - **Responsabile di %%Progetto|progetto%%**: per %%attività|attività%% di coordinamento e gestione del %%progetto|progetto%%.
 
-#### Monitoraggio delle ore
+#### Rendicontazione delle ore nel cruscotto
+Tramite un documento Google Sheets _cruscotto-avanzamento_, presente nella cartella Google Drive condivisa, il team è in grado di ottenere informazioni riguardo lo stato di avanzamento del progetto. Questo è di particolare importanza per il ruolo del Responsabile durante la compilazione del Piano di Progetto.
 
-Il monitoraggio delle ore lavorative viene effettuato attraverso:
+##### Inserimento ore svolte
+Per inserire la rendicontazione delle ore effettivamente svolte all'interno dello %%sprint|sprint%% bisogna:
+- **Scaricare il report da Timetracker (%%Jira|jira%%)**:
+  - Dalla dashboard di %%Jira|jira%% selezionare, dal menu in alto, le voci _"App"_, poi _"Timetracker"_
+  - Dal menu laterale selezionare la voce _"Saved Reports"_, poi _"Shared with me"_ e aprire il report denominato "visualizzazione ore registrate (totali)"
+  - Qui modificare il range delle date con quelle corrispettive dello %%sprint|sprint%%, eseguire e scaricare (_Excell_) il report
+- **Inserire i dati nel documento Google Sheets _cruscotto-avanzamento_**
+  - Nella pagina _"parser-jira"_ incollare le ultime righe prese dal report scaricato. In automatico verranno usate per aggiornare i grafici di andamento e statistiche.
 
-- **Report di %%Jira|jira%%**: generati automaticamente per visualizzare le ore totali impiegate su ciascun ticket, %%sprint|sprint%% o %%progetto|progetto%%.
-- **Confronto con il Piano di %%Progetto|progetto%%**: per valutare se le ore effettive sono in linea con quelle preventivate.
-- **Analisi dei ruoli**: per verificare la distribuzione delle ore tra i diversi ruoli e identificare eventuali squilibri.
+#### Inserimento ore preventivate
+- **Inserire i dati nel documento Google Sheets _cruscotto-avanzamento_**
+  - Nella pagina _"inserimento-preventivo-ruoli"_ specificare per ogni _issue_ le ore preventivate per ciascun ruolo.
 
 #### Strumenti utilizzati
 
