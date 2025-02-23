@@ -45,7 +45,7 @@ Table: Changelog
 
 ### Scopo del Documento
 
-Lo scopo del documento è quello di definire i requisiti che il gruppo di sviluppo TechWave dovrà rispettare per consegnare il %%prodotto|prodotto%% **Requirement Tracker - Plug-in VSCode** rispettando le aspettative dell'azienda Bluewind.
+Lo scopo del documento è quello di descrivere i casi d'uso ed i requisiti del %%progetto|progetto%% **Requirement Tracker - Plug-in VSCode** individuati dal gruppo Techwave tramite l'analisi del %%capitolato|capitolato%% ed il confronto con l'azienda Bluewind.
 
 ### Scopo del Prodotto
 
@@ -57,7 +57,7 @@ Il %%capitolato|capitolato%% prevede la realizzazione di un supporto agli svilup
 
 ### Introduzione
 
-Questa sezione illustra i casi d’uso delineati dopo l’analisi del Capitolato, il confronto con il %%proponente|proponente%% e le discussioni svolte durante le riunioni interne.
+Questa sezione illustra i casi d’uso delineati dopo l’analisi del %%capitolato|capitolato%%, il confronto con il %%proponente|proponente%% e le discussioni svolte durante le riunioni interne.
 
 ### Attori
 
@@ -1066,7 +1066,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 
 ### Scelta dell'identificativo
 
-I requisiti vengono identificati ciascuno da un codice identificativo nel formato **R \[X\]\[Z\]\_\[N\]**:
+I requisiti vengono identificati ciascuno da un codice identificativo nel formato **R\[X\]\[Z\]\_\[N\]**:
 
 - **X**: tipologia del requisito
   - **F** = funzionale: indicano %%funzionalità|funzionalità%% che l'%%Applicativo|applicativo%% deve fornire
@@ -1081,55 +1081,75 @@ I requisiti vengono identificati ciascuno da un codice identificativo nel format
 ### Requisiti funzionali
 
 - L'utente deve poter configurare l'%%Applicativo|applicativo%% da interfaccia grafica, in particolare:
-  - **RFO_1**: L'utente può scegliere il modello da utilizzare per generare codice.
-  - **RFO_2**: L'utente può scegliere il modello da utilizzare per l'embedding.
-  - **RFD_3**: L'utente può scegliere di utilizzare un modello custom.
-  - **RFO_4**: L'utente può selezionare uno dei modelli proposti.
-  - **RFD_5**: L'utente può impostare la temperature di ogni modello.
-  - **RFP_6**: L'utente può inserire un Bearer Token per usare %%Ollama|ollama%% in un server esterno.
-  - **RFO_7**: L'%%Applicativo|applicativo%%, in caso di errori dati da input scorretti da parte dell'utente, deve generare una notifica d'errore e permettere il reinserimento del dato.
+
+| ID        | Descrizione                                                                                                                                                | Use Cases                                    |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| **RFO_1** | L'utente può scegliere il modello da utilizzare per generare codice.                                                                                       | **UC1.2**                                    |
+| **RFO_2** | L'utente può scegliere il modello da utilizzare per l'embedding.                                                                                           | **UC1.3**                                    |
+| **RFD_3** | L'utente può scegliere di utilizzare un modello custom.                                                                                                    | **UC5**, **UC6**                             |
+| **RFO_4** | L'utente può selezionare uno dei modelli proposti.                                                                                                         | **UC4**, **UC7**                             |
+| **RFD_5** | L'utente può impostare la temperature di ogni modello.                                                                                                     | **UC1.4**                                    |
+| **RFP_6** | L'utente può inserire un Bearer Token per usare Ollama in un server esterno.                                                                               | **UC1.5**                                    |
+| **RFP_7** | L'utente può inserire un endpoint specifico a cui indirizzare le richieste di ollama.                                                                      | **UC1.1**                                    |
+| **RFO_8** | L'Applicativo, in caso di errori dati da input scorretti da parte dell'utente, deve generare una notifica d'errore e permettere il reinserimento del dato. | **UC2**, **UC3**, **UC8**, **UC9**, **UC10** |
+
 - L'utente per utilizzare l'%%Applicativo|applicativo%% deve indicare da interfaccia grafica le specifiche del progetto software, in particolare:
-  - **RFO_8**: L'utente deve indicare la cartella del progetto software.
-  - **RFO_9**: L'utente deve indicare il file con presente la lista dei requisiti.
-  - **RFD_10**: L'utente può effettuare una selezione dei requisiti da analizzare.
-  - **RFD_11**: L'utente può specificare dei filtri per selezionare i file sui quali effettuare la ricerca.
-  - **RFD_12**: L'utente può selezionare una porzione di codice sulla quale eseguire nuovamente la ricerca.
-  - **RFO_13**: L'utente può effettuare una nuova ricerca su tutto il codice.
-  - **RFO_14**: L'utente può visualizzare, tramite interfaccia grafica, la porzione di codice che implementa un requisito.
+
+| ID         | Descrizione                                                                                               | Use Cases  |
+| ---------- | --------------------------------------------------------------------------------------------------------- | ---------- |
+| **RFO_9**  | L'utente deve indicare la cartella del progetto software                                                  | **UC11.1** |
+| **RFO_10** | L'utente deve indicare il file con presente la lista dei requisiti                                        | **UC11.2** |
+| **RFD_11** | L'utente può effettuare una selezione dei requisiti da analizzare                                         | **UC15.1** |
+| **RFD_12** | L'utente può specificare dei filtri per selezionare i file sui quali effettuare la ricerca                | **UC11.3** |
+| **RFD_13** | L'utente può selezionare una porzione di codice sulla quale eseguire nuovamente la ricerca                | **UC16**   |
+| **RFO_14** | L'utente può effettuare una nuova ricerca su tutto il codice                                              | **UC17**   |
+| **RFO_15** | L'utente può visualizzare, tramite interfaccia grafica, la porzione di codice che implementa un requisito | **UC19**   |
+
 - L'esecuzione dell'%%Applicativo|applicativo%% deve consistere nel:
-  - **RFO_15**: L'%%Applicativo|applicativo%% deve effettuare il parsing del documento dei requisiti.
-  - **RFO_16**: L'%%Applicativo|applicativo%% deve generare una struttura dati a partire dal parsing del documento dei requisiti.
-  - **RFO_17**: L'%%Applicativo|applicativo%% deve generare una notifica di errore se il parsing non è andato a buon fine (es. formato file scorretto o non supportato).
-  - **RFO_18**: La struttura dati memorizza per ogni requisito: codice identificativo, testo del requisito, stato di implementazione (implementato o non implementato) e il puntatore al frammento di codice (funzione o parte di essa) dove presume sia implementato.
-  - **RFD_19**: L'%%Applicativo|applicativo%% per ogni requisito applica il filtro corrispondente, se presente.
-  - **RFD_20**: L'%%Applicativo|applicativo%% deve generare una notifica di errore se i filtri indicati dall'utente non sono applicabili.
-  - **RFO_21**: L'%%Applicativo|applicativo%% per ogni requisito selezionato produce il codice corrispondente interrogando il modello selezionato per la generazione del codice.
-  - **RFO_22**: L'%%Applicativo|applicativo%% deve effettuare, per ogni requisito selezionato, il pattern matching tra il codice generato e il codice del progetto utilizzando il modello selezionato.
-  - **RFO_23**: L'%%Applicativo|applicativo%% deve generare una notifica di errore se una o più richieste ai modelli sono fallite.
-  - **RFO_24**: L'%%Applicativo|applicativo%%, alla fine dell'esecuzione, deve aggiornare la struttura dati, modificando lo stato di implementazione e il puntatore al codice.
+
+| ID         | Descrizione                                                                                                                                                                                                                                            | Use Cases            |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------- |
+| **RFO_16** | L'Applicativo deve effettuare il parsing del documento dei requisiti.                                                                                                                                                                                  | **UC11.2**, **UC12** |
+| **RFO_17** | L'Applicativo deve generare una struttura dati a partire dal parsing del documento dei requisiti.                                                                                                                                                      | **UC11.2**, **UC21** |
+| **RFO_18** | L'Applicativo deve generare una notifica di errore se il parsing non è andato a buon fine (es. formato file scorretto o non supportato).                                                                                                               | **UC12**             |
+| **RFO_19** | La struttura dati memorizza per ogni requisito: codice identificativo, testo del requisito, stato di implementazione (implementato o non implementato) e il puntatore al frammento di codice (funzione o parte di essa) dove presume sia implementato. | **UC21**             |
+| **RFD_20** | L'Applicativo per ogni requisito applica il filtro corrispondente, se presente.                                                                                                                                                                        | **UC17**             |
+| **RFD_21** | L'Applicativo deve generare una notifica di errore se i filtri indicati dall'utente non sono applicabili.                                                                                                                                              | **UC13**, **UC14**   |
+| **RFO_22** | L'Applicativo per ogni requisito selezionato produce il codice corrispondente interrogando il modello selezionato per la generazione del codice.                                                                                                       | **UC15**             |
+| **RFO_23** | L'Applicativo deve effettuare, per ogni requisito selezionato, il pattern matching tra il codice generato e il codice del progetto utilizzando il modello selezionato.                                                                                 | **UC15**             |
+| **RFO_24** | L'Applicativo deve generare una notifica di errore se una o più richieste ai modelli sono fallite.                                                                                                                                                     | **UC18**             |
+| **RFO_25** | L'Applicativo, alla fine dell'esecuzione, deve aggiornare la struttura dati, modificando lo stato di implementazione e il puntatore al codice.                                                                                                         | **UC15**, **UC21**   |
+
 - Al termine dell'esecuzione:
-  - **RFO_25**: L'%%Applicativo|applicativo%% deve fornire un'interfaccia grafica per la visualizzazione della struttura dati.
-  - **RFO_26**: L'%%Applicativo|applicativo%% deve generare una notifica di errore se la struttura dati non è leggibile (es. file cancellato o corrotto).
-  - **RFP_27**: L'%%Applicativo|applicativo%% richiede all'utente di fornire un feedback riguardo la correttezza dei risultati della ricerca memorizzati nella struttura dati mostrata.
-  - **RFO_28**: L'%%Applicativo|applicativo%% deve generare una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile (es. puntatore scorretto, file cancellato o corrotto).
-  - **RFP_29**: L'%%Applicativo|applicativo%% può fornire delle statistiche di correttezza per il confronto dei modelli messi a disposizione tra le opzioni.
+
+| ID         | Descrizione                                                                                                                                                                        | Use Cases  |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **RFO_26** | L'Applicativo deve fornire un'interfaccia grafica per la visualizzazione della struttura dati.                                                                                     | **UC21**   |
+| **RFO_27** | L'Applicativo deve generare una notifica di errore se la struttura dati non è leggibile (es. file cancellato o corrotto).                                                          | **UC22**   |
+| **RFP_28** | L'Applicativo richiede all'utente di fornire un feedback riguardo la correttezza dei risultati della ricerca memorizzati nella struttura dati mostrata.                            | **UC15.2** |
+| **RFO_29** | L'Applicativo deve generare una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile (es. puntatore scorretto, file cancellato o corrotto). | **UC20**   |
+| **RFP_30** | L'Applicativo può fornire delle statistiche di correttezza per il confronto dei modelli messi a disposizione tra le opzioni.                                                       |            |
 
 ### Requisiti tecnici e di vincolo
 
-- **RTO_1**: L'%%Applicativo|applicativo%% deve essere un'estensione di Visual Studio Code.
-- **RTO_2**: L'%%Applicativo|applicativo%% deve essere eseguibile interamente in locale.
-- **RTO_3**: L'%%Applicativo|applicativo%% deve utilizzare %%Ollama|ollama%% come interfaccia per l'interrogazione dei modelli.
-- **RTO_4**: I modelli utilizzati sono dei large language model (%%LLM|llm%%).
-- **RTO_5**: Il codice analizzato deve essere in linguaggio C o C++.
-- **RTP_6**: Il codice analizzato deve essere in linguaggio Rust.
-- **RTO_7**: Il file con la lista dei requisiti può essere in formato .csv.
-- **RTP_8**: Il file con la lista dei requisiti può essere in formato .reqif.
+| ID        | Descrizione                                                                             |
+| --------- | --------------------------------------------------------------------------------------- |
+| **RTO_1** | L'Applicativo deve essere un'estensione di Visual Studio Code.                          |
+| **RTO_2** | L'Applicativo deve essere eseguibile interamente in locale.                             |
+| **RTO_3** | L'Applicativo deve utilizzare Ollama come interfaccia per l'interrogazione dei modelli. |
+| **RTO_4** | I modelli utilizzati sono dei large language model (LLM).                               |
+| **RTO_5** | Il codice analizzato deve essere in linguaggio C o C++.                                 |
+| **RTP_6** | Il codice analizzato deve essere in linguaggio Rust.                                    |
+| **RTO_7** | Il file con la lista dei requisiti può essere in formato .csv.                          |
+| **RTP_8** | Il file con la lista dei requisiti può essere in formato .reqif.                        |
 
 ### Requisiti qualitativi
 
-- **RQO_1**: L'%%Applicativo|applicativo%% prodotto e tutta la documentazione relativa deve rispettare quanto indicato nel documento _Norme di progetto_.
-- **RQO_2**: L'%%Applicativo|applicativo%% prodotto e tutta la documentazione relativa deve rispettare quanto indicato nel _Piano di Qualifica_.
-- **RQO_3**: L'%%Applicativo|applicativo%% prodotto deve essere accompagnato dalla sua documentazione tecnica.
+| ID        | Descrizione                                                                                                                  |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| **RQO_1** | L'Applicativo prodotto e tutta la documentazione relativa deve rispettare quanto indicato nel documento _Norme di progetto_. |
+| **RQO_2** | L'Applicativo prodotto e tutta la documentazione relativa deve rispettare quanto indicato nel _Piano di Qualifica_.          |
+| **RQO_3** | L'Applicativo prodotto deve essere accompagnato dalla sua documentazione tecnica.                                            |
 
 <!-- ::: {.no-export} -->
 
