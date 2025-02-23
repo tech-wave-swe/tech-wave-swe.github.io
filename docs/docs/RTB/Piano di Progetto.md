@@ -23,6 +23,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                                                                            | Autore              | Data Verifica | Verificatore        |
 | ---------- | -------- | -------------------------------------------------------------------------------------- | ------------------- | ------------- | ------------------- |
+| 22/02/2025 | 2.2.1    | Aggiunta rendicontazione sprint 5                                                      | Pistori Gaia        | 23/02/2025    | Luca Monetti        |
 | 12/02/2025 | 2.2.0    | Refactoring                                                                            | Piola Andrea        | 17/02/2025    | Pistori Gaia        |
 | 05/02/2025 | 2.1.1    | Minor fix                                                                              | Piola Andrea        | 17/02/2025    | Pistori Gaia        |
 | 26/01/2025 | 2.1.0    | Aggiunta consuntivo sprint 3 e preventivo sprint 4                                     | Dal Bianco Riccardo | 26/01/2025    | Piola Andrea        |
@@ -229,24 +230,13 @@ A seguito si riporta la tabella del preventivo per il primo %%sprint|sprint%%
 
 Table: Preventivo Sprint 1
 
-###### Retrospettiva
-
-Il primo %%sprint|sprint%% ha evidenziato una minore complessità rispetto alle aspettative iniziali. Tuttavia, tali variazioni sono in linea con i principi di %%SCRUM|scrum%%, dove gli aggiustamenti iniziali sono necessari e rappresentano un'opportunità per affinare la capacità di stima nei prossimi %%sprint|sprint%%.
-
-La principale variazione si è registrata sui ruoli di Programmatore (-6,66 ore) dove sono state inizialmente sovrastimate rispetto alle effettive necessità operative.
-Anche gli altri ruoli hanno registrato una diminuzione, sebbene più contenuta.
-
-###### Conclusione
-
-In conclusione, il primo %%sprint|sprint%% ha permesso di identificare aree critiche nella pianificazione iniziale, evidenziando l'importanza di una maggiore attenzione alle attività di analisi e coordinamento in queste fasi iniziali. Queste osservazioni costituiscono un'importante base di apprendimento per ottimizzare la stima iniziale nei prossimi %%sprint|sprint%%, garantendo una gestione più efficiente delle risorse e una migliore aderenza al piano progettuale.
-
 ###### Consuntivo
 
 Di seguito vengono indicate le spese effettive del primo %%sprint|sprint%%
 
 | Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
 | ------------------------- | -------------------- | ------------- | ---------------- | --------- | --------------- |
-| Responsabile di progetto  | 6                    | +0,5          | 30               | 120       | -45             |
+| Responsabile di progetto  | 6                    | +0,5          | 30               | 120       | -15             |
 | Analista                  | 12                   | -0,75         | 25               | 300       | -78,75          |
 | Progettista               | 3,5                  | -0,5          | 25               | 87,5      | -12,5           |
 | Amministratore di sistema | 5,41                 | -0,33         | 20               | 108,2     | -6,8            |
@@ -257,6 +247,17 @@ Di seguito vengono indicate le spese effettive del primo %%sprint|sprint%%
 Table: Consuntivo Sprint 1
 
 Considerando il costo di **680,65€** il residuo disponibile ammonta a **12.119,35€**.
+
+###### Retrospettiva
+
+Il primo %%sprint|sprint%% ha evidenziato una minore complessità rispetto alle aspettative iniziali. Tuttavia, tali variazioni sono in linea con i principi di %%SCRUM|scrum%%, dove gli aggiustamenti iniziali sono necessari e rappresentano un'opportunità per affinare la capacità di stima nei prossimi %%sprint|sprint%%.
+
+La principale variazione si è registrata sui ruoli di Programmatore (-6,66 ore) dove sono state inizialmente sovrastimate rispetto alle effettive necessità operative.
+Anche gli altri ruoli hanno registrato una diminuzione, sebbene più contenuta.
+
+###### Conclusione
+
+In conclusione, il primo %%sprint|sprint%% ha permesso di identificare aree critiche nella pianificazione iniziale, evidenziando l'importanza di una maggiore attenzione alle attività di analisi e coordinamento in queste fasi iniziali. Queste osservazioni costituiscono un'importante base di apprendimento per ottimizzare la stima iniziale nei prossimi %%sprint|sprint%%, garantendo una gestione più efficiente delle risorse e una migliore aderenza al piano progettuale.
 
 ##### Sprint 2
 
@@ -290,29 +291,18 @@ Table: Suddivisione ruoli Sprint 2
 
 A seguito si riporta la tabella del preventivo per il secondo %%sprint|sprint%%
 
-| Ruolo                     | Ore svolte (h) | Costo (€)  |
-| ------------------------- | -------------- | ---------- |
-| Responsabile di progetto  | 2              | 60         |
-| Analista                  | 21             | 487,5      |
-| Progettista               | 0              | 0          |
-| Amministratore di sistema | 17,5           | 40         |
-| Programmatore             | 5              | 90         |
-| Verificatore              | 9,5            | 52,5       |
-| _Totale_                  | _33_           | _730_      |
-| _Bilancio_                |                | _10.674,5_ |
+| Ruolo                     | Ore svolte (h) | Costo (€)   |
+| ------------------------- | -------------- | ----------- |
+| Responsabile di progetto  | 2              | 60          |
+| Analista                  | 21             | 525         |
+| Progettista               | 0              | 0           |
+| Amministratore di sistema | 17,5           | 350         |
+| Programmatore             | 5              | 75          |
+| Verificatore              | 9,5            | 142,5       |
+| _Totale_                  | _55_           | _1.152,5_   |
+| _Bilancio_                |                | _10.966,85_ |
 
 Table: Preventivo Sprint 2
-
-###### Retrospettiva
-
-Il secondo %%sprint|sprint%% ha dimostrato un peggioramento significativo nella gestione delle risorse e una minore aderenza al piano progettuale specialmente in relazione al numero di task svolte rispetto a quelle preventivate.
-
-Il ruolo del Programmatore è stato sottostimato, infatti ha richiesto più tempo (+4 ore).
-Tutti gli altri ruoli hanno dei valori effettivi inferiori a quelli previsti non per l'ottimizzazione dei tempi ma a causa di ritardi e task non concluse. La principale variazione si è registrata sui ruoli di Analista (-10 ore).
-
-###### Conclusione
-
-In conclusione, Il secondo %%sprint|sprint%% ha mostrato un peggioramento nella gestione delle attività e un minor allineamento rispetto al preventivo iniziale.
 
 ###### Consuntivo
 
@@ -326,11 +316,22 @@ Di seguito vengono indicate le spese effettive del secondo %%sprint|sprint%%
 | Amministratore di sistema | 11,33                | -6,17         | 20               | 226,6     | -123,4          |
 | Programmatore             | 9                    | +4            | 15               | 135       | +60             |
 | Verificatore              | 3,5                  | -6            | 15               | 52,5      | -90             |
-| _Totale consuntivo_       | _35,66_              | _-19,34_      |                  | _714,85_  | _-149,35_       |
+| _Totale consuntivo_       | _35,66_              | _-19,34_      |                  | _714,85_  | _-437,65_       |
 
 Table: Consuntivo Sprint 2
 
 Considerando il costo di **714,85€** il residuo disponibile ammonta a **11.404,50€**.
+
+###### Retrospettiva
+
+Il secondo %%sprint|sprint%% ha dimostrato un peggioramento significativo nella gestione delle risorse e una minore aderenza al piano progettuale specialmente in relazione al numero di task svolte rispetto a quelle preventivate.
+
+Il ruolo del Programmatore è stato sottostimato, infatti ha richiesto più tempo (+4 ore).
+Tutti gli altri ruoli hanno dei valori effettivi inferiori a quelli previsti non per l'ottimizzazione dei tempi ma a causa di ritardi e task non concluse. La principale variazione si è registrata sui ruoli di Analista (-10 ore).
+
+###### Conclusione
+
+In conclusione, Il secondo %%sprint|sprint%% ha mostrato un peggioramento nella gestione delle attività e un minor allineamento rispetto al preventivo iniziale.
 
 ##### Sprint 3
 
@@ -375,16 +376,6 @@ A seguito si riporta la tabella del preventivo per il terzo %%sprint|sprint%%
 
 Table: Preventivo Sprint 3
 
-###### Retrospettiva
-
-Il terzo %%sprint|sprint%%, svolto durante il periodo delle vacanze natalizie, ha risentito della disponibilità limitata delle risorse, ma ha comunque permesso di registrare progressi verso gli obiettivi prefissati.
-
-La principale variazione si è osservata nel ruolo di Amministratore (+2 ore), a causa di una sottostima del tempo necessario per implementare le modifiche . Al contrario, il ruolo di Analista (-0,5 ore) e di Programmatore (-6 ore) hanno registrato un impiego inferiore rispetto alle previsioni.
-
-###### Conclusione
-
-In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni nei tempi stimati, ma ha consentito un avanzamento concreto nelle attività prioritarie.
-
 ###### Consuntivo
 
 Di seguito vengono indicate le spese effettive del terzo %%sprint|sprint%% 22/12 12/01
@@ -397,11 +388,21 @@ Di seguito vengono indicate le spese effettive del terzo %%sprint|sprint%% 22/12
 | Amministratore di sistema | 3,83                 | +1,83         | 20               | 76,6      | +36,6           |
 | Programmatore             | 0                    | -6            | 15               | 0         | -90             |
 | Verificatore              | 3,58                 | +0,08         | 15               | 53,7      | +1,2            |
-| _Totale consuntivo_       | _35,66_              | _-14,59_      |                  | _410,3_   | _-319,7_        |
+| _Totale consuntivo_       | _18,41_              | _-14,59_      |                  | _410,3_   | _-319,7_        |
 
 Table: Consuntivo Sprint 3
 
 Considerando il costo di **410,3€** il residuo disponibile ammonta a **10.994,2€**.
+
+###### Retrospettiva
+
+Il terzo %%sprint|sprint%%, svolto durante il periodo delle vacanze natalizie, ha risentito della disponibilità limitata delle risorse, ma ha comunque permesso di registrare progressi verso gli obiettivi prefissati.
+
+La principale variazione si è osservata nel ruolo di Amministratore (+2 ore), a causa di una sottostima del tempo necessario per implementare le modifiche . Al contrario, il ruolo di Analista (-0,5 ore) e di Programmatore (-6 ore) hanno registrato un impiego inferiore rispetto alle previsioni.
+
+###### Conclusione
+
+In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni nei tempi stimati, ma ha consentito un avanzamento concreto nelle attività prioritarie.
 
 ##### Sprint 4
 
@@ -446,16 +447,6 @@ A seguito si riporta la tabella del preventivo per il quarto %%sprint|sprint%%
 
 Table: Preventivo Sprint 4
 
-###### Retrospettiva
-
-Il quarto %%sprint|sprint%%, svolto durante il periodo della sessione, ha risentito della disponibilità limitata delle risorse, ma ha comunque permesso di registrare progressi verso gli obiettivi prefissati e di recuperare alcune task tralasciate precedentemente.
-
-La principale variazione si è osservata nel ruolo di Programmatore (+2 ore), a causa di una sottostima del tempo necessario per implementare le modifiche utili alla consegna dell%%RTB|rtb%%. Al contrario, il ruolo di Amministratore (-7 ore) ha registrato un impiego inferiore rispetto alle previsioni.
-
-###### Conclusione
-
-In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni nei tempi stimati, ma ha consentito un avanzamento concreto nelle attività prioritarie.
-
 ###### Consuntivo
 
 Di seguito vengono indicate le spese effettive del terzo %%sprint|sprint%% 22/12 12/01
@@ -474,6 +465,16 @@ Table: Consuntivo Sprint 4
 
 Considerando il costo di **714,05** il residuo disponibile ammonta a **10.280,15€**.
 
+###### Retrospettiva
+
+Il quarto %%sprint|sprint%%, svolto durante il periodo della sessione, ha risentito della disponibilità limitata delle risorse, ma ha comunque permesso di registrare progressi verso gli obiettivi prefissati e di recuperare alcune task tralasciate precedentemente.
+
+La principale variazione si è osservata nel ruolo di Programmatore (+2 ore), a causa di una sottostima del tempo necessario per implementare le modifiche utili alla consegna dell%%RTB|rtb%%. Al contrario, il ruolo di Amministratore (-7 ore) ha registrato un impiego inferiore rispetto alle previsioni.
+
+###### Conclusione
+
+In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni nei tempi stimati, ma ha consentito un avanzamento concreto nelle attività prioritarie.
+
 ##### Sprint 5
 
 - Periodo 27/01/2025 - 09/02/2025
@@ -481,9 +482,9 @@ Considerando il costo di **714,05** il residuo disponibile ammonta a **10.280,15
 ###### Pianificazione
 
 In questo periodo, il gruppo si concentrerà sul completamento della documentazione e sul recuperare tutte le task ancora incomplete.
-Parallelamente, effettueremo gli ultimi controlli sulle metriche utilizzate.
+Parallelamente, apporteremo gli ultimi ritocchi alle metriche.
 
-L'obiettivo principale consiste nella completamento degli obiettivi proposti in vista della %%RTB|rtb%%.
+L'obiettivo principale è richiedere la revisione dell'%%RTB|rtb%%.
 
 ###### Ruoli
 
@@ -504,28 +505,18 @@ Table: Suddivisione ruoli Sprint 5
 
 A seguito si riporta la tabella del preventivo per il quarto %%sprint|sprint%%
 
-| Ruolo                     | Ore svolte (h) | Costo (€)   |
-| ------------------------- | -------------- | ----------- |
-| Responsabile di progetto  | 0              | 0           |
-| Analista                  | 0              | 0           |
-| Progettista               | 0              | 0           |
-| Amministratore di sistema | 3              | 60          |
-| Programmatore             | 0              | 0           |
-| Verificatore              | 0              | 0           |
-| _Totale_                  | _3_            | _60_        |
-| _Bilancio_                |                | _10.220,15_ |
+| Ruolo                     | Ore svolte (h) | Costo (€)  |
+| ------------------------- | -------------- | ---------- |
+| Responsabile di progetto  | 1              | 30         |
+| Analista                  | 15             | 375        |
+| Progettista               | 0              | 0          |
+| Amministratore di sistema | 22             | 440        |
+| Programmatore             | 0              | 0          |
+| Verificatore              | 4              | 60         |
+| _Totale_                  | _42_           | _905_    |
+| _Bilancio_                |                | _9.375,15_ |
 
 Table: Preventivo Sprint 5
-
-###### Retrospettiva
-
-Il quinto %%sprint|sprint%%, nonostante sia stato svolto durante il periodo della sessione, ha registrato forti progressi e ha permesso di riallinearsi con quanto stabilito. Infatti la maggioranza delle task svolte erano rimaste incomplete degli %%sprint|sprint%% precedenti.
-
-Tutti i ruoli hanno avuto un incremento delle ore richieste, specialmente il ruolo dell'Amministratore (+30 ore).
-
-###### Conclusione
-
-In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni nei tempi stimati, ma ha consentito di raggiungere tutti gli obiettivi prefissato, recuperando anche quanto lasciato nel backlog.
 
 ###### Consuntivo
 
@@ -533,17 +524,27 @@ Di seguito vengono indicate le spese effettive del terzo %%sprint|sprint%% 22/12
 
 | Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
 | ------------------------- | -------------------- | ------------- | ---------------- | --------- | --------------- |
-| Responsabile di progetto  | 1                    | +1            | 30               | 30        | +30             |
-| Analista                  | 16,5                 | +16,5         | 25               | 412,5     | +412,5          |
+| Responsabile di progetto  | 1                    | 0             | 30               | 30        | 0               |
+| Analista                  | 16,5                 | +1,5          | 25               | 412,5     | +37,5           |
 | Progettista               | 0                    | 0             | 25               | 0         | 0               |
-| Amministratore di sistema | 23,41                | +20,41        | 20               | 468,2     | +408,2          |
+| Amministratore di sistema | 23,41                | +1,41         | 20               | 468,2     | +28,2           |
 | Programmatore             | 0                    | 0             | 15               | 0         | 0               |
-| Verificatore              | 4,4                  | +4,4          | 15               | 66        | +66             |
-| _Totale consuntivo_       | _45,31_              | _-42,31_      |                  | _976,7_   | _+916,7_         |
+| Verificatore              | 4,4                  | +0,4          | 15               | 66        | +6              |
+| _Totale consuntivo_       | _45,31_              | _+3,31_       |                  | _976,7_   | _+71,7_         |
 
 Table: Consuntivo Sprint 5
 
 Considerando il costo di **976,7** il residuo disponibile ammonta a **9.303,45€**.
+
+###### Retrospettiva
+
+Il quinto %%sprint|sprint%%, nonostante sia stato svolto durante il periodo della sessione, ha registrato forti progressi e ha permesso di riallinearsi con quanto stabilito. Infatti la maggioranza delle task svolte erano rimaste incomplete degli %%sprint|sprint%% precedenti.
+
+Tutti i ruoli hanno rispettato le tempistiche preventivate.
+
+###### Conclusione
+
+In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni nei tempi stimati, ma ha consentito di raggiungere tutti gli obiettivi prefissato, recuperando anche quanto lasciato nel backlog.
 
 <!-- ::: {.no-export} -->
 
