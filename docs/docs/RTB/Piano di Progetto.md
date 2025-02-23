@@ -23,6 +23,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                                                                            | Autore              | Data Verifica | Verificatore        |
 | ---------- | -------- | -------------------------------------------------------------------------------------- | ------------------- | ------------- | ------------------- |
+| 22/02/2025 | 2.2.1    | Aggiunta rendicontazione sprint 5                                                      | Pistori Gaia        | 23/02/2025    | Luca Monetti        |
 | 12/02/2025 | 2.2.0    | Refactoring                                                                            | Piola Andrea        | 17/02/2025    | Pistori Gaia        |
 | 05/02/2025 | 2.1.1    | Minor fix                                                                              | Piola Andrea        | 17/02/2025    | Pistori Gaia        |
 | 26/01/2025 | 2.1.0    | Aggiunta consuntivo sprint 3 e preventivo sprint 4                                     | Dal Bianco Riccardo | 26/01/2025    | Piola Andrea        |
@@ -201,14 +202,14 @@ Durante il tempo aggiuntivo, il team ha deciso di sfruttare l'opportunità per a
 
 A seguito si riporta la tabella con la suddivisione dei ruoli:
 
-| **Ruolo**                 | **Membri**                                                                            |
-| ------------------------- | ------------------------------------------------------------------------------------- |
-| Responsabile di progetto  | Carraro Agnese, Piola Andrea                                                          |
-| Amministratore di sistema | Carraro Agnese, Monetti Luca, Dal Bianco Riccardo                                     |
-| Analista                  | Piola Andrea, Pistori Gaia, Marcon Giulia, Manuel Felipe Vasquez, Dal Bianco Riccardo |
-| Progettista               | Manuel Felipe Vasquez                                                                 |
-| Programmatore             | Monetti Luca                                                                          |
-| Verificatore              | Carraro Agnese, Pistori Gaia, Marcon Giulia, Monetti Luca                             |
+| **Ruolo**                 | **Membri**                        |
+| ------------------------- | --------------------------------- |
+| Responsabile di progetto  | Piola Andrea                      |
+| Analista                  | Pistori Gaia, Dal Bianco Riccardo |
+| Progettista               | Manuel Felipe Vasquez             |
+| Amministratore di sistema | Carraro Agnese                    |
+| Programmatore             | Monetti Luca                      |
+| Verificatore              | Marcon Giulia                     |
 
 Table: Suddivisione ruoli Sprint 1
 
@@ -218,27 +219,16 @@ A seguito si riporta la tabella del preventivo per il primo %%sprint|sprint%%
 
 | Ruolo                     | Ore svolte (h) | Costo (€) |
 | ------------------------- | -------------- | --------- |
-| Responsabile di progetto  | 4              | 120       |
-| Amministratore di sistema | 4              | 80        |
-| Analista                  | 4              | 100       |
-| Progettista               | 0              | 0         |
-| Programmatore             | 1              | 15        |
-| Verificatore              | 5              | 75        |
-| Totale                    | 18             | 390       |
-| Bilancio                  |                | 12.410,00 |
+| Responsabile di progetto  | 5,5            | 165       |
+| Analista                  | 12,75          | 318,75    |
+| Progettista               | 4              | 100       |
+| Amministratore di sistema | 5,75           | 115       |
+| Programmatore             | 4              | 60        |
+| Verificatore              | 4,75           | 71,25     |
+| _Totale_                  | _36,75_        | _830_     |
+| _Bilancio_                |                | _11.970_  |
 
 Table: Preventivo Sprint 1
-
-###### Retrospettiva
-
-Il primo %%sprint|sprint%% ha evidenziato una maggiore complessità rispetto alle aspettative iniziali, soprattutto per quanto riguarda le attività di analisi. Tuttavia, tali variazioni sono in linea con i principi di %%SCRUM|scrum%%, dove gli aggiustamenti iniziali sono necessari e rappresentano un'opportunità per affinare la capacità di stima nei prossimi %%sprint|sprint%%.
-
-La principale variazione si è registrata sui ruoli di Analista (+13 ore) e Progettista (+3,5 ore) in quanto le ore dedicate alle attività di coordinamento e alle riunioni sono state inizialmente sottostimate rispetto alle effettive necessità operative.
-Anche il Responsabile di progetto e l’Amministratore di sistema hanno registrato un aumento, sebbene più contenuto (+2 ore ciascuno).
-
-###### Conclusione
-
-In conclusione, il primo %%sprint|sprint%% ha permesso di identificare aree critiche nella pianificazione iniziale, evidenziando l'importanza di una maggiore attenzione alle attività di analisi e coordinamento in queste fasi iniziali. Queste osservazioni costituiscono un'importante base di apprendimento per ottimizzare la stima iniziale nei prossimi %%sprint|sprint%%, garantendo una gestione più efficiente delle risorse e una migliore aderenza al piano progettuale.
 
 ###### Consuntivo
 
@@ -246,17 +236,28 @@ Di seguito vengono indicate le spese effettive del primo %%sprint|sprint%%
 
 | Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
 | ------------------------- | -------------------- | ------------- | ---------------- | --------- | --------------- |
-| Responsabile di progetto  | 6                    | +2            | 30               | 180       | +60             |
-| Amministratore di sistema | 6                    | +2            | 20               | 120       | +40             |
-| Analista                  | 17                   | +13           | 25               | 425       | +325            |
-| Progettista               | 3,5                  | +3,5          | 25               | 87,5      | +87,5           |
-| Programmatore             | 0,5                  | -0,5          | 15               | 7,5       | -7,5            |
-| Verificatore              | 5                    | 0             | 15               | 75        | 0               |
-| Totale consuntivo         | 38                   | +20           |                  | 895       | +505            |
+| Responsabile di progetto  | 6                    | +0,5          | 30               | 120       | -15             |
+| Analista                  | 12                   | -0,75         | 25               | 300       | -78,75          |
+| Progettista               | 3,5                  | -0,5          | 25               | 87,5      | -12,5           |
+| Amministratore di sistema | 5,41                 | -0,33         | 20               | 108,2     | -6,8            |
+| Programmatore             | 0,33                 | -3,66         | 15               | 4,95      | -55,05          |
+| Verificatore              | 4                    | -0,75         | 15               | 60        | -11,25          |
+| _Totale consuntivo_       | _31,24_              | _-5,5_        |                  | _680,65_  | -149,35         |
 
 Table: Consuntivo Sprint 1
 
-Considerando il costo di **895,00€** il residuo disponibile ammonta a **11.905,00€**.
+Considerando il costo di **680,65€** il residuo disponibile ammonta a **12.119,35€**.
+
+###### Retrospettiva
+
+Il primo %%sprint|sprint%% ha evidenziato una minore complessità rispetto alle aspettative iniziali. Tuttavia, tali variazioni sono in linea con i principi di %%SCRUM|scrum%%, dove gli aggiustamenti iniziali sono necessari e rappresentano un'opportunità per affinare la capacità di stima nei prossimi %%sprint|sprint%%.
+
+La principale variazione si è registrata sui ruoli di Programmatore (-6,66 ore) dove sono state inizialmente sovrastimate rispetto alle effettive necessità operative.
+Anche gli altri ruoli hanno registrato una diminuzione, sebbene più contenuta.
+
+###### Conclusione
+
+In conclusione, il primo %%sprint|sprint%% ha permesso di identificare aree critiche nella pianificazione iniziale, evidenziando l'importanza di una maggiore attenzione alle attività di analisi e coordinamento in queste fasi iniziali. Queste osservazioni costituiscono un'importante base di apprendimento per ottimizzare la stima iniziale nei prossimi %%sprint|sprint%%, garantendo una gestione più efficiente delle risorse e una migliore aderenza al piano progettuale.
 
 ##### Sprint 2
 
@@ -275,14 +276,14 @@ Infine, verrà avviata la prima fase di sviluppo del %%PoC|poc%%, con l'obiettiv
 
 A seguito si riporta la tabella con la suddivisione dei ruoli:
 
-| **Ruolo**                 | **Membri**                                      |
-| ------------------------- | ----------------------------------------------- |
-| Responsabile di progetto  | Marcon Giulia                                   |
-| Amministratore di sistema | Marcon Giulia, Dal Bianco Riccardo              |
-| Analista                  | Piola Andrea, Pistori Gaia, Dal Bianco Riccardo |
-| Progettista               |                                                 |
-| Programmatore             | Monetti Luca, Manuel Felipe Vasquez             |
-| Verificatore              | Carraro Agnese, Pistori Gaia, Monetti Luca      |
+| **Ruolo**                 | **Membri**                          |
+| ------------------------- | ----------------------------------- |
+| Responsabile di progetto  | Dal Bianco Riccardo                 |
+| Analista                  | Piola Andrea, Pistori Gaia          |
+| Progettista               |                                     |
+| Amministratore di sistema | Marcon Giulia                       |
+| Programmatore             | Monetti Luca, Manuel Felipe Vasquez |
+| Verificatore              | Carraro Agnese                      |
 
 Table: Suddivisione ruoli Sprint 2
 
@@ -290,29 +291,18 @@ Table: Suddivisione ruoli Sprint 2
 
 A seguito si riporta la tabella del preventivo per il secondo %%sprint|sprint%%
 
-| Ruolo                     | Ore svolte (h) | Costo (€) |
-| ------------------------- | -------------- | --------- |
-| Responsabile di progetto  | 6              | 180       |
-| Amministratore di sistema | 6              | 120       |
-| Analista                  | 17             | 425       |
-| Progettista               | 0              | 0         |
-| Programmatore             | 5              | 75        |
-| Verificatore              | 5              | 75        |
-| Totale                    | 39             | 875       |
-| Bilancio                  |                | 11.030,00 |
+| Ruolo                     | Ore svolte (h) | Costo (€)   |
+| ------------------------- | -------------- | ----------- |
+| Responsabile di progetto  | 2              | 60          |
+| Analista                  | 21             | 525         |
+| Progettista               | 0              | 0           |
+| Amministratore di sistema | 17,5           | 350         |
+| Programmatore             | 5              | 75          |
+| Verificatore              | 9,5            | 142,5       |
+| _Totale_                  | _55_           | _1.152,5_   |
+| _Bilancio_                |                | _10.966,85_ |
 
 Table: Preventivo Sprint 2
-
-###### Retrospettiva
-
-Il secondo %%sprint|sprint%% ha dimostrato un progresso significativo nella gestione delle risorse e una maggiore aderenza al piano progettuale dimostrando che le azioni correttive introdotte dopo il primo %%sprint|sprint%% hanno avuto un impatto positivo.
-
-La principale variazione si è registrata sui ruoli di Programmatore (+4 ore) in quanto è stata sottostimato il tempo necessario allo sviluppo di una base per il %%PoC|poc%%.
-Abbiamo invece sovrastimato il ruolo dell'Analista (-3 ore) e del Responsabile (-4 ore).
-
-###### Conclusione
-
-In conclusione, Il secondo %%sprint|sprint%% ha mostrato un miglioramento nella gestione delle attività e un maggior allineamento rispetto al preventivo iniziale.
 
 ###### Consuntivo
 
@@ -320,17 +310,28 @@ Di seguito vengono indicate le spese effettive del secondo %%sprint|sprint%%
 
 | Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
 | ------------------------- | -------------------- | ------------- | ---------------- | --------- | --------------- |
-| Responsabile di progetto  | 2                    | -4            | 30               | 60        | -120            |
-| Amministratore di sistema | 5                    | -1            | 20               | 100       | -20             |
-| Analista                  | 14                   | -3            | 25               | 350       | -75             |
+| Responsabile di progetto  | 1                    | -1            | 30               | 30        | -30             |
+| Analista                  | 10,83                | -10,17        | 25               | 270,75    | -254,25         |
 | Progettista               | 0                    | 0             | 25               | 0         | 0               |
+| Amministratore di sistema | 11,33                | -6,17         | 20               | 226,6     | -123,4          |
 | Programmatore             | 9                    | +4            | 15               | 135       | +60             |
-| Verificatore              | 3,5                  | -1,5          | 15               | 52,5      | -22,50          |
-| Totale consuntivo         | 33.5                 | -5.5          |                  | 697,5     | -177,50         |
+| Verificatore              | 3,5                  | -6            | 15               | 52,5      | -90             |
+| _Totale consuntivo_       | _35,66_              | _-19,34_      |                  | _714,85_  | _-437,65_       |
 
 Table: Consuntivo Sprint 2
 
-Considerando il costo di **697,50€** il residuo disponibile ammonta a **11.207,50€**.
+Considerando il costo di **714,85€** il residuo disponibile ammonta a **11.404,50€**.
+
+###### Retrospettiva
+
+Il secondo %%sprint|sprint%% ha dimostrato un peggioramento significativo nella gestione delle risorse e una minore aderenza al piano progettuale specialmente in relazione al numero di task svolte rispetto a quelle preventivate.
+
+Il ruolo del Programmatore è stato sottostimato, infatti ha richiesto più tempo (+4 ore).
+Tutti gli altri ruoli hanno dei valori effettivi inferiori a quelli previsti non per l'ottimizzazione dei tempi ma a causa di ritardi e task non concluse. La principale variazione si è registrata sui ruoli di Analista (-10 ore).
+
+###### Conclusione
+
+In conclusione, Il secondo %%sprint|sprint%% ha mostrato un peggioramento nella gestione delle attività e un minor allineamento rispetto al preventivo iniziale.
 
 ##### Sprint 3
 
@@ -347,14 +348,14 @@ In parallelo, il team continuerà lo sviluppo di alcune funzionalità richieste 
 
 A seguito si riporta la tabella con la suddivisione dei ruoli:
 
-| **Ruolo**                 | **Membri**                               |
-| ------------------------- | ---------------------------------------- |
-| Responsabile di progetto  | Dal Bianco Riccardo                      |
-| Amministratore di sistema | Carraro Agnese, Monetti Luca             |
-| Analista                  | Piola Andrea, Pistori Gaia, Monetti Luca |
-| Progettista               |                                          |
-| Programmatore             | Marcon Giulia, Manuel Felipe Vasquez     |
-| Verificatore              | Pistori Gaia, Monetti Luca               |
+| **Ruolo**                 | **Membri**                           |
+| ------------------------- | ------------------------------------ |
+| Responsabile di progetto  | Monetti Luca                         |
+| Analista                  | Piola Andrea,Dal Bianco Riccardo     |
+| Progettista               |                                      |
+| Amministratore di sistema | Carraro Agnese                       |
+| Programmatore             | Marcon Giulia, Manuel Felipe Vasquez |
+| Verificatore              | Pistori Gaia                         |
 
 Table: Suddivisione ruoli Sprint 3
 
@@ -362,28 +363,18 @@ Table: Suddivisione ruoli Sprint 3
 
 A seguito si riporta la tabella del preventivo per il terzo %%sprint|sprint%%
 
-| Ruolo                     | Ore svolte (h) | Costo (€) |
-| ------------------------- | -------------- | --------- |
-| Responsabile di progetto  | 4              | 120       |
-| Amministratore di sistema | 4              | 80        |
-| Analista                  | 15             | 375       |
-| Progettista               | 0              | 0         |
-| Programmatore             | 5              | 75        |
-| Verificatore              | 5              | 75        |
-| Totale                    | 33             | 725       |
-| Bilancio                  |                | 10.472,50 |
+| Ruolo                     | Ore svolte (h) | Costo (€)  |
+| ------------------------- | -------------- | ---------- |
+| Responsabile di progetto  | 2              | 60         |
+| Analista                  | 19,5           | 487,5      |
+| Progettista               | 0              | 0          |
+| Amministratore di sistema | 2              | 40         |
+| Programmatore             | 6              | 90         |
+| Verificatore              | 3,5            | 52,5       |
+| _Totale_                  | _33_           | _730_      |
+| _Bilancio_                |                | _10.674,5_ |
 
 Table: Preventivo Sprint 3
-
-###### Retrospettiva
-
-Il terzo %%sprint|sprint%%, svolto durante il periodo delle vacanze natalizie, ha risentito della disponibilità limitata delle risorse, ma ha comunque permesso di registrare progressi verso gli obiettivi prefissati.
-
-La principale variazione si è osservata nel ruolo di Programmatore (+2 ore), a causa di una sottostima del tempo necessario per implementare le modifiche al %%PoC|poc%% . Al contrario, il ruolo di Analista (-2 ore) e di Responsabile (-3 ore) hanno registrato un impiego inferiore rispetto alle previsioni.
-
-###### Conclusione
-
-In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni nei tempi stimati, ma ha consentito un avanzamento concreto nelle attività prioritarie.
 
 ###### Consuntivo
 
@@ -391,17 +382,27 @@ Di seguito vengono indicate le spese effettive del terzo %%sprint|sprint%% 22/12
 
 | Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
 | ------------------------- | -------------------- | ------------- | ---------------- | --------- | --------------- |
-| Responsabile di progetto  | 1                    | -3            | 30               | 30        | -90             |
-| Amministratore di sistema | 5                    | +1            | 20               | 100       | +20             |
-| Analista                  | 13                   | -2            | 25               | 325       | -50             |
+| Responsabile di progetto  | 1                    | -1            | 30               | 30        | -30             |
+| Analista                  | 10                   | -9,5          | 25               | 250       | -237,5          |
 | Progettista               | 0                    | 0             | 25               | 0         | 0               |
-| Programmatore             | 7                    | +2            | 15               | 105       | +30             |
-| Verificatore              | 2                    | -3            | 15               | 30        | -45             |
-| Totale consuntivo         | 33.5                 | -5            |                  | 590       | -135            |
+| Amministratore di sistema | 3,83                 | +1,83         | 20               | 76,6      | +36,6           |
+| Programmatore             | 0                    | -6            | 15               | 0         | -90             |
+| Verificatore              | 3,58                 | +0,08         | 15               | 53,7      | +1,2            |
+| _Totale consuntivo_       | _18,41_              | _-14,59_      |                  | _410,3_   | _-319,7_        |
 
 Table: Consuntivo Sprint 3
 
-Considerando il costo di **590€** il residuo disponibile ammonta a **10.617,50€**.
+Considerando il costo di **410,3€** il residuo disponibile ammonta a **10.994,2€**.
+
+###### Retrospettiva
+
+Il terzo %%sprint|sprint%%, svolto durante il periodo delle vacanze natalizie, ha risentito della disponibilità limitata delle risorse, ma ha comunque permesso di registrare progressi verso gli obiettivi prefissati.
+
+La principale variazione si è osservata nel ruolo di Amministratore (+2 ore), a causa di una sottostima del tempo necessario per implementare le modifiche . Al contrario, il ruolo di Analista (-0,5 ore) e di Programmatore (-6 ore) hanno registrato un impiego inferiore rispetto alle previsioni.
+
+###### Conclusione
+
+In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni nei tempi stimati, ma ha consentito un avanzamento concreto nelle attività prioritarie.
 
 ##### Sprint 4
 
@@ -412,20 +413,20 @@ Considerando il costo di **590€** il residuo disponibile ammonta a **10.617,50
 In questo periodo, il gruppo si concentrerà sul completamento quasi definitivo della documentazione, con particolare attenzione all'analisi dei requisiti e al piano di qualifica.
 Parallelamente, apporteremo gli ultimi ritocchi al %%PoC|poc%%, integrando i feedback ricevuti dall'azienda durante la riunione.
 
-L'obiettivo principale è avvicinarsi in modo significativo alla conclusione dell'RTB, garantendo un avanzamento concreto del lavoro.
+L'obiettivo principale è avvicinarsi in modo significativo alla conclusione dell'%%RTB|rtb%%, garantendo un avanzamento concreto del lavoro.
 
 ###### Ruoli
 
 A seguito si riporta la tabella con la suddivisione dei ruoli:
 
-| **Ruolo**                 | **Membri**                                                     |
-| ------------------------- | -------------------------------------------------------------- |
-| Responsabile di progetto  | Dal Bianco Riccardo                                            |
-| Amministratore di sistema | Marcon Giulia                                                  |
-| Analista                  | Carraro Agnese, Piola Andrea, Pistori Gaia, Monetti Luca       |
-| Progettista               |                                                                |
-| Programmatore             | Manuel Felipe Vasquez                                          |
-| Verificatore              | Piola Andrea, Marcon Giulia, Monetti Luca, Dal Bianco Riccardo |
+| **Ruolo**                 | **Membri**                                 |
+| ------------------------- | ------------------------------------------ |
+| Responsabile di progetto  | Dal Bianco Riccardo                        |
+| Analista                  | Carraro Agnese, Piola Andrea, Pistori Gaia |
+| Progettista               |                                            |
+| Amministratore di sistema | Marcon Giulia                              |
+| Programmatore             | Manuel Felipe Vasquez                      |
+| Verificatore              | Piola Andrea, Monetti Luca                 |
 
 Table: Suddivisione ruoli Sprint 4
 
@@ -433,18 +434,117 @@ Table: Suddivisione ruoli Sprint 4
 
 A seguito si riporta la tabella del preventivo per il quarto %%sprint|sprint%%
 
-| Ruolo                     | Ore svolte (h) | Costo (€) |
-| ------------------------- | -------------- | --------- |
-| Responsabile di progetto  | 3              | 120       |
-| Amministratore di sistema | 10             | 200       |
-| Analista                  | 25             | 625       |
-| Progettista               | 0              | 0         |
-| Programmatore             | 4              | 60        |
-| Verificatore              | 6              | 90        |
-| Totale                    | 48             | 1095      |
-| Bilancio                  |                | 9.522,50  |
+| Ruolo                     | Ore svolte (h) | Costo (€)   |
+| ------------------------- | -------------- | ----------- |
+| Responsabile di progetto  | 3              | 90          |
+| Analista                  | 12             | 300         |
+| Progettista               | 0              | 0           |
+| Amministratore di sistema | 14,75          | 295         |
+| Programmatore             | 0              | 0           |
+| Verificatore              | 4,75           | 71,25       |
+| _Totale_                  | _34,5_         | _756,25_    |
+| _Bilancio_                |                | _10.237,95_ |
 
 Table: Preventivo Sprint 4
+
+###### Consuntivo
+
+Di seguito vengono indicate le spese effettive del terzo %%sprint|sprint%% 22/12 12/01
+
+| Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
+| ------------------------- | -------------------- | ------------- | ---------------- | --------- | --------------- |
+| Responsabile di progetto  | 2,5                  | -0,5          | 30               | 75        | -15             |
+| Analista                  | 13                   | +1            | 25               | 325       | +25             |
+| Progettista               | 0                    | 0             | 25               | 0         | 0               |
+| Amministratore di sistema | 7,58                 | -7,17         | 20               | 151,6     | -143,4          |
+| Programmatore             | 7                    | +7            | 15               | 105       | +105            |
+| Verificatore              | 3,83                 | -0,92         | 15               | 57,45     | -13,8           |
+| _Totale consuntivo_       | _33,91_              | _-0,59_       |                  | _714,05_  | _-42,2_         |
+
+Table: Consuntivo Sprint 4
+
+Considerando il costo di **714,05** il residuo disponibile ammonta a **10.280,15€**.
+
+###### Retrospettiva
+
+Il quarto %%sprint|sprint%%, svolto durante il periodo della sessione, ha risentito della disponibilità limitata delle risorse, ma ha comunque permesso di registrare progressi verso gli obiettivi prefissati e di recuperare alcune task tralasciate precedentemente.
+
+La principale variazione si è osservata nel ruolo di Programmatore (+2 ore), a causa di una sottostima del tempo necessario per implementare le modifiche utili alla consegna dell%%RTB|rtb%%. Al contrario, il ruolo di Amministratore (-7 ore) ha registrato un impiego inferiore rispetto alle previsioni.
+
+###### Conclusione
+
+In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni nei tempi stimati, ma ha consentito un avanzamento concreto nelle attività prioritarie.
+
+##### Sprint 5
+
+- Periodo 27/01/2025 - 09/02/2025
+
+###### Pianificazione
+
+In questo periodo, il gruppo si concentrerà sul completamento della documentazione e sul recuperare tutte le task ancora incomplete.
+Parallelamente, apporteremo gli ultimi ritocchi alle metriche.
+
+L'obiettivo principale è richiedere la revisione dell'%%RTB|rtb%%.
+
+###### Ruoli
+
+A seguito si riporta la tabella con la suddivisione dei ruoli:
+
+| **Ruolo**                 | **Membri**                                 |
+| ------------------------- | ------------------------------------------ |
+| Responsabile di progetto  | Pistori Gaia                               |
+| Analista                  | Marcon Giulia                              |
+| Progettista               |                                            |
+| Amministratore di sistema | Carraro Agnese, Monetti Luca               |
+| Programmatore             | Manuel Felipe Vasquez, Dal Bianco Riccardo |
+| Verificatore              | Piola Andrea                               |
+
+Table: Suddivisione ruoli Sprint 5
+
+###### Preventivo
+
+A seguito si riporta la tabella del preventivo per il quarto %%sprint|sprint%%
+
+| Ruolo                     | Ore svolte (h) | Costo (€)  |
+| ------------------------- | -------------- | ---------- |
+| Responsabile di progetto  | 1              | 30         |
+| Analista                  | 15             | 375        |
+| Progettista               | 0              | 0          |
+| Amministratore di sistema | 22             | 440        |
+| Programmatore             | 0              | 0          |
+| Verificatore              | 4              | 60         |
+| _Totale_                  | _42_           | _905_    |
+| _Bilancio_                |                | _9.375,15_ |
+
+Table: Preventivo Sprint 5
+
+###### Consuntivo
+
+Di seguito vengono indicate le spese effettive del terzo %%sprint|sprint%% 22/12 12/01
+
+| Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
+| ------------------------- | -------------------- | ------------- | ---------------- | --------- | --------------- |
+| Responsabile di progetto  | 1                    | 0             | 30               | 30        | 0               |
+| Analista                  | 16,5                 | +1,5          | 25               | 412,5     | +37,5           |
+| Progettista               | 0                    | 0             | 25               | 0         | 0               |
+| Amministratore di sistema | 23,41                | +1,41         | 20               | 468,2     | +28,2           |
+| Programmatore             | 0                    | 0             | 15               | 0         | 0               |
+| Verificatore              | 4,4                  | +0,4          | 15               | 66        | +6              |
+| _Totale consuntivo_       | _45,31_              | _+3,31_       |                  | _976,7_   | _+71,7_         |
+
+Table: Consuntivo Sprint 5
+
+Considerando il costo di **976,7** il residuo disponibile ammonta a **9.303,45€**.
+
+###### Retrospettiva
+
+Il quinto %%sprint|sprint%%, nonostante sia stato svolto durante il periodo della sessione, ha registrato forti progressi e ha permesso di riallinearsi con quanto stabilito. Infatti la maggioranza delle task svolte erano rimaste incomplete degli %%sprint|sprint%% precedenti.
+
+Tutti i ruoli hanno rispettato le tempistiche preventivate.
+
+###### Conclusione
+
+In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni nei tempi stimati, ma ha consentito di raggiungere tutti gli obiettivi prefissato, recuperando anche quanto lasciato nel backlog.
 
 <!-- ::: {.no-export} -->
 

@@ -1,9 +1,9 @@
 ---
 id: ollama
 title: Ollama
-hoverText: Strumento o framework per lavorare con modelli di IA in un contesto integrato.
+hoverText: Software gratuito e open source che consente di eseguire in locale diversi modelli LLM.
 ---
 
 ### Spiegazione del termine
 
-Strumento o framework per lavorare con modelli di IA in un contesto integrato.
+Software gratuito e open source che consente di eseguire in locale diversi modelli LLM.

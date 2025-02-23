@@ -47,8 +47,6 @@ function RawInline(el)
 		local pattern = "<img src=\"(.-)\" alt=\"(.-)\" .*\"(.-)\".*>"
 
 		local src, alt, width = string.match(el.text, pattern)
-		print(src)
-
 
 		if (src) then
 
@@ -128,4 +126,47 @@ function Image(el)
 		latexstring = string.format(beg_v.." \\%s[%s]{%s} \\captionof{figure}{%s} " ..end_v ,includefile,table.concat(options,","),el.src,caption)
 	end
 	return pandoc.RawInline("latex", latexstring)
+end
+
+function HorizontalRule(el)
+	return {}
+end
+
+function String(el)
+	if (string.match(el.content, "%")) then
+		print(el.content)
+	end
+	-- el.content = string.gsub(el.content, "%", "%%")
+
+	return el
+end
+
+function RawBlock(el)
+	local options = {}
+
+	if (el.format == "html") then
+		local pattern = "<iframe .*image=\"(.-)\".*title=\"(.-)\">"
+		local src, caption = string.match(el.text, pattern)
+
+		if (src) then
+			print(el)
+			src = "graphs/" .. src
+
+			table.insert(options,string.format("width=%s\\linewidth",string.format("%f", 0.7)))
+
+			local includefile = "includegraphics"
+
+			beg_v = "\\begin{center} "
+			end_v = "\\end{center}"
+
+			if (caption == "" or caption == " ") then
+				latexstring = string.format(beg_v.." \\%s[%s]{%s} " ..end_v,includefile,table.concat(options,","),src)
+			else
+				latexstring = string.format(beg_v.." \\%s[%s]{%s} \\captionof{figure}{%s} " ..end_v ,includefile,table.concat(options,","),src,caption)
+			end
+
+			return pandoc.RawInline("latex", latexstring)
+
+		end
+	end
 end
