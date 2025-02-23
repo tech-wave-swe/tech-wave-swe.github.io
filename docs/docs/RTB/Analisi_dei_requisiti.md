@@ -47,11 +47,53 @@ Table: Changelog
 
 Lo scopo del documento è quello di descrivere i casi d'uso ed i requisiti del %%progetto|progetto%% **Requirement Tracker - Plug-in VSCode** individuati dal gruppo Techwave tramite l'analisi del %%capitolato|capitolato%% ed il confronto con l'azienda Bluewind.
 
+### Glossario
+
+Per evitare incomprensioni riguardanti la terminologia utilizzata all'interno dei vari documenti, viene fornito un Glossario che racchiude tutti i vari termini tecnici, potenzialmente ambigui, con la propria definizione precisa. I termini presenti all'interno del glossario verranno evidenziati nei documenti tramite:
+
+- **Sito Web**: Grassetto Colorato.
+- **PDF**: Corsivo con pensice \[G\].
+
+### Riferimenti
+
+Riferimenti normativi:
+
+- Capitolato d'appalto C8
+
+> [https://www.math.unipd.it/\~tullio/IS-1/2024/Progetto/C8.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Progetto/C8.pdf)
+
+- Corso di Ingegneria del software - Regolamento di Progetto
+
+> [https://www.math.unipd.it/\~tullio/IS-1/2024/Dispense/PD1.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/PD1.pdf)
+
+## Descrizione del prodotto
+
 ### Scopo del Prodotto
 
-Nello sviluppo di software per sistemi embedded il controllo e tracciamento dell'implementazione di tutti i requisiti necessari al corretto funzionamento dello stesso risulta costosa e ripetitiva da parte dello sviluppatore. Può inoltre risultare non esaustiva a causa di distrazioni o dimenticanze. Il %%Capitolato|capitolato%% **Requirement Tracker - Plug-in VSCode** propone lo sviluppo di una estensione per %%VSCode|vscode%% che permetta di tracciare i requisiti derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari requisiti in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
+Nello sviluppo di software per sistemi embedded il controllo e il tracciamento dell'implementazione di tutti i requisiti necessari al corretto funzionamento dello stesso sono azioni costose e ripetitive per lo sviluppatore. Possono inoltre risultare non esaustive a causa di distrazioni o dimenticanze. Il %%Capitolato|capitolato%% **Requirement Tracker - Plug-in VSCode** propone lo sviluppo di una estensione per %%VSCode|vscode%% che permetta di organizzare i requisiti derivati da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari requisiti in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
 
 Il %%capitolato|capitolato%% prevede la realizzazione di un supporto agli sviluppattori che permetta loro di controllare e tracciare l'implementazione di requisiti software all'interno di un progetto. Tramite questa estensione lo sviluppatore potrà caricare un file, in formato _.csv_ o _.reqif_, contenente i requisiti individuati e visualizzare lo stato implementativo di ognuno. Utilizzando l'Intellegenza Artificiale, nello specifico un modello %%LLM|llm%%, l'estensione analizzerà l'intero codice sorgente del progetto e restituirà lo stato di implementazione di ogni requisito segnalando, se presente, la porzione di codice che lo implementa.
+
+### Funzionalità del prodotto
+
+L'estensione **Requirements Tracker** permetterà agli sviluppatori di controllare e tracciare l'implementazione dei requisiti di un progetto. Le principali funzionalità includono:
+
+- **Personalizzazione**: L'%%Applicativo|applicativo%% è configurabile in moltissimi aspetti. Le configurazioni possono essere globali o limitate al singolo progetto, permettendo così allo stesso sviluppatore di lavorare contemporaneamente a progetti che richiedono configurazioni diverse.
+- **Parsing dei dati**: L'%%Applicativo|applicativo%% permette il caricamento di un file, in formato _.csv_ o _.reqif_, contenente una serie di requisiti necessari al progetto. Questo file, univoco per progetto, deve essere letto e trasformato in una struttura dati comprensibile ed utilizzabile.
+- **Visualizzazione Grafica**: In ogni momento lo sviluppatore è in grado di visualizzare lo stato di implementazione corrente di tutti i requisiti tramite una vista grafica della struttura data interna.
+- **Dialogo con LLM**: L'%%Applicativo|applicativo%% utilizza %%Ollama|ollama%% per interfacciarsi con i modelli %%LLM|llm%% necessari al suo funzionamento. Il funzionamento base prevede l'utilizzo di due modelli:
+  - Un modello di **embedding** utilizzato per tradurre il codice sorgente ed i requisiti in forma vettoriale.
+  - Un modello di **generazione del codice** utilizzato per il controllo di implementazione.
+- **Interattività con lo sviluppatore**: Lo sviluppatore potrà interagire con l'%%applicativo|applicativo%% richiedendo un nuovo controllo di implementazione dei requisiti su tutto il codice o su una sua porzione. Lo sviluppatore può inoltre selezionare i requisiti da verificare al fine di rendere la ricerca più precisa. Per ogni requisito è possibile visualizzare, se presente, la porzione di codice che lo implementa.
+- **Richiesta di feedback**: L'%%Applicativo|applicativo%% utilizza un sistema di feedback grazie al quale lo sviluppatore può verificare la presenza di una implementazione effettiva dei requisiti.
+
+### Tecnologie Utilizzate
+
+- **TypeScript**: Linguaggio di programmazione scelto per lo sviluppo dell'estensione.
+- **Ollama**: Software gratuito e open source che consente di eseguire in locale diversi modelli %%LLM|llm%%.
+- **CSV e ReqIF**: Tipologia di formati per i file dei requisiti.
+- **Vector Embeddings**: Rappresentazione numerica, sotto forma di array, di dati non matematici, come parole o immagini, che possono essere interpretati dai modelli %%LLM|llm%%.
+- **VS Code Extension API**: Set di strumenti e interfacce che consente agli sviluppatori di creare estensioni per Visual Studio Code.
 
 ## Casi d'uso
 
