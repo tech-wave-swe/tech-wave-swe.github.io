@@ -549,7 +549,7 @@ In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni nei tempi 
 
 ##### Sprint 6
 
-- Periodo 10/02/2025 - 23/02/2025
+- Periodo 10/02/2025 - 02/03/2025
 
 ###### Pianificazione
 
@@ -577,16 +577,15 @@ A seguito si riporta la tabella del preventivo per il sesto %%sprint|sprint%%
 | Ruolo                     | Ore svolte (h) | Costo (€)  |
 | ------------------------- | -------------- | ---------- |
 | Responsabile di progetto  | 2,5            | 75         |
-| Analista                  | 13,5           | 337,5      |
+| Analista                  | 12,5           | 312,5      |
 | Progettista               | 0              | 0          |
-| Amministratore di sistema | 15,5           | 310        |
+| Amministratore di sistema | 15             | 300        |
 | Programmatore             | 4              | 60         |
-| Verificatore              | 1,17           | 17,55      |
-| _Totale_                  | _36,67_        | _800,05_   |
-| _Bilancio_                |                | _8503,40_  |
+| Verificatore              | 6              | 90         |
+| _Totale_                  | _39_           | _837,5_    |
+| _Bilancio_                |                | _8465,95_  |
 
 Table: Preventivo Sprint 6
-
 
 <!-- ::: {.no-export} -->
 
