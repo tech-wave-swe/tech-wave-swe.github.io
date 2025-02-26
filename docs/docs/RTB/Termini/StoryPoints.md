@@ -1,6 +1,6 @@
 ---
 id: story_points
-title: Requisito Software
+title: Story Points
 hoverText: Unità di misura usata per indicare il valore dell'attività.
 ---
 
