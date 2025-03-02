@@ -5,7 +5,7 @@ documentclass: TWDocumentFull
 toc: true
 lof: true
 numbersections: true
-version: 2.2.0
+version: 2.2.2
 classification: Esterno
 ---
 
@@ -23,6 +23,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                                                                            | Autore              | Data Verifica | Verificatore        |
 | ---------- | -------- | -------------------------------------------------------------------------------------- | ------------------- | ------------- | ------------------- |
+| 23/02/2025 | 2.2.2    | Correzioni grammaticali e sintattiche                                                  | Marcon Giulia       |               |                     |
 | 22/02/2025 | 2.2.1    | Aggiunta rendicontazione sprint 5                                                      | Pistori Gaia        | 23/02/2025    | Luca Monetti        |
 | 12/02/2025 | 2.2.0    | Refactoring                                                                            | Piola Andrea        | 17/02/2025    | Pistori Gaia        |
 | 05/02/2025 | 2.1.1    | Minor fix                                                                              | Piola Andrea        | 17/02/2025    | Pistori Gaia        |
@@ -49,15 +50,18 @@ Table: Changelog
 
 ### Scopo del Documento
 
-Il Piano di %%Progetto|progetto%% è un documento il cui scopo è quello di pianificare in modo preciso lo svolgimento dello stesso cercando di normare i tempi ed i modi. Più precisamente, nel Piano di %%Progetto|progetto%% ci sono sezioni dedicate all'analisi generale dei rischi ed all\'individuazione delle possibili mitigazioni; e sezioni dedicate alla pianificazione dei periodi, individuati come %%sprint|sprint%%, in cui sono indicati i preventivi riguardanti ore/costi ed i consuntivi di ciò che effettivamente è stato svolto. Questo documento è redatto seguendo un approccio incrementale, in quanto durante tutta la durata del %%progetto|progetto%% andrà aggiornato per seguire l'andamento degli %%sprint|sprint%%.
+Il Piano di %%Progetto|progetto%% è un documento il cui scopo è quello di pianificare in modo preciso lo svolgimento del progetto, cercando di normare tempi e modalità. Più precisamente, nel Piano di %%Progetto|progetto%% ci sono sezioni dedicate all'analisi generale dei rischi ed all\'individuazione delle possibili mitigazioni; e sezioni dedicate alla pianificazione dei periodi, individuati come %%sprint|sprint%%, in cui sono indicati i preventivi riguardanti ore/costi ed i consuntivi di ciò che effettivamente è stato svolto. Questo documento è redatto seguendo un approccio incrementale, in quanto durante tutta la durata del %%progetto|progetto%% andrà aggiornato per seguire l'andamento degli %%sprint|sprint%%.
 
 ### Scopo del Prodotto
 
-Nello sviluppo di software per sistemi embedded la parte di controllo dell'implementazione di tutti i requisiti necessari al corretto funzionamento dello stesso risulta costosa e ripetitiva da parte dello sviluppatore, inoltre può risultare non esaustiva a causa di distrazioni o dimenticanze. Il %%capitolato|capitolato%% **Requirement Tracker - Plug-in VSCode** propone lo sviluppo di un %%plugin|plugin%% per %%VSCode|vscode%% che permetta di tracciare i requisiti derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari requisiti in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
+Nello sviluppo di software per sistemi embedded, il controllo dell'implementazione di tutti i requisiti necessari al corretto funzionamento del sistema risulta costoso e ripetitivo per lo sviluppatore, oltre a poter essere non esaustivo a causa di distrazioni o dimenticanze. Il %%capitolato|capitolato%% **Requirement Tracker - Plug-in VSCode** propone lo sviluppo di un %%plugin|plugin%% per %%VSCode|vscode%% che permetta di tracciare i requisiti derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari requisiti in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
 
 ### Glossario
 
-Per evitare incomprensioni riguardanti la terminologia utilizzata all'interno dei vari documenti, viene fornito un Glossario che racchiude tutti i vari termini tecnici, potenzialmente ambigui, con la propria definizione precisa. I termini presenti all'interno del glossario verranno evidenziati nei documenti tramite _("Come?")_.
+Per evitare incomprensioni riguardanti la terminologia utilizzata all'interno dei vari documenti, viene fornito un Glossario che racchiude tutti i vari termini tecnici, potenzialmente ambigui, con la propria definizione precisa. I termini presenti nel glossario saranno evidenziati nei documenti nei seguenti modi:
+
+- **Sito Web**: Grassetto Colorato.
+- **PDF**: Corsivo con pendice \[G\].
 
 ### Riferimenti
 
@@ -69,7 +73,7 @@ Riferimenti normativi:
 
 - Norme di %%progetto|progetto%%
 
-> _"Inserire link al file norme di progetto"_
+> [Norme di Progetto](./Norme%20di%20Progetto.md)
 
 Riferimenti informativi:
 
@@ -79,23 +83,23 @@ Riferimenti informativi:
 
 - Corso di Ingegneria del software - Gestione di %%progetto|progetto%%
 
-> [https://www.math.unipd.it/\~tullio/IS-1/2024/Dispense/T04.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T02.pdf)
+> [https://www.math.unipd.it/\~tullio/IS-1/2024/Dispense/T04.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T04.pdf)
 
 ## Analisi dei rischi
 
-Questa sezione del Piano di %%Progetto|progetto%% si occupa di analizzare le difficoltà che si possono incontrare per evitare che si pongano problemi nell"avanzamento o rallentamenti che possono ostacolare le %%attività|attività%%. Consapevoli di queste possibilità, si decide di analizzare ciascun %%rischio|rischio%%, fornendo una descrizione, un grado di %%rischio|rischio%% sull'avvenire dello stesso (da 1 a 5 dove 1 indica molto basso e 5 molto alto), e la pericolosità in modo tabellare, in modo tale da aiutare l’identificazione di ognuno con un monitoraggio facile e continuo. Per facilitare l’identificazione e l’analisi, le categorie indicate sono principalmente due: le difficoltà interpersonali ed organizzative e le difficoltà tecnologiche.  
+Questa sezione del Piano di %%Progetto|progetto%% si occupa di analizzare le difficoltà che potrebbero presentarsi, al fine di prevenire problemi nell'avanzamento o rallentamenti che potrebbero ostacolare le %%attività|attività%%. Consapevoli di queste possibilità, si decide di analizzare ciascun %%rischio|rischio%%, fornendo una descrizione, un grado di %%rischio|rischio%% sull'avvenire dello stesso (da 1 a 5 dove 1 indica molto basso e 5 molto alto), e la pericolosità in modo tabellare, in modo tale da aiutare l’identificazione di ognuno con un monitoraggio facile e continuo. Per facilitare l’identificazione e l’analisi, le categorie indicate sono principalmente due: le difficoltà interpersonali ed organizzative e le difficoltà tecnologiche.  
 Le %%mitigazione|mitigazione%% di questi rischi si trovano alla fine della sezione.
 
 ### Rischi organizzativi ed interpersonali
 
-A seguito viene riportata la tabella contenente i rischi relativi all'organizzazione ed ai rapporti tra i vari membri del gruppo e verso l'esterno.
+Di seguito viene riportata la tabella contenente i rischi relativi all'organizzazione e ai rapporti tra i vari membri del gruppo e verso l'esterno.
 
 | Codice  | Rischio                                                  | Descrizione                                                                                                                                                                                                          | Grado di rischio | Pericolosità |
 | ------- | -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ------------ |
-| **RO1** | Avanzamento lento per mancanza di esperienza             | Soprattutto durante il primo periodo i membri del gruppo non sono avvezzi alla parte di organizzazione del progetto; ciò può ovviamente portare un rallentamento all'avanzamento dei lavori che con il tempo ridurrà | 5                | Media/Alta   |
-| **RO2** | Ritardi dovuti a problemi individuali                    | Uno o più elementi del gruppo potrebbero non essere in grado di completare il lavoro pianificato entro la data prevista, per cause di qualsiasi natura, creando rallentamenti nel flusso di lavoro                   | 2                | Media        |
-| **RO3** | Problemi personali tra membri del gruppo                 | Uno o più elementi del gruppo potrebbero non essere in grado di completare il lavoro pianificato entro la data prevista, per cause legati a problemi personali con un altro membro, creando rallentamenti nel flusso | 1                | Alta         |
-| **RO4** | Ritardi dovuti a problemi di comunicazione con l'azienda | Il gruppo può ritrovarsi a dover rallentare il ritmo delle attività a causa della necessità di attendere un feedback dall'azienda che non lo fornisce nel breve periodo                                              | 2                | Alta         |
+| **RO1** | **Avanzamento lento per mancanza di esperienza**             | Soprattutto durante il primo periodo, i membri del gruppo non sono abituati alla parte organizzativa del progetto; ciò può ovviamente portare a un rallentamento dell'avanzamento dei lavori, che con il tempo si ridurrà. | 5                | Media/Alta   |
+| **RO2** | **Ritardi dovuti a problemi individuali**                    | Uno o più elementi del gruppo potrebbero non essere in grado di completare il lavoro pianificato entro la data prevista, per cause di qualsiasi natura, creando rallentamenti nel flusso di lavoro.                   | 2                | Media        |
+| **RO3** | **Problemi personali tra membri del gruppo**                 | Uno o più elementi del gruppo potrebbero non essere in grado di completare il lavoro pianificato entro la data prevista, per cause legati a problemi personali con un altro membro, creando rallentamenti nel flusso. | 1                | Alta         |
+| **RO4** | **Ritardi dovuti a problemi di comunicazione con l'azienda** | Il gruppo potrebbe ritrovarsi a dover rallentare il ritmo delle attività a causa della necessità di attendere un feedback dall'azienda, che non viene fornito in tempi brevi.                                              | 2                | Alta         |
 
 Table: Rischi Organizzativi e interpersonali
 
@@ -103,7 +107,7 @@ Table: Rischi Organizzativi e interpersonali
 
 | Codice  | Rischio                             | Descrizione                                                                                                                                | Grado di rischio | Pericolosità |
 | ------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ---------------- | ------------ |
-| **RT1** | **Mancanza di conoscenze tecniche** | Alcuni membri del gruppo potrebbero non aver familiarità con tutte le tecnologie utilizzate durante lo sviluppo o la gestione del progetto | 4                | Bassa        |
+| **RT1** | **Mancanza di conoscenze tecniche** | Alcuni membri del gruppo potrebbero non aver familiarità con tutte le tecnologie utilizzate durante lo sviluppo o la gestione del progetto. | 4                | Bassa        |
 
 Table: Rischi Tecnologici
 
@@ -111,10 +115,10 @@ Table: Rischi Tecnologici
 
 | Codice  | Rischio                                                      | Mitigazione                                                                                                                                                                                                                                                                                    |
 | ------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **RO1** | **Avanzamento lento per mancanza di esperienza**             | Questo rischio può essere mitigato attraverso la pianificazione di incontri frequenti con l'azienda BlueWind che si è resa disponibile a fornire formazione e supporto. Inoltre, vogliamo scegliere un modello di sviluppo incrementale che si integri con il modello AGILE scrum dell'azienda |
-| **RO2** | **Ritardi dovuti a problemi individuali**                    | Questo rischio può essere mitigato attraverso la comunicazione costante tra i vari membri del gruppo. Questo ci permetterà di individuare difficoltà o ritardi prima che essi possano trasformarsi in problemi                                                                                 |
-| **RO3** | **Problemi personali tra membri del gruppo**                 | Questo rischio può essere mitigato creando un tavolo di confronto tra i membri coinvolti per cercare di dissipare tutte le problematiche nate tra loro; ci si affida anche al buonsenso delle stesse nella cooperazione, per il bene di tutto il gruppo                                        |
-| **RO4** | **Ritardi dovuti a problemi di comunicazione con l'azienda** | Questo rischio può essere mitigato accordandosi sulla data dell'incontro successivo con l'azienda prima dell'inizio dell'incontro presente                                                                                                                                                     |
+| **RO1** | **Avanzamento lento per mancanza di esperienza**             | Questo rischio può essere mitigato attraverso la pianificazione di incontri frequenti con l'azienda BlueWind che si è resa disponibile a fornire formazione e supporto. Inoltre, vogliamo scegliere un modello di sviluppo incrementale che si integri con il modello Agile Scrum dell'azienda. |
+| **RO2** | **Ritardi dovuti a problemi individuali**                    | Questo rischio può essere mitigato attraverso la comunicazione costante tra i vari membri del gruppo. Questo ci permetterà di individuare difficoltà o ritardi prima che essi possano trasformarsi in problemi.                                                                                 |
+| **RO3** | **Problemi personali tra membri del gruppo**                 | Questo rischio può essere mitigato creando un tavolo di confronto tra i membri coinvolti, al fine di risolvere le problematiche emerse. Ci si affida anche al buonsenso dei membri nella cooperazione, per il bene del gruppo.                                        |
+| **RO4** | **Ritardi dovuti a problemi di comunicazione con l'azienda** | Questo rischio può essere mitigato accordandosi sulla data dell'incontro successivo con l'azienda prima dell'inizio dell'incontro presente.                                                                                                                                                     |
 
 Table: Mitigazione rischi organizzativi ed interpersonali
 
@@ -122,7 +126,7 @@ Table: Mitigazione rischi organizzativi ed interpersonali
 
 | Codice  | Rischio                             | Mitigazione                                                                                                                                                                                                             |
 | ------- | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **RT1** | **Mancanza di conoscenze tecniche** | Questo rischio può essere mitigato attraverso una stretta collaborazione tra i membri del team e l'azienda proponente mirando alla creazione di un ambiente di collaborazione e condivisione delle conoscenze acquisite |
+| **RT1** | **Mancanza di conoscenze tecniche** | Questo rischio può essere mitigato attraverso una stretta collaborazione tra i membri del team e l'azienda proponente, mirando alla creazione di un ambiente di collaborazione e condivisione delle conoscenze acquisite. |
 
 Table: Mitigazione rischi tecnologici
 
@@ -130,7 +134,7 @@ Table: Mitigazione rischi tecnologici
 
 ### Modello di sviluppo
 
-Il gruppo utilizza un modello Agile basato sul framework %%SCRUM|scrum%% utilizzato in maniera semplificata. I macro periodi sono divisi in %%sprint|sprint%% più piccoli, da due settimane, che permettono rilasci continui così da portare ad un incremento continuo del prodotto. In ogni %%sprint|sprint%% sono ben chiare le task che i membri dovranno portare a termine contenute nel %%backlog|backlog%%; ciò porta ad una facile individuazione dei %%requisiti|requisito_software%% già sviluppati e di quelli ancora da sviluppare da parte del team.
+Il gruppo utilizza un modello Agile basato sul framework %%Scrum|scrum%% adottato in maniera semplificata. I macro periodi sono divisi in %%sprint|sprint%% più piccoli, da due settimane, che permettono rilasci continui così da portare ad un incremento continuo del prodotto. In ogni %%sprint|sprint%% sono ben chiare le task che i membri dovranno portare a termine contenute nel %%backlog|backlog%%; ciò porta ad una facile individuazione dei %%requisiti|requisito_software%% già sviluppati e di quelli ancora da sviluppare da parte del team.
 
 I punti di forza di questo modello di sviluppo sono:
 
@@ -154,7 +158,7 @@ Per definire al meglio la pianificazione degli eventi, vengono individuate tre f
 
 ### Sprint
 
-In questa sezione sono elencati gli sprint appartenenti ai vari periodi di lavori suddivisi per le milestone del progetto didattico. Ogni milestone è divisa in più sprint seguendo le norme legate alla metodologia di lavoro Agile, con riferimento al modello Scrum. Sono inoltre analizzate le variazione delle ore e dei costi preventivati rispetto a quelli effettivamente impiegati al completamento delle varie attività svolte per capirne l'andamento e valutare se le previsioni fatte siano poi congruenti con la realtà.
+In questa sezione sono elencati gli sprint appartenenti ai vari periodi di lavori suddivisi per le milestone del progetto didattico. Ogni milestone è divisa in più sprint seguendo le norme legate alla metodologia di lavoro Agile, con riferimento al modello Scrum. Sono inoltre analizzate le variazione delle ore e dei costi preventivati rispetto a quelli effettivamente impiegati al completamento delle varie attività svolte, per capirne l'andamento e valutare se le previsioni fatte siano poi congruenti con la realtà.
 
 #### Preventivo Candidatura
 
@@ -250,7 +254,7 @@ Considerando il costo di **680,65€** il residuo disponibile ammonta a **12.119
 
 ###### Retrospettiva
 
-Il primo %%sprint|sprint%% ha evidenziato una minore complessità rispetto alle aspettative iniziali. Tuttavia, tali variazioni sono in linea con i principi di %%SCRUM|scrum%%, dove gli aggiustamenti iniziali sono necessari e rappresentano un'opportunità per affinare la capacità di stima nei prossimi %%sprint|sprint%%.
+Il primo %%sprint|sprint%% ha evidenziato una complessità inferiore rispetto alle aspettative iniziali. Tuttavia, tali variazioni sono in linea con i principi di %%Scrum|scrum%%, dove gli aggiustamenti iniziali sono necessari e rappresentano un'opportunità per affinare la capacità di stima nei prossimi %%sprint|sprint%%.
 
 La principale variazione si è registrata sui ruoli di Programmatore (-6,66 ore) dove sono state inizialmente sovrastimate rispetto alle effettive necessità operative.
 Anche gli altri ruoli hanno registrato una diminuzione, sebbene più contenuta.
@@ -324,14 +328,14 @@ Considerando il costo di **714,85€** il residuo disponibile ammonta a **11.404
 
 ###### Retrospettiva
 
-Il secondo %%sprint|sprint%% ha dimostrato un peggioramento significativo nella gestione delle risorse e una minore aderenza al piano progettuale specialmente in relazione al numero di task svolte rispetto a quelle preventivate.
+Il secondo %%sprint|sprint%% ha evidenziato un peggioramento significativo nella gestione delle risorse e una minore aderenza al piano progettuale, in particolare per quanto riguarda il numero di task completate rispetto a quelle previste.
 
 Il ruolo del Programmatore è stato sottostimato, infatti ha richiesto più tempo (+4 ore).
 Tutti gli altri ruoli hanno dei valori effettivi inferiori a quelli previsti non per l'ottimizzazione dei tempi ma a causa di ritardi e task non concluse. La principale variazione si è registrata sui ruoli di Analista (-10 ore).
 
 ###### Conclusione
 
-In conclusione, Il secondo %%sprint|sprint%% ha mostrato un peggioramento nella gestione delle attività e un minor allineamento rispetto al preventivo iniziale.
+In conclusione, il secondo %%sprint|sprint%% ha mostrato un peggioramento nella gestione delle attività e un minor allineamento rispetto al preventivo iniziale.
 
 ##### Sprint 3
 
@@ -351,7 +355,7 @@ A seguito si riporta la tabella con la suddivisione dei ruoli:
 | **Ruolo**                 | **Membri**                           |
 | ------------------------- | ------------------------------------ |
 | Responsabile di progetto  | Monetti Luca                         |
-| Analista                  | Piola Andrea,Dal Bianco Riccardo     |
+| Analista                  | Piola Andrea, Dal Bianco Riccardo    |
 | Progettista               |                                      |
 | Amministratore di sistema | Carraro Agnese                       |
 | Programmatore             | Marcon Giulia, Manuel Felipe Vasquez |
@@ -378,7 +382,7 @@ Table: Preventivo Sprint 3
 
 ###### Consuntivo
 
-Di seguito vengono indicate le spese effettive del terzo %%sprint|sprint%% 22/12 12/01
+Di seguito vengono indicate le spese effettive del terzo %%sprint|sprint%%
 
 | Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
 | ------------------------- | -------------------- | ------------- | ---------------- | --------- | --------------- |
@@ -402,7 +406,7 @@ La principale variazione si è osservata nel ruolo di Amministratore (+2 ore), a
 
 ###### Conclusione
 
-In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni nei tempi stimati, ma ha consentito un avanzamento concreto nelle attività prioritarie.
+In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni rispetto ai tempi stimati, ma ha comunque permesso un avanzamento significativo nelle attività prioritarie.
 
 ##### Sprint 4
 
@@ -413,7 +417,7 @@ In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni nei tempi 
 In questo periodo, il gruppo si concentrerà sul completamento quasi definitivo della documentazione, con particolare attenzione all'analisi dei requisiti e al piano di qualifica.
 Parallelamente, apporteremo gli ultimi ritocchi al %%PoC|poc%%, integrando i feedback ricevuti dall'azienda durante la riunione.
 
-L'obiettivo principale è avvicinarsi in modo significativo alla conclusione dell'%%RTB|rtb%%, garantendo un avanzamento concreto del lavoro.
+L'obiettivo principale è avvicinarsi in modo significativo alla conclusione della %%RTB|rtb%%, garantendo un avanzamento concreto del lavoro.
 
 ###### Ruoli
 
@@ -449,7 +453,7 @@ Table: Preventivo Sprint 4
 
 ###### Consuntivo
 
-Di seguito vengono indicate le spese effettive del terzo %%sprint|sprint%% 22/12 12/01
+Di seguito vengono indicate le spese effettive del quarto %%sprint|sprint%%
 
 | Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
 | ------------------------- | -------------------- | ------------- | ---------------- | --------- | --------------- |
@@ -469,7 +473,7 @@ Considerando il costo di **714,05** il residuo disponibile ammonta a **10.280,15
 
 Il quarto %%sprint|sprint%%, svolto durante il periodo della sessione, ha risentito della disponibilità limitata delle risorse, ma ha comunque permesso di registrare progressi verso gli obiettivi prefissati e di recuperare alcune task tralasciate precedentemente.
 
-La principale variazione si è osservata nel ruolo di Programmatore (+2 ore), a causa di una sottostima del tempo necessario per implementare le modifiche utili alla consegna dell%%RTB|rtb%%. Al contrario, il ruolo di Amministratore (-7 ore) ha registrato un impiego inferiore rispetto alle previsioni.
+La principale variazione si è osservata nel ruolo di Programmatore (+2 ore), a causa di una sottostima del tempo necessario per implementare le modifiche utili alla consegna della %%RTB|rtb%%. Al contrario, il ruolo di Amministratore (-7 ore) ha registrato un impiego inferiore rispetto alle previsioni.
 
 ###### Conclusione
 
@@ -484,7 +488,7 @@ In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni nei tempi 
 In questo periodo, il gruppo si concentrerà sul completamento della documentazione e sul recuperare tutte le task ancora incomplete.
 Parallelamente, apporteremo gli ultimi ritocchi alle metriche.
 
-L'obiettivo principale è richiedere la revisione dell'%%RTB|rtb%%.
+L'obiettivo principale è richiedere la revisione della %%RTB|rtb%%.
 
 ###### Ruoli
 
@@ -503,7 +507,7 @@ Table: Suddivisione ruoli Sprint 5
 
 ###### Preventivo
 
-A seguito si riporta la tabella del preventivo per il quarto %%sprint|sprint%%
+A seguito si riporta la tabella del preventivo per il quinto %%sprint|sprint%%
 
 | Ruolo                     | Ore svolte (h) | Costo (€)  |
 | ------------------------- | -------------- | ---------- |
@@ -520,7 +524,7 @@ Table: Preventivo Sprint 5
 
 ###### Consuntivo
 
-Di seguito vengono indicate le spese effettive del terzo %%sprint|sprint%% 22/12 12/01
+Di seguito vengono indicate le spese effettive del quinto %%sprint|sprint%%
 
 | Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
 | ------------------------- | -------------------- | ------------- | ---------------- | --------- | --------------- |
@@ -544,7 +548,7 @@ Tutti i ruoli hanno rispettato le tempistiche preventivate.
 
 ###### Conclusione
 
-In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni nei tempi stimati, ma ha consentito di raggiungere tutti gli obiettivi prefissato, recuperando anche quanto lasciato nel backlog.
+In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni rispetto ai tempi stimati, ma ha comunque permesso di raggiungere tutti gli obiettivi prefissati, recuperando anche quanto lasciato nel backlog.
 
 <!-- ::: {.no-export} -->
 
