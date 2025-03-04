@@ -5,7 +5,7 @@ documentclass: TWDocumentFull
 toc: true
 lof: true
 numbersections: true
-version: 2.3.1
+version: 2.4.0
 classification: Esterno
 ---
 
@@ -23,7 +23,8 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                                                                            | Autore              | Data Verifica | Verificatore        |
 | ---------- | -------- | -------------------------------------------------------------------------------------- | ------------------- | ------------- | ------------------- |
-| 28/02/2025 | 2.3.1    | Correzioni grammaticali e sintattiche                                                  | Marcon Giulia       |               |                     |
+| 03/03/2025 | 2.4.0    | Aggiunta diagrammi Gantt                                                               | Piola Andrea        |               |                     |
+| 28/02/2025 | 2.3.1    | Correzioni grammaticali e sintattiche                                                  | Marcon Giulia       | 28/02/2025    | Piola Andrea        |
 | 23/02/2025 | 2.3.0    | Aggiunta preventivo sprint 6                                                           | Marcon Giulia       | 24/02/2025    | Carraro Agnese      |
 | 22/02/2025 | 2.2.1    | Aggiunta rendicontazione sprint 5                                                      | Pistori Gaia        | 23/02/2025    | Luca Monetti        |
 | 12/02/2025 | 2.2.0    | Refactoring                                                                            | Piola Andrea        | 17/02/2025    | Pistori Gaia        |
@@ -186,6 +187,7 @@ Nella propria sezione dedicata ogni sprint è descritto seguendo la seguente str
 - Retrospettiva: analizza le difficoltà incontrate durante lo sprint;
 - Conclusione: riassume i risultati ottenuti e le decisioni di miglioramento prese;
 - Consuntivo: tabella che contiene le ore ed i costi a consuntivo per ciascun ruolo;
+- Gantt: diagramma che mostra le attività svolte durante lo sprint con i giorni impiegati per lo svolgimento delle stesse;
 
 #### Verso la RTB
 
@@ -193,7 +195,7 @@ Alla fine della la fase di candidatura con aggiudicazione del capitolato, il gru
 
 ##### Sprint 1
 
-- Periodo: 18/11/2024 - 06/12/2024
+- Periodo: 18/11/2024 - 05/12/2024
 
 ###### Pianificazione
 
@@ -264,9 +266,13 @@ Anche gli altri ruoli hanno registrato una diminuzione, sebbene più contenuta.
 
 In conclusione, il primo %%sprint|sprint%% ha permesso di identificare aree critiche nella pianificazione iniziale, evidenziando l'importanza di una maggiore attenzione alle attività di analisi e coordinamento in queste fasi iniziali. Queste osservazioni costituiscono un'importante base di apprendimento per ottimizzare la stima iniziale nei prossimi %%sprint|sprint%%, garantendo una gestione più efficiente delle risorse e una migliore aderenza al piano progettuale.
 
+###### Gantt
+
+<img src="/img/Gantt/Sprint1.png" alt="Diagramma Gantt sprint 1" data-width="70%" />
+
 ##### Sprint 2
 
-- Periodo 07/12/2024 - 22/12/2024
+- Periodo 06/12/2024 - 19/12/2024
 
 ###### Pianificazione
 
@@ -338,9 +344,13 @@ Tutti gli altri ruoli hanno dei valori effettivi inferiori a quelli previsti non
 
 In conclusione, il secondo %%sprint|sprint%% ha mostrato un peggioramento nella gestione delle attività e un minor allineamento rispetto al preventivo iniziale.
 
+###### Gantt
+
+<img src="/img/Gantt/Sprint2.png" alt="Diagramma Gantt sprint 2" data-width="70%" />
+
 ##### Sprint 3
 
-- Periodo 23/12/2024 - 12/01/2025
+- Periodo 20/12/2024 - 12/01/2025
 
 ###### Pianificazione
 
@@ -409,9 +419,13 @@ La principale variazione si è osservata nel ruolo di Amministratore (+2 ore), a
 
 In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni rispetto ai tempi stimati, ma ha comunque permesso un avanzamento significativo nelle attività prioritarie.
 
+###### Gantt
+
+<img src="/img/Gantt/Sprint3.png" alt="Diagramma Gantt sprint 3" data-width="70%" />
+
 ##### Sprint 4
 
-- Periodo 13/01/2025 - 26/01/2025
+- Periodo 13/01/2025 - 30/01/2025
 
 ###### Pianificazione
 
@@ -480,9 +494,13 @@ La principale variazione si è osservata nel ruolo di Programmatore (+2 ore), a 
 
 In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni nei tempi stimati, ma ha consentito un avanzamento concreto nelle attività prioritarie.
 
+###### Gantt
+
+<img src="/img/Gantt/Sprint4.png" alt="Diagramma Gantt sprint 4" data-width="70%" />
+
 ##### Sprint 5
 
-- Periodo 27/01/2025 - 09/02/2025
+- Periodo 31/01/2025 - 14/02/2025
 
 ###### Pianificazione
 
@@ -550,6 +568,10 @@ Tutti i ruoli hanno rispettato le tempistiche preventivate.
 ###### Conclusione
 
 In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni rispetto ai tempi stimati, ma ha comunque permesso di raggiungere tutti gli obiettivi prefissati, recuperando anche quanto lasciato nel backlog.
+
+###### Gantt
+
+<img src="/img/Gantt/Sprint5.png" alt="Diagramma Gantt sprint 5" data-width="70%" />
 
 ##### Sprint 6
 
