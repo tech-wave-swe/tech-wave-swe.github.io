@@ -73,7 +73,7 @@ SECTION="## Versione PDF"
 echo "$files" | while read -r file; do
     echo "Processing $file..."
 
-    pdf_out="$pdfs_out_dir/$(basename "$file" .md).$file_type"
+    pdf_out="$pdfs_out_dir/$(echo $file | sed 's|.*docs/||;s/...$//').$file_type"
 
     # pandoc "$file" -f markdown -t markdown -o "$pdf_out"
     pandoc "$file" --listings --from=markdown+escaped_line_breaks --resource-path=./static $filters -f markdown --template "$template_file" -o "$pdf_out"
@@ -84,7 +84,7 @@ echo "$files" | while read -r file; do
             echo "" >> "$file"
             echo $SECTION >> "$file"
             echo "" >> "$file"
-            echo "> <a target='\_blank' href={ require('/pdfs/$(basename "$file" .md).pdf').default } download>Versione PDF</a>" >> "$file"
+            echo "> <a target='\_blank' href={ require('/pdfs/$(echo $file | sed 's|.*docs/||;s/...$//').pdf').default } download>Versione PDF</a>" >> "$file"
         fi
     fi
 done
