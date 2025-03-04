@@ -5,7 +5,7 @@ documentclass: TWDocumentFull
 toc: true
 lof: true
 numbersections: true
-version: 2.2.0
+version: 2.3.0
 classification: Esterno
 ---
 
@@ -23,6 +23,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                                                                            | Autore              | Data Verifica | Verificatore        |
 | ---------- | -------- | -------------------------------------------------------------------------------------- | ------------------- | ------------- | ------------------- |
+| 23/02/2025 | 2.3.0    | Aggiunta preventivo sprint 6                                                           | Marcon Giulia       |               |                     |
 | 22/02/2025 | 2.2.1    | Aggiunta rendicontazione sprint 5                                                      | Pistori Gaia        | 23/02/2025    | Luca Monetti        |
 | 12/02/2025 | 2.2.0    | Refactoring                                                                            | Piola Andrea        | 17/02/2025    | Pistori Gaia        |
 | 05/02/2025 | 2.1.1    | Minor fix                                                                              | Piola Andrea        | 17/02/2025    | Pistori Gaia        |
@@ -351,7 +352,7 @@ A seguito si riporta la tabella con la suddivisione dei ruoli:
 | **Ruolo**                 | **Membri**                           |
 | ------------------------- | ------------------------------------ |
 | Responsabile di progetto  | Monetti Luca                         |
-| Analista                  | Piola Andrea,Dal Bianco Riccardo     |
+| Analista                  | Piola Andrea, Dal Bianco Riccardo    |
 | Progettista               |                                      |
 | Amministratore di sistema | Carraro Agnese                       |
 | Programmatore             | Marcon Giulia, Manuel Felipe Vasquez |
@@ -413,7 +414,7 @@ In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni nei tempi 
 In questo periodo, il gruppo si concentrerà sul completamento quasi definitivo della documentazione, con particolare attenzione all'analisi dei requisiti e al piano di qualifica.
 Parallelamente, apporteremo gli ultimi ritocchi al %%PoC|poc%%, integrando i feedback ricevuti dall'azienda durante la riunione.
 
-L'obiettivo principale è avvicinarsi in modo significativo alla conclusione dell'%%RTB|rtb%%, garantendo un avanzamento concreto del lavoro.
+L'obiettivo principale è avvicinarsi in modo significativo alla conclusione della %%RTB|rtb%%, garantendo un avanzamento concreto del lavoro.
 
 ###### Ruoli
 
@@ -449,7 +450,7 @@ Table: Preventivo Sprint 4
 
 ###### Consuntivo
 
-Di seguito vengono indicate le spese effettive del terzo %%sprint|sprint%% 22/12 12/01
+Di seguito vengono indicate le spese effettive del quarto %%sprint|sprint%% 22/12 12/01
 
 | Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
 | ------------------------- | -------------------- | ------------- | ---------------- | --------- | --------------- |
@@ -469,7 +470,7 @@ Considerando il costo di **714,05** il residuo disponibile ammonta a **10.280,15
 
 Il quarto %%sprint|sprint%%, svolto durante il periodo della sessione, ha risentito della disponibilità limitata delle risorse, ma ha comunque permesso di registrare progressi verso gli obiettivi prefissati e di recuperare alcune task tralasciate precedentemente.
 
-La principale variazione si è osservata nel ruolo di Programmatore (+2 ore), a causa di una sottostima del tempo necessario per implementare le modifiche utili alla consegna dell%%RTB|rtb%%. Al contrario, il ruolo di Amministratore (-7 ore) ha registrato un impiego inferiore rispetto alle previsioni.
+La principale variazione si è osservata nel ruolo di Programmatore (+2 ore), a causa di una sottostima del tempo necessario per implementare le modifiche utili alla consegna della %%RTB|rtb%%. Al contrario, il ruolo di Amministratore (-7 ore) ha registrato un impiego inferiore rispetto alle previsioni.
 
 ###### Conclusione
 
@@ -484,7 +485,7 @@ In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni nei tempi 
 In questo periodo, il gruppo si concentrerà sul completamento della documentazione e sul recuperare tutte le task ancora incomplete.
 Parallelamente, apporteremo gli ultimi ritocchi alle metriche.
 
-L'obiettivo principale è richiedere la revisione dell'%%RTB|rtb%%.
+L'obiettivo principale è richiedere la revisione della %%RTB|rtb%%.
 
 ###### Ruoli
 
@@ -503,7 +504,7 @@ Table: Suddivisione ruoli Sprint 5
 
 ###### Preventivo
 
-A seguito si riporta la tabella del preventivo per il quarto %%sprint|sprint%%
+A seguito si riporta la tabella del preventivo per il quinto %%sprint|sprint%%
 
 | Ruolo                     | Ore svolte (h) | Costo (€)  |
 | ------------------------- | -------------- | ---------- |
@@ -520,7 +521,7 @@ Table: Preventivo Sprint 5
 
 ###### Consuntivo
 
-Di seguito vengono indicate le spese effettive del terzo %%sprint|sprint%% 22/12 12/01
+Di seguito vengono indicate le spese effettive del quinto %%sprint|sprint%% 22/12 12/01
 
 | Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
 | ------------------------- | -------------------- | ------------- | ---------------- | --------- | --------------- |
@@ -545,6 +546,46 @@ Tutti i ruoli hanno rispettato le tempistiche preventivate.
 ###### Conclusione
 
 In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni nei tempi stimati, ma ha consentito di raggiungere tutti gli obiettivi prefissato, recuperando anche quanto lasciato nel backlog.
+
+##### Sprint 6
+
+- Periodo 10/02/2025 - 02/03/2025
+
+###### Pianificazione
+
+In questo periodo, il gruppo si concentrerà sulla preparazione finale per la %%RTB|rtb%%, con particolare attenzione alla presentazione del Proof of Concept (%%PoC|poc%%) e al completamento della documentazione. Saranno svolte %%attività|attività%% di %%verifica|verifica%% della documentazione, con l'obiettivo di garantire che tutti i materiali siano pronti per la revisione. 
+
+###### Ruoli
+
+A seguito si riporta la tabella con la suddivisione dei ruoli:
+
+| **Ruolo**                 | **Membri**                                 |
+| ------------------------- | ------------------------------------------ |
+| Responsabile di progetto  | Marcon Giulia                              |
+| Analista                  | Manuel Felipe Vasquez                      |
+| Progettista               |                                            |
+| Amministratore di sistema | Pistori Gaia, Piola Andrea                 |
+| Programmatore             | Carraro Agnese, Monetti Luca               |
+| Verificatore              | Dal Bianco Riccardo                        |
+
+Table: Suddivisione ruoli Sprint 6
+
+###### Preventivo
+
+A seguito si riporta la tabella del preventivo per il sesto %%sprint|sprint%%
+
+| Ruolo                     | Ore svolte (h) | Costo (€)  |
+| ------------------------- | -------------- | ---------- |
+| Responsabile di progetto  | 2,5            | 75         |
+| Analista                  | 12,5           | 312,5      |
+| Progettista               | 0              | 0          |
+| Amministratore di sistema | 15             | 300        |
+| Programmatore             | 4              | 60         |
+| Verificatore              | 6              | 90         |
+| _Totale_                  | _39_           | _837,5_    |
+| _Bilancio_                |                | _8465,95_  |
+
+Table: Preventivo Sprint 6
 
 <!-- ::: {.no-export} -->
 
