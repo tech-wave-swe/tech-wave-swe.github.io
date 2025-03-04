@@ -613,6 +613,46 @@ A seguito si riporta la tabella del preventivo per il sesto %%sprint|sprint%%
 
 Table: Preventivo Sprint 6
 
+##### Sprint 6
+
+- Periodo 10/02/2025 - 02/03/2025
+
+###### Pianificazione
+
+In questo periodo, il gruppo si concentrerà sulla preparazione finale per la %%RTB|rtb%%, con particolare attenzione alla presentazione del Proof of Concept (%%PoC|poc%%) e al completamento della documentazione. Saranno svolte %%attività|attività%% di %%verifica|verifica%% della documentazione, con l'obiettivo di garantire che tutti i materiali siano pronti per la revisione. 
+
+###### Ruoli
+
+A seguito si riporta la tabella con la suddivisione dei ruoli:
+
+| **Ruolo**                 | **Membri**                                 |
+| ------------------------- | ------------------------------------------ |
+| Responsabile di progetto  | Marcon Giulia                              |
+| Analista                  | Manuel Felipe Vasquez                      |
+| Progettista               |                                            |
+| Amministratore di sistema | Pistori Gaia, Piola Andrea                 |
+| Programmatore             | Carraro Agnese, Monetti Luca               |
+| Verificatore              | Dal Bianco Riccardo                        |
+
+Table: Suddivisione ruoli Sprint 6
+
+###### Preventivo
+
+A seguito si riporta la tabella del preventivo per il sesto %%sprint|sprint%%
+
+| Ruolo                     | Ore svolte (h) | Costo (€)  |
+| ------------------------- | -------------- | ---------- |
+| Responsabile di progetto  | 2,5            | 75         |
+| Analista                  | 12,5           | 312,5      |
+| Progettista               | 0              | 0          |
+| Amministratore di sistema | 15             | 300        |
+| Programmatore             | 4              | 60         |
+| Verificatore              | 6              | 90         |
+| _Totale_                  | _39_           | _837,5_    |
+| _Bilancio_                |                | _8465,95_  |
+
+Table: Preventivo Sprint 6
+
 <!-- ::: {.no-export} -->
 
 </NumberedWrapper>
