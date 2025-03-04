@@ -77,6 +77,25 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
+      - name: Debug
+        run: |
+          ls -la
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: GitHub Access
+        run: |
+          git config --global user.name 'TechWave'
+          git config --global user.email 'techwave.unipd@gmail.com'
+
+          find . -mindepth 1 -maxdepth 1 ! -name "pdfs" -exec rm -rf {} +
+          mv pdfs/* .
+          rm -rf pdfs
+
+          git checkout pdfs
+          git add .
+
+          git commit -m "[feat] Aggiornamento Documentazione"
+          git push
