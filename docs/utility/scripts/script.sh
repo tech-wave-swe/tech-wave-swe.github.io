@@ -74,6 +74,7 @@ echo "$files" | while read -r file; do
     echo "Processing $file..."
 
     pdf_out="$pdfs_out_dir/$(echo $file | sed 's|.*docs/||;s/...$//').$file_type"
+    mkdir -p $(dirname $pdf_out)
 
     # pandoc "$file" -f markdown -t markdown -o "$pdf_out"
     pandoc "$file" --listings --from=markdown+escaped_line_breaks --resource-path=./static $filters -f markdown --template "$template_file" -o "$pdf_out"
