@@ -5,7 +5,7 @@ documentclass: TWDocumentFull
 toc: true
 lof: true
 numbersections: true
-version: 1.8
+version: 1.8.0
 classification: Interno
 ---
 
