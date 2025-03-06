@@ -23,7 +23,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                                        | Autore         | Data Verifica | Verificatore          |
 | ---------- | -------- | -------------------------------------------------- | -------------- | ------------- | --------------------- |
-| 27/02/2025 | 1.8      | Revisione del documento                            | Carraro Agnese | 28/02/2025    |                       |
+| 27/02/2025 | 1.8.0    | Revisione del documento                            | Carraro Agnese | 28/02/2025    | Monetti Luca          |
 | 23/02/2025 | 1.7.1    | Procedure per la rendicontazione delle ore         | Pistori Gaia   | 25/02/2025    | Carraro Agnese        |
 | 20/02/2025 | 1.7.0    | Aggiunto tracciamento e rendicontazione delle ore  | Marcon Giulia  | 25/02/2025    | Carraro Agnese        |
 | 06/02/2025 | 1.6.0    | Aggiunta processi di Supporto                      | Monetti Luca   | 08/02/2025    | Carraro Agnese        |
