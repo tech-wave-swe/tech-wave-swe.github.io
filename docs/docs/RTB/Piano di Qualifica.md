@@ -5,7 +5,7 @@ documentclass: TWDocumentFull
 toc: true
 lof: true
 numbersections: true
-version: 1.7.1
+version: 1.7.2
 classification: Esterno
 ---
 
@@ -23,6 +23,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                              | Autore                | Data Verifica | Verificatore          |
 | ---------- | -------- | ---------------------------------------- | --------------------- | ------------- | --------------------- |
+| 06/03/2025 | 1.7.2    | miglioramento metriche                   | Piola Andrea          | ??/03/2025    | ??                    |
 | 24/02/2025 | 1.7.1    | fix indici tabelle                       | Piola Andrea          | 25/02/2025    | Gaia Pistori          |
 | 09/02/2025 | 1.7.0    | Note di auto-miglioramento               | Manuel Felipe Vasquez | 12/02/2025    | Luca Monetti          |
 | 31/01/2025 | 1.6.0    | Inserimento cruscotto                    | Gaia Pistori          | 05/02/2025    | Manuel Felipe Vasquez |
@@ -86,19 +87,67 @@ Per garantire la qualità dei processi, il team adotta il modello di riferimento
 
 ### Processi Primari
 
-| Metrica | Nome                           | Descrizione                                                        | Obiettivo                                           | Valore Accettabile | Valore Desiderabile |
-| ------- | ------------------------------ | ------------------------------------------------------------------ | --------------------------------------------------- | ------------------ | ------------------- |
-| MPCR01  | **Budget Variance**            | Differenza tra il budget pianificato e quello effettivamente speso | Monitorare il controllo dei costi del progetto      | ≤ 5%               | ≤ 2%                |
-| MPCR02  | **Earned Value**               | Valore del lavoro effettivamente svolto                            | Monitorare l'avanzamento economico del progetto     | ≥ Actual Cost      | -                   |
-| MPCR03  | **Actual Cost**                | Costo effettivo sostenuto per il lavoro svolto                     | Controllare le spese del progetto                   | ≤ Budget previsto  | < Budget previsto   |
-| MPCR04  | **Planned Value**              | Valore del lavoro pianificato fino a una data specifica            | Comparare il progresso pianificato con quello reale | N/A                | N/A                 |
-| MPCR05  | **Cost Variance**              | Differenza tra il valore acquisito e il costo effettivo            | Valutare l'efficienza economica del progetto        | ≥ -5%              | ≥ 0%                |
-| MPCR06  | **Schedule Variance**          | Differenza tra il valore acquisito e il valore pianificato         | Valutare l'aderenza ai tempi di progetto            | ≥ -5%              | ≥ 0%                |
-| MPCR07  | **Cost Performance Index**     | Rapporto tra il valore acquisito e il costo effettivo              | Misurare l'efficienza dei costi                     | ≥ 0.95             | ≥ 1.0               |
-| MPCR08  | **Schedule Performance Index** | Rapporto tra il valore acquisito e il valore pianificato           | Misurare l'efficienza temporale                     | ≥ 0.95             | ≥ 1.0               |
+| Metrica | Nome                             | Descrizione                                    | Obiettivo                                       | Valore Accettabile | Valore Desiderabile |
+| ------- | -------------------------------- | ---------------------------------------------- | ----------------------------------------------- | ------------------ | ------------------- |
+| MPCR??  | **Planned Cost / Planned Value** | Costo preventivato per il lavoro da svolgere   | Controllare le spese del progetto               | ≤ Budget previsto  | < Budget previsto   |
+| MPCR??  | **Actual Cost**                  | Costo effettivo sostenuto per il lavoro svolto | Controllare le spese del progetto               | ≤ Budget previsto  | < Budget previsto   |
+| MPCR??  | **Earned Value**                 | Valore del lavoro effettivamente svolto        | Monitorare l'avanzamento economico del progetto | ≥ Actual Cost      | -                   |
+//TODO
+| MPCR?? | **Schedule Variance** | Differenza tra il valore acquisito e il valore pianificato | Valutare l'aderenza ai tempi di progetto | ≥ -5% | ≥ 0% |
+| MPCR01 | **Budget Variance** | Differenza tra il budget pianificato e quello effettivamente speso | Monitorare il controllo dei costi del progetto | ≤ 5% | ≤ 2% |
+| MPCR05 | **Cost Variance** | Differenza tra il valore acquisito e il costo effettivo | Valutare l'efficienza economica del progetto | ≥ -5% | ≥ 0% |
+// fatti
+| MPCR07 | **Cost Performance Index** | Rapporto tra il valore acquisito e il costo effettivo | Misurare l'efficienza dei costi | ≥ 0.95 | ≥ 1.0 |
+| MPCR08 | **Schedule Performance Index** | Rapporto tra il valore acquisito e il valore pianificato | Misurare l'efficienza temporale | ≥ 0.95 | ≥ 1.0 |
+//valutare di rimuoverla
+| MPCR04 | **Planned Value** | Valore del lavoro pianificato fino a una data specifica | Comparare il progresso pianificato con quello reale | N/A | N/A |
 
 Table: Metriche per i processi primari
 
+#### Planned Value
+
+**Metrica**: MPR??
+
+**Formula**: $\text{Planned Value} = \text{Planned Cost} = \overset{\text{n° sprint}}{\underset{i=0}{\sum}} (\text{Budget preventivo}_i)$
+
+- Rappresenta il budget autorizzato assegnato al lavoro pianificato.
+- Indica quanto lavoro dovrebbe essere stato completato ad una determinata data.
+
+---
+
+#### Actual Cost
+
+**Metrica**: MPCR??
+
+**Formula:**: $\text{Actual Cost} = \overset{\text{n° sprint}}{\underset{i=0}{\sum}} (\text{Budget Consuntivo}_i)$
+
+- Somma di tutti i costi realmente sostenuti per il lavoro completato fino ad oggi.
+- Include costi diretti e indiretti effettivamente spesi nel progetto.
+
+---
+
+#### Earned Value
+
+**Metrica**: MPCR??
+
+**Formula:** $\text{Earned Value} = \text{Planned Cost} \times \frac{\text{Actual Story Points}}{\text{Planned Story Points}}$
+
+- Il valore del lavoro effettivamente completato, calcolato moltiplicando la percentuale di completamento (data dalla divisione dei Story Points effettivi e quelli preventivati) per il suo budget pianificato.
+- Rappresenta quanto valore è stato prodotto in base al lavoro effettivamente svolto.
+
+---
+
+#### Schedule Variance
+//TODO
+**Metrica**: MPCR06
+
+**Formula**: $\text{Schedule Variance} = \text{Earned Value} - \text{Planned Value}$
+
+- Misura la differenza tra il lavoro completato e quello pianificato.
+- Un valore positivo indica che il progetto è in anticipo sulla schedulazione.
+
+---
+//TODO
 #### Budget Variance
 
 **Metrica**: MPCR01
@@ -109,41 +158,7 @@ Table: Metriche per i processi primari
 - Un valore positivo indica un risparmio rispetto al budget, mentre un valore negativo indica un costo superiore a quanto preventivato.
 
 ---
-
-#### Earned Value
-
-**Metrica**: MPCR02
-
-**Formula:** $\text{Earned Value} = \sum (\text{Percentuale Completamento} \times \text{Budget Pianificato})$
-
-- Il valore del lavoro effettivamente completato, calcolato moltiplicando la percentuale di completamento di ciascuna attività per il suo budget pianificato.
-- Rappresenta quanto valore è stato prodotto in base al lavoro effettivamente svolto.
-
----
-
-#### Actual Cost
-
-**Metrica**: MPCR03
-
-**Formula:** $\text{Actual Cost} = \overset{\text{n° sprint}}{\underset{i=0}{\sum}} (\text{Budget Consuntivo}_i)$
-
-- Somma di tutti i costi realmente sostenuti per il lavoro completato fino ad oggi.
-- Include costi diretti e indiretti effettivamente spesi nel progetto.
-
----
-
-#### Planned Value
-
-**Metrica**: MPR04
-
-**Formula**: $\text{Planned Value} = \text{Actual Cost}_{i-1} + \text{Budget Pianificato}_i$
-
-- $i$ è il numero corrente di sprint.
-- Rappresenta il budget autorizzato assegnato al lavoro pianificato.
-- Indica quanto lavoro dovrebbe essere stato completato ad una determinata data.
-
----
-
+//TODO
 #### Cost Variance
 
 **Metrica**: MPR05
@@ -152,17 +167,6 @@ Table: Metriche per i processi primari
 
 - Misura la differenza tra il valore del lavoro completato e il suo costo effettivo.
 - Un valore positivo indica che il progetto sta spendendo meno del previsto.
-
----
-
-#### Schedule Variance
-
-**Metrica**: MPCR06
-
-**Formula**: $\text{Schedule Variance} = \text{Earned Value} - \text{Planned Value}$
-
-- Misura la differenza tra il lavoro completato e quello pianificato.
-- Un valore positivo indica che il progetto è in anticipo sulla schedulazione.
 
 ---
 
@@ -181,7 +185,7 @@ Table: Metriche per i processi primari
 
 **Metrica**: MPCR08
 
-**Formula**: $\text{Schedule Performance Index} = \dfrac{\text{Earned Value}}{\text{Planned Value}}$
+**Formula**: $\text{Schedule Performance Index} = \dfrac{\text{Earned Value}}{\text{Planned Cost}}$
 
 - Indica l'efficienza nel rispetto dei tempi pianificati.
 - Un valore maggiore di 1 indica che il progetto sta procedendo più velocemente del previsto.
@@ -190,22 +194,22 @@ Table: Metriche per i processi primari
 
 | Metrica | Nome                       | Descrizione                                        | Obiettivo                                                       | Valore Accettabile         | Valore Desiderabile          |
 | ------- | -------------------------- | -------------------------------------------------- | --------------------------------------------------------------- | -------------------------- | ---------------------------- |
+| MPCS03  | **Budget At Completion**   | Totale del budget allocato per il progetto         | Gestire e controllare le risorse finanziarie complessive        | ≤ +10% del budget iniziale | Corrispondente al preventivo |
 | MPCS01  | **Estimate At Completion** | Stima dei costi per il completamento del progetto  | Prevedere i costi rimanenti e pianificare le risorse necessarie | ≤ Budget At Completion     | Corrispondente al preventivo |
 | MPCS02  | **Estimate To Complete**   | Costo stimato per completare le attività rimanenti | Supportare la pianificazione finanziaria e delle risorse        | ≤ Budget At Completion     | ≤ Estimate At Completion     |
-| MPCS03  | **Budget At Completion**   | Totale del budget allocato per il progetto         | Gestire e controllare le risorse finanziarie complessive        | ≤ +10% del budget iniziale | Corrispondente al preventivo |
 | MPCS04  | **Indice Gulpease**        | Indice di leggibilità dei documenti                | Garantire la comprensibilità della documentazione               | ≥ 40                       | ≥ 60                         |
 
 Table: Metriche per i processi di supporto
 
-#### Estimate At Completion
+#### Budget At Completion
 
-**Metrica**: MPCS01
+**Metrica**: MPCS03
 
-**Formula**: $\text{Estimate At Completion} = \text{Actual Cost} + \text{Estimate To Complete}$
+**Formula**: $\text{Budget At Completion} = \sum \text{(Budget Pianificato) per ogni attività}$
 
-- Stima del costo totale del progetto al suo completamento
-- Combina i costi già sostenuti (AC) con la stima dei costi rimanenti (ETC)
-- Utile per prevedere il budget finale necessario e identificare potenziali sforamenti
+- Rappresenta il budget totale autorizzato per il progetto
+- Serve come baseline per valutare le performance di costo
+- Include tutte le riserve di contingenza allocate
 
 ---
 
@@ -221,15 +225,15 @@ Table: Metriche per i processi di supporto
 
 ---
 
-#### Budget At Completion
+#### Estimate At Completion
 
-**Metrica**: MPCS03
+**Metrica**: MPCS01
 
-**Formula**: $\text{Budget At Completion} = \sum \text{(Budget Pianificato) per ogni attività}$
+**Formula**: $\text{Estimate At Completion} = \text{Actual Cost } + \text{Estimate To Complete}$
 
-- Rappresenta il budget totale autorizzato per il progetto
-- Serve come baseline per valutare le performance di costo
-- Include tutte le riserve di contingenza allocate
+- Stima del costo totale del progetto al suo completamento
+- Combina i costi già sostenuti (AC) con la stima dei costi rimanenti (ETC)
+- Utile per prevedere il budget finale necessario e identificare potenziali sforamenti
 
 ---
 
@@ -350,7 +354,7 @@ I test di verifica e validazione vengono eseguiti in tutte le fasi del ciclo di 
 ### Test Di Sistema
 
 | ID   | Descrizione                                                            | ID Requisito        | Stato            |
-|------|------------------------------------------------------------------------|---------------------|------------------|
+| ---- | ---------------------------------------------------------------------- | ------------------- | ---------------- |
 | TS01 | Verifica selezione e configurazione dei modelli LLM                    | RFO_1,2,4           | Non Implementato |
 | TS02 | Verifica configurazione modelli custom                                 | RFD_3               | Non Implementato |
 | TS03 | Verifica configurazione temperature                                    | RFD_5               | Non Implementato |
