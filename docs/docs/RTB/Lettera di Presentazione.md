@@ -14,9 +14,9 @@ classification: Esterno
 <details>
   <summary>Changelog</summary>
 
-| Data       | Versione | Descrizione                 | Autore                | Data Verifica | Verificatore |
-|------------|----------|-----------------------------|-----------------------|---------------|--------------|
-| 03/03/2025 | 1.0.0    | Prima stesura del documento | Vasquez Manuel Felipe |               |              |
+| Data       | Versione | Descrizione                 | Autore                | Data Verifica | Verificatore        |
+|------------|----------|-----------------------------|-----------------------|---------------|---------------------|
+| 03/03/2025 | 1.0.0    | Prima stesura del documento | Vasquez Manuel Felipe | 3/03/2025     | Riccardo Dal Bianco |
 
 </details>
 
