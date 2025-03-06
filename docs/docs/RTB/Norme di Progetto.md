@@ -965,7 +965,7 @@ Per garantire la %%qualità|qualità%% del %%prodotto|prodotto%%, il team adotta
 In particolare è necessario individuare delle metriche rappresentanti:
 - la **funzionalità**: grado in cui il %%prodotto|prodotto%% fornisce %%funzionalità|funzionalità%% complete, corrette e adeguate.
 - l'**affidabilità**: grado in cui il %%prodotto|prodotto%% svolge specifiche funzioni in termini di assenza di guasti, disponibilità, tolleranza ai guasti e riparabilità.
-- l'**usabilità**: grado di interazione con il %%prodotto|prodotto%% da parte degli utenti in termini di appropriatezza, apprendibilità, operabilità, protezione da errori, _user experience_ e accessibilità.
+- l'**usabilità**: grado di interazione con il %%prodotto|prodotto%% da parte degli utenti in termini di appropriatezza, apprendibilità, operabilità, protezione da errori, _user experience_ e accessibilità.
 - l'**%%efficienza|efficienza%%**: grado in cui il %%prodotto|prodotto%% esegue le sue funzioni in termini di risorse di tempo, di memoria, ecc.
 - la **manutenibilità**: costo della correzione dei difetti e dell'aggiunta di %%funzionalità|funzionalità%%. 
 - la **portabilità**: grado in cui il %%prodotto|prodotto%% è legato all'ambiente di esecuzione in termini di installabilità e sostituibilità.
