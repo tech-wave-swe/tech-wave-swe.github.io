@@ -5,7 +5,7 @@ documentclass: TWDocumentFull
 toc: true
 lof: true
 numbersections: true
-version: 1.7.0
+version: 1.7.1
 classification: Esterno
 ---
 
@@ -23,7 +23,8 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                              | Autore                | Data Verifica | Verificatore          |
 | ---------- | -------- | ---------------------------------------- | --------------------- | ------------- | --------------------- |
-| 09/02/2025 | 1.7.0    | Note di auto-miglioramento               | Manuel Felipe Vasquez | 12/02/2025              |  Monetti Luca                     |
+| 24/02/2025 | 1.7.1    | fix indici tabelle                       | Piola Andrea          | 25/02/2025    | Gaia Pistori          |
+| 09/02/2025 | 1.7.0    | Note di auto-miglioramento               | Manuel Felipe Vasquez | 12/02/2025    | Luca Monetti          |
 | 31/01/2025 | 1.6.0    | Inserimento cruscotto                    | Gaia Pistori          | 05/02/2025    | Manuel Felipe Vasquez |
 | 24/01/2025 | 1.5.0    | Aggiunti test                            | Giulia Marcon         | 26/01/2025    | Gaia Pistori          |
 | 16/01/2025 | 1.4.0    | Aggiunte misure                          | Luca Monetti          | 17/01/2025    | Manuel Felipe Vasquez |
@@ -297,7 +298,7 @@ Table: Metriche di funzionalità per la qualità di prodotto
 | MPRA01  | Statement Coverage | Copertura dei test per gli statement        | Assicurare testing completo | ≥ 80%              | ≥ 90%               |
 | MPRA02  | Branch Coverage    | Copertura dei test per i branch del codice  | Garantire test completi     | ≥ 80%              | ≥ 90%               |
 | MPRA03  | Condition Coverage | Copertura dei test le condition             | Assicurare testing completo | ≥ 80%              | ≥ 90%               |
-| MPRA03  | Gestione Errori    | Percentuale di errori gestiti correttamente | Garantire robustezza        | ≥ 80%              | ≥ 90%               |
+| MPRA04  | Gestione Errori    | Percentuale di errori gestiti correttamente | Garantire robustezza        | ≥ 80%              | ≥ 90%               |
 
 Table: Metriche di affidabilità per la qualità di prodotto
 
@@ -348,27 +349,28 @@ I test di verifica e validazione vengono eseguiti in tutte le fasi del ciclo di 
 
 ### Test Di Sistema
 
-| ID   | Descrizione                                                          | ID Requisito        | Stato            |
-| ---- | -------------------------------------------------------------------- | ------------------- | ---------------- |
-| TS01 | Verifica selezione e configurazione dei modelli LLM                  | RFO_1,2,4           | Non Implementato |
-| TS02 | Verifica configurazione temperature e modelli custom                 | RFD_3               | Non Implementato |
-| TS02 | Verifica configurazione modelli custom                               | RFD_5               | Non Implementato |
-| TS03 | Verifica gestione Bearer Token per server Ollama esterno             | RFP_6               | Non Implementato |
-| TS04 | Verifica gestione errori input utente                                | RFO_7               | Non Implementato |
-| TS05 | Verifica selezione cartella progetto e file requisiti                | RFO_8,9             | Non Implementato |
-| TS06 | Verifica funzionalità di selezione e filtro                          | RFD_10,11,12,RFO_13 | Non Implementato |
-| TS07 | Verifica parsing documento requisiti                                 | RFO_15              | Non Implementato |
-| TS07 | Verifica embedding dei documenti                                     | RFO_16              | Non Implementato |
-| TS08 | Verifica gestione errori parsing                                     | RFO_17              | Non Implementato |
-| TS07 | Verifica generazione struttura dati sui requisiti                    | RFO_18              | Non Implementato |
-| TS07 | Verifica applicazione filtro sui requisiti                           | RFO_19              | Non Implementato |
-| TS07 | Verifica gestione errori sull' applicazione dei filtri sui requisiti | RFO_20              | Non Implementato |
-| TS09 | Verifica generazione codice e analisi da parte del modello LLM       | RFO_21,22           | Non Implementato |
-| TS10 | Verifica gestione errori modelli LLM                                 | RFO_23              | Non Implementato |
-| TS11 | Verifica aggiornamento dello stato dei requisiti e struttura dati    | RFO_24              | Non Implementato |
-| TS12 | Verifica interfaccia visualizzazione risultati                       | RFO_25              | Non Implementato |
-| TS13 | Verifica gestione errori generazione codice e analisi                | RFO_26,28           | Non Implementato |
-| TS14 | Verifica funzionalità di feedback sulla certezza della risposta      | RFP_27,29           | Non Implementato |
+| ID   | Descrizione                                                            | ID Requisito        | Stato            |
+|------|------------------------------------------------------------------------|---------------------|------------------|
+| TS01 | Verifica selezione e configurazione dei modelli LLM                    | RFO_1,2,4           | Non Implementato |
+| TS02 | Verifica configurazione modelli custom                                 | RFD_3               | Non Implementato |
+| TS03 | Verifica configurazione temperature                                    | RFD_5               | Non Implementato |
+| TS04 | Verifica gestione Bearer Token per server Ollama esterno               | RFP_6               | Non Implementato |
+| TS05 | Verifica gestione errori input utente                                  | RFO_7               | Non Implementato |
+| TS06 | Verifica selezione cartella progetto e file requisiti                  | RFO_8,9             | Non Implementato |
+| TS07 | Verifica funzionalità di selezione e filtro                            | RFD_10,11,12,RFO_13 | Non Implementato |
+| TS08 | Verifica visualizzazione porzione di codice per requisito implementato | RFO_14              | Non Implementato |
+| TS09 | Verifica parsing documento requisiti                                   | RFO_15              | Non Implementato |
+| TS10 | Verifica embedding dei documenti                                       | RFO_16              | Non Implementato |
+| TS11 | Verifica gestione errori parsing                                       | RFO_17              | Non Implementato |
+| TS12 | Verifica generazione struttura dati sui requisiti                      | RFO_18              | Non Implementato |
+| TS13 | Verifica applicazione filtro sui requisiti                             | RFO_19              | Non Implementato |
+| TS14 | Verifica gestione errori sull'applicazione dei filtri sui requisiti    | RFO_20              | Non Implementato |
+| TS15 | Verifica generazione codice e analisi da parte del modello LLM         | RFO_21,22           | Non Implementato |
+| TS16 | Verifica gestione errori modelli LLM                                   | RFO_23              | Non Implementato |
+| TS17 | Verifica aggiornamento dello stato dei requisiti e struttura dati      | RFO_24              | Non Implementato |
+| TS18 | Verifica interfaccia visualizzazione risultati                         | RFO_25              | Non Implementato |
+| TS19 | Verifica gestione errori generazione codice e analisi                  | RFO_26,28           | Non Implementato |
+| TS20 | Verifica funzionalità di feedback sulla certezza della risposta        | RFP_27,29           | Non Implementato |
 
 Table: Test di sistema
 
@@ -382,8 +384,8 @@ Table: Test di sistema
 | TA04 | Verifica analisi di codice in linguaggio C/C++   | RTO_5        | Non Implementato |
 | TA05 | Verifica analisi di codice in linguaggio Rust    | RTP_6        | Non Implementato |
 | TA06 | Verifica supporto formato file requisiti .csv    | RTO_7        | Non Implementato |
-| TA06 | Verifica supporto formato file requisiti .reqif  | RTP_8        | Non Implementato |
-| TA07 | Verifica usabilità interfaccia grafica           | RFO_14,15    | Non Implementato |
+| TA07 | Verifica supporto formato file requisiti .reqif  | RTP_8        | Non Implementato |
+| TA08 | Verifica usabilità interfaccia grafica           | RFO_14,15    | Non Implementato |
 
 Table: Test di Accettazione
 
@@ -468,7 +470,7 @@ Table: Valutazione sui ruoli
 
 | Problema    | Descrizione                                                                                            | Gravità | Soluzione                                                                                      |
 | ----------- | ------------------------------------------------------------------------------------------------------ | ------- | ---------------------------------------------------------------------------------------------- |
-| Typescript  | La maggior parte dei membri del gruppo non è ancora familiare con questo linguaggio di programmazione. | Bassa   | Ogni membro ha seguito autonimamente un breve tutorial per acquisire le nozioni di base.       |
+| Typescript  | La maggior parte dei membri del gruppo non è ancora familiare con questo linguaggio di programmazione. | Bassa   | Ogni membro ha seguito autonomamente un breve tutorial per acquisire le nozioni di base.       |
 | API VS Code | La maggior parte dei membri del gruppo non conosce a fondo l'integrazione delle API in VS Code.        | Media   | Fornire documentazione dedicata e workshop per supportare l’integrazione delle API in VS Code. |
 
 Table: Valutazione delle tecnologie
