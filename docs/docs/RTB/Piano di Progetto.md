@@ -23,7 +23,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                                                                            | Autore              | Data Verifica | Verificatore        |
 | ---------- | -------- | -------------------------------------------------------------------------------------- | ------------------- | ------------- | ------------------- |
-| 03/03/2025 | 2.4.0    | Aggiunta diagrammi Gantt                                                               | Piola Andrea        |               |                     |
+| 28/02/2025 | 2.4.0    | Aggiunta diagrammi Gantt                                                               | Piola Andrea        | 28/02/2025    | Marcon Giulia       |
 | 28/02/2025 | 2.3.1    | Correzioni grammaticali e sintattiche                                                  | Marcon Giulia       | 28/02/2025    | Piola Andrea        |
 | 23/02/2025 | 2.3.0    | Aggiunta preventivo sprint 6                                                           | Marcon Giulia       | 24/02/2025    | Carraro Agnese      |
 | 22/02/2025 | 2.2.1    | Aggiunta rendicontazione sprint 5                                                      | Pistori Gaia        | 23/02/2025    | Luca Monetti        |
@@ -572,46 +572,6 @@ In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni rispetto a
 ###### Gantt
 
 <img src="/img/Gantt/Sprint5.png" alt="Diagramma Gantt sprint 5" data-width="70%" />
-
-##### Sprint 6
-
-- Periodo 10/02/2025 - 02/03/2025
-
-###### Pianificazione
-
-In questo periodo, il gruppo si concentrerà sulla preparazione finale per la %%RTB|rtb%%, con particolare attenzione alla presentazione del Proof of Concept (%%PoC|poc%%) e al completamento della documentazione. Saranno svolte %%attività|attività%% di %%verifica|verifica%% della documentazione, con l'obiettivo di garantire che tutti i materiali siano pronti per la revisione. 
-
-###### Ruoli
-
-A seguito si riporta la tabella con la suddivisione dei ruoli:
-
-| **Ruolo**                 | **Membri**                                 |
-| ------------------------- | ------------------------------------------ |
-| Responsabile di progetto  | Marcon Giulia                              |
-| Analista                  | Manuel Felipe Vasquez                      |
-| Progettista               |                                            |
-| Amministratore di sistema | Pistori Gaia, Piola Andrea                 |
-| Programmatore             | Carraro Agnese, Monetti Luca               |
-| Verificatore              | Dal Bianco Riccardo                        |
-
-Table: Suddivisione ruoli Sprint 6
-
-###### Preventivo
-
-A seguito si riporta la tabella del preventivo per il sesto %%sprint|sprint%%
-
-| Ruolo                     | Ore svolte (h) | Costo (€)  |
-| ------------------------- | -------------- | ---------- |
-| Responsabile di progetto  | 2,5            | 75         |
-| Analista                  | 12,5           | 312,5      |
-| Progettista               | 0              | 0          |
-| Amministratore di sistema | 15             | 300        |
-| Programmatore             | 4              | 60         |
-| Verificatore              | 6              | 90         |
-| _Totale_                  | _39_           | _837,5_    |
-| _Bilancio_                |                | _8465,95_  |
-
-Table: Preventivo Sprint 6
 
 ##### Sprint 6
 
