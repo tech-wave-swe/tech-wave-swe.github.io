@@ -1,101 +1,117 @@
 name: Deploy docs to GitHub Pages
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - "docs/**"
+    push:
+        branches:
+            - main
+        paths:
+            - "docs/**"
 
 jobs:
-  build:
-    name: Build Docusaurus
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./docs
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+    build:
+        name: Build Docusaurus
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: ./docs
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
 
-      - name: Debug
-        run: |
-          ls -la
-          ls -la ${{ github.workspace }}
-          git clean -fdx
+            - name: Debug
+              run: |
+                  ls -la
+                  ls -la ${{ github.workspace }}
+                  git clean -fdx
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+            - name: Set up Docker Buildx
+              uses: docker/setup-buildx-action@v2
 
-      - name: Pull prebuilt Docker container
-        run: |
-          docker pull lucamonetti/tw-latex:latest
+            - name: Pull prebuilt Docker container
+              run: |
+                  docker pull lucamonetti/tw-latex:latest
 
-      - name: Run commands inside the Docker container
-        run: |
-          docker run --rm -v ${{ github.workspace }}:/app \
-            -e PR_REF=${{ github.ref }} \
-            -e PR_SHA=${{ github.sha }} \
-            lucamonetti/tw-latex:latest bash -c "
-              ls -la
-              cd docs
-              npm ci
-              mkdir static/pdfs
-              npm run postinstall
-              npm run docusaurus glossary
-              chmod +x utility/scripts/script.sh
-              utility/scripts/script.sh pdf
-              npm run docusaurus parse
-              npm run build
-            "
+            - name: Run commands inside the Docker container
+              run: |
+                  docker run --rm -v ${{ github.workspace }}:/app \
+                    -e PR_REF=${{ github.ref }} \
+                    -e PR_SHA=${{ github.sha }} \
+                    lucamonetti/tw-latex:latest bash -c "
+                      ls -la
+                      cd docs
+                      npm ci
+                      mkdir static/pdfs
+                      npm run postinstall
+                      npm run docusaurus glossary
+                      chmod +x utility/scripts/script.sh
+                      utility/scripts/script.sh pdf
+                      npm run docusaurus parse
+                      npm run build
+                    "
 
-      - name: List directory contents for debugging
-        run: |
-          ls -la
-          ls -la build
+            - name: List directory contents for debugging
+              run: |
+                  ls -la
+                  ls -la build
 
-      - name: Show PWD
-        run: pwd
+            - name: Show PWD
+              run: pwd
 
-      - name: Upload Build Artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: docs/build
+            - name: Upload Build Artifact
+              uses: actions/upload-pages-artifact@v3
+              with:
+                  name: docs
+                  path: docs/build
 
-  commit:
-    name: Deploy to GitHub Pages
-    needs: build
+    commit:
+        name: Commit changes
+        needs: build
 
-    permissions:
-      pages: write
-      id-token: write
+        runs-on: ubuntu-latest
+        steps:
+            - name: Download Build Artifact
+              uses: actions/download-artifact@v3
+              with:
+                  name: docs
 
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+            - name: Debug
+              run: |
+                  ls -la
 
-    runs-on: ubuntu-latest
-    steps:
-      - name: Debug
-        run: |
-          ls -la
+            - name: GitHub Access
+              run: |
+                  git config --global user.name 'TechWave'
+                  git config --global user.email 'techwave.unipd@gmail.com'
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+                  find . -mindepth 1 -maxdepth 1 ! -name "pdfs" -exec rm -rf {} +
+                  mv pdfs/* .
+                  rm -rf pdfs
 
-      - name: GitHub Access
-        run: |
-          git config --global user.name 'TechWave'
-          git config --global user.email 'techwave.unipd@gmail.com'
+                  git checkout pdfs
+                  git add .
 
-          find . -mindepth 1 -maxdepth 1 ! -name "pdfs" -exec rm -rf {} +
-          mv pdfs/* .
-          rm -rf pdfs
+                  git commit -m "[feat] Aggiornamento Documentazione"
+                  git push
 
-          git checkout pdfs
-          git add .
+    gh-action:
+        name: Deploy to GitHub Pages
+        needs: build
 
-          git commit -m "[feat] Aggiornamento Documentazione"
-          git push
+        permissions:
+            pages: write
+            id-token: write
+
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+
+        runs-on: ubuntu-latest
+        steps:
+            - name: Debug
+              run: |
+                  ls -la
+
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4
