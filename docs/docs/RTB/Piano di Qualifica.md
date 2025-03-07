@@ -52,9 +52,9 @@ Table: Changelog
 Questo documento delinea le strategie di verifica, validazione e quality assurance adottate durante lo sviluppo del progetto, definendo gli obiettivi qualitativi e le relative metriche di misurazione. Include la documentazione dettagliata delle procedure di verifica, dei processi di controllo qualità, e delle metodologie di test implementate nelle varie fasi del ciclo di sviluppo, garantendo la conformità del prodotto con i requisiti specificati e gli standard qualitativi prestabiliti dal team.
 Si concentra su:
 
-- La qualità dei processi, in termini di aderenza agli standard e alle pratiche di gestione del ciclo di vita del software.
-- La qualità del prodotto, attraverso la definizione di metriche misurabili e verificabili.
-- L'adozione di un modello a V per la pianificazione e l'esecuzione delle attività di test e validazione.
+-   La qualità dei processi, in termini di aderenza agli standard e alle pratiche di gestione del ciclo di vita del software.
+-   La qualità del prodotto, attraverso la definizione di metriche misurabili e verificabili.
+-   L'adozione di un modello a V per la pianificazione e l'esecuzione delle attività di test e validazione.
 
 ### Glossario
 
@@ -64,22 +64,22 @@ Per una definizione dei termini tecnici utilizzati in questo documento, consulta
 
 #### Riferimenti Normativi
 
-- **Norme di Progetto**: [Norme di Progetto](./Norme%20di%20Progetto.md)
-- **Capitolato d'Appalto C8: Requirement Tracker- Plug-in VS Code**: [https://www.math.unipd.it/~tullio/IS-1/2024/Progetto/C8.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Progetto/C8.pdf)
+-   **Norme di Progetto**: [Norme di Progetto](./Norme%20di%20Progetto.md)
+-   **Capitolato d'Appalto C8: Requirement Tracker- Plug-in VS Code**: [https://www.math.unipd.it/~tullio/IS-1/2024/Progetto/C8.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Progetto/C8.pdf)
 
 #### Riferimenti Informativi
 
-- T2 - I processi di ciclo di vita del software [https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T02.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T02.pdf)
-- T7 - Qualità del software [https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T07.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T07.pdf)
-- T8 - Qualità di processo [https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T08.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T08.pdf)
-- T9 - Verifica e Validazione [https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T09.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T09.pdf)
-- T10 - Analisi Statica [https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T10.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T10.pdf)
-- T11 - Analisi Dinamica [https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T11.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T11.pdf)
+-   T2 - I processi di ciclo di vita del software [https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T02.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T02.pdf)
+-   T7 - Qualità del software [https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T07.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T07.pdf)
+-   T8 - Qualità di processo [https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T08.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T08.pdf)
+-   T9 - Verifica e Validazione [https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T09.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T09.pdf)
+-   T10 - Analisi Statica [https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T10.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T10.pdf)
+-   T11 - Analisi Dinamica [https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T11.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T11.pdf)
 
-- **ISO/IEC 9126**: "Software engineering - Product quality - Part 1: Quality model"
-- **ISO/IEC 12207**: "Information technology - Software life cycle processes"
-- **ISO/IEC 14598**: "Information technology - Software product evaluation"
-- **ISO/IEC 25010**: "Systems and software engineering - Systems and software Quality Requirements and Evaluation (SQuaRE) - System and software quality models"
+-   **ISO/IEC 9126**: "Software engineering - Product quality - Part 1: Quality model"
+-   **ISO/IEC 12207**: "Information technology - Software life cycle processes"
+-   **ISO/IEC 14598**: "Information technology - Software product evaluation"
+-   **ISO/IEC 25010**: "Systems and software engineering - Systems and software Quality Requirements and Evaluation (SQuaRE) - System and software quality models"
 
 ## Qualità di Processo
 
@@ -105,8 +105,8 @@ Table: Metriche per i processi primari
 
 **Formula**: $\text{Planned Value} = \overset{\text{n° sprint}}{\underset{i=1}{\sum}} (\text{Budget preventivo}_i)$
 
-- Rappresenta il budget autorizzato assegnato al lavoro pianificato.
-- Indica quanto lavoro dovrebbe essere stato completato ad una determinata data.
+-   Rappresenta il budget autorizzato assegnato al lavoro pianificato.
+-   Indica quanto lavoro dovrebbe essere stato completato ad una determinata data.
 
 ---
 
@@ -116,8 +116,8 @@ Table: Metriche per i processi primari
 
 **Formula:**: $\text{Actual Cost} = \overset{\text{n° sprint}}{\underset{i=1}{\sum}} (\text{Budget Consuntivo}_i)$
 
-- Somma di tutti i costi realmente sostenuti per il lavoro completato fino ad oggi.
-- Indica l'effettivo costo per lo svolgimento delle attività.
+-   Somma di tutti i costi realmente sostenuti per il lavoro completato fino ad oggi.
+-   Indica l'effettivo costo per lo svolgimento delle attività.
 
 ---
 
@@ -127,8 +127,8 @@ Table: Metriche per i processi primari
 
 **Formula:** $\text{Earned Value} = \text{Planned Value} \times \frac{\text{Actual Story Points}}{\text{Planned Story Points}}$
 
-- Il valore del lavoro effettivamente completato, calcolato moltiplicando la percentuale di completamento (data dalla divisione dei Story Points effettivi e quelli preventivati) per il suo budget pianificato.
-- Rappresenta quanto valore è stato prodotto in base al lavoro effettivamente svolto.
+-   Il valore del lavoro effettivamente completato, calcolato moltiplicando la percentuale di completamento (data dalla divisione dei Story Points effettivi e quelli preventivati) per il suo budget pianificato.
+-   Rappresenta quanto valore è stato prodotto in base al lavoro effettivamente svolto.
 
 ---
 
@@ -138,8 +138,8 @@ Table: Metriche per i processi primari
 
 **Formula**: $\text{Schedule Variance} = \text{Earned Value} - \text{Planned Value}$
 
-- Misura la differenza tra il lavoro completato e quello pianificato.
-- Un valore positivo indica che il progetto è in anticipo sulla schedulazione.
+-   Misura la differenza tra il lavoro completato e quello pianificato.
+-   Un valore positivo indica che il progetto è in anticipo sulla schedulazione.
 
 ---
 
@@ -149,8 +149,8 @@ Table: Metriche per i processi primari
 
 **Formula**: $\text{Cost Variance} = \text{Earned Value} - \text{Actual Cost}$
 
-- Misura la differenza tra il valore del lavoro completato e il suo costo effettivo.
-- Un valore positivo indica che il progetto sta spendendo meno del previsto.
+-   Misura la differenza tra il valore del lavoro completato e il suo costo effettivo.
+-   Un valore positivo indica che il progetto sta spendendo meno del previsto.
 
 ---
 
@@ -160,8 +160,8 @@ Table: Metriche per i processi primari
 
 **Formula**: $\text{Schedule Performance Index} = \dfrac{\text{Earned Value}}{\text{Planned Value}}$
 
-- Indica l'efficienza nel rispetto dei tempi pianificati.
-- Un valore maggiore di 1 indica che il progetto sta procedendo più velocemente del previsto.
+-   Indica l'efficienza nel rispetto dei tempi pianificati.
+-   Un valore maggiore di 1 indica che il progetto sta procedendo più velocemente del previsto.
 
 ---
 
@@ -171,8 +171,8 @@ Table: Metriche per i processi primari
 
 **Formula**: $\text{Cost Performance Index} = \dfrac{\text{Earned Value}}{\text{Actual Cost}}$
 
-- Indica l'efficienza nell'utilizzo delle risorse.
-- Un valore maggiore di 1 indica che si sta spendendo meno del previsto per il lavoro completato.
+-   Indica l'efficienza nell'utilizzo delle risorse.
+-   Un valore maggiore di 1 indica che si sta spendendo meno del previsto per il lavoro completato.
 
 ### Processi di Supporto
 
@@ -191,9 +191,9 @@ Table: Metriche per i processi di supporto
 
 **Formula**: $\text{Budget At Completion} = \overset{\text{n° sprint}}{\underset{i=1}{\sum}} (\text{Planned Cost}_i)$
 
-- Rappresenta il budget totale autorizzato per il progetto
-- Serve come baseline per valutare le performance di costo
-- Include tutte le riserve di contingenza allocate
+-   Rappresenta il budget totale autorizzato per il progetto
+-   Serve come baseline per valutare le performance di costo
+-   Include tutte le riserve di contingenza allocate
 
 ---
 
@@ -203,9 +203,9 @@ Table: Metriche per i processi di supporto
 
 **Formula**: $\text{Estimate To Complete} = \dfrac{\text{Budget At Completion} - \text{Actual Cost}}{\text{Schedule Performance Index}}$
 
-- Stima dei costi necessari per terminare il progetto
-- Tiene conto dell'efficienza attuale del progetto attraverso il SPI
-- Permette di pianificare le risorse necessarie per il completamento
+-   Stima dei costi necessari per terminare il progetto
+-   Tiene conto dell'efficienza attuale del progetto attraverso il SPI
+-   Permette di pianificare le risorse necessarie per il completamento
 
 ---
 
@@ -215,9 +215,9 @@ Table: Metriche per i processi di supporto
 
 **Formula**: $\text{Estimate At Completion} = \text{Actual Cost } + \text{Estimate To Complete}$
 
-- Stima del costo totale del progetto
-- Combina i costi già sostenuti (AC) con la stima dei costi rimanenti (ETC)
-- Utile per prevedere il budget finale e identificare potenziali sforamenti
+-   Stima del costo totale del progetto
+-   Combina i costi già sostenuti (AC) con la stima dei costi rimanenti (ETC)
+-   Utile per prevedere il budget finale e identificare potenziali sforamenti
 
 ---
 
@@ -227,18 +227,18 @@ Table: Metriche per i processi di supporto
 
 **Formula**: $\text{Indice Gulpease} = 89 + \dfrac{300 \times \text{numero frasi} - 10 \times \text{numero lettere}}{\text{numero parole}}$
 
-- Misura la leggibilità dei documenti in italiano
-- Scala da 0 (minima leggibilità) a 100 (massima leggibilità)
-- Valori ottimali variano in base al livello di istruzione del target:
-  - 40-50 per testi tecnici
-  - \>60 per documenti destinati a un pubblico generale
+-   Misura la leggibilità dei documenti in italiano
+-   Scala da 0 (minima leggibilità) a 100 (massima leggibilità)
+-   Valori ottimali variano in base al livello di istruzione del target:
+    -   40-50 per testi tecnici
+    -   \>60 per documenti destinati a un pubblico generale
 
 ### Processi Organizzativi
 
 | Metrica | Nome                        | Descrizione                                                   | Obiettivo                                                  | Valore Accettabile | Valore Desiderabile |
 | ------- | --------------------------- | ------------------------------------------------------------- | ---------------------------------------------------------- | ------------------ | ------------------- |
 | MPCO01  | **Rischi non preventivati** | Numero di rischi emersi non pianificati inizialmente          | Identificare e gestire tempestivamente nuovi rischi        | ≤ 3                | 0                   |
-| MPCO02  | **Errori ortografici**      | Numero di errori ortografici individuati in ciascun documento | Garantire la qualità e l'affidabilità della documentazione | ≤20                 | 0                  |
+| MPCO02  | **Errori ortografici**      | Numero di errori ortografici individuati in ciascun documento | Garantire la qualità e l'affidabilità della documentazione | ≤20                | 0                   |
 
 Table: Metriche per i processi organizzativi
 
@@ -248,9 +248,9 @@ Table: Metriche per i processi organizzativi
 
 **Formula**: $\text{Rischi non preventivati} = \text{Numero totale rischi emersi} - \text{Numero rischi previsti}$
 
-- Monitora l'efficacia del processo di risk management
-- Aiuta a valutare la completezza dell'analisi dei rischi iniziale
-- Un numero elevato può indicare la necessità di migliorare il processo di identificazione dei rischi
+-   Monitora l'efficacia del processo di risk management
+-   Aiuta a valutare la completezza dell'analisi dei rischi iniziale
+-   Un numero elevato può indicare la necessità di migliorare il processo di identificazione dei rischi
 
 ---
 
@@ -260,10 +260,10 @@ Table: Metriche per i processi organizzativi
 
 **Formula**: $\text{Errori ortografici} =  \sum {\text{Errori individuati in ciascun documento}}$
 
-- Misura la qualità complessiva della documentazione prodotta
-- Include errori di forma, contenuto e conformità agli standard
-- Importante per garantire la comunicazione efficace e la manutenibilità del progetto
-- Gli errori vengono identificati durante le revisioni e le verifiche formali per poi essere corretti
+-   Misura la qualità complessiva della documentazione prodotta
+-   Include errori di forma, contenuto e conformità agli standard
+-   Importante per garantire la comunicazione efficace e la manutenibilità del progetto
+-   Gli errori vengono identificati durante le revisioni e le verifiche formali per poi essere corretti
 
 ## Qualità di Prodotto
 
@@ -383,6 +383,10 @@ Table: Test di Accettazione
 
 <iframe width="800" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0txzzEKqHdhrji9fd49Hd7k4zLchkVRCsBk1Oil4yILOSzL3kxO2DtdxCC9W1ni5uqytaJaVwcHAV/pubchart?oid=1654995613&amp;format=interactive" data-image="ig.png" data-title="Indice Gulpease"></iframe>
 
+## Errori ortografici
+
+<iframe width="800" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0txzzEKqHdhrji9fd49Hd7k4zLchkVRCsBk1Oil4yILOSzL3kxO2DtdxCC9W1ni5uqytaJaVwcHAV/pubchart?oid=1466111038&amp;format=interactive" data-image="eo.png" data-title="Errori Ortografici"></iframe>
+
 ### Earned Value, Planned Value & Actual Cost
 
 <iframe width="800" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0txzzEKqHdhrji9fd49Hd7k4zLchkVRCsBk1Oil4yILOSzL3kxO2DtdxCC9W1ni5uqytaJaVwcHAV/pubchart?oid=1002546531&amp;format=interactive" data-image="ev-pv-ac.png" data-title="Earned Value, Planned Value e Actual Cost"></iframe>
@@ -431,10 +435,10 @@ Table: Test di Accettazione
 
 L'adozione di un processo di valutazione di miglioramento continuo permette di monitorare sistematicamente l'efficacia e l'efficienza dei processi organizzativi e di sviluppo. Questo approccio favorisce l'identificazione tempestiva di criticità e opportunità di ottimizzazione, contribuendo a:
 
-- Incrementare la qualità dei processi e del prodotto finale.
-- Ridurre i costi attraverso azioni correttive mirate.
-- Promuovere un ambiente di lavoro orientato alla crescita costante.
-- Supportare il processo decisionale con dati oggettivi e misurabili.
+-   Incrementare la qualità dei processi e del prodotto finale.
+-   Ridurre i costi attraverso azioni correttive mirate.
+-   Promuovere un ambiente di lavoro orientato alla crescita costante.
+-   Supportare il processo decisionale con dati oggettivi e misurabili.
 
 ### Valutazione sull'organizzazione
 
