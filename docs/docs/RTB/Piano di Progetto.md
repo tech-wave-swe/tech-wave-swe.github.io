@@ -5,7 +5,7 @@ documentclass: TWDocumentFull
 toc: true
 lof: true
 numbersections: true
-version: 2.4.0
+version: 2.4.1
 classification: Esterno
 ---
 
@@ -23,6 +23,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                                                                            | Autore              | Data Verifica | Verificatore        |
 | ---------- | -------- | -------------------------------------------------------------------------------------- | ------------------- | ------------- | ------------------- |
+| 07/03/2025 | 2.4.1    | Aggiunta consuntivo sprint 6                                                           | Marcon Giulia       |  07/03/2025    |  Monetti Luca          |
 | 28/02/2025 | 2.4.0    | Aggiunta diagrammi Gantt                                                               | Piola Andrea        | 28/02/2025    | Marcon Giulia       |
 | 28/02/2025 | 2.3.1    | Correzioni grammaticali e sintattiche                                                  | Marcon Giulia       | 28/02/2025    | Piola Andrea        |
 | 23/02/2025 | 2.3.0    | Aggiunta preventivo sprint 6                                                           | Marcon Giulia       | 24/02/2025    | Carraro Agnese      |
@@ -605,13 +606,43 @@ A seguito si riporta la tabella del preventivo per il sesto %%sprint|sprint%%
 | Responsabile di progetto  | 2,5            | 75         |
 | Analista                  | 12,5           | 312,5      |
 | Progettista               | 0              | 0          |
-| Amministratore di sistema | 15             | 300        |
-| Programmatore             | 4              | 60         |
+| Amministratore di sistema | 11,5           | 230        |
+| Programmatore             | 1              | 15         |
 | Verificatore              | 6              | 90         |
-| _Totale_                  | _39_           | _837,5_    |
-| _Bilancio_                |                | _8465,95_  |
+| _Totale_                  | _33,5_         | _722,5_    |
+| _Bilancio_                |                | _8.580,95_ |
 
 Table: Preventivo Sprint 6
+
+###### Consuntivo
+
+Di seguito vengono indicate le spese effettive del sesto %%sprint|sprint%%
+
+| Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
+| ------------------------- | -------------------- | ------------- | ---------------- | --------- | --------------- |
+| Responsabile di progetto  | 2,75                 | +0,25         | 30               | 82,5      | 7,5             |
+| Analista                  | 2,75                 | -9,75         | 25               | 68,75     | -243,75         |
+| Progettista               | 1,42                 | +1,42         | 25               | 35,5      | 35,5            |
+| Amministratore di sistema | 10,42                | -1,08         | 20               | 208,4     | -21,6           |
+| Programmatore             | 1                    | 0             | 15               | 15        | 0               |
+| Verificatore              | 3,58                 | -2,42         | 15               | 53,7      | -36,3           |
+| _Totale consuntivo_       | _21,92_              | _-11,58_      |                  | _463,85_  | _-258,65_       |
+
+Table: Consuntivo Sprint 6
+
+Considerando il costo di **463,85** il residuo disponibile ammonta a **8.839,60€**.
+
+###### Retrospettiva
+Il sesto %%sprint|sprint%% ha visto un avanzamento significativo verso la preparazione della %%RTB|rtb%%, con particolare attenzione alla presentazione del %%PoC|poc%% e al completamento della documentazione. Tuttavia, alcune %%attività|attività%% pianificate per il ruolo di Analista non sono state completate a causa di priorità riassegnate e sono state rimesse nel %%backlog|backlog%% per lo %%sprint|sprint%% successivo. Questo ha portato a una riduzione delle ore effettive rispetto al %%preventivo|preventivo%% per quel ruolo.
+
+La principale variazione si è osservata nel ruolo di Analista (-9,75 ore), dove alcuni ticket non sono stati affrontati e sono stati riprogrammati per lo %%sprint|sprint%% successivo. Al contrario, il ruolo di Progettista (+1,42 ore) ha registrato un leggero aumento delle ore, dovuto alla necessità di ulteriori rifiniture tecniche.
+
+###### Conclusione
+In conclusione, lo %%sprint|sprint%% ha permesso di raggiungere gli obiettivi principali, con un buon livello di aderenza al %%preventivo|preventivo%% iniziale. Le variazioni osservate sono state gestite in modo efficace, garantendo il rispetto delle tempistiche e la %%qualità|qualità%% del lavoro svolto. I ticket non completati dal ruolo di Analista sono stati riassegnati al %%backlog|backlog%% per essere affrontati nello %%sprint|sprint%% successivo, mantenendo così una gestione flessibile e adattabile delle %%attività|attività%%.
+
+###### Gantt
+
+<img src="/img/Gantt/Sprint6.png" alt="Diagramma Gantt sprint 6" data-width="70%" />
 
 <!-- ::: {.no-export} -->
 
