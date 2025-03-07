@@ -23,7 +23,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                                                                            | Autore              | Data Verifica | Verificatore        |
 | ---------- | -------- | -------------------------------------------------------------------------------------- | ------------------- | ------------- | ------------------- |
-| 07/03/2025 | 2.4.1    | Aggiunta rendicontazione sprint 6                                                      | Marcon Giulia       |               |                     |
+| 07/03/2025 | 2.4.1    | Aggiunta consuntivo sprint 6                                                           | Marcon Giulia       |               |                     |
 | 28/02/2025 | 2.4.0    | Aggiunta diagrammi Gantt                                                               | Piola Andrea        | 28/02/2025    | Marcon Giulia       |
 | 28/02/2025 | 2.3.1    | Correzioni grammaticali e sintattiche                                                  | Marcon Giulia       | 28/02/2025    | Piola Andrea        |
 | 23/02/2025 | 2.3.0    | Aggiunta preventivo sprint 6                                                           | Marcon Giulia       | 24/02/2025    | Carraro Agnese      |
