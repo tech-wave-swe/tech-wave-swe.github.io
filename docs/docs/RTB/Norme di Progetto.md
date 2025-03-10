@@ -55,7 +55,7 @@ Lo scopo del documento è quello di definire le norme che ogni componente del gr
 
 ### Scopo del Prodotto
 
-Nello sviluppo di software per sistemi embedded la parte di controllo dell'implementazione di tutti i %%requisiti|requisito*software%% necessari al corretto funzionamento dello stesso risulta costosa e ripetitiva da parte dello sviluppatore, inoltre può risultare non esaustiva a causa di distrazioni o dimenticanze. Il %%capitolato|capitolato%% \*\*\_Requirement Tracker - Plug-in VSCode*\*\* propone lo sviluppo di un %%plugin|plugin%% per %%VSCode|vscode%% che permetta di tracciare i %%requisiti|requisito_software%% derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari %%requisiti|requisito_software%% in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
+Nello sviluppo di software per sistemi embedded la parte di controllo dell'implementazione di tutti i %%requisiti|requisito_software%% necessari al corretto funzionamento dello stesso risulta costosa e ripetitiva da parte dello sviluppatore, inoltre può risultare non esaustiva a causa di distrazioni o dimenticanze. Il %%capitolato|capitolato%% \*\*\_Requirement Tracker - Plug-in VSCode\*\*\* propone lo sviluppo di un %%plugin|plugin%% per %%VSCode|vscode%% che permetta di tracciare i %%requisiti|requisito_software%% derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari %%requisiti|requisito_software%% in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
 
 ### Glossario
 
