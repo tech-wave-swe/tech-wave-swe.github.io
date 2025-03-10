@@ -394,7 +394,7 @@ Possiamo osservare che i valori riportati sono rimasti stabili durante questa pr
 
 #### RTB
 
-Possiamo osservare che il numero di errori è stato minimizzato dall'utilizzo dell'estensione "SpellCheck" che permette di individuare gli errori ortografici all'interno dei documenti.
+Possiamo osservare che il numero di errori è stato minimizzato tramite l'utilizzo di "SpellCheck": un'estensione che permette di individuare gli errori ortografici all'interno dei documenti.
 
 ### Earned Value, Planned Value & Actual Cost
 
