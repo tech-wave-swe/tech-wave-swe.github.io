@@ -59,13 +59,13 @@ Si concentra su:
 
 ### Glossario
 
-Per una definizione dei termini tecnici utilizzati in questo documento, consultare il [Glossario](./Glossario.md).
+Per una definizione dei termini tecnici utilizzati in questo documento, consultare il [Glossario - v2.2.0](./Glossario.md).
 
 ### Riferimenti
 
 #### Riferimenti Normativi
 
-- **Norme di Progetto**: [Norme di Progetto](./Norme%20di%20Progetto.md)
+- **Norme di Progetto**: [Norme di Progetto - v1.8.1](./Norme%20di%20Progetto.md)
 - **Capitolato d'Appalto C8: Requirement Tracker- Plug-in VS Code**: [https://www.math.unipd.it/~tullio/IS-1/2024/Progetto/C8.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Progetto/C8.pdf)
 
 #### Riferimenti Informativi
