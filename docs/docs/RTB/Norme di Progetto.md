@@ -5,7 +5,7 @@ documentclass: TWDocumentFull
 toc: true
 lof: true
 numbersections: true
-version: 1.8.0
+version: 1.8.1
 classification: Interno
 ---
 
@@ -23,6 +23,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                                        | Autore         | Data Verifica | Verificatore          |
 | ---------- | -------- | -------------------------------------------------- | -------------- | ------------- | --------------------- |
+| 07/03/2025 | 1.8.1    | Aggiunta sezione PoC                               | Monetti Luca   | 07/03/2025    | Marcon Giulia         |
 | 27/02/2025 | 1.8.0    | Revisione del documento                            | Carraro Agnese | 28/02/2025    | Monetti Luca          |
 | 23/02/2025 | 1.7.1    | Procedure per la rendicontazione delle ore         | Pistori Gaia   | 25/02/2025    | Carraro Agnese        |
 | 20/02/2025 | 1.7.0    | Aggiunto tracciamento e rendicontazione delle ore  | Marcon Giulia  | 25/02/2025    | Carraro Agnese        |
@@ -54,7 +55,7 @@ Lo scopo del documento è quello di definire le norme che ogni componente del gr
 
 ### Scopo del %%Prodotto|prodotto%%
 
-Nello sviluppo di software per sistemi embedded la parte di controllo dell'implementazione di tutti i %%requisiti|requisito_software%% necessari al corretto funzionamento dello stesso risulta costosa e ripetitiva da parte dello sviluppatore, inoltre può risultare non esaustiva a causa di distrazioni o dimenticanze. Il %%capitolato|capitolato%% **_Requirement Tracker - Plug-in VSCode_** propone lo sviluppo di un %%plugin|plugin%% per %%VSCode|vscode%% che permetta di tracciare i %%requisiti|requisito_software%% derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari %%requisiti|requisito_software%% in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
+Nello sviluppo di software per sistemi embedded la parte di controllo dell'implementazione di tutti i %%requisiti|requisito*software%% necessari al corretto funzionamento dello stesso risulta costosa e ripetitiva da parte dello sviluppatore, inoltre può risultare non esaustiva a causa di distrazioni o dimenticanze. Il %%capitolato|capitolato%% \*\*\_Requirement Tracker - Plug-in VSCode*\*\* propone lo sviluppo di un %%plugin|plugin%% per %%VSCode|vscode%% che permetta di tracciare i %%requisiti|requisito_software%% derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari %%requisiti|requisito_software%% in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
 
 ### Glossario
 
@@ -523,11 +524,13 @@ L'incremento di valori più significativi azzera quelli meno significativi. Tutt
 
 ##### %%Repository|repository%%
 
-Ogni %%progetto|progetto%% sarà interamente contenuto all'interno di un unico %%repository|repository%% al fine di raggruppare tutti i sorgenti necessari all'interno dello stesso archivio.
+Ogni %%progetto|progetto%% sarà interamente contenuto all'interno di un unico %%repository|repository%% al fine di raggruppare tutti i sorgenti necessari all'interno dello stesso archivio. Verrà inoltre utilizzato un %%repository|repository%% diverso per il %%PoC|poc%% in quanto rappresenta un prodotto usa e getta.
 Di seguito sono elencati tutti i %%repository|repository%% attualmente presenti:
 
 - tech-wave-swe.github.io: %%Repository|repository%% principale che raccoglie tutto il codice sorgente prodotto durante il ciclo di vita del %%progetto|progetto%%. La separazione tra documentazione e software è garantita da una struttura organizzata in cartelle dedicate, mentre l'utilizzo delle %%GitHub Action|github_action%% consente di gestire le diverse automazioni in modo autonomo ed %%efficiente|efficienza%%.
   Riferimento: [https://github.com/tech-wave-swe/tech-wave-swe.github.io](https://github.com/tech-wave-swe/tech-wave-swe.github.io).
+- poc: Contiene tutto il codice sorgente necessario al %%Poc|poc%%.
+  Riferimento: [https://github.com/tech-wave-swe/tech-wave-swe.github.io](https://github.com/tech-wave-swe/poc).
 - DocumentStyle: Contiene le classi utilizzate per la generazione dei PDF.
   Riferimento: [https://github.com/tech-wave-swe/DocumentStyle](https://github.com/tech-wave-swe/DocumentStyle).
 
@@ -859,10 +862,13 @@ Ogni ora lavorativa deve essere associata a un ruolo specifico:
 - **Responsabile di %%Progetto|progetto%%**: per %%attività|attività%% di coordinamento e gestione del %%progetto|progetto%%.
 
 #### Rendicontazione delle ore nel cruscotto
+
 Tramite un documento Google Sheets _cruscotto-avanzamento_, presente nella cartella Google Drive condivisa, il team è in grado di ottenere informazioni riguardo lo stato di avanzamento del progetto. Questo è di particolare importanza per il ruolo del Responsabile durante la compilazione del Piano di %%Progetto|progetto%%.
 
 ##### Inserimento ore svolte
+
 Per inserire la rendicontazione delle ore effettivamente svolte all'interno dello %%sprint|sprint%% bisogna:
+
 - **Scaricare il report da Timetracker (%%Jira|jira%%)**:
   - Dalla dashboard di %%Jira|jira%% selezionare, dal menu in alto, le voci _"App"_, poi _"Timetracker"_
   - Dal menu laterale selezionare la voce _"Saved Reports"_, poi _"Shared with me"_ e aprire il report denominato "visualizzazione ore registrate (totali)"
@@ -871,6 +877,7 @@ Per inserire la rendicontazione delle ore effettivamente svolte all'interno dell
   - Nella pagina _"parser-jira"_ incollare le ultime righe prese dal report scaricato. In automatico verranno usate per aggiornare i grafici di andamento e statistiche.
 
 #### Inserimento ore preventivate
+
 - **Inserire i dati nel documento Google Sheets _cruscotto-avanzamento_**
   - Nella pagina _"inserimento-preventivo-ruoli"_ specificare per ogni %%_issue_|issue%% le ore preventivate per ciascun ruolo.
 
@@ -963,11 +970,12 @@ In particolare è necessario individuare delle metriche che indicano l'avanzamen
 Per garantire la %%qualità|qualità%% del %%prodotto|prodotto%%, il team adotta il modello di riferimento ISO/IEC 25010 (unione di ISO/IEC 9126 e ISO/IEC 14598) che definisce un modello di %%qualità|qualità%% del software basato su sei caratteristiche fondamentali: %%funzionalità|funzionalità%%, affidabilità, usabilità, %%efficienza|efficienza%%, manutenibilità e portabilità.
 
 In particolare è necessario individuare delle metriche rappresentanti:
+
 - la **funzionalità**: grado in cui il %%prodotto|prodotto%% fornisce %%funzionalità|funzionalità%% complete, corrette e adeguate.
 - l'**affidabilità**: grado in cui il %%prodotto|prodotto%% svolge specifiche funzioni in termini di assenza di guasti, disponibilità, tolleranza ai guasti e riparabilità.
 - l'**usabilità**: grado di interazione con il %%prodotto|prodotto%% da parte degli utenti in termini di appropriatezza, apprendibilità, operabilità, protezione da errori, _user experience_ e accessibilità.
 - l'**%%efficienza|efficienza%%**: grado in cui il %%prodotto|prodotto%% esegue le sue funzioni in termini di risorse di tempo, di memoria, ecc.
-- la **manutenibilità**: costo della correzione dei difetti e dell'aggiunta di %%funzionalità|funzionalità%%. 
+- la **manutenibilità**: costo della correzione dei difetti e dell'aggiunta di %%funzionalità|funzionalità%%.
 - la **portabilità**: grado in cui il %%prodotto|prodotto%% è legato all'ambiente di esecuzione in termini di installabilità e sostituibilità.
 
 I **%%test|test%% di %%verifica|verifica%% e validazione** vengono eseguiti in tutte le fasi del ciclo di sviluppo, garantendo la conformità del %%prodotto|prodotto%% con i %%requisiti|requisito_software%% specificati e gli standard qualitativi prestabiliti dal team. I %%test|test%% vengono classificati in quattro categorie principali: %%test|test%% di unità, %%test|test%% di integrazione, %%test|test%% di sistema e %%test|test%% di accettazione.
