@@ -14,7 +14,7 @@ classification: Interno
 import TOCInlineWrapper from "@site/src/components/TOCInlineWrapper.jsx";
 import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
-# Documento delle Norme di %%Progetto|progetto%%
+# Documento delle Norme di Progetto
 
 <details>
   <summary>Changelog</summary>
@@ -53,7 +53,7 @@ Table: Changelog
 
 Lo scopo del documento è quello di definire le norme che ogni componente del gruppo TechWave dovrà rispettare per ottenere un %%prodotto|prodotto%% finale fatto a regola d'arte. In questo documento, inoltre, vengono descritte le convenzioni da rispettare nell'utilizzo degli strumenti e vengono esposti i %%processi|processo%% che saranno adottati dal gruppo. Questo documento è redatto seguendo un approccio incrementale, in quanto durante tutta la durata del %%progetto|progetto%% possono cambiare oppure si possono aggiungere/rimuovere le norme a seconda delle necessità.
 
-### Scopo del %%Prodotto|prodotto%%
+### Scopo del Prodotto
 
 Nello sviluppo di software per sistemi embedded la parte di controllo dell'implementazione di tutti i %%requisiti|requisito*software%% necessari al corretto funzionamento dello stesso risulta costosa e ripetitiva da parte dello sviluppatore, inoltre può risultare non esaustiva a causa di distrazioni o dimenticanze. Il %%capitolato|capitolato%% \*\*\_Requirement Tracker - Plug-in VSCode*\*\* propone lo sviluppo di un %%plugin|plugin%% per %%VSCode|vscode%% che permetta di tracciare i %%requisiti|requisito_software%% derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari %%requisiti|requisito_software%% in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
 
@@ -79,14 +79,14 @@ Riferimenti informativi:
 
 > [https://www.math.unipd.it/\~tullio/IS-1/2024/Dispense/T02.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T02.pdf)
 
-## 2 %%Processi|processo%% Primari
+## 2 Processi Primari
 
 ### 2.1 Fornitura
 
 Il %%processo|processo%% di fornitura definisce un insieme di metodi, pratiche e procedure finalizzati a garantire la consegna del %%prodotto|prodotto%% software richiesto dal %%committente|committente%%.
 Questo %%processo|processo%% si occupa del monitoraggio e del coordinamento delle %%attività|attività%% svolte dal gruppo durante l'intero ciclo di vita del %%prodotto|prodotto%%, assicurando che il risultato finale sia conforme alle aspettative del %%committente|committente%%.
 
-### %%Attività|attività%%
+### Attività
 
 Il %%processo|processo%%, durante il ciclo di vita del software affronta varie fasi:
 
@@ -137,7 +137,7 @@ Il %%processo|processo%% di sviluppo riguarda l'effettiva realizzazione del %%pr
 
 Per la creazione dei diagrammi UML è stato utilizzato **StarUML**.
 
-## %%Processi|processo%% di Supporto
+## Processi di Supporto
 
 ### Documentazione
 
@@ -195,7 +195,7 @@ git pull
 
 Se più redattori lavorano nello stesso documento su ticket differenti lavoreranno su due branch distinti utilizzando la metodologia descritta nella sezione [3.1.4.1.1](#redazione-di-un-nuovo-documento-o-modifica-di-un-documento-esistente).
 
-##### Completamento %%attività|attività%% di redazione
+##### Completamento attività di redazione
 
 Al termine dell'%%attività|attività%% richiesta dal ticket il documento deve essere versionato e sottoposto a %%verifica|verifica%% da parte di un revisore.
 Il redattore:
@@ -308,7 +308,7 @@ Il Registro delle modifiche è presente in ogni documento fatta eccezione per:
 - Valutazione dei %%capitolati|capitolato%%
 - Lettere di presentazione
 
-###### %%Verbali|verbale%%
+###### Verbali
 
 I %%verbali|verbale%% sono documento redatti a seguito di riunioni interne o esterne e ne riportano le discussioni e le decisioni prese. Sono composti da:
 
@@ -323,7 +323,7 @@ I %%verbali|verbale%% sono documento redatti a seguito di riunioni interne o est
   - **AAAA-MM-GG**: Data della riunione
   - **ID**: Indice progressivo che rappresenta il %%verbale|verbale%%.
 
-###### Documento di Analisi dei %%Requisiti|requisito_software%%
+###### Documento di Analisi dei Requisiti
 
 Il documento dell'Analisi dei %%Requisiti|requisito_software%% è il risultato di quanto svolto nell'%%attività|attività%% omologa. Al suo interno sono presenti:
 
@@ -348,7 +348,7 @@ Il documento dell'Analisi dei %%Requisiti|requisito_software%% è il risultato d
   - **Generalizza** \[se presente\]: %%use case|use_case%% genitore.
   - **Estensioni** \[se presenti\]: %%use case|use_case%% che arrivano dal costrutto extend.
 
-###### Documento di Piano di %%Progetto|progetto%%
+###### Documento di Piano di Progetto
 
 Il documento di Piano di %%Progetto|progetto%% rappresenta tutta la parte di pianificazione e di analisi del %%progetto|progetto%% prodotta dal responsabile. Al suo interno sono presenti:
 
@@ -415,7 +415,7 @@ La %%verifica|verifica%% viene eseguita su tutti i %%processi|processo%% in esec
 
 Le %%attività|attività%% di %%verifica|verifica%% sono svolte dai verificatori seguendo l'ordine indicato dal **Modello a V** ed i %%requisiti|requisito_software%% di %%qualità|qualità%% definiti all'interno del Piano di Qualifica.
 
-#### %%Verifica|verifica%% dei documenti
+#### Verifica dei documenti
 
 Il verificatore ha il compito di effettuare la revisione dei documenti al termine della loro redazione al fine di garantire la %%qualità|qualità%% e la conformità alle norme del loro contenuto.
 
@@ -450,22 +450,22 @@ Ogni %%test|test%% deve essere ben definito, deterministico e automatizzato al f
 - Descrizione dell'output
 - Condizioni di Esecuzione
 
-###### %%Test|test%% di unità
+###### Test di unità
 
 I %%Test|test%% di Unità sono progettati per verificare una singola %%funzionalità|funzionalità%%, in modo isolato dal sistema, al fine di garantire il corretto funzionamento e l'aderenza alle specifiche. Questi %%test|test%% vengono pianificati durante la **Progettazione di Dettaglio**, sono completamente automatizzabili e devono essere eseguiti per primi in quanto verificano il corretto funzionamento della singola unità.
 
-###### %%Test|test%% di integrazione
+###### Test di integrazione
 
 I %%Test|test%% di Integrazione sono progettati per verificare il corretto funzionamento delle diverse %%funzionalità|funzionalità%% quando sono integrate tra loro. Questi %%test|test%% vengono pianificati durante la fase di Progettazione Architetturale tramite approccio:
 
 - **Top-Down**: Si inizia integrando le componenti di maggior valore esterno effettuando %%test|test%% prolungati sulle %%funzionalità|funzionalità%% principali. Necessita della simulazione di tutte le parti non ancora implementate tramite l'utilizzo di Mock.
 - **Bottom-Up**: Si inizia integrando le componenti di basso livello, più lontane dell'utente. Questo riduce la necessità di Mock ma ritarda la %%verifica|verifica%% sulle %%funzionalità|funzionalità%% principali.
 
-###### %%Test|test%% di sistema
+###### Test di sistema
 
 I %%Test|test%% di Sistema sono progettati per verificare il sistema nella sua interezza rispetto ai %%requisiti|requisito_software%% software individuati durante l'%%Analisi dei Requisiti|analisi_dei_requisiti%%. Questi %%test|test%% hanno lo scopo di garantire che il %%prodotto|prodotto%% esegua le funzioni previste in modo %%efficace|efficacia%% e affidabile in un ambiente realistico.
 
-###### %%Test|test%% di Accettazione
+###### Test di Accettazione
 
 I %%Test|test%% di Accettazione sono progettati per dimostrare che i %%requisiti|requisito_software%% individuati sono stati soddisfatti e garantire che il %%prodotto|prodotto%% sia conforme alle aspettative degli stakeholder. Questi %%test|test%% vengono eseguiti coinvolgendo gli utenti finali e determinano se il %%prodotto|prodotto%% può essere rilasciato.
 
@@ -482,7 +482,7 @@ Dove:
   - A: Accettazione
 - \[ ID \]: Numero progressivo associato al t%%test|test%%est all'interno del suo tipo.
 
-###### Stato dei %%test|test%%
+###### Stato dei test
 
 Ad ogni %%test|test%% viene associato uno stato che ne riflette il risultato di esecuzione all'interno del Piano di Qualifica. Ogni può essere associato con uno di questi stati:
 
@@ -512,7 +512,7 @@ Se il %%processo|processo%% ha esito positivo il %%prodotto|prodotto%% risponde 
 
 Il %%processo|processo%% di Gestione della configurazione si occupa di identificare, organizzare e controllare le modifiche apportate a tutti gli artefatti coinvolti nel ciclo di vita del %%prodotto|prodotto%%.
 
-##### Sistema di %%Versionamento|versionamento%%
+##### Sistema di Versionamento
 
 Il sistema di %%versionamento|versionamento%% rappresenta le convenzioni utilizzate per la gestione delle versione di tutti i vari artefatti. La struttura utilizzata è rappresentata da: **X.Y.Z**.
 
@@ -522,7 +522,7 @@ Il sistema di %%versionamento|versionamento%% rappresenta le convenzioni utilizz
 
 L'incremento di valori più significativi azzera quelli meno significativi. Tutte le modifiche devono essere riportate all'interno del registro delle modifiche. Ogni documento entra nella %%repository|repository%% con una versione 1.0.0 o superiore.
 
-##### %%Repository|repository%%
+##### Repository
 
 Ogni %%progetto|progetto%% sarà interamente contenuto all'interno di un unico %%repository|repository%% al fine di raggruppare tutti i sorgenti necessari all'interno dello stesso archivio. Verrà inoltre utilizzato un %%repository|repository%% diverso per il %%PoC|poc%% in quanto rappresenta un prodotto usa e getta.
 Di seguito sono elencati tutti i %%repository|repository%% attualmente presenti:
@@ -604,13 +604,13 @@ Il %%processo|processo%% di Risoluzione dei Problemi si pone come obiettivo forn
 
 Questo %%processo|processo%% non si limita alla sola risoluzione dei problemi ma si propone di identificare le cause e adottare misure preventive per evitarne la ripetizione in futuro promuovendo un ambiente di miglioramento continuo.
 
-#### Gestione dei %%rischi|rischio%%
+#### Gestione dei rischi
 
 Il %%processo|processo%% di Gestione dei %%Rischi|rischio%% ha l'obiettivo di identificare, analizzare, trattare e monitorare tutti i potenziali %%rischi|rischio%% di %%progetto|progetto%% associandoli a delle specifiche misure di %%mitigazione|mitigazione%%.
 
 I %%rischi|rischio%% individuati all'interno del %%progetto|progetto%% sono specificati all'interno del Piano di %%Progetto|progetto%% nella sezione dedicata.
 
-##### Codifica dei %%Rischi|rischio%%
+##### Codifica dei Rischi
 
 Per identificare univocamente ogni %%rischio|rischio%% esso viene associato ad un codice identificativo basato sulla seguente convenzione: **R [ Tipologia ] [ Indice ] - [ Nome Associato ]**, dove:
 
@@ -628,7 +628,7 @@ Ogni problema identificato durante lo svolgimento del %%progetto|progetto%% da u
 
 - **%%Jira|jira%%**: ITS utilizzato all'interno del %%progetto|progetto%% per il tracciamento delle azioni da svolgere e delle problematiche individuate.
 
-### Gestione della %%qualità|qualità%%
+### Gestione della qualità
 
 #### Introduzione
 
@@ -675,7 +675,7 @@ Ad ogni metrica è inoltre associato:
 
 I %%processi|processo%% organizzativi sono trasversali rispetto al %%progetto|progetto%% e vengono applicati in modo tale da stabilire, controllare e migliorare i %%processi|processo%% del ciclo di vita del software, ai quali, quindi, forniscono il supporto necessario. Questa sezione del Piano di %%Progetto|progetto%% definisce i seguenti %%processi|processo%% organizzativi: gestione dei %%processi|processo%%, infrastruttura, miglioramento dei %%processi|processo%% e formazione.
 
-### Gestione dei %%processi|processo%%
+### Gestione dei processi
 
 #### Introduzione
 
@@ -698,7 +698,7 @@ Quando tutti i %%task|task%% e tutte le %%attività|attività%% vengono conclusi
 L'%%attività|attività%% di pianificazione è essenziale per poter svolgere al meglio le %%attività|attività%% del ciclo di vita del software. Infatti, durante questa %%attività|attività%% il responsabile è incaricato di definire le %%attività|attività%% e i %%task|task%% a loro associati effettuando delle stime dei tempi necessari al loro completamento e un'%%analisi dei requisiti|analisi_dei_requisiti%% e delle risorse necessarie per completare i %%task|task%%, e stabilendo i %%rischi|rischio%% a loro associati.
 La pianificazione viene documentata nel Piano di %%Progetto|progetto%%, aggiornato di volta in volta dal responsabile corrente.
 
-##### Ruoli di %%progetto|progetto%%
+##### Ruoli di progetto
 
 I ruoli che ogni membro dovrà assumere almeno una volta durante tutta la durata del %%progetto|progetto%%, rispettando quanto preventivato nella candidatura, sono:
 
@@ -760,13 +760,13 @@ Ogni %%task|task%% presenta:
 
 Una volta che viene completato un %%task|task%%, la persona o le persone che hanno contribuito al suo completamento segnalano il tempo produttivo che hanno speso e il ruolo che hanno ricoperto durante il suo svolgimento, usando un'applicazione di %%Jira|jira%% chiamata Timetracker. Su Timetracker, le ore di %%progetto|progetto%% svolte sono facilmente consultabili anche in base alla persona o al ruolo. Inoltre, i %%task|task%% sono organizzati in epic (liste di %%task|task%%) a seconda della loro tipologia, che può essere, ad esempio, "documentazione di %%progetto|progetto%%, "gestione repo", ecc.
 
-##### Ciclo di vita di un %%task|task%%
+##### Ciclo di vita di un task
 
 Ogni %%task|task%% ha un ciclo di vita, che ha inizio nel momento in cui viene creato, e fine nel momento in cui viene completato e quindi rimosso dal %%backlog|backlog%%.
 
 In primo luogo, il responsabile crea un %%task|task%%, che viene aggiunto al %%backlog|backlog%% dello %%sprint|sprint%% corrente. Quando l'assegnatario inizia a lavorare su quel %%task|task%%, crea un branch su %%GitHub|github%% dedicato a esso e aggiorna lo stato a "in corso". Una volta che il %%task|task%% è stato completato, l'assegnatario crea una pull request su %%GitHub|github%% verso il branch "develop" e sposta il %%task|task%% sullo stato "revisione". Successivamente, un verificatore revisiona il lavoro fatto, approva la pull request e sposta il %%task|task%% sullo stato "to deploy". Per concludere il ciclo di vita di un %%task|task%%, il responsabile approva il lavoro effettuato facendo merge sul branch "main" e segnando il %%task|task%% come "completato".
 
-##### Gestione della %%repository|repository%%
+##### Gestione della repository
 
 La %%repository|repository%% di riferimento del gruppo si trova su %%GitHub|github%% ed è fruibile dall'esterno tramite %%GitHub Pages|github_pages%% organizzate tramite %%Docusaurus|docusaurus%%. La repo è suddivisa in tre sezioni principali: Candidatura, %%RTB|rtb%% e %%PB|pb%%; al cui interno è presente la corrispondente documentazione.
 
@@ -839,7 +839,7 @@ La gestione delle ore è un aspetto cruciale per il successo del %%progetto|prog
 
 Durante la fase di %%Sprint|sprint%% Planning, il Responsabile di %%Progetto|progetto%%, in collaborazione con il team, definisce le %%attività|attività%% da svolgere e stima le ore necessarie per ciascuna di esse e lo %%story points|story_points%%. Le ore preventivate vengono registrate nel Piano di %%Progetto|progetto%% e suddivise in base ai ruoli e alle competenze dei membri del team.
 
-#### Tracciamento delle ore su %%Jira|jira%%
+#### Tracciamento delle ore su Jira
 
 Ogni ticket su %%Jira|jira%% rappresenta una specifica %%attività|attività%% o %%task|task%%. Per tracciare le ore lavorative, i membri del team devono seguire questi passaggi:
 
@@ -931,7 +931,7 @@ Ogni categoria di canale può avere un numero variabile di sottocanali utilizzat
 - **GitFlow**:
   Modello di branching Git alternativo che prevede l'uso di feature branch e di più branch primari per il controllo di versione.
 
-### Miglioramento dei %%processi|processo%%
+### Miglioramento dei processi
 
 Il %%processo|processo%% di miglioramento consiste di due %%attività|attività%% principali, una di valutazione e una di miglioramento dei %%processi|processo%%.
 
@@ -957,15 +957,15 @@ LaTeX: [https://www.overleaf.com/learn](https://www.overleaf.com/learn).
 
 Framework %%SCRUM|scrum%%: [https://scrumguides.org/scrum-guide.html](https://scrumguides.org/scrum-guide.html).
 
-## Standard per la %%qualità|qualità%%
+## Standard per la qualità
 
-### %%Qualità|qualità%% dei %%processi|processo%%
+### %%Qualità|qualità%% dei processi
 
 Per garantire la %%qualità|qualità%% dei %%processi|processo%%, il team adotta il modello di riferimento ISO/IEC 12207, che definisce i %%processi|processo%% di ciclo di vita del software e le %%attività|attività%% di supporto necessarie per lo sviluppo di un %%prodotto|prodotto%% software.
 
 In particolare è necessario individuare delle metriche che indicano l'avanzamento dei %%processi|processo%% in relazione al budget, al valore pianificato e quello svolto, ai %%rischi|rischio%% emersi e agli errori individuati.
 
-### %%Qualità|qualità%% di %%prodotto|prodotto%%
+### %%Qualità|qualità%% di prodotto
 
 Per garantire la %%qualità|qualità%% del %%prodotto|prodotto%%, il team adotta il modello di riferimento ISO/IEC 25010 (unione di ISO/IEC 9126 e ISO/IEC 14598) che definisce un modello di %%qualità|qualità%% del software basato su sei caratteristiche fondamentali: %%funzionalità|funzionalità%%, affidabilità, usabilità, %%efficienza|efficienza%%, manutenibilità e portabilità.
 
