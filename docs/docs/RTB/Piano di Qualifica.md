@@ -5,7 +5,7 @@ documentclass: TWDocumentFull
 toc: true
 lof: true
 numbersections: true
-version: 1.7.1
+version: 1.7.3
 classification: Esterno
 ---
 
@@ -23,6 +23,8 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                              | Autore                | Data Verifica | Verificatore          |
 | ---------- | -------- | ---------------------------------------- | --------------------- | ------------- | --------------------- |
+| 07/03/2025 | 1.7.3    | Aggiunta interpretazione dei grafici     | Monetti Luca          | 07/03/2025    | Pistori Gaia          |
+| 06/03/2025 | 1.7.2    | miglioramento metriche                   | Piola Andrea          | 07/03/2025    | Luca Monetti          |
 | 24/02/2025 | 1.7.1    | fix indici tabelle                       | Piola Andrea          | 25/02/2025    | Gaia Pistori          |
 | 09/02/2025 | 1.7.0    | Note di auto-miglioramento               | Manuel Felipe Vasquez | 12/02/2025    | Luca Monetti          |
 | 31/01/2025 | 1.6.0    | Inserimento cruscotto                    | Gaia Pistori          | 05/02/2025    | Manuel Felipe Vasquez |
@@ -57,13 +59,13 @@ Si concentra su:
 
 ### Glossario
 
-Per una definizione dei termini tecnici utilizzati in questo documento, consultare il [Glossario](./Glossario.md).
+Per una definizione dei termini tecnici utilizzati in questo documento, consultare il [Glossario - v2.2.0](./Glossario.md).
 
 ### Riferimenti
 
 #### Riferimenti Normativi
 
-- **Norme di Progetto**: [Norme di Progetto](./Norme%20di%20Progetto.md)
+- **Norme di Progetto**: [Norme di Progetto - v1.8.1](./Norme%20di%20Progetto.md)
 - **Capitolato d'Appalto C8: Requirement Tracker- Plug-in VS Code**: [https://www.math.unipd.it/~tullio/IS-1/2024/Progetto/C8.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Progetto/C8.pdf)
 
 #### Riferimenti Informativi
@@ -86,61 +88,59 @@ Per garantire la qualità dei processi, il team adotta il modello di riferimento
 
 ### Processi Primari
 
-| Metrica | Nome                           | Descrizione                                                        | Obiettivo                                           | Valore Accettabile | Valore Desiderabile |
-| ------- | ------------------------------ | ------------------------------------------------------------------ | --------------------------------------------------- | ------------------ | ------------------- |
-| MPCR01  | **Budget Variance**            | Differenza tra il budget pianificato e quello effettivamente speso | Monitorare il controllo dei costi del progetto      | ≤ 5%               | ≤ 2%                |
-| MPCR02  | **Earned Value**               | Valore del lavoro effettivamente svolto                            | Monitorare l'avanzamento economico del progetto     | ≥ Actual Cost      | -                   |
-| MPCR03  | **Actual Cost**                | Costo effettivo sostenuto per il lavoro svolto                     | Controllare le spese del progetto                   | ≤ Budget previsto  | < Budget previsto   |
-| MPCR04  | **Planned Value**              | Valore del lavoro pianificato fino a una data specifica            | Comparare il progresso pianificato con quello reale | N/A                | N/A                 |
-| MPCR05  | **Cost Variance**              | Differenza tra il valore acquisito e il costo effettivo            | Valutare l'efficienza economica del progetto        | ≥ -5%              | ≥ 0%                |
-| MPCR06  | **Schedule Variance**          | Differenza tra il valore acquisito e il valore pianificato         | Valutare l'aderenza ai tempi di progetto            | ≥ -5%              | ≥ 0%                |
-| MPCR07  | **Cost Performance Index**     | Rapporto tra il valore acquisito e il costo effettivo              | Misurare l'efficienza dei costi                     | ≥ 0.95             | ≥ 1.0               |
-| MPCR08  | **Schedule Performance Index** | Rapporto tra il valore acquisito e il valore pianificato           | Misurare l'efficienza temporale                     | ≥ 0.95             | ≥ 1.0               |
+| Metrica | Nome                           | Descrizione                                                | Obiettivo                                           | Valore Accettabile | Valore Desiderabile |
+| ------- | ------------------------------ | ---------------------------------------------------------- | --------------------------------------------------- | ------------------ | ------------------- |
+| MPCR01  | **Planned Value**              | Valore del lavoro pianificato fino a una data specifica    | Comparare il progresso pianificato con quello reale | ≤ Budget previsto  | < Budget previsto   |
+| MPCR02  | **Actual Cost**                | Costo effettivo sostenuto per il lavoro svolto             | Controllare le spese del progetto                   | ≤ Budget previsto  | < Budget previsto   |
+| MPCR03  | **Earned Value**               | Valore del lavoro effettivamente svolto                    | Monitorare l'avanzamento economico del progetto     | ≥ Actual Cost      | -                   |
+| MPCR04  | **Schedule Variance**          | Differenza tra il valore acquisito e il valore pianificato | Valutare l'aderenza ai tempi di progetto            | ≥ -5%              | ≥ 0%                |
+| MPCR05  | **Cost Variance**              | Differenza tra il valore acquisito e il costo effettivo    | Valutare l'efficienza economica del progetto        | ≥ -5%              | ≥ 0%                |
+| MPCR06  | **Schedule Performance Index** | Rapporto tra il valore acquisito e il valore pianificato   | Misurare l'efficienza temporale                     | ≥ 0.95             | ≥ 1.0               |
+| MPCR07  | **Cost Performance Index**     | Rapporto tra il valore acquisito e il costo effettivo      | Misurare l'efficienza dei costi                     | ≥ 0.95             | ≥ 1.0               |
 
 Table: Metriche per i processi primari
 
-#### Budget Variance
+#### Planned Value
 
 **Metrica**: MPCR01
 
-**Formula:** $\text{Budget Variance} = 100 \times \dfrac{\text{Budget Consuntivo} − \text{Budget Pianificato}}{\text{Budget Pianificato}}$
+**Formula**: $\text{Planned Value} = \overset{\text{n° sprint}}{\underset{i=1}{\sum}} (\text{Budget preventivo}_i)$
 
-- Questo indice misura la differenza tra il budget pianificato e quello effettivamente speso.
-- Un valore positivo indica un risparmio rispetto al budget, mentre un valore negativo indica un costo superiore a quanto preventivato.
-
----
-
-#### Earned Value
-
-**Metrica**: MPCR02
-
-**Formula:** $\text{Earned Value} = \sum (\text{Percentuale Completamento} \times \text{Budget Pianificato})$
-
-- Il valore del lavoro effettivamente completato, calcolato moltiplicando la percentuale di completamento di ciascuna attività per il suo budget pianificato.
-- Rappresenta quanto valore è stato prodotto in base al lavoro effettivamente svolto.
+- Rappresenta il budget autorizzato assegnato al lavoro pianificato.
+- Indica quanto lavoro dovrebbe essere stato completato ad una determinata data.
 
 ---
 
 #### Actual Cost
 
-**Metrica**: MPCR03
+**Metrica**: MPCR02
 
-**Formula:** $\text{Actual Cost} = \overset{\text{n° sprint}}{\underset{i=0}{\sum}} (\text{Budget Consuntivo}_i)$
+**Formula:**: $\text{Actual Cost} = \overset{\text{n° sprint}}{\underset{i=1}{\sum}} (\text{Budget Consuntivo}_i)$
 
 - Somma di tutti i costi realmente sostenuti per il lavoro completato fino ad oggi.
-- Include costi diretti e indiretti effettivamente spesi nel progetto.
+- Indica l'effettivo costo per lo svolgimento delle attività.
 
 ---
 
-#### Planned Value
+#### Earned Value
 
-**Metrica**: MPR04
+**Metrica**: MPCR03
 
-**Formula**: $\text{Planned Value} = \text{Actual Cost}_{i-1} + \text{Budget Pianificato}_i$
+**Formula:** $\text{Earned Value} = \text{Planned Value} \times \frac{\text{Actual Story Points}}{\text{Planned Story Points}}$
 
-- $i$ è il numero corrente di sprint.
-- Rappresenta il budget autorizzato assegnato al lavoro pianificato.
-- Indica quanto lavoro dovrebbe essere stato completato ad una determinata data.
+- Il valore del lavoro effettivamente completato, calcolato moltiplicando la percentuale di completamento (data dalla divisione dei Story Points effettivi e quelli preventivati) per il suo budget pianificato.
+- Rappresenta quanto valore è stato prodotto in base al lavoro effettivamente svolto.
+
+---
+
+#### Schedule Variance
+
+**Metrica**: MPCR04
+
+**Formula**: $\text{Schedule Variance} = \text{Earned Value} - \text{Planned Value}$
+
+- Misura la differenza tra il lavoro completato e quello pianificato.
+- Un valore positivo indica che il progetto è in anticipo sulla schedulazione.
 
 ---
 
@@ -155,14 +155,14 @@ Table: Metriche per i processi primari
 
 ---
 
-#### Schedule Variance
+#### Schedule Performance Index
 
 **Metrica**: MPCR06
 
-**Formula**: $\text{Schedule Variance} = \text{Earned Value} - \text{Planned Value}$
+**Formula**: $\text{Schedule Performance Index} = \dfrac{\text{Earned Value}}{\text{Planned Value}}$
 
-- Misura la differenza tra il lavoro completato e quello pianificato.
-- Un valore positivo indica che il progetto è in anticipo sulla schedulazione.
+- Indica l'efficienza nel rispetto dei tempi pianificati.
+- Un valore maggiore di 1 indica che il progetto sta procedendo più velocemente del previsto.
 
 ---
 
@@ -175,37 +175,26 @@ Table: Metriche per i processi primari
 - Indica l'efficienza nell'utilizzo delle risorse.
 - Un valore maggiore di 1 indica che si sta spendendo meno del previsto per il lavoro completato.
 
----
-
-#### Schedule Performance Index
-
-**Metrica**: MPCR08
-
-**Formula**: $\text{Schedule Performance Index} = \dfrac{\text{Earned Value}}{\text{Planned Value}}$
-
-- Indica l'efficienza nel rispetto dei tempi pianificati.
-- Un valore maggiore di 1 indica che il progetto sta procedendo più velocemente del previsto.
-
 ### Processi di Supporto
 
 | Metrica | Nome                       | Descrizione                                        | Obiettivo                                                       | Valore Accettabile         | Valore Desiderabile          |
 | ------- | -------------------------- | -------------------------------------------------- | --------------------------------------------------------------- | -------------------------- | ---------------------------- |
-| MPCS01  | **Estimate At Completion** | Stima dei costi per il completamento del progetto  | Prevedere i costi rimanenti e pianificare le risorse necessarie | ≤ Budget At Completion     | Corrispondente al preventivo |
-| MPCS02  | **Estimate To Complete**   | Costo stimato per completare le attività rimanenti | Supportare la pianificazione finanziaria e delle risorse        | ≤ Budget At Completion     | ≤ Estimate At Completion     |
-| MPCS03  | **Budget At Completion**   | Totale del budget allocato per il progetto         | Gestire e controllare le risorse finanziarie complessive        | ≤ +10% del budget iniziale | Corrispondente al preventivo |
+| MPCS01  | **Budget At Completion**   | Totale del budget allocato per il progetto         | Gestire e controllare le risorse finanziarie complessive        | ≤ +10% del budget iniziale | Corrispondente al preventivo |
+| MPCS02  | **Estimate At Completion** | Stima dei costi per il completamento del progetto  | Prevedere i costi rimanenti e pianificare le risorse necessarie | ≤ Budget At Completion     | Corrispondente al preventivo |
+| MPCS03  | **Estimate To Complete**   | Costo stimato per completare le attività rimanenti | Supportare la pianificazione finanziaria e delle risorse        | ≤ Budget At Completion     | ≤ Estimate At Completion     |
 | MPCS04  | **Indice Gulpease**        | Indice di leggibilità dei documenti                | Garantire la comprensibilità della documentazione               | ≥ 40                       | ≥ 60                         |
 
 Table: Metriche per i processi di supporto
 
-#### Estimate At Completion
+#### Budget At Completion
 
 **Metrica**: MPCS01
 
-**Formula**: $\text{Estimate At Completion} = \text{Actual Cost} + \text{Estimate To Complete}$
+**Formula**: $\text{Budget At Completion} = \overset{\text{n° sprint}}{\underset{i=1}{\sum}} (\text{Planned Cost}_i)$
 
-- Stima del costo totale del progetto al suo completamento
-- Combina i costi già sostenuti (AC) con la stima dei costi rimanenti (ETC)
-- Utile per prevedere il budget finale necessario e identificare potenziali sforamenti
+- Rappresenta il budget totale autorizzato per il progetto
+- Serve come baseline per valutare le performance di costo
+- Include tutte le riserve di contingenza allocate
 
 ---
 
@@ -213,23 +202,23 @@ Table: Metriche per i processi di supporto
 
 **Metrica**: MPCS02
 
-**Formula**: $\text{Estimate To Complete} = \dfrac{\text{Budget At Completion} - \text{Earned Value}}{\text{Cost Performance Index}}$
+**Formula**: $\text{Estimate To Complete} = \dfrac{\text{Budget At Completion} - \text{Actual Cost}}{\text{Schedule Performance Index}}$
 
-- Stima del costo necessario per completare il lavoro rimanente
-- Tiene conto dell'efficienza attuale del progetto attraverso il CPI
+- Stima dei costi necessari per terminare il progetto
+- Tiene conto dell'efficienza attuale del progetto attraverso il SPI
 - Permette di pianificare le risorse necessarie per il completamento
 
 ---
 
-#### Budget At Completion
+#### Estimate At Completion
 
 **Metrica**: MPCS03
 
-**Formula**: $\text{Budget At Completion} = \sum \text{(Budget Pianificato) per ogni attività}$
+**Formula**: $\text{Estimate At Completion} = \text{Actual Cost } + \text{Estimate To Complete}$
 
-- Rappresenta il budget totale autorizzato per il progetto
-- Serve come baseline per valutare le performance di costo
-- Include tutte le riserve di contingenza allocate
+- Stima del costo totale del progetto
+- Combina i costi già sostenuti (AC) con la stima dei costi rimanenti (ETC)
+- Utile per prevedere il budget finale e identificare potenziali sforamenti
 
 ---
 
@@ -247,10 +236,10 @@ Table: Metriche per i processi di supporto
 
 ### Processi Organizzativi
 
-| Metrica | Nome                        | Descrizione                                          | Obiettivo                                                  | Valore Accettabile | Valore Desiderabile |
-| ------- | --------------------------- | ---------------------------------------------------- | ---------------------------------------------------------- | ------------------ | ------------------- |
-| MPCO01  | **Rischi non preventivati** | Numero di rischi emersi non pianificati inizialmente | Identificare e gestire tempestivamente nuovi rischi        | ≤ 3                | 0                   |
-| MPCO02  | **Correttezza documenti**   | Percentuale di documenti privi di errori             | Garantire la qualità e l'affidabilità della documentazione | ≥ 70%              | 100%                |
+| Metrica | Nome                        | Descrizione                                                   | Obiettivo                                                  | Valore Accettabile | Valore Desiderabile |
+| ------- | --------------------------- | ------------------------------------------------------------- | ---------------------------------------------------------- | ------------------ | ------------------- |
+| MPCO01  | **Rischi non preventivati** | Numero di rischi emersi non pianificati inizialmente          | Identificare e gestire tempestivamente nuovi rischi        | ≤ 3                | 0                   |
+| MPCO02  | **Errori ortografici**      | Numero di errori ortografici individuati in ciascun documento | Garantire la qualità e l'affidabilità della documentazione | ≤20                | 0                   |
 
 Table: Metriche per i processi organizzativi
 
@@ -266,16 +255,16 @@ Table: Metriche per i processi organizzativi
 
 ---
 
-#### Correttezza documenti
+#### Errori ortografici
 
 **Metrica**: MPCO02
 
-**Formula**: $\text{Correttezza} = 100 \times \dfrac{\text{Numero documenti senza errori}}{\text{Numero totale documenti}}$
+**Formula**: $\text{Errori ortografici} =  \sum {\text{Errori individuati in ciascun documento}}$
 
 - Misura la qualità complessiva della documentazione prodotta
 - Include errori di forma, contenuto e conformità agli standard
 - Importante per garantire la comunicazione efficace e la manutenibilità del progetto
-- Gli errori vengono identificati durante le revisioni e le verifiche formali
+- Gli errori vengono identificati durante le revisioni e le verifiche formali per poi essere corretti
 
 ## Qualità di Prodotto
 
@@ -350,7 +339,7 @@ I test di verifica e validazione vengono eseguiti in tutte le fasi del ciclo di 
 ### Test Di Sistema
 
 | ID   | Descrizione                                                            | ID Requisito        | Stato            |
-|------|------------------------------------------------------------------------|---------------------|------------------|
+| ---- | ---------------------------------------------------------------------- | ------------------- | ---------------- |
 | TS01 | Verifica selezione e configurazione dei modelli LLM                    | RFO_1,2,4           | Non Implementato |
 | TS02 | Verifica configurazione modelli custom                                 | RFD_3               | Non Implementato |
 | TS03 | Verifica configurazione temperature                                    | RFD_5               | Non Implementato |
@@ -395,25 +384,57 @@ Table: Test di Accettazione
 
 <iframe width="800" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0txzzEKqHdhrji9fd49Hd7k4zLchkVRCsBk1Oil4yILOSzL3kxO2DtdxCC9W1ni5uqytaJaVwcHAV/pubchart?oid=1654995613&amp;format=interactive" data-image="ig.png" data-title="Indice Gulpease"></iframe>
 
+#### RTB
+
+Possiamo osservare che i valori riportati sono rimasti stabili durante questa prima fase di sviluppo. Tutti i documenti risultano, infatti, comprensibili ad utenti con una licenza media. Durante la prossima fase cercheremo di migliorare la leggibilità dei documenti per superare il valore ottimo.
+
+### Errori ortografici
+
+<iframe width="800" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0txzzEKqHdhrji9fd49Hd7k4zLchkVRCsBk1Oil4yILOSzL3kxO2DtdxCC9W1ni5uqytaJaVwcHAV/pubchart?oid=1466111038&amp;format=interactive" data-image="eo.png" data-title="Errori Ortografici"></iframe>
+
+#### RTB
+
+Possiamo osservare che il numero di errori è stato minimizzato dall'utilizzo dell'estensione "SpellCheck" che permette di individuare gli errori ortografici all'interno dei documenti.
+
 ### Earned Value, Planned Value & Actual Cost
 
 <iframe width="800" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0txzzEKqHdhrji9fd49Hd7k4zLchkVRCsBk1Oil4yILOSzL3kxO2DtdxCC9W1ni5uqytaJaVwcHAV/pubchart?oid=1002546531&amp;format=interactive" data-image="ev-pv-ac.png" data-title="Earned Value, Planned Value e Actual Cost"></iframe>
+
+#### RTB
+
+Possiamo osservare che, nonostatnte un iniziale sovrastima del carico di lavoro completabile, il progetto risulta al passo con la pianificazione iniziale. Questo è stato possibile attraverso uno %%sprint|sprint%% di recupero durante il quale il gruppo si è concentrato sul completamento delle attività rimaste in arretrato.
 
 ### Estimate to Complete & Estimate at Completion
 
 <iframe width="800" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0txzzEKqHdhrji9fd49Hd7k4zLchkVRCsBk1Oil4yILOSzL3kxO2DtdxCC9W1ni5uqytaJaVwcHAV/pubchart?oid=840721179&amp;format=interactive" data-image="etc-eac.png" data-title="Estimate to Complete e Estimate at Completion"></iframe>
 
+#### RTB
+
+Possiamo osservare che, nonostante una iniziale crescita delle stime di completamento, il grafico risulta stabile ed in linea con la pianificazione. La crescita iniziale è dovuta ad un rallentamento nel processo di sviluppo osservabile nel grafico [Schedule Variance](#schedule-variance--cost-variance).
+
 ### Schedule Variance & Cost Variance
 
 <iframe width="800" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0txzzEKqHdhrji9fd49Hd7k4zLchkVRCsBk1Oil4yILOSzL3kxO2DtdxCC9W1ni5uqytaJaVwcHAV/pubchart?oid=1247587591&amp;format=interactive" data-image="sv-cv.png" data-title="Schedule Variance e Cost Variance"></iframe>
+
+#### RTB
+
+Possiamo osservare che durante gli %%sprint|sprint%% 2, 3 e 4 il gruppo ha sovrastimato la quantità di lavoro completabile vista la presenza della pausa invernale e della sessione d'esami. Il lavoro è stato recuperato negli sprint successivi riportando lo stato di avanzamento del progetto in linea con la pianificazione iniziale.
 
 ### Schedule Performance Index & Cost Performance Index
 
 <iframe width="800" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0txzzEKqHdhrji9fd49Hd7k4zLchkVRCsBk1Oil4yILOSzL3kxO2DtdxCC9W1ni5uqytaJaVwcHAV/pubchart?oid=467291162&amp;format=interactive" data-image="spi-cpi.png" data-title="Schedule Performance Index e Cost Performance Index"></iframe>
 
+#### RTB
+
+Possiamo osservare che durante gli %%sprint|sprint%% 2, 3 e 4 il valore del SPI non rispettava la soglia minima. Questo è dovuto ad un rallentamento nel processo di sviluppo causato dalla presenza della pausa invernale e della sessione d'esami. Grazie ad uno %%sprint|sprint di recupero il valore di questa metrica ha superato la soglia di accettazione.
+
 ### Rischi non preventivati
 
 <iframe width="800" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0txzzEKqHdhrji9fd49Hd7k4zLchkVRCsBk1Oil4yILOSzL3kxO2DtdxCC9W1ni5uqytaJaVwcHAV/pubchart?oid=13872230&amp;format=interactive" data-image="rnp.png" data-title="Rischi non preventivati"></iframe>
+
+#### RTB
+
+Possiamo osservare che, allo stato attuale del progetto, non sono stati individuati rischi non previsti. Il gruppo è stato quindi in grado di gestire il progetto in maniera efficiace mitigando la comparse di nuovi rischi non preventivati.
 
 ### Requisiti Obbligatori
 
