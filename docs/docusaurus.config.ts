@@ -1,11 +1,28 @@
 import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
-import remarkMath from 'remark-math';
-import rehypeKatex from 'rehype-katex';
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 
-
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
+function reverseVerbaliInterni(items) {
+  return items.map((item) => {
+    // Check if this is the Verbali Interni category
+    if (item.type === "category" && item.label === "Verbali Interni") {
+      return {
+        ...item,
+        items: [...item.items].reverse(), // Reverse only items in this category
+      };
+    }
+    // For other categories with nested items
+    else if (item.type === "category") {
+      return {
+        ...item,
+        items: reverseVerbaliInterni(item.items), // Process nested categories
+      };
+    }
+    return item;
+  });
+}
 
 const config: Config = {
   title: "TechWave Docs",
@@ -38,32 +55,39 @@ const config: Config = {
 
   presets: [
     [
-			"classic",
-			{
-				docs: {
-					sidebarPath: "./sidebars.ts",
-					exclude: ["**/private/**"],
-					remarkPlugins: [remarkMath],
-					rehypePlugins: [rehypeKatex],
-				},
-				theme: {
-					customCss: "./src/css/custom.css",
-				},
-			} satisfies Preset.Options,
-		],
-	],
+      "classic",
+      {
+        docs: {
+          sidebarPath: "./sidebars.ts",
+          exclude: ["**/private/**"],
+          remarkPlugins: [remarkMath],
+          rehypePlugins: [rehypeKatex],
+          async sidebarItemsGenerator({
+            defaultSidebarItemsGenerator,
+            ...args
+          }) {
+            const sidebarItems = await defaultSidebarItemsGenerator(args);
+            return reverseVerbaliInterni(sidebarItems);
+          },
+        },
+        theme: {
+          customCss: "./src/css/custom.css",
+        },
+      } satisfies Preset.Options,
+    ],
+  ],
 
-	// Stylesheets
+  // Stylesheets
 
-		stylesheets: [
-			{
-			  href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
-			  type: 'text/css',
-			  integrity:
-				'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
-			  crossorigin: 'anonymous',
-			},
-		  ],
+  stylesheets: [
+    {
+      href: "https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css",
+      type: "text/css",
+      integrity:
+        "sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM",
+      crossorigin: "anonymous",
+    },
+  ],
 
   // Plugins
 
@@ -71,9 +95,9 @@ const config: Config = {
     [
       "@lunaticmuch/docusaurus-terminology",
       {
-        termsDir: "./docs/RTB/Termini",
-        termsUrl: "/docs/RTB/Termini",
-        glossaryFilepath: "./docs/RTB/Glossario.md",
+        termsDir: "./docs/Termini",
+        termsUrl: "/docs/Termini",
+        glossaryFilepath: "./docs/Glossario.md",
       },
     ],
   ],

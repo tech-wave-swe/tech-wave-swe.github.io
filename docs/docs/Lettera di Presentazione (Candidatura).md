@@ -1,5 +1,6 @@
 ---
-title: "Lettera di Presentazione"
+id: lettera-di-presentazione-candidatura
+title: "Lettera di Presentazione (Candidatura)"
 position: 1
 author:
   - Carraro Agnese
@@ -54,7 +55,7 @@ Le motivazioni alla base di tale scelta sono le seguenti:
 
 ## Valutazione dei capitolati
 
-- [Valutazione Capitolati](ValutazioneCapitolati.md)
+- [Valutazione Capitolati](Valutazione Capitolati.md)
 
 ## Dichiarazione impegni
 

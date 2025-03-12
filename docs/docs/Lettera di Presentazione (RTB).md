@@ -1,6 +1,6 @@
 ---
-id: lettera-di-presentazione
-title: "Lettera di Presentazione"
+id: lettera-di-presentazione-rtb
+title: "Lettera di Presentazione (RTB)"
 documentclass: TWDocumentFull
 toc: true
 lof: true
@@ -37,14 +37,14 @@ Egregio Professore Cardin.
 
 Con la presente, il gruppo TechWave intende comunicarVi la propria candidatura alla Requirements and Technology Baseline (%%RTB|rtb%%), riguardante il lavoro quanto svolto sul %%capitolato|capitolato%% d'appalto C8, "**Requirement Tracker - Plug-in %%VSCode|vscode%%**" proposto dall'azienda BlueWind.
 
-Di seguito è riportato il puntatore alla sezione dell'%%RTB|rtb%% nella documentazione finora prodotta https://tech-wave-swe.github.io/docs/category/rtb, dove sono presenti i seguenti documenti:
+Di seguito è riportato il puntatore alla documentazione finora prodotta https://tech-wave-swe.github.io/docs/intro, dove sono presenti i seguenti documenti:
 
-- [Analisi dei Requisiti - v2.4.0](https://tech-wave-swe.github.io/docs/RTB/analisi_dei_requisiti)
-- [Glossario - v2.2.0](https://tech-wave-swe.github.io/docs/RTB/glossario)
-- [Norme di Progetto - v1.8.1](https://tech-wave-swe.github.io/docs/RTB/norme_di_progetto)
-- [Piano di Progetto - v2.4.1](https://tech-wave-swe.github.io/docs/RTB/piano_di_progetto)
-- [Piano di Qualifica - v1.7.3](https://tech-wave-swe.github.io/docs/RTB/piano_di_qualifica)
-- Verbali [Esterni](https://tech-wave-swe.github.io/docs/RTB/Verbali_Esterni/Verbali%20Esterni) e [Interni.](https://tech-wave-swe.github.io/docs/category/verbali-interni-1)
+- [Analisi dei Requisiti - v2.4.0](https://tech-wave-swe.github.io/docs/analisi_dei_requisiti)
+- [Glossario - v2.2.0](https://tech-wave-swe.github.io/docs/glossario)
+- [Norme di Progetto - v1.8.1](https://tech-wave-swe.github.io/docs/norme_di_progetto)
+- [Piano di Progetto - v2.4.1](https://tech-wave-swe.github.io/docs/piano_di_progetto)
+- [Piano di Qualifica - v1.7.3](https://tech-wave-swe.github.io/docs/piano_di_qualifica)
+- Verbali [Esterni](https://tech-wave-swe.github.io/docs/Verbali_Esterni/Verbali%20Esterni) e [Interni.](https://tech-wave-swe.github.io/docs/category/verbali-interni)
 
 Inoltre si riporta il puntatore alla repo contenente i Proof of Concept (%%POC|poc%%) del prodotto software https://github.com/tech-wave-swe/poc, dove sono presenti un'estensione di %%VSCode|vscode%% con l'integrazione di %%Ollama|ollama%%, e un test per confrontare i vari modelli disponibili sulla ricerca dei requisiti all'interno di una codebase.
 
