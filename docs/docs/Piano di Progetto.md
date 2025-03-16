@@ -23,7 +23,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                                                                            | Autore                | Data Verifica | Verificatore        |
 |------------|----------|----------------------------------------------------------------------------------------|-----------------------|---------------|---------------------|
-| 10/03/2025 | 2.4.2    | Aggiunta preventivo sprint 7                                                           | Manuel Felipe Vasquez |               |                     |
+| 10/03/2025 | 2.4.2    | Aggiunta preventivo sprint 7                                                           | Manuel Felipe Vasquez | 14/03/2025    | Monetti Luca        |
 | 07/03/2025 | 2.4.1    | Aggiunta consuntivo sprint 6                                                           | Marcon Giulia         | 07/03/2025    | Monetti Luca        |
 | 28/02/2025 | 2.4.0    | Aggiunta diagrammi Gantt                                                               | Piola Andrea          | 28/02/2025    | Marcon Giulia       |
 | 28/02/2025 | 2.3.1    | Correzioni grammaticali e sintattiche                                                  | Marcon Giulia         | 28/02/2025    | Piola Andrea        |
@@ -675,11 +675,11 @@ A seguito si riporta la tabella del preventivo per il sesto %%sprint|sprint%%
 | Ruolo                     | Ore svolte (h) | Costo (€)  |
 |---------------------------|----------------|------------|
 | Responsabile di progetto  | 3,25           | 97,5       |
-| Analista                  | 12,5           | 112,5      |
+| Analista                  | 4,5            | 112,5      |
 | Progettista               | 0              | 0          |
-| Amministratore di sistema | 11,5           | 300        |
-| Programmatore             | 1              | 0          |
-| Verificatore              | 6              | 24,9       |
+| Amministratore di sistema | 15             | 300        |
+| Programmatore             | 0              | 0          |
+| Verificatore              | 1,66           | 24,9       |
 | _Totale_                  | _24,4_         | _534,9_    |
 | _Bilancio_                |                | _8.046,05_ |
 
