@@ -95,9 +95,9 @@ const config: Config = {
     [
       "@lunaticmuch/docusaurus-terminology",
       {
-        termsDir: "./docs/Termini",
-        termsUrl: "/docs/Termini",
-        glossaryFilepath: "./docs/Glossario.md",
+        termsDir: "./docs/RTB/Termini",
+        termsUrl: "/docs/RTB/Termini",
+        glossaryFilepath: "./docs/RTB/Glossario.md",
       },
     ],
   ],

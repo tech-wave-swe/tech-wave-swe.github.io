@@ -63,7 +63,7 @@ index 9483bfd..825d384 100644
 +
      //  remove .mdx suffix
 -    return final_url.replace(/(\.mdx?)/g, '');
-+    return final_url.replace(/(\.mdx?)/g, '');
++    return final_url.replace(/(\.mdx?)/g, '').replace(/\\/g, '/');
  }
  //# sourceMappingURL=lib.js.map
 \ No newline at end of file
