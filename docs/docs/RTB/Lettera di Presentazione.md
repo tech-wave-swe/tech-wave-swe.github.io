@@ -9,6 +9,9 @@ version: 1.0.0
 classification: Esterno
 ---
 
+import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
+
+
 # Lettera di Presentazione RTB
 
 <details>
@@ -35,7 +38,7 @@ classification: Esterno
 Egregio Professore Vardanega,
 Egregio Professore Cardin.
 
-Con la presente, il gruppo TechWave intende comunicarVi la propria candidatura alla Requirements and Technology Baseline (%%RTB|rtb%%), riguardante il lavoro quanto svolto sul %%capitolato|capitolato%% d'appalto C8, "**Requirement Tracker - Plug-in %%VSCode|vscode%%**" proposto dall'azienda BlueWind.
+Con la presente, il gruppo TechWave intende comunicarVi la propria candidatura alla Requirements and Technology Baseline (<Term popup="Requirements and Technology Baseline. Documentazione che definisce i requisiti e le tecnologie di base necessarie per un progetto, utilizzata come riferimento per monitorare lo sviluppo." reference="/docs/RTB/Termini/RTB">RTB</Term>), riguardante il lavoro quanto svolto sul <Term popup="Documento che descrive in modo dettagliato i requisiti, le specifiche e le aspettative di un progetto." reference="/docs/RTB/Termini/Capitolato">capitolato</Term> d'appalto C8, "**Requirement Tracker - Plug-in <Term popup="Visual Studio Code. Editor di codice sorgente sviluppato da Microsoft, gratuito, open-source, leggero e con una ampia gamma di estensioni." reference="/docs/RTB/Termini/VSCode">VSCode</Term>**" proposto dall'azienda BlueWind.
 
 Di seguito è riportato il puntatore alla documentazione finora prodotta https://tech-wave-swe.github.io/docs/intro, dove sono presenti i seguenti documenti:
 
@@ -46,9 +49,9 @@ Di seguito è riportato il puntatore alla documentazione finora prodotta https:/
 - [Piano di Qualifica - v1.7.3](https://tech-wave-swe.github.io/docs/piano_di_qualifica)
 - Verbali [Esterni](https://tech-wave-swe.github.io/docs/Verbali_Esterni/Verbali%20Esterni) e [Interni.](https://tech-wave-swe.github.io/docs/category/verbali-interni)
 
-Inoltre si riporta il puntatore alla repo contenente i Proof of Concept (%%POC|poc%%) del prodotto software https://github.com/tech-wave-swe/poc, dove sono presenti un'estensione di %%VSCode|vscode%% con l'integrazione di %%Ollama|ollama%%, e un test per confrontare i vari modelli disponibili sulla ricerca dei requisiti all'interno di una codebase.
+Inoltre si riporta il puntatore alla repo contenente i Proof of Concept (<Term popup="Proof of Concept. Dimostrazione preliminare che ha lo scopo di verificare la fattibilità di un concetto o di un'idea." reference="/docs/RTB/Termini/POC">POC</Term>) del prodotto software https://github.com/tech-wave-swe/poc, dove sono presenti un'estensione di <Term popup="Visual Studio Code. Editor di codice sorgente sviluppato da Microsoft, gratuito, open-source, leggero e con una ampia gamma di estensioni." reference="/docs/RTB/Termini/VSCode">VSCode</Term> con l'integrazione di <Term popup="Software gratuito e open source che consente di eseguire in locale diversi modelli LLM." reference="/docs/RTB/Termini/Ollama">Ollama</Term>, e un test per confrontare i vari modelli disponibili sulla ricerca dei requisiti all'interno di una codebase.
 
-Il gruppo TechWave si tiene a notificare che, alla luce di ritardi dovuti a problemi di comunicazione con l'azienda Bluewind, e impegni accademici dei membri del team, si è deciso di aggiornare la data prevista per il termine dello sviluppo del %%progetto|progetto%% al 04/04/2025.
+Il gruppo TechWave si tiene a notificare che, alla luce di ritardi dovuti a problemi di comunicazione con l'azienda Bluewind, e impegni accademici dei membri del team, si è deciso di aggiornare la data prevista per il termine dello sviluppo del <Term popup="Insieme di attività che devono raggiungere determinati obiettivi a partire da determinate specifiche, che hanno una data d’inizio e una data di fine prefissate, che dispongono di risorse limitate e che consumano risorse nel loro svolgersi." reference="/docs/RTB/Termini/Progetto">progetto</Term> al 04/04/2025.
 
 Cordiali Saluti,
 Gruppo TechWave.

@@ -9,6 +9,9 @@ version: 1.7.3
 classification: Esterno
 ---
 
+import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
+
+
 <!-- ::: {.no-export} -->
 
 import TOCInlineWrapper from "@site/src/components/TOCInlineWrapper.jsx";
@@ -402,7 +405,7 @@ Possiamo osservare che il numero di errori è stato minimizzato tramite l'utiliz
 
 #### RTB
 
-Possiamo osservare che, nonostatnte un iniziale sovrastima del carico di lavoro completabile, il progetto risulta al passo con la pianificazione iniziale. Questo è stato possibile attraverso uno %%sprint|sprint%% di recupero durante il quale il gruppo si è concentrato sul completamento delle attività rimaste in arretrato.
+Possiamo osservare che, nonostatnte un iniziale sovrastima del carico di lavoro completabile, il progetto risulta al passo con la pianificazione iniziale. Questo è stato possibile attraverso uno <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term> di recupero durante il quale il gruppo si è concentrato sul completamento delle attività rimaste in arretrato.
 
 ### Estimate to Complete & Estimate at Completion
 
@@ -418,7 +421,7 @@ Possiamo osservare che, nonostante una iniziale crescita delle stime di completa
 
 #### RTB
 
-Possiamo osservare che durante gli %%sprint|sprint%% 2, 3 e 4 il gruppo ha sovrastimato la quantità di lavoro completabile vista la presenza della pausa invernale e della sessione d'esami. Il lavoro è stato recuperato negli sprint successivi riportando lo stato di avanzamento del progetto in linea con la pianificazione iniziale.
+Possiamo osservare che durante gli <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term> 2, 3 e 4 il gruppo ha sovrastimato la quantità di lavoro completabile vista la presenza della pausa invernale e della sessione d'esami. Il lavoro è stato recuperato negli sprint successivi riportando lo stato di avanzamento del progetto in linea con la pianificazione iniziale.
 
 ### Schedule Performance Index & Cost Performance Index
 
@@ -426,7 +429,7 @@ Possiamo osservare che durante gli %%sprint|sprint%% 2, 3 e 4 il gruppo ha sovra
 
 #### RTB
 
-Possiamo osservare che durante gli %%sprint|sprint%% 2, 3 e 4 il valore del SPI non rispettava la soglia minima. Questo è dovuto ad un rallentamento nel processo di sviluppo causato dalla presenza della pausa invernale e della sessione d'esami. Grazie ad uno %%sprint|sprint di recupero il valore di questa metrica ha superato la soglia di accettazione.
+Possiamo osservare che durante gli <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term> 2, 3 e 4 il valore del SPI non rispettava la soglia minima. Questo è dovuto ad un rallentamento nel processo di sviluppo causato dalla presenza della pausa invernale e della sessione d'esami. Grazie ad uno %%sprint|sprint di recupero il valore di questa metrica ha superato la soglia di accettazione.
 
 ### Rischi non preventivati
 

@@ -9,12 +9,15 @@ version: 2.4.1
 classification: Esterno
 ---
 
+import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
+
+
 <!-- ::: {.no-export} -->
 
 import TOCInlineWrapper from "@site/src/components/TOCInlineWrapper.jsx";
 import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
-# Documento del Piano di %%Progetto|progetto%%
+# Documento del Piano di <Term popup="Insieme di attività che devono raggiungere determinati obiettivi a partire da determinate specifiche, che hanno una data d’inizio e una data di fine prefissate, che dispongono di risorse limitate e che consumano risorse nel loro svolgersi." reference="/docs/RTB/Termini/Progetto">Progetto</Term>
 
 <details>
   <summary>Changelog</summary>
@@ -53,11 +56,11 @@ Table: Changelog
 
 ### Scopo del Documento
 
-Il Piano di %%Progetto|progetto%% è un documento il cui scopo è quello di pianificare in modo preciso lo svolgimento del progetto, cercando di normare tempi e modalità. Più precisamente, nel Piano di %%Progetto|progetto%% ci sono sezioni dedicate all'analisi generale dei rischi ed all\'individuazione delle possibili mitigazioni; e sezioni dedicate alla pianificazione dei periodi, individuati come %%sprint|sprint%%, in cui sono indicati i preventivi riguardanti ore/costi ed i consuntivi di ciò che effettivamente è stato svolto. Questo documento è redatto seguendo un approccio incrementale, in quanto durante tutta la durata del %%progetto|progetto%% andrà aggiornato per seguire l'andamento degli %%sprint|sprint%%.
+Il Piano di <Term popup="Insieme di attività che devono raggiungere determinati obiettivi a partire da determinate specifiche, che hanno una data d’inizio e una data di fine prefissate, che dispongono di risorse limitate e che consumano risorse nel loro svolgersi." reference="/docs/RTB/Termini/Progetto">Progetto</Term> è un documento il cui scopo è quello di pianificare in modo preciso lo svolgimento del progetto, cercando di normare tempi e modalità. Più precisamente, nel Piano di <Term popup="Insieme di attività che devono raggiungere determinati obiettivi a partire da determinate specifiche, che hanno una data d’inizio e una data di fine prefissate, che dispongono di risorse limitate e che consumano risorse nel loro svolgersi." reference="/docs/RTB/Termini/Progetto">Progetto</Term> ci sono sezioni dedicate all'analisi generale dei rischi ed all\'individuazione delle possibili mitigazioni; e sezioni dedicate alla pianificazione dei periodi, individuati come <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term>, in cui sono indicati i preventivi riguardanti ore/costi ed i consuntivi di ciò che effettivamente è stato svolto. Questo documento è redatto seguendo un approccio incrementale, in quanto durante tutta la durata del <Term popup="Insieme di attività che devono raggiungere determinati obiettivi a partire da determinate specifiche, che hanno una data d’inizio e una data di fine prefissate, che dispongono di risorse limitate e che consumano risorse nel loro svolgersi." reference="/docs/RTB/Termini/Progetto">progetto</Term> andrà aggiornato per seguire l'andamento degli <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term>.
 
 ### Scopo del Prodotto
 
-Nello sviluppo di software per sistemi embedded, il controllo dell'implementazione di tutti i requisiti necessari al corretto funzionamento del sistema risulta costoso e ripetitivo per lo sviluppatore, oltre a poter essere non esaustivo a causa di distrazioni o dimenticanze. Il %%capitolato|capitolato%% **Requirement Tracker - Plug-in VSCode** propone lo sviluppo di un %%plugin|plugin%% per %%VSCode|vscode%% che permetta di tracciare i requisiti derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari requisiti in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
+Nello sviluppo di software per sistemi embedded, il controllo dell'implementazione di tutti i requisiti necessari al corretto funzionamento del sistema risulta costoso e ripetitivo per lo sviluppatore, oltre a poter essere non esaustivo a causa di distrazioni o dimenticanze. Il <Term popup="Documento che descrive in modo dettagliato i requisiti, le specifiche e le aspettative di un progetto." reference="/docs/RTB/Termini/Capitolato">capitolato</Term> **Requirement Tracker - Plug-in VSCode** propone lo sviluppo di un <Term popup="Componente software aggiuntivo che estende le funzionalità di un'applicazione principale." reference="/docs/RTB/Termini/Plugin">plugin</Term> per <Term popup="Visual Studio Code. Editor di codice sorgente sviluppato da Microsoft, gratuito, open-source, leggero e con una ampia gamma di estensioni." reference="/docs/RTB/Termini/VSCode">VSCode</Term> che permetta di tracciare i requisiti derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari requisiti in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
 
 ### Glossario
 
@@ -70,11 +73,11 @@ Per evitare incomprensioni riguardanti la terminologia utilizzata all'interno de
 
 Riferimenti normativi:
 
-- %%Capitolato|capitolato%% d'appalto C8
+- <Term popup="Documento che descrive in modo dettagliato i requisiti, le specifiche e le aspettative di un progetto." reference="/docs/RTB/Termini/Capitolato">Capitolato</Term> d'appalto C8
 
 > [https://www.math.unipd.it/\~tullio/IS-1/2024/Progetto/C8.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Progetto/C8.pdf)
 
-- Norme di %%progetto|progetto%%
+- Norme di <Term popup="Insieme di attività che devono raggiungere determinati obiettivi a partire da determinate specifiche, che hanno una data d’inizio e una data di fine prefissate, che dispongono di risorse limitate e che consumano risorse nel loro svolgersi." reference="/docs/RTB/Termini/Progetto">progetto</Term>
 
 > [Norme di Progetto](./Norme%20di%20Progetto.md)
 
@@ -84,14 +87,14 @@ Riferimenti informativi:
 
 > [https://www.math.unipd.it/\~tullio/IS-1/2024/Dispense/T02.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T02.pdf)
 
-- Corso di Ingegneria del software - Gestione di %%progetto|progetto%%
+- Corso di Ingegneria del software - Gestione di <Term popup="Insieme di attività che devono raggiungere determinati obiettivi a partire da determinate specifiche, che hanno una data d’inizio e una data di fine prefissate, che dispongono di risorse limitate e che consumano risorse nel loro svolgersi." reference="/docs/RTB/Termini/Progetto">progetto</Term>
 
 > [https://www.math.unipd.it/\~tullio/IS-1/2024/Dispense/T04.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T04.pdf)
 
 ## Analisi dei rischi
 
-Questa sezione del Piano di %%Progetto|progetto%% si occupa di analizzare le difficoltà che potrebbero presentarsi, al fine di prevenire problemi nell'avanzamento o rallentamenti che potrebbero ostacolare le %%attività|attività%%. Consapevoli di queste possibilità, si decide di analizzare ciascun %%rischio|rischio%%, fornendo una descrizione, un grado di %%rischio|rischio%% sull'avvenire dello stesso (da 1 a 5 dove 1 indica molto basso e 5 molto alto), e la pericolosità in modo tabellare, in modo tale da aiutare l’identificazione di ognuno con un monitoraggio facile e continuo. Per facilitare l’identificazione e l’analisi, le categorie indicate sono principalmente due: le difficoltà interpersonali ed organizzative e le difficoltà tecnologiche.
-Le %%mitigazione|mitigazione%% di questi rischi si trovano alla fine della sezione.
+Questa sezione del Piano di <Term popup="Insieme di attività che devono raggiungere determinati obiettivi a partire da determinate specifiche, che hanno una data d’inizio e una data di fine prefissate, che dispongono di risorse limitate e che consumano risorse nel loro svolgersi." reference="/docs/RTB/Termini/Progetto">Progetto</Term> si occupa di analizzare le difficoltà che potrebbero presentarsi, al fine di prevenire problemi nell'avanzamento o rallentamenti che potrebbero ostacolare le <Term popup="Azioni da compiere per attuare un processo." reference="/docs/RTB/Termini/Attività">attività</Term>. Consapevoli di queste possibilità, si decide di analizzare ciascun <Term popup="Eventualità di subire un danno connessa a circostanze più o meno prevedibili." reference="/docs/RTB/Termini/Rischio">rischio</Term>, fornendo una descrizione, un grado di <Term popup="Eventualità di subire un danno connessa a circostanze più o meno prevedibili." reference="/docs/RTB/Termini/Rischio">rischio</Term> sull'avvenire dello stesso (da 1 a 5 dove 1 indica molto basso e 5 molto alto), e la pericolosità in modo tabellare, in modo tale da aiutare l’identificazione di ognuno con un monitoraggio facile e continuo. Per facilitare l’identificazione e l’analisi, le categorie indicate sono principalmente due: le difficoltà interpersonali ed organizzative e le difficoltà tecnologiche.
+Le <Term popup="Procedura di riduzione dell'impatto negativo di un problema." reference="/docs/RTB/Termini/Mitigazione">mitigazione</Term> di questi rischi si trovano alla fine della sezione.
 
 ### Rischi organizzativi ed interpersonali
 
@@ -137,7 +140,7 @@ Table: Mitigazione rischi tecnologici
 
 ### Modello di sviluppo
 
-Il gruppo utilizza un modello Agile basato sul framework %%Scrum|scrum%% adottato in maniera semplificata. I macro periodi sono divisi in %%sprint|sprint%% più piccoli, da due settimane, che permettono rilasci continui così da portare ad un incremento continuo del prodotto. In ogni %%sprint|sprint%% sono ben chiare le task che i membri dovranno portare a termine contenute nel %%backlog|backlog%%; ciò porta ad una facile individuazione dei %%requisiti|requisito_software%% già sviluppati e di quelli ancora da sviluppare da parte del team.
+Il gruppo utilizza un modello Agile basato sul framework <Term popup="Framework agile per la gestione di progetti complessi, suddivisi in iterazioni chiamate sprint per favorire lo sviluppo incrementale." reference="/docs/RTB/Termini/Scrum">Scrum</Term> adottato in maniera semplificata. I macro periodi sono divisi in <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term> più piccoli, da due settimane, che permettono rilasci continui così da portare ad un incremento continuo del prodotto. In ogni <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term> sono ben chiare le task che i membri dovranno portare a termine contenute nel <Term popup="Elenco di requisiti che il team di sviluppo deve completare durante il progetto." reference="/docs/RTB/Termini/Backlog">backlog</Term>; ciò porta ad una facile individuazione dei <Term popup="Una specifica funzionale o non funzionale che il software deve soddisfare." reference="/docs/RTB/Termini/Requisito_Software">requisiti</Term> già sviluppati e di quelli ancora da sviluppare da parte del team.
 
 I punti di forza di questo modello di sviluppo sono:
 
@@ -145,7 +148,7 @@ I punti di forza di questo modello di sviluppo sono:
 
 - Ottima risposta ai cambiamenti, con la possibilità di definizione di categorie che avanzano durante tutta la durata del progetto in maniera collaborativa e adattabile.
 
-- I test e la verifica sono più semplici, in quanto fanno riferimento alle attività svolte durante lo specifico %%sprint|sprint%%.
+- I test e la verifica sono più semplici, in quanto fanno riferimento alle attività svolte durante lo specifico <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term>.
 
 Le documentazioni prodotte nelle fasi di sviluppo saranno aggiornate procedendo con lo sviluppo stesso, in modo da inserire e/o modificare le informazioni presenti.
 
@@ -153,7 +156,7 @@ Le documentazioni prodotte nelle fasi di sviluppo saranno aggiornate procedendo 
 
 Per definire al meglio la pianificazione degli eventi, vengono individuate tre fasi ciascuna con una specifica revisione al completamento:
 
-- %%RTB|rtb%% (Requirements and Technology Baseline)
+- <Term popup="Requirements and Technology Baseline. Documentazione che definisce i requisiti e le tecnologie di base necessarie per un progetto, utilizzata come riferimento per monitorare lo sviluppo." reference="/docs/RTB/Termini/RTB">RTB</Term> (Requirements and Technology Baseline)
 
 - PB (Product Baseline)
 
@@ -200,7 +203,7 @@ Alla fine della la fase di candidatura con aggiudicazione del capitolato, il gru
 
 ###### Pianificazione
 
-In questo %%sprint|sprint%% l'obiettivo principale è quello di organizzare e configurare al meglio gli strumenti di lavoro, come %%Jira|jira%% e %%GitHub|github%%, che saranno utilizzati dal team durante l'intero ciclo di sviluppo del progetto. Parallelamente è stata avviata la redazione della documentazione quale: Norme di progetto, Piano di Progetto, Glossario e Piano di Qualifica.
+In questo <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term> l'obiettivo principale è quello di organizzare e configurare al meglio gli strumenti di lavoro, come <Term popup="Strumento software utilizzato per la gestione dei progetti e il monitoraggio dei problemi, spesso utilizzato nello sviluppo agile." reference="/docs/RTB/Termini/Jira">Jira</Term> e <Term popup="Piattaforma per il controllo di versione e la collaborazione che consente di archiviare codice, tracciare modifiche e collaborare su progetti software." reference="/docs/RTB/Termini/GitHub">GitHub</Term>, che saranno utilizzati dal team durante l'intero ciclo di sviluppo del progetto. Parallelamente è stata avviata la redazione della documentazione quale: Norme di progetto, Piano di Progetto, Glossario e Piano di Qualifica.
 
 A seguito della prima riunione svolta con l'azienda proponente, buona parte delle attività del team è stata dedicata allo studio delle tecnologie concordate, al fine di acquisire familiarità con le stesse. La durata dello Sprint, prevista inizialmente di due settimane, è stata estesa a causa del posticipo della riunione con l'azienda.
 
@@ -223,7 +226,7 @@ Table: Suddivisione ruoli Sprint 1
 
 ###### Preventivo
 
-A seguito si riporta la tabella del preventivo per il primo %%sprint|sprint%%
+A seguito si riporta la tabella del preventivo per il primo <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term>
 
 | Ruolo                     | Ore svolte (h) | Costo (€) |
 | ------------------------- | -------------- | --------- |
@@ -240,7 +243,7 @@ Table: Preventivo Sprint 1
 
 ###### Consuntivo
 
-Di seguito vengono indicate le spese effettive del primo %%sprint|sprint%%
+Di seguito vengono indicate le spese effettive del primo <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term>
 
 | Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
 | ------------------------- | -------------------- | ------------- | ---------------- | --------- | --------------- |
@@ -258,14 +261,14 @@ Considerando il costo di **680,65€** il residuo disponibile ammonta a **12.119
 
 ###### Retrospettiva
 
-Il primo %%sprint|sprint%% ha evidenziato una complessità inferiore rispetto alle aspettative iniziali. Tuttavia, tali variazioni sono in linea con i principi di %%Scrum|scrum%%, dove gli aggiustamenti iniziali sono necessari e rappresentano un'opportunità per affinare la capacità di stima nei prossimi %%sprint|sprint%%.
+Il primo <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term> ha evidenziato una complessità inferiore rispetto alle aspettative iniziali. Tuttavia, tali variazioni sono in linea con i principi di <Term popup="Framework agile per la gestione di progetti complessi, suddivisi in iterazioni chiamate sprint per favorire lo sviluppo incrementale." reference="/docs/RTB/Termini/Scrum">Scrum</Term>, dove gli aggiustamenti iniziali sono necessari e rappresentano un'opportunità per affinare la capacità di stima nei prossimi <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term>.
 
 La principale variazione si è registrata sui ruoli di Programmatore (-6,66 ore) dove sono state inizialmente sovrastimate rispetto alle effettive necessità operative.
 Anche gli altri ruoli hanno registrato una diminuzione, sebbene più contenuta.
 
 ###### Conclusione
 
-In conclusione, il primo %%sprint|sprint%% ha permesso di identificare aree critiche nella pianificazione iniziale, evidenziando l'importanza di una maggiore attenzione alle attività di analisi e coordinamento in queste fasi iniziali. Queste osservazioni costituiscono un'importante base di apprendimento per ottimizzare la stima iniziale nei prossimi %%sprint|sprint%%, garantendo una gestione più efficiente delle risorse e una migliore aderenza al piano progettuale.
+In conclusione, il primo <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term> ha permesso di identificare aree critiche nella pianificazione iniziale, evidenziando l'importanza di una maggiore attenzione alle attività di analisi e coordinamento in queste fasi iniziali. Queste osservazioni costituiscono un'importante base di apprendimento per ottimizzare la stima iniziale nei prossimi <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term>, garantendo una gestione più efficiente delle risorse e una migliore aderenza al piano progettuale.
 
 ###### Gantt
 
@@ -277,12 +280,12 @@ In conclusione, il primo %%sprint|sprint%% ha permesso di identificare aree crit
 
 ###### Pianificazione
 
-In questo periodo, il gruppo si concentrerà su attività fondamentali per proseguire lo sviluppo e l'avvicinamento al %%PoC|poc%%. In primo luogo, verrà dato seguito alla scrittura della documentazione avviata in precedenza, con particolare attenzione all'aggiornamento e al completamento delle Norme di Progetto, del Piano di Progetto, del Glossario e del Piano di Qualifica.
+In questo periodo, il gruppo si concentrerà su attività fondamentali per proseguire lo sviluppo e l'avvicinamento al <Term popup="Proof of Concept. Dimostrazione preliminare che ha lo scopo di verificare la fattibilità di un concetto o di un'idea." reference="/docs/RTB/Termini/POC">PoC</Term>. In primo luogo, verrà dato seguito alla scrittura della documentazione avviata in precedenza, con particolare attenzione all'aggiornamento e al completamento delle Norme di Progetto, del Piano di Progetto, del Glossario e del Piano di Qualifica.
 
 Parallelamente, si continuerà l'analisi delle tecnologie già avviata nel periodo precedente. A questa analisi saranno integrate nuove tecnologie emerse durante le recenti riunioni, con l'obiettivo di valutarne l'efficacia e l'applicabilità alle esigenze del progetto. Il gruppo, inoltre procederà nella stesura del diagramma use case.
 Una parte del tempo sarà dedicata ad attività di ricerca focalizzate su questioni architetturali, con l'obiettivo di individuare soluzioni tecniche preliminari che garantiscano un'architettura modulare e scalabile. Questo lavoro iniziale consentirà di orientare le decisioni progettuali, valutando le possibili alternative e ponendo le basi per lo sviluppo del sistema.
 
-Infine, verrà avviata la prima fase di sviluppo del %%PoC|poc%%, con l'obiettivo di creare una struttura di base per lo sviluppo dell'estensione.
+Infine, verrà avviata la prima fase di sviluppo del <Term popup="Proof of Concept. Dimostrazione preliminare che ha lo scopo di verificare la fattibilità di un concetto o di un'idea." reference="/docs/RTB/Termini/POC">PoC</Term>, con l'obiettivo di creare una struttura di base per lo sviluppo dell'estensione.
 
 ###### Ruoli
 
@@ -301,7 +304,7 @@ Table: Suddivisione ruoli Sprint 2
 
 ###### Preventivo
 
-A seguito si riporta la tabella del preventivo per il secondo %%sprint|sprint%%
+A seguito si riporta la tabella del preventivo per il secondo <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term>
 
 | Ruolo                     | Ore svolte (h) | Costo (€)   |
 | ------------------------- | -------------- | ----------- |
@@ -318,7 +321,7 @@ Table: Preventivo Sprint 2
 
 ###### Consuntivo
 
-Di seguito vengono indicate le spese effettive del secondo %%sprint|sprint%%
+Di seguito vengono indicate le spese effettive del secondo <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term>
 
 | Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
 | ------------------------- | -------------------- | ------------- | ---------------- | --------- | --------------- |
@@ -336,14 +339,14 @@ Considerando il costo di **714,85€** il residuo disponibile ammonta a **11.404
 
 ###### Retrospettiva
 
-Il secondo %%sprint|sprint%% ha evidenziato un peggioramento significativo nella gestione delle risorse e una minore aderenza al piano progettuale, in particolare per quanto riguarda il numero di task completate rispetto a quelle previste.
+Il secondo <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term> ha evidenziato un peggioramento significativo nella gestione delle risorse e una minore aderenza al piano progettuale, in particolare per quanto riguarda il numero di task completate rispetto a quelle previste.
 
 Il ruolo del Programmatore è stato sottostimato, infatti ha richiesto più tempo (+4 ore).
 Tutti gli altri ruoli hanno dei valori effettivi inferiori a quelli previsti non per l'ottimizzazione dei tempi ma a causa di ritardi e task non concluse. La principale variazione si è registrata sui ruoli di Analista (-10 ore).
 
 ###### Conclusione
 
-In conclusione, il secondo %%sprint|sprint%% ha mostrato un peggioramento nella gestione delle attività e un minor allineamento rispetto al preventivo iniziale.
+In conclusione, il secondo <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term> ha mostrato un peggioramento nella gestione delle attività e un minor allineamento rispetto al preventivo iniziale.
 
 ###### Gantt
 
@@ -358,7 +361,7 @@ In conclusione, il secondo %%sprint|sprint%% ha mostrato un peggioramento nella 
 In questo periodo, caratterizzato dalla presenza di festività e da una conseguente riduzione del tempo operativo disponibile, il team si dedicherà principalmente alle attività di documentazione concentrandosi su: Norme di Progetto e Analisi dei Requisiti.
 Questo permetterà di implementare i consigli forniti dall'azienda proponente e dal Prof. Cardin nei rispettivi incontri, migliorando così la qualità della documentazione.
 
-In parallelo, il team continuerà lo sviluppo di alcune funzionalità richieste dall'azienda per il %%PoC|poc%%, con l'obiettivo di garantire il rispetto delle tempistiche e dei %%requisiti|requisito_software%% concordati.
+In parallelo, il team continuerà lo sviluppo di alcune funzionalità richieste dall'azienda per il <Term popup="Proof of Concept. Dimostrazione preliminare che ha lo scopo di verificare la fattibilità di un concetto o di un'idea." reference="/docs/RTB/Termini/POC">PoC</Term>, con l'obiettivo di garantire il rispetto delle tempistiche e dei <Term popup="Una specifica funzionale o non funzionale che il software deve soddisfare." reference="/docs/RTB/Termini/Requisito_Software">requisiti</Term> concordati.
 
 ###### Ruoli
 
@@ -377,7 +380,7 @@ Table: Suddivisione ruoli Sprint 3
 
 ###### Preventivo
 
-A seguito si riporta la tabella del preventivo per il terzo %%sprint|sprint%%
+A seguito si riporta la tabella del preventivo per il terzo <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term>
 
 | Ruolo                     | Ore svolte (h) | Costo (€)  |
 | ------------------------- | -------------- | ---------- |
@@ -394,7 +397,7 @@ Table: Preventivo Sprint 3
 
 ###### Consuntivo
 
-Di seguito vengono indicate le spese effettive del terzo %%sprint|sprint%%
+Di seguito vengono indicate le spese effettive del terzo <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term>
 
 | Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
 | ------------------------- | -------------------- | ------------- | ---------------- | --------- | --------------- |
@@ -412,13 +415,13 @@ Considerando il costo di **410,3€** il residuo disponibile ammonta a **10.994,
 
 ###### Retrospettiva
 
-Il terzo %%sprint|sprint%%, svolto durante il periodo delle vacanze natalizie, ha risentito della disponibilità limitata delle risorse, ma ha comunque permesso di registrare progressi verso gli obiettivi prefissati.
+Il terzo <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term>, svolto durante il periodo delle vacanze natalizie, ha risentito della disponibilità limitata delle risorse, ma ha comunque permesso di registrare progressi verso gli obiettivi prefissati.
 
 La principale variazione si è osservata nel ruolo di Amministratore (+2 ore), a causa di una sottostima del tempo necessario per implementare le modifiche . Al contrario, il ruolo di Analista (-0,5 ore) e di Programmatore (-6 ore) hanno registrato un impiego inferiore rispetto alle previsioni.
 
 ###### Conclusione
 
-In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni rispetto ai tempi stimati, ma ha comunque permesso un avanzamento significativo nelle attività prioritarie.
+In conclusione, lo <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term> ha evidenziato alcune variazioni rispetto ai tempi stimati, ma ha comunque permesso un avanzamento significativo nelle attività prioritarie.
 
 ###### Gantt
 
@@ -431,9 +434,9 @@ In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni rispetto a
 ###### Pianificazione
 
 In questo periodo, il gruppo si concentrerà sul completamento quasi definitivo della documentazione, con particolare attenzione all'analisi dei requisiti e al piano di qualifica.
-Parallelamente, apporteremo gli ultimi ritocchi al %%PoC|poc%%, integrando i feedback ricevuti dall'azienda durante la riunione.
+Parallelamente, apporteremo gli ultimi ritocchi al <Term popup="Proof of Concept. Dimostrazione preliminare che ha lo scopo di verificare la fattibilità di un concetto o di un'idea." reference="/docs/RTB/Termini/POC">PoC</Term>, integrando i feedback ricevuti dall'azienda durante la riunione.
 
-L'obiettivo principale è avvicinarsi in modo significativo alla conclusione della %%RTB|rtb%%, garantendo un avanzamento concreto del lavoro.
+L'obiettivo principale è avvicinarsi in modo significativo alla conclusione della <Term popup="Requirements and Technology Baseline. Documentazione che definisce i requisiti e le tecnologie di base necessarie per un progetto, utilizzata come riferimento per monitorare lo sviluppo." reference="/docs/RTB/Termini/RTB">RTB</Term>, garantendo un avanzamento concreto del lavoro.
 
 ###### Ruoli
 
@@ -452,7 +455,7 @@ Table: Suddivisione ruoli Sprint 4
 
 ###### Preventivo
 
-A seguito si riporta la tabella del preventivo per il quarto %%sprint|sprint%%
+A seguito si riporta la tabella del preventivo per il quarto <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term>
 
 | Ruolo                     | Ore svolte (h) | Costo (€)   |
 | ------------------------- | -------------- | ----------- |
@@ -469,7 +472,7 @@ Table: Preventivo Sprint 4
 
 ###### Consuntivo
 
-Di seguito vengono indicate le spese effettive del quarto %%sprint|sprint%%
+Di seguito vengono indicate le spese effettive del quarto <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term>
 
 | Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
 | ------------------------- | -------------------- | ------------- | ---------------- | --------- | --------------- |
@@ -487,13 +490,13 @@ Considerando il costo di **714,05** il residuo disponibile ammonta a **10.280,15
 
 ###### Retrospettiva
 
-Il quarto %%sprint|sprint%%, svolto durante il periodo della sessione, ha risentito della disponibilità limitata delle risorse, ma ha comunque permesso di registrare progressi verso gli obiettivi prefissati e di recuperare alcune task tralasciate precedentemente.
+Il quarto <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term>, svolto durante il periodo della sessione, ha risentito della disponibilità limitata delle risorse, ma ha comunque permesso di registrare progressi verso gli obiettivi prefissati e di recuperare alcune task tralasciate precedentemente.
 
-La principale variazione si è osservata nel ruolo di Programmatore (+2 ore), a causa di una sottostima del tempo necessario per implementare le modifiche utili alla consegna della %%RTB|rtb%%. Al contrario, il ruolo di Amministratore (-7 ore) ha registrato un impiego inferiore rispetto alle previsioni.
+La principale variazione si è osservata nel ruolo di Programmatore (+2 ore), a causa di una sottostima del tempo necessario per implementare le modifiche utili alla consegna della <Term popup="Requirements and Technology Baseline. Documentazione che definisce i requisiti e le tecnologie di base necessarie per un progetto, utilizzata come riferimento per monitorare lo sviluppo." reference="/docs/RTB/Termini/RTB">RTB</Term>. Al contrario, il ruolo di Amministratore (-7 ore) ha registrato un impiego inferiore rispetto alle previsioni.
 
 ###### Conclusione
 
-In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni nei tempi stimati, ma ha consentito un avanzamento concreto nelle attività prioritarie.
+In conclusione, lo <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term> ha evidenziato alcune variazioni nei tempi stimati, ma ha consentito un avanzamento concreto nelle attività prioritarie.
 
 ###### Gantt
 
@@ -508,7 +511,7 @@ In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni nei tempi 
 In questo periodo, il gruppo si concentrerà sul completamento della documentazione e sul recuperare tutte le task ancora incomplete.
 Parallelamente, apporteremo gli ultimi ritocchi alle metriche.
 
-L'obiettivo principale è richiedere la revisione della %%RTB|rtb%%.
+L'obiettivo principale è richiedere la revisione della <Term popup="Requirements and Technology Baseline. Documentazione che definisce i requisiti e le tecnologie di base necessarie per un progetto, utilizzata come riferimento per monitorare lo sviluppo." reference="/docs/RTB/Termini/RTB">RTB</Term>.
 
 ###### Ruoli
 
@@ -527,7 +530,7 @@ Table: Suddivisione ruoli Sprint 5
 
 ###### Preventivo
 
-A seguito si riporta la tabella del preventivo per il quinto %%sprint|sprint%%
+A seguito si riporta la tabella del preventivo per il quinto <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term>
 
 | Ruolo                     | Ore svolte (h) | Costo (€)  |
 | ------------------------- | -------------- | ---------- |
@@ -544,7 +547,7 @@ Table: Preventivo Sprint 5
 
 ###### Consuntivo
 
-Di seguito vengono indicate le spese effettive del quinto %%sprint|sprint%%
+Di seguito vengono indicate le spese effettive del quinto <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term>
 
 | Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
 | ------------------------- | -------------------- | ------------- | ---------------- | --------- | --------------- |
@@ -562,13 +565,13 @@ Considerando il costo di **976,7** il residuo disponibile ammonta a **9.303,45�
 
 ###### Retrospettiva
 
-Il quinto %%sprint|sprint%%, nonostante sia stato svolto durante il periodo della sessione, ha registrato forti progressi e ha permesso di riallinearsi con quanto stabilito. Infatti la maggioranza delle task svolte erano rimaste incomplete degli %%sprint|sprint%% precedenti.
+Il quinto <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term>, nonostante sia stato svolto durante il periodo della sessione, ha registrato forti progressi e ha permesso di riallinearsi con quanto stabilito. Infatti la maggioranza delle task svolte erano rimaste incomplete degli <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term> precedenti.
 
 Tutti i ruoli hanno rispettato le tempistiche preventivate.
 
 ###### Conclusione
 
-In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni rispetto ai tempi stimati, ma ha comunque permesso di raggiungere tutti gli obiettivi prefissati, recuperando anche quanto lasciato nel backlog.
+In conclusione, lo <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term> ha evidenziato alcune variazioni rispetto ai tempi stimati, ma ha comunque permesso di raggiungere tutti gli obiettivi prefissati, recuperando anche quanto lasciato nel backlog.
 
 ###### Gantt
 
@@ -580,7 +583,7 @@ In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni rispetto a
 
 ###### Pianificazione
 
-In questo periodo, il gruppo si concentrerà sulla preparazione finale per la %%RTB|rtb%%, con particolare attenzione alla presentazione del Proof of Concept (%%PoC|poc%%) e al completamento della documentazione. Saranno svolte %%attività|attività%% di %%verifica|verifica%% della documentazione, con l'obiettivo di garantire che tutti i materiali siano pronti per la revisione.
+In questo periodo, il gruppo si concentrerà sulla preparazione finale per la <Term popup="Requirements and Technology Baseline. Documentazione che definisce i requisiti e le tecnologie di base necessarie per un progetto, utilizzata come riferimento per monitorare lo sviluppo." reference="/docs/RTB/Termini/RTB">RTB</Term>, con particolare attenzione alla presentazione del Proof of Concept (<Term popup="Proof of Concept. Dimostrazione preliminare che ha lo scopo di verificare la fattibilità di un concetto o di un'idea." reference="/docs/RTB/Termini/POC">PoC</Term>) e al completamento della documentazione. Saranno svolte <Term popup="Azioni da compiere per attuare un processo." reference="/docs/RTB/Termini/Attività">attività</Term> di <Term popup="Operazione di controllo che agisce sui singoli segmenti di sviluppo, accertando che l’esecuzione in essi non abbia introdotto errori." reference="/docs/RTB/Termini/Verifica">verifica</Term> della documentazione, con l'obiettivo di garantire che tutti i materiali siano pronti per la revisione.
 
 ###### Ruoli
 
@@ -599,7 +602,7 @@ Table: Suddivisione ruoli Sprint 6
 
 ###### Preventivo
 
-A seguito si riporta la tabella del preventivo per il sesto %%sprint|sprint%%
+A seguito si riporta la tabella del preventivo per il sesto <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term>
 
 | Ruolo                     | Ore svolte (h) | Costo (€)  |
 | ------------------------- | -------------- | ---------- |
@@ -616,7 +619,7 @@ Table: Preventivo Sprint 6
 
 ###### Consuntivo
 
-Di seguito vengono indicate le spese effettive del sesto %%sprint|sprint%%
+Di seguito vengono indicate le spese effettive del sesto <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term>
 
 | Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
 | ------------------------- | -------------------- | ------------- | ---------------- | --------- | --------------- |
@@ -634,13 +637,13 @@ Considerando il costo di **463,85** il residuo disponibile ammonta a **8.839,60�
 
 ###### Retrospettiva
 
-Il sesto %%sprint|sprint%% ha visto un avanzamento significativo verso la preparazione della %%RTB|rtb%%, con particolare attenzione alla presentazione del %%PoC|poc%% e al completamento della documentazione. Tuttavia, alcune %%attività|attività%% pianificate per il ruolo di Analista non sono state completate a causa di priorità riassegnate e sono state rimesse nel %%backlog|backlog%% per lo %%sprint|sprint%% successivo. Questo ha portato a una riduzione delle ore effettive rispetto al %%preventivo|preventivo%% per quel ruolo.
+Il sesto <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term> ha visto un avanzamento significativo verso la preparazione della <Term popup="Requirements and Technology Baseline. Documentazione che definisce i requisiti e le tecnologie di base necessarie per un progetto, utilizzata come riferimento per monitorare lo sviluppo." reference="/docs/RTB/Termini/RTB">RTB</Term>, con particolare attenzione alla presentazione del <Term popup="Proof of Concept. Dimostrazione preliminare che ha lo scopo di verificare la fattibilità di un concetto o di un'idea." reference="/docs/RTB/Termini/POC">PoC</Term> e al completamento della documentazione. Tuttavia, alcune <Term popup="Azioni da compiere per attuare un processo." reference="/docs/RTB/Termini/Attività">attività</Term> pianificate per il ruolo di Analista non sono state completate a causa di priorità riassegnate e sono state rimesse nel <Term popup="Elenco di requisiti che il team di sviluppo deve completare durante il progetto." reference="/docs/RTB/Termini/Backlog">backlog</Term> per lo <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term> successivo. Questo ha portato a una riduzione delle ore effettive rispetto al <Term popup="Documento in cui si trovano le stime del costo di determinate attività." reference="/docs/RTB/Termini/Preventivo">preventivo</Term> per quel ruolo.
 
-La principale variazione si è osservata nel ruolo di Analista (-9,75 ore), dove alcuni ticket non sono stati affrontati e sono stati riprogrammati per lo %%sprint|sprint%% successivo. Al contrario, il ruolo di Progettista (+1,42 ore) ha registrato un leggero aumento delle ore, dovuto alla necessità di ulteriori rifiniture tecniche.
+La principale variazione si è osservata nel ruolo di Analista (-9,75 ore), dove alcuni ticket non sono stati affrontati e sono stati riprogrammati per lo <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term> successivo. Al contrario, il ruolo di Progettista (+1,42 ore) ha registrato un leggero aumento delle ore, dovuto alla necessità di ulteriori rifiniture tecniche.
 
 ###### Conclusione
 
-In conclusione, lo %%sprint|sprint%% ha permesso di raggiungere gli obiettivi principali, con un buon livello di aderenza al %%preventivo|preventivo%% iniziale. Le variazioni osservate sono state gestite in modo efficace, garantendo il rispetto delle tempistiche e la %%qualità|qualità%% del lavoro svolto. I ticket non completati dal ruolo di Analista sono stati riassegnati al %%backlog|backlog%% per essere affrontati nello %%sprint|sprint%% successivo, mantenendo così una gestione flessibile e adattabile delle %%attività|attività%%.
+In conclusione, lo <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term> ha permesso di raggiungere gli obiettivi principali, con un buon livello di aderenza al <Term popup="Documento in cui si trovano le stime del costo di determinate attività." reference="/docs/RTB/Termini/Preventivo">preventivo</Term> iniziale. Le variazioni osservate sono state gestite in modo efficace, garantendo il rispetto delle tempistiche e la <Term popup="Insieme delle caratteristiche di un'entità che ne determinano la capacità di soddisfare esigenze esplicite o implicite." reference="/docs/RTB/Termini/Qualità">qualità</Term> del lavoro svolto. I ticket non completati dal ruolo di Analista sono stati riassegnati al <Term popup="Elenco di requisiti che il team di sviluppo deve completare durante il progetto." reference="/docs/RTB/Termini/Backlog">backlog</Term> per essere affrontati nello <Term popup="Periodo di tempo definito, tra 1 e 2 settimane, durante il quale il team lavora su un set specifico di obiettivi." reference="/docs/RTB/Termini/Sprint">sprint</Term> successivo, mantenendo così una gestione flessibile e adattabile delle <Term popup="Azioni da compiere per attuare un processo." reference="/docs/RTB/Termini/Attività">attività</Term>.
 
 ###### Gantt
 
