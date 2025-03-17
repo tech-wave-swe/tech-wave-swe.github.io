@@ -1,11 +1,11 @@
 ---
 id: piano_di_progetto
-title: "Piano di Progetto"
+title: "Piano di Progetto - v2.4.1"
 documentclass: TWDocumentFull
 toc: true
 lof: true
 numbersections: true
-version: 2.4.2
+version: 2.4.1
 classification: Esterno
 ---
 
@@ -21,23 +21,22 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 <!-- ::: -->
 
-| Data       | Versione | Descrizione                                                                            | Autore                | Data Verifica | Verificatore        |
-|------------|----------|----------------------------------------------------------------------------------------|-----------------------|---------------|---------------------|
-| 10/03/2025 | 2.4.2    | Aggiunta preventivo sprint 7                                                           | Manuel Felipe Vasquez | 14/03/2025    | Monetti Luca        |
-| 07/03/2025 | 2.4.1    | Aggiunta consuntivo sprint 6                                                           | Marcon Giulia         | 07/03/2025    | Monetti Luca        |
-| 28/02/2025 | 2.4.0    | Aggiunta diagrammi Gantt                                                               | Piola Andrea          | 28/02/2025    | Marcon Giulia       |
-| 28/02/2025 | 2.3.1    | Correzioni grammaticali e sintattiche                                                  | Marcon Giulia         | 28/02/2025    | Piola Andrea        |
-| 23/02/2025 | 2.3.0    | Aggiunta preventivo sprint 6                                                           | Marcon Giulia         | 24/02/2025    | Carraro Agnese      |
-| 22/02/2025 | 2.2.1    | Aggiunta rendicontazione sprint 5                                                      | Pistori Gaia          | 23/02/2025    | Luca Monetti        |
-| 12/02/2025 | 2.2.0    | Refactoring                                                                            | Piola Andrea          | 17/02/2025    | Pistori Gaia        |
-| 05/02/2025 | 2.1.1    | Minor fix                                                                              | Piola Andrea          | 17/02/2025    | Pistori Gaia        |
-| 26/01/2025 | 2.1.0    | Aggiunta consuntivo sprint 3 e preventivo sprint 4                                     | Dal Bianco Riccardo   | 26/01/2025    | Piola Andrea        |
-| 10/01/2025 | 2.0.1    | Aggiunta termini Glossario                                                             | Monetti Luca          | 16/01/2025    | Dal Bianco Riccardo |
-| 09/01/2025 | 2.0.0    | Ristrutturazione documento, sistemazione consuntivi 1° e 2° Sprint, aggiunta 3° Sprint | Monetti Luca          | 16/01/2025    | Dal Bianco Riccardo |
-| 21/12/2024 | 1.3.0    | Integrazione sezione 3, 4, 5 con secondo sprint                                        | Dal Bianco Riccardo   | 22/12/2024    | Carraro Agnese      |
-| 02/12/2024 | 1.2.0    | Aggiunta sezione 2                                                                     | Piola Andrea          | 04/12/2024    | Pistori Gaia        |
-| 27/11/2024 | 1.1.0    | Aggiunta sezione 3 e 4 con primo sprint                                                | Piola Andrea          | 28/11/2024    | Pistori Gaia        |
-| 24/11/2024 | 1.0.0    | Prima stesura del documento con indice e sezione 1                                     | Piola Andrea          | 25/11/2024    | Pistori Gaia        |
+| Data       | Versione | Descrizione                                                                            | Autore              | Data Verifica | Verificatore        |
+| ---------- | -------- | -------------------------------------------------------------------------------------- | ------------------- | ------------- | ------------------- |
+| 07/03/2025 | 2.4.1    | Aggiunta consuntivo sprint 6                                                           | Marcon Giulia       | 07/03/2025    | Monetti Luca        |
+| 28/02/2025 | 2.4.0    | Aggiunta diagrammi Gantt                                                               | Piola Andrea        | 28/02/2025    | Marcon Giulia       |
+| 28/02/2025 | 2.3.1    | Correzioni grammaticali e sintattiche                                                  | Marcon Giulia       | 28/02/2025    | Piola Andrea        |
+| 23/02/2025 | 2.3.0    | Aggiunta preventivo sprint 6                                                           | Marcon Giulia       | 24/02/2025    | Carraro Agnese      |
+| 22/02/2025 | 2.2.1    | Aggiunta rendicontazione sprint 5                                                      | Pistori Gaia        | 23/02/2025    | Luca Monetti        |
+| 12/02/2025 | 2.2.0    | Refactoring                                                                            | Piola Andrea        | 17/02/2025    | Pistori Gaia        |
+| 05/02/2025 | 2.1.1    | Minor fix                                                                              | Piola Andrea        | 17/02/2025    | Pistori Gaia        |
+| 26/01/2025 | 2.1.0    | Aggiunta consuntivo sprint 3 e preventivo sprint 4                                     | Dal Bianco Riccardo | 26/01/2025    | Piola Andrea        |
+| 10/01/2025 | 2.0.1    | Aggiunta termini Glossario                                                             | Monetti Luca        | 16/01/2025    | Dal Bianco Riccardo |
+| 09/01/2025 | 2.0.0    | Ristrutturazione documento, sistemazione consuntivi 1° e 2° Sprint, aggiunta 3° Sprint | Monetti Luca        | 16/01/2025    | Dal Bianco Riccardo |
+| 21/12/2024 | 1.3.0    | Integrazione sezione 3, 4, 5 con secondo sprint                                        | Dal Bianco Riccardo | 22/12/2024    | Carraro Agnese      |
+| 02/12/2024 | 1.2.0    | Aggiunta sezione 2                                                                     | Piola Andrea        | 04/12/2024    | Pistori Gaia        |
+| 27/11/2024 | 1.1.0    | Aggiunta sezione 3 e 4 con primo sprint                                                | Piola Andrea        | 28/11/2024    | Pistori Gaia        |
+| 24/11/2024 | 1.0.0    | Prima stesura del documento con indice e sezione 1                                     | Piola Andrea        | 25/11/2024    | Pistori Gaia        |
 
 Table: Changelog
 
@@ -99,7 +98,7 @@ Le %%mitigazione|mitigazione%% di questi rischi si trovano alla fine della sezio
 Di seguito viene riportata la tabella contenente i rischi relativi all'organizzazione e ai rapporti tra i vari membri del gruppo e verso l'esterno.
 
 | Codice  | Rischio                                                      | Descrizione                                                                                                                                                                                                                | Grado di rischio | Pericolosità |
-|---------|--------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|--------------|
+| ------- | ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ------------ |
 | **RO1** | **Avanzamento lento per mancanza di esperienza**             | Soprattutto durante il primo periodo, i membri del gruppo non sono abituati alla parte organizzativa del progetto; ciò può ovviamente portare a un rallentamento dell'avanzamento dei lavori, che con il tempo si ridurrà. | 5                | Media/Alta   |
 | **RO2** | **Ritardi dovuti a problemi individuali**                    | Uno o più elementi del gruppo potrebbero non essere in grado di completare il lavoro pianificato entro la data prevista, per cause di qualsiasi natura, creando rallentamenti nel flusso di lavoro.                        | 2                | Media        |
 | **RO3** | **Problemi personali tra membri del gruppo**                 | Uno o più elementi del gruppo potrebbero non essere in grado di completare il lavoro pianificato entro la data prevista, per cause legati a problemi personali con un altro membro, creando rallentamenti nel flusso.      | 1                | Alta         |
@@ -110,7 +109,7 @@ Table: Rischi Organizzativi e interpersonali
 ### Rischi tecnologici
 
 | Codice  | Rischio                             | Descrizione                                                                                                                                 | Grado di rischio | Pericolosità |
-|---------|-------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|------------------|--------------|
+| ------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ------------ |
 | **RT1** | **Mancanza di conoscenze tecniche** | Alcuni membri del gruppo potrebbero non aver familiarità con tutte le tecnologie utilizzate durante lo sviluppo o la gestione del progetto. | 4                | Bassa        |
 
 Table: Rischi Tecnologici
@@ -118,7 +117,7 @@ Table: Rischi Tecnologici
 ### Mitigazione dei rischi organizzativi ed interpersonali
 
 | Codice  | Rischio                                                      | Mitigazione                                                                                                                                                                                                                                                                                     |
-|---------|--------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------- | ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **RO1** | **Avanzamento lento per mancanza di esperienza**             | Questo rischio può essere mitigato attraverso la pianificazione di incontri frequenti con l'azienda BlueWind che si è resa disponibile a fornire formazione e supporto. Inoltre, vogliamo scegliere un modello di sviluppo incrementale che si integri con il modello Agile Scrum dell'azienda. |
 | **RO2** | **Ritardi dovuti a problemi individuali**                    | Questo rischio può essere mitigato attraverso la comunicazione costante tra i vari membri del gruppo. Questo ci permetterà di individuare difficoltà o ritardi prima che essi possano trasformarsi in problemi.                                                                                 |
 | **RO3** | **Problemi personali tra membri del gruppo**                 | Questo rischio può essere mitigato creando un tavolo di confronto tra i membri coinvolti, al fine di risolvere le problematiche emerse. Ci si affida anche al buonsenso dei membri nella cooperazione, per il bene del gruppo.                                                                  |
@@ -129,7 +128,7 @@ Table: Mitigazione rischi organizzativi ed interpersonali
 ### Mitigazione dei rischi tecnologici
 
 | Codice  | Rischio                             | Mitigazione                                                                                                                                                                                                               |
-|---------|-------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **RT1** | **Mancanza di conoscenze tecniche** | Questo rischio può essere mitigato attraverso una stretta collaborazione tra i membri del team e l'azienda proponente, mirando alla creazione di un ambiente di collaborazione e condivisione delle conoscenze acquisite. |
 
 Table: Mitigazione rischi tecnologici
@@ -169,7 +168,7 @@ In questa sezione sono elencati gli sprint appartenenti ai vari periodi di lavor
 Durante la fase di candidatura il seguente preventivo realizzato riporta la ripartizione oraria per i vari ruoli con costi annessi:
 
 | Ruolo          | Costo | Ore previste | Totale     |
-|----------------|-------|--------------|------------|
+| -------------- | ----- | ------------ | ---------- |
 | Responsabile   | 30€   | 75           | 2250€      |
 | Amministratore | 20€   | 85           | 1700€      |
 | Analista       | 25€   | 90           | 2250€      |
@@ -212,7 +211,7 @@ Durante il tempo aggiuntivo, il team ha deciso di sfruttare l'opportunità per a
 A seguito si riporta la tabella con la suddivisione dei ruoli:
 
 | **Ruolo**                 | **Membri**                        |
-|---------------------------|-----------------------------------|
+| ------------------------- | --------------------------------- |
 | Responsabile di progetto  | Piola Andrea                      |
 | Analista                  | Pistori Gaia, Dal Bianco Riccardo |
 | Progettista               | Manuel Felipe Vasquez             |
@@ -227,7 +226,7 @@ Table: Suddivisione ruoli Sprint 1
 A seguito si riporta la tabella del preventivo per il primo %%sprint|sprint%%
 
 | Ruolo                     | Ore svolte (h) | Costo (€) |
-|---------------------------|----------------|-----------|
+| ------------------------- | -------------- | --------- |
 | Responsabile di progetto  | 5,5            | 165       |
 | Analista                  | 12,75          | 318,75    |
 | Progettista               | 4              | 100       |
@@ -244,7 +243,7 @@ Table: Preventivo Sprint 1
 Di seguito vengono indicate le spese effettive del primo %%sprint|sprint%%
 
 | Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
-|---------------------------|----------------------|---------------|------------------|-----------|-----------------|
+| ------------------------- | -------------------- | ------------- | ---------------- | --------- | --------------- |
 | Responsabile di progetto  | 6                    | +0,5          | 30               | 120       | -15             |
 | Analista                  | 12                   | -0,75         | 25               | 300       | -78,75          |
 | Progettista               | 3,5                  | -0,5          | 25               | 87,5      | -12,5           |
@@ -290,7 +289,7 @@ Infine, verrà avviata la prima fase di sviluppo del %%PoC|poc%%, con l'obiettiv
 A seguito si riporta la tabella con la suddivisione dei ruoli:
 
 | **Ruolo**                 | **Membri**                          |
-|---------------------------|-------------------------------------|
+| ------------------------- | ----------------------------------- |
 | Responsabile di progetto  | Dal Bianco Riccardo                 |
 | Analista                  | Piola Andrea, Pistori Gaia          |
 | Progettista               |                                     |
@@ -305,7 +304,7 @@ Table: Suddivisione ruoli Sprint 2
 A seguito si riporta la tabella del preventivo per il secondo %%sprint|sprint%%
 
 | Ruolo                     | Ore svolte (h) | Costo (€)   |
-|---------------------------|----------------|-------------|
+| ------------------------- | -------------- | ----------- |
 | Responsabile di progetto  | 2              | 60          |
 | Analista                  | 21             | 525         |
 | Progettista               | 0              | 0           |
@@ -322,7 +321,7 @@ Table: Preventivo Sprint 2
 Di seguito vengono indicate le spese effettive del secondo %%sprint|sprint%%
 
 | Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
-|---------------------------|----------------------|---------------|------------------|-----------|-----------------|
+| ------------------------- | -------------------- | ------------- | ---------------- | --------- | --------------- |
 | Responsabile di progetto  | 1                    | -1            | 30               | 30        | -30             |
 | Analista                  | 10,83                | -10,17        | 25               | 270,75    | -254,25         |
 | Progettista               | 0                    | 0             | 25               | 0         | 0               |
@@ -366,7 +365,7 @@ In parallelo, il team continuerà lo sviluppo di alcune funzionalità richieste 
 A seguito si riporta la tabella con la suddivisione dei ruoli:
 
 | **Ruolo**                 | **Membri**                           |
-|---------------------------|--------------------------------------|
+| ------------------------- | ------------------------------------ |
 | Responsabile di progetto  | Monetti Luca                         |
 | Analista                  | Piola Andrea, Dal Bianco Riccardo    |
 | Progettista               |                                      |
@@ -381,7 +380,7 @@ Table: Suddivisione ruoli Sprint 3
 A seguito si riporta la tabella del preventivo per il terzo %%sprint|sprint%%
 
 | Ruolo                     | Ore svolte (h) | Costo (€)  |
-|---------------------------|----------------|------------|
+| ------------------------- | -------------- | ---------- |
 | Responsabile di progetto  | 2              | 60         |
 | Analista                  | 19,5           | 487,5      |
 | Progettista               | 0              | 0          |
@@ -398,7 +397,7 @@ Table: Preventivo Sprint 3
 Di seguito vengono indicate le spese effettive del terzo %%sprint|sprint%%
 
 | Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
-|---------------------------|----------------------|---------------|------------------|-----------|-----------------|
+| ------------------------- | -------------------- | ------------- | ---------------- | --------- | --------------- |
 | Responsabile di progetto  | 1                    | -1            | 30               | 30        | -30             |
 | Analista                  | 10                   | -9,5          | 25               | 250       | -237,5          |
 | Progettista               | 0                    | 0             | 25               | 0         | 0               |
@@ -441,7 +440,7 @@ L'obiettivo principale è avvicinarsi in modo significativo alla conclusione del
 A seguito si riporta la tabella con la suddivisione dei ruoli:
 
 | **Ruolo**                 | **Membri**                                 |
-|---------------------------|--------------------------------------------|
+| ------------------------- | ------------------------------------------ |
 | Responsabile di progetto  | Dal Bianco Riccardo                        |
 | Analista                  | Carraro Agnese, Piola Andrea, Pistori Gaia |
 | Progettista               |                                            |
@@ -456,7 +455,7 @@ Table: Suddivisione ruoli Sprint 4
 A seguito si riporta la tabella del preventivo per il quarto %%sprint|sprint%%
 
 | Ruolo                     | Ore svolte (h) | Costo (€)   |
-|---------------------------|----------------|-------------|
+| ------------------------- | -------------- | ----------- |
 | Responsabile di progetto  | 3              | 90          |
 | Analista                  | 12             | 300         |
 | Progettista               | 0              | 0           |
@@ -473,7 +472,7 @@ Table: Preventivo Sprint 4
 Di seguito vengono indicate le spese effettive del quarto %%sprint|sprint%%
 
 | Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
-|---------------------------|----------------------|---------------|------------------|-----------|-----------------|
+| ------------------------- | -------------------- | ------------- | ---------------- | --------- | --------------- |
 | Responsabile di progetto  | 2,5                  | -0,5          | 30               | 75        | -15             |
 | Analista                  | 13                   | +1            | 25               | 325       | +25             |
 | Progettista               | 0                    | 0             | 25               | 0         | 0               |
@@ -516,7 +515,7 @@ L'obiettivo principale è richiedere la revisione della %%RTB|rtb%%.
 A seguito si riporta la tabella con la suddivisione dei ruoli:
 
 | **Ruolo**                 | **Membri**                                 |
-|---------------------------|--------------------------------------------|
+| ------------------------- | ------------------------------------------ |
 | Responsabile di progetto  | Pistori Gaia                               |
 | Analista                  | Marcon Giulia                              |
 | Progettista               |                                            |
@@ -531,7 +530,7 @@ Table: Suddivisione ruoli Sprint 5
 A seguito si riporta la tabella del preventivo per il quinto %%sprint|sprint%%
 
 | Ruolo                     | Ore svolte (h) | Costo (€)  |
-|---------------------------|----------------|------------|
+| ------------------------- | -------------- | ---------- |
 | Responsabile di progetto  | 1              | 30         |
 | Analista                  | 15             | 375        |
 | Progettista               | 0              | 0          |
@@ -548,7 +547,7 @@ Table: Preventivo Sprint 5
 Di seguito vengono indicate le spese effettive del quinto %%sprint|sprint%%
 
 | Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
-|---------------------------|----------------------|---------------|------------------|-----------|-----------------|
+| ------------------------- | -------------------- | ------------- | ---------------- | --------- | --------------- |
 | Responsabile di progetto  | 1                    | 0             | 30               | 30        | 0               |
 | Analista                  | 16,5                 | +1,5          | 25               | 412,5     | +37,5           |
 | Progettista               | 0                    | 0             | 25               | 0         | 0               |
@@ -588,7 +587,7 @@ In questo periodo, il gruppo si concentrerà sulla preparazione finale per la %%
 A seguito si riporta la tabella con la suddivisione dei ruoli:
 
 | **Ruolo**                 | **Membri**                   |
-|---------------------------|------------------------------|
+| ------------------------- | ---------------------------- |
 | Responsabile di progetto  | Marcon Giulia                |
 | Analista                  | Manuel Felipe Vasquez        |
 | Progettista               |                              |
@@ -603,7 +602,7 @@ Table: Suddivisione ruoli Sprint 6
 A seguito si riporta la tabella del preventivo per il sesto %%sprint|sprint%%
 
 | Ruolo                     | Ore svolte (h) | Costo (€)  |
-|---------------------------|----------------|------------|
+| ------------------------- | -------------- | ---------- |
 | Responsabile di progetto  | 2,5            | 75         |
 | Analista                  | 12,5           | 312,5      |
 | Progettista               | 0              | 0          |
@@ -620,7 +619,7 @@ Table: Preventivo Sprint 6
 Di seguito vengono indicate le spese effettive del sesto %%sprint|sprint%%
 
 | Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
-|---------------------------|----------------------|---------------|------------------|-----------|-----------------|
+| ------------------------- | -------------------- | ------------- | ---------------- | --------- | --------------- |
 | Responsabile di progetto  | 2,75                 | +0,25         | 30               | 82,5      | 7,5             |
 | Analista                  | 2,75                 | -9,75         | 25               | 68,75     | -243,75         |
 | Progettista               | 1,42                 | +1,42         | 25               | 35,5      | 35,5            |
@@ -634,57 +633,18 @@ Table: Consuntivo Sprint 6
 Considerando il costo di **463,85** il residuo disponibile ammonta a **8.839,60€**.
 
 ###### Retrospettiva
+
 Il sesto %%sprint|sprint%% ha visto un avanzamento significativo verso la preparazione della %%RTB|rtb%%, con particolare attenzione alla presentazione del %%PoC|poc%% e al completamento della documentazione. Tuttavia, alcune %%attività|attività%% pianificate per il ruolo di Analista non sono state completate a causa di priorità riassegnate e sono state rimesse nel %%backlog|backlog%% per lo %%sprint|sprint%% successivo. Questo ha portato a una riduzione delle ore effettive rispetto al %%preventivo|preventivo%% per quel ruolo.
 
 La principale variazione si è osservata nel ruolo di Analista (-9,75 ore), dove alcuni ticket non sono stati affrontati e sono stati riprogrammati per lo %%sprint|sprint%% successivo. Al contrario, il ruolo di Progettista (+1,42 ore) ha registrato un leggero aumento delle ore, dovuto alla necessità di ulteriori rifiniture tecniche.
 
 ###### Conclusione
+
 In conclusione, lo %%sprint|sprint%% ha permesso di raggiungere gli obiettivi principali, con un buon livello di aderenza al %%preventivo|preventivo%% iniziale. Le variazioni osservate sono state gestite in modo efficace, garantendo il rispetto delle tempistiche e la %%qualità|qualità%% del lavoro svolto. I ticket non completati dal ruolo di Analista sono stati riassegnati al %%backlog|backlog%% per essere affrontati nello %%sprint|sprint%% successivo, mantenendo così una gestione flessibile e adattabile delle %%attività|attività%%.
 
 ###### Gantt
 
 <img src="/img/Gantt/Sprint6.png" alt="Diagramma Gantt sprint 6" data-width="70%" />
-
-##### Sprint 7
-
-- Periodo 03/03/2025 - 16/03/2025
-
-###### Pianificazione
-
-In questo periodo, il gruppo si concentrerà sul completamento della documentazione e sul recupero delle task ancora incomplete.
-
-###### Ruoli
-
-A seguito si riporta la tabella con la suddivisione dei ruoli:
-
-| **Ruolo**                 | **Membri**                                  |
-|---------------------------|---------------------------------------------|
-| Responsabile di progetto  | Manuel Felipe Vasquez                       |
-| Analista                  | Dal Bianco Riccardo                         |
-| Progettista               |                                             |
-| Amministratore di sistema | Pistori Gaia, Monetti Luca                  |
-| Programmatore             |                                             |
-| Verificatore              | Carraro Agnese, Marcon Giulia, Piola Andrea |
-
-Table: Suddivisione ruoli Sprint 7
-
-###### Preventivo
-
-A seguito si riporta la tabella del preventivo per il sesto %%sprint|sprint%%
-
-| Ruolo                     | Ore svolte (h) | Costo (€)  |
-|---------------------------|----------------|------------|
-| Responsabile di progetto  | 3,25           | 97,5       |
-| Analista                  | 4,5            | 112,5      |
-| Progettista               | 0              | 0          |
-| Amministratore di sistema | 15             | 300        |
-| Programmatore             | 0              | 0          |
-| Verificatore              | 1,66           | 24,9       |
-| _Totale_                  | _24,4_         | _534,9_    |
-| _Bilancio_                |                | _8.304,70_ |
-
-Table: Preventivo Sprint 7
-
 
 <!-- ::: {.no-export} -->
 

@@ -1,6 +1,6 @@
 ---
 id: piano_di_qualifica
-title: "Piano di Qualifica"
+title: "Piano di Qualifica - v1.7.3"
 documentclass: TWDocumentFull
 toc: true
 lof: true

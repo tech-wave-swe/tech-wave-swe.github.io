@@ -1,6 +1,6 @@
 ---
 id: norme_di_progetto
-title: "Norme di Progetto"
+title: "Norme di Progetto - v1.8.1"
 documentclass: TWDocumentFull
 toc: true
 lof: true

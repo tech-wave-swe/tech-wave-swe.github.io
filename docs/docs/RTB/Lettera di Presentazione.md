@@ -1,6 +1,6 @@
 ---
-id: lettera-di-presentazione-rtb
-title: "Lettera di Presentazione (RTB)"
+id: lettera-di-presentazione
+title: "Lettera di Presentazione - v1.0.0"
 documentclass: TWDocumentFull
 toc: true
 lof: true
