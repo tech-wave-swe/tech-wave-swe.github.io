@@ -1,8 +1,7 @@
 ---
 title: "Verbali Esterni"
+position: 1
 ---
-
-# Verbali Esterni
 
 In questa pagina sono contenuti tutti i verbali esterni prodotti durante la prima fase di candidatura del gruppo 5 del corso di IS ( Ingegneria del software )
 

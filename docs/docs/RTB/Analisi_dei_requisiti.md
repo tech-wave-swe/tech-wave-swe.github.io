@@ -1,6 +1,6 @@
 ---
 id: analisi_dei_requisiti
-title: "Analisi dei Requisiti"
+title: "Analisi dei Requisiti - v2.4.0"
 documentclass: TWDocumentFull
 toc: true
 lof: true
@@ -8,6 +8,9 @@ numbersections: true
 version: 2.4.0
 classification: Esterno
 ---
+
+import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
+
 
 <!-- ::: {.no-export} -->
 
@@ -45,7 +48,7 @@ Table: Changelog
 
 ### Scopo del Documento
 
-Lo scopo del documento è quello di descrivere i casi d'uso ed i requisiti del %%progetto|progetto%% **Requirement Tracker - Plug-in VSCode** individuati dal gruppo Techwave tramite l'analisi del %%capitolato|capitolato%% ed il confronto con l'azienda Bluewind.
+Lo scopo del documento è quello di descrivere i casi d'uso ed i requisiti del <Term popup="Insieme di attività che devono raggiungere determinati obiettivi a partire da determinate specifiche, che hanno una data d’inizio e una data di fine prefissate, che dispongono di risorse limitate e che consumano risorse nel loro svolgersi." reference="/docs/RTB/Termini/Progetto">progetto</Term> **Requirement Tracker - Plug-in VSCode** individuati dal gruppo Techwave tramite l'analisi del <Term popup="Documento che descrive in modo dettagliato i requisiti, le specifiche e le aspettative di un progetto." reference="/docs/RTB/Termini/Capitolato">capitolato</Term> ed il confronto con l'azienda Bluewind.
 
 ### Glossario
 
@@ -70,46 +73,46 @@ Riferimenti normativi:
 
 ### Scopo del Prodotto
 
-Nello sviluppo di software per sistemi embedded il controllo e il tracciamento dell'implementazione di tutti i requisiti necessari al corretto funzionamento dello stesso sono azioni costose e ripetitive per lo sviluppatore. Possono inoltre risultare non esaustive a causa di distrazioni o dimenticanze. Il %%Capitolato|capitolato%% **Requirement Tracker - Plug-in VSCode** propone lo sviluppo di una estensione per %%VSCode|vscode%% che permetta di organizzare i requisiti derivati da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari requisiti in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
+Nello sviluppo di software per sistemi embedded il controllo e il tracciamento dell'implementazione di tutti i requisiti necessari al corretto funzionamento dello stesso sono azioni costose e ripetitive per lo sviluppatore. Possono inoltre risultare non esaustive a causa di distrazioni o dimenticanze. Il <Term popup="Documento che descrive in modo dettagliato i requisiti, le specifiche e le aspettative di un progetto." reference="/docs/RTB/Termini/Capitolato">Capitolato</Term> **Requirement Tracker - Plug-in VSCode** propone lo sviluppo di una estensione per <Term popup="Visual Studio Code. Editor di codice sorgente sviluppato da Microsoft, gratuito, open-source, leggero e con una ampia gamma di estensioni." reference="/docs/RTB/Termini/VSCode">VSCode</Term> che permetta di organizzare i requisiti derivati da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari requisiti in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
 
-Il %%capitolato|capitolato%% prevede la realizzazione di un supporto agli sviluppattori che permetta loro di controllare e tracciare l'implementazione di requisiti software all'interno di un progetto. Tramite questa estensione lo sviluppatore potrà caricare un file, in formato _.csv_ o _.reqif_, contenente i requisiti individuati e visualizzare lo stato implementativo di ognuno. Utilizzando l'Intellegenza Artificiale, nello specifico un modello %%LLM|llm%%, l'estensione analizzerà l'intero codice sorgente del progetto e restituirà lo stato di implementazione di ogni requisito segnalando, se presente, la porzione di codice che lo implementa.
+Il <Term popup="Documento che descrive in modo dettagliato i requisiti, le specifiche e le aspettative di un progetto." reference="/docs/RTB/Termini/Capitolato">capitolato</Term> prevede la realizzazione di un supporto agli sviluppattori che permetta loro di controllare e tracciare l'implementazione di requisiti software all'interno di un progetto. Tramite questa estensione lo sviluppatore potrà caricare un file, in formato _.csv_ o _.reqif_, contenente i requisiti individuati e visualizzare lo stato implementativo di ognuno. Utilizzando l'Intellegenza Artificiale, nello specifico un modello <Term popup="Large Language Model. Modello di apprendimento automatico progettato per comprendere e generare linguaggio naturale su larga scala." reference="/docs/RTB/Termini/LLM">LLM</Term>, l'estensione analizzerà l'intero codice sorgente del progetto e restituirà lo stato di implementazione di ogni requisito segnalando, se presente, la porzione di codice che lo implementa.
 
 ### Funzionalità del prodotto
 
 L'estensione **Requirements Tracker** permetterà agli sviluppatori di controllare e tracciare l'implementazione dei requisiti di un progetto. Le principali funzionalità includono:
 
-- **Personalizzazione**: L'%%Applicativo|applicativo%% è configurabile in moltissimi aspetti. Le configurazioni possono essere globali o limitate al singolo progetto, permettendo così allo stesso sviluppatore di lavorare contemporaneamente a progetti che richiedono configurazioni diverse.
-- **Parsing dei dati**: L'%%Applicativo|applicativo%% permette il caricamento di un file, in formato _.csv_ o _.reqif_, contenente una serie di requisiti necessari al progetto. Questo file, univoco per progetto, deve essere letto e trasformato in una struttura dati comprensibile ed utilizzabile.
+- **Personalizzazione**: L'<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">Applicativo</Term> è configurabile in moltissimi aspetti. Le configurazioni possono essere globali o limitate al singolo progetto, permettendo così allo stesso sviluppatore di lavorare contemporaneamente a progetti che richiedono configurazioni diverse.
+- **Parsing dei dati**: L'<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">Applicativo</Term> permette il caricamento di un file, in formato _.csv_ o _.reqif_, contenente una serie di requisiti necessari al progetto. Questo file, univoco per progetto, deve essere letto e trasformato in una struttura dati comprensibile ed utilizzabile.
 - **Visualizzazione Grafica**: In ogni momento lo sviluppatore è in grado di visualizzare lo stato di implementazione corrente di tutti i requisiti tramite una vista grafica della struttura data interna.
-- **Dialogo con LLM**: L'%%Applicativo|applicativo%% utilizza %%Ollama|ollama%% per interfacciarsi con i modelli %%LLM|llm%% necessari al suo funzionamento. Il funzionamento base prevede l'utilizzo di due modelli:
+- **Dialogo con LLM**: L'<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">Applicativo</Term> utilizza <Term popup="Software gratuito e open source che consente di eseguire in locale diversi modelli LLM." reference="/docs/RTB/Termini/Ollama">Ollama</Term> per interfacciarsi con i modelli <Term popup="Large Language Model. Modello di apprendimento automatico progettato per comprendere e generare linguaggio naturale su larga scala." reference="/docs/RTB/Termini/LLM">LLM</Term> necessari al suo funzionamento. Il funzionamento base prevede l'utilizzo di due modelli:
   - Un modello di **embedding** utilizzato per tradurre il codice sorgente ed i requisiti in forma vettoriale.
   - Un modello di **generazione del codice** utilizzato per il controllo di implementazione.
-- **Interattività con lo sviluppatore**: Lo sviluppatore potrà interagire con l'%%applicativo|applicativo%% richiedendo un nuovo controllo di implementazione dei requisiti su tutto il codice o su una sua porzione. Lo sviluppatore può inoltre selezionare i requisiti da verificare al fine di rendere la ricerca più precisa. Per ogni requisito è possibile visualizzare, se presente, la porzione di codice che lo implementa.
-- **Richiesta di feedback**: L'%%Applicativo|applicativo%% utilizza un sistema di feedback grazie al quale lo sviluppatore può verificare la presenza di una implementazione effettiva dei requisiti.
+- **Interattività con lo sviluppatore**: Lo sviluppatore potrà interagire con l'<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">applicativo</Term> richiedendo un nuovo controllo di implementazione dei requisiti su tutto il codice o su una sua porzione. Lo sviluppatore può inoltre selezionare i requisiti da verificare al fine di rendere la ricerca più precisa. Per ogni requisito è possibile visualizzare, se presente, la porzione di codice che lo implementa.
+- **Richiesta di feedback**: L'<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">Applicativo</Term> utilizza un sistema di feedback grazie al quale lo sviluppatore può verificare la presenza di una implementazione effettiva dei requisiti.
 
 ### Tecnologie Utilizzate
 
 - **TypeScript**: Linguaggio di programmazione scelto per lo sviluppo dell'estensione.
-- **Ollama**: Software gratuito e open source che consente di eseguire in locale diversi modelli %%LLM|llm%%.
+- **Ollama**: Software gratuito e open source che consente di eseguire in locale diversi modelli <Term popup="Large Language Model. Modello di apprendimento automatico progettato per comprendere e generare linguaggio naturale su larga scala." reference="/docs/RTB/Termini/LLM">LLM</Term>.
 - **CSV e Reqif**: Tipologia di formati per i file dei requisiti.
-- **Vector Embeddings**: Rappresentazione numerica, sotto forma di array, di dati non matematici, come parole o immagini, che possono essere interpretati dai modelli %%LLM|llm%%.
+- **Vector Embeddings**: Rappresentazione numerica, sotto forma di array, di dati non matematici, come parole o immagini, che possono essere interpretati dai modelli <Term popup="Large Language Model. Modello di apprendimento automatico progettato per comprendere e generare linguaggio naturale su larga scala." reference="/docs/RTB/Termini/LLM">LLM</Term>.
 - **VS Code Extension API**: Set di strumenti e interfacce che consente agli sviluppatori di creare estensioni per Visual Studio Code.
 
 ## Casi d'uso
 
 ### Introduzione
 
-Questa sezione illustra i casi d’uso delineati dopo l’analisi del %%capitolato|capitolato%%, il confronto con il %%proponente|proponente%% e le discussioni svolte durante le riunioni interne.
+Questa sezione illustra i casi d’uso delineati dopo l’analisi del <Term popup="Documento che descrive in modo dettagliato i requisiti, le specifiche e le aspettative di un progetto." reference="/docs/RTB/Termini/Capitolato">capitolato</Term>, il confronto con il <Term popup="Figura che avanza una proposta o un progetto." reference="/docs/RTB/Termini/Proponente">proponente</Term> e le discussioni svolte durante le riunioni interne.
 
 ### Attori
 
-L'%%Applicativo|applicativo%% si interfaccia con un singolo attore primario:
+L'<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">Applicativo</Term> si interfaccia con un singolo attore primario:
 
-- **Utente Programmatore**: Utente principale dell'%%applicativo|applicativo%%. Ha accesso a tutte le funzionalità previste e utilizza l'%%applicativo|applicativo%% durante il flusso di lavoro.
+- **Utente Programmatore**: Utente principale dell'<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">applicativo</Term>. Ha accesso a tutte le funzionalità previste e utilizza l'<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">applicativo</Term> durante il flusso di lavoro.
 
-L'%%Applicativo|applicativo%% si intefaccia con un singolo attore secondario:
+L'<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">Applicativo</Term> si intefaccia con un singolo attore secondario:
 
-- **%%Ollama|ollama%%**: Software gratuito e open source che consente di eseguire in locale diversi modelli %%LLM|llm%%.
+- **<Term popup="Software gratuito e open source che consente di eseguire in locale diversi modelli LLM." reference="/docs/RTB/Termini/Ollama">Ollama</Term>**: Software gratuito e open source che consente di eseguire in locale diversi modelli <Term popup="Large Language Model. Modello di apprendimento automatico progettato per comprendere e generare linguaggio naturale su larga scala." reference="/docs/RTB/Termini/LLM">LLM</Term>.
 
 ### Elenco casi d'uso
 
@@ -127,12 +130,12 @@ L'%%Applicativo|applicativo%% si intefaccia con un singolo attore secondario:
 
 **Postcondizioni:**
 
-- L’%%Applicativo|applicativo%% è stato configurato
+- L’<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">Applicativo</Term> è stato configurato
 
 **Scenario principale:**
 
 1. L’Utente Programmatore visualizza tutte le impostazioni modificabili.
-2. L’Utente Programmatore inserisce l’endpoint di %%Ollama|ollama%% (UC1.1)
+2. L’Utente Programmatore inserisce l’endpoint di <Term popup="Software gratuito e open source che consente di eseguire in locale diversi modelli LLM." reference="/docs/RTB/Termini/Ollama">Ollama</Term> (UC1.1)
 3. L’Utente Programmatore seleziona il modello per la generazione del codice (UC1.2)
 4. L’Utente Programmatore seleziona il modello di embedding (UC1.3)
 5. L’Utente Programmatore seleziona la "temperature’ del modello (UC1.4)
@@ -159,21 +162,21 @@ Come Utente Programmatore devo poter configurare l’estensione modificando le i
 
 **Postcondizioni:**
 
-- L’endpoint di %%Ollama|ollama%% è stato configurato
+- L’endpoint di <Term popup="Software gratuito e open source che consente di eseguire in locale diversi modelli LLM." reference="/docs/RTB/Termini/Ollama">Ollama</Term> è stato configurato
 
 **Scenario principale:**
 
 1. L’Utente Programmatore seleziona la voce per modificare l’endpoint
-2. L’Utente Programmatore indica l’endpoint in cui è installato %%Ollama|ollama%%
+2. L’Utente Programmatore indica l’endpoint in cui è installato <Term popup="Software gratuito e open source che consente di eseguire in locale diversi modelli LLM." reference="/docs/RTB/Termini/Ollama">Ollama</Term>
 
 **Estensioni:**
 
-- UC2 - Visualizzazione errore %%Ollama|ollama%% non installato
+- UC2 - Visualizzazione errore <Term popup="Software gratuito e open source che consente di eseguire in locale diversi modelli LLM." reference="/docs/RTB/Termini/Ollama">Ollama</Term> non installato
 - UC3 - Visualizzazione errore endpoint non raggiungibile
 
 **User Story:**
 
-Come Utente Programmatore devo poter indicare l’endpoint in cui è installato %%Ollama|ollama%% per l’interrogazione dei modelli durante l’esecuzione dell’estensione.
+Come Utente Programmatore devo poter indicare l’endpoint in cui è installato <Term popup="Software gratuito e open source che consente di eseguire in locale diversi modelli LLM." reference="/docs/RTB/Termini/Ollama">Ollama</Term> per l’interrogazione dei modelli durante l’esecuzione dell’estensione.
 
 ---
 
@@ -181,7 +184,7 @@ Come Utente Programmatore devo poter indicare l’endpoint in cui è installato 
 
 **Estende:**
 
-- UC1.1 - Inserimento endpoint %%Ollama|ollama%%
+- UC1.1 - Inserimento endpoint <Term popup="Software gratuito e open source che consente di eseguire in locale diversi modelli LLM." reference="/docs/RTB/Termini/Ollama">Ollama</Term>
 
 **Attore primario:**
 
@@ -190,8 +193,8 @@ Come Utente Programmatore devo poter indicare l’endpoint in cui è installato 
 **Precondizioni:**
 
 - L’Utente Programmatore sta effettuando la configurazione dell’estensione (UC1)
-- L'Utente Programmatore sta configurando l'endpoint di %%Ollama|ollama%% (UC1.1)
-- %%Ollama|ollama%% non è installato nell’endpoint indicato
+- L'Utente Programmatore sta configurando l'endpoint di <Term popup="Software gratuito e open source che consente di eseguire in locale diversi modelli LLM." reference="/docs/RTB/Termini/Ollama">Ollama</Term> (UC1.1)
+- <Term popup="Software gratuito e open source che consente di eseguire in locale diversi modelli LLM." reference="/docs/RTB/Termini/Ollama">Ollama</Term> non è installato nell’endpoint indicato
 
 **Postcondizioni:**
 
@@ -199,11 +202,11 @@ Come Utente Programmatore devo poter indicare l’endpoint in cui è installato 
 
 **Scenario principale:**
 
-1. L’%%applicativo|applicativo%% visualizza un messaggio contenente l’errore riportato
+1. L’<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">applicativo</Term> visualizza un messaggio contenente l’errore riportato
 
 **User Story:**
 
-Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se %%Ollama|ollama%% non è installato nell’endpoint indicato.
+Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se <Term popup="Software gratuito e open source che consente di eseguire in locale diversi modelli LLM." reference="/docs/RTB/Termini/Ollama">Ollama</Term> non è installato nell’endpoint indicato.
 
 ---
 
@@ -211,7 +214,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 
 **Estende:**
 
-- UC1.1 - Inserimento endpoint %%Ollama|ollama%%
+- UC1.1 - Inserimento endpoint <Term popup="Software gratuito e open source che consente di eseguire in locale diversi modelli LLM." reference="/docs/RTB/Termini/Ollama">Ollama</Term>
 
 **Attore primario:**
 
@@ -220,7 +223,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 **Precondizioni:**
 
 - L’Utente Programmatore sta effettuando la configurazione dell’estensione (UC1)
-- L'Utente Programmatore sta configurando l'endpoint di %%Ollama|ollama%% (UC1.1)
+- L'Utente Programmatore sta configurando l'endpoint di <Term popup="Software gratuito e open source che consente di eseguire in locale diversi modelli LLM." reference="/docs/RTB/Termini/Ollama">Ollama</Term> (UC1.1)
 - L’endpoint indicato non è raggiungibile
 
 **Postcondizioni:**
@@ -229,7 +232,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 
 **Scenario principale:**
 
-1. L’%%applicativo|applicativo%% visualizza un messaggio contenente l’errore riportato
+1. L’<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">applicativo</Term> visualizza un messaggio contenente l’errore riportato
 
 **User Story:**
 
@@ -356,7 +359,7 @@ Come Utente Programmatore devo poter inserire il nome di un modello custom per m
 
 **Scenario principale:**
 
-1. L’%%applicativo|applicativo%% visualizza un messaggio contenente l’errore riportato
+1. L’<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">applicativo</Term> visualizza un messaggio contenente l’errore riportato
 
 **User Story:**
 
@@ -386,7 +389,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 
 **Scenario principale:**
 
-1. L’%%applicativo|applicativo%% visualizza un messaggio contenente l’errore riportato
+1. L’<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">applicativo</Term> visualizza un messaggio contenente l’errore riportato
 
 **User Story:**
 
@@ -569,7 +572,7 @@ Come Utente Programmatore devo poter indicare un bearer token necessario per l�
 
 **Scenario principale:**
 
-1. L’%%applicativo|applicativo%% visualizza un messaggio contenente l’errore riportato
+1. L’<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">applicativo</Term> visualizza un messaggio contenente l’errore riportato
 
 **User Story:**
 
@@ -592,14 +595,14 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 **Postcondizioni:**
 
 - L’Utente Programmatore ha aperto un progetto software
-- L’%%Applicativo|applicativo%% aggiorna la struttura dati a seguito del controllo dell’implementazione dei requisiti
+- L’<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">Applicativo</Term> aggiorna la struttura dati a seguito del controllo dell’implementazione dei requisiti
 
 **Scenario principale:**
 
 1. L’Utente Programmatore apre la cartella di progetto software (UC11.1)
 2. L’Utente Programmatore carica il file dei requisiti (UC11.2)
 3. L’Utente Programmatore inserisce i filtri per il progetto software corrente (UC11.3)
-4. L’%%Applicativo|applicativo%% avvia il controllo dell’implementazione dei requisiti (UC15)
+4. L’<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">Applicativo</Term> avvia il controllo dell’implementazione dei requisiti (UC15)
 
 **User Story:**
 
@@ -688,7 +691,7 @@ Come Utente Programmatore devo poter caricare il file che conterrà i requisiti 
 
 **Scenario principale:**
 
-1. L’%%applicativo|applicativo%% visualizza un messaggio contenente l’errore riportato
+1. L’<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">applicativo</Term> visualizza un messaggio contenente l’errore riportato
 
 **User Story:**
 
@@ -741,7 +744,7 @@ Come Utente Programmatore devo poter selezionare i filtri che applicherò al pro
 **Precondizioni:**
 
 - L’Utente Programmatore ha inserito i filtri per il progetto software corrente (UC11.3)
-- Almeno uno dei filtri non viene trovato dall’%%Applicativo|applicativo%%
+- Almeno uno dei filtri non viene trovato dall’<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">Applicativo</Term>
 
 **Postcondizioni:**
 
@@ -749,11 +752,11 @@ Come Utente Programmatore devo poter selezionare i filtri che applicherò al pro
 
 **Scenario principale:**
 
-1. L’%%applicativo|applicativo%% visualizza un messaggio contenente l’errore riportato
+1. L’<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">applicativo</Term> visualizza un messaggio contenente l’errore riportato
 
 **User Story:**
 
-Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se il filtro inserito non viene trovato dall’%%Applicativo|applicativo%%.
+Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se il filtro inserito non viene trovato dall’<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">Applicativo</Term>.
 
 ---
 
@@ -778,7 +781,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 
 **Scenario principale:**
 
-1. L’%%applicativo|applicativo%% visualizza un messaggio contenente l’errore riportato
+1. L’<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">applicativo</Term> visualizza un messaggio contenente l’errore riportato
 
 **User Story:**
 
@@ -796,7 +799,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 
 **Attore secondario:**
 
-- %%Ollama|ollama%%
+- <Term popup="Software gratuito e open source che consente di eseguire in locale diversi modelli LLM." reference="/docs/RTB/Termini/Ollama">Ollama</Term>
 
 **Precondizioni:**
 
@@ -813,7 +816,7 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 1. L’Utente Programmatore seleziona i requisiti per i quali vuole effettuare il controllo (UC15.1)
 2. L’Utente Programmatore avvia la procedura di controllo del codice.
 3. L’Utente Programmatore fornisce feedback sui risultati forniti dal sistema (UC15.2)
-4. L’%%Applicativo|applicativo%% aggiorna la struttura dati
+4. L’<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">Applicativo</Term> aggiorna la struttura dati
 
 **Estensioni:**
 
@@ -900,8 +903,8 @@ Come Utente Programmatore devo poter selezionare tutto il codice del progetto so
 
 - L’Utente Programmatore ha configurato l’estensione (UC1)
 - L’Utente Programmatore ha aperto un nuovo progetto software (UC11)
-- L’%%Applicativo|applicativo%% ha avviato un Controllo di implementazione dei requisiti (UC15)
-- L’attore secondario %%Ollama|ollama%% non è riuscito ad elaborare la richiesta.
+- L’<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">Applicativo</Term> ha avviato un Controllo di implementazione dei requisiti (UC15)
+- L’attore secondario <Term popup="Software gratuito e open source che consente di eseguire in locale diversi modelli LLM." reference="/docs/RTB/Termini/Ollama">Ollama</Term> non è riuscito ad elaborare la richiesta.
 
 **Postcondizioni:**
 
@@ -909,7 +912,7 @@ Come Utente Programmatore devo poter selezionare tutto il codice del progetto so
 
 **Scenario principale:**
 
-1. L’%%Applicativo|applicativo%% invia la richiesta ad %%Ollama|ollama%%
+1. L’<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">Applicativo</Term> invia la richiesta ad <Term popup="Software gratuito e open source che consente di eseguire in locale diversi modelli LLM." reference="/docs/RTB/Termini/Ollama">Ollama</Term>
 2. Se viene restituito un errore viene visualizzato un messaggio contenente l’errore riportato.
 
 **User Story:**
@@ -963,7 +966,7 @@ Come Utente Programmatore devo poter selezionare tutti i requisiti per i quali v
 
 **Postcondizioni:**
 
-- Tutti i risultati forniti dall’%%Applicativo|applicativo%% sono stati revisionati dall’Utente Programmatore
+- Tutti i risultati forniti dall’<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">Applicativo</Term> sono stati revisionati dall’Utente Programmatore
 
 **Scenario principale:**
 
@@ -973,7 +976,7 @@ Come Utente Programmatore devo poter selezionare tutti i requisiti per i quali v
 
 **User Story:**
 
-Come Utente Programmatore devo poter revisionare la risposta fornita dall’%%Applicativo|applicativo%% durante il controllo dell’implementazione.
+Come Utente Programmatore devo poter revisionare la risposta fornita dall’<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">Applicativo</Term> durante il controllo dell’implementazione.
 
 ---
 
@@ -1006,7 +1009,7 @@ Come Utente Programmatore devo poter revisionare la risposta fornita dall’%%Ap
 
 **User Story:**
 
-Come Utente Programmatore devo poter visualizzare, per ogni requisito che risulta implementato all’interno dell'%%Applicativo|applicativo%%, il relativo codice sorgente che lo implementa.
+Come Utente Programmatore devo poter visualizzare, per ogni requisito che risulta implementato all’interno dell'<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">Applicativo</Term>, il relativo codice sorgente che lo implementa.
 
 ---
 
@@ -1025,7 +1028,7 @@ Come Utente Programmatore devo poter visualizzare, per ogni requisito che risult
 - L’Utente Programmatore ha configurato l’estensione (UC1)
 - L’Utente Programmatore ha aperto un nuovo progetto software (UC11)
 - L’Utente Programmatore vuole visualizzare il codice che implementa un requisito (UC19)
-- L’%%Applicativo|applicativo%% non è in grado di visualizzare la porzione di codice corrispondente
+- L’<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">Applicativo</Term> non è in grado di visualizzare la porzione di codice corrispondente
 
 **Postcondizioni:**
 
@@ -1033,12 +1036,12 @@ Come Utente Programmatore devo poter visualizzare, per ogni requisito che risult
 
 **Scenario principale:**
 
-1. L’%%Applicativo|applicativo%% esegue la procedura di visualizzazione della porzione di codice.
+1. L’<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">Applicativo</Term> esegue la procedura di visualizzazione della porzione di codice.
 2. Se si verifica un errore, viene visualizzato un messaggio che descrive il problema riscontrato.
 
 **User Story:**
 
-Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se l’%%Applicativo|applicativo%% non è in grado di visualizzare la porzione di codice che implementa il requisito selezionato.
+Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se l’<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">Applicativo</Term> non è in grado di visualizzare la porzione di codice che implementa il requisito selezionato.
 
 ---
 
@@ -1089,7 +1092,7 @@ Come Utente Programmatore devo poter visualizzare in ogni momento una tabella co
 - L’Utente Programmatore ha configurato l’estensione (UC1)
 - L’Utente Programmatore ha aperto un nuovo progetto software (UC11)
 - L’Utente Programmatore vuole visualizzare la struttura dati (UC21).
-- L’%%Applicativo|applicativo%% non è in grado di visualizzare la struttura dati
+- L’<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">Applicativo</Term> non è in grado di visualizzare la struttura dati
 
 **Postcondizioni:**
 
@@ -1097,12 +1100,12 @@ Come Utente Programmatore devo poter visualizzare in ogni momento una tabella co
 
 **Scenario principale:**
 
-1. L’%%Applicativo|applicativo%% esegue la procedura di visualizzazione della struttura dati.
+1. L’<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">Applicativo</Term> esegue la procedura di visualizzazione della struttura dati.
 2. Se si verifica un errore, viene visualizzato un messaggio che descrive il problema riscontrato.
 
 **User Story:**
 
-Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se l’%%Applicativo|applicativo%% non è in grado di visualizzare la struttura dati.
+Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e informativo se l’<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">Applicativo</Term> non è in grado di visualizzare la struttura dati.
 
 ## Analisi dei requisiti
 
@@ -1111,9 +1114,9 @@ Come Utente Programmatore voglio ricevere un messaggio di errore chiaro e inform
 I requisiti vengono identificati ciascuno da un codice identificativo nel formato **R\[X\]\[Z\]\_\[N\]**:
 
 - **X**: tipologia del requisito
-  - **F** = funzionale: indicano %%funzionalità|funzionalità%% che l'%%Applicativo|applicativo%% deve fornire
-  - **T** = tecnico: indicano vincoli riguardo le tecnologie che l'%%Applicativo|applicativo%% deve utilizzare
-  - **Q** = qualitativo: indicano vincoli riguardo obbiettivi minimi di %%qualità|qualità%%
+  - **F** = funzionale: indicano <Term popup="Caratteristica funzionale propria di un prodotto software." reference="/docs/RTB/Termini/Funzionalità">funzionalità</Term> che l'<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">Applicativo</Term> deve fornire
+  - **T** = tecnico: indicano vincoli riguardo le tecnologie che l'<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">Applicativo</Term> deve utilizzare
+  - **Q** = qualitativo: indicano vincoli riguardo obbiettivi minimi di <Term popup="Insieme delle caratteristiche di un'entità che ne determinano la capacità di soddisfare esigenze esplicite o implicite." reference="/docs/RTB/Termini/Qualità">qualità</Term>
 - **Z**: obbligatorietà del requisito
   - **O** = obbligatorio : requisito irrinunciabile
   - **D** = desiderabili : non strettamente necessario ma con valore aggiunto riconoscibile
@@ -1122,7 +1125,7 @@ I requisiti vengono identificati ciascuno da un codice identificativo nel format
 
 ### Requisiti funzionali
 
-- L'utente deve poter configurare l'%%Applicativo|applicativo%% da interfaccia grafica, in particolare:
+- L'utente deve poter configurare l'<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">Applicativo</Term> da interfaccia grafica, in particolare:
 
 | ID        | Descrizione                                                                                                                                                | Use Cases                                    |
 | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
@@ -1137,7 +1140,7 @@ I requisiti vengono identificati ciascuno da un codice identificativo nel format
 
 Table: Requisiti funzionali per la configurazione dell'estensione
 
-- L'utente per utilizzare l'%%Applicativo|applicativo%% deve indicare da interfaccia grafica le specifiche del progetto software, in particolare:
+- L'utente per utilizzare l'<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">Applicativo</Term> deve indicare da interfaccia grafica le specifiche del progetto software, in particolare:
 
 | ID         | Descrizione                                                                                               | Use Cases  |
 | ---------- | --------------------------------------------------------------------------------------------------------- | ---------- |
@@ -1151,7 +1154,7 @@ Table: Requisiti funzionali per la configurazione dell'estensione
 
 Table: Requisiti funzionali per le funzionalità di controllo
 
-- L'esecuzione dell'%%Applicativo|applicativo%% deve consistere nel:
+- L'esecuzione dell'<Term popup="Estensione di VSCode con lo scopo di individuare e tracciare l'implementazione dei requisiti all'interno di un progetto software." reference="/docs/RTB/Termini/Applicativo">Applicativo</Term> deve consistere nel:
 
 | ID         | Descrizione                                                                                                                                                                                                                                            | Use Cases            |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------- |
