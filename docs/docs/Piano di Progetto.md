@@ -681,7 +681,7 @@ A seguito si riporta la tabella del preventivo per il sesto %%sprint|sprint%%
 | Programmatore             | 0              | 0          |
 | Verificatore              | 1,66           | 24,9       |
 | _Totale_                  | _24,4_         | _534,9_    |
-| _Bilancio_                |                | _8.046,05_ |
+| _Bilancio_                |                | _8.304,70_ |
 
 Table: Preventivo Sprint 7
 
