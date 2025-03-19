@@ -1,4 +1,7 @@
 {
-  "label": "PB",
-  "position": 2
+  "label": "Verbali Interni",
+  "link": {
+    "type": "generated-index",
+    "description": "Tutti i verbali interni prodotti durante le riunioni svolte in preparazione alla PB."
+  }
 }
