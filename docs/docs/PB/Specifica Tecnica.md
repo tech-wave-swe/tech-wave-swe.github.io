@@ -81,7 +81,8 @@ Utilizzo nel progetto:
 - Integrazione con le API di VS Code: TypeScript è utilizzato per interfacciarsi con le API di VS Code, permettendo la creazione di comandi personalizzati, la visualizzazione dei risultati e l’integrazione con l’editor di codice
 
 Versione:
-Documentazione: [TypeScript documentation] (https://www.typescriptlang.org/docs/)
+
+Documentazione: [TypeScript documentation](https://www.typescriptlang.org/docs/)
 
 ### Frameworks
 
@@ -94,6 +95,8 @@ Utilizzo nel progetto:
 - Sviluppo dell’interfaccia utente dell’estensione: Le API di VS Code sono utilizzate per creare l’interfaccia utente dell’estensione, inclusa la visualizzazione della tabella dei requisiti, i bottoni di interazione e la gestione delle configurazioni.
 - Integrazione con l’editor di VS Code: Le API permettono di interagire con l’editor di codice, ad esempio per evidenziare porzioni di codice che implementano specifici requisiti o per navigare tra i file del %%progetto|progetto%%.
 - Gestione degli eventi: Le API di estensione sono utilizzate per gestire eventi come il caricamento di un file di requisiti, l’avvio di un’analisi o la modifica delle configurazioni.
+
+Versione:
 
 Documentazione: [VS Code API documentation](https://code.visualstudio.com/api)
 
@@ -109,6 +112,7 @@ Utilizzo nel progetto:
 - Generazione di risposte basate sui modelli %%LLM|llm%%: %%Ollama|ollama%% è utilizzato per generare risposte che supportano lo sviluppatore nel controllo dei requisiti, ad esempio identificando porzioni di codice che implementano specifici requisiti.
 
 Versione:
+
 Documentazione: [Ollama documentation](https://github.com/ollama/ollama/tree/main/docs)
 
 #### Vector Embeddings
@@ -120,7 +124,7 @@ Utilizzo nel progetto:
 - Confronto rapido tra i requisiti e il codice sorgente: I Vector Embeddings sono utilizzati per trasformare i requisiti e il codice sorgente in vettori, permettendo di confrontarli rapidamente e identificare le corrispondenze.
 - Miglioramento dell’%%efficienza|efficienza%% e della precisione dell’analisi: L’uso di Vector Embeddings permette di ridurre i tempi di elaborazione e migliorare l’accuratezza delle risposte fornite dai modelli %%LLM|llm%%.
 
-Documentazione: [Vector Embeddings] ()
+Documentazione: [Vector Embeddings (provvisorio)] ()
 
 ### Formati di file per la gestione dei requisiti
 
@@ -131,7 +135,7 @@ Il formato CSV (Comma-Separated Values) è un formato di file semplice e leggero
 Utilizzo nel progetto:
 - Importazione ed esportazione dei requisiti software: CSV è utilizzato per importare ed esportare i requisiti software, permettendo una facile integrazione con strumenti esterni per la gestione dei dati.
 
-Documentazione: [CSV Format specification]()
+Documentazione: [CSV Format specification (provvisorio)]()
 
 #### ReqIF
 
@@ -140,7 +144,7 @@ ReqIF (Requirements Interchange Format) è uno standard per lo scambio di requis
 Utilizzo nel progetto:
 - Gestione di progetti complessi: ReqIF è utilizzato per gestire progetti che richiedono un formato strutturato, garantendo una migliore organizzazione dei dati e una maggiore flessibilità.
 
-Documentazione: [ReqIF specification]()
+Documentazione: [ReqIF specification (provvisorio)]()
 
 ## Architettura
 
