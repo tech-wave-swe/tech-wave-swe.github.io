@@ -1301,5 +1301,3 @@ Table: Tracciamento caso d'uso e requisito associato
 </NumberedWrapper>
 
 <!-- ::: -->
-
-(TODO: valutare di inserire Ollama come parola del Glossario)
