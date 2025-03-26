@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'none'; style-src {{styleSrc}} 'unsafe-inline'; script-src 'nonce-{{nonce}}';"
+        />
+        <title>Requirements Tracker</title>
+        <link href="{{styleResetUri}}" rel="stylesheet" />
+        <link href="{{styleVSCodeUri}}" rel="stylesheet" />
+        <link href="{{styleTrackerUri}}" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="tab-container">
+                <button class="tab active" data-tab="import">Import</button>
+                <button class="tab" data-tab="track">Track</button>
+                <button class="tab" data-tab="results">Results</button>
+            </div>
+
+            <div id="loading" class="loading" style="display: none">
+                <div class="loading-spinner"></div>
+            </div>
+
+            <div id="import-tab" class="tab-content active">
+                <h2>Import Requirements</h2>
+                <div class="form-group">
+                    <label for="import-format">Format:</label>
+                    <select id="import-format">
+                        <option value="csv">CSV</option>
+                        <option value="reqif">ReqIF</option>
+                        <option value="text">Plain Text</option>
+                    </select>
+                </div>
+
+                <!-- Add CSV delimiter option -->
+                <div id="csv-options" class="form-group">
+                    <label for="csv-delimiter">CSV Delimiter:</label>
+                    <input type="text" id="csv-delimiter" value="," maxlength="1" style="width: 40px" />
+                    <p style="font-size: 0.8em; color: var(--vscode-descriptionForeground)">
+                        Default is comma (,). Use $ or other character for custom separators.
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label for="file-input">Choose File:</label>
+                    <input type="file" id="file-input" />
+                </div>
+
+                <div class="form-group">
+                    <label for="text-content">Or Paste Content:</label>
+                    <textarea id="text-content" rows="10" style="width: 100%; resize: none"></textarea>
+                </div>
+
+                <button id="import-button">Import Requirements</button>
+            </div>
+
+            <div id="track-tab" class="tab-content">
+                <h2>Track Requirements</h2>
+                <p>Track implementation status of requirements in your codebase.</p>
+
+                <div class="controls-wrapper">
+                    <button id="track-button">Start Tracking</button>
+                    <button id="unimplemented-button">Show Unimplemented</button>
+                </div>
+
+                <div class="form-group">
+                    <label> <input type="checkbox" id="track-all" checked /> Track all requirements </label>
+                </div>
+
+                <div id="requirement-selection" style="display: none">
+                    <div class="form-group">
+                        <label>Select requirements to track:</label>
+                        <div
+                            id="requirements-checklist"
+                            style="
+                                max-height: 200px;
+                                overflow-y: auto;
+                                margin-top: 5px;
+                                border: 1px solid var(--vscode-panel-border);
+                                padding: 5px;
+                            "
+                        >
+                            <!-- Dynamically populated -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="results-tab" class="tab-content">
+                <h2>Tracking Results</h2>
+
+                <div id="summary-section" style="display: none">
+                    <h3>Implementation Summary</h3>
+                    <div class="summary-chart">
+                        <div id="chart-implemented" class="chart-implemented" style="width: 0%"></div>
+                        <div id="chart-partially" class="chart-partially" style="width: 0%"></div>
+                        <div id="chart-not-implemented" class="chart-not-implemented" style="width: 0%"></div>
+                    </div>
+
+                    <div class="summary-legend">
+                        <div class="legend-item">
+                            <div class="legend-color chart-implemented"></div>
+                            <span id="legend-implemented">Implemented: 0</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color chart-partially"></div>
+                            <span id="legend-partially">Partially: 0</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color chart-not-implemented"></div>
+                            <span id="legend-not-implemented">Not Implemented: 0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="requirements-results">
+                    <p>No tracking results yet. Go to the Track tab to analyze requirements.</p>
+                </div>
+            </div>
+        </div>
+
+        <script nonce="{{nonce}}" src="{{scriptTrackerUri}}"></script>
+    </body>
+</html>

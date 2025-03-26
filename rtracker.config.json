@@ -1,0 +1,17 @@
+{
+  "filters": {
+    "path": {
+      "include": [],
+      "exclude": ["**/Projects/**"]
+    },
+    "file_extension": {
+      "include": ["md"],
+      "exclude": []
+    },
+    "requirements": {
+      "req-1": {
+        "search_path": ["./ADC/"]
+      }
+    }
+  }
+}
