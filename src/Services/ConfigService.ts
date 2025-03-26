@@ -15,9 +15,7 @@ export default class ConfigService {
     const globalConfig = workspace.getConfiguration("reqTracker");
     const projectConfig: Partial<Config> = this._getLocalConfig();
 
-    console.log("From GetConfig fsdfsdfsdf", projectConfig);
-    console.log("From GetConfig fsdfsdfsdf", projectConfig);
-
+    console.log("From GetConfig", projectConfig);
 
     return {
       endpoint: projectConfig?.endpoint ?? globalConfig[ConfigKey.ENDPOINT],
@@ -44,10 +42,9 @@ export default class ConfigService {
     try {
       const rawConfig = JSON.parse(this._fileSystemService.read("rtracker.config.json"));
 
-      console.log("From _getLocalConfig", rawConfig);
-
       // Validation
       const validConfig: Partial<Config> = {};
+
       // Only use values with the correct type
       if (
         ConfigKey.ENDPOINT in rawConfig &&
