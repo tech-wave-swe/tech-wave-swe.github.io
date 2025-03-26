@@ -8,5 +8,12 @@
 src/**/*.pdf
 output/**/*.pdf
 modified_files.txt
+
+# Node.js
 node_modules
+
+# Extension build directory
 out
+
+# IDE specific folders
+**/.idea/
