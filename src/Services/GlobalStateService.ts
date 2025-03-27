@@ -8,27 +8,27 @@ export enum StateKeys {
 }
 
 export class GlobalStateService {
-  private _context: vscode.ExtensionContext;
+  private _globalState: vscode.ExtensionContext["globalState"];
 
-  constructor(context: vscode.ExtensionContext) {
-    this._context = context;
+  constructor(globalState: vscode.ExtensionContext["globalState"]) {
+    this._globalState = globalState;
   }
 
   public async updateState(
     stateKey: StateKeys,
     data: ChatMessage[] | Requirement[],
   ) {
-    await this._context.globalState.update(stateKey, data);
+    await this._globalState.update(stateKey, data);
   }
 
   public getState(stateKey: StateKeys): ChatMessage[] | Requirement[] {
-    return this._context.globalState.get(stateKey, []);
+    return this._globalState.get(stateKey, []);
   }
 
   public async clearState(
     stateKey: StateKeys,
     resetValue: ChatMessage[] | Requirement[] = [],
   ) {
-    await this._context.globalState.update(stateKey, resetValue);
+    await this._globalState.update(stateKey, resetValue);
   }
 }

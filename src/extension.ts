@@ -60,7 +60,7 @@ function _initializeConfigService(context: vscode.ExtensionContext) {
 }
 
 function _initializeChatViewProvider(context: vscode.ExtensionContext) {
-  const globalStateService = new GlobalStateService(context);
+  const globalStateService = new GlobalStateService(context.globalState);
   const chatService = new ChatService(globalStateService);
 
   const lanceDBAdapter = new LangChainLanceDBAdapter(context.globalStorageUri.fsPath);
@@ -86,7 +86,7 @@ function _initializeChatViewProvider(context: vscode.ExtensionContext) {
 function _initializeTrackerViewProvider(context: vscode.ExtensionContext) {
 
   const parsingService = new ParsingService();
-  const requirementsService = new RequirementsService(new GlobalStateService(context));
+  const requirementsService = new RequirementsService(new GlobalStateService(context.globalState));
 
   const lanceDBAdapter = new LangChainLanceDBAdapter(context.globalStorageUri.fsPath);
   const embeddingService = new DocumentEmbeddingService(lanceDBAdapter);
@@ -131,7 +131,7 @@ function _handleEvents(context: vscode.ExtensionContext) {
 function _initializeCommands(context: vscode.ExtensionContext) {
   const vectorDatabase = new LangChainLanceDBAdapter(context.globalStorageUri.fsPath);
 
-  const globalStateService = new GlobalStateService(context);
+  const globalStateService = new GlobalStateService(context.globalState);
   const chatService = new ChatService(globalStateService);
 
   const documentFormatterService = new DocumentFormatterService();
