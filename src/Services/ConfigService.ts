@@ -1,8 +1,12 @@
-import {Config, ConfigKey} from "../Models/Config";
+import { Config, ConfigKey } from "../Models/Config";
 
-import {workspace} from "vscode";
-import {FileExtensionFilter, PathFilter, RequirementFilter} from "../Models/Filter";
-import {FileSystem} from "../Interfaces/FileSystem";
+import { workspace } from "vscode";
+import {
+  FileExtensionFilter,
+  PathFilter,
+  RequirementFilter,
+} from "../Models/Filter";
+import { FileSystem } from "../Interfaces/FileSystem";
 
 export default class ConfigService {
   private _fileSystemService: FileSystem;
@@ -15,7 +19,8 @@ export default class ConfigService {
     const globalConfig = workspace.getConfiguration("reqTracker");
     const projectConfig: Partial<Config> = this._getLocalConfig();
 
-    console.log("From GetConfig", projectConfig);
+    console.log("From GetConfig fsdfsdfsdf", globalConfig);
+    console.log("From GetConfig fsdfsdfsdf", projectConfig);
 
     return {
       endpoint: projectConfig?.endpoint ?? globalConfig[ConfigKey.ENDPOINT],
@@ -31,20 +36,23 @@ export default class ConfigService {
       chunkOverlap:
         projectConfig?.chunkOverlap ?? globalConfig[ConfigKey.CHUNK_OVERLAP],
       filters: projectConfig?.filters ?? {
-        path: {type: "path", include: [], exclude: []},
-        file_extension: {type: "file_extension", include: [], exclude: []},
-        requirement: {}
+        path: { type: "path", include: [], exclude: [] },
+        file_extension: { type: "file_extension", include: [], exclude: [] },
+        requirement: {},
       },
     };
   }
 
   private _getLocalConfig(): Partial<Config> {
     try {
-      const rawConfig = JSON.parse(this._fileSystemService.read("rtracker.config.json"));
+      const rawConfig = JSON.parse(
+        this._fileSystemService.read("rtracker.config.json"),
+      );
+
+      console.log("From _getLocalConfig", rawConfig);
 
       // Validation
       const validConfig: Partial<Config> = {};
-
       // Only use values with the correct type
       if (
         ConfigKey.ENDPOINT in rawConfig &&
@@ -86,15 +94,15 @@ export default class ConfigService {
         validConfig.chunkOverlap = rawConfig.chunkOverlap;
       }
       if (ConfigKey.FILTERS in rawConfig) {
-        try {
-          validConfig.filters = {
-            path: this._validatePathFilters(rawConfig.filters.path),
-            file_extension: this._validateFileExtensionFilters(rawConfig.filters.file_extension),
-            requirement: this._validateRequirementFilters(rawConfig.filters.requirements)
-          };
-        } catch (error) {
-          console.error("Error parsing filters", error);
-        }
+        validConfig.filters = {
+          path: this._validatePathFilters(rawConfig.filters.path),
+          file_extension: this._validateFileExtensionFilters(
+            rawConfig.filters.file_extension,
+          ),
+          requirement: this._validateRequirementFilters(
+            rawConfig.filters.requirements,
+          ),
+        };
       }
 
       console.log("Local config loaded:", validConfig);
@@ -108,7 +116,9 @@ export default class ConfigService {
     }
   }
 
-  private _validatePathFilters(filter: { include: string[], exclude: string[] } | undefined): PathFilter {
+  private _validatePathFilters(
+    filter: { include: string[]; exclude: string[] } | undefined,
+  ): PathFilter {
     return {
       type: "path",
       include: filter?.include ?? [],
@@ -116,10 +126,14 @@ export default class ConfigService {
     };
   }
 
-  private _validateFileExtensionFilters(filter: {
-    include: string[],
-    exclude: string[]
-  } | undefined): FileExtensionFilter {
+  private _validateFileExtensionFilters(
+    filter:
+      | {
+          include: string[];
+          exclude: string[];
+        }
+      | undefined,
+  ): FileExtensionFilter {
     return {
       type: "file_extension",
       include: filter?.include ?? [],
@@ -127,20 +141,23 @@ export default class ConfigService {
     };
   }
 
-  private _validateRequirementFilters(filters: never[] | undefined): Record<string, RequirementFilter> {
+  private _validateRequirementFilters(
+    filters: never[] | undefined,
+  ): Record<string, RequirementFilter> {
     console.log("From validateRequirementFilters", filters);
 
-    if (!filters)
-      return {};
+    if (!filters) return {};
 
     const temp: Record<string, RequirementFilter> = {};
 
-    Object.entries(filters).map(([key, value]: [string, { search_path: string[] }]) => {
-      temp[key] = {
-        type: "requirement",
-        search_path: value.search_path ?? [],
-      };
-    });
+    Object.entries(filters).map(
+      ([key, value]: [string, { search_path: string[] }]) => {
+        temp[key] = {
+          type: "requirement",
+          search_path: value.search_path ?? [],
+        };
+      },
+    );
 
     console.log("From validateRequirementFilters", temp);
 
