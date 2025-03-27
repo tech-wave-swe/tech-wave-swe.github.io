@@ -213,6 +213,8 @@
     "@jest/globals": "^29.7.0",
     "@stylistic/eslint-plugin": "2.11.0",
     "@types/glob": "^8.1.0",
+    "@types/jest": "^29.5.14",
+    "@types/mocha": "^10.0.10",
     "@types/node": "^16.11.7",
     "@types/vscode": "^1.60.0",
     "@types/xml2js": "^0.4.11",
