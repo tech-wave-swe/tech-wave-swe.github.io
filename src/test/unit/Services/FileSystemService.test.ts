@@ -11,6 +11,12 @@ describe('FileSystemService', () => {
   const mockFilePath = 'test.txt';
   const mockFullPath = path.resolve(mockRootFolder, mockFilePath);
 
+  let fileSystemService: FileSystemService;
+
+  beforeEach(() => {
+    fileSystemService = new FileSystemService(mockRootFolder);
+  });
+
   describe('read method', () => {
     it('should read file successfully', () => {
       // Arrange
@@ -20,7 +26,6 @@ describe('FileSystemService', () => {
       (fs.readFileSync as jest.Mock).mockReturnValue(mockFileContent);
 
       // Act
-      const fileSystemService = new FileSystemService(mockRootFolder);
       const result = fileSystemService.read(mockFilePath);
 
       // Assert
@@ -38,7 +43,6 @@ describe('FileSystemService', () => {
       });
 
       // Act & Assert
-      const fileSystemService = new FileSystemService(mockRootFolder);
       expect(() => fileSystemService.read(mockFilePath)).toThrow(
         `Error reading file ${mockFullPath}: ${mockError}`
       );
