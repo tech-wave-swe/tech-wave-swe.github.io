@@ -29,6 +29,7 @@ module.exports = {
   // Specify which files to collect coverage from
   collectCoverageFrom: [
     "src/**/*.ts",
+    "!src/test/**/*.ts",
     "!src/**/*.d.ts",
     "!src/extension.ts", // Exclude main extension file if needed
     "!**/node_modules/**",
