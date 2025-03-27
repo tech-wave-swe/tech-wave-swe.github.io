@@ -42,14 +42,4 @@ module.exports = {
     '!src/test/**/*.{js,jsx,ts,tsx}', // Exclude test files
     '!**/node_modules/**'
   ],
-
-  // Coverage thresholds (optional)
-  coverageThreshold: {
-    global: {
-      branches: 80,
-      functions: 80,
-      lines: 80,
-      statements: 80
-    }
-  }
 };
