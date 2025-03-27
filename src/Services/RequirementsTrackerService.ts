@@ -8,7 +8,7 @@ import { IVectorDatabase } from "../Interfaces/IVectorDatabase";
 import { DocumentServiceFacade } from "../Facades/DocumentServiceFacade";
 import { QueryResult } from "../Models/QueryResult";
 import * as vscode from "vscode";
-import {FilterService} from "./FilterService";
+import { FilterService } from "./FilterService";
 
 export class RequirementsTrackerService {
   private _vectorDatabase: IVectorDatabase;
@@ -250,11 +250,6 @@ export class RequirementsTrackerService {
     };
   }
 
-  private _estimateLineNumber(chunkIndex: number, text: string): number {
-    // Use chunk index if available, otherwise default to line 1
-    return (chunkIndex || 0) * 20 + 1;
-  }
-
   private _determineImplementationStatus(
     codeReferences: CodeReference[],
   ): "implemented" | "partially-implemented" | "not-implemented" {
@@ -297,7 +292,7 @@ export class RequirementsTrackerService {
     return (text.match(/\n/g) || []).length + 1;
   }
 
-  private _getFilters(): {include: string, exclude: string} {
+  private _getFilters(): { include: string; exclude: string } {
     const extensionFileFilters = this._filterService.getFileExtensionFilter();
     const pathFilters = this._filterService.getPathFilter();
 
@@ -338,7 +333,7 @@ export class RequirementsTrackerService {
       }
     }
 
-    return {include: pathInclude, exclude: pathExclude};
+    return { include: pathInclude, exclude: pathExclude };
   }
 
   private async _findWorkspaceCodeFiles(): Promise<string[]> {
@@ -349,7 +344,7 @@ export class RequirementsTrackerService {
       return [];
     }
 
-    const {include: pathInclude, exclude: pathExclude} = this._getFilters();
+    const { include: pathInclude, exclude: pathExclude } = this._getFilters();
 
     for (const folder of workspaceFolders) {
       const files = await vscode.workspace.findFiles(
