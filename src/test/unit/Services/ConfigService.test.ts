@@ -1,13 +1,65 @@
 import { describe, expect, it, jest } from "@jest/globals";
 import ConfigService from "../../../Services/ConfigService";
-import { Config } from "../../../Models/Config";
-import { MockFileSystemService } from "../Mock/FileSystemMock";
+import FileSystemService from "../../../Services/FileSystemService";
 import { workspace } from "../Mock/vscode";
+import { Config } from "../../../Models/Config";
 
 describe("ConfigService", () => {
-  const configService = new ConfigService(MockFileSystemService);
+  let fileSystemService: jest.Mocked<FileSystemService>;
+  let configService: ConfigService;
+
+  beforeEach(() => {
+    // Create a mock FileSystemService
+    fileSystemService = {
+      read: jest.fn(),
+    } as unknown as jest.Mocked<FileSystemService>;
+
+    // Create ConfigService instance with mocked FileSystemService
+    configService = new ConfigService(fileSystemService);
+
+    // Mock workspace.getConfiguration to return default values
+    (workspace.getConfiguration as jest.Mock).mockReturnValue({
+      endpoint: "http://global-endpoint",
+      model: "global-model",
+      embeddingModel: "global-embedding-model",
+      temperature: 0.5,
+      chunkOverlap: 100,
+      chunkSize: 500,
+      maxResults: 3,
+    });
+  });
 
   it("should get config value of type Config", () => {
+    fileSystemService.read.mockImplementation(() => {
+      return JSON.stringify({
+        endpoint: "http://localhost:11434",
+        model: "qwen2.5-coder:7b",
+        embeddingModel: "nomic-embed-text:latest",
+        temperature: 0.7,
+        chunkOverlap: 200,
+        chunkSize: 1000,
+        maxResults: 5,
+        filters: {
+          path: {
+            type: "path",
+            include: [],
+            exclude: ["**/Projects/**"],
+          },
+          file_extension: {
+            type: "file_extension",
+            include: ["md"],
+            exclude: [],
+          },
+          requirements: {
+            req1: {
+              type: "requirement",
+              search_path: ["./ADC/"],
+            },
+          },
+        },
+      });
+    });
+
     const testConfig: Config = {
       endpoint: "http://localhost:11434",
       model: "qwen2.5-coder:7b",
@@ -40,26 +92,13 @@ describe("ConfigService", () => {
   });
 
   it("should load and merge local config values", () => {
-    const mockFileSystemPartial = {
-      read: jest.fn<(path: string) => string>().mockReturnValue(
-        JSON.stringify({
-          endpoint: "http://local-endpoint",
-          model: "local-model",
-        }),
-      ),
-    };
+    fileSystemService.read.mockImplementation(() => {
+      return JSON.stringify({
+        endpoint: "http://local-endpoint",
+        model: "local-model",
+      });
+    });
 
-    workspace.getConfiguration.mockReturnValue({
-      endpoint: "http://global-endpoint",
-      model: "global-model",
-      embeddingModel: "global-embedding-model",
-      temperature: 0.5,
-      chunkOverlap: 100,
-      chunkSize: 500,
-      maxResults: 3,
-    } as Config);
-
-    const configService = new ConfigService(mockFileSystemPartial);
     const config = configService.GetConfig();
 
     // Local values should override global ones
@@ -80,23 +119,10 @@ describe("ConfigService", () => {
   });
 
   it("should load from global if local config is not found", () => {
-    const mockFileSystemEmpty = {
-      read: jest
-        .fn<(path: string) => string>()
-        .mockReturnValue(JSON.stringify({})),
-    };
+    fileSystemService.read.mockImplementation(() => {
+      return JSON.stringify({});
+    });
 
-    workspace.getConfiguration.mockReturnValue({
-      endpoint: "http://global-endpoint",
-      model: "global-model",
-      embeddingModel: "global-embedding-model",
-      temperature: 0.5,
-      chunkOverlap: 100,
-      chunkSize: 500,
-      maxResults: 3,
-    } as Config);
-
-    const configService = new ConfigService(mockFileSystemEmpty);
     const config = configService.GetConfig();
 
     expect(config).toEqual({
@@ -117,24 +143,14 @@ describe("ConfigService", () => {
 
   it("should handle invalid local config values", () => {
     // Mock invalid local config
-    const mockFileSystemInvalid = {
-      read: jest.fn<(path: string) => string>().mockReturnValue(
-        JSON.stringify({
-          endpoint: 123, // wrong type
-          temperature: "invalid", // wrong type
-          filters: "not-an-object", // wrong type
-        }),
-      ),
-    };
+    fileSystemService.read.mockImplementation(() => {
+      return JSON.stringify({
+        endpoint: 123, // wrong type
+        temperature: "invalid", // wrong type
+        filters: "not-an-object", // wrong type
+      });
+    });
 
-    // Mock global config
-    workspace.getConfiguration.mockReturnValue({
-      endpoint: "http://global-endpoint",
-      model: "global-model",
-      temperature: 0.5,
-    } as Config);
-
-    const configService = new ConfigService(mockFileSystemInvalid);
     const config = configService.GetConfig();
 
     // Should use global values for invalid local ones
@@ -149,11 +165,10 @@ describe("ConfigService", () => {
 
   it("should handle empty or malformed local config file", () => {
     // Mock malformed JSON
-    const mockFileSystemMalformed = {
-      read: jest.fn<(path: string) => string>().mockReturnValue("invalid json"),
-    };
+    fileSystemService.read.mockImplementation(() => {
+      return "invalid json";
+    });
 
-    const configService = new ConfigService(mockFileSystemMalformed);
     const config = configService.GetConfig();
 
     // Should fall back to defaults/global config
@@ -163,25 +178,22 @@ describe("ConfigService", () => {
 
   it("should handle missing search path from requirementfilters", () => {
     // Mock invalid local config
-    const mockFileSystemInvalid = {
-      read: jest.fn<(path: string) => string>().mockReturnValue(
-        JSON.stringify({
-          filters: {
-            requirements: {
-              req2: {
-                type: "requirement",
-                search_path: ["./ADC/"],
-              },
-              req1: {
-                type: "requirement",
-              },
+    fileSystemService.read.mockImplementation(() => {
+      return JSON.stringify({
+        filters: {
+          requirements: {
+            req2: {
+              type: "requirement",
+              search_path: ["./ADC/"],
+            },
+            req1: {
+              type: "requirement",
             },
           },
-        }),
-      ),
-    };
+        },
+      });
+    });
 
-    const configService = new ConfigService(mockFileSystemInvalid);
     const config = configService.GetConfig();
 
     console.log(config);

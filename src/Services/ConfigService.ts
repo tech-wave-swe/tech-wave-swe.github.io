@@ -6,12 +6,12 @@ import {
   PathFilter,
   RequirementFilter,
 } from "../Models/Filter";
-import { FileSystem } from "../Interfaces/FileSystem";
+import FileSystemService from "./FileSystemService";
 
 export default class ConfigService {
-  private _fileSystemService: FileSystem;
+  private _fileSystemService: FileSystemService;
 
-  constructor(fileSystemService: FileSystem) {
+  constructor(fileSystemService: FileSystemService) {
     this._fileSystemService = fileSystemService;
   }
 
@@ -146,7 +146,9 @@ export default class ConfigService {
   ): Record<string, RequirementFilter> {
     console.log("From validateRequirementFilters", filters);
 
-    if (!filters) return {};
+    if (!filters) {
+      return {};
+    }
 
     const temp: Record<string, RequirementFilter> = {};
 
