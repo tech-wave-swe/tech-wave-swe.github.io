@@ -1,4 +1,4 @@
-name: Test build
+name: Test Source Code
 
 on:
   pull_request:
@@ -44,3 +44,6 @@ jobs:
       - name: Run Tests
         run: |
           npm run test:jest
+
+      - name: Coveralls
+        uses: coverallsapp/github-action@v2

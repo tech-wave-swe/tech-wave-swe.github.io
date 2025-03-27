@@ -24,5 +24,32 @@ module.exports = {
   testPathIgnorePatterns: [
     '/node_modules/',
     '/dist/'
-  ]
+  ],
+
+  collectCoverage: true,
+
+  // Specify coverage reporters
+  coverageReporters: [
+    'text',      // Prints coverage summary to console
+    'lcov',      // Generates lcov.info file for Coveralls
+    'text-summary'
+  ],
+
+  // Specify which files to include in coverage
+  collectCoverageFrom: [
+    'src/**/*.{ts,tsx}',
+    '!src/Models/**/*.ts',      // Exclude type definition files
+    '!src/test/**/*.{js,jsx,ts,tsx}', // Exclude test files
+    '!**/node_modules/**'
+  ],
+
+  // Coverage thresholds (optional)
+  coverageThreshold: {
+    global: {
+      branches: 80,
+      functions: 80,
+      lines: 80,
+      statements: 80
+    }
+  }
 };
