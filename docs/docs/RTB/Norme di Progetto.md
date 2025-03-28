@@ -53,11 +53,11 @@ Table: Changelog
 
 ## Introduzione
 
-### Scopo del Documento
+### Scopo del documento
 
 Lo scopo del documento è quello di definire le norme che ogni componente del gruppo TechWave dovrà rispettare per ottenere un <Term popup="Insieme di artefatti raccolti ed esposti in modo organizzato che permettono l'utilizzo di un programma da parte di un utente." reference="/docs/RTB/Termini/Prodotto">prodotto</Term> finale fatto a regola d'arte. In questo documento, inoltre, vengono descritte le convenzioni da rispettare nell'utilizzo degli strumenti e vengono esposti i <Term popup="Insieme di attività correlate e coese che trasformano bisogni in prodotti, secondo regole definite e consumando risorse." reference="/docs/RTB/Termini/Processo">processi</Term> che saranno adottati dal gruppo. Questo documento è redatto seguendo un approccio incrementale, in quanto durante tutta la durata del <Term popup="Insieme di attività che devono raggiungere determinati obiettivi a partire da determinate specifiche, che hanno una data d’inizio e una data di fine prefissate, che dispongono di risorse limitate e che consumano risorse nel loro svolgersi." reference="/docs/RTB/Termini/Progetto">progetto</Term> possono cambiare oppure si possono aggiungere/rimuovere le norme a seconda delle necessità.
 
-### Scopo del Prodotto
+### Scopo del prodotto
 
 Nello sviluppo di software per sistemi embedded la parte di controllo dell'implementazione di tutti i <Term popup="Una specifica funzionale o non funzionale che il software deve soddisfare." reference="/docs/RTB/Termini/Requisito_Software">requisiti</Term> necessari al corretto funzionamento dello stesso risulta costosa e ripetitiva da parte dello sviluppatore, inoltre può risultare non esaustiva a causa di distrazioni o dimenticanze. Il <Term popup="Documento che descrive in modo dettagliato i requisiti, le specifiche e le aspettative di un progetto." reference="/docs/RTB/Termini/Capitolato">capitolato</Term> \*\*\_Requirement Tracker - Plug-in VSCode\*\*\* propone lo sviluppo di un <Term popup="Componente software aggiuntivo che estende le funzionalità di un'applicazione principale." reference="/docs/RTB/Termini/Plugin">plugin</Term> per <Term popup="Visual Studio Code. Editor di codice sorgente sviluppato da Microsoft, gratuito, open-source, leggero e con una ampia gamma di estensioni." reference="/docs/RTB/Termini/VSCode">VSCode</Term> che permetta di tracciare i <Term popup="Una specifica funzionale o non funzionale che il software deve soddisfare." reference="/docs/RTB/Termini/Requisito_Software">requisiti</Term> derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari <Term popup="Una specifica funzionale o non funzionale che il software deve soddisfare." reference="/docs/RTB/Termini/Requisito_Software">requisiti</Term> in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
 
@@ -83,11 +83,11 @@ Riferimenti informativi:
 
 > [https://www.math.unipd.it/\~tullio/IS-1/2024/Dispense/T02.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T02.pdf)
 
-## Processi Primari
+## Processi primari
 
 ### Fornitura
 
-#### Descrizione e Scopo
+#### Descrizione e scopo
 
 Come stabilito dallo standard ISO/IEC 12207, il %%processo|processo%% di fornitura definisce un insieme di metodi, pratiche e procedure finalizzati a garantire la consegna del %%prodotto|prodotto%% software richiesto dal %%committente|committente%%.
 Questo %%processo|processo%% si occupa del monitoraggio e del coordinamento delle %%attività|attività%% svolte dal gruppo durante l'intero ciclo di vita del %%prodotto|prodotto%%, assicurando che il risultato finale sia conforme alle aspettative del %%committente|committente%%.
@@ -125,23 +125,23 @@ All'azienda viene fornito un puntatore contenente tutta la documentazione di %%p
 
 Di seguito sono elencati i documenti che il gruppo si impegna a consegnare ai Committenti, Prof. Tullio Vardanega e Prof. Riccardo Cardin, nonchè all'azienda proponente:
 
-##### Analisi dei Requisiti
+##### Analisi dei requisiti
 
-L''%%Analisi dei Requisiti|analisi_dei_requisiti%% fornisce una descrizione dettagliata delle %%funzionalità|funzionalità%% previste per il %%prodotto|prodotto%% software, specificando con precisione i %%requisiti|requisito_software%% e i relativi casi d'uso. L'obiettivo principale di questo documento è di eliminare ogni ambiguità che potrebbe sorgere durante la lettura del capitolato. Contiene le sezioni di descrizione del %%prodotto|prodotto%%, casi d'uso e '%%Analisi dei Requisiti|analisi_dei_requisiti%%.
+L''%%Analisi dei requisiti|analisi_dei_requisiti%% fornisce una descrizione dettagliata delle %%funzionalità|funzionalità%% previste per il %%prodotto|prodotto%% software, specificando con precisione i %%requisiti|requisito_software%% e i relativi casi d'uso. L'obiettivo principale di questo documento è di eliminare ogni ambiguità che potrebbe sorgere durante la lettura del capitolato. Contiene le sezioni di descrizione del %%prodotto|prodotto%%, casi d'uso e '%%Analisi dei Requisiti|analisi_dei_requisiti%%.
 
-##### Piano di Progetto
+##### Piano di progetto
 
 Il Piano di %%progetto|progetto%% è un documento il cui fine è quello di definire in modo chiaro le modalità con cui ogni membro svolgerà le %%attività|attività%% per la realizzazione del %%progetto|progetto%%. Include L'analisi dei rischi, il modello di sviluppo e la pianificazione.
 
-##### Piano di Qualifica
+##### Piano di qualifica
 
-Il Piano di Qualifica è un documento essenziale il quale ha obiettivo di garantire la qualità del %%prodotto|prodotto%% e dei %%processi|processo%% durante l'intero ciclo di vita del %%progetto|progetto%%. Verrà aggiornato nel tempo per riflettere eventuali modifiche e risultati. Include le sezioni di qualità del %%processo|processo%%, qualità del %%prodotto|prodotto%%, specifica dei %%test|test%%, cruscotto di valutazione e valutazione di miglioramento.
+Il Piano di qualifica è un documento essenziale il quale ha obiettivo di garantire la qualità del %%prodotto|prodotto%% e dei %%processi|processo%% durante l'intero ciclo di vita del %%progetto|progetto%%. Verrà aggiornato nel tempo per riflettere eventuali modifiche e risultati. Include le sezioni di qualità del %%processo|processo%%, qualità del %%prodotto|prodotto%%, specifica dei %%test|test%%, cruscotto di valutazione e valutazione di miglioramento.
 
 ##### Glossario
 
 Il Glossario ha lo scopo di definire in modo chiaro i termini tecnici e gli acronimi impiegati, al fine di agevolare la comprensione dei concetti fondamentali contenuti nella documentazione prodotta.
 
-##### Lettera di Presentazione
+##### Lettera di presentazione
 
 La lettera di Presentazione è un documento che accompagna la consegna di un %%prodotto|prodotto%% software e della relativa documentazione durante le fasi di revisione del %%progetto|progetto%%. Questo documento contiene l'elenco della documentazione redatta, la quale sarà consegnata ai committenti. Sono presenti diverse lettere di presentazione, il cui contesto è determinato dalla cartella in cui sono collocate.
 
@@ -169,11 +169,11 @@ Lo scopo del %%processo|processo%% di sviluppo è definire i compiti e le %%atti
 L'obiettivo è consegnare un %%prodotto|prodotto%% software di alta qualità, che soddisfi le esigenze richieste, rispettando le tempistiche e garantendo il successo del %%progetto|progetto%%.
 Nello specifico, sono dettagliate le seguenti %%attività|attività%%: 
 
-#### Analisi dei Requisiti
+#### Analisi dei requisiti
 
 ##### Descrizione e scopo
 
-L''%%Analisi dei Requisiti|analisi_dei_requisiti%% rappresenta una fase fondamentale nel %%processo|processo%% di sviluppo software, in quanto getta le basi per le successive %%attività|attività%% di progettazione, implementazione e verifica del sistema. Attraverso il confronto con il committente, vengono individuati gli attori, i casi d’uso e i %%requisiti|requisito_software%% funzionali, tecnici e qualitativi , fornendo una base solida per la progettazione, lo sviluppo e la verifica del %%prodotto|prodotto%%.
+L''%%Analisi dei requisiti|analisi_dei_requisiti%% rappresenta una fase fondamentale nel %%processo|processo%% di sviluppo software, in quanto getta le basi per le successive %%attività|attività%% di progettazione, implementazione e verifica del sistema. Attraverso il confronto con il committente, vengono individuati gli attori, i casi d’uso e i %%requisiti|requisito_software%% funzionali, tecnici e qualitativi , fornendo una base solida per la progettazione, lo sviluppo e la verifica del %%prodotto|prodotto%%.
 Questa %%attività|attività%% consente di documentare e validare le aspettative del committente, facilitare la comunicazione all’interno del team e supportare la pianificazione del %%progetto|progetto%% in termini di tempi, costi e qualità. Il risultato dell’analisi è raccolto nell’apposito documento che è un riferimento chiave per tutte le %%attività|attività%% del %%progetto|progetto%%.
 
 ##### Struttura dei casi d'uso
@@ -252,7 +252,7 @@ L’obiettivo principale di questa %%attività|attività%% è la realizzazione d
 
 
 
-## Processi di Supporto
+## Processi di supporto
 
 ### Documentazione
 
@@ -267,13 +267,13 @@ L'approccio **Documentazione come Codice** permette di ottenere una migliore tra
 - Automazioni
 - Integrazione Continua
 
-#### Sorgente Documenti
+#### Sorgente documenti
 
 La documentazione sarà redatta utilizzando il linguaggio **MarkDown** la cui semplicità consente di velocizzare il %%processo|processo%% di scrittura garantendo, al contempo, la portabilità e la facilità di conversione in formati diversi.
 
 La documentazione prodotta, archiviata nello stesso %%repository|repository%% del %%progetto|progetto%%, è pensata per essere visualizzata tramite un sito web generato a partire dai file sorgenti tramite l'utilizzo di **%%Docusaurus|docusaurus%%**. Ogni documento è formato da un singolo file sorgente a partire da un template predefinito.
 
-#### Ciclo di vita dei Documenti
+#### Ciclo di vita dei documenti
 
 Il ciclo di vita dei documenti può essere rappresentato come una sequenza di %%attività|attività%%. Adattando un approccio incrementale alla redazione della documentazione queste fasi vengono ripetute in modo ciclico:
 
@@ -389,7 +389,7 @@ La sezione dettaglio documento contiene le informazioni principali del documento
 - **Classificazione**: rappresenta la classificazione del documento. Può assumere i valori Interno ed Esterno.
 - **Versione**: Rappresenta la versione del documento corrente. Corrisponde alla versione presente nella prima riga del registro delle modifiche.
 
-###### Toc e Lof
+###### TOC e LOF
 
 Il TOC (Tabella dei contenuti) rappresenta l'indice della pagina. La sua presenza agevola la navigazione all'interno del documento e ne fornisce una visione d'insieme. Deve essere presente in tutti i documenti fatta eccezione per:
 
@@ -438,9 +438,9 @@ I %%verbali|verbale%% sono documento redatti a seguito di riunioni interne o est
   - **AAAA-MM-GG**: Data della riunione
   - **ID**: Indice progressivo che rappresenta il %%verbale|verbale%%.
 
-###### Documento di Analisi dei Requisiti
+###### Documento di analisi dei requisiti
 
-Il documento dell''%%Analisi dei Requisiti|analisi_dei_requisiti%% è il risultato di quanto svolto nell'%%attività|attività%% omologa. Al suo interno sono presenti:
+Il documento dell''%%analisi dei requisiti|analisi_dei_requisiti%% è il risultato di quanto svolto nell'%%attività|attività%% omologa. Al suo interno sono presenti:
 
 - Un paragrafo dedicato a specificare lo **scopo del documento**.
 - Un paragrafo dedicato a specificare lo **scopo del %%prodotto|prodotto%%**.
@@ -463,9 +463,9 @@ Il documento dell''%%Analisi dei Requisiti|analisi_dei_requisiti%% è il risulta
   - **Generalizza** \[se presente\]: %%use case|use_case%% genitore.
   - **Estensioni** \[se presenti\]: %%use case|use_case%% che arrivano dal costrutto extend.
 
-###### Documento di Piano di Progetto
+###### Documento di piano di progetto
 
-Il documento di Piano di %%Progetto|progetto%% rappresenta tutta la parte di pianificazione e di analisi del %%progetto|progetto%% prodotta dal responsabile. Al suo interno sono presenti:
+Il documento di piano di %%progetto|progetto%% rappresenta tutta la parte di pianificazione e di analisi del %%progetto|progetto%% prodotta dal responsabile. Al suo interno sono presenti:
 
 - Un paragrafo dedicato a specificare lo **scopo del documento**.
 - Un paragrafo dedicato a specificare lo **scopo del %%prodotto|prodotto%%**.
@@ -474,7 +474,7 @@ Il documento di Piano di %%Progetto|progetto%% rappresenta tutta la parte di pia
 - Una sezione contenente il **%%preventivo|preventivo%% dei costi e delle ore** di ciascun ruolo definite al momento della pianificazione dello %%sprint|sprint%%.
 - Una sezione contenente il **%%consuntivo|consuntivo%% dei costi e delle ore** effettivamente svolte da ciascun ruolo, calcolate durante la %%retrospettiva|retrospettiva%%.
 
-##### Piano di Qualifica
+##### Piano di qualifica
 
 Il Piano di Qualifica contiene tutte le strategie di %%verifica|verifica%% e validazione utilizzate all'interno del ciclo di vita del %%progetto|progetto%% al fine di garantire la conformità del %%prodotto|prodotto%% alle aspettative del %%committente|committente%%.
 
@@ -568,11 +568,11 @@ Questo %%processo|processo%% si ripete fino alla soddisfazione dei criteri di %%
 
 #### Analisi
 
-##### Analisi Statica
+##### Analisi statica
 
 L'Analisi Statica è un'%%attività|attività%% di controllo condotta sul %%prodotto|prodotto%% senza la necessità di eseguirlo. Si basa sull'utilizzo di metodo di lettura, manuali o automatici, che permettono di individuare errori formali, difetti o proprietà indesiderate all'interno dei documenti. Il successo di questa %%attività|attività%% dipende dalla competenza e dall'attenzione dei verificatori coinvolti.
 
-##### Analisi Dinamica
+##### Analisi dinamica
 
 L'Analisi Dinamica è un'%%attività|attività%% di controllo condotta sul %%prodotto|prodotto%% durante la sua esecuzione effettiva al fine di verificarne il corretto funzionamento.
 
@@ -630,7 +630,7 @@ Ad ogni %%test|test%% viene associato uno stato che ne riflette il risultato di 
 
 La validazione è il %%processo|processo%% che ha lo scopo di verificare, attraverso una dimostrazione oggettiva, che il %%prodotto|prodotto%% software sviluppato soddisfi pienamente i %%requisiti|requisito_software%% specificati e risponda in modo corretto alle esigenze degli utenti finali. Questa fase è fondamentale per assicurarsi che quanto realizzato sia effettivamente aderente alle aspettative del committente e conforme agli obiettivi definiti nelle fasi precedenti del %%progetto|progetto%%.
 
-#### Procedura di Validazione
+#### Procedura di validazione
 
 Il %%processo|processo%% di validazione prende come input i %%test|test%% effettuati sul %%prodotto|prodotto%% e valuta:
 
@@ -646,7 +646,7 @@ Se il %%processo|processo%% ha esito positivo il %%prodotto|prodotto%% risponde 
 
 La Gestione della Configurazione è il %%processo|processo%% volto a identificare, organizzare e controllare tutte le modifiche apportate agli artefatti prodotti durante il ciclo di vita del software. Il suo scopo è garantire tracciabilità, coerenza e controllo su ogni componente del sistema, assicurando che ogni versione del %%prodotto|prodotto%% sia correttamente documentata e gestita nel tempo.
 
-#### Sistema di Versionamento
+#### Sistema di versionamento
 
 Il sistema di %%versionamento|versionamento%% rappresenta le convenzioni utilizzate per la gestione delle versione di tutti i vari artefatti. La struttura utilizzata è rappresentata da: **X.Y.Z**.
 
@@ -668,7 +668,7 @@ Di seguito sono elencati tutti i %%repository|repository%% attualmente presenti:
 - DocumentStyle: Contiene le classi utilizzate per la generazione dei PDF.
   Riferimento: [https://github.com/tech-wave-swe/DocumentStyle](https://github.com/tech-wave-swe/DocumentStyle).
 
-##### Sincronizzazione e Branching
+##### Sincronizzazione e branching
 
 ##### Creazione di un nuovo branch di sviluppo
 
@@ -693,7 +693,7 @@ Spostarsi sul nuovo branch utilizzando il seguente formato:
 git checkout -B TWD-xx-Esempio-di-branch
 ```
 
-##### Creazione di una nuova Pull Request
+##### Creazione di una nuova pull request
 
 Le Pull Requests sono un meccanismo che consente di notificare il completamento di una %%funzionalità|funzionalità%% e richiederne la revisione. Un Pull Request fornisce un ambiente dedicato per discutere della %%funzionalità|funzionalità%% proposta, fornendo riscontri e apportando le modifiche necessarie.
 Per creare una nuova Pull Request:
@@ -744,7 +744,7 @@ Il %%processo|processo%% di Gestione dei %%Rischi|rischio%% ha l'obiettivo di id
 
 I %%rischi|rischio%% individuati all'interno del %%progetto|progetto%% sono specificati all'interno del Piano di %%Progetto|progetto%% nella sezione dedicata.
 
-##### Codifica dei Rischi
+##### Codifica dei rischi
 
 Per identificare univocamente ogni %%rischio|rischio%% esso viene associato ad un codice identificativo basato sulla seguente convenzione: **R [ Tipologia ] [ Indice ] - [ Nome Associato ]**, dove:
 
@@ -770,7 +770,7 @@ Il %%processo|processo%% di Gestione della %%Qualità|qualità%% ha l'obiettivo 
 
 Il %%processo|processo%% di Gestione della %%Qualità|qualità%% interessa tutto il ciclo di vita del software.
 
-#### Piano di Qualifica
+#### Piano di qualifica
 
 Tutte le %%attività|attività%% di definizione, pianificazione, controllo e revisione di %%qualità|qualità%% sono trattate all'interno del documento Piano di Qualifica. All'interno di questo documento sono definite in dettaglio le specifiche di %%qualità|qualità%% del %%prodotto|prodotto%% associate alle azioni di controllo necessarie.
 
