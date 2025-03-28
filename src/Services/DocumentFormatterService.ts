@@ -14,7 +14,10 @@ export class DocumentFormatterService {
     chunkOverlap = 0,
   ): string[] {
     // Use config values or defaults, with upper limits for safety
-    const size = Math.min(chunkSize || ConfigServiceFacade.GetInstance().getChunkSize(), 4000);
+    const size = Math.min(
+      chunkSize || ConfigServiceFacade.GetInstance().getChunkSize(),
+      4000,
+    );
     const overlap = Math.min(
       chunkOverlap || ConfigServiceFacade.GetInstance().getChunkOverlap(),
       200,
@@ -90,7 +93,7 @@ export class DocumentFormatterService {
   }
 
   // Helper method for handling large files or chunks
-  private _splitLargeText(text: string, maxChunkSize: number = 2000): string[] {
+  private _splitLargeText(text: string, maxChunkSize = 2000): string[] {
     const chunks: string[] = [];
 
     for (let i = 0; i < text.length; i += maxChunkSize) {
@@ -202,7 +205,7 @@ export class DocumentFormatterService {
       case "java":
       case "csharp":
         functionRegex =
-          /((?:public|private|protected|static|final|abstract|\s)*\s+[\w<>\[\]]+\s+[\w$]+\s*\([\s\S]*?\)\s*\{[\s\S]*?\})/g;
+          /((?:public|private|protected|static|final|abstract|\s)*\s+[\w<>[\]]+\s+[\w$]+\s*\([\s\S]*?\)\s*\{[\s\S]*?\})/g;
         break;
 
       default:

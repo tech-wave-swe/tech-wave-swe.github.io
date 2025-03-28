@@ -19,9 +19,6 @@ export default class ConfigService {
     const globalConfig = workspace.getConfiguration("reqTracker");
     const projectConfig: Partial<Config> = this._getLocalConfig();
 
-    console.log("From GetConfig fsdfsdfsdf", globalConfig);
-    console.log("From GetConfig fsdfsdfsdf", projectConfig);
-
     return {
       endpoint: projectConfig?.endpoint ?? globalConfig[ConfigKey.ENDPOINT],
       model: projectConfig?.model ?? globalConfig[ConfigKey.MODEL],
@@ -48,8 +45,6 @@ export default class ConfigService {
       const rawConfig = JSON.parse(
         this._fileSystemService.read("rtracker.config.json"),
       );
-
-      console.log("From _getLocalConfig", rawConfig);
 
       // Validation
       const validConfig: Partial<Config> = {};
@@ -105,8 +100,6 @@ export default class ConfigService {
         };
       }
 
-      console.log("Local config loaded:", validConfig);
-
       return validConfig;
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -144,8 +137,6 @@ export default class ConfigService {
   private _validateRequirementFilters(
     filters: never[] | undefined,
   ): Record<string, RequirementFilter> {
-    console.log("From validateRequirementFilters", filters);
-
     if (!filters) {
       return {};
     }
@@ -160,8 +151,6 @@ export default class ConfigService {
         };
       },
     );
-
-    console.log("From validateRequirementFilters", temp);
 
     return temp;
   }

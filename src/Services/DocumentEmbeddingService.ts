@@ -11,65 +11,60 @@ export class DocumentEmbeddingService {
   }
 
   public async embedDocument(document: FormattedDocument): Promise<void> {
-    try {
-      const collectionName = this.vectorDatabase.DOCUMENTS_COLLECTION;
+    const collectionName = this.vectorDatabase.DOCUMENTS_COLLECTION;
 
-      // Create LangChain documents for each chunk
-      const documents: Document[] = [];
+    // Create LangChain documents for each chunk
+    const documents: Document[] = [];
 
-      // Process each chunk with additional size checking
-      for (let i = 0; i < document.chunks.length; i++) {
-        const chunk = document.chunks[i];
+    // Process each chunk with additional size checking
+    for (let i = 0; i < document.chunks.length; i++) {
+      const chunk = document.chunks[i];
 
-        // Skip if chunk is too small or too large
-        if (chunk.trim().length < 10) {
-          continue;
-        }
+      // Skip if chunk is too small or too large
+      if (chunk.trim().length < 10) {
+        continue;
+      }
 
-        if (chunk.length > 8000) {
-          console.warn(
-            `Chunk ${i} in ${document.metadata.filePath || "unknown"} is too large (${chunk.length} chars), skipping`,
-          );
-          continue;
-        }
-
-        documents.push(
-          new Document({
-            pageContent: chunk,
-            metadata: {
-              ...document.metadata,
-              chunkIndex: i,
-              isChunk: true,
-              language: document.language,
-            },
-          }),
+      if (chunk.length > 8000) {
+        console.warn(
+          `Chunk ${i} in ${document.metadata.filePath || "unknown"} is too large (${chunk.length} chars), skipping`,
         );
+        continue;
       }
 
-      // Also add the original content if it's not too large
-      if (
-        document.originalContent.length > 0 &&
-        document.originalContent.length <= 4000
-      ) {
-        documents.push(
-          new Document({
-            pageContent: document.originalContent,
-            metadata: {
-              ...document.metadata,
-              isOriginal: true,
-              language: document.language,
-            },
-          }),
-        );
-      }
+      documents.push(
+        new Document({
+          pageContent: chunk,
+          metadata: {
+            ...document.metadata,
+            chunkIndex: i,
+            isChunk: true,
+            language: document.language,
+          },
+        }),
+      );
+    }
 
-      // Add all documents in one batch
-      if (documents.length > 0) {
-        await this.vectorDatabase.addDocuments(documents, collectionName);
-      }
-    } catch (error) {
-      console.error("Error embedding document:", error);
-      // Don't rethrow - just log and continue with other documents
+    // Also add the original content if it's not too large
+    if (
+      document.originalContent.length > 0 &&
+      document.originalContent.length <= 4000
+    ) {
+      documents.push(
+        new Document({
+          pageContent: document.originalContent,
+          metadata: {
+            ...document.metadata,
+            isOriginal: true,
+            language: document.language,
+          },
+        }),
+      );
+    }
+
+    // Add all documents in one batch
+    if (documents.length > 0) {
+      await this.vectorDatabase.addDocuments(documents, collectionName);
     }
   }
 
