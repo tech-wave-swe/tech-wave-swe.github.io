@@ -11,9 +11,12 @@ export const workspace = {
 };
 
 export const window = {
+  withProgress: jest.fn(),
   showInformationMessage: jest.fn(),
-  // Add other mocked methods as needed
+  showWarningMessage: jest.fn(),
 };
+
+export const ProgressLocation = { Notification: 15 };
 
 export const Uri = {
   file: jest.fn(),
