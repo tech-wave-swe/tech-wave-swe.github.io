@@ -18,6 +18,7 @@ import {ChatService} from "./Services/ChatService";
 import {GlobalStateService} from "./Services/GlobalStateService";
 import {RequirementsService} from "./Services/RequirementsService";
 import {FilterService} from "./Services/FilterService";
+import {ChatWebView} from "./WebViews/ChatWebView";
 
 export function activate(context: vscode.ExtensionContext) {
   try {
@@ -71,6 +72,7 @@ function _initializeChatViewProvider(context: vscode.ExtensionContext) {
   const chatWebviewProvider = new ChatWebviewProvider(
     chatService,
     inferenceService,
+    new ChatWebView(context.extensionUri),
     context.extensionUri,
   );
 

@@ -15,8 +15,14 @@ export const window = {
   // Add other mocked methods as needed
 };
 
+export const Uri = {
+  file: jest.fn(),
+  // Add other mocked methods as needed
+};
+
 // Add other VSCode modules you use
 export default {
   workspace,
   window,
+  Uri
 };

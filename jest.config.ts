@@ -3,8 +3,6 @@ module.exports = {
   // Specify the test match pattern to only run .test.ts files
   testMatch: ["<rootDir>/src/test/**/*.test.ts"],
 
-  verbose: true,
-
   // Specify file extensions to process
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
 

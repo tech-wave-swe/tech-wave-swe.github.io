@@ -9,16 +9,15 @@ import {ChatWebView} from "../WebViews/ChatWebView";
 export class ChatWebviewProvider implements vscode.WebviewViewProvider {
   private _webviewView?: vscode.WebviewView;
   private _inferenceService: InferenceService;
-  private readonly _extensionUri: vscode.Uri;
   private _chatWebView: ChatWebView;
-
+  private readonly _extensionUri: vscode.Uri;
   private _chatService: ChatService;
 
-  constructor(chatService: ChatService, inferenceService: InferenceService, extensionUri: vscode.Uri) {
+  constructor(chatService: ChatService, inferenceService: InferenceService, chatWebView: ChatWebView, extensionUri: vscode.Uri) {
     this._extensionUri = extensionUri;
     this._chatService = chatService;
     this._inferenceService = inferenceService;
-    this._chatWebView = new ChatWebView(extensionUri);
+    this._chatWebView = chatWebView;
   }
 
   public resolveWebviewView(

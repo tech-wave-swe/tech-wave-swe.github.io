@@ -191,7 +191,7 @@
     "compile": "tsc -p ./",
     "lint": "eslint",
     "watch": "tsc -w -p ./",
-    "test:jest": "jest --verbose",
+    "test:jest": "jest",
     "test:coverage": "jest --coverage",
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "test": "node ./out/test/runTest.js",
