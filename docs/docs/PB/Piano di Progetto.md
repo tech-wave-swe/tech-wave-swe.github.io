@@ -5,7 +5,7 @@ documentclass: TWDocumentFull
 toc: true
 lof: true
 numbersections: true
-version: 2.4.3
+version: 2.4.4
 classification: Esterno
 ---
 
@@ -23,6 +23,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                                                                            | Autore                | Data Verifica | Verificatore          |
 |------------|----------|----------------------------------------------------------------------------------------|-----------------------|---------------|-----------------------|
+| 17/03/2025 | 2.4.4    | Aggiunta preventivo sprint 8                                                           | Carraro Agnese        | 18/03/2025    | Marcon Giulia         |
 | 30/03/2025 | 2.4.3    | Controllo consistenza maiuiscole                                                       | Dal Bianco Riccardo   | 30/03/2025    | Vasquez Manuel Felipe |
 | 10/03/2025 | 2.4.2    | Aggiunta preventivo sprint 7                                                           | Manuel Felipe Vasquez | 14/03/2025    | Monetti Luca          |
 | 07/03/2025 | 2.4.1    | Aggiunta consuntivo sprint 6                                                           | Marcon Giulia         | 07/03/2025    | Monetti Luca          |
@@ -685,6 +686,47 @@ A seguito si riporta la tabella del preventivo per il sesto %%sprint|sprint%%
 | _Bilancio_                |                | _8.304,70_ |
 
 Table: Preventivo Sprint 7
+
+
+##### Sprint 8
+
+- Periodo 17/03/2025 - 30/03/2025
+
+###### Pianificazione
+
+In questo periodo, il gruppo si concentrerà sulla progettazione e sul miglioramento della documentazione. 
+
+###### Ruoli
+
+A seguito si riporta la tabella con la suddivisione dei ruoli:
+
+| **Ruolo**                 | **Membri**                          |
+|---------------------------|-------------------------------------|
+| Responsabile di progetto  | Carraro Agnese                      |
+| Analista                  | Pistori Gaia, Piola Andrea          |
+| Progettista               | Monetti Luca                        |
+| Amministratore di sistema | Dal Bianco Riccardo                 |
+| Programmatore             | Manuel Felipe Vasquez               |
+| Verificatore              | Marcon Giulia                       |
+
+Table: Suddivisione ruoli Sprint 8
+
+###### Preventivo
+
+A seguito si riporta la tabella del preventivo per l'ottavo %%sprint|sprint%%:
+
+| Ruolo                     | Ore svolte (h) | Costo (€)  |
+|---------------------------|----------------|------------|
+| Responsabile di progetto  | 4,5            | 135        |
+| Analista                  | 20             | 500        |
+| Progettista               | 13             | 325        |
+| Amministratore di sistema | 14,7           | 294        |
+| Programmatore             | 12             | 180        |
+| Verificatore              | 2,82           | 42,3       |
+| _Totale_                  | _67,02_        | _1476,3_   |
+| _Bilancio_                |                | __         |
+
+Table: Preventivo Sprint 8
 
 
 <!-- ::: {.no-export} -->
