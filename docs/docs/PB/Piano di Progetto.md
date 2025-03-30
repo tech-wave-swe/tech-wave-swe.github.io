@@ -23,7 +23,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                                                                            | Autore                | Data Verifica | Verificatore          |
 |------------|----------|----------------------------------------------------------------------------------------|-----------------------|---------------|-----------------------|
-| 30/03/2025 | 2.4.4    | Aggiunta preventivo sprint 8                                                           | Carraro Agnese        | 30/03/2025    | Marcon Giulia         |
+| 17/03/2025 | 2.4.4    | Aggiunta preventivo sprint 8                                                           | Carraro Agnese        | 18/03/2025    | Marcon Giulia         |
 | 30/03/2025 | 2.4.3    | Controllo consistenza maiuiscole                                                       | Dal Bianco Riccardo   | 30/03/2025    | Vasquez Manuel Felipe |
 | 10/03/2025 | 2.4.2    | Aggiunta preventivo sprint 7                                                           | Manuel Felipe Vasquez | 14/03/2025    | Monetti Luca          |
 | 07/03/2025 | 2.4.1    | Aggiunta consuntivo sprint 6                                                           | Marcon Giulia         | 07/03/2025    | Monetti Luca          |
