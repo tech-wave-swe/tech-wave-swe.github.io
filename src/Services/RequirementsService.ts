@@ -45,6 +45,7 @@ export class RequirementsService {
     );
   }
 
+  // ToDo(MonettiLuca): Use cache layer instead of global state
   public getRequirements(): Requirement[] {
     return this._globalStateService.getState(
       StateKeys.REQUIREMENTS,
@@ -53,6 +54,7 @@ export class RequirementsService {
 
   public async clearRequirements(): Promise<void> {
     await this._globalStateService.clearState(StateKeys.REQUIREMENTS);
+    this._requirements.clear();
   }
 
   public getById(id: string): Requirement | undefined {
