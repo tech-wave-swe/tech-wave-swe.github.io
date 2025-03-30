@@ -5,7 +5,7 @@ documentclass: TWDocumentFull
 toc: true
 lof: true
 numbersections: true
-version: 2.4.2
+version: 2.4.3
 classification: Esterno
 ---
 
@@ -23,6 +23,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                                                                            | Autore                | Data Verifica | Verificatore        |
 |------------|----------|----------------------------------------------------------------------------------------|-----------------------|---------------|---------------------|
+| 30/03/2025 | 2.4.3    | Controllo consistenza maiuiscole                                                       | Dal Bianco Riccardo   |               |                     |
 | 10/03/2025 | 2.4.2    | Aggiunta preventivo sprint 7                                                           | Manuel Felipe Vasquez | 14/03/2025    | Monetti Luca        |
 | 07/03/2025 | 2.4.1    | Aggiunta consuntivo sprint 6                                                           | Marcon Giulia         | 07/03/2025    | Monetti Luca        |
 | 28/02/2025 | 2.4.0    | Aggiunta diagrammi Gantt                                                               | Piola Andrea          | 28/02/2025    | Marcon Giulia       |
@@ -52,11 +53,11 @@ Table: Changelog
 
 ## Introduzione
 
-### Scopo del Documento
+### Scopo del documento
 
 Il Piano di %%Progetto|progetto%% è un documento il cui scopo è quello di pianificare in modo preciso lo svolgimento del progetto, cercando di normare tempi e modalità. Più precisamente, nel Piano di %%Progetto|progetto%% ci sono sezioni dedicate all'analisi generale dei rischi ed all\'individuazione delle possibili mitigazioni; e sezioni dedicate alla pianificazione dei periodi, individuati come %%sprint|sprint%%, in cui sono indicati i preventivi riguardanti ore/costi ed i consuntivi di ciò che effettivamente è stato svolto. Questo documento è redatto seguendo un approccio incrementale, in quanto durante tutta la durata del %%progetto|progetto%% andrà aggiornato per seguire l'andamento degli %%sprint|sprint%%.
 
-### Scopo del Prodotto
+### Scopo del prodotto
 
 Nello sviluppo di software per sistemi embedded, il controllo dell'implementazione di tutti i requisiti necessari al corretto funzionamento del sistema risulta costoso e ripetitivo per lo sviluppatore, oltre a poter essere non esaustivo a causa di distrazioni o dimenticanze. Il %%capitolato|capitolato%% **Requirement Tracker - Plug-in VSCode** propone lo sviluppo di un %%plugin|plugin%% per %%VSCode|vscode%% che permetta di tracciare i requisiti derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari requisiti in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
 
@@ -105,7 +106,7 @@ Di seguito viene riportata la tabella contenente i rischi relativi all'organizza
 | **RO3** | **Problemi personali tra membri del gruppo**                 | Uno o più elementi del gruppo potrebbero non essere in grado di completare il lavoro pianificato entro la data prevista, per cause legati a problemi personali con un altro membro, creando rallentamenti nel flusso.      | 1                | Alta         |
 | **RO4** | **Ritardi dovuti a problemi di comunicazione con l'azienda** | Il gruppo potrebbe ritrovarsi a dover rallentare il ritmo delle attività a causa della necessità di attendere un feedback dall'azienda, che non viene fornito in tempi brevi.                                              | 2                | Alta         |
 
-Table: Rischi Organizzativi e interpersonali
+Table: Rischi organizzativi e interpersonali
 
 ### Rischi tecnologici
 
@@ -113,7 +114,7 @@ Table: Rischi Organizzativi e interpersonali
 |---------|-------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|------------------|--------------|
 | **RT1** | **Mancanza di conoscenze tecniche** | Alcuni membri del gruppo potrebbero non aver familiarità con tutte le tecnologie utilizzate durante lo sviluppo o la gestione del progetto. | 4                | Bassa        |
 
-Table: Rischi Tecnologici
+Table: Rischi tecnologici
 
 ### Mitigazione dei rischi organizzativi ed interpersonali
 
@@ -134,7 +135,7 @@ Table: Mitigazione rischi organizzativi ed interpersonali
 
 Table: Mitigazione rischi tecnologici
 
-## Modello di sviluppo e Pianificazione
+## Modello di sviluppo e pianificazione
 
 ### Modello di sviluppo
 
@@ -164,7 +165,7 @@ Per definire al meglio la pianificazione degli eventi, vengono individuate tre f
 
 In questa sezione sono elencati gli sprint appartenenti ai vari periodi di lavori suddivisi per le milestone del progetto didattico. Ogni milestone è divisa in più sprint seguendo le norme legate alla metodologia di lavoro Agile, con riferimento al modello Scrum. Sono inoltre analizzate le variazione delle ore e dei costi preventivati rispetto a quelli effettivamente impiegati al completamento delle varie attività svolte, per capirne l'andamento e valutare se le previsioni fatte siano poi congruenti con la realtà.
 
-#### Preventivo Candidatura
+#### Preventivo candidatura
 
 Durante la fase di candidatura il seguente preventivo realizzato riporta la ripartizione oraria per i vari ruoli con costi annessi:
 
