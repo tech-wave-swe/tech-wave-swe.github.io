@@ -1,11 +1,11 @@
 ---
 id: norme_di_progetto
-title: "Norme di Progetto - v1.8.1"
+title: "Norme di Progetto - v1.8.2"
 documentclass: TWDocumentFull
 toc: true
 lof: true
 numbersections: true
-version: 1.8.1
+version: 1.8.2
 classification: Interno
 ---
 
@@ -21,19 +21,20 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 <!-- ::: -->
 
-| Data       | Versione | Descrizione                                        | Autore         | Data Verifica | Verificatore          |
-| ---------- | -------- | -------------------------------------------------- | -------------- | ------------- | --------------------- |
-| 07/03/2025 | 1.8.1    | Aggiunta sezione PoC                               | Monetti Luca   | 07/03/2025    | Marcon Giulia         |
-| 27/02/2025 | 1.8.0    | Revisione del documento                            | Carraro Agnese | 28/02/2025    | Monetti Luca          |
-| 23/02/2025 | 1.7.1    | Procedure per la rendicontazione delle ore         | Pistori Gaia   | 25/02/2025    | Carraro Agnese        |
-| 20/02/2025 | 1.7.0    | Aggiunto tracciamento e rendicontazione delle ore  | Marcon Giulia  | 25/02/2025    | Carraro Agnese        |
-| 06/02/2025 | 1.6.0    | Aggiunta processi di Supporto                      | Monetti Luca   | 08/02/2025    | Carraro Agnese        |
-| 20/01/2025 | 1.5.0    | Aggiunta processi Primari                          | Pistori Gaia   | 21/01/2025    | Monetti Luca          |
-| 30/12/2024 | 1.4.0    | Completamento processi Organizzativi               | Carraro Agnese | 30/12/2024    | Pistori Gaia          |
-| 27/12/2024 | 1.3.0    | Corretta la formattazione del documento            | Monetti Luca   | 28/12/2025    | Pistori Gaia          |
-| 19/12/2024 | 1.2.0    | Revisione struttura + Aggiunta sezione GitHub      | Monetti Luca   | 22/12/2024    | Vasquez Manuel Felipe |
-| 20/11/2024 | 1.1.0    | Aggiunta sezione 4                                 | Piola Andrea   | 03/12/2024    | Pistori Gaia          |
-| 14/11/2024 | 1.0.0    | Prima stesura del documento con indice e sezione 1 | Piola Andrea   | 19/11/2024    | Pistori Gaia          |
+| Data       | Versione | Descrizione                                        | Autore              | Data Verifica | Verificatore          |
+| ---------- | -------- | -------------------------------------------------- | ------------------- | ------------- | --------------------- |
+| 30/03/2025 | 1.8.2    | Controllo consistenza maiuscole                    | Dal Bianco Riccardo |               |                       |
+| 07/03/2025 | 1.8.1    | Aggiunta sezione PoC                               | Monetti Luca        | 07/03/2025    | Marcon Giulia         |
+| 27/02/2025 | 1.8.0    | Revisione del documento                            | Carraro Agnese      | 28/02/2025    | Monetti Luca          |
+| 23/02/2025 | 1.7.1    | Procedure per la rendicontazione delle ore         | Pistori Gaia        | 25/02/2025    | Carraro Agnese        |
+| 20/02/2025 | 1.7.0    | Aggiunto tracciamento e rendicontazione delle ore  | Marcon Giulia       | 25/02/2025    | Carraro Agnese        |
+| 06/02/2025 | 1.6.0    | Aggiunta processi di Supporto                      | Monetti Luca        | 08/02/2025    | Carraro Agnese        |
+| 20/01/2025 | 1.5.0    | Aggiunta processi Primari                          | Pistori Gaia        | 21/01/2025    | Monetti Luca          |
+| 30/12/2024 | 1.4.0    | Completamento processi Organizzativi               | Carraro Agnese      | 30/12/2024    | Pistori Gaia          |
+| 27/12/2024 | 1.3.0    | Corretta la formattazione del documento            | Monetti Luca        | 28/12/2025    | Pistori Gaia          |
+| 19/12/2024 | 1.2.0    | Revisione struttura + Aggiunta sezione GitHub      | Monetti Luca        | 22/12/2024    | Vasquez Manuel Felipe |
+| 20/11/2024 | 1.1.0    | Aggiunta sezione 4                                 | Piola Andrea        | 03/12/2024    | Pistori Gaia          |
+| 14/11/2024 | 1.0.0    | Prima stesura del documento con indice e sezione 1 | Piola Andrea        | 19/11/2024    | Pistori Gaia          |
 
 Table: Changelog
 
@@ -49,11 +50,11 @@ Table: Changelog
 
 ## Introduzione
 
-### Scopo del Documento
+### Scopo del documento
 
 Lo scopo del documento è quello di definire le norme che ogni componente del gruppo TechWave dovrà rispettare per ottenere un %%prodotto|prodotto%% finale fatto a regola d'arte. In questo documento, inoltre, vengono descritte le convenzioni da rispettare nell'utilizzo degli strumenti e vengono esposti i %%processi|processo%% che saranno adottati dal gruppo. Questo documento è redatto seguendo un approccio incrementale, in quanto durante tutta la durata del %%progetto|progetto%% possono cambiare oppure si possono aggiungere/rimuovere le norme a seconda delle necessità.
 
-### Scopo del Prodotto
+### Scopo del prodotto
 
 Nello sviluppo di software per sistemi embedded la parte di controllo dell'implementazione di tutti i %%requisiti|requisito_software%% necessari al corretto funzionamento dello stesso risulta costosa e ripetitiva da parte dello sviluppatore, inoltre può risultare non esaustiva a causa di distrazioni o dimenticanze. Il %%capitolato|capitolato%% \*\*\_Requirement Tracker - Plug-in VSCode\*\*\* propone lo sviluppo di un %%plugin|plugin%% per %%VSCode|vscode%% che permetta di tracciare i %%requisiti|requisito_software%% derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari %%requisiti|requisito_software%% in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
 
@@ -79,7 +80,7 @@ Riferimenti informativi:
 
 > [https://www.math.unipd.it/\~tullio/IS-1/2024/Dispense/T02.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T02.pdf)
 
-## 2 Processi Primari
+## 2 Processi primari
 
 ### 2.1 Fornitura
 
@@ -137,7 +138,7 @@ Il %%processo|processo%% di sviluppo riguarda l'effettiva realizzazione del %%pr
 
 Per la creazione dei diagrammi UML è stato utilizzato **StarUML**.
 
-## Processi di Supporto
+## Processi di supporto
 
 ### Documentazione
 
@@ -152,13 +153,13 @@ L'approccio **Documentazione come Codice** permette di ottenere una migliore tra
 - Automazioni
 - Integrazione Continua
 
-#### Sorgente Documenti
+#### Sorgente documenti
 
 La documentazione sarà redatta utilizzando il linguaggio **MarkDown** la cui semplicità consente di velocizzare il processo di scrittura garantendo, al contempo, la portabilità e la facilità di conversione in formati diversi.
 
 La documentazione prodotta, archiviata nello stesso %%repository|repository%% del %%progetto|progetto%%, è pensata per essere visualizzata tramite un sito web generato a partire dai file sorgenti tramite l'utilizzo di **%%Docusaurus|docusaurus%%**. Ogni documento è formato da un singolo file sorgente a partire da un template predefinito.
 
-#### Ciclo di vita dei Documenti
+#### Ciclo di vita dei documenti
 
 Il ciclo di vita dei documenti può essere rappresentato come una sequenza di %%attività|attività%%. Adattando un approccio incrementale alla redazione della documentazione queste fasi vengono ripetute in modo ciclico:
 
@@ -274,7 +275,7 @@ La sezione dettaglio documento contiene le informazioni principali del documento
 - **Classificazione**: rappresenta la classificazione del documento. Può assumere i valori Interno ed Esterno.
 - **Versione**: Rappresenta la versione del documento corrente. Corrisponde alla versione presente nella prima riga del registro delle modifiche.
 
-###### Toc e Lof
+###### TOC e LOF
 
 Il TOC (Tabella dei contenuti) rappresenta l'indice della pagina. La sua presenza agevola la navigazione all'interno del documento e ne fornisce una visione d'insieme. Deve essere presente in tutti i documenti fatta eccezione per:
 
@@ -323,22 +324,22 @@ I %%verbali|verbale%% sono documento redatti a seguito di riunioni interne o est
   - **AAAA-MM-GG**: Data della riunione
   - **ID**: Indice progressivo che rappresenta il %%verbale|verbale%%.
 
-###### Documento di Analisi dei Requisiti
+###### Documento di analisi dei requisiti
 
 Il documento dell'Analisi dei %%Requisiti|requisito_software%% è il risultato di quanto svolto nell'%%attività|attività%% omologa. Al suo interno sono presenti:
 
-- un paragrafo dedicato a specificare lo **scopo del documento**.
-- un paragrafo dedicato a specificare lo **scopo del %%prodotto|prodotto%%**.
-- la **lista dei %%requisiti|requisito_software%%**, ciascuno associato ad un identificativo univoco e classificati per:
-  - **tipologia**:
+- Un paragrafo dedicato a specificare lo **scopo del documento**.
+- Un paragrafo dedicato a specificare lo **scopo del %%prodotto|prodotto%%**.
+- La **lista dei %%requisiti|requisito_software%%**, ciascuno associato ad un identificativo univoco e classificati per:
+  - **Tipologia**:
     - **Funzionali**: %%funzionalità|funzionalità%% che l'%%Applicativo|applicativo%% deve fornire.
     - **Tecnici**: vincoli riguardo le tecnologie che l'%%Applicativo|applicativo%% deve utilizzare.
     - **Qualitativi**: vincoli riguardo obiettivi minimi di %%qualità|qualità%%.
-  - **obbligatorietà**:
+  - **Obbligatorietà**:
     - **Obbligatori**: irrinunciabile per qualcuno degli stakeholder.
     - **Desiderabili**: non strettamente necessario ma con valore aggiunto riconoscibile.
     - **Opzionali**: utile o contrattabile più avanti.
-- la **lista degli %%Use Case|use_case%%**, ciascuno descritto tramite il rispettivo %%use case|use_case%% diagram (UML) e accompagnato dalla sua descrizione testuale dove vengono specificati:
+- La **lista degli %%Use Case|use_case%%**, ciascuno descritto tramite il rispettivo %%use case|use_case%% diagram (UML) e accompagnato dalla sua descrizione testuale dove vengono specificati:
   - **Attori primari**: utente principale.
   - **Attori secondari** \[se presenti\]: utente secondario.
   - **Precondizioni**
@@ -348,18 +349,18 @@ Il documento dell'Analisi dei %%Requisiti|requisito_software%% è il risultato d
   - **Generalizza** \[se presente\]: %%use case|use_case%% genitore.
   - **Estensioni** \[se presenti\]: %%use case|use_case%% che arrivano dal costrutto extend.
 
-###### Documento di Piano di Progetto
+###### Documento di piano di progetto
 
 Il documento di Piano di %%Progetto|progetto%% rappresenta tutta la parte di pianificazione e di analisi del %%progetto|progetto%% prodotta dal responsabile. Al suo interno sono presenti:
 
-- un paragrafo dedicato a specificare lo **scopo del documento**.
-- un paragrafo dedicato a specificare lo **scopo del %%prodotto|prodotto%%**.
-- una sezione contenente l'**analisi dei %%rischi|rischio%%**: in essa è presente la lista dei %%rischi|rischio%% raggruppati per tipologia: organizzativi ed interpersonali, tecnologici. Per ciascun %%rischio|rischio%% viene specificata la descrizione, il grado di %%rischio|rischio%%, la sua pericolosità e una %%mitigazione|mitigazione%%.
-- una sezione dedicata al **modello di sviluppo scelto**, ovvero %%SCRUM|scrum%%, e la **lista degli %%sprint|sprint%%** svolti.
-- una sezione contenente il **%%preventivo|preventivo%% dei costi e delle ore** di ciascun ruolo definite al momento della pianificazione dello %%sprint|sprint%%.
-- una sezione contenente il **%%consuntivo|consuntivo%% dei costi e delle ore** effettivamente svolte da ciascun ruolo, calcolate durante la %%retrospettiva|retrospettiva%%.
+- Un paragrafo dedicato a specificare lo **scopo del documento**.
+- Un paragrafo dedicato a specificare lo **scopo del %%prodotto|prodotto%%**.
+- Una sezione contenente l'**analisi dei %%rischi|rischio%%**: in essa è presente la lista dei %%rischi|rischio%% raggruppati per tipologia: organizzativi ed interpersonali, tecnologici. Per ciascun %%rischio|rischio%% viene specificata la descrizione, il grado di %%rischio|rischio%%, la sua pericolosità e una %%mitigazione|mitigazione%%.
+- Una sezione dedicata al **modello di sviluppo scelto**, ovvero %%SCRUM|scrum%%, e la **lista degli %%sprint|sprint%%** svolti.
+- Una sezione contenente il **%%preventivo|preventivo%% dei costi e delle ore** di ciascun ruolo definite al momento della pianificazione dello %%sprint|sprint%%.
+- Una sezione contenente il **%%consuntivo|consuntivo%% dei costi e delle ore** effettivamente svolte da ciascun ruolo, calcolate durante la %%retrospettiva|retrospettiva%%.
 
-##### Piano di Qualifica
+##### Piano di qualifica
 
 Il Piano di Qualifica contiene tutte le strategie di %%verifica|verifica%% e validazione utilizzate all'interno del ciclo di vita del %%progetto|progetto%% al fine di garantire la conformità del %%prodotto|prodotto%% alle aspettative del %%committente|committente%%.
 
@@ -405,7 +406,7 @@ Gli strumenti utilizzati per le %%attività|attività%% di redazione dei documen
 - **Pandoc**: Utilizzato per la conversione da Markdown a PDF.
 - **%%Docusaurus|docusaurus%%**: Utilizzato per la generazione di un sito statico a partire da file Markdown.
 
-### %%Verifica|verifica%%
+### Verifica
 
 #### Introduzione
 
@@ -434,11 +435,11 @@ Questo processo si ripete fino alla soddisfazione dei criteri di %%qualità|qual
 
 #### Analisi
 
-##### Analisi Statica
+##### Analisi statica
 
 L'Analisi Statica è un'%%attività|attività%% di controllo condotta sul %%prodotto|prodotto%% senza la necessità di eseguirlo. Si basa sull'utilizzo di metodo di lettura, manuali o automatici, che permettono di individuare errori formali, difetti o proprietà indesiderate all'interno dei documenti. Il successo di questa %%attività|attività%% dipende dalla competenza e dall'attenzione dei verificatori coinvolti.
 
-##### Analisi Dinamica
+##### Analisi dinamica
 
 L'Analisi Dinamica è un'%%attività|attività%% di controllo condotta sul %%prodotto|prodotto%% durante la sua esecuzione effettiva al fine di verificarne il corretto funzionamento.
 
@@ -465,7 +466,7 @@ I %%Test|test%% di Integrazione sono progettati per verificare il corretto funzi
 
 I %%Test|test%% di Sistema sono progettati per verificare il sistema nella sua interezza rispetto ai %%requisiti|requisito_software%% software individuati durante l'%%Analisi dei Requisiti|analisi_dei_requisiti%%. Questi %%test|test%% hanno lo scopo di garantire che il %%prodotto|prodotto%% esegua le funzioni previste in modo %%efficace|efficacia%% e affidabile in un ambiente realistico.
 
-###### Test di Accettazione
+###### Test di accettazione
 
 I %%Test|test%% di Accettazione sono progettati per dimostrare che i %%requisiti|requisito_software%% individuati sono stati soddisfatti e garantire che il %%prodotto|prodotto%% sia conforme alle aspettative degli stakeholder. Questi %%test|test%% vengono eseguiti coinvolgendo gli utenti finali e determinano se il %%prodotto|prodotto%% può essere rilasciato.
 
@@ -496,7 +497,7 @@ Ad ogni %%test|test%% viene associato uno stato che ne riflette il risultato di 
 
 Il %%processo|processo%% di Validazione conferma, tramite una dimostrazione oggettiva, che i requisiti specificati sono stati soddisfatti e che il %%prodotto|prodotto%% software risponde alle esigenze degli utenti finali.
 
-##### Procedura di Validazione
+##### Procedura di validazione
 
 Il %%processo|processo%% di validazione prende come input i %%test|test%% effettuati sul %%prodotto|prodotto%% e valuta:
 
@@ -512,7 +513,7 @@ Se il %%processo|processo%% ha esito positivo il %%prodotto|prodotto%% risponde 
 
 Il %%processo|processo%% di Gestione della configurazione si occupa di identificare, organizzare e controllare le modifiche apportate a tutti gli artefatti coinvolti nel ciclo di vita del %%prodotto|prodotto%%.
 
-##### Sistema di Versionamento
+##### Sistema di versionamento
 
 Il sistema di %%versionamento|versionamento%% rappresenta le convenzioni utilizzate per la gestione delle versione di tutti i vari artefatti. La struttura utilizzata è rappresentata da: **X.Y.Z**.
 
@@ -534,7 +535,7 @@ Di seguito sono elencati tutti i %%repository|repository%% attualmente presenti:
 - DocumentStyle: Contiene le classi utilizzate per la generazione dei PDF.
   Riferimento: [https://github.com/tech-wave-swe/DocumentStyle](https://github.com/tech-wave-swe/DocumentStyle).
 
-#### Sincronizzazione e Branching
+#### Sincronizzazione e branching
 
 ##### Creazione di un nuovo branch di sviluppo
 
@@ -559,7 +560,7 @@ Spostarsi sul nuovo branch utilizzando il seguente formato:
 git checkout -B TWD-xx-Esempio-di-branch
 ```
 
-##### Creazione di una nuova Pull Request
+##### Creazione di una nuova pull request
 
 Le Pull Requests sono un meccanismo che consente di notificare il completamento di una %%funzionalità|funzionalità%% e richiederne la revisione. Un Pull Requesto fornisce un ambiente dedicato per discutere della %%funzionalità|funzionalità%% proposta, fornendo riscontri e apportando le modifiche necessarie.
 Per creare una nuova Pull Request:
@@ -610,7 +611,7 @@ Il %%processo|processo%% di Gestione dei %%Rischi|rischio%% ha l'obiettivo di id
 
 I %%rischi|rischio%% individuati all'interno del %%progetto|progetto%% sono specificati all'interno del Piano di %%Progetto|progetto%% nella sezione dedicata.
 
-##### Codifica dei Rischi
+##### Codifica dei rischi
 
 Per identificare univocamente ogni %%rischio|rischio%% esso viene associato ad un codice identificativo basato sulla seguente convenzione: **R [ Tipologia ] [ Indice ] - [ Nome Associato ]**, dove:
 
@@ -636,7 +637,7 @@ Il %%processo|processo%% di Gestione della %%Qualità|qualità%% ha l'obiettivo 
 
 Il %%processo|processo%% di Gestione della %%Qualità|qualità%% interessa tutto il ciclo di vita del software.
 
-#### Piano di Qualifica
+#### Piano di qualifica
 
 Tutte le %%attività|attività%% di definizione, pianificazione, controllo e revisione di %%qualità|qualità%% sono trattate all'interno del documento Piano di Qualifica. All'interno di questo documento sono definite in dettaglio le specifiche di %%qualità|qualità%% del %%prodotto|prodotto%% associate alle azioni di controllo necessarie.
 
@@ -669,7 +670,7 @@ Ad ogni metrica è inoltre associato:
 - **Valore Accettabile**: Valore che la metrica deve raggiungere per essere considerata conforme agli standard.
 - **Valore Preferibile**: Valore ideale che la metrica dovrebbe assumere.
 
-## 4 %%Processi|processo%% Organizzativi
+## 4 Processi organizzativi
 
 ### Introduzione
 
@@ -744,19 +745,19 @@ I ruoli che ogni membro dovrà assumere almeno una volta durante tutta la durata
 Per la gestione dei %%task|task%%/ticket si utilizza come software %%Jira|jira%%. Questo software permette di visualizzare un %%backlog|backlog%% generale in cui il responsabile di %%progetto|progetto%% andrà, via via, ad inserire tutti i %%task|task%% che saranno svolti durante tutta la durata del %%progetto|progetto%%. %%Jira|jira%% permette anche di creare degli %%sprint|sprint%%, di lunghezze anche diverse tra loro, in cui è presente lo %%Sprint Backlog|backlog%% contenente tutti i %%task|task%% da svolgere durante lo %%sprint|sprint%%. Ogni %%task|task%% può ricevere un assegnatario al momento della creazione oppure il singolo membro può assegnarsi autonomamente un %%task|task%%.
 Ogni %%task|task%% presenta:
 
-- una **chiave** per identificarlo;
-- una breve **descrizione**;
-- uno **stato**, che può essere:
+- Una **chiave** per identificarlo;
+- Una breve **descrizione**;
+- Uno **stato**, che può essere:
   - "%%backlog|backlog%%" se è stato appena creato;
   - "in corso" se è stato iniziato;
   - "revisione" se è stato completato e deve essere revisionato;
   - "to deploy" se è stato revisionato ed è stato fatto il merge con il branch develop su %%GitHub|github%%;
   - "completato" se è stato fatto il merge con il branch main su %%GitHub|github%%.
-- lo **%%sprint|sprint%%** a cui appartengono;
-- l'**assegnatario**;
-- la **stima originale** del tempo per completarlo;
-- il punteggio **%%story points|story_points%%** con una valore da 1 a 5 per indicare il valore del %%task|task%%;
-- la **priorità**.
+- Lo **%%sprint|sprint%%** a cui appartengono;
+- L'**assegnatario**;
+- La **stima originale** del tempo per completarlo;
+- Il punteggio **%%story points|story_points%%** con una valore da 1 a 5 per indicare il valore del %%task|task%%;
+- La **priorità**.
 
 Una volta che viene completato un %%task|task%%, la persona o le persone che hanno contribuito al suo completamento segnalano il tempo produttivo che hanno speso e il ruolo che hanno ricoperto durante il suo svolgimento, usando un'applicazione di %%Jira|jira%% chiamata Timetracker. Su Timetracker, le ore di %%progetto|progetto%% svolte sono facilmente consultabili anche in base alla persona o al ruolo. Inoltre, i %%task|task%% sono organizzati in epic (liste di %%task|task%%) a seconda della loro tipologia, che può essere, ad esempio, "documentazione di %%progetto|progetto%%, "gestione repo", ecc.
 
@@ -959,24 +960,24 @@ Framework %%SCRUM|scrum%%: [https://scrumguides.org/scrum-guide.html](https://sc
 
 ## Standard per la qualità
 
-### %%Qualità|qualità%% dei processi
+### Qualità dei processi
 
 Per garantire la %%qualità|qualità%% dei %%processi|processo%%, il team adotta il modello di riferimento ISO/IEC 12207, che definisce i %%processi|processo%% di ciclo di vita del software e le %%attività|attività%% di supporto necessarie per lo sviluppo di un %%prodotto|prodotto%% software.
 
 In particolare è necessario individuare delle metriche che indicano l'avanzamento dei %%processi|processo%% in relazione al budget, al valore pianificato e quello svolto, ai %%rischi|rischio%% emersi e agli errori individuati.
 
-### %%Qualità|qualità%% di prodotto
+### Qualità di prodotto
 
 Per garantire la %%qualità|qualità%% del %%prodotto|prodotto%%, il team adotta il modello di riferimento ISO/IEC 25010 (unione di ISO/IEC 9126 e ISO/IEC 14598) che definisce un modello di %%qualità|qualità%% del software basato su sei caratteristiche fondamentali: %%funzionalità|funzionalità%%, affidabilità, usabilità, %%efficienza|efficienza%%, manutenibilità e portabilità.
 
 In particolare è necessario individuare delle metriche rappresentanti:
 
-- la **funzionalità**: grado in cui il %%prodotto|prodotto%% fornisce %%funzionalità|funzionalità%% complete, corrette e adeguate.
-- l'**affidabilità**: grado in cui il %%prodotto|prodotto%% svolge specifiche funzioni in termini di assenza di guasti, disponibilità, tolleranza ai guasti e riparabilità.
-- l'**usabilità**: grado di interazione con il %%prodotto|prodotto%% da parte degli utenti in termini di appropriatezza, apprendibilità, operabilità, protezione da errori, _user experience_ e accessibilità.
-- l'**%%efficienza|efficienza%%**: grado in cui il %%prodotto|prodotto%% esegue le sue funzioni in termini di risorse di tempo, di memoria, ecc.
-- la **manutenibilità**: costo della correzione dei difetti e dell'aggiunta di %%funzionalità|funzionalità%%.
-- la **portabilità**: grado in cui il %%prodotto|prodotto%% è legato all'ambiente di esecuzione in termini di installabilità e sostituibilità.
+- La **funzionalità**: grado in cui il %%prodotto|prodotto%% fornisce %%funzionalità|funzionalità%% complete, corrette e adeguate.
+- L'**affidabilità**: grado in cui il %%prodotto|prodotto%% svolge specifiche funzioni in termini di assenza di guasti, disponibilità, tolleranza ai guasti e riparabilità.
+- L'**usabilità**: grado di interazione con il %%prodotto|prodotto%% da parte degli utenti in termini di appropriatezza, apprendibilità, operabilità, protezione da errori, _user experience_ e accessibilità.
+- L'**%%efficienza|efficienza%%**: grado in cui il %%prodotto|prodotto%% esegue le sue funzioni in termini di risorse di tempo, di memoria, ecc.
+- La **manutenibilità**: costo della correzione dei difetti e dell'aggiunta di %%funzionalità|funzionalità%%.
+- La **portabilità**: grado in cui il %%prodotto|prodotto%% è legato all'ambiente di esecuzione in termini di installabilità e sostituibilità.
 
 I **%%test|test%% di %%verifica|verifica%% e validazione** vengono eseguiti in tutte le fasi del ciclo di sviluppo, garantendo la conformità del %%prodotto|prodotto%% con i %%requisiti|requisito_software%% specificati e gli standard qualitativi prestabiliti dal team. I %%test|test%% vengono classificati in quattro categorie principali: %%test|test%% di unità, %%test|test%% di integrazione, %%test|test%% di sistema e %%test|test%% di accettazione.
 
