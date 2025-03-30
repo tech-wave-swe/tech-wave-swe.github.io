@@ -1,11 +1,11 @@
 ---
 id: norme_di_progetto
-title: "Norme di Progetto - v1.8.3"
+title: "Norme di Progetto - v1.8.4"
 documentclass: TWDocumentFull
 toc: true
 lof: true
 numbersections: true
-version: 1.8.3
+version: 1.8.4
 classification: Interno
 ---
 
@@ -23,6 +23,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                                        | Autore              | Data Verifica | Verificatore          |
 | ---------- | -------- | -------------------------------------------------- | ------------------- | ------------- | --------------------- |
+| 30/03/2025 | 1.8.4    | Riscrittura sezione 1, 4 e 5. Scrittura sezione 6  | Carraro Agnese      |               |                       |
 | 30/03/2025 | 1.8.3    | Riscrittura sezione 2 e 3                          | Dal Bianco Riccardo |               |                       |
 | 30/03/2025 | 1.8.2    | Controllo consistenza maiuscole                    | Dal Bianco Riccardo | 30/03/2025    | Vasquez Manuel Felipe |
 | 07/03/2025 | 1.8.1    | Aggiunta sezione PoC                               | Monetti Luca        | 07/03/2025    | Marcon Giulia         |
@@ -51,35 +52,44 @@ Table: Changelog
 
 ## Introduzione
 
-### Scopo del documento
+### Scopo del documento 
 
-Lo scopo del documento è quello di definire le norme che ogni componente del gruppo TechWave dovrà rispettare per ottenere un %%prodotto|prodotto%% finale fatto a regola d'arte. In questo documento, inoltre, vengono descritte le convenzioni da rispettare nell'utilizzo degli strumenti e vengono esposti i %%processi|processo%% che saranno adottati dal gruppo. Questo documento è redatto seguendo un approccio incrementale, in quanto durante tutta la durata del %%progetto|progetto%% possono cambiare oppure si possono aggiungere/rimuovere le norme a seconda delle necessità.
+Lo scopo del documento è quello di definire le norme che ogni componente del gruppo TechWave dovrà rispettare per ottenere un %%prodotto|prodotto%% finale fatto a regola d'arte. In questo documento vengono descritte le convenzioni da rispettare nell'utilizzo degli strumenti e vengono esposti i %%processi|processo%% che saranno adottati dal gruppo prendendo come punto di riferimento lo standard ISO/IEC 12207:2008. Questo standard definisce tre tipologie di %%processi|processo%%: i %%processi|processo%% primari, i %%processi|processo%% di supporto e i %%processi|processo%% organizzativi, ognuno dei quali verrà approfondito seguendo il corrispettivo ordine. 
 
-### Scopo del prodotto
+Questo documento è redatto seguendo un approccio incrementale, in quanto durante tutta la durata del %%progetto|progetto%% possono cambiare oppure si possono aggiungere o rimuovere le norme a seconda delle necessità.
 
-Nello sviluppo di software per sistemi embedded la parte di controllo dell'implementazione di tutti i %%requisiti|requisito_software%% necessari al corretto funzionamento dello stesso risulta costosa e ripetitiva da parte dello sviluppatore, inoltre può risultare non esaustiva a causa di distrazioni o dimenticanze. Il %%capitolato|capitolato%% \*\*\_Requirement Tracker - Plug-in VSCode\*\*\* propone lo sviluppo di un %%plugin|plugin%% per %%VSCode|vscode%% che permetta di tracciare i %%requisiti|requisito_software%% derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari %%requisiti|requisito_software%% in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
+### Scopo del prodotto 
+
+Nello sviluppo di software per sistemi embedded la parte di controllo dell'implementazione di tutti i %%requisiti|requisito_software%% necessari al corretto funzionamento dello stesso risulta costosa e ripetitiva da parte dello sviluppatore, inoltre può risultare non esaustiva a causa di distrazioni o dimenticanze. Il %%capitolato|capitolato%% **Requirement Tracker - Plug-in VSCode** propone lo sviluppo di un %%plugin|plugin%% per %%VSCode|vscode%% che permetta di tracciare i %%requisiti|requisito_software%% derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari %%requisiti|requisito_software%% in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
 
 ### Glossario
 
-Per evitare incomprensioni riguardanti la terminologia utilizzata all'interno dei vari documenti, viene fornito un Glossario che racchiude tutti i vari termini tecnici, potenzialmente ambigui, con la propria definizione precisa. I termini presenti all'interno del glossario verranno evidenziati nei documenti in blu.
+Per evitare incomprensioni riguardanti la terminologia utilizzata all’interno dei vari documenti, viene fornito un Glossario che racchiude tutti i vari termini tecnici, potenzialmente ambigui, con la propria definizione precisa. I termini presenti all’interno del glossario verranno evidenziati nei documenti tramite:
+- Sito Web: Grassetto Colorato. 
+- PDF: Corsivo con pendice [G].
+
 
 ### Riferimenti
 
-Riferimenti normativi:
+Riferimenti normativi: %%|%%
 
-- %%Capitolato|capitolato%% d'appalto C8
+- %%Capitolato|capitolato%% d'appalto C8 (ultimo accesso: 29/03/2025)
 
 > [https://www.math.unipd.it/\~tullio/IS-1/2024/Progetto/C8.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Progetto/C8.pdf)
 
-- Corso di Ingegneria del software - Regolamento di %%Progetto|progetto%%
+- Corso di Ingegneria del software - Regolamento di %%Progetto|progetto%% (ultimo accesso: 29/03/2025)
 
 > [https://www.math.unipd.it/\~tullio/IS-1/2024/Dispense/PD1.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/PD1.pdf)
 
 Riferimenti informativi:
 
-- Corso di Ingegneria del software - %%Processi|processo%% di Ciclo di Vita
+- Corso di Ingegneria del software - %%Processi|processo%% di Ciclo di Vita (ultimo accesso: 29/03/2025)
 
 > [https://www.math.unipd.it/\~tullio/IS-1/2024/Dispense/T02.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T02.pdf)
+
+- Glossario (ultimo accesso: 29/03/2025)
+
+> [https://tech-wave-swe.github.io/docs/glossario](https://tech-wave-swe.github.io/docs/glossario)
 
 ## Processi Primari
 
@@ -799,16 +809,15 @@ Ad ogni metrica è inoltre associato:
 - **Valore Accettabile**: Valore che la metrica deve raggiungere per essere considerata conforme agli standard.
 - **Valore Preferibile**: Valore ideale che la metrica dovrebbe assumere.
 
-## 4 Processi organizzativi
+## Processi Organizzativi
 
-### Introduzione
+### Introduzione 
 
 I %%processi|processo%% organizzativi sono trasversali rispetto al %%progetto|progetto%% e vengono applicati in modo tale da stabilire, controllare e migliorare i %%processi|processo%% del ciclo di vita del software, ai quali, quindi, forniscono il supporto necessario. Questa sezione del Piano di %%Progetto|progetto%% definisce i seguenti %%processi|processo%% organizzativi: gestione dei %%processi|processo%%, infrastruttura, miglioramento dei %%processi|processo%% e formazione.
 
 ### Gestione dei processi
 
 #### Introduzione
-
 La gestione dei %%processi|processo%% comprende le %%attività|attività%% che definiscono il modo in cui bisogna implementare i %%processi|processo%% primari del ciclo di vita del software. Le %%attività|attività%% che lo costituiscono sono la definizione dei %%processi|processo%%, la loro pianificazione, la loro esecuzione e controllo, la revisione e la valutazione dei %%prodotti|prodotto%%, e la chiusura dei %%processi|processo%%.
 
 La definizione dei %%processi|processo%% è la prima %%attività|attività%% della gestione dei %%processi|processo%%. Tramite questa %%attività|attività%% vengono stabiliti i %%processi|processo%% necessari allo svolgimento del %%progetto|progetto%% e vengono identificati i loro %%requisiti|requisito_software%%, controllandone la fattibilità.
@@ -821,12 +830,15 @@ La revisione e la valutazione dei %%prodotti|prodotto%% è necessaria per assicu
 
 Quando tutti i %%task|task%% e tutte le %%attività|attività%% vengono conclusi e si ha un %%prodotto|prodotto%% completo, è possibile completare e chiudere il %%processo|processo%%.
 
+
 #### Pianificazione
 
 ##### Introduzione
 
 L'%%attività|attività%% di pianificazione è essenziale per poter svolgere al meglio le %%attività|attività%% del ciclo di vita del software. Infatti, durante questa %%attività|attività%% il responsabile è incaricato di definire le %%attività|attività%% e i %%task|task%% a loro associati effettuando delle stime dei tempi necessari al loro completamento e un'%%analisi dei requisiti|analisi_dei_requisiti%% e delle risorse necessarie per completare i %%task|task%%, e stabilendo i %%rischi|rischio%% a loro associati.
+
 La pianificazione viene documentata nel Piano di %%Progetto|progetto%%, aggiornato di volta in volta dal responsabile corrente.
+
 
 ##### Ruoli di progetto
 
@@ -874,19 +886,19 @@ I ruoli che ogni membro dovrà assumere almeno una volta durante tutta la durata
 Per la gestione dei %%task|task%%/ticket si utilizza come software %%Jira|jira%%. Questo software permette di visualizzare un %%backlog|backlog%% generale in cui il responsabile di %%progetto|progetto%% andrà, via via, ad inserire tutti i %%task|task%% che saranno svolti durante tutta la durata del %%progetto|progetto%%. %%Jira|jira%% permette anche di creare degli %%sprint|sprint%%, di lunghezze anche diverse tra loro, in cui è presente lo %%Sprint Backlog|backlog%% contenente tutti i %%task|task%% da svolgere durante lo %%sprint|sprint%%. Ogni %%task|task%% può ricevere un assegnatario al momento della creazione oppure il singolo membro può assegnarsi autonomamente un %%task|task%%.
 Ogni %%task|task%% presenta:
 
-- Una **chiave** per identificarlo;
-- Una breve **descrizione**;
-- Uno **stato**, che può essere:
+- una **chiave** per identificarlo;
+- una breve **descrizione**;
+- uno **stato**, che può essere:
   - "%%backlog|backlog%%" se è stato appena creato;
   - "in corso" se è stato iniziato;
   - "revisione" se è stato completato e deve essere revisionato;
   - "to deploy" se è stato revisionato ed è stato fatto il merge con il branch develop su %%GitHub|github%%;
   - "completato" se è stato fatto il merge con il branch main su %%GitHub|github%%.
-- Lo **%%sprint|sprint%%** a cui appartengono;
-- L'**assegnatario**;
-- La **stima originale** del tempo per completarlo;
-- Il punteggio **%%story points|story_points%%** con una valore da 1 a 5 per indicare il valore del %%task|task%%;
-- La **priorità**.
+- lo **%%sprint|sprint%%** a cui appartengono;
+- l'**assegnatario**;
+- la **stima originale** del tempo per completarlo;
+- il punteggio **%%story points|story_points%%** con una valore da 1 a 5 per indicare il valore del %%task|task%%;
+- la **priorità**.
 
 Una volta che viene completato un %%task|task%%, la persona o le persone che hanno contribuito al suo completamento segnalano il tempo produttivo che hanno speso e il ruolo che hanno ricoperto durante il suo svolgimento, usando un'applicazione di %%Jira|jira%% chiamata Timetracker. Su Timetracker, le ore di %%progetto|progetto%% svolte sono facilmente consultabili anche in base alla persona o al ruolo. Inoltre, i %%task|task%% sono organizzati in epic (liste di %%task|task%%) a seconda della loro tipologia, che può essere, ad esempio, "documentazione di %%progetto|progetto%%, "gestione repo", ecc.
 
@@ -959,6 +971,7 @@ Le **riunioni esterne** avvengono tra gruppo e %%committente|committente%% o %%p
 
 Il lavoro personale è organizzato individualmente da ogni componente del gruppo per poter lasciare libertà in quanto impegnati con questioni accademiche, personali e seguendo quanto dichiarato nella candidatura nella sezione di dichiarazione impegni. Ovviamente l'organizzazione dovrà essere consona agli impegni totali del gruppo per evitare ritardi dovuti ad un singolo elemento. In caso di problematiche di indisponibilità che porteranno al non compimento degli impegni di %%progetto|progetto%% presi in carico dal singolo membro, questo si impegna ad avvisare prontamente il Responsabile che cercherà di ridistribuire il lavoro contattando singolarmente i membri oppure indicendo una riunione di gruppo.
 
+
 ### Tracciamento e rendicontazione delle ore
 
 #### Introduzione
@@ -992,13 +1005,10 @@ Ogni ora lavorativa deve essere associata a un ruolo specifico:
 - **Responsabile di %%Progetto|progetto%%**: per %%attività|attività%% di coordinamento e gestione del %%progetto|progetto%%.
 
 #### Rendicontazione delle ore nel cruscotto
-
 Tramite un documento Google Sheets _cruscotto-avanzamento_, presente nella cartella Google Drive condivisa, il team è in grado di ottenere informazioni riguardo lo stato di avanzamento del progetto. Questo è di particolare importanza per il ruolo del Responsabile durante la compilazione del Piano di %%Progetto|progetto%%.
 
 ##### Inserimento ore svolte
-
 Per inserire la rendicontazione delle ore effettivamente svolte all'interno dello %%sprint|sprint%% bisogna:
-
 - **Scaricare il report da Timetracker (%%Jira|jira%%)**:
   - Dalla dashboard di %%Jira|jira%% selezionare, dal menu in alto, le voci _"App"_, poi _"Timetracker"_
   - Dal menu laterale selezionare la voce _"Saved Reports"_, poi _"Shared with me"_ e aprire il report denominato "visualizzazione ore registrate (totali)"
@@ -1007,7 +1017,6 @@ Per inserire la rendicontazione delle ore effettivamente svolte all'interno dell
   - Nella pagina _"parser-jira"_ incollare le ultime righe prese dal report scaricato. In automatico verranno usate per aggiornare i grafici di andamento e statistiche.
 
 #### Inserimento ore preventivate
-
 - **Inserire i dati nel documento Google Sheets _cruscotto-avanzamento_**
   - Nella pagina _"inserimento-preventivo-ruoli"_ specificare per ogni %%_issue_|issue%% le ore preventivate per ciascun ruolo.
 
@@ -1034,7 +1043,7 @@ Fanno parte dell'infrastruttura organizzativa tutti gli strumenti che permettono
 
 Ogni categoria di canale può avere un numero variabile di sottocanali utilizzati a seconda delle necessità.
 
-- %%Telegram|telegram%%:
+- **%%Telegram|telegram%%**:
   Strumento di comunicazione interna testuale asincrona. Viene utilizzato in due modalità:
 
   - gruppo: chat condivisa tra tutti i membri del gruppo utilizzata per la maggior parte delle comunicazioni riguardanti il %%progetto|progetto%%.
@@ -1087,6 +1096,7 @@ LaTeX: [https://www.overleaf.com/learn](https://www.overleaf.com/learn).
 
 Framework %%SCRUM|scrum%%: [https://scrumguides.org/scrum-guide.html](https://scrumguides.org/scrum-guide.html).
 
+
 ## Standard per la qualità
 
 ### Qualità dei processi
@@ -1100,15 +1110,20 @@ In particolare è necessario individuare delle metriche che indicano l'avanzamen
 Per garantire la %%qualità|qualità%% del %%prodotto|prodotto%%, il team adotta il modello di riferimento ISO/IEC 25010 (unione di ISO/IEC 9126 e ISO/IEC 14598) che definisce un modello di %%qualità|qualità%% del software basato su sei caratteristiche fondamentali: %%funzionalità|funzionalità%%, affidabilità, usabilità, %%efficienza|efficienza%%, manutenibilità e portabilità.
 
 In particolare è necessario individuare delle metriche rappresentanti:
-
-- La **funzionalità**: grado in cui il %%prodotto|prodotto%% fornisce %%funzionalità|funzionalità%% complete, corrette e adeguate.
-- L'**affidabilità**: grado in cui il %%prodotto|prodotto%% svolge specifiche funzioni in termini di assenza di guasti, disponibilità, tolleranza ai guasti e riparabilità.
-- L'**usabilità**: grado di interazione con il %%prodotto|prodotto%% da parte degli utenti in termini di appropriatezza, apprendibilità, operabilità, protezione da errori, _user experience_ e accessibilità.
-- L'**%%efficienza|efficienza%%**: grado in cui il %%prodotto|prodotto%% esegue le sue funzioni in termini di risorse di tempo, di memoria, ecc.
-- La **manutenibilità**: costo della correzione dei difetti e dell'aggiunta di %%funzionalità|funzionalità%%.
-- La **portabilità**: grado in cui il %%prodotto|prodotto%% è legato all'ambiente di esecuzione in termini di installabilità e sostituibilità.
+- la **funzionalità**: grado in cui il %%prodotto|prodotto%% fornisce %%funzionalità|funzionalità%% complete, corrette e adeguate.
+- l'**affidabilità**: grado in cui il %%prodotto|prodotto%% svolge specifiche funzioni in termini di assenza di guasti, disponibilità, tolleranza ai guasti e riparabilità.
+- l'**usabilità**: grado di interazione con il %%prodotto|prodotto%% da parte degli utenti in termini di appropriatezza, apprendibilità, operabilità, protezione da errori, _user experience_ e accessibilità.
+- l'**%%efficienza|efficienza%%**: grado in cui il %%prodotto|prodotto%% esegue le sue funzioni in termini di risorse di tempo, di memoria, ecc.
+- la **manutenibilità**: costo della correzione dei difetti e dell'aggiunta di %%funzionalità|funzionalità%%. 
+- la **portabilità**: grado in cui il %%prodotto|prodotto%% è legato all'ambiente di esecuzione in termini di installabilità e sostituibilità.
 
 I **%%test|test%% di %%verifica|verifica%% e validazione** vengono eseguiti in tutte le fasi del ciclo di sviluppo, garantendo la conformità del %%prodotto|prodotto%% con i %%requisiti|requisito_software%% specificati e gli standard qualitativi prestabiliti dal team. I %%test|test%% vengono classificati in quattro categorie principali: %%test|test%% di unità, %%test|test%% di integrazione, %%test|test%% di sistema e %%test|test%% di accettazione.
+
+## Metriche di qualità
+
+Le metriche sono strumenti di misurazione della qualità di un prodotto o di un processo. Tramite queste metriche viene monitorata e valutata l'efficacia e l'efficienza del lavoro effettuato, per poi capire dove e come migliorarlo.
+
+Tutte le metriche vengono definite e spiegate nel documento [Piano di Qualifica](https://tech-wave-swe.github.io/docs/PB/piano_di_qualifica).
 
 <!-- ::: {.no-export} -->
 
