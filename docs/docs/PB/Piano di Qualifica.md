@@ -1,11 +1,11 @@
 ---
 id: piano_di_qualifica
-title: "Piano di Qualifica - v1.7.3"
+title: "Piano di Qualifica - v1.7.4"
 documentclass: TWDocumentFull
 toc: true
 lof: true
 numbersections: true
-version: 1.7.3
+version: 1.7.4
 classification: Esterno
 ---
 
@@ -23,6 +23,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                              | Autore                | Data Verifica | Verificatore          |
 | ---------- | -------- | ---------------------------------------- | --------------------- | ------------- | --------------------- |
+| 30/03/2025 | 1.7.4    | Controllo consistenza maiuscile          | Dal Bianco Riccardo   |               |                       |
 | 07/03/2025 | 1.7.3    | Aggiunta interpretazione dei grafici     | Monetti Luca          | 07/03/2025    | Pistori Gaia          |
 | 06/03/2025 | 1.7.2    | miglioramento metriche                   | Piola Andrea          | 07/03/2025    | Luca Monetti          |
 | 24/02/2025 | 1.7.1    | fix indici tabelle                       | Piola Andrea          | 25/02/2025    | Gaia Pistori          |
@@ -48,7 +49,7 @@ Table: Changelog
 
 ## Introduzione
 
-### Scopo del Documento
+### Scopo del documento
 
 Questo documento delinea le strategie di verifica, validazione e quality assurance adottate durante lo sviluppo del progetto, definendo gli obiettivi qualitativi e le relative metriche di misurazione. Include la documentazione dettagliata delle procedure di verifica, dei processi di controllo qualità, e delle metodologie di test implementate nelle varie fasi del ciclo di sviluppo, garantendo la conformità del prodotto con i requisiti specificati e gli standard qualitativi prestabiliti dal team.
 Si concentra su:
@@ -63,12 +64,12 @@ Per una definizione dei termini tecnici utilizzati in questo documento, consulta
 
 ### Riferimenti
 
-#### Riferimenti Normativi
+#### Riferimenti normativi
 
 - **Norme di Progetto**: [Norme di Progetto - v1.8.1](./Norme%20di%20Progetto.md)
 - **Capitolato d'Appalto C8: Requirement Tracker- Plug-in VS Code**: [https://www.math.unipd.it/~tullio/IS-1/2024/Progetto/C8.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Progetto/C8.pdf)
 
-#### Riferimenti Informativi
+#### Riferimenti informativi
 
 - T2 - I processi di ciclo di vita del software [https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T02.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T02.pdf)
 - T7 - Qualità del software [https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T07.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T07.pdf)
@@ -82,11 +83,11 @@ Per una definizione dei termini tecnici utilizzati in questo documento, consulta
 - **ISO/IEC 14598**: "Information technology - Software product evaluation"
 - **ISO/IEC 25010**: "Systems and software engineering - Systems and software Quality Requirements and Evaluation (SQuaRE) - System and software quality models"
 
-## Qualità di Processo
+## Qualità di processo
 
 Per garantire la qualità dei processi, il team adotta il modello di riferimento ISO/IEC 12207, che definisce i processi di ciclo di vita del software e le attività di supporto necessarie per lo sviluppo di un prodotto software.
 
-### Processi Primari
+### Processi primari
 
 | Metrica | Nome                           | Descrizione                                                | Obiettivo                                           | Valore Accettabile | Valore Desiderabile |
 | ------- | ------------------------------ | ---------------------------------------------------------- | --------------------------------------------------- | ------------------ | ------------------- |
@@ -100,7 +101,7 @@ Per garantire la qualità dei processi, il team adotta il modello di riferimento
 
 Table: Metriche per i processi primari
 
-#### Planned Value
+#### Planned value
 
 **Metrica**: MPCR01
 
@@ -111,7 +112,7 @@ Table: Metriche per i processi primari
 
 ---
 
-#### Actual Cost
+#### Actual cost
 
 **Metrica**: MPCR02
 
@@ -122,7 +123,7 @@ Table: Metriche per i processi primari
 
 ---
 
-#### Earned Value
+#### Earned value
 
 **Metrica**: MPCR03
 
@@ -133,7 +134,7 @@ Table: Metriche per i processi primari
 
 ---
 
-#### Schedule Variance
+#### Schedule variance
 
 **Metrica**: MPCR04
 
@@ -144,7 +145,7 @@ Table: Metriche per i processi primari
 
 ---
 
-#### Cost Variance
+#### Cost variance
 
 **Metrica**: MPR05
 
@@ -155,7 +156,7 @@ Table: Metriche per i processi primari
 
 ---
 
-#### Schedule Performance Index
+#### Schedule performance index
 
 **Metrica**: MPCR06
 
@@ -166,7 +167,7 @@ Table: Metriche per i processi primari
 
 ---
 
-#### Cost Performance Index
+#### Cost performance index
 
 **Metrica**: MPCR07
 
@@ -175,7 +176,7 @@ Table: Metriche per i processi primari
 - Indica l'efficienza nell'utilizzo delle risorse.
 - Un valore maggiore di 1 indica che si sta spendendo meno del previsto per il lavoro completato.
 
-### Processi di Supporto
+### Processi di supporto
 
 | Metrica | Nome                       | Descrizione                                        | Obiettivo                                                       | Valore Accettabile         | Valore Desiderabile          |
 | ------- | -------------------------- | -------------------------------------------------- | --------------------------------------------------------------- | -------------------------- | ---------------------------- |
@@ -186,7 +187,7 @@ Table: Metriche per i processi primari
 
 Table: Metriche per i processi di supporto
 
-#### Budget At Completion
+#### Budget ct completion
 
 **Metrica**: MPCS01
 
@@ -198,7 +199,7 @@ Table: Metriche per i processi di supporto
 
 ---
 
-#### Estimate To Complete
+#### Estimate to complete
 
 **Metrica**: MPCS02
 
@@ -210,7 +211,7 @@ Table: Metriche per i processi di supporto
 
 ---
 
-#### Estimate At Completion
+#### Estimate at completion
 
 **Metrica**: MPCS03
 
@@ -222,7 +223,7 @@ Table: Metriche per i processi di supporto
 
 ---
 
-#### Indice Gulpease
+#### Indice gulpease
 
 **Metrica**: MPCS04
 
@@ -266,7 +267,7 @@ Table: Metriche per i processi organizzativi
 - Importante per garantire la comunicazione efficace e la manutenibilità del progetto
 - Gli errori vengono identificati durante le revisioni e le verifiche formali per poi essere corretti
 
-## Qualità di Prodotto
+## Qualità di prodotto
 
 Per garantire la qualità del prodotto, il team adotta il modello di riferimento ISO/IEC 9126, che definisce un modello di qualità del software basato su sei caratteristiche fondamentali: funzionalità, affidabilità, usabilità, efficienza, manutenibilità e portabilità.
 
@@ -332,11 +333,11 @@ Table: Metriche di manutenibilità per la qualità di prodotto
 
 Table: Metriche di portabilità per la qualità di prodotto
 
-## Specifica dei Test
+## Specifica dei test
 
 I test di verifica e validazione vengono eseguiti in tutte le fasi del ciclo di sviluppo, garantendo la conformità del prodotto con i requisiti specificati e gli standard qualitativi prestabiliti dal team. I test vengono classificati in quattro categorie principali: test di unità, test di integrazione, test di sistema e test di accettazione.
 
-### Test Di Sistema
+### Test di sistema
 
 | ID   | Descrizione                                                            | ID Requisito        | Stato            |
 | ---- | ---------------------------------------------------------------------- | ------------------- | ---------------- |
@@ -363,7 +364,7 @@ I test di verifica e validazione vengono eseguiti in tutte le fasi del ciclo di 
 
 Table: Test di sistema
 
-### Test Di Accettazione
+### Test di accettazione
 
 | ID   | Descrizione                                      | ID Requisito | Stato            |
 | ---- | ------------------------------------------------ | ------------ | ---------------- |
@@ -376,11 +377,11 @@ Table: Test di sistema
 | TA07 | Verifica supporto formato file requisiti .reqif  | RTP_8        | Non Implementato |
 | TA08 | Verifica usabilità interfaccia grafica           | RFO_14,15    | Non Implementato |
 
-Table: Test di Accettazione
+Table: Test di accettazione
 
 ## Cruscotto di valutazione
 
-### Indice Gulpease
+### Indice gulpease
 
 <iframe width="800" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0txzzEKqHdhrji9fd49Hd7k4zLchkVRCsBk1Oil4yILOSzL3kxO2DtdxCC9W1ni5uqytaJaVwcHAV/pubchart?oid=1654995613&amp;format=interactive" data-image="ig.png" data-title="Indice Gulpease"></iframe>
 
@@ -396,7 +397,7 @@ Possiamo osservare che i valori riportati sono rimasti stabili durante questa pr
 
 Possiamo osservare che il numero di errori è stato minimizzato tramite l'utilizzo di "SpellCheck": un'estensione che permette di individuare gli errori ortografici all'interno dei documenti.
 
-### Earned Value, Planned Value & Actual Cost
+### Earned calue, planned value & actual cost
 
 <iframe width="800" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0txzzEKqHdhrji9fd49Hd7k4zLchkVRCsBk1Oil4yILOSzL3kxO2DtdxCC9W1ni5uqytaJaVwcHAV/pubchart?oid=1002546531&amp;format=interactive" data-image="ev-pv-ac.png" data-title="Earned Value, Planned Value e Actual Cost"></iframe>
 
@@ -404,7 +405,7 @@ Possiamo osservare che il numero di errori è stato minimizzato tramite l'utiliz
 
 Possiamo osservare che, nonostatnte un iniziale sovrastima del carico di lavoro completabile, il progetto risulta al passo con la pianificazione iniziale. Questo è stato possibile attraverso uno %%sprint|sprint%% di recupero durante il quale il gruppo si è concentrato sul completamento delle attività rimaste in arretrato.
 
-### Estimate to Complete & Estimate at Completion
+### Estimate to complete & estimate at completion
 
 <iframe width="800" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0txzzEKqHdhrji9fd49Hd7k4zLchkVRCsBk1Oil4yILOSzL3kxO2DtdxCC9W1ni5uqytaJaVwcHAV/pubchart?oid=840721179&amp;format=interactive" data-image="etc-eac.png" data-title="Estimate to Complete e Estimate at Completion"></iframe>
 
@@ -412,7 +413,7 @@ Possiamo osservare che, nonostatnte un iniziale sovrastima del carico di lavoro 
 
 Possiamo osservare che, nonostante una iniziale crescita delle stime di completamento, il grafico risulta stabile ed in linea con la pianificazione. La crescita iniziale è dovuta ad un rallentamento nel processo di sviluppo osservabile nel grafico [Schedule Variance](#schedule-variance--cost-variance).
 
-### Schedule Variance & Cost Variance
+### Schedule variance & cost variance
 
 <iframe width="800" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0txzzEKqHdhrji9fd49Hd7k4zLchkVRCsBk1Oil4yILOSzL3kxO2DtdxCC9W1ni5uqytaJaVwcHAV/pubchart?oid=1247587591&amp;format=interactive" data-image="sv-cv.png" data-title="Schedule Variance e Cost Variance"></iframe>
 
@@ -420,7 +421,7 @@ Possiamo osservare che, nonostante una iniziale crescita delle stime di completa
 
 Possiamo osservare che durante gli %%sprint|sprint%% 2, 3 e 4 il gruppo ha sovrastimato la quantità di lavoro completabile vista la presenza della pausa invernale e della sessione d'esami. Il lavoro è stato recuperato negli sprint successivi riportando lo stato di avanzamento del progetto in linea con la pianificazione iniziale.
 
-### Schedule Performance Index & Cost Performance Index
+### Schedule performance index & cost performance index
 
 <iframe width="800" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0txzzEKqHdhrji9fd49Hd7k4zLchkVRCsBk1Oil4yILOSzL3kxO2DtdxCC9W1ni5uqytaJaVwcHAV/pubchart?oid=467291162&amp;format=interactive" data-image="spi-cpi.png" data-title="Schedule Performance Index e Cost Performance Index"></iframe>
 
@@ -436,27 +437,27 @@ Possiamo osservare che durante gli %%sprint|sprint%% 2, 3 e 4 il valore del SPI 
 
 Possiamo osservare che, allo stato attuale del progetto, non sono stati individuati rischi non previsti. Il gruppo è stato quindi in grado di gestire il progetto in maniera efficiace mitigando la comparse di nuovi rischi non preventivati.
 
-### Requisiti Obbligatori
+### Requisiti obbligatori
 
 <iframe width="800" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0txzzEKqHdhrji9fd49Hd7k4zLchkVRCsBk1Oil4yILOSzL3kxO2DtdxCC9W1ni5uqytaJaVwcHAV/pubchart?oid=550686990&amp;format=interactive" data-image="ro.png" data-title="Requisiti Obbligatori"></iframe>
 
-### Requisiti Desiderabili
+### Requisiti desiderabili
 
 <iframe width="800" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0txzzEKqHdhrji9fd49Hd7k4zLchkVRCsBk1Oil4yILOSzL3kxO2DtdxCC9W1ni5uqytaJaVwcHAV/pubchart?oid=99639478&amp;format=interactive" data-image="rd.png" data-title="Requisiti Desiderabili"></iframe>
 
-### Requisiti Opzionali
+### Requisiti opzionali
 
 <iframe width="800" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0txzzEKqHdhrji9fd49Hd7k4zLchkVRCsBk1Oil4yILOSzL3kxO2DtdxCC9W1ni5uqytaJaVwcHAV/pubchart?oid=1136804738&amp;format=interactive" data-image="rop.png" data-title="Requisiti Opzionali"></iframe>
 
-### Branch Coverage
+### Branch coverage
 
 <iframe width="800" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0txzzEKqHdhrji9fd49Hd7k4zLchkVRCsBk1Oil4yILOSzL3kxO2DtdxCC9W1ni5uqytaJaVwcHAV/pubchart?oid=1042212840&amp;format=interactive" data-image="bc.png" data-title="Branch Coverage"></iframe>
 
-### Statement Coverage
+### Statement coverage
 
 <iframe width="800" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0txzzEKqHdhrji9fd49Hd7k4zLchkVRCsBk1Oil4yILOSzL3kxO2DtdxCC9W1ni5uqytaJaVwcHAV/pubchart?oid=959844727&amp;format=interactive" data-image="sc.png" data-title="Statement Coverage"></iframe>
 
-### Condition Coverage
+### Condition coverage
 
 <iframe width="800" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0txzzEKqHdhrji9fd49Hd7k4zLchkVRCsBk1Oil4yILOSzL3kxO2DtdxCC9W1ni5uqytaJaVwcHAV/pubchart?oid=1162915206&amp;format=interactive" data-image="cc.png" data-title="Condition Coverage"></iframe>
 
