@@ -8,21 +8,20 @@ import {TrackerWebView} from "../WebViews/TrackerWebView";
 import path from "path";
 
 export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
-  private _context: vscode.ExtensionContext;
   private _webviewView?: vscode.WebviewView;
   private _trackerWebView: TrackerWebView;
   private _requirementsServiceFacade: RequirementsServiceFacade;
   private _extensionUri: vscode.Uri;
 
   constructor(
-    context: vscode.ExtensionContext,
     requirementsServiceFacade: RequirementsServiceFacade,
+    trackerWebView: TrackerWebView,
+    extensionUri: vscode.Uri,
   ) {
-    this._context = context;
-    this._trackerWebView = new TrackerWebView(context.extensionUri);
+    this._trackerWebView = trackerWebView;
     this._requirementsServiceFacade = requirementsServiceFacade;
 
-    this._extensionUri = this._context.extensionUri;
+    this._extensionUri = extensionUri;
   }
 
   public resolveWebviewView(

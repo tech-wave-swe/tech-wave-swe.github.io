@@ -19,6 +19,7 @@ import {GlobalStateService} from "./Services/GlobalStateService";
 import {RequirementsService} from "./Services/RequirementsService";
 import {FilterService} from "./Services/FilterService";
 import {ChatWebView} from "./WebViews/ChatWebView";
+import {TrackerWebView} from "./WebViews/TrackerWebView";
 
 export function activate(context: vscode.ExtensionContext) {
   try {
@@ -99,8 +100,9 @@ function _initializeTrackerViewProvider(context: vscode.ExtensionContext) {
   const requirementsServiceFacade = new RequirementsServiceFacade(parsingService, trackerService, embeddingService, requirementsService);
 
   const trackerWebviewProvider = new TrackerWebviewProvider(
-    context,
-    requirementsServiceFacade
+    requirementsServiceFacade,
+    new TrackerWebView(context.extensionUri),
+    context.extensionUri,
   );
 
   // Register webview provider
