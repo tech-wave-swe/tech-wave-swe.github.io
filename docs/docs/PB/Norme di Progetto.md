@@ -23,7 +23,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                                        | Autore              | Data Verifica | Verificatore          |
 | ---------- | -------- | -------------------------------------------------- | ------------------- | ------------- | --------------------- |
-| 30/03/2025 | 1.8.2    | Controllo consistenza maiuscole                    | Dal Bianco Riccardo |               |                       |
+| 30/03/2025 | 1.8.2    | Controllo consistenza maiuscole                    | Dal Bianco Riccardo | 30/03/2025    | Vasquez Manuel Felipe |
 | 07/03/2025 | 1.8.1    | Aggiunta sezione PoC                               | Monetti Luca        | 07/03/2025    | Marcon Giulia         |
 | 27/02/2025 | 1.8.0    | Revisione del documento                            | Carraro Agnese      | 28/02/2025    | Monetti Luca          |
 | 23/02/2025 | 1.7.1    | Procedure per la rendicontazione delle ore         | Pistori Gaia        | 25/02/2025    | Carraro Agnese        |
