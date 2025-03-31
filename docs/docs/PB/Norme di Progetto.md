@@ -1,11 +1,11 @@
 ---
 id: norme_di_progetto
-title: "Norme di Progetto - v1.8.2"
+title: "Norme di Progetto - v1.8.4"
 documentclass: TWDocumentFull
 toc: true
 lof: true
 numbersections: true
-version: 1.8.2
+version: 1.8.4
 classification: Interno
 ---
 
@@ -23,6 +23,8 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                                        | Autore              | Data Verifica | Verificatore          |
 | ---------- | -------- | -------------------------------------------------- | ------------------- | ------------- | --------------------- |
+| 30/03/2025 | 1.8.4    | Riscrittura sezione 1, 4 e 5. Scrittura sezione 6  | Carraro Agnese      | 30/03/2025    | Marcon Giulia         |
+| 30/03/2025 | 1.8.3    | Riscrittura sezione 2 e 3                          | Dal Bianco Riccardo | 30/03/2025    | Marcon Giulia         |
 | 30/03/2025 | 1.8.2    | Controllo consistenza maiuscole                    | Dal Bianco Riccardo | 30/03/2025    | Vasquez Manuel Felipe |
 | 07/03/2025 | 1.8.1    | Aggiunta sezione PoC                               | Monetti Luca        | 07/03/2025    | Marcon Giulia         |
 | 27/02/2025 | 1.8.0    | Revisione del documento                            | Carraro Agnese      | 28/02/2025    | Monetti Luca          |
@@ -50,46 +52,57 @@ Table: Changelog
 
 ## Introduzione
 
-### Scopo del documento
+### Scopo del documento 
 
-Lo scopo del documento è quello di definire le norme che ogni componente del gruppo TechWave dovrà rispettare per ottenere un %%prodotto|prodotto%% finale fatto a regola d'arte. In questo documento, inoltre, vengono descritte le convenzioni da rispettare nell'utilizzo degli strumenti e vengono esposti i %%processi|processo%% che saranno adottati dal gruppo. Questo documento è redatto seguendo un approccio incrementale, in quanto durante tutta la durata del %%progetto|progetto%% possono cambiare oppure si possono aggiungere/rimuovere le norme a seconda delle necessità.
+Lo scopo del documento è quello di definire le norme che ogni componente del gruppo TechWave dovrà rispettare per ottenere un %%prodotto|prodotto%% finale fatto a regola d'arte. In questo documento vengono descritte le convenzioni da rispettare nell'utilizzo degli strumenti e vengono esposti i %%processi|processo%% che saranno adottati dal gruppo prendendo come punto di riferimento lo standard ISO/IEC 12207:2008. Questo standard definisce tre tipologie di %%processi|processo%%: i %%processi|processo%% primari, i %%processi|processo%% di supporto e i %%processi|processo%% organizzativi, ognuno dei quali verrà approfondito seguendo il corrispettivo ordine. 
 
-### Scopo del prodotto
+Questo documento è redatto seguendo un approccio incrementale, in quanto durante tutta la durata del %%progetto|progetto%% possono cambiare oppure si possono aggiungere o rimuovere le norme a seconda delle necessità.
 
-Nello sviluppo di software per sistemi embedded la parte di controllo dell'implementazione di tutti i %%requisiti|requisito_software%% necessari al corretto funzionamento dello stesso risulta costosa e ripetitiva da parte dello sviluppatore, inoltre può risultare non esaustiva a causa di distrazioni o dimenticanze. Il %%capitolato|capitolato%% \*\*\_Requirement Tracker - Plug-in VSCode\*\*\* propone lo sviluppo di un %%plugin|plugin%% per %%VSCode|vscode%% che permetta di tracciare i %%requisiti|requisito_software%% derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari %%requisiti|requisito_software%% in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
+### Scopo del prodotto 
+
+Nello sviluppo di software per sistemi embedded la parte di controllo dell'implementazione di tutti i %%requisiti|requisito_software%% necessari al corretto funzionamento dello stesso risulta costosa e ripetitiva da parte dello sviluppatore, inoltre può risultare non esaustiva a causa di distrazioni o dimenticanze. Il %%capitolato|capitolato%% **Requirement Tracker - Plug-in VSCode** propone lo sviluppo di un %%plugin|plugin%% per %%VSCode|vscode%% che permetta di tracciare i %%requisiti|requisito_software%% derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari %%requisiti|requisito_software%% in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
 
 ### Glossario
 
-Per evitare incomprensioni riguardanti la terminologia utilizzata all'interno dei vari documenti, viene fornito un Glossario che racchiude tutti i vari termini tecnici, potenzialmente ambigui, con la propria definizione precisa. I termini presenti all'interno del glossario verranno evidenziati nei documenti in blu.
+Per evitare incomprensioni riguardanti la terminologia utilizzata all’interno dei vari documenti, viene fornito un Glossario che racchiude tutti i vari termini tecnici, potenzialmente ambigui, con la propria definizione precisa. I termini presenti all’interno del glossario verranno evidenziati nei documenti tramite:
+- Sito Web: Grassetto Colorato. 
+- PDF: Corsivo con pendice [G].
+
 
 ### Riferimenti
 
-Riferimenti normativi:
+Riferimenti normativi: 
 
-- %%Capitolato|capitolato%% d'appalto C8
+- %%Capitolato|capitolato%% d'appalto C8 (ultimo accesso: 29/03/2025)
 
 > [https://www.math.unipd.it/\~tullio/IS-1/2024/Progetto/C8.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Progetto/C8.pdf)
 
-- Corso di Ingegneria del software - Regolamento di %%Progetto|progetto%%
+- Corso di Ingegneria del software - Regolamento di %%Progetto|progetto%% (ultimo accesso: 29/03/2025)
 
 > [https://www.math.unipd.it/\~tullio/IS-1/2024/Dispense/PD1.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/PD1.pdf)
 
 Riferimenti informativi:
 
-- Corso di Ingegneria del software - %%Processi|processo%% di Ciclo di Vita
+- Corso di Ingegneria del software - %%Processi|processo%% di Ciclo di Vita (ultimo accesso: 29/03/2025)
 
 > [https://www.math.unipd.it/\~tullio/IS-1/2024/Dispense/T02.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Dispense/T02.pdf)
 
-## 2 Processi primari
+- Glossario (ultimo accesso: 29/03/2025)
 
-### 2.1 Fornitura
+> [https://tech-wave-swe.github.io/docs/glossario](https://tech-wave-swe.github.io/docs/glossario)
 
-Il %%processo|processo%% di fornitura definisce un insieme di metodi, pratiche e procedure finalizzati a garantire la consegna del %%prodotto|prodotto%% software richiesto dal %%committente|committente%%.
+## Processi Primari
+
+### Fornitura
+
+#### Descrizione e Scopo
+
+Come stabilito dallo standard ISO/IEC 12207, il %%processo|processo%% di fornitura definisce un insieme di metodi, pratiche e procedure finalizzati a garantire la consegna del %%prodotto|prodotto%% software richiesto dal %%committente|committente%%.
 Questo %%processo|processo%% si occupa del monitoraggio e del coordinamento delle %%attività|attività%% svolte dal gruppo durante l'intero ciclo di vita del %%prodotto|prodotto%%, assicurando che il risultato finale sia conforme alle aspettative del %%committente|committente%%.
 
-### Attività
+#### Attività
 
-Il %%processo|processo%%, durante il ciclo di vita del software affronta varie fasi:
+Il %%processo|processo%% di fornitura, durante il ciclo di vita del software affronta varie fasi:
 
 1. **Avvio del %%progetto|progetto%%**:
    Le prime %%attività|attività%% da svolgere riguardano l'individuazione delle necessità e dei %%requisiti|requisito_software%% del cliente. Queste informazioni si ottengono inizialmente dal %%Capitolato|capitolato%% per poi essere definite con maggiore dettaglio tramite colloqui o email.
@@ -106,17 +119,46 @@ Il %%processo|processo%%, durante il ciclo di vita del software affronta varie f
 7. **Consegna e completamento**:
    Il %%prodotto|prodotto%% software e la sua documentazione, una volta completata la validazione, verranno consegnate al cliente.
 
-### Comunicazione con l'azienda
+#### Comunicazione con l'azienda
 
 L'intero %%progetto|progetto%% è accompagnato da una forte e costante comunicazione con l'azienda. Questo è necessario sia per avere una definizione chiara delle esigenze, sia per ottenere feedback di quanto %%prodotto|prodotto%% nelle varie fasi per accertarsi che siano allineate con le aspettative.
 
 All'azienda viene fornito un puntatore contenente tutta la documentazione di %%progetto|progetto%% prodotta. In particolare, hanno maggiore interesse:
 
 - I **%%verbali|verbale%% esterni** che riassumono quanto definito durante il meeting e che necessitano la firma dell'azienda in quanto fonte per la definizione dei %%requisiti|requisito_software%%;
-- Il documento di **Analisi dei %%Requisiti|requisito_software%%**;
+- Il documento di **'%%Analisi dei Requisiti|analisi_dei_requisiti%%**;
 - Il documento di **Piano di %%Progetto|progetto%%**.
 
-### Strumenti
+#### Documentazione fornita
+
+Di seguito sono elencati i documenti che il gruppo si impegna a consegnare ai Committenti, Prof. Tullio Vardanega e Prof. Riccardo Cardin, nonchè all'azienda proponente:
+
+##### Analisi dei Requisiti
+
+L''%%Analisi dei Requisiti|analisi_dei_requisiti%% fornisce una descrizione dettagliata delle %%funzionalità|funzionalità%% previste per il %%prodotto|prodotto%% software, specificando con precisione i %%requisiti|requisito_software%% e i relativi casi d'uso. L'obiettivo principale di questo documento è di eliminare ogni ambiguità che potrebbe sorgere durante la lettura del capitolato. Contiene le sezioni di descrizione del %%prodotto|prodotto%%, casi d'uso e '%%Analisi dei Requisiti|analisi_dei_requisiti%%.
+
+##### Piano di Progetto
+
+Il Piano di %%progetto|progetto%% è un documento il cui fine è quello di definire in modo chiaro le modalità con cui ogni membro svolgerà le %%attività|attività%% per la realizzazione del %%progetto|progetto%%. Include L'analisi dei rischi, il modello di sviluppo e la pianificazione.
+
+##### Piano di Qualifica
+
+Il Piano di Qualifica è un documento essenziale il quale ha obiettivo di garantire la qualità del %%prodotto|prodotto%% e dei %%processi|processo%% durante l'intero ciclo di vita del %%progetto|progetto%%. Verrà aggiornato nel tempo per riflettere eventuali modifiche e risultati. Include le sezioni di qualità del %%processo|processo%%, qualità del %%prodotto|prodotto%%, specifica dei %%test|test%%, cruscotto di valutazione e valutazione di miglioramento.
+
+##### Glossario
+
+Il Glossario ha lo scopo di definire in modo chiaro i termini tecnici e gli acronimi impiegati, al fine di agevolare la comprensione dei concetti fondamentali contenuti nella documentazione prodotta.
+
+##### Lettera di Presentazione
+
+La lettera di Presentazione è un documento che accompagna la consegna di un %%prodotto|prodotto%% software e della relativa documentazione durante le fasi di revisione del %%progetto|progetto%%. Questo documento contiene l'elenco della documentazione redatta, la quale sarà consegnata ai committenti. Sono presenti diverse lettere di presentazione, il cui contesto è determinato dalla cartella in cui sono collocate.
+
+##### Verbali interni 
+
+Sono Verbali delle riunioni svolte senza la presenza di persone esterne al gruppo, contengono il riassunto di quello che è stato discusso e le decisioni prese.
+
+
+#### Strumenti
 
 Lo scambio di informazioni avviene tramite l'uso di molteplici piattaforme:
 
@@ -129,20 +171,100 @@ Lo scambio di informazioni avviene tramite l'uso di molteplici piattaforme:
 
 ### Sviluppo
 
-Il %%processo|processo%% di sviluppo riguarda l'effettiva realizzazione del %%prodotto|prodotto%% software. Le %%attività|attività%% fondamentali sono:
+#### Descrizione e scopo
 
-- **%%Analisi dei Requisiti|analisi_dei_requisiti%%**:
-  in seguito ad un brainstorming interno al team, avviene la definizione delle aspettative del %%prodotto|prodotto%% software. Viene redatto il documento di Analisi dei %%requisiti|requisito_software%% come specificato nel paragrafo [3.1.5.1.7](#documento-di-analisi-dei-requisitianalisi_dei_requisiti).
+Lo scopo del %%processo|processo%% di sviluppo è definire i compiti e le %%attività|attività%% necessarie per realizzare il %%prodotto|prodotto%% software, garantendo così un'implementazione accurata e conforme alle specifiche definite con il %%proponente|proponente%%. 
+L'obiettivo è consegnare un %%prodotto|prodotto%% software di alta qualità, che soddisfi le esigenze richieste, rispettando le tempistiche e garantendo il successo del %%progetto|progetto%%.
+Nello specifico, sono dettagliate le seguenti %%attività|attività%%: 
 
-#### Strumenti
+#### Analisi dei Requisiti
 
-Per la creazione dei diagrammi UML è stato utilizzato **StarUML**.
+##### Descrizione e scopo
 
-## Processi di supporto
+L''%%Analisi dei Requisiti|analisi_dei_requisiti%% rappresenta una fase fondamentale nel %%processo|processo%% di sviluppo software, in quanto getta le basi per le successive %%attività|attività%% di progettazione, implementazione e verifica del sistema. Attraverso il confronto con il committente, vengono individuati gli attori, i casi d’uso e i %%requisiti|requisito_software%% funzionali, tecnici e qualitativi , fornendo una base solida per la progettazione, lo sviluppo e la verifica del %%prodotto|prodotto%%.
+Questa %%attività|attività%% consente di documentare e validare le aspettative del committente, facilitare la comunicazione all’interno del team e supportare la pianificazione del %%progetto|progetto%% in termini di tempi, costi e qualità. Il risultato dell’analisi è raccolto nell’apposito documento che è un riferimento chiave per tutte le %%attività|attività%% del %%progetto|progetto%%.
+
+##### Struttura dei casi d'uso
+I casi d'uso hanno una struttura ben definita: 
+- Attore primario: Utente programmatore che interagisce attivamente con il sistema.
+- Precondizioni: Stato in cui si deve trovare il sistema affinche la %%funzionalità|funzionalità%% sia disponibile all'attore.
+- Postcondizioni: Stato in cui si trova il sistema dopo l'esecuzione dello scenario.
+- Scenario principale: Eventi che si verificano quando l'attore interagisce con il sistema per raggiungere l'obiettivo del caso d'uso.
+- User story associata: Breve descrizione delle %%funzionalità|funzionalità%% relativa al caso d'uso associato.
+
+##### Denominazione dei casi d'uso 
+
+Ogni caso d'uso deve essere costituito da un identificativo:
+**UC\[Numero\].\[Numero sottocaso\]-\[Titolo\]**
+dove: 
+- Numero: È il numero del caso d'uso in questione.
+- Numero sottocaso: È il sottocaso del caso d'uso in questione.
+- Titolo: breve titolo che descrive il caso d'uso
+
+##### Struttura dei requisiti
+
+I %%requisiti|requisito_software%% individuati nell''%%Analisi dei Requisiti|analisi_dei_requisiti%% sono strutturati nel seguente modo:
+- Tipologia del requisito:
+  * Funzionale (F): Specificano le %%funzionalità|funzionalità%% del sistema.
+  * Tecnico (T): Indicano vincoli riguardo le tecnologie che l’Applicativo deve utilizzare.
+  * Qualitativo (Q): Indicano vincoli riguardo obbiettivi minimi di qualità.
+- Obbligatorietà del requisito:
+  * Obbligatorio (O): Requisito irrinunciabile.
+  * Desiderabile (D): Non strettamente necessario ma con valore aggiunto riconoscibile.
+  * Opzionale (P): Utile o contrattabile più avanti.
+
+- Numero : Numero progressivo 
+
+##### Denominazione dei requisiti
+Ogni requisito è identificato in modo univoco secondo lo schema: 
+**R\[ Tipo \]\[ Obb \]_\[ Numero \]**
+dove: 
+- Tipo: indica la tipologia del requisito.
+- Obb: indica l'obbligatorietà del requisito.
+- Numero: indica il numero progressivo del requisito.
+
+
+#### Progettazione 
+
+##### Descrizione e scopo
+Prima di avviare la progettazione vera e propia, si intraprende una fase preliminare che prevede la creazione di un %%PoC|poc%% (Proof of Concept). Questa fase serve a confermare le tecnologie da adottare e a definire insieme al %%proponente|proponente%% le componenti che costituiranno l'MVP (Minimum Viable Product).
+La fase di progettazione è fondamentale nel %%processo|processo%% di sviluppo software, poiché ha il compito di tradurre i %%requisiti|requisito_software%% individuati nell''%%Analisi dei Requisiti|analisi_dei_requisiti%% in una struttura architetturale chiara, completa e realizzabile. Essa fornisce una visione tecnica del sistema da costruire, supportando scelte consapevoli in termini di tecnologie, organizzazione dei componenti e modalità di implementazione.
+
+##### Obbiettivi
+L'obiettivo principale della fase di progettazione è garantire che tutti i %%requisiti|requisito_software%% identificati vengano tradotti in specifiche tecniche chiare, coerenti e realizzabili. A tal fine, è fondamentale definire un'architettura solida e ben strutturata che rappresenti una base affidabile per lo sviluppo, favorendo al contempo come chiesto dal %%proponente|proponente%% modularità e mantenibilità.
+Un altro aspetto importante è la selezione delle tecnologie più adatte, esplorate nella fase di Proof of Concept. La progettazione inoltre ha il compito di gestire la complessità dell'intero sistema, suddividendolo in componenti autonomi ben definiti così da semplificare le %%attività|attività%% di codifica, verifica e manutenzione.
+Inoltre come esplicitamente chiesto dal %%proponente|proponente%% progettare una visione orientata al futuro e utilizzabile, assicurando flessibilità e coerenza con i problemi che il sistema vuole risolvere.
+
+##### Diagramma delle classi 
+Una tipologia di diagramma UML utile a rappresentare la struttura statica del sistema software. Questi diagrammi visualizzano le classi del sistema, i loro attributi, metodi e la relazione tra esse.
+Rappresentazione:
+1. Nome: Contiene il nome della classe, se la classe è astratta il nome viene scritto in corsivo
+2. Attributi: 
+**Visibilità Nome : tipo \[molteplicità\] = default**
+3. Metodi:
+**Visibilità Nome (lista-parametri) : tipo-ritorno**
+
+##### Design pattern
+
+##### Strumenti
+* StarUML: applicazione software utilizzata per la realizzazione dei diagrammi delle classi.
+
+
+#### Codifica
+
+##### Descrizione e scopo
+La fase di codifica rappresenta il momento centrale in cui le %%funzionalità|funzionalità%% richieste dal %%proponente|proponente%% vengono concretamente realizzate. In questa fase, i programmatori traducono le specifiche definite dai progettisti in codice eseguibile, seguendo con rigore le norme di %%progetto|progetto%% e le linee guida stabilite. Il codice %%prodotto|prodotto%% deve rispecchiare fedelmente i %%requisiti|requisito_software%% analizzati, garantendo qualità, coerenza e manutenibilità nel tempo.
+
+##### Obbiettivi
+L’obiettivo principale di questa %%attività|attività%% è la realizzazione di un %%prodotto|prodotto%% software conforme alle richieste del committente, rispettando gli accordi contrattuali e assicurando la piena corrispondenza tra ciò che è stato progettato e quanto viene implementato. Si mira alla produzione di un codice chiaro, leggibile ed %%efficiente|efficienza%%, facilmente estendibile e testabile.
+
+
+
+## Processi di Supporto
 
 ### Documentazione
 
-#### Introduzione
+#### Descrizione e scopo
 
 Il %%processo|processo%% di documentazione mira a raccogliere, organizzare e rappresentare in forma scritta tutte le informazioni prodotte da un %%processo|processo%% o da un'%%attività|attività%% durante il ciclo di vita di un %%prodotto|prodotto%% software. La documentazione prodotta ha lo scopo di fornire una comprensione del %%prodotto|prodotto%% a sviluppatori, distributori ed utenti senza la necessità di supporto umano.
 Le norme definite all'interno di questo documento saranno applicate da tutti i membri del gruppo per la redazione e la modifica di tutta la documentazione prodotta.
@@ -153,13 +275,13 @@ L'approccio **Documentazione come Codice** permette di ottenere una migliore tra
 - Automazioni
 - Integrazione Continua
 
-#### Sorgente documenti
+#### Sorgente Documenti
 
-La documentazione sarà redatta utilizzando il linguaggio **MarkDown** la cui semplicità consente di velocizzare il processo di scrittura garantendo, al contempo, la portabilità e la facilità di conversione in formati diversi.
+La documentazione sarà redatta utilizzando il linguaggio **MarkDown** la cui semplicità consente di velocizzare il %%processo|processo%% di scrittura garantendo, al contempo, la portabilità e la facilità di conversione in formati diversi.
 
 La documentazione prodotta, archiviata nello stesso %%repository|repository%% del %%progetto|progetto%%, è pensata per essere visualizzata tramite un sito web generato a partire dai file sorgenti tramite l'utilizzo di **%%Docusaurus|docusaurus%%**. Ogni documento è formato da un singolo file sorgente a partire da un template predefinito.
 
-#### Ciclo di vita dei documenti
+#### Ciclo di vita dei Documenti
 
 Il ciclo di vita dei documenti può essere rappresentato come una sequenza di %%attività|attività%%. Adattando un approccio incrementale alla redazione della documentazione queste fasi vengono ripetute in modo ciclico:
 
@@ -218,7 +340,7 @@ Ogni file sorgente contiene una sezione dedicata alla definizione dei metadati d
 
 Di seguito vengono elencati tutti i metadati utilizzabili all'interno dei documenti divisi in due categorie:
 
-- **Obbligatori**: Necessario inserire questi metadati all'interno dei documenti per eseguire correttamente il processo di build.
+- **Obbligatori**: Necessario inserire questi metadati all'interno dei documenti per eseguire correttamente il %%processo|processo%% di build.
 - **Opzionali**: Metadati che modificano lo stile di documento generato o alcune sue %%funzionalità|funzionalità%%.
 
 **Obbligatori**:
@@ -275,7 +397,7 @@ La sezione dettaglio documento contiene le informazioni principali del documento
 - **Classificazione**: rappresenta la classificazione del documento. Può assumere i valori Interno ed Esterno.
 - **Versione**: Rappresenta la versione del documento corrente. Corrisponde alla versione presente nella prima riga del registro delle modifiche.
 
-###### TOC e LOF
+###### Toc e Lof
 
 Il TOC (Tabella dei contenuti) rappresenta l'indice della pagina. La sua presenza agevola la navigazione all'interno del documento e ne fornisce una visione d'insieme. Deve essere presente in tutti i documenti fatta eccezione per:
 
@@ -324,9 +446,9 @@ I %%verbali|verbale%% sono documento redatti a seguito di riunioni interne o est
   - **AAAA-MM-GG**: Data della riunione
   - **ID**: Indice progressivo che rappresenta il %%verbale|verbale%%.
 
-###### Documento di analisi dei requisiti
+###### Documento di Analisi dei Requisiti
 
-Il documento dell'Analisi dei %%Requisiti|requisito_software%% è il risultato di quanto svolto nell'%%attività|attività%% omologa. Al suo interno sono presenti:
+Il documento dell''%%Analisi dei Requisiti|analisi_dei_requisiti%% è il risultato di quanto svolto nell'%%attività|attività%% omologa. Al suo interno sono presenti:
 
 - Un paragrafo dedicato a specificare lo **scopo del documento**.
 - Un paragrafo dedicato a specificare lo **scopo del %%prodotto|prodotto%%**.
@@ -335,7 +457,7 @@ Il documento dell'Analisi dei %%Requisiti|requisito_software%% è il risultato d
     - **Funzionali**: %%funzionalità|funzionalità%% che l'%%Applicativo|applicativo%% deve fornire.
     - **Tecnici**: vincoli riguardo le tecnologie che l'%%Applicativo|applicativo%% deve utilizzare.
     - **Qualitativi**: vincoli riguardo obiettivi minimi di %%qualità|qualità%%.
-  - **Obbligatorietà**:
+  - **obbligatorietà**:
     - **Obbligatori**: irrinunciabile per qualcuno degli stakeholder.
     - **Desiderabili**: non strettamente necessario ma con valore aggiunto riconoscibile.
     - **Opzionali**: utile o contrattabile più avanti.
@@ -349,7 +471,7 @@ Il documento dell'Analisi dei %%Requisiti|requisito_software%% è il risultato d
   - **Generalizza** \[se presente\]: %%use case|use_case%% genitore.
   - **Estensioni** \[se presenti\]: %%use case|use_case%% che arrivano dal costrutto extend.
 
-###### Documento di piano di progetto
+###### Documento di Piano di Progetto
 
 Il documento di Piano di %%Progetto|progetto%% rappresenta tutta la parte di pianificazione e di analisi del %%progetto|progetto%% prodotta dal responsabile. Al suo interno sono presenti:
 
@@ -360,7 +482,7 @@ Il documento di Piano di %%Progetto|progetto%% rappresenta tutta la parte di pia
 - Una sezione contenente il **%%preventivo|preventivo%% dei costi e delle ore** di ciascun ruolo definite al momento della pianificazione dello %%sprint|sprint%%.
 - Una sezione contenente il **%%consuntivo|consuntivo%% dei costi e delle ore** effettivamente svolte da ciascun ruolo, calcolate durante la %%retrospettiva|retrospettiva%%.
 
-##### Piano di qualifica
+##### Piano di Qualifica
 
 Il Piano di Qualifica contiene tutte le strategie di %%verifica|verifica%% e validazione utilizzate all'interno del ciclo di vita del %%progetto|progetto%% al fine di garantire la conformità del %%prodotto|prodotto%% alle aspettative del %%committente|committente%%.
 
@@ -369,6 +491,10 @@ Il Piano di Qualifica contiene tutte le strategie di %%verifica|verifica%% e val
 Il Glossario contiene tutte le definizioni dei termini utilizzati all'interno della documentazione del %%progetto|progetto%% al fine di evitare ambiguità e chiarire l'utilizzo di una terminologia specifica.
 
 #### Regole tipografiche
+
+##### Nome del file 
+
+I nomi dei file hanno una notazione omogena tra di loro, le lettere sono maiuscole fatta eccezione per le preposizioni che hanno lettera minuscola. Diverso è il titolo dei verbali che è composto dalla data in cui si è svolto e il numero progressivo del verbale. La data viene scritta in formato AAAA-MM-DD
 
 ##### Stile del testo
 
@@ -395,6 +521,21 @@ Per i documenti in versione pdf:
   - Parole o frasi da enfatizzare
 - Corsivo seguito da pendice \[G\]:
   - Parola appartenente al glossario
+
+##### Elementi grafici
+
+###### Tabelle 
+Le tabelle presenti all'interno dei documenti sono contrassegnate da il numero della tabella relativa al documento e un titolo che descrive il contenuto della tabella posta al di sopra di essa con sintassi: 
+**table \[n\]: Titolo**
+- n: Numero della tabella nel documento di riferimento.
+- titolo: Titolo posto che descrive il contenuto della tabella.
+
+###### Immagini e grafici
+Le immagini presenti all'interno dei documenti sono contrassegnate da il numero dell'immagine relativa al documento e un titolo che descrive il contenuto dell'immagine posta al disotto di essa con sintassi: 
+**Figure \[n\]: Titolo**
+- n: Numero dell'immagine nel documento di riferimento.
+- titolo: Titolo posto che descrive il contenuto dell'immagine.
+
 
 #### Strumenti
 
@@ -431,15 +572,15 @@ Per verificare un documento è necessario revisionare:
 
 Al termine, se questi criteri sono soddisfatti, il verificatore deve approvare la Pull Request ed effettuare l'unione sul branch develop. In caso contrario il verificatore ha il compito di inserire commenti e suggerimenti sulle modifiche da apportare.
 
-Questo processo si ripete fino alla soddisfazione dei criteri di %%qualità|qualità%%.
+Questo %%processo|processo%% si ripete fino alla soddisfazione dei criteri di %%qualità|qualità%%.
 
 #### Analisi
 
-##### Analisi statica
+##### Analisi Statica
 
 L'Analisi Statica è un'%%attività|attività%% di controllo condotta sul %%prodotto|prodotto%% senza la necessità di eseguirlo. Si basa sull'utilizzo di metodo di lettura, manuali o automatici, che permettono di individuare errori formali, difetti o proprietà indesiderate all'interno dei documenti. Il successo di questa %%attività|attività%% dipende dalla competenza e dall'attenzione dei verificatori coinvolti.
 
-##### Analisi dinamica
+##### Analisi Dinamica
 
 L'Analisi Dinamica è un'%%attività|attività%% di controllo condotta sul %%prodotto|prodotto%% durante la sua esecuzione effettiva al fine di verificarne il corretto funzionamento.
 
@@ -466,7 +607,7 @@ I %%Test|test%% di Integrazione sono progettati per verificare il corretto funzi
 
 I %%Test|test%% di Sistema sono progettati per verificare il sistema nella sua interezza rispetto ai %%requisiti|requisito_software%% software individuati durante l'%%Analisi dei Requisiti|analisi_dei_requisiti%%. Questi %%test|test%% hanno lo scopo di garantire che il %%prodotto|prodotto%% esegua le funzioni previste in modo %%efficace|efficacia%% e affidabile in un ambiente realistico.
 
-###### Test di accettazione
+###### Test di Accettazione
 
 I %%Test|test%% di Accettazione sono progettati per dimostrare che i %%requisiti|requisito_software%% individuati sono stati soddisfatti e garantire che il %%prodotto|prodotto%% sia conforme alle aspettative degli stakeholder. Questi %%test|test%% vengono eseguiti coinvolgendo gli utenti finali e determinano se il %%prodotto|prodotto%% può essere rilasciato.
 
@@ -491,13 +632,13 @@ Ad ogni %%test|test%% viene associato uno stato che ne riflette il risultato di 
 - **S**: Superato
 - **NS**: Non Superato
 
-#### Validazione
+### Validazione
 
-##### Introduzione
+#### Descrizione e scopo
 
-Il %%processo|processo%% di Validazione conferma, tramite una dimostrazione oggettiva, che i requisiti specificati sono stati soddisfatti e che il %%prodotto|prodotto%% software risponde alle esigenze degli utenti finali.
+La validazione è il %%processo|processo%% che ha lo scopo di verificare, attraverso una dimostrazione oggettiva, che il %%prodotto|prodotto%% software sviluppato soddisfi pienamente i %%requisiti|requisito_software%% specificati e risponda in modo corretto alle esigenze degli utenti finali. Questa fase è fondamentale per assicurarsi che quanto realizzato sia effettivamente aderente alle aspettative del committente e conforme agli obiettivi definiti nelle fasi precedenti del %%progetto|progetto%%.
 
-##### Procedura di validazione
+#### Procedura di Validazione
 
 Il %%processo|processo%% di validazione prende come input i %%test|test%% effettuati sul %%prodotto|prodotto%% e valuta:
 
@@ -507,13 +648,13 @@ Il %%processo|processo%% di validazione prende come input i %%test|test%% effett
 
 Se il %%processo|processo%% ha esito positivo il %%prodotto|prodotto%% risponde in modo adeguato a tutte le esigenze degli utenti inizialmente identificate.
 
-#### Gestione della configurazione
+### Gestione della configurazione
 
-##### Introduzione
+#### Descrizione e scopo
 
-Il %%processo|processo%% di Gestione della configurazione si occupa di identificare, organizzare e controllare le modifiche apportate a tutti gli artefatti coinvolti nel ciclo di vita del %%prodotto|prodotto%%.
+La Gestione della Configurazione è il %%processo|processo%% volto a identificare, organizzare e controllare tutte le modifiche apportate agli artefatti prodotti durante il ciclo di vita del software. Il suo scopo è garantire tracciabilità, coerenza e controllo su ogni componente del sistema, assicurando che ogni versione del %%prodotto|prodotto%% sia correttamente documentata e gestita nel tempo.
 
-##### Sistema di versionamento
+#### Sistema di Versionamento
 
 Il sistema di %%versionamento|versionamento%% rappresenta le convenzioni utilizzate per la gestione delle versione di tutti i vari artefatti. La struttura utilizzata è rappresentata da: **X.Y.Z**.
 
@@ -523,19 +664,19 @@ Il sistema di %%versionamento|versionamento%% rappresenta le convenzioni utilizz
 
 L'incremento di valori più significativi azzera quelli meno significativi. Tutte le modifiche devono essere riportate all'interno del registro delle modifiche. Ogni documento entra nella %%repository|repository%% con una versione 1.0.0 o superiore.
 
-##### Repository
+#### Repository
 
-Ogni %%progetto|progetto%% sarà interamente contenuto all'interno di un unico %%repository|repository%% al fine di raggruppare tutti i sorgenti necessari all'interno dello stesso archivio. Verrà inoltre utilizzato un %%repository|repository%% diverso per il %%PoC|poc%% in quanto rappresenta un prodotto usa e getta.
+Ogni %%progetto|progetto%% sarà interamente contenuto all'interno di un unico %%repository|repository%% al fine di raggruppare tutti i sorgenti necessari all'interno dello stesso archivio. Verrà inoltre utilizzato un %%repository|repository%% diverso per il %%PoC|poc%% in quanto rappresenta un %%prodotto|prodotto%% usa e getta.
 Di seguito sono elencati tutti i %%repository|repository%% attualmente presenti:
 
-- tech-wave-swe.github.io: %%Repository|repository%% principale che raccoglie tutto il codice sorgente prodotto durante il ciclo di vita del %%progetto|progetto%%. La separazione tra documentazione e software è garantita da una struttura organizzata in cartelle dedicate, mentre l'utilizzo delle %%GitHub Action|github_action%% consente di gestire le diverse automazioni in modo autonomo ed %%efficiente|efficienza%%.
+- tech-wave-swe.github.io: %%Repository|repository%% principale che raccoglie tutto il codice sorgente %%prodotto|prodotto%% durante il ciclo di vita del %%progetto|progetto%%. La separazione tra documentazione e software è garantita da una struttura organizzata in cartelle dedicate, mentre l'utilizzo delle %%GitHub Action|github_action%% consente di gestire le diverse automazioni in modo autonomo ed %%efficiente|efficienza%%.
   Riferimento: [https://github.com/tech-wave-swe/tech-wave-swe.github.io](https://github.com/tech-wave-swe/tech-wave-swe.github.io).
 - poc: Contiene tutto il codice sorgente necessario al %%Poc|poc%%.
   Riferimento: [https://github.com/tech-wave-swe/tech-wave-swe.github.io](https://github.com/tech-wave-swe/poc).
 - DocumentStyle: Contiene le classi utilizzate per la generazione dei PDF.
   Riferimento: [https://github.com/tech-wave-swe/DocumentStyle](https://github.com/tech-wave-swe/DocumentStyle).
 
-#### Sincronizzazione e branching
+##### Sincronizzazione e Branching
 
 ##### Creazione di un nuovo branch di sviluppo
 
@@ -560,9 +701,9 @@ Spostarsi sul nuovo branch utilizzando il seguente formato:
 git checkout -B TWD-xx-Esempio-di-branch
 ```
 
-##### Creazione di una nuova pull request
+##### Creazione di una nuova Pull Request
 
-Le Pull Requests sono un meccanismo che consente di notificare il completamento di una %%funzionalità|funzionalità%% e richiederne la revisione. Un Pull Requesto fornisce un ambiente dedicato per discutere della %%funzionalità|funzionalità%% proposta, fornendo riscontri e apportando le modifiche necessarie.
+Le Pull Requests sono un meccanismo che consente di notificare il completamento di una %%funzionalità|funzionalità%% e richiederne la revisione. Un Pull Request fornisce un ambiente dedicato per discutere della %%funzionalità|funzionalità%% proposta, fornendo riscontri e apportando le modifiche necessarie.
 Per creare una nuova Pull Request:
 
 1. Accedere al %%repository|repository%% %%GitHub|github%% e selezionare la scheda "Pull Request".
@@ -593,13 +734,13 @@ Per ogni ticket assegnato all'interno di %%Jira|jira%%:
 2. Si effettuano tutte le modifiche necessarie.
 3. Si effettua una Pull Request verso develop quando il compito è completato per richiedere la revisione.
 4. Se la revisione viene approvata il codice viene unito al branch develop. In caso contrario è necessario ripartire dal punto 2 ed effettuare le modifiche proposte.
-5. Al termine dello %%sprint|sprint%% il Responsabile di %%progetto|progetto%% %%verifica|verifica%% tutto ciò che è stato prodotto. In caso di approvazione le modifiche vengono inserite all'interno del branch main.
+5. Al termine dello %%sprint|sprint%% il Responsabile di %%progetto|progetto%% %%verifica|verifica%% tutto ciò che è stato %%prodotto|prodotto%%. In caso di approvazione le modifiche vengono inserite all'interno del branch main.
 
-Durante questo processo la dashboard di %%Jira|jira%% è costantemente aggiornata tramite automazioni. Il ciclo di vita di un ticket viene descritto nella sezione [4.2.2.4](#ciclo-di-vita-di-un-task).
+Durante questo %%processo|processo%% la dashboard di %%Jira|jira%% è costantemente aggiornata tramite automazioni. Il ciclo di vita di un ticket viene descritto nella sezione [4.2.2.4](#ciclo-di-vita-di-un-task).
 
 ### Risoluzione dei problemi
 
-#### Introduzione
+#### Descrizione e scopo
 
 Il %%processo|processo%% di Risoluzione dei Problemi si pone come obiettivo fornire un approccio tempestivo e documentato per analizzare e risolvere i problemi, di qualsiasi natura o fonte, che vengono rilevati durante l'esecuzione degli altri %%processi|processo%%.
 
@@ -611,7 +752,7 @@ Il %%processo|processo%% di Gestione dei %%Rischi|rischio%% ha l'obiettivo di id
 
 I %%rischi|rischio%% individuati all'interno del %%progetto|progetto%% sono specificati all'interno del Piano di %%Progetto|progetto%% nella sezione dedicata.
 
-##### Codifica dei rischi
+##### Codifica dei Rischi
 
 Per identificare univocamente ogni %%rischio|rischio%% esso viene associato ad un codice identificativo basato sulla seguente convenzione: **R [ Tipologia ] [ Indice ] - [ Nome Associato ]**, dove:
 
@@ -631,13 +772,13 @@ Ogni problema identificato durante lo svolgimento del %%progetto|progetto%% da u
 
 ### Gestione della qualità
 
-#### Introduzione
+#### Descrizione e scopo
 
 Il %%processo|processo%% di Gestione della %%Qualità|qualità%% ha l'obiettivo di garantire la %%qualità|qualità%% del flusso operativo al fine di soddisfare i %%requisiti|requisito_software%% di %%qualità|qualità%% specificati. Questo %%processo|processo%% racchiude quindi tutte le %%attività|attività%% di definizione degli obiettivi di %%qualità|qualità%%, delle metriche e dei criteri di %%qualità|qualità%%, la pianificazione e l'esecuzione del controllo di %%qualità|qualità%% e la %%verifica|verifica%% della %%qualità|qualità%%.
 
 Il %%processo|processo%% di Gestione della %%Qualità|qualità%% interessa tutto il ciclo di vita del software.
 
-#### Piano di qualifica
+#### Piano di Qualifica
 
 Tutte le %%attività|attività%% di definizione, pianificazione, controllo e revisione di %%qualità|qualità%% sono trattate all'interno del documento Piano di Qualifica. All'interno di questo documento sono definite in dettaglio le specifiche di %%qualità|qualità%% del %%prodotto|prodotto%% associate alle azioni di controllo necessarie.
 
@@ -649,8 +790,6 @@ L'%%attività|attività%% di miglioramento continuo e correzione adotta il ciclo
 - **Do**: Effettiva esecuzione dei %%processi|processo%% pianificati, raccogliendo dati durante lo svolgimento dell'%%attività|attività%%.
 - **Check**: Analisi ed interpretazione dei dati raccolti durante l'esecuzione. I dati vengono valutati utilizzando metriche prestabilite e confrontati con gli obiettivi previsti.
 - **Act**: Consolidazione delle modifiche risultate positive e implementazione di strategie migliorative per correggere gli aspetti che non hanno funzionato.
-
-#### Strumenti
 
 #### Struttura e identificazione delle metriche
 
@@ -670,16 +809,15 @@ Ad ogni metrica è inoltre associato:
 - **Valore Accettabile**: Valore che la metrica deve raggiungere per essere considerata conforme agli standard.
 - **Valore Preferibile**: Valore ideale che la metrica dovrebbe assumere.
 
-## 4 Processi organizzativi
+## Processi Organizzativi
 
-### Introduzione
+### Introduzione 
 
 I %%processi|processo%% organizzativi sono trasversali rispetto al %%progetto|progetto%% e vengono applicati in modo tale da stabilire, controllare e migliorare i %%processi|processo%% del ciclo di vita del software, ai quali, quindi, forniscono il supporto necessario. Questa sezione del Piano di %%Progetto|progetto%% definisce i seguenti %%processi|processo%% organizzativi: gestione dei %%processi|processo%%, infrastruttura, miglioramento dei %%processi|processo%% e formazione.
 
 ### Gestione dei processi
 
 #### Introduzione
-
 La gestione dei %%processi|processo%% comprende le %%attività|attività%% che definiscono il modo in cui bisogna implementare i %%processi|processo%% primari del ciclo di vita del software. Le %%attività|attività%% che lo costituiscono sono la definizione dei %%processi|processo%%, la loro pianificazione, la loro esecuzione e controllo, la revisione e la valutazione dei %%prodotti|prodotto%%, e la chiusura dei %%processi|processo%%.
 
 La definizione dei %%processi|processo%% è la prima %%attività|attività%% della gestione dei %%processi|processo%%. Tramite questa %%attività|attività%% vengono stabiliti i %%processi|processo%% necessari allo svolgimento del %%progetto|progetto%% e vengono identificati i loro %%requisiti|requisito_software%%, controllandone la fattibilità.
@@ -692,12 +830,15 @@ La revisione e la valutazione dei %%prodotti|prodotto%% è necessaria per assicu
 
 Quando tutti i %%task|task%% e tutte le %%attività|attività%% vengono conclusi e si ha un %%prodotto|prodotto%% completo, è possibile completare e chiudere il %%processo|processo%%.
 
+
 #### Pianificazione
 
 ##### Introduzione
 
 L'%%attività|attività%% di pianificazione è essenziale per poter svolgere al meglio le %%attività|attività%% del ciclo di vita del software. Infatti, durante questa %%attività|attività%% il responsabile è incaricato di definire le %%attività|attività%% e i %%task|task%% a loro associati effettuando delle stime dei tempi necessari al loro completamento e un'%%analisi dei requisiti|analisi_dei_requisiti%% e delle risorse necessarie per completare i %%task|task%%, e stabilendo i %%rischi|rischio%% a loro associati.
+
 La pianificazione viene documentata nel Piano di %%Progetto|progetto%%, aggiornato di volta in volta dal responsabile corrente.
+
 
 ##### Ruoli di progetto
 
@@ -745,19 +886,19 @@ I ruoli che ogni membro dovrà assumere almeno una volta durante tutta la durata
 Per la gestione dei %%task|task%%/ticket si utilizza come software %%Jira|jira%%. Questo software permette di visualizzare un %%backlog|backlog%% generale in cui il responsabile di %%progetto|progetto%% andrà, via via, ad inserire tutti i %%task|task%% che saranno svolti durante tutta la durata del %%progetto|progetto%%. %%Jira|jira%% permette anche di creare degli %%sprint|sprint%%, di lunghezze anche diverse tra loro, in cui è presente lo %%Sprint Backlog|backlog%% contenente tutti i %%task|task%% da svolgere durante lo %%sprint|sprint%%. Ogni %%task|task%% può ricevere un assegnatario al momento della creazione oppure il singolo membro può assegnarsi autonomamente un %%task|task%%.
 Ogni %%task|task%% presenta:
 
-- Una **chiave** per identificarlo;
-- Una breve **descrizione**;
-- Uno **stato**, che può essere:
+- una **chiave** per identificarlo;
+- una breve **descrizione**;
+- uno **stato**, che può essere:
   - "%%backlog|backlog%%" se è stato appena creato;
   - "in corso" se è stato iniziato;
   - "revisione" se è stato completato e deve essere revisionato;
   - "to deploy" se è stato revisionato ed è stato fatto il merge con il branch develop su %%GitHub|github%%;
   - "completato" se è stato fatto il merge con il branch main su %%GitHub|github%%.
-- Lo **%%sprint|sprint%%** a cui appartengono;
-- L'**assegnatario**;
-- La **stima originale** del tempo per completarlo;
-- Il punteggio **%%story points|story_points%%** con una valore da 1 a 5 per indicare il valore del %%task|task%%;
-- La **priorità**.
+- lo **%%sprint|sprint%%** a cui appartengono;
+- l'**assegnatario**;
+- la **stima originale** del tempo per completarlo;
+- il punteggio **%%story points|story_points%%** con una valore da 1 a 5 per indicare il valore del %%task|task%%;
+- la **priorità**.
 
 Una volta che viene completato un %%task|task%%, la persona o le persone che hanno contribuito al suo completamento segnalano il tempo produttivo che hanno speso e il ruolo che hanno ricoperto durante il suo svolgimento, usando un'applicazione di %%Jira|jira%% chiamata Timetracker. Su Timetracker, le ore di %%progetto|progetto%% svolte sono facilmente consultabili anche in base alla persona o al ruolo. Inoltre, i %%task|task%% sono organizzati in epic (liste di %%task|task%%) a seconda della loro tipologia, che può essere, ad esempio, "documentazione di %%progetto|progetto%%, "gestione repo", ecc.
 
@@ -830,6 +971,7 @@ Le **riunioni esterne** avvengono tra gruppo e %%committente|committente%% o %%p
 
 Il lavoro personale è organizzato individualmente da ogni componente del gruppo per poter lasciare libertà in quanto impegnati con questioni accademiche, personali e seguendo quanto dichiarato nella candidatura nella sezione di dichiarazione impegni. Ovviamente l'organizzazione dovrà essere consona agli impegni totali del gruppo per evitare ritardi dovuti ad un singolo elemento. In caso di problematiche di indisponibilità che porteranno al non compimento degli impegni di %%progetto|progetto%% presi in carico dal singolo membro, questo si impegna ad avvisare prontamente il Responsabile che cercherà di ridistribuire il lavoro contattando singolarmente i membri oppure indicendo una riunione di gruppo.
 
+
 ### Tracciamento e rendicontazione delle ore
 
 #### Introduzione
@@ -863,13 +1005,10 @@ Ogni ora lavorativa deve essere associata a un ruolo specifico:
 - **Responsabile di %%Progetto|progetto%%**: per %%attività|attività%% di coordinamento e gestione del %%progetto|progetto%%.
 
 #### Rendicontazione delle ore nel cruscotto
-
 Tramite un documento Google Sheets _cruscotto-avanzamento_, presente nella cartella Google Drive condivisa, il team è in grado di ottenere informazioni riguardo lo stato di avanzamento del progetto. Questo è di particolare importanza per il ruolo del Responsabile durante la compilazione del Piano di %%Progetto|progetto%%.
 
 ##### Inserimento ore svolte
-
 Per inserire la rendicontazione delle ore effettivamente svolte all'interno dello %%sprint|sprint%% bisogna:
-
 - **Scaricare il report da Timetracker (%%Jira|jira%%)**:
   - Dalla dashboard di %%Jira|jira%% selezionare, dal menu in alto, le voci _"App"_, poi _"Timetracker"_
   - Dal menu laterale selezionare la voce _"Saved Reports"_, poi _"Shared with me"_ e aprire il report denominato "visualizzazione ore registrate (totali)"
@@ -878,7 +1017,6 @@ Per inserire la rendicontazione delle ore effettivamente svolte all'interno dell
   - Nella pagina _"parser-jira"_ incollare le ultime righe prese dal report scaricato. In automatico verranno usate per aggiornare i grafici di andamento e statistiche.
 
 #### Inserimento ore preventivate
-
 - **Inserire i dati nel documento Google Sheets _cruscotto-avanzamento_**
   - Nella pagina _"inserimento-preventivo-ruoli"_ specificare per ogni %%_issue_|issue%% le ore preventivate per ciascun ruolo.
 
@@ -905,7 +1043,7 @@ Fanno parte dell'infrastruttura organizzativa tutti gli strumenti che permettono
 
 Ogni categoria di canale può avere un numero variabile di sottocanali utilizzati a seconda delle necessità.
 
-- %%Telegram|telegram%%:
+- **%%Telegram|telegram%%**:
   Strumento di comunicazione interna testuale asincrona. Viene utilizzato in due modalità:
 
   - gruppo: chat condivisa tra tutti i membri del gruppo utilizzata per la maggior parte delle comunicazioni riguardanti il %%progetto|progetto%%.
@@ -958,6 +1096,7 @@ LaTeX: [https://www.overleaf.com/learn](https://www.overleaf.com/learn).
 
 Framework %%SCRUM|scrum%%: [https://scrumguides.org/scrum-guide.html](https://scrumguides.org/scrum-guide.html).
 
+
 ## Standard per la qualità
 
 ### Qualità dei processi
@@ -971,15 +1110,20 @@ In particolare è necessario individuare delle metriche che indicano l'avanzamen
 Per garantire la %%qualità|qualità%% del %%prodotto|prodotto%%, il team adotta il modello di riferimento ISO/IEC 25010 (unione di ISO/IEC 9126 e ISO/IEC 14598) che definisce un modello di %%qualità|qualità%% del software basato su sei caratteristiche fondamentali: %%funzionalità|funzionalità%%, affidabilità, usabilità, %%efficienza|efficienza%%, manutenibilità e portabilità.
 
 In particolare è necessario individuare delle metriche rappresentanti:
-
-- La **funzionalità**: grado in cui il %%prodotto|prodotto%% fornisce %%funzionalità|funzionalità%% complete, corrette e adeguate.
-- L'**affidabilità**: grado in cui il %%prodotto|prodotto%% svolge specifiche funzioni in termini di assenza di guasti, disponibilità, tolleranza ai guasti e riparabilità.
-- L'**usabilità**: grado di interazione con il %%prodotto|prodotto%% da parte degli utenti in termini di appropriatezza, apprendibilità, operabilità, protezione da errori, _user experience_ e accessibilità.
-- L'**%%efficienza|efficienza%%**: grado in cui il %%prodotto|prodotto%% esegue le sue funzioni in termini di risorse di tempo, di memoria, ecc.
-- La **manutenibilità**: costo della correzione dei difetti e dell'aggiunta di %%funzionalità|funzionalità%%.
-- La **portabilità**: grado in cui il %%prodotto|prodotto%% è legato all'ambiente di esecuzione in termini di installabilità e sostituibilità.
+- la **funzionalità**: grado in cui il %%prodotto|prodotto%% fornisce %%funzionalità|funzionalità%% complete, corrette e adeguate.
+- l'**affidabilità**: grado in cui il %%prodotto|prodotto%% svolge specifiche funzioni in termini di assenza di guasti, disponibilità, tolleranza ai guasti e riparabilità.
+- l'**usabilità**: grado di interazione con il %%prodotto|prodotto%% da parte degli utenti in termini di appropriatezza, apprendibilità, operabilità, protezione da errori, _user experience_ e accessibilità.
+- l'**%%efficienza|efficienza%%**: grado in cui il %%prodotto|prodotto%% esegue le sue funzioni in termini di risorse di tempo, di memoria, ecc.
+- la **manutenibilità**: costo della correzione dei difetti e dell'aggiunta di %%funzionalità|funzionalità%%. 
+- la **portabilità**: grado in cui il %%prodotto|prodotto%% è legato all'ambiente di esecuzione in termini di installabilità e sostituibilità.
 
 I **%%test|test%% di %%verifica|verifica%% e validazione** vengono eseguiti in tutte le fasi del ciclo di sviluppo, garantendo la conformità del %%prodotto|prodotto%% con i %%requisiti|requisito_software%% specificati e gli standard qualitativi prestabiliti dal team. I %%test|test%% vengono classificati in quattro categorie principali: %%test|test%% di unità, %%test|test%% di integrazione, %%test|test%% di sistema e %%test|test%% di accettazione.
+
+## Metriche di qualità
+
+Le metriche sono strumenti di misurazione della qualità di un prodotto o di un processo. Tramite queste metriche viene monitorata e valutata l'efficacia e l'efficienza del lavoro effettuato, per poi capire dove e come migliorarlo.
+
+Tutte le metriche vengono definite e spiegate nel documento [Piano di Qualifica](https://tech-wave-swe.github.io/docs/PB/piano_di_qualifica).
 
 <!-- ::: {.no-export} -->
 
