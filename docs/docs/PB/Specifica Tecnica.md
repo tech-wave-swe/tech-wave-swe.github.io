@@ -169,3 +169,7 @@ Documentazione: [ReqIF specification](https://www.omg.org/spec/ReqIF/About-ReqIF
 ### Architettura di deployment
 
 ### Design pattern utilizzati
+
+<!-- ::: {.no-export} -->
+</NumberedWrapper>
+<!-- ::: -->
