@@ -23,8 +23,8 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                                        | Autore              | Data Verifica | Verificatore          |
 | ---------- | -------- | -------------------------------------------------- | ------------------- | ------------- | --------------------- |
-| 30/03/2025 | 1.8.4    | Riscrittura sezione 1, 4 e 5. Scrittura sezione 6  | Carraro Agnese      |               |                       |
-| 30/03/2025 | 1.8.3    | Riscrittura sezione 2 e 3                          | Dal Bianco Riccardo |               |                       |
+| 30/03/2025 | 1.8.4    | Riscrittura sezione 1, 4 e 5. Scrittura sezione 6  | Carraro Agnese      | 30/03/2025    | Marcon Giulia         |
+| 30/03/2025 | 1.8.3    | Riscrittura sezione 2 e 3                          | Dal Bianco Riccardo | 30/03/2025    | Marcon Giulia         |
 | 30/03/2025 | 1.8.2    | Controllo consistenza maiuscole                    | Dal Bianco Riccardo | 30/03/2025    | Vasquez Manuel Felipe |
 | 07/03/2025 | 1.8.1    | Aggiunta sezione PoC                               | Monetti Luca        | 07/03/2025    | Marcon Giulia         |
 | 27/02/2025 | 1.8.0    | Revisione del documento                            | Carraro Agnese      | 28/02/2025    | Monetti Luca          |
