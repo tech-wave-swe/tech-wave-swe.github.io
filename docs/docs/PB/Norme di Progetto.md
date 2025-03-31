@@ -240,7 +240,7 @@ Una tipologia di diagramma UML utile a rappresentare la struttura statica del si
 Rappresentazione:
 1. Nome: Contiene il nome della classe, se la classe è astratta il nome viene scritto in corsivo
 2. Attributi: 
-**Visibilità Nome : tipo \[\molteplicità\] = default**
+**Visibilità Nome : tipo \[molteplicità\] = default**
 3. Metodi:
 **Visibilità Nome (lista-parametri) : tipo-ritorno**
 
