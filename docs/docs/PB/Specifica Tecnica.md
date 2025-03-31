@@ -66,39 +66,39 @@ Per evitare incomprensioni riguardanti la terminologia utilizzata all'interno de
 
 ## Tecnologie
 
-In questa sezione vengono descritti gli strumenti e le tecnologie utilizzati per lo sviluppo e l"implementazione del Requirement Tracker, un’estensione per Visual Studio Code (VS Code) che permette di tracciare e verificare i requisiti software. Le tecnologie sono state selezionate per garantire un’%%architettura|architettura%% modulare, scalabile e di facile manutenzione, con un focus particolare sull’integrazione con modelli di linguaggio avanzati (%%LLM|llm%%) e sulla gestione efficiente dei requisiti.
+In questa sezione vengono descritti gli strumenti e le tecnologie utilizzati per lo sviluppo e l"implementazione del Requirement Tracker, un’estensione per Visual Studio Code (%%VSCode|vscode%%) che permette di tracciare e verificare i requisiti software. Le tecnologie sono state selezionate per garantire un’%%architettura|architettura%% modulare, scalabile e di facile manutenzione, con un focus particolare sull’integrazione con modelli di linguaggio avanzati (%%LLM|llm%%) e sulla gestione efficiente dei requisiti.
 
 ### Linguaggio di programmazione
 
 #### TypeScript
 
 TypeScript è un linguaggio di programmazione open-source sviluppato da Microsoft, che estende JavaScript aggiungendo il supporto per il tipaggio statico. Questo permette di identificare errori comuni durante la fase di sviluppo, migliorando la %%qualità|qualità%% del codice e facilitando il debugging. TypeScript è particolarmente adatto per progetti di medie e grandi dimensioni, dove la manutenibilità del codice è fondamentale.
-È stato scelto per la sua integrazione nativa con VS Code, che semplifica lo sviluppo di estensioni, per la sua capacità di prevenire errori attraverso la tipizzazione statica e perché offre una vasta gamma di strumenti e librerie.
+È stato scelto per la sua integrazione nativa con %%VSCode|vscode%%, che semplifica lo sviluppo di estensioni, per la sua capacità di prevenire errori attraverso la tipizzazione statica e perché offre una vasta gamma di strumenti e librerie.
 
 Utilizzo nel progetto:
-- Sviluppo dell’estensione per VS Code: TypeScript è utilizzato per implementare le %%funzionalità|funzionalità%% principali dell’estensione, come il caricamento dei requisiti, l’analisi del codice e l’interazione con l’utente.
+- Sviluppo dell’estensione per %%VSCode|vscode%%: TypeScript è utilizzato per implementare le %%funzionalità|funzionalità%% principali dell’estensione, come il caricamento dei requisiti, l’analisi del codice e l’interazione con l’utente.
 - Gestione delle %%funzionalità|funzionalità%% principali: Il linguaggio è impiegato per gestire la logica di business, come il parsing dei file di requisiti, l’interazione con i modelli %%LLM|llm%% e la gestione della struttura dati interna.
-- Integrazione con le API di VS Code: TypeScript è utilizzato per interfacciarsi con le API di VS Code, permettendo la creazione di comandi personalizzati, la visualizzazione dei risultati e l’integrazione con l’editor di codice
+- Integrazione con le API di %%VSCode|vscode%%: TypeScript è utilizzato per interfacciarsi con le API di %%VSCode|vscode%%, permettendo la creazione di comandi personalizzati, la visualizzazione dei risultati e l’integrazione con l’editor di codice
 
-Versione:
+Versione: 4.9.5
 
 Documentazione: [TypeScript documentation](https://www.typescriptlang.org/docs/)
 
 ### Frameworks
 
-#### VS Code Extension API
+#### VSCode Extension API
 
-Le API di estensione di Visual Studio Code forniscono strumenti per la creazione di comandi, la gestione dei file, l’integrazione con l’editor di codice e la visualizzazione dei risultati. Queste API sono progettate specificamente per estendere le %%funzionalità|funzionalità%% di VS Code, permettendo agli sviluppatori di creare strumenti personalizzati che si integrano perfettamente con l’ambiente di sviluppo.
-Sono state scelte per la loro integrazione nativa con VS Code, che semplifica lo sviluppo di estensioni e garantisce una perfetta compatibilità con l’ambiente di sviluppo.
+Le API di estensione di Visual Studio Code forniscono strumenti per la creazione di comandi, la gestione dei file, l’integrazione con l’editor di codice e la visualizzazione dei risultati. Queste API sono progettate specificamente per estendere le %%funzionalità|funzionalità%% di %%VSCode|vscode%%, permettendo agli sviluppatori di creare strumenti personalizzati che si integrano perfettamente con l’ambiente di sviluppo.
+Sono state scelte per la loro integrazione nativa con %%VSCode|vscode%%, che semplifica lo sviluppo di estensioni e garantisce una perfetta compatibilità con l’ambiente di sviluppo.
 
 Utilizzo nel progetto:
-- Sviluppo dell’interfaccia utente dell’estensione: Le API di VS Code sono utilizzate per creare l’interfaccia utente dell’estensione, inclusa la visualizzazione della tabella dei requisiti, i bottoni di interazione e la gestione delle configurazioni.
-- Integrazione con l’editor di VS Code: Le API permettono di interagire con l’editor di codice, ad esempio per evidenziare porzioni di codice che implementano specifici requisiti o per navigare tra i file del %%progetto|progetto%%.
+- Sviluppo dell’interfaccia utente dell’estensione: Le API di %%VSCode|vscode%% sono utilizzate per creare l’interfaccia utente dell’estensione, inclusa la visualizzazione della tabella dei requisiti, i bottoni di interazione e la gestione delle configurazioni.
+- Integrazione con l’editor di %%VSCode|vscode%%: Le API permettono di interagire con l’editor di codice, ad esempio per evidenziare porzioni di codice che implementano specifici requisiti o per navigare tra i file del %%progetto|progetto%%.
 - Gestione degli eventi: Le API di estensione sono utilizzate per gestire eventi come il caricamento di un file di requisiti, l’avvio di un’analisi o la modifica delle configurazioni.
 
 Versione:
 
-Documentazione: [VS Code API documentation](https://code.visualstudio.com/api)
+Documentazione: [VSCode API documentation](https://code.visualstudio.com/api)
 
 ### Strumenti per l’integrazione con modelli di intelligenza artificiale
 
@@ -111,7 +111,7 @@ Utilizzo nel progetto:
 - Analisi del codice sorgente: %%Ollama|ollama%% è utilizzato per analizzare il codice sorgente e verificare l’implementazione dei requisiti. Il modello %%LLM|llm%% viene interrogato per generare risposte basate sul codice e sui requisiti specificati.
 - Generazione di risposte basate sui modelli %%LLM|llm%%: %%Ollama|ollama%% è utilizzato per generare risposte che supportano lo sviluppatore nel controllo dei requisiti, ad esempio identificando porzioni di codice che implementano specifici requisiti.
 
-Versione:
+Versione: 0.6.2
 
 Documentazione: [Ollama documentation](https://github.com/ollama/ollama/tree/main/docs)
 
@@ -124,7 +124,23 @@ Utilizzo nel progetto:
 - Confronto rapido tra i requisiti e il codice sorgente: I Vector Embeddings sono utilizzati per trasformare i requisiti e il codice sorgente in vettori, permettendo di confrontarli rapidamente e identificare le corrispondenze.
 - Miglioramento dell’%%efficienza|efficienza%% e della precisione dell’analisi: L’uso di Vector Embeddings permette di ridurre i tempi di elaborazione e migliorare l’accuratezza delle risposte fornite dai modelli %%LLM|llm%%.
 
-Documentazione: [Vector Embeddings (provvisorio)] ()
+Documentazione: [Vector Embeddings (provvisorio)]()
+
+### Strumenti per i test
+
+#### Jest
+
+Jest è un framework di testing JavaScript open-source sviluppato da Facebook. È utilizzato per scrivere e eseguire %%test|test%% automatizzati, garantendo che il codice funzioni come previsto. Jest è particolarmente apprezzato per la sua configurazione minima e per le sue capacità avanzate come il mock delle funzioni e la gestione dei %%test|test%% paralleli. È compatibile con progetti che utilizzano TypeScript e offre un'ottima integrazione con altri strumenti di sviluppo, come i framework di build e i bundler.
+
+Utilizzo nel progetto:
+-Testing unitario: Jest è utilizzato per scrivere %%test|test%% unitari che verificano il corretto funzionamento delle singole funzioni e componenti dell'estensione.
+- Testing di integrazione: I %%test|test%% di integrazione sono stati scritti per garantire che diverse parti dell'estensione interagiscano correttamente, ad esempio, tra la logica di business e l'integrazione con le API di %%VSCode|vscode%%.
+- Mocking di funzioni esterne: Jest consente di simulare comportamenti di funzioni esterne come la comunicazione con i modelli di linguaggio, facilitando i %%test|test%% senza dipendenze esterne.
+- %%Verifica|verifica%% dei flussi di lavoro: Vengono testati i flussi di lavoro principali dell'estensione, come il caricamento dei requisiti, l'analisi del codice e l'interazione dell'utente.
+
+Versione: 28.0.0
+
+Documentazione: [Jest documentation](https://jestjs.io/docs/getting-started)
 
 ### Formati di file per la gestione dei requisiti
 
@@ -135,7 +151,7 @@ Il formato CSV (Comma-Separated Values) è un formato di file semplice e leggero
 Utilizzo nel progetto:
 - Importazione ed esportazione dei requisiti software: CSV è utilizzato per importare ed esportare i requisiti software, permettendo una facile integrazione con strumenti esterni per la gestione dei dati.
 
-Documentazione: [CSV Format specification (provvisorio)]()
+Documentazione: [CSV Format specification](https://datatracker.ietf.org/doc/html/rfc4180)
 
 #### ReqIF
 
@@ -144,7 +160,7 @@ ReqIF (Requirements Interchange Format) è uno standard per lo scambio di requis
 Utilizzo nel progetto:
 - Gestione di progetti complessi: ReqIF è utilizzato per gestire progetti che richiedono un formato strutturato, garantendo una migliore organizzazione dei dati e una maggiore flessibilità.
 
-Documentazione: [ReqIF specification (provvisorio)]()
+Documentazione: [ReqIF specification](https://www.omg.org/spec/ReqIF/About-ReqIF/)
 
 ## Architettura
 
