@@ -68,8 +68,7 @@ Context:
 
 Question: {question}
 
-Answer:
-      `);
+Answer:`);
 
       // Generate the full prompt
       const prompt = await promptTemplate.format({
