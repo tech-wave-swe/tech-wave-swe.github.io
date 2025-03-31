@@ -124,7 +124,7 @@ Utilizzo nel progetto:
 - Confronto rapido tra i requisiti e il codice sorgente: I Vector Embeddings sono utilizzati per trasformare i requisiti e il codice sorgente in vettori, permettendo di confrontarli rapidamente e identificare le corrispondenze.
 - Miglioramento dell’%%efficienza|efficienza%% e della precisione dell’analisi: L’uso di Vector Embeddings permette di ridurre i tempi di elaborazione e migliorare l’accuratezza delle risposte fornite dai modelli %%LLM|llm%%.
 
-Documentazione: [Vector Embeddings (provvisorio)]()
+Documentazione: Vector Embeddings (provvisorio)
 
 ### Strumenti per i test
 
