@@ -20,6 +20,11 @@ import {RequirementsService} from "./Services/RequirementsService";
 import {FilterService} from "./Services/FilterService";
 import {ChatWebView} from "./WebViews/ChatWebView";
 import {TrackerWebView} from "./WebViews/TrackerWebView";
+import {CommandRegistry} from "./Commands/CommandsRegistry";
+import {ClearChatHistoryCommand} from "./Commands/ClearChatHistoryCommand";
+import {IndexCurrentFileCommand} from "./Commands/IndexCurrentFileCommand";
+import {IndexWorkspaceCommand} from "./Commands/IndexWorkspaceCommand";
+import {ResetDatabaseCommand} from "./Commands/ResetDatabaseCommand";
 
 export function activate(context: vscode.ExtensionContext) {
   try {
@@ -142,100 +147,21 @@ function _initializeCommands(context: vscode.ExtensionContext) {
   const documentEmbeddingService = new DocumentEmbeddingService(vectorDatabase);
   const documentServiceFacade = new DocumentServiceFacade(documentFormatterService, documentEmbeddingService);
 
-  // Index current file
-  context.subscriptions.push(
-    vscode.commands.registerCommand(
-      "requirementsTracker.indexCurrentFile",
-      async () => {
-        const editor = vscode.window.activeTextEditor;
-        if (!editor) {
-          vscode.window.showWarningMessage("No active editor to index");
-          return;
-        }
+  // Commands
+  const clearChathistory = new ClearChatHistoryCommand(chatService);
+  const indexCurrentFile = new IndexCurrentFileCommand(documentServiceFacade);
+  const indexWorkCommand = new IndexWorkspaceCommand(documentServiceFacade);
+  const resetDatabase = new ResetDatabaseCommand(vectorDatabase);
 
-        try {
-          const document = editor.document;
-          await documentServiceFacade.processDocument(
-            document.getText(),
-            document.fileName,
-          );
-          vscode.window.showInformationMessage(
-            `Successfully indexed ${path.basename(document.fileName)}`,
-          );
-        } catch (error) {
-          vscode.window.showErrorMessage(`Failed to index file: ${error}`);
-        }
-      },
-    ),
-  );
-
-  // Index workspace
-  context.subscriptions.push(
-    vscode.commands.registerCommand(
-      "requirementsTracker.indexWorkspace",
-      async () => {
-        try {
-          vscode.window.withProgress(
-            {
-              location: vscode.ProgressLocation.Notification,
-              title: "Indexing workspace files",
-              cancellable: true,
-            },
-            async () => {
-              try {
-                await documentServiceFacade.processWorkspaceFiles();
-                vscode.window.showInformationMessage(
-                  "Successfully indexed workspace files",
-                );
-              } catch (error) {
-                vscode.window.showErrorMessage(
-                  `Failed to index workspace: ${error}`,
-                );
-              }
-            },
-          );
-        } catch (error) {
-          vscode.window.showErrorMessage(
-            `Failed to start indexing: ${error}`,
-          );
-        }
-      },
-    ),
-  );
-
-  // Clear chat history
-  context.subscriptions.push(
-    vscode.commands.registerCommand(
-      "requirementsTracker.clearChatHistory",
-      async () => {
-        await chatService.clearMessages();
-        vscode.window.showInformationMessage("Chat history cleared");
-      },
-    ),
-  );
-  context.subscriptions.push(
-    vscode.commands.registerCommand("reqTracker.resetDatabase", async () => {
-      const answer = await vscode.window.showWarningMessage(
-        "This will delete all indexed data. Are you sure?",
-        {modal: true},
-        "Yes",
-        "No",
-      );
-      if (answer === "Yes") {
-        try {
-          await vectorDatabase.resetDatabase();
-          vscode.window.showInformationMessage(
-            "Database has been reset successfully",
-          );
-        } catch (error) {
-          vscode.window.showErrorMessage(
-            `Failed to reset database: ${error}`,
-          );
-        }
-      }
-    }),
-  );
+  const commandRegistry = new CommandRegistry(context);
+  commandRegistry.registerCommands([
+    clearChathistory,
+    indexWorkCommand,
+    indexCurrentFile,
+    resetDatabase
+  ]);
 }
+
 function _startupCheck(context: vscode.ExtensionContext) {
   const languageModel = new LangChainOllamaAdapter();
   const lanceDBAdapter = new LangChainLanceDBAdapter(context.globalStorageUri.fsPath);

@@ -27,6 +27,10 @@ export const Uri = {
   // Add other mocked methods as needed
 };
 
+export const commands = {
+  registerCommand: jest.fn(),
+};
+
 export const Position = jest.fn();
 
 export const Selection = jest.fn();
@@ -37,6 +41,7 @@ export const Range = jest.fn();
 export default {
   workspace,
   window,
+  commands,
   Uri,
   Position,
   Selection,
