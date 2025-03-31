@@ -71,7 +71,7 @@ Per evitare incomprensioni riguardanti la terminologia utilizzata all’interno 
 
 ### Riferimenti
 
-Riferimenti normativi: %%|%%
+Riferimenti normativi: 
 
 - %%Capitolato|capitolato%% d'appalto C8 (ultimo accesso: 29/03/2025)
 
