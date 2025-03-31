@@ -24,19 +24,19 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 <!-- ::: -->
 
-| Data       | Versione | Descrizione                                        | Autore         | Data Verifica | Verificatore          |
-| ---------- | -------- | -------------------------------------------------- | -------------- | ------------- | --------------------- |
-| 07/03/2025 | 1.8.1    | Aggiunta sezione PoC                               | Monetti Luca   | 07/03/2025    | Marcon Giulia         |
-| 27/02/2025 | 1.8.0    | Revisione del documento                            | Carraro Agnese | 28/02/2025    | Monetti Luca          |
-| 23/02/2025 | 1.7.1    | Procedure per la rendicontazione delle ore         | Pistori Gaia   | 25/02/2025    | Carraro Agnese        |
-| 20/02/2025 | 1.7.0    | Aggiunto tracciamento e rendicontazione delle ore  | Marcon Giulia  | 25/02/2025    | Carraro Agnese        |
-| 06/02/2025 | 1.6.0    | Aggiunta processi di Supporto                      | Monetti Luca   | 08/02/2025    | Carraro Agnese        |
-| 20/01/2025 | 1.5.0    | Aggiunta processi Primari                          | Pistori Gaia   | 21/01/2025    | Monetti Luca          |
-| 30/12/2024 | 1.4.0    | Completamento processi Organizzativi               | Carraro Agnese | 30/12/2024    | Pistori Gaia          |
-| 27/12/2024 | 1.3.0    | Corretta la formattazione del documento            | Monetti Luca   | 28/12/2025    | Pistori Gaia          |
-| 19/12/2024 | 1.2.0    | Revisione struttura + Aggiunta sezione GitHub      | Monetti Luca   | 22/12/2024    | Vasquez Manuel Felipe |
-| 20/11/2024 | 1.1.0    | Aggiunta sezione 4                                 | Piola Andrea   | 03/12/2024    | Pistori Gaia          |
-| 14/11/2024 | 1.0.0    | Prima stesura del documento con indice e sezione 1 | Piola Andrea   | 19/11/2024    | Pistori Gaia          |
+| Data       | Versione | Descrizione                                        | Autore              | Data Verifica | Verificatore          |
+| ---------- | -------- | -------------------------------------------------- | ------------------- | ------------- | --------------------- |
+| 07/03/2025 | 1.8.1    | Aggiunta sezione PoC                               | Monetti Luca        | 07/03/2025    | Marcon Giulia         |
+| 27/02/2025 | 1.8.0    | Revisione del documento                            | Carraro Agnese      | 28/02/2025    | Monetti Luca          |
+| 23/02/2025 | 1.7.1    | Procedure per la rendicontazione delle ore         | Pistori Gaia        | 25/02/2025    | Carraro Agnese        |
+| 20/02/2025 | 1.7.0    | Aggiunto tracciamento e rendicontazione delle ore  | Marcon Giulia       | 25/02/2025    | Carraro Agnese        |
+| 06/02/2025 | 1.6.0    | Aggiunta processi di Supporto                      | Monetti Luca        | 08/02/2025    | Carraro Agnese        |
+| 20/01/2025 | 1.5.0    | Aggiunta processi Primari                          | Pistori Gaia        | 21/01/2025    | Monetti Luca          |
+| 30/12/2024 | 1.4.0    | Completamento processi Organizzativi               | Carraro Agnese      | 30/12/2024    | Pistori Gaia          |
+| 27/12/2024 | 1.3.0    | Corretta la formattazione del documento            | Monetti Luca        | 28/12/2025    | Pistori Gaia          |
+| 19/12/2024 | 1.2.0    | Revisione struttura + Aggiunta sezione GitHub      | Monetti Luca        | 22/12/2024    | Vasquez Manuel Felipe |
+| 20/11/2024 | 1.1.0    | Aggiunta sezione 4                                 | Piola Andrea        | 03/12/2024    | Pistori Gaia          |
+| 14/11/2024 | 1.0.0    | Prima stesura del documento con indice e sezione 1 | Piola Andrea        | 19/11/2024    | Pistori Gaia          |
 
 Table: Changelog
 
@@ -52,11 +52,11 @@ Table: Changelog
 
 ## Introduzione
 
-### Scopo del Documento
+### Scopo del documento
 
 Lo scopo del documento è quello di definire le norme che ogni componente del gruppo TechWave dovrà rispettare per ottenere un <Term popup="Insieme di artefatti raccolti ed esposti in modo organizzato che permettono l'utilizzo di un programma da parte di un utente." reference="/docs/RTB/Termini/Prodotto">prodotto</Term> finale fatto a regola d'arte. In questo documento, inoltre, vengono descritte le convenzioni da rispettare nell'utilizzo degli strumenti e vengono esposti i <Term popup="Insieme di attività correlate e coese che trasformano bisogni in prodotti, secondo regole definite e consumando risorse." reference="/docs/RTB/Termini/Processo">processi</Term> che saranno adottati dal gruppo. Questo documento è redatto seguendo un approccio incrementale, in quanto durante tutta la durata del <Term popup="Insieme di attività che devono raggiungere determinati obiettivi a partire da determinate specifiche, che hanno una data d’inizio e una data di fine prefissate, che dispongono di risorse limitate e che consumano risorse nel loro svolgersi." reference="/docs/RTB/Termini/Progetto">progetto</Term> possono cambiare oppure si possono aggiungere/rimuovere le norme a seconda delle necessità.
 
-### Scopo del Prodotto
+### Scopo del prodotto
 
 Nello sviluppo di software per sistemi embedded la parte di controllo dell'implementazione di tutti i <Term popup="Una specifica funzionale o non funzionale che il software deve soddisfare." reference="/docs/RTB/Termini/Requisito_Software">requisiti</Term> necessari al corretto funzionamento dello stesso risulta costosa e ripetitiva da parte dello sviluppatore, inoltre può risultare non esaustiva a causa di distrazioni o dimenticanze. Il <Term popup="Documento che descrive in modo dettagliato i requisiti, le specifiche e le aspettative di un progetto." reference="/docs/RTB/Termini/Capitolato">capitolato</Term> \*\*\_Requirement Tracker - Plug-in VSCode\*\*\* propone lo sviluppo di un <Term popup="Componente software aggiuntivo che estende le funzionalità di un'applicazione principale." reference="/docs/RTB/Termini/Plugin">plugin</Term> per <Term popup="Visual Studio Code. Editor di codice sorgente sviluppato da Microsoft, gratuito, open-source, leggero e con una ampia gamma di estensioni." reference="/docs/RTB/Termini/VSCode">VSCode</Term> che permetta di tracciare i <Term popup="Una specifica funzionale o non funzionale che il software deve soddisfare." reference="/docs/RTB/Termini/Requisito_Software">requisiti</Term> derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari <Term popup="Una specifica funzionale o non funzionale che il software deve soddisfare." reference="/docs/RTB/Termini/Requisito_Software">requisiti</Term> in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
 
@@ -671,6 +671,7 @@ Ad ogni metrica è inoltre associato:
 - **Formula**: Specifica come viene calcolata la metrica.
 - **Valore Accettabile**: Valore che la metrica deve raggiungere per essere considerata conforme agli standard.
 - **Valore Preferibile**: Valore ideale che la metrica dovrebbe assumere.
+
 
 ## 4 <Term popup="Insieme di attività correlate e coese che trasformano bisogni in prodotti, secondo regole definite e consumando risorse." reference="/docs/RTB/Termini/Processo">Processi</Term> Organizzativi
 
