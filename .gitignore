@@ -8,5 +8,19 @@
 src/**/*.pdf
 output/**/*.pdf
 modified_files.txt
+
+# Node.js
 node_modules
+
+# Extension build directory
 out
+test/**/*.js
+test/**/*.js.map
+
+# IDE specific folders
+**/.idea/
+
+# Test reports
+.vscode-test
+test-reports/
+coverage/

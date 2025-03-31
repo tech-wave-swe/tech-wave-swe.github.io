@@ -1,7 +1,9 @@
 # Documentazione TechWave
 
-Questa repository contiene tutta la documentazione prodotta durante lo sviluppo del progetto di Ingegneria del Software (SWE) dal gruppo 5 TechWave.
+[![Main Coverage Status](https://coveralls.io/repos/github/tech-wave-swe/tech-wave-swe.github.io/badge.svg?branch=main)](https://coveralls.io/github/tech-wave-swe/tech-wave-swe.github.io?branch=main)
+[![Develop Coverage Status](https://coveralls.io/repos/github/tech-wave-swe/tech-wave-swe.github.io/badge.svg?branch=develop)](https://coveralls.io/github/tech-wave-swe/tech-wave-swe.github.io?branch=develop)
 
+Questa repository contiene tutta la documentazione prodotta durante lo sviluppo del progetto di Ingegneria del Software (SWE) dal gruppo 5 TechWave.
 
 La documentazione è situata nella cartella docs, insieme ai file di configurazione per Docusaurus
 
@@ -22,7 +24,7 @@ Requisiti:
 1) Clonare questa repo localmente
 
 2) Eseguire il seguente comando
-	```bash
-	npm install
-	```
+   ```bash
+   npm install
+   ```
 3) Premere F5 o andare sulla sezione "Run and Debug" ed eseguire la task "Run Extension"
