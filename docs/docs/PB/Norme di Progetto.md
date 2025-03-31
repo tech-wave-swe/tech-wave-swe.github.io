@@ -217,7 +217,7 @@ I %%requisiti|requisito_software%% individuati nell''%%Analisi dei Requisiti|ana
 
 ##### Denominazione dei requisiti
 Ogni requisito è identificato in modo univoco secondo lo schema: 
-**R\\[\\Tipo\\]\\[Obb\\]_\[Numero\]**
+**R\[ Tipo \]\[ Obb \]_\[ Numero \]**
 dove: 
 - Tipo: indica la tipologia del requisito.
 - Obb: indica l'obbligatorietà del requisito.
