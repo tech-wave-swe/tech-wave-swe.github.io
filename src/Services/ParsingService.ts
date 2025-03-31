@@ -68,22 +68,6 @@ export class ParsingService {
     }
   }
 
-  public parseGenericRequirement(content: string): Requirement {
-    // Simple implementation for text-based requirements
-    return {
-      id: `REQ-${Date.now()}`,
-      description: content,
-      type: "functional",
-      priority: "medium",
-      status: "draft",
-      version: "1.0",
-      metadata: {
-        createdAt: new Date().toISOString(),
-        source: "manual",
-      },
-    };
-  }
-
   private _mapToRequirement(record: any): Requirement {
     // Map CSV fields to Requirement object
     // These fields may vary based on the CSV structure
