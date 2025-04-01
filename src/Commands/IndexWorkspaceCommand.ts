@@ -14,28 +14,24 @@ export class IndexWorkspaceCommand implements ICommand {
   }
 
   public async execute(): Promise<void> {
-    try {
-      vscode.window.withProgress(
-        {
-          location: vscode.ProgressLocation.Notification,
-          title: "Indexing workspace files",
-          cancellable: true,
-        },
-        async () => {
-          try {
-            await this._documentService.processWorkspaceFiles();
-            vscode.window.showInformationMessage(
-              "Successfully indexed workspace files",
-            );
-          } catch (error) {
-            vscode.window.showErrorMessage(
-              `Failed to index workspace: ${error}`,
-            );
-          }
-        },
-      );
-    } catch (error) {
-      vscode.window.showErrorMessage(`Failed to start indexing: ${error}`);
-    }
+    await vscode.window.withProgress(
+      {
+        location: vscode.ProgressLocation.Notification,
+        title: "Indexing workspace files",
+        cancellable: true,
+      },
+      async () => {
+        try {
+          await this._documentService.processWorkspaceFiles();
+          vscode.window.showInformationMessage(
+            "Successfully indexed workspace files",
+          );
+        } catch (error) {
+          vscode.window.showErrorMessage(
+            `Failed to index workspace: ${error}`,
+          );
+        }
+      },
+    );
   }
 }
