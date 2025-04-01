@@ -58,18 +58,6 @@ export class RequirementsServiceFacade {
           );
           break;
 
-        case "text":
-          console.log(`Parsing plain text requirements`);
-          // For plain text, treat each line as a separate requirement
-          requirements = content
-            .split("\n")
-            .filter((line) => line.trim().length > 0)
-            .map((line) => this._parsingService.parseGenericRequirement(line));
-          console.log(
-            `Text parsing complete. Found ${requirements.length} requirements`,
-          );
-          break;
-
         default:
           console.error(`Unsupported format: ${format}`);
           throw new Error(`Unsupported format: ${format}`);
