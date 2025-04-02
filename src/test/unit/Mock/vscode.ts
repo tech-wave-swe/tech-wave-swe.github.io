@@ -24,6 +24,7 @@ export const ProgressLocation = { Notification: 15 };
 
 export const Uri = {
   file: jest.fn(),
+  joinPath: jest.fn()
   // Add other mocked methods as needed
 };
 

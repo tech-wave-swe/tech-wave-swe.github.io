@@ -78,7 +78,7 @@ function _initializeChatViewProvider(context: vscode.ExtensionContext) {
   const chatWebviewProvider = new ChatWebviewProvider(
     chatService,
     inferenceService,
-    new ChatWebView(context.extensionUri),
+    new ChatWebView(context.extensionUri, new FileSystemService(context.extensionUri.fsPath)),
     context.extensionUri,
   );
 
