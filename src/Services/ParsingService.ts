@@ -3,7 +3,7 @@ import * as csv from "csv-parse/sync";
 import * as xml2js from "xml2js";
 
 export class ParsingService {
-  public parseCSV(content: string, delimiter: string = ","): Requirement[] {
+  public parseCSV(content: string, delimiter = ","): Requirement[] {
     try {
       console.log(`Starting CSV parsing with delimiter: "${delimiter}"`);
       console.log(`CSV content sample: ${content.substring(0, 100)}...`);
@@ -40,7 +40,6 @@ export class ParsingService {
     try {
       const parser = new xml2js.Parser({ explicitArray: false });
       const result = await parser.parseStringPromise(content);
-
       const requirements: Requirement[] = [];
 
       // ReqIF has a complex structure - simplified version here
@@ -49,11 +48,7 @@ export class ParsingService {
         result.REQ_IF.CONTENT &&
         result.REQ_IF.CONTENT.SPEC_OBJECTS
       ) {
-        const specObjects = Array.isArray(
-          result.REQ_IF.CONTENT.SPEC_OBJECTS.SPEC_OBJECT,
-        )
-          ? result.REQ_IF.CONTENT.SPEC_OBJECTS.SPEC_OBJECT
-          : [result.REQ_IF.CONTENT.SPEC_OBJECTS.SPEC_OBJECT];
+        const specObjects = Array.isArray(result.REQ_IF.CONTENT.SPEC_OBJECTS.SPEC_OBJECT,)? result.REQ_IF.CONTENT.SPEC_OBJECTS.SPEC_OBJECT: [result.REQ_IF.CONTENT.SPEC_OBJECTS.SPEC_OBJECT];
 
         for (const specObject of specObjects) {
           const req = this._parseReqIFSpecObject(specObject);
@@ -69,19 +64,27 @@ export class ParsingService {
   }
 
   private _mapToRequirement(record: any): Requirement {
-    // Map CSV fields to Requirement object
-    // These fields may vary based on the CSV structure
+    // Use Name as ID, removing any whitespace
+    const id =
+      record.Name?.trim() ||
+      record.name?.trim() ||
+      record.ID ||
+      record.Id ||
+      record.id ||
+      record.reqId ||
+      `REQ-${Date.now()}`;
+
     return {
-      id: record.id || record.ID || record.reqId || `REQ-${Date.now()}`,
-      description:
-        record.description || record.Description || record.text || "",
-      type: record.type || record.Type || "unspecified",
-      priority: record.priority || record.Priority || "medium",
-      status: record.status || record.Status || "draft",
-      version: record.version || record.Version || "1.0",
+      id,
+      description: record.Notes || record.notes || record.Description || record.description || record.text || record.Text || "",
+      type: record.Type || record.type || "unspecified",
+      priority: record.Priority || record.priority || "medium",
+      status: record.Status || record.status || "draft",
+      version: record.Version || record.version || "1.0",
       metadata: {
         createdAt: new Date().toISOString(),
         source: "csv",
+        guid: record.GUID?.replace(/[{}]/g, ""), // Store GUID in metadata if needed
         rawData: record,
       },
     };
@@ -123,9 +126,8 @@ export class ParsingService {
     }
 
     // Ensure we have an ID
-    if (!id) {
-      id =
-        specObject.IDENTIFIER || specObject.$.IDENTIFIER || `REQ-${Date.now()}`;
+    if (id == "") {
+      id = specObject.IDENTIFIER || specObject.$.IDENTIFIER || `REQ-${Date.now()}`;
     }
 
     return {
