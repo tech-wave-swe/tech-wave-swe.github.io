@@ -106,7 +106,7 @@ function _initializeTrackerViewProvider(context: vscode.ExtensionContext) {
 
   const trackerWebviewProvider = new TrackerWebviewProvider(
     requirementsServiceFacade,
-    new TrackerWebView(context.extensionUri),
+    new TrackerWebView(context.extensionUri, new FileSystemService(context.extensionUri.fsPath)),
     context.extensionUri,
   );
 

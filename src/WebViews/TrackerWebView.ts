@@ -1,14 +1,13 @@
 import * as vscode from "vscode";
-import * as path from "path";
 import FileSystemService from "../Services/FileSystemService";
 
 export class TrackerWebView {
   private readonly _extensionUri: vscode.Uri;
   private readonly _fileSystemService: FileSystemService;
 
-  constructor(extensionUri: vscode.Uri) {
+  constructor(extensionUri: vscode.Uri, fileSystemService: FileSystemService) {
     this._extensionUri = extensionUri;
-    this._fileSystemService = new FileSystemService(this._extensionUri.fsPath);
+    this._fileSystemService = fileSystemService;
   }
 
   public getHtmlForWebview(webview: vscode.Webview): string {
@@ -22,10 +21,8 @@ export class TrackerWebView {
 
       return this._parseHTML(html, webview);
     } catch (error) {
-      // If the HTML file doesn't exist yet or can't be loaded, use the inline fallback
-      console.warn(
-        `Failed to load tracker HTML file, using inline template: ${error}`,
-      );
+      console.error(error);
+      vscode.window.showErrorMessage(`Failed to load tracker HTML file: ${error}`,)
       return "";
     }
   }
