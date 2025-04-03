@@ -1,27 +1,26 @@
 import { ParsingService } from "../Services/ParsingService";
 import { RequirementsTrackerService } from "../Services/RequirementsTrackerService";
-import { DocumentEmbeddingService } from "../Services/DocumentEmbeddingService";
 import { Requirement } from "../Models/Requirement";
 import { TrackingResultSummary } from "../Models/TrackingModels";
-import { FormattedDocument } from "../Models/FormattedDocument";
-import {RequirementsService} from "../Services/RequirementsService";
+import { RequirementsService } from "../Services/RequirementsService";
+import { IVectorDatabase } from "../Interfaces/IVectorDatabase";
 
 export class RequirementsServiceFacade {
   private _parsingService: ParsingService;
   private _trackerService: RequirementsTrackerService;
-  private _embeddingService: DocumentEmbeddingService;
   private _requirementsService: RequirementsService;
+  private _vectorDatabase: IVectorDatabase;
 
   constructor(
     parsingService: ParsingService,
     trackerService: RequirementsTrackerService,
-    embeddingService: DocumentEmbeddingService,
-    requirementService: RequirementsService
+    requirementService: RequirementsService,
+    vectorDatabase: IVectorDatabase,
   ) {
     this._parsingService = parsingService;
     this._trackerService = trackerService;
-    this._embeddingService = embeddingService;
     this._requirementsService = requirementService;
+    this._vectorDatabase = vectorDatabase;
   }
 
   public async importRequirements(
@@ -58,18 +57,6 @@ export class RequirementsServiceFacade {
           );
           break;
 
-        case "text":
-          console.log(`Parsing plain text requirements`);
-          // For plain text, treat each line as a separate requirement
-          requirements = content
-            .split("\n")
-            .filter((line) => line.trim().length > 0)
-            .map((line) => this._parsingService.parseGenericRequirement(line));
-          console.log(
-            `Text parsing complete. Found ${requirements.length} requirements`,
-          );
-          break;
-
         default:
           console.error(`Unsupported format: ${format}`);
           throw new Error(`Unsupported format: ${format}`);
@@ -87,20 +74,18 @@ export class RequirementsServiceFacade {
 
       // Store the requirements
       console.log(`Storing ${requirements.length} requirements in memory`);
-      for (const req of requirements) {
-        await this._requirementsService.addRequirement(req);
-      }
+      this._requirementsService.addRequirements(requirements);
+      await this._requirementsService.saveRequirements();
 
       // Embed the requirements
       console.log(
         `Starting embedding process for ${requirements.length} requirements`,
       );
       try {
-        await this._embedRequirements(requirements);
+        await this._vectorDatabase.addRequirements(requirements);
         console.log(`Requirements embedding complete`);
       } catch (embeddingError) {
         console.error(`Error during requirements embedding:`, embeddingError);
-        // Continue even if embedding fails - we still have the requirements in memory
       }
 
       console.log(
@@ -123,7 +108,7 @@ export class RequirementsServiceFacade {
       if (requirementIds && requirementIds.length > 0) {
         reqs = requirementIds
           .map((id) => this._requirementsService.getById(id))
-          .filter((req):req is Requirement => req !== undefined);
+          .filter((req): req is Requirement => req !== undefined);
       } else {
         reqs = Array.from(this._requirementsService.getRequirements().values());
       }
@@ -142,7 +127,9 @@ export class RequirementsServiceFacade {
 
   public async getUnimplementedRequirements(): Promise<Requirement[]> {
     try {
-      const reqs = Array.from(this._requirementsService.getRequirements().values());
+      const reqs = Array.from(
+        this._requirementsService.getRequirements().values(),
+      );
       return await this._trackerService.findUnimplementedRequirements(reqs);
     } catch (error) {
       console.error(`Error finding unimplemented requirements:`, error);
@@ -156,48 +143,5 @@ export class RequirementsServiceFacade {
 
   public getAllRequirements(): Requirement[] {
     return Array.from(this._requirementsService.getRequirements().values());
-  }
-
-  private async _embedRequirements(requirements: Requirement[]): Promise<void> {
-    try {
-      console.log(
-        `Starting to embed ${requirements.length} requirements in LanceDB`,
-      );
-      const documents: FormattedDocument[] = [];
-
-      // Create a formatted document for each requirement
-      for (const req of requirements) {
-        const formatted: FormattedDocument = {
-          originalContent: req.description,
-          chunks: [req.description],
-          language: "text",
-          metadata: {
-            requirementId: req.id,
-            requirementType: req.type,
-            requirementPriority: req.priority,
-            requirementStatus: req.status,
-            requirementVersion: req.version,
-            isRequirement: true, // Add this flag to identify as a requirement
-            createdAt: Date.now(),
-            chunkSize: req.description.length,
-            chunkOverlap: 0,
-            totalChunks: 1,
-            ...req.metadata,
-          },
-        };
-
-        documents.push(formatted);
-      }
-
-      // Embed the documents
-      console.log(
-        `Embedding ${documents.length} requirement documents in LanceDB`,
-      );
-      await this._embeddingService.embedRequirements(documents);
-      console.log(`Successfully embedded requirements in LanceDB`);
-    } catch (error) {
-      console.error(`Error embedding requirements:`, error);
-      throw error;
-    }
   }
 }

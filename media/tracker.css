@@ -124,17 +124,17 @@ button:hover {
     margin-right: 5px;
 }
 
-.status-implemented {
+.status-confirmed-match {
     background-color: var(--vscode-terminal-ansiGreen);
     color: var(--vscode-terminal-foreground);
 }
 
-.status-partially {
+.status-possible-match {
     background-color: var(--vscode-terminal-ansiYellow);
-    color: var(--vscode-terminal-foreground);
+    color: black;
 }
 
-.status-not-implemented {
+.status-unlikely-match {
     background-color: var(--vscode-terminal-ansiRed);
     color: var(--vscode-terminal-foreground);
 }
@@ -203,15 +203,15 @@ button:hover {
     overflow: hidden;
 }
 
-.chart-implemented {
+.chart-confirmed-match {
     background-color: var(--vscode-terminal-ansiGreen);
 }
 
-.chart-partially {
+.chart-possible-match {
     background-color: var(--vscode-terminal-ansiYellow);
 }
 
-.chart-not-implemented {
+.chart-unlikely-match {
     background-color: var(--vscode-terminal-ansiRed);
 }
 

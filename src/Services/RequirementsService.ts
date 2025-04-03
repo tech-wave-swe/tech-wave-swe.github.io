@@ -17,32 +17,19 @@ export class RequirementsService {
     });
   }
 
-  public async addRequirement(requirement: Requirement): Promise<void> {
-    const reqs: Requirement[] = [];
+  public addRequirements(requirement: Requirement[]): void {
+    requirement.forEach((req) => {
+      this._requirements.set(req.id, req);
+    });
+  }
 
-    this._requirements.set(requirement.id, requirement);
+  public async saveRequirements(): Promise<void> {
+    const reqs: Requirement[] = [];
     this._requirements.forEach((requirement: Requirement) => {
       reqs.push(requirement);
     });
 
-    await this.saveRequirement(reqs);
-  }
-
-  public async saveRequirement(requirements: Requirement[]): Promise<void> {
-    this._requirements.clear();
-
-    requirements.forEach((requirement) => {
-      this._requirements.set(requirement.id, requirement);
-    });
-
-    await this._saveRequirement(requirements);
-  }
-
-  private async _saveRequirement(requirements: Requirement[]): Promise<void> {
-    await this._globalStateService.updateState(
-      StateKeys.REQUIREMENTS,
-      requirements,
-    );
+    await this._globalStateService.updateState(StateKeys.REQUIREMENTS, reqs);
   }
 
   // ToDo(MonettiLuca): Use cache layer instead of global state

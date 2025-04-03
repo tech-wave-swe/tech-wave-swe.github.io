@@ -17,14 +17,12 @@
   const trackButton = document.getElementById("track-button");
   const unimplementedButton = document.getElementById("unimplemented-button");
   const summarySection = document.getElementById("summary-section");
-  const chartImplemented = document.getElementById("chart-implemented");
-  const chartPartially = document.getElementById("chart-partially");
-  const chartNotImplemented = document.getElementById("chart-not-implemented");
-  const legendImplemented = document.getElementById("legend-implemented");
-  const legendPartially = document.getElementById("legend-partially");
-  const legendNotImplemented = document.getElementById(
-    "legend-not-implemented",
-  );
+  const chartConfirmed = document.getElementById("chart-confirmed-match");
+  const chartPossible = document.getElementById("chart-possible-match");
+  const chartUnlikely = document.getElementById("chart-unlikely-match");
+  const legendConfirmed = document.getElementById("legend-confirmed-match");
+  const legendPossible = document.getElementById("legend-possible-match");
+  const legendUnlikely = document.getElementById("legend-unlikely-match");
   const requirementsResults = document.getElementById("requirements-results");
 
   // Store requirements
@@ -153,13 +151,13 @@
 
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
-      checkbox.value = req.id;
+      checkbox.value = req.name;
       checkbox.id = "req-" + req.id;
-      checkbox.checked = true;
+      checkbox.checked = false;
 
       const label = document.createElement("label");
       label.htmlFor = checkbox.id;
-      label.textContent = `${req.id}: ${req.description.substring(0, 50)}${req.description.length > 50 ? "..." : ""}`;
+      label.textContent = `${req.name}: ${req.description.substring(0, 50)}${req.description.length > 50 ? "..." : ""}`;
 
       item.appendChild(checkbox);
       item.appendChild(label);
@@ -172,19 +170,19 @@
     summarySection.style.display = "block";
 
     const total = summary.totalRequirements;
-    const implemented = summary.implementedRequirements;
-    const partially = summary.partiallyImplementedRequirements;
-    const notImplemented = summary.unimplementedRequirements;
+    const confirmed = summary.confirmedMatches;
+    const possible = summary.possibleMatches;
+    const unlikely = summary.unlikelyMatches;
 
     // Update chart
-    chartImplemented.style.width = `${(implemented / total) * 100}%`;
-    chartPartially.style.width = `${(partially / total) * 100}%`;
-    chartNotImplemented.style.width = `${(notImplemented / total) * 100}%`;
+    chartConfirmed.style.width = `${(confirmed / total) * 100}%`;
+    chartPossible.style.width = `${(possible / total) * 100}%`;
+    chartUnlikely.style.width = `${(unlikely / total) * 100}%`;
 
     // Update legend
-    legendImplemented.textContent = `Implemented: ${implemented}`;
-    legendPartially.textContent = `Partially: ${partially}`;
-    legendNotImplemented.textContent = `Not Implemented: ${notImplemented}`;
+    legendConfirmed.textContent = `Confirmed Match: ${confirmed}`;
+    legendPossible.textContent = `Possible Match: ${possible}`;
+    legendUnlikely.textContent = `Unlikely Match: ${unlikely}`;
 
     // Generate requirement details
     requirementsResults.innerHTML = "";
@@ -211,19 +209,19 @@
 
       let statusClass = "";
       switch (result.implementationStatus) {
-        case "implemented":
-          statusClass = "status-implemented";
+        case "confirmed-match":
+          statusClass = "status-confirmed-match";
           break;
-        case "partially-implemented":
-          statusClass = "status-partially";
+        case "possible-match":
+          statusClass = "status-possible-match";
           break;
-        case "not-implemented":
-          statusClass = "status-not-implemented";
+        case "unlikely-match":
+          statusClass = "status-unlikely-match";
           break;
       }
 
       item.innerHTML = `
-        <div class="requirement-id">${req.id}</div>
+        <div class="requirement-name">${req.name}</div>
         <div class="requirement-description">${req.description}</div>
         <div class="requirement-meta">
           Type: ${req.type} | Priority: ${req.priority} | Status: ${req.status}
@@ -250,10 +248,10 @@
           const refItem = document.createElement("div");
           refItem.className = "code-reference";
           refItem.setAttribute("data-path", ref.filePath);
-          refItem.setAttribute("data-line", ref.lineStart);
+          refItem.setAttribute("data-line", ref.lineNumber);
 
           refItem.innerHTML = `
-            <div class="file-path">${ref.filePath}:${ref.lineStart}</div>
+            <div class="file-path">${ref.filePath}:${ref.lineNumber}</div>
             <div class="code-snippet">${escapeHtml(formatSnippet(ref.snippet))}</div>
             ${ref.relevanceExplanation ? `<div class="relevance-info">${ref.relevanceExplanation}</div>` : ""}
           `;
@@ -262,7 +260,7 @@
             vscode.postMessage({
               type: "openFile",
               filePath: ref.filePath,
-              lineStart: ref.lineStart,
+              lineStart: ref.lineNumber,
             });
           });
 
@@ -341,7 +339,7 @@
                 Type: ${req.type} | Priority: ${req.priority} | Status: ${req.status}
               </div>
               <div class="implementation-info">
-                <span class="implementation-status status-not-implemented">Not implemented</span>
+                <span class="implementation-status status-unlikely-match">Match not found</span>
               </div>
             `;
             unimplementedList.appendChild(item);

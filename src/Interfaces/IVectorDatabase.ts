@@ -1,27 +1,51 @@
-import { QueryResult } from "../Models/QueryResult";
-import { Document } from "@langchain/core/documents";
+import { File } from "../Models/File";
+import { Requirement } from "../Models/Requirement";
+import { Chunk } from "../Models/Chunk";
+
+export enum COLLECTION_TYPE {
+  file = "file",
+  requirements = "requirements",
+  chunks = "chunks",
+}
 
 export interface IVectorDatabase {
-  DOCUMENTS_COLLECTION: any;
-  REQUIREMENTS_COLLECTION: any;
   /**
-   * Add a single document to the vector database
+   * Add files to the vector database
    */
-  add(data: string, metadata: any, collectionName: string): Promise<void>;
+  addFiles(files: File[]): Promise<void>;
 
   /**
-   * Add multiple documents to the vector database
+   * Add requirements to the vector database
    */
-  addDocuments(documents: Document[], collectionName: string): Promise<void>;
+  addRequirements(documents: Requirement[]): Promise<void>;
 
   /**
-   * Query the vector database for similar documents
+   * Add chunks to the vector database
    */
-  query(
+  addChunks(chunks: Chunk[]): Promise<void>;
+
+  /**
+   * Check if a document exists in the vector database
+   */
+  fileExists(filePath: string): Promise<boolean>;
+
+  /**
+   * Query the vector database for similar files
+   */
+  queryForFiles(question: string, maxResults?: number): Promise<File[]>;
+
+  /**
+   * Query the vector database for similar requirements
+   */
+  queryForRequirements(
     question: string,
-    collectionName: string,
     maxResults?: number,
-  ): Promise<QueryResult[]>;
+  ): Promise<Requirement[]>;
+
+  /**
+   * Query the vector database for similar chunks
+   */
+  queryForChunks(question: string, maxResults?: number): Promise<Chunk[]>;
 
   /**
    * Reset the database, removing all stored data

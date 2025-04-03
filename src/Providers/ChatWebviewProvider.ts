@@ -1,10 +1,10 @@
 import * as vscode from "vscode";
 import { InferenceService } from "../Services/InferenceService";
 import { ChatMessage } from "../Models/ChatMessage";
-import {WebviewView} from "vscode";
+import { WebviewView } from "vscode";
 import path from "path";
-import {ChatService} from "../Services/ChatService";
-import {ChatWebView} from "../WebViews/ChatWebView";
+import { ChatService } from "../Services/ChatService";
+import { ChatWebView } from "../WebViews/ChatWebView";
 
 export class ChatWebviewProvider implements vscode.WebviewViewProvider {
   private _webviewView?: vscode.WebviewView;
@@ -13,7 +13,12 @@ export class ChatWebviewProvider implements vscode.WebviewViewProvider {
   private readonly _extensionUri: vscode.Uri;
   private _chatService: ChatService;
 
-  constructor(chatService: ChatService, inferenceService: InferenceService, chatWebView: ChatWebView, extensionUri: vscode.Uri) {
+  constructor(
+    chatService: ChatService,
+    inferenceService: InferenceService,
+    chatWebView: ChatWebView,
+    extensionUri: vscode.Uri,
+  ) {
     this._extensionUri = extensionUri;
     this._chatService = chatService;
     this._inferenceService = inferenceService;
@@ -25,7 +30,6 @@ export class ChatWebviewProvider implements vscode.WebviewViewProvider {
     _context: vscode.WebviewViewResolveContext,
     _token: vscode.CancellationToken,
   ): void {
-
     this._webviewViewConfigure(webviewView);
     this._webviewViewHandleEvents(webviewView);
 
@@ -45,10 +49,15 @@ export class ChatWebviewProvider implements vscode.WebviewViewProvider {
   private _webviewViewConfigure(webviewView: vscode.WebviewView) {
     webviewView.webview.options = {
       enableScripts: true,
-      localResourceRoots: [this._extensionUri, vscode.Uri.file(path.join(this._extensionUri.fsPath, 'node_modules')),],
+      localResourceRoots: [
+        this._extensionUri,
+        vscode.Uri.file(path.join(this._extensionUri.fsPath, "node_modules")),
+      ],
     };
 
-    webviewView.webview.html = this._chatWebView.getHtmlForWebview(webviewView.webview);
+    webviewView.webview.html = this._chatWebView.getHtmlForWebview(
+      webviewView.webview,
+    );
   }
 
   private _webviewViewHandleEvents(webviewView: WebviewView) {
@@ -57,7 +66,10 @@ export class ChatWebviewProvider implements vscode.WebviewViewProvider {
     });
   }
 
-  private async _handleMessageFromWebview(message: { type: string; text: string; dataType: string | undefined; }): Promise<void> {
+  private async _handleMessageFromWebview(message: {
+    type: string;
+    text: string;
+  }): Promise<void> {
     switch (message.type) {
       case "sendMessage": {
         await this._onSendMessage(message);
@@ -70,11 +82,7 @@ export class ChatWebviewProvider implements vscode.WebviewViewProvider {
     }
   }
 
-  private async _onSendMessage(message: {
-    type: string;
-    text: string;
-    dataType: string | undefined;
-  }) {
+  private async _onSendMessage(message: { type: string; text: string }) {
     const userMessage: ChatMessage = {
       sender: "user",
       text: message.text,
@@ -89,10 +97,7 @@ export class ChatWebviewProvider implements vscode.WebviewViewProvider {
 
     try {
       // Get response from the inference service
-      const response = await this._inferenceService.query(
-        message.text,
-        message.dataType,
-      );
+      const response = await this._inferenceService.query(message.text);
 
       const modelMessage: ChatMessage = {
         sender: "model",
@@ -105,16 +110,12 @@ export class ChatWebviewProvider implements vscode.WebviewViewProvider {
         type: "addMessage",
         message: modelMessage,
       });
-
     } catch (error) {
-
       this._sendMessageToWebview({
         type: "error",
         message: `Error: ${error instanceof Error ? error.message : "Unknown error"}`,
       });
-
     } finally {
-
       this._sendMessageToWebview({ type: "setLoading", isLoading: false });
     }
   }
@@ -124,6 +125,7 @@ export class ChatWebviewProvider implements vscode.WebviewViewProvider {
     this._sendMessageToWebview({ type: "clearHistory" });
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private _sendMessageToWebview(message: any): void {
     if (this._webviewView) {
       this._webviewView.webview.postMessage(message);

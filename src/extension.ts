@@ -1,28 +1,36 @@
 import * as vscode from "vscode";
-import * as path from "path";
-import {ConfigServiceFacade} from "./Facades/ConfigServiceFacade";
-import {ChatWebviewProvider} from "./Providers/ChatWebviewProvider";
-import {TrackerWebviewProvider} from "./Providers/TrackerWebviewProvider";
-import {InferenceService} from "./Services/InferenceService";
-import {LangChainOllamaAdapter} from "./Adapters/LangChainOllamaAdapter";
-import {LangChainLanceDBAdapter} from "./Adapters/LangChainLanceDBAdapter";
-import {DocumentFormatterService} from "./Services/DocumentFormatterService";
-import {DocumentEmbeddingService} from "./Services/DocumentEmbeddingService";
-import {DocumentServiceFacade} from "./Facades/DocumentServiceFacade";
-import {ParsingService} from "./Services/ParsingService";
-import {RequirementsTrackerService} from "./Services/RequirementsTrackerService";
-import {RequirementsServiceFacade} from "./Facades/RequirementsServiceFacade";
+import { ConfigServiceFacade } from "./Facades/ConfigServiceFacade";
+import { ChatWebviewProvider } from "./Providers/ChatWebviewProvider";
+import { TrackerWebviewProvider } from "./Providers/TrackerWebviewProvider";
+import { InferenceService } from "./Services/InferenceService";
+import { LangChainOllamaAdapter } from "./Adapters/LangChainOllamaAdapter";
+import { LanceDBAdapter } from "./Adapters/LanceDBAdapter";
+import { DocumentFormatterService } from "./Services/DocumentFormatterService";
+import { DocumentServiceFacade } from "./Facades/DocumentServiceFacade";
+import { ParsingService } from "./Services/ParsingService";
+import { RequirementsTrackerService } from "./Services/RequirementsTrackerService";
+import { RequirementsServiceFacade } from "./Facades/RequirementsServiceFacade";
 import FileSystemService from "./Services/FileSystemService";
 import ConfigService from "./Services/ConfigService";
-import {ChatService} from "./Services/ChatService";
-import {GlobalStateService} from "./Services/GlobalStateService";
-import {RequirementsService} from "./Services/RequirementsService";
-import {FilterService} from "./Services/FilterService";
-import {ChatWebView} from "./WebViews/ChatWebView";
-import {TrackerWebView} from "./WebViews/TrackerWebView";
+import { ChatService } from "./Services/ChatService";
+import { GlobalStateService } from "./Services/GlobalStateService";
+import { RequirementsService } from "./Services/RequirementsService";
+import { FilterService } from "./Services/FilterService";
+import { ChatWebView } from "./WebViews/ChatWebView";
+import { TrackerWebView } from "./WebViews/TrackerWebView";
 
 export function activate(context: vscode.ExtensionContext) {
   try {
+    process.env.RUST_LOG = "error";
+    process.env.RUST_BACKTRACE = "0";
+
+    console.log(
+      `Set RUST_LOG environment variable to: ${process.env.RUST_LOG}`,
+    );
+    console.log(
+      `Set RUST_BACKTRACE environment variable to: ${process.env.RUST_BACKTRACE}`,
+    );
+
     // Initialize Services
     _initializeConfigService(context);
 
@@ -65,7 +73,7 @@ function _initializeChatViewProvider(context: vscode.ExtensionContext) {
   const globalStateService = new GlobalStateService(context.globalState);
   const chatService = new ChatService(globalStateService);
 
-  const lanceDBAdapter = new LangChainLanceDBAdapter(context.globalStorageUri.fsPath);
+  const lanceDBAdapter = new LanceDBAdapter(context.globalStorageUri.fsPath);
   const languageModel = new LangChainOllamaAdapter();
 
   const inferenceService = new InferenceService(languageModel, lanceDBAdapter);
@@ -87,17 +95,29 @@ function _initializeChatViewProvider(context: vscode.ExtensionContext) {
 }
 
 function _initializeTrackerViewProvider(context: vscode.ExtensionContext) {
-
   const parsingService = new ParsingService();
-  const requirementsService = new RequirementsService(new GlobalStateService(context.globalState));
+  const requirementsService = new RequirementsService(
+    new GlobalStateService(context.globalState),
+  );
 
-  const lanceDBAdapter = new LangChainLanceDBAdapter(context.globalStorageUri.fsPath);
-  const embeddingService = new DocumentEmbeddingService(lanceDBAdapter);
+  const lanceDBAdapter = new LanceDBAdapter(context.globalStorageUri.fsPath);
 
-  const documentServiceFacade = new DocumentServiceFacade(new DocumentFormatterService(), embeddingService);
-  const trackerService = new RequirementsTrackerService(lanceDBAdapter,documentServiceFacade, new FilterService());
+  const documentServiceFacade = new DocumentServiceFacade(
+    new DocumentFormatterService(),
+    lanceDBAdapter,
+  );
+  const trackerService = new RequirementsTrackerService(
+    lanceDBAdapter,
+    documentServiceFacade,
+    new FilterService(),
+  );
 
-  const requirementsServiceFacade = new RequirementsServiceFacade(parsingService, trackerService, embeddingService, requirementsService);
+  const requirementsServiceFacade = new RequirementsServiceFacade(
+    parsingService,
+    trackerService,
+    requirementsService,
+    lanceDBAdapter,
+  );
 
   const trackerWebviewProvider = new TrackerWebviewProvider(
     requirementsServiceFacade,
@@ -116,7 +136,7 @@ function _initializeTrackerViewProvider(context: vscode.ExtensionContext) {
 
 function _handleEvents(context: vscode.ExtensionContext) {
   const ollamaAdapter = new LangChainOllamaAdapter();
-  const lanceDBAdapter = new LangChainLanceDBAdapter(context.globalStorageUri.fsPath);
+  const lanceDBAdapter = new LanceDBAdapter(context.globalStorageUri.fsPath);
 
   // Handle configuration changes
   context.subscriptions.push(
@@ -133,75 +153,11 @@ function _handleEvents(context: vscode.ExtensionContext) {
 }
 
 function _initializeCommands(context: vscode.ExtensionContext) {
-  const vectorDatabase = new LangChainLanceDBAdapter(context.globalStorageUri.fsPath);
+  const vectorDatabase = new LanceDBAdapter(context.globalStorageUri.fsPath);
 
   const globalStateService = new GlobalStateService(context.globalState);
   const chatService = new ChatService(globalStateService);
-
-  const documentFormatterService = new DocumentFormatterService();
-  const documentEmbeddingService = new DocumentEmbeddingService(vectorDatabase);
-  const documentServiceFacade = new DocumentServiceFacade(documentFormatterService, documentEmbeddingService);
-
-  // Index current file
-  context.subscriptions.push(
-    vscode.commands.registerCommand(
-      "requirementsTracker.indexCurrentFile",
-      async () => {
-        const editor = vscode.window.activeTextEditor;
-        if (!editor) {
-          vscode.window.showWarningMessage("No active editor to index");
-          return;
-        }
-
-        try {
-          const document = editor.document;
-          await documentServiceFacade.processDocument(
-            document.getText(),
-            document.fileName,
-          );
-          vscode.window.showInformationMessage(
-            `Successfully indexed ${path.basename(document.fileName)}`,
-          );
-        } catch (error) {
-          vscode.window.showErrorMessage(`Failed to index file: ${error}`);
-        }
-      },
-    ),
-  );
-
-  // Index workspace
-  context.subscriptions.push(
-    vscode.commands.registerCommand(
-      "requirementsTracker.indexWorkspace",
-      async () => {
-        try {
-          vscode.window.withProgress(
-            {
-              location: vscode.ProgressLocation.Notification,
-              title: "Indexing workspace files",
-              cancellable: true,
-            },
-            async () => {
-              try {
-                await documentServiceFacade.processWorkspaceFiles();
-                vscode.window.showInformationMessage(
-                  "Successfully indexed workspace files",
-                );
-              } catch (error) {
-                vscode.window.showErrorMessage(
-                  `Failed to index workspace: ${error}`,
-                );
-              }
-            },
-          );
-        } catch (error) {
-          vscode.window.showErrorMessage(
-            `Failed to start indexing: ${error}`,
-          );
-        }
-      },
-    ),
-  );
+  const requirementsService = new RequirementsService(globalStateService);
 
   // Clear chat history
   context.subscriptions.push(
@@ -213,11 +169,23 @@ function _initializeCommands(context: vscode.ExtensionContext) {
       },
     ),
   );
+
+  // Clear Requirements history
+  context.subscriptions.push(
+    vscode.commands.registerCommand(
+      "requirementsTracker.clearRequirementsHistory",
+      async () => {
+        await requirementsService.clearRequirements();
+        vscode.window.showInformationMessage("Requirements history cleared");
+      },
+    ),
+  );
+
   context.subscriptions.push(
     vscode.commands.registerCommand("reqTracker.resetDatabase", async () => {
       const answer = await vscode.window.showWarningMessage(
         "This will delete all indexed data. Are you sure?",
-        {modal: true},
+        { modal: true },
         "Yes",
         "No",
       );
@@ -228,9 +196,7 @@ function _initializeCommands(context: vscode.ExtensionContext) {
             "Database has been reset successfully",
           );
         } catch (error) {
-          vscode.window.showErrorMessage(
-            `Failed to reset database: ${error}`,
-          );
+          vscode.window.showErrorMessage(`Failed to reset database: ${error}`);
         }
       }
     }),
@@ -238,7 +204,7 @@ function _initializeCommands(context: vscode.ExtensionContext) {
 }
 function _startupCheck(context: vscode.ExtensionContext) {
   const languageModel = new LangChainOllamaAdapter();
-  const lanceDBAdapter = new LangChainLanceDBAdapter(context.globalStorageUri.fsPath);
+  const lanceDBAdapter = new LanceDBAdapter(context.globalStorageUri.fsPath);
   const inferenceService = new InferenceService(languageModel, lanceDBAdapter);
 
   inferenceService.checkSystemRequirements().catch((error) => {

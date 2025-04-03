@@ -1,47 +1,39 @@
 import * as vscode from "vscode";
 import * as fs from "fs";
 import { DocumentFormatterService } from "../Services/DocumentFormatterService";
-import { DocumentEmbeddingService } from "../Services/DocumentEmbeddingService";
-import { FormattedDocument } from "../Models/FormattedDocument";
+import { IVectorDatabase } from "../Interfaces/IVectorDatabase";
+import FileSystemService from "../Services/FileSystemService";
+import { File } from "../Models/File";
+import { Chunk } from "../Models/Chunk";
 
 export class DocumentServiceFacade {
   private _formatterService: DocumentFormatterService;
-  private _embeddingService: DocumentEmbeddingService;
+  private _vectorDatabase: IVectorDatabase; // Add this
 
   constructor(
     formatterService: DocumentFormatterService,
-    embeddingService: DocumentEmbeddingService,
+    vectorDatabase: IVectorDatabase, // Add this parameter
   ) {
     this._formatterService = formatterService;
-    this._embeddingService = embeddingService;
-  }
-
-  public async processDocument(
-    content: string,
-    filePath: string,
-  ): Promise<void> {
-    try {
-      // Format the document
-      const formattedDoc = this._formatterService.formatSourceCode(
-        content,
-        filePath,
-      );
-
-      // Embed the document
-      await this._embeddingService.embedDocument(formattedDoc);
-    } catch (error) {
-      console.error(`Error processing document ${filePath}:`, error);
-      throw error;
-    }
+    this._vectorDatabase = vectorDatabase;
   }
 
   public async processFiles(filePaths: string[]): Promise<void> {
-    const formattedDocs: FormattedDocument[] = [];
+    const formattedDocs: Chunk[] = [];
     const skippedFiles: string[] = [];
+    const existingFiles: string[] = [];
 
     // Format all documents first
     for (const filePath of filePaths) {
       try {
+        const exists = await this._vectorDatabase.fileExists(filePath);
+
+        if (exists) {
+          console.log(`Skipping ${filePath} - already indexed`);
+          existingFiles.push(filePath);
+          continue;
+        }
+
         // Check file size before reading
         const stats = fs.statSync(filePath);
         const MAX_FILE_SIZE = 20 * 1024 * 1024; // 20MB limit
@@ -54,15 +46,23 @@ export class DocumentServiceFacade {
           continue;
         }
 
+        // TODO: Use FileSystemService to read file content
         const content = fs.readFileSync(filePath, "utf8");
-        const formattedDoc = this._formatterService.formatSourceCode(
-          content,
-          filePath,
+        const checksum = await FileSystemService.getChecksum(filePath);
+
+        const file = {
+          originalContent: content,
+          filePath: filePath,
+          checksum: checksum,
+        } as File;
+
+        this._vectorDatabase.addFiles([file]);
+
+        formattedDocs.push(
+          ...this._formatterService.formatSourceCode(content, filePath),
         );
-        formattedDocs.push(formattedDoc);
       } catch (error) {
         console.error(`Error reading or formatting file ${filePath}:`, error);
-        // Continue with other files
       }
     }
 
@@ -70,39 +70,51 @@ export class DocumentServiceFacade {
     if (skippedFiles.length > 0) {
       console.warn(`Skipped ${skippedFiles.length} files due to size limits`);
     }
+    if (existingFiles.length > 0) {
+      console.log(`Skipped ${existingFiles.length} already indexed files`);
+    }
 
     // Embed all formatted documents
-    await this._embeddingService.embedMultipleDocuments(formattedDocs);
+    if (formattedDocs.length > 0) {
+      await this._vectorDatabase.addChunks(formattedDocs);
+      console.log(`Indexed ${formattedDocs.length} new files`);
+    } else {
+      console.log("No new files to index");
+    }
   }
 
-  public async processWorkspaceFiles(
-    filePattern = "**/*.{js,ts,py,java,cs,cpp,c}",
-  ): Promise<void> {
+  public async processWorkspaceFiles(): Promise<void> {
     const workspaceFolders = vscode.workspace.workspaceFolders;
     if (!workspaceFolders) {
       throw new Error("No workspace folder is open");
     }
 
     const filePaths: string[] = [];
+    const filePattern = "**/*.{c,h,cpp,hpp,rs}";
+
+    console.log("Starting workspace file processing...");
+    console.log(`Using file pattern: ${filePattern}`);
 
     for (const folder of workspaceFolders) {
+      console.log(`Scanning workspace folder: ${folder.name}`);
+
       const files = await vscode.workspace.findFiles(
         new vscode.RelativePattern(folder, filePattern),
         "**/node_modules/**",
       );
 
+      console.log(`Found ${files.length} files in ${folder.name}`);
       filePaths.push(...files.map((file) => file.fsPath));
     }
 
     if (filePaths.length === 0) {
-      throw new Error("No matching files found in workspace");
+      console.warn("No matching files found in workspace");
+      return;
     }
 
-    await this.processFiles(filePaths);
-  }
+    console.log(`Processing ${filePaths.length} files:`);
+    filePaths.forEach((file) => console.log(` - ${file}`));
 
-  public async reindexDocuments(): Promise<void> {
-    // Re-process all workspace files
-    await this.processWorkspaceFiles();
+    await this.processFiles(filePaths);
   }
 }

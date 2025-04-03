@@ -1,19 +1,23 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { jest } from "@jest/globals";
 import vscode from "vscode";
 
-// __mocks__/vscode.ts
 export const workspace = {
   getConfiguration: jest.fn().mockReturnValue({
     get: jest.fn(),
     update: jest.fn(),
     inspect: jest.fn(),
   }),
-  openTextDocument: jest.fn<(uri: vscode.Uri) => Thenable<vscode.TextDocument>>(),
-
+  openTextDocument:
+    jest.fn<(uri: vscode.Uri) => Thenable<vscode.TextDocument>>(),
+  workspaceFolders: [{ uri: { fsPath: "/test/workspace" }, name: "test" }],
+  findFiles: jest.fn(),
 };
 
 export const window = {
-  withProgress: jest.fn(),
+  withProgress: jest.fn((_options, task: any) =>
+    task({ report: jest.fn() }, { isCancellationRequested: false }),
+  ),
   showInformationMessage: jest.fn(),
   showWarningMessage: jest.fn(),
   showErrorMessage: jest.fn(),
@@ -21,11 +25,14 @@ export const window = {
 };
 
 export const ProgressLocation = { Notification: 15 };
-
-export const Uri = {
-  file: jest.fn(),
-  // Add other mocked methods as needed
-};
+export const Uri = { file: jest.fn((path) => ({ fsPath: path })) };
+class RelativePattern {
+  constructor(
+    public base: any,
+    public pattern: string,
+  ) {}
+}
+export { RelativePattern };
 
 export const Position = jest.fn();
 
@@ -41,4 +48,6 @@ export default {
   Position,
   Selection,
   Range,
+  ProgressLocation,
+  RelativePattern,
 };

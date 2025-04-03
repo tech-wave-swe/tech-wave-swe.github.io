@@ -3,7 +3,7 @@ import * as csv from "csv-parse/sync";
 import * as xml2js from "xml2js";
 
 export class ParsingService {
-  public parseCSV(content: string, delimiter: string = ","): Requirement[] {
+  public parseCSV(content: string, delimiter = ","): Requirement[] {
     try {
       console.log(`Starting CSV parsing with delimiter: "${delimiter}"`);
       console.log(`CSV content sample: ${content.substring(0, 100)}...`);
@@ -25,6 +25,7 @@ export class ParsingService {
         console.log(`Sample record: ${JSON.stringify(records[0])}`);
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const requirements = records.map((record: any) =>
         this._mapToRequirement(record),
       );
@@ -67,47 +68,24 @@ export class ParsingService {
       throw new Error(`Failed to parse ReqIF: ${error}`);
     }
   }
-
-  public parseGenericRequirement(content: string): Requirement {
-    // Simple implementation for text-based requirements
-    return {
-      id: `REQ-${Date.now()}`,
-      description: content,
-      type: "functional",
-      priority: "medium",
-      status: "draft",
-      version: "1.0",
-      metadata: {
-        createdAt: new Date().toISOString(),
-        source: "manual",
-      },
-    };
-  }
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private _mapToRequirement(record: any): Requirement {
-    // Map CSV fields to Requirement object
-    // These fields may vary based on the CSV structure
     return {
-      id: record.id || record.ID || record.reqId || `REQ-${Date.now()}`,
-      description:
-        record.description || record.Description || record.text || "",
-      type: record.type || record.Type || "unspecified",
-      priority: record.priority || record.Priority || "medium",
+      id: record.GUID || record.guid || record.id || `REQ-${Date.now()}`,
+      name: record.Name || record.name || record.title || record.Title || "",
+      description: record.Notes || record.Description || record.text || "",
+      type: record.Type || record.type || "unspecified",
       status: record.status || record.Status || "draft",
-      version: record.version || record.Version || "1.0",
-      metadata: {
-        createdAt: new Date().toISOString(),
-        source: "csv",
-        rawData: record,
-      },
+      version: record.Version || record.version || "1.0",
     };
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private _parseReqIFSpecObject(specObject: any): Requirement {
     let id = "";
+    let name = "";
     let description = "";
     let type = "unspecified";
-    let priority = "medium";
     let status = "draft";
     let version = "1.0";
 
@@ -119,19 +97,25 @@ export class ParsingService {
 
       for (const attr of attributes) {
         if (attr.DEFINITION && attr.DEFINITION.LONG_NAME) {
-          const name = attr.DEFINITION.LONG_NAME.toLowerCase();
+          const attr_name = attr.DEFINITION.LONG_NAME.toLowerCase();
 
-          if (name.includes("id")) {
+          if (attr_name.includes("id")) {
             id = attr.VALUE || attr.VALUES || "";
-          } else if (name.includes("description") || name.includes("text")) {
+          } else if (
+            attr_name.includes("name") ||
+            attr_name.includes("title")
+          ) {
+            name = attr.VALUE || attr.VALUES || "";
+          } else if (
+            attr_name.includes("description") ||
+            attr_name.includes("text")
+          ) {
             description = attr.VALUE || attr.VALUES || "";
-          } else if (name.includes("type")) {
+          } else if (attr_name.includes("type")) {
             type = attr.VALUE || attr.VALUES || "unspecified";
-          } else if (name.includes("priority")) {
-            priority = attr.VALUE || attr.VALUES || "medium";
-          } else if (name.includes("status")) {
+          } else if (attr_name.includes("status")) {
             status = attr.VALUE || attr.VALUES || "draft";
-          } else if (name.includes("version")) {
+          } else if (attr_name.includes("version")) {
             version = attr.VALUE || attr.VALUES || "1.0";
           }
         }
@@ -146,16 +130,11 @@ export class ParsingService {
 
     return {
       id,
+      name,
       description,
       type,
-      priority,
       status,
       version,
-      metadata: {
-        createdAt: new Date().toISOString(),
-        source: "reqif",
-        rawData: specObject,
-      },
     };
   }
 }

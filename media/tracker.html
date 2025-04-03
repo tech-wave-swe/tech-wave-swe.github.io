@@ -31,7 +31,6 @@
                     <select id="import-format">
                         <option value="csv">CSV</option>
                         <option value="reqif">ReqIF</option>
-                        <option value="text">Plain Text</option>
                     </select>
                 </div>
 
@@ -76,8 +75,7 @@
                         <div
                             id="requirements-checklist"
                             style="
-                                max-height: 200px;
-                                overflow-y: auto;
+                                height: auto;
                                 margin-top: 5px;
                                 border: 1px solid var(--vscode-panel-border);
                                 padding: 5px;
@@ -93,25 +91,32 @@
                 <h2>Tracking Results</h2>
 
                 <div id="summary-section" style="display: none">
-                    <h3>Implementation Summary</h3>
+                    <h3>Code Match Summary</h3>
+
+                    <p>
+                        To confirm the code implementation, click on the code reference, select the code implementation
+                        and click on "Interrogate on the Selected Code button on the top left corner of the screen. The
+                        response will be visible in the chat panel." and click on the
+                    </p>
+
                     <div class="summary-chart">
-                        <div id="chart-implemented" class="chart-implemented" style="width: 0%"></div>
-                        <div id="chart-partially" class="chart-partially" style="width: 0%"></div>
-                        <div id="chart-not-implemented" class="chart-not-implemented" style="width: 0%"></div>
+                        <div id="chart-confirmed-match" class="chart-confirmed-match" style="width: 0%"></div>
+                        <div id="chart-possible-match" class="chart-possible-match" style="width: 0%"></div>
+                        <div id="chart-unlikely-match" class="chart-unlikely-match" style="width: 0%"></div>
                     </div>
 
                     <div class="summary-legend">
                         <div class="legend-item">
-                            <div class="legend-color chart-implemented"></div>
-                            <span id="legend-implemented">Implemented: 0</span>
+                            <div class="legend-color chart-confirmed-match"></div>
+                            <span id="legend-confirmed-match">Confirmed: 0</span>
                         </div>
                         <div class="legend-item">
-                            <div class="legend-color chart-partially"></div>
-                            <span id="legend-partially">Partially: 0</span>
+                            <div class="legend-color chart-possible-match"></div>
+                            <span id="legend-possible-match">Possible: 0</span>
                         </div>
                         <div class="legend-item">
-                            <div class="legend-color chart-not-implemented"></div>
-                            <span id="legend-not-implemented">Not Implemented: 0</span>
+                            <div class="legend-color chart-unlikely-match"></div>
+                            <span id="legend-unlikely-match">Unlikely: 0</span>
                         </div>
                     </div>
                 </div>
