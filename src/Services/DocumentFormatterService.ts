@@ -69,11 +69,9 @@ export class DocumentFormatterService {
 
       // Safety check - if chunk is still too large, further split it
       if (chunk.length > 6000) {
-        console.warn(
-          `Chunk still too large (${chunk.length} chars), forcing split`,
-        );
-        const subChunks = this._splitLargeText(chunk, 2000);
-        chunks.push(...subChunks);
+        console.warn(`Chunk still too large (${chunk.length} chars), forcing split`);
+        //const subChunks = this._splitLargeText(chunk, 2000);
+        //chunks.push(...subChunks);
       } else {
         chunks.push(chunk);
       }
@@ -176,9 +174,6 @@ export class DocumentFormatterService {
       ".cs": "csharp",
       ".md": "markdown",
       ".txt": "text",
-      ".json": "json",
-      ".html": "html",
-      ".css": "css",
     };
 
     return languageMap[ext] || "text";
