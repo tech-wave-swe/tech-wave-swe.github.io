@@ -25,7 +25,10 @@ export const window = {
 };
 
 export const ProgressLocation = { Notification: 15 };
-export const Uri = { file: jest.fn((path) => ({ fsPath: path })) };
+export const Uri = {
+  file: jest.fn((path) => ({ fsPath: path })),
+  joinPath: jest.fn(),
+};
 class RelativePattern {
   constructor(
     public base: any,
@@ -33,6 +36,10 @@ class RelativePattern {
   ) {}
 }
 export { RelativePattern };
+
+export const commands = {
+  registerCommand: jest.fn(),
+};
 
 export const Position = jest.fn();
 
@@ -44,6 +51,7 @@ export const Range = jest.fn();
 export default {
   workspace,
   window,
+  commands,
   Uri,
   Position,
   Selection,

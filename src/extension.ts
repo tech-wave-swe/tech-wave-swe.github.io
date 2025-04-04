@@ -18,6 +18,9 @@ import { RequirementsService } from "./Services/RequirementsService";
 import { FilterService } from "./Services/FilterService";
 import { ChatWebView } from "./WebViews/ChatWebView";
 import { TrackerWebView } from "./WebViews/TrackerWebView";
+import { CommandRegistry } from "./Commands/CommandsRegistry";
+import { ClearChatHistoryCommand } from "./Commands/ClearChatHistoryCommand";
+import { ResetDatabaseCommand } from "./Commands/ResetDatabaseCommand";
 
 export function activate(context: vscode.ExtensionContext) {
   try {
@@ -81,7 +84,10 @@ function _initializeChatViewProvider(context: vscode.ExtensionContext) {
   const chatWebviewProvider = new ChatWebviewProvider(
     chatService,
     inferenceService,
-    new ChatWebView(context.extensionUri),
+    new ChatWebView(
+      context.extensionUri,
+      new FileSystemService(context.extensionUri.fsPath),
+    ),
     context.extensionUri,
   );
 
@@ -121,7 +127,10 @@ function _initializeTrackerViewProvider(context: vscode.ExtensionContext) {
 
   const trackerWebviewProvider = new TrackerWebviewProvider(
     requirementsServiceFacade,
-    new TrackerWebView(context.extensionUri),
+    new TrackerWebView(
+      context.extensionUri,
+      new FileSystemService(context.extensionUri.fsPath),
+    ),
     context.extensionUri,
   );
 
@@ -157,51 +166,15 @@ function _initializeCommands(context: vscode.ExtensionContext) {
 
   const globalStateService = new GlobalStateService(context.globalState);
   const chatService = new ChatService(globalStateService);
-  const requirementsService = new RequirementsService(globalStateService);
 
-  // Clear chat history
-  context.subscriptions.push(
-    vscode.commands.registerCommand(
-      "requirementsTracker.clearChatHistory",
-      async () => {
-        await chatService.clearMessages();
-        vscode.window.showInformationMessage("Chat history cleared");
-      },
-    ),
-  );
+  // Commands
+  const clearChathistory = new ClearChatHistoryCommand(chatService);
+  const resetDatabase = new ResetDatabaseCommand(vectorDatabase);
 
-  // Clear Requirements history
-  context.subscriptions.push(
-    vscode.commands.registerCommand(
-      "requirementsTracker.clearRequirementsHistory",
-      async () => {
-        await requirementsService.clearRequirements();
-        vscode.window.showInformationMessage("Requirements history cleared");
-      },
-    ),
-  );
-
-  context.subscriptions.push(
-    vscode.commands.registerCommand("reqTracker.resetDatabase", async () => {
-      const answer = await vscode.window.showWarningMessage(
-        "This will delete all indexed data. Are you sure?",
-        { modal: true },
-        "Yes",
-        "No",
-      );
-      if (answer === "Yes") {
-        try {
-          await vectorDatabase.resetDatabase();
-          vscode.window.showInformationMessage(
-            "Database has been reset successfully",
-          );
-        } catch (error) {
-          vscode.window.showErrorMessage(`Failed to reset database: ${error}`);
-        }
-      }
-    }),
-  );
+  const commandRegistry = new CommandRegistry(context);
+  commandRegistry.registerCommands([clearChathistory, resetDatabase]);
 }
+
 function _startupCheck(context: vscode.ExtensionContext) {
   const languageModel = new LangChainOllamaAdapter();
   const lanceDBAdapter = new LanceDBAdapter(context.globalStorageUri.fsPath);

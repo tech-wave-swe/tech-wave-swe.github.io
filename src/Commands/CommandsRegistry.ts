@@ -27,7 +27,11 @@ export class CommandRegistry {
     commands.forEach((command) => this.registerCommand(command));
   }
 
-  public getCommand(commandName: string): ICommand | undefined {
-    return this._commands.get(commandName);
+  public getCommand(commandName: string): ICommand {
+    if (!this._commands.has(commandName)) {
+      throw new Error(`Command ${commandName} not found`);
+    }
+
+    return this._commands.get(commandName) as ICommand;
   }
 }

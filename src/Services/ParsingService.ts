@@ -41,7 +41,6 @@ export class ParsingService {
     try {
       const parser = new xml2js.Parser({ explicitArray: false });
       const result = await parser.parseStringPromise(content);
-
       const requirements: Requirement[] = [];
 
       // ReqIF has a complex structure - simplified version here
@@ -123,7 +122,7 @@ export class ParsingService {
     }
 
     // Ensure we have an ID
-    if (!id) {
+    if (id == "") {
       id =
         specObject.IDENTIFIER || specObject.$.IDENTIFIER || `REQ-${Date.now()}`;
     }

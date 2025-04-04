@@ -5,9 +5,9 @@ export class ChatWebView {
   private readonly _extensionUri: vscode.Uri;
   private readonly _fileSystemService: FileSystemService;
 
-  constructor(extensionUri: vscode.Uri) {
+  constructor(extensionUri: vscode.Uri, fileSystemService: FileSystemService) {
     this._extensionUri = extensionUri;
-    this._fileSystemService = new FileSystemService(this._extensionUri.fsPath);
+    this._fileSystemService = fileSystemService;
   }
 
   public getHtmlForWebview(webview: vscode.Webview): string {
@@ -21,7 +21,9 @@ export class ChatWebView {
 
       return this._parseHTML(html, webview);
     } catch (error) {
-      vscode.window.showErrorMessage(`Failed to load chat HTML file: ${error}`);
+
+      console.error(error);
+      vscode.window.showErrorMessage(`Failed to load chat HTML file: ${error}`)
       return "";
     }
   }
