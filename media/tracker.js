@@ -13,10 +13,13 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 function setInitialState() {
   const importFormatSelect = document.getElementById("import-format");
+  const trackAllCheckbox = document.getElementById("track-all");
 
   // Initial state
   document.getElementById("csv-options").style.display =
     importFormatSelect.value === "csv" ? "block" : "none";
+
+  trackAllCheckbox.checked = false;
 }
 
 function handleEvents() {
@@ -186,9 +189,11 @@ function handleImportButtonClick(importFormatSelect, textContent) {
 }
 
 function handleTrackAllCheckboxChange(requirementSelection, trackAllCheckbox) {
-  requirementSelection.style.display = trackAllCheckbox.checked
-    ? "none"
-    : "block";
+  const selectRequirements = document.querySelectorAll("td input");
+
+  selectRequirements.forEach((checkbox) => {
+    checkbox.checked = trackAllCheckbox.checked;
+  });
 }
 
 function handleTrackButtonClick(trackAllCheckbox, requirementsChecklist) {
@@ -436,6 +441,7 @@ function updateRequirementsTable() {
   const requirementsWrapper = document.getElementById("requirements-table-wrapper");
 
   requirementsWrapper.innerHTML = "";
+  reqReferences = [];
 
   if (requirements.length === 0) {
     requirementsWrapper.innerHTML = "<p>No requirements available.</p>";
@@ -506,6 +512,22 @@ function updateRequirementsTable() {
 
   table.appendChild(tbody);
   requirementsWrapper.appendChild(table);
+
+  handleRequirementsEvents();
+}
+
+function handleRequirementsEvents() {
+  const selectRequirements = document.querySelectorAll("td input");
+  selectRequirements.forEach(requirement => {
+    requirement.addEventListener("change", () => {
+      if (!requirement.checked) {
+        const trackAllCheckbox = document.getElementById("track-all");
+        if (trackAllCheckbox.checked) {
+          trackAllCheckbox.checked = false;
+        }
+      }
+    });
+  })
 }
 
 // Helper to escape HTML
