@@ -4,12 +4,14 @@ body {
     font-family:
         -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
         Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    overflow: hidden;
 }
 
 .container {
     display: flex;
     flex-direction: column;
     height: 100vh;
+    overflow: hidden;
     padding: 10px;
 }
 
@@ -38,7 +40,7 @@ body {
 .tab-content {
     display: none;
     flex: 1;
-    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .tab-content.active {
@@ -231,4 +233,48 @@ button:hover {
     height: 15px;
     margin-right: 5px;
     border-radius: 2px;
+}
+
+.requirements-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+}
+
+.requirements-table {
+    width: 100%;
+    min-width: 400px;
+    border-collapse: collapse;
+}
+
+.requirements-table {
+    width: 100%;
+    min-width: 400px;
+    border-collapse: collapse;
+}
+
+.requirements-table th {
+    background-color: var(--vscode-editor-background);
+    color: var(--vscode-editor-foreground);
+    padding: 5px 5px;
+    text-align: left;
+}
+
+.requirements-table td {
+    padding: 5px;
+}
+
+.requirements-table tr{
+    border-bottom: 1px solid var(--vscode-tree-tableColumnsBorder);
+}
+
+.requirements-table .req-table-id {
+    text-wrap: nowrap;
+}
+
+.requirements-table .req-table-actions ul {
+    list-style: none;
+    display: flex;
+    gap: 5px;
 }

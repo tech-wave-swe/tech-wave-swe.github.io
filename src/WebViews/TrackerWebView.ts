@@ -42,6 +42,18 @@ export class TrackerWebView {
       vscode.Uri.joinPath(this._extensionUri, "media", "tracker.js"),
     );
 
+    const styleCodiconsUri = webview.asWebviewUri(
+      vscode.Uri.joinPath(
+        this._extensionUri,
+        "node_modules",
+        "@vscode/codicons",
+        "dist",
+        "codicon.css",
+      ),
+    );
+
+    console.log(styleCodiconsUri);
+
     const nonce = this.getNonce();
 
     // Replace placeholders in the HTML template
@@ -51,6 +63,7 @@ export class TrackerWebView {
       .replace("{{styleTrackerUri}}", styleTrackerUri.toString())
       .replace("{{styleResetUri}}", styleResetUri.toString())
       .replace("{{styleVSCodeUri}}", styleVSCodeUri.toString())
+      .replace("{{styleCodiconsUri}}", styleCodiconsUri.toString())
       .replace("{{scriptTrackerUri}}", scriptTrackerUri.toString());
   }
 

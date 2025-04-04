@@ -146,6 +146,15 @@ export class RequirementsServiceFacade {
     return Array.from(this._requirementsService.getRequirements().values());
   }
 
+  public async clearRequirements(): Promise<void> {
+    try {
+      await this._requirementsService.clearRequirements();
+    } catch (error) {
+      console.error(`Error clearing requirements:`, error);
+      throw error;
+    }
+  }
+
   private async _embedRequirements(requirements: Requirement[]): Promise<void> {
     try {
       console.log(

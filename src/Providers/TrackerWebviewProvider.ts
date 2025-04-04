@@ -85,6 +85,10 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
         case "openFile":
           await this._onOpenFile(message.filePath, message.lineStart);
           break;
+
+        case "clearRequirements":
+          await this._onClearRequirements();
+          break;
       }
     } catch (error) {
       this._sendMessageToWebview({
@@ -195,6 +199,21 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
       );
     } catch (error) {
       vscode.window.showErrorMessage(`Failed to open file: ${error}`);
+    }
+  }
+
+  private async _onClearRequirements(): Promise<void> {
+    this._sendMessageToWebview({type: "setLoading", isLoading: true});
+
+    try {
+      await this._requirementsServiceFacade.clearRequirements();
+      vscode.window.showInformationMessage("Requirements cleared successfully");
+      this._sendMessageToWebview({type: "clearRequirements"});
+    } catch (error) {
+      vscode.window.showErrorMessage(`Failed to clear requirements: ${error}`);
+    } finally {
+      this._sendMessageToWebview({type: "setLoading", isLoading: false});
+      this._sendMessageToWebview({type: "updateRequirementsTable", requirements: this._requirementsServiceFacade.getAllRequirements()});
     }
   }
 
