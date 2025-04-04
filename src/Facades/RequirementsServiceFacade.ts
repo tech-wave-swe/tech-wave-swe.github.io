@@ -116,6 +116,8 @@ export class RequirementsServiceFacade {
         reqs = Array.from(this._requirementsService.getRequirements().values());
       }
 
+      console.log(reqs, requirementIds);
+
       if (reqs.length === 0) {
         throw new Error("No requirements found to track");
       }

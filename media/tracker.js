@@ -204,18 +204,16 @@ function handleTrackButtonClick(trackAllCheckbox, requirementsChecklist) {
 
   let requirementIds = undefined;
 
-  if (!trackAllCheckbox.checked) {
-    // Get selected requirements
-    requirementIds = Array.from(
-      requirementsChecklist.querySelectorAll(
-        'input[type="checkbox"]:checked',
-      ),
-    ).map((checkbox) => checkbox.value);
+  // Get selected requirements
+  requirementIds = Array.from(
+    document.querySelectorAll(
+      'td input',
+    ),
+  ).filter((check) => check.checked).map((checkbox) => checkbox.id);
 
-    if (requirementIds.length === 0) {
-      alert("Please select at least one requirement to track");
-      return;
-    }
+  if (requirementIds.length === 0) {
+    alert("Please select at least one requirement to track");
+    return;
   }
 
   vscode.postMessage({
