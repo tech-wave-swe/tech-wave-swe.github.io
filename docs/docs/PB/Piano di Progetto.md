@@ -688,6 +688,34 @@ A seguito si riporta la tabella del preventivo per il sesto %%sprint|sprint%%
 Table: Preventivo Sprint 7
 
 
+###### Consuntivo
+
+Di seguito vengono indicate le spese effettive del settimo %%sprint|sprint%%
+| Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
+|---------------------------|----------------------|---------------|------------------|-----------|-----------------|
+| Responsabile di progetto  | 4,25                 | +1            | 30               | 127,5     | +30             |
+| Analista                  | 6,5                  | +2            | 25               | 162,5     | +50             |
+| Progettista               | 0                    | 0             | 25               | 0         | 0               |
+| Amministratore di sistema | 15                   | 0             | 20               | 300       | 0               |
+| Programmatore             | 0                    | 0             | 15               | 0         | 0               |
+| Verificatore              | 3,16                 | +1,5          | 15               | 47,4      | +22,5           |
+| _Totale consuntivo_       | _28,91_              | _+4,5_        |                  | _637.4_   | _+102,5_        |
+
+Table: Consuntivo Sprint 7
+
+Considerando il costo di **637,4** il residuo disponibile ammonta a **7.667,3€**.
+
+###### Retrospettiva
+Il settimo %%sprint|sprint%% ha visto un avanzamento significativo nel recupero delle task rimaste incomplete e nella preparazione della documentazione finale. 
+
+###### Conclusione
+In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni rispetto ai tempi stimati, ma ha comunque permesso di raggiungere tutti gli obiettivi prefissati, recuperando anche quanto lasciato nel backlog.
+
+###### Gantt
+
+<img src="/img/Gantt/Sprint7.png" alt="Diagramma Gantt sprint 7" data-width="70%" />
+
+
 ##### Sprint 8
 
 - Periodo 17/03/2025 - 30/03/2025
@@ -727,6 +755,7 @@ A seguito si riporta la tabella del preventivo per l'ottavo %%sprint|sprint%%:
 | _Bilancio_                |                | __         |
 
 Table: Preventivo Sprint 8
+
 
 
 <!-- ::: {.no-export} -->
