@@ -5,17 +5,41 @@ import * as xml2js from "xml2js";
 export class ParsingService {
   public parseCSV(content: string, delimiter = ","): Requirement[] {
     try {
+      // Add input validation
+      if (!content || content.trim() === "") {
+        return [];
+      }
       console.log(`Starting CSV parsing with delimiter: "${delimiter}"`);
       console.log(`CSV content sample: ${content.substring(0, 100)}...`);
 
-      // Log some details about what we're parsing
-      const lineCount = content.split("\n").length;
-      console.log(`CSV contains approximately ${lineCount} lines`);
+      // Validate header and data format
+      const lines = content.split("\n");
+      if (lines.length < 2) {
+        throw new Error("Invalid CSV format: Missing header or data");
+      }
+
+      // Get expected column count from header
+      const headerColumns = lines[0].split(delimiter).length;
+
+      // Validate data rows
+      for (let i = 1; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (line) {
+          // Only check non-empty lines
+          const columnCount = line.split(delimiter).length;
+          if (columnCount !== headerColumns) {
+            throw new Error(
+              `Invalid CSV format: Expected ${headerColumns} columns but found ${columnCount} at line ${i + 1}`,
+            );
+          }
+        }
+      }
 
       const records = csv.parse(content, {
         columns: true,
         skip_empty_lines: true,
         delimiter: delimiter,
+        relaxColumnCount: false,
       });
 
       console.log(`CSV parsed successfully. Found ${records.length} records`);

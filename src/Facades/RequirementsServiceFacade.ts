@@ -83,7 +83,6 @@ export class RequirementsServiceFacade {
       );
       try {
         await this._vectorDatabase.addRequirements(requirements);
-        console.log(`Requirements embedding complete`);
       } catch (embeddingError) {
         console.error(`Error during requirements embedding:`, embeddingError);
       }
