@@ -48,7 +48,7 @@ export class DocumentServiceFacade {
 
         // TODO: Use FileSystemService to read file content
         const content = fs.readFileSync(filePath, "utf8");
-        const checksum = await FileSystemService.getChecksum(filePath);
+        const checksum = FileSystemService.getChecksum(filePath);
 
         const file = {
           originalContent: content,

@@ -7,10 +7,8 @@ import FileSystemService from "../Services/FileSystemService";
 import { File } from "../Models/File";
 import { Requirement } from "../Models/Requirement";
 import { Chunk } from "../Models/Chunk";
-import {
-  IVectorDatabase,
-  COLLECTION_TYPE,
-} from "../Interfaces/IVectorDatabase";
+import { COLLECTION_TYPE } from "../Models/CollectionType";
+import { IVectorDatabase } from "../Interfaces/IVectorDatabase";
 
 export class LanceDBAdapter implements IVectorDatabase {
   private _embeddings: OllamaEmbeddings = new OllamaEmbeddings();
@@ -62,7 +60,7 @@ export class LanceDBAdapter implements IVectorDatabase {
         .where(`file_path = '${filePath}'`)
         .toArray();
 
-      const checksum = await FileSystemService.getChecksum(filePath);
+      const checksum = FileSystemService.getChecksum(filePath);
 
       const results = rows.filter((doc) => {
         try {

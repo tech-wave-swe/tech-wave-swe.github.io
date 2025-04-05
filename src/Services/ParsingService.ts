@@ -148,7 +148,9 @@ export class ParsingService {
     // Ensure we have an ID
     if (id == "") {
       id =
-        specObject.IDENTIFIER || specObject.$.IDENTIFIER || `REQ-${Date.now()}`;
+        specObject.IDENTIFIER ||
+        (specObject.$ && specObject.$.IDENTIFIER) ||
+        `REQ-${Date.now()}`;
     }
 
     return {

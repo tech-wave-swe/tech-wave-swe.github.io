@@ -2,12 +2,6 @@ import { File } from "../Models/File";
 import { Requirement } from "../Models/Requirement";
 import { Chunk } from "../Models/Chunk";
 
-export enum COLLECTION_TYPE {
-  file = "file",
-  requirements = "requirements",
-  chunks = "chunks",
-}
-
 export interface IVectorDatabase {
   /**
    * Add files to the vector database

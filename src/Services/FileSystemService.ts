@@ -19,20 +19,14 @@ export default class FileSystemService {
     }
   }
 
-  public static getChecksum(filePath: string): Promise<string> {
-    return new Promise((resolve, reject) => {
-      const hash = crypto.createHash("sha256");
-      const stream = fs.createReadStream(filePath);
-
-      stream.on("data", (data) => {
-        hash.update(data);
-      });
-
-      stream.on("end", () => {
-        resolve(hash.digest("hex"));
-      });
-
-      stream.on("error", reject);
-    });
+  public static getChecksum(filePath: string): string {
+    const hash = crypto.createHash("sha256");
+    try {
+      const fileContent = fs.readFileSync(filePath, "utf-8");
+      hash.update(fileContent);
+      return hash.digest("hex");
+    } catch (error) {
+      throw new Error(`Error reading file ${filePath}: ${error}`);
+    }
   }
 }

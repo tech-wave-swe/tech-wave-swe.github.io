@@ -30,6 +30,9 @@ describe("ParsingService", () => {
 
       // string with all data and predefined delimiter (using comma)
       "GUID,Name,Notes,Type,Version\n{31A38164-4AD9-4ec4-BF4F-7877AB2FC7B1},REQ-0,,Requirement,1.0\n{DEA4AB3D-B7F5-4ac6-A522-27D8FD6DA667},REQ-1,The system shall enable the ADC1 internal voltage regulator before any conversions are performed.,Requirement,1.0",
+
+      // string just the header
+      "GUID$Name$Notes$Type$Version",
     ];
     mockContentREQIF = [
       //string with all data and different attributes name
@@ -114,7 +117,7 @@ describe("ParsingService", () => {
     it("should return an error [invalid string: missing data]", () => {
       expect(() => {
         parsingService.parseCSV(mockContentCSV[5], mockDelimiter);
-      }).toThrow(/Failed to parse CSV/);
+      }).toThrowError("Failed to parse CSV");
     });
     it("should return a Requirement array from a CSV string [string with all data and predefined delimiter]", () => {
       const parsedRequirements = parsingService.parseCSV(mockContentCSV[6]);
@@ -135,6 +138,13 @@ describe("ParsingService", () => {
         type: "Requirement",
         version: "1.0",
       });
+    });
+    it("should return an error if the lines length is less than 2", () => {
+      expect(() => {
+        parsingService.parseCSV(mockContentCSV[7], mockDelimiter);
+      }).toThrowError(
+        "Failed to parse CSV: Error: Invalid CSV format: Missing header or data",
+      );
     });
   });
   describe("parseREQIF", () => {
@@ -199,89 +209,174 @@ describe("ParsingService", () => {
         parsingService.parseREQIF(mockContentREQIF[5]),
       ).rejects.toThrowError("Failed to parse ReqIF");
     });
-    /*it("should return an error [invalid string: wrong delimiter]", () => {
-      expect(() => parsingService.parseCSV(mockContentCSV[9], mockDelimiter)).toThrowError("Failed to parse CSV");
-    });
-    it("should return an error [invalid string: missing data]", () => {
-      expect(() => parsingService.parseCSV(mockContentCSV[10], mockDelimiter)).toThrowError("Failed to parse CSV");
-    });*/
   });
+  describe("_parseReqIFSpecObject", () => {
+    let parsingService: ParsingService;
 
-  /*
-  describe("parseREQUIF", () => {
+    beforeEach(() => {
+      parsingService = new ParsingService();
+    });
 
-    it("should update globalstate requirements list", async () => {
-      const newRequirementList: Requirement[] = [{
-        id: "3",
-        description: "Description 3",
-        type: "requirement",
-        metadata: {},
-        priority: "high",
-        version: "1.0.0",
-        status: "implemented"
-      },
-      {
-        id: "4",
-        description: "Description 4",
-        type: "requirement",
-        metadata: {},
-        priority: "high",
-        version: "1.0.0",
-        status: "implemented"
-      }];
+    it("should handle single SPEC_OBJECT vs array of SPEC_OBJECTS", async () => {
+      const singleObjectContent = `
+          <REQ_IF>
+            <CONTENT>
+              <SPEC_OBJECTS>
+                <SPEC_OBJECT IDENTIFIER="REQ-1"/>
+              </SPEC_OBJECTS>
+            </CONTENT>
+          </REQ_IF>`;
 
-      await requirementService.saveRequirement(newRequirementList);
+      const multipleObjectsContent = `
+          <REQ_IF>
+            <CONTENT>
+              <SPEC_OBJECTS>
+                <SPEC_OBJECT IDENTIFIER="REQ-1"/>
+                <SPEC_OBJECT IDENTIFIER="REQ-2"/>
+              </SPEC_OBJECTS>
+            </CONTENT>
+          </REQ_IF>`;
 
-      expect(mockGlobalStateService.updateState).toHaveBeenCalledWith(StateKeys.REQUIREMENTS, newRequirementList);
-
-      const requirements = (requirementService as any)._requirements as Map<string, Requirement>;
-      expect(requirements).toEqual(new Map<string, Requirement>(
-        [
-          ["3", newRequirementList[0]],
-          ["4", newRequirementList[1]],
-        ]
-      ));
-
-      expect(mockGlobalStateService.updateState).toHaveBeenCalledWith(
-        "requirements",
-        Array.from(requirements.values())
+      const singleResult = await parsingService.parseREQIF(singleObjectContent);
+      const multipleResults = await parsingService.parseREQIF(
+        multipleObjectsContent,
       );
+
+      expect(singleResult).toHaveLength(1);
+      expect(multipleResults).toHaveLength(2);
     });
 
-  });
+    it("should handle different attribute name variations in CSV", () => {
+      const records = [
+        { Name: "test1" },
+        { name: "test2" },
+        { title: "test3" },
+        { Title: "test4" },
+        { somethingElse: "test5" },
+      ];
 
-  describe("getRequirements", () => {
+      const results = records.map((record) =>
+        (parsingService as any)._mapToRequirement(record),
+      );
 
-    it("should retrive requirements list from globalstate", async () => {
-      expect(mockGlobalStateService.getState).toBeCalledWith(StateKeys.REQUIREMENTS);
+      expect(results[0].name).toBe("test1");
+      expect(results[1].name).toBe("test2");
+      expect(results[2].name).toBe("test3");
+      expect(results[3].name).toBe("test4");
+      expect(results[4].name).toBe("");
     });
 
-  });
+    it("should handle single vs array of attributes", () => {
+      const singleAttribute = {
+        ATTRIBUTES: {
+          ATTRIBUTE: {
+            DEFINITION: { LONG_NAME: "name" },
+            VALUE: "TestName",
+          },
+        },
+        $: { IDENTIFIER: "ID1" },
+      };
 
-  describe("clearRequirements", () => {
+      const multipleAttributes = {
+        ATTRIBUTES: {
+          ATTRIBUTE: [
+            {
+              DEFINITION: { LONG_NAME: "name" },
+              VALUE: "TestName",
+            },
+            {
+              DEFINITION: { LONG_NAME: "description" },
+              VALUE: "TestDesc",
+            },
+          ],
+        },
+        $: { IDENTIFIER: "ID2" },
+      };
 
-    it("should clear globalstate requirement list", async () => {
-      let requirements = (requirementService as any)._requirements as Map<string, Requirement>;
-      expect(requirements.size).toBe(2);
+      const resultSingle = (parsingService as any)._parseReqIFSpecObject(
+        singleAttribute,
+      );
+      const resultMultiple = (parsingService as any)._parseReqIFSpecObject(
+        multipleAttributes,
+      );
 
-      await requirementService.clearRequirements();
-      requirements = (requirementService as any)._requirements as Map<string, Requirement>;
-
-      expect(mockGlobalStateService.clearState).toBeCalledWith(StateKeys.REQUIREMENTS);
-      expect(requirements.size).toBe(0);
+      expect(resultSingle.name).toBe("TestName");
+      expect(resultMultiple.name).toBe("TestName");
+      expect(resultMultiple.description).toBe("TestDesc");
     });
 
-  });
+    it("should handle VALUE vs VALUES in attributes", () => {
+      const specObjectWithValue = {
+        ATTRIBUTES: {
+          ATTRIBUTE: {
+            DEFINITION: { LONG_NAME: "name" },
+            VALUE: "TestName1",
+          },
+        },
+        IDENTIFIER: "ID1",
+      };
 
-  describe("getById", () => {
+      const specObjectWithValues = {
+        ATTRIBUTES: {
+          ATTRIBUTE: {
+            DEFINITION: { LONG_NAME: "name" },
+            VALUES: "TestName2",
+          },
+        },
+        IDENTIFIER: "ID2",
+      };
 
-    it("should retrive requirement from its id", async () => {
-      let mockId = "1";
-      expect(requirementService.getById(mockId)).toEqual(mockRequirements[0]);
+      const specObjectWithNoValues = {
+        ATTRIBUTES: {
+          ATTRIBUTE: {
+            DEFINITION: { LONG_NAME: "name" },
+          },
+        },
+        IDENTIFIER: "ID3",
+      };
 
-      mockId = "3";
-      expect(requirementService.getById(mockId)).toEqual(undefined);
+      const result1 = (parsingService as any)._parseReqIFSpecObject(
+        specObjectWithValue,
+      );
+      const result2 = (parsingService as any)._parseReqIFSpecObject(
+        specObjectWithValues,
+      );
+      const result3 = (parsingService as any)._parseReqIFSpecObject(
+        specObjectWithNoValues,
+      );
+
+      expect(result1.name).toBe("TestName1");
+      expect(result2.name).toBe("TestName2");
+      expect(result3.name).toBe("");
+    });
+
+    it("should handle different identifier variations", () => {
+      const date = Date.now();
+      jest.spyOn(Date, "now").mockReturnValue(date);
+
+      const specObjects = [
+        {
+          ATTRIBUTES: {},
+          IDENTIFIER: "ID1",
+        },
+        {
+          ATTRIBUTES: {},
+          $: { IDENTIFIER: "ID2" },
+        },
+        {
+          ATTRIBUTES: {},
+        },
+      ];
+
+      const results = specObjects.map((obj) =>
+        (parsingService as any)._parseReqIFSpecObject(obj),
+      );
+
+      expect(results[0].id).toBe("ID1");
+      expect(results[1].id).toBe("ID2");
+      expect(results[2].id).toBe(`REQ-${date}`);
+
+      jest.restoreAllMocks();
     });
   });
-  */
 });

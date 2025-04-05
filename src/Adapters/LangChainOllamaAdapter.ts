@@ -13,8 +13,9 @@ export class LangChainOllamaAdapter implements ILanguageModel {
   private _initialize(): void {
     const baseUrl = ConfigServiceFacade.GetInstance().getEndpoint();
     const model = ConfigServiceFacade.GetInstance().getOllamaModel();
-    const embeddingModel = ConfigServiceFacade.GetInstance().getEmbeddingModel();
-    const temperature= ConfigServiceFacade.GetInstance().getTemperature();
+    const embeddingModel =
+      ConfigServiceFacade.GetInstance().getEmbeddingModel();
+    const temperature = ConfigServiceFacade.GetInstance().getTemperature();
 
     this._ollama = new Ollama({
       baseUrl: baseUrl,
@@ -28,7 +29,7 @@ export class LangChainOllamaAdapter implements ILanguageModel {
     });
   }
 
-  public async generate(prompt: string, _context: any = {}): Promise<string> {
+  public async generate(prompt: string): Promise<string> {
     try {
       return await this._ollama.invoke(prompt);
     } catch (error) {

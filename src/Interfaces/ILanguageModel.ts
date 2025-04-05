@@ -2,7 +2,7 @@ export interface ILanguageModel {
   /**
    * Generate a response from the language model
    */
-  generate(prompt: string, context?: any): Promise<string>;
+  generate(prompt: string): Promise<string>;
 
   /**
    * Generate embeddings for a text input
