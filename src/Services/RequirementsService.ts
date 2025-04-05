@@ -42,6 +42,11 @@ export class RequirementsService {
     return this._requirements.get(id);
   }
 
+  public async deleteRequirement(id: string): Promise<void> {
+    this._requirements.delete(id);
+    await this._saveRequirement();
+  }
+
   private async _saveRequirement(): Promise<void> {
     await this._globalStateService.updateState(
       StateKeys.REQUIREMENTS,

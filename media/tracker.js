@@ -495,16 +495,15 @@ function updateRequirementsTable() {
       <td class="req-table-status">${req.status}</td>
       <td class="req-table-actions">
         <ul>
-          <li>
+          <li class="edit-req-action" data-requirement="${req.id}">
             <i class="codicon codicon-edit"></i>
           </li>
-          <li>
+          <li class="delete-req-action" data-requirement="${req.id}">
             <i class="codicon codicon-trash"></i>
           </li>
         </ul>
       </td>
     `;
-
     tbody.appendChild(item);
   })
 
@@ -516,6 +515,10 @@ function updateRequirementsTable() {
 
 function handleRequirementsEvents() {
   const selectRequirements = document.querySelectorAll("td input");
+  const deleteReqActions = document.querySelectorAll(".delete-req-action");
+  const editReqActions = document.querySelectorAll(".edit-req-action");
+
+  // Select Requirements interaction
   selectRequirements.forEach(requirement => {
     requirement.addEventListener("change", () => {
       if (!requirement.checked) {
@@ -526,6 +529,29 @@ function handleRequirementsEvents() {
       }
     });
   })
+
+  // Actions
+  deleteReqActions.forEach(deleteReqAction => {
+    deleteReqAction.addEventListener("click", () => {
+      const requirementId = deleteReqAction.dataset.requirement;
+      console.log("Deleting requirement with ID inside:", requirementId);
+
+      vscode.postMessage({
+        type: "deleteRequirement",
+        requirementId,
+      });
+    });
+  })
+
+  editReqActions.forEach(editReqAction => {
+    editReqAction.addEventListener("click", () => {
+      const requirementId = editReqAction.getAttribute("data-requirement");
+      vscode.postMessage({
+        type: "editRequirement",
+        requirementId,
+      });
+    });
+  });
 }
 
 // Helper to escape HTML

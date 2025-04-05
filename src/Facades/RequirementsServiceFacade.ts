@@ -144,8 +144,12 @@ export class RequirementsServiceFacade {
     return this._requirementsService.getById(id);
   }
 
+  public async deleteRequirement(id: string): Promise<void> {
+    return await this._requirementsService.deleteRequirement(id);
+  }
+
   public getAllRequirements(): Requirement[] {
-    return Array.from(this._requirementsService.getRequirements().values());
+    return this._requirementsService.getRequirements();
   }
 
   public async clearRequirements(): Promise<void> {

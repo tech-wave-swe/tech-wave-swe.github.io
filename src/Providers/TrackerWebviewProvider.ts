@@ -89,6 +89,14 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
         case "clearRequirements":
           await this._onClearRequirements();
           break;
+
+        case "editRequirement":
+          await this._onEditRequirement(message.requirementId);
+          break;
+
+        case "deleteRequirement":
+          await this._onDeleteRequirement(message.requirementId);
+          break;
       }
     } catch (error) {
       this._sendMessageToWebview({
@@ -222,9 +230,24 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
 
     if (requirements.length > 0) {
       this._sendMessageToWebview({
-        type: "updateRequirements",
+        type: "updateRequirementsTable",
         requirements,
       });
+    }
+  }
+
+  private async _onEditRequirement(requirementId: string): Promise<void> {
+
+  }
+
+  private async _onDeleteRequirement(requirementId: string): Promise<void> {
+    try {
+      await this._requirementsServiceFacade.deleteRequirement(requirementId);
+      vscode.window.showInformationMessage("Requirement deleted successfully");
+
+      this._updateRequirementsDisplay();
+    } catch (error) {
+      vscode.window.showErrorMessage(`Failed to delete requirement: ${error}`);
     }
   }
 
