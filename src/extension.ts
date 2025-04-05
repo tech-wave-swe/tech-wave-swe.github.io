@@ -1,33 +1,39 @@
 import * as vscode from "vscode";
-import * as path from "path";
-import {ConfigServiceFacade} from "./Facades/ConfigServiceFacade";
-import {ChatWebviewProvider} from "./Providers/ChatWebviewProvider";
-import {TrackerWebviewProvider} from "./Providers/TrackerWebviewProvider";
-import {InferenceService} from "./Services/InferenceService";
-import {LangChainOllamaAdapter} from "./Adapters/LangChainOllamaAdapter";
-import {LangChainLanceDBAdapter} from "./Adapters/LangChainLanceDBAdapter";
-import {DocumentFormatterService} from "./Services/DocumentFormatterService";
-import {DocumentEmbeddingService} from "./Services/DocumentEmbeddingService";
-import {DocumentServiceFacade} from "./Facades/DocumentServiceFacade";
-import {ParsingService} from "./Services/ParsingService";
-import {RequirementsTrackerService} from "./Services/RequirementsTrackerService";
-import {RequirementsServiceFacade} from "./Facades/RequirementsServiceFacade";
+import { ConfigServiceFacade } from "./Facades/ConfigServiceFacade";
+import { ChatWebviewProvider } from "./Providers/ChatWebviewProvider";
+import { TrackerWebviewProvider } from "./Providers/TrackerWebviewProvider";
+import { InferenceService } from "./Services/InferenceService";
+import { LangChainOllamaAdapter } from "./Adapters/LangChainOllamaAdapter";
+import { LanceDBAdapter } from "./Adapters/LanceDBAdapter";
+import { DocumentFormatterService } from "./Services/DocumentFormatterService";
+import { DocumentServiceFacade } from "./Facades/DocumentServiceFacade";
+import { ParsingService } from "./Services/ParsingService";
+import { RequirementsTrackerService } from "./Services/RequirementsTrackerService";
+import { RequirementsServiceFacade } from "./Facades/RequirementsServiceFacade";
 import FileSystemService from "./Services/FileSystemService";
 import ConfigService from "./Services/ConfigService";
-import {ChatService} from "./Services/ChatService";
-import {GlobalStateService} from "./Services/GlobalStateService";
-import {RequirementsService} from "./Services/RequirementsService";
-import {FilterService} from "./Services/FilterService";
-import {ChatWebView} from "./WebViews/ChatWebView";
-import {TrackerWebView} from "./WebViews/TrackerWebView";
-import {CommandRegistry} from "./Commands/CommandsRegistry";
-import {ClearChatHistoryCommand} from "./Commands/ClearChatHistoryCommand";
-import {IndexCurrentFileCommand} from "./Commands/IndexCurrentFileCommand";
-import {IndexWorkspaceCommand} from "./Commands/IndexWorkspaceCommand";
-import {ResetDatabaseCommand} from "./Commands/ResetDatabaseCommand";
+import { ChatService } from "./Services/ChatService";
+import { GlobalStateService } from "./Services/GlobalStateService";
+import { RequirementsService } from "./Services/RequirementsService";
+import { FilterService } from "./Services/FilterService";
+import { ChatWebView } from "./WebViews/ChatWebView";
+import { TrackerWebView } from "./WebViews/TrackerWebView";
+import { CommandRegistry } from "./Commands/CommandsRegistry";
+import { ClearChatHistoryCommand } from "./Commands/ClearChatHistoryCommand";
+import { ResetDatabaseCommand } from "./Commands/ResetDatabaseCommand";
 
 export function activate(context: vscode.ExtensionContext) {
   try {
+    process.env.RUST_LOG = "error";
+    process.env.RUST_BACKTRACE = "0";
+
+    console.log(
+      `Set RUST_LOG environment variable to: ${process.env.RUST_LOG}`,
+    );
+    console.log(
+      `Set RUST_BACKTRACE environment variable to: ${process.env.RUST_BACKTRACE}`,
+    );
+
     // Initialize Services
     _initializeConfigService(context);
 
@@ -70,7 +76,7 @@ function _initializeChatViewProvider(context: vscode.ExtensionContext) {
   const globalStateService = new GlobalStateService(context.globalState);
   const chatService = new ChatService(globalStateService);
 
-  const lanceDBAdapter = new LangChainLanceDBAdapter(context.globalStorageUri.fsPath);
+  const lanceDBAdapter = new LanceDBAdapter(context.globalStorageUri.fsPath);
   const languageModel = new LangChainOllamaAdapter();
 
   const inferenceService = new InferenceService(languageModel, lanceDBAdapter);
@@ -78,7 +84,10 @@ function _initializeChatViewProvider(context: vscode.ExtensionContext) {
   const chatWebviewProvider = new ChatWebviewProvider(
     chatService,
     inferenceService,
-    new ChatWebView(context.extensionUri, new FileSystemService(context.extensionUri.fsPath)),
+    new ChatWebView(
+      context.extensionUri,
+      new FileSystemService(context.extensionUri.fsPath),
+    ),
     context.extensionUri,
   );
 
@@ -92,21 +101,36 @@ function _initializeChatViewProvider(context: vscode.ExtensionContext) {
 }
 
 function _initializeTrackerViewProvider(context: vscode.ExtensionContext) {
-
   const parsingService = new ParsingService();
-  const requirementsService = new RequirementsService(new GlobalStateService(context.globalState));
+  const requirementsService = new RequirementsService(
+    new GlobalStateService(context.globalState),
+  );
 
-  const lanceDBAdapter = new LangChainLanceDBAdapter(context.globalStorageUri.fsPath);
-  const embeddingService = new DocumentEmbeddingService(lanceDBAdapter);
+  const lanceDBAdapter = new LanceDBAdapter(context.globalStorageUri.fsPath);
 
-  const documentServiceFacade = new DocumentServiceFacade(new DocumentFormatterService(), embeddingService);
-  const trackerService = new RequirementsTrackerService(lanceDBAdapter,documentServiceFacade, new FilterService());
+  const documentServiceFacade = new DocumentServiceFacade(
+    new DocumentFormatterService(),
+    lanceDBAdapter,
+  );
+  const trackerService = new RequirementsTrackerService(
+    lanceDBAdapter,
+    documentServiceFacade,
+    new FilterService(),
+  );
 
-  const requirementsServiceFacade = new RequirementsServiceFacade(parsingService, trackerService, embeddingService, requirementsService);
+  const requirementsServiceFacade = new RequirementsServiceFacade(
+    parsingService,
+    trackerService,
+    requirementsService,
+    lanceDBAdapter,
+  );
 
   const trackerWebviewProvider = new TrackerWebviewProvider(
     requirementsServiceFacade,
-    new TrackerWebView(context.extensionUri, new FileSystemService(context.extensionUri.fsPath)),
+    new TrackerWebView(
+      context.extensionUri,
+      new FileSystemService(context.extensionUri.fsPath),
+    ),
     context.extensionUri,
   );
 
@@ -121,7 +145,7 @@ function _initializeTrackerViewProvider(context: vscode.ExtensionContext) {
 
 function _handleEvents(context: vscode.ExtensionContext) {
   const ollamaAdapter = new LangChainOllamaAdapter();
-  const lanceDBAdapter = new LangChainLanceDBAdapter(context.globalStorageUri.fsPath);
+  const lanceDBAdapter = new LanceDBAdapter(context.globalStorageUri.fsPath);
 
   // Handle configuration changes
   context.subscriptions.push(
@@ -138,33 +162,22 @@ function _handleEvents(context: vscode.ExtensionContext) {
 }
 
 function _initializeCommands(context: vscode.ExtensionContext) {
-  const vectorDatabase = new LangChainLanceDBAdapter(context.globalStorageUri.fsPath);
+  const vectorDatabase = new LanceDBAdapter(context.globalStorageUri.fsPath);
 
   const globalStateService = new GlobalStateService(context.globalState);
   const chatService = new ChatService(globalStateService);
 
-  const documentFormatterService = new DocumentFormatterService();
-  const documentEmbeddingService = new DocumentEmbeddingService(vectorDatabase);
-  const documentServiceFacade = new DocumentServiceFacade(documentFormatterService, documentEmbeddingService);
-
   // Commands
   const clearChathistory = new ClearChatHistoryCommand(chatService);
-  const indexCurrentFile = new IndexCurrentFileCommand(documentServiceFacade);
-  const indexWorkCommand = new IndexWorkspaceCommand(documentServiceFacade);
   const resetDatabase = new ResetDatabaseCommand(vectorDatabase);
 
   const commandRegistry = new CommandRegistry(context);
-  commandRegistry.registerCommands([
-    clearChathistory,
-    indexWorkCommand,
-    indexCurrentFile,
-    resetDatabase
-  ]);
+  commandRegistry.registerCommands([clearChathistory, resetDatabase]);
 }
 
 function _startupCheck(context: vscode.ExtensionContext) {
   const languageModel = new LangChainOllamaAdapter();
-  const lanceDBAdapter = new LangChainLanceDBAdapter(context.globalStorageUri.fsPath);
+  const lanceDBAdapter = new LanceDBAdapter(context.globalStorageUri.fsPath);
   const inferenceService = new InferenceService(languageModel, lanceDBAdapter);
 
   inferenceService.checkSystemRequirements().catch((error) => {

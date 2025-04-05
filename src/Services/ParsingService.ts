@@ -5,17 +5,41 @@ import * as xml2js from "xml2js";
 export class ParsingService {
   public parseCSV(content: string, delimiter = ","): Requirement[] {
     try {
+      // Add input validation
+      if (!content || content.trim() === "") {
+        return [];
+      }
       console.log(`Starting CSV parsing with delimiter: "${delimiter}"`);
       console.log(`CSV content sample: ${content.substring(0, 100)}...`);
 
-      // Log some details about what we're parsing
-      const lineCount = content.split("\n").length;
-      console.log(`CSV contains approximately ${lineCount} lines`);
+      // Validate header and data format
+      const lines = content.split("\n");
+      if (lines.length < 2) {
+        throw new Error("Invalid CSV format: Missing header or data");
+      }
+
+      // Get expected column count from header
+      const headerColumns = lines[0].split(delimiter).length;
+
+      // Validate data rows
+      for (let i = 1; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (line) {
+          // Only check non-empty lines
+          const columnCount = line.split(delimiter).length;
+          if (columnCount !== headerColumns) {
+            throw new Error(
+              `Invalid CSV format: Expected ${headerColumns} columns but found ${columnCount} at line ${i + 1}`,
+            );
+          }
+        }
+      }
 
       const records = csv.parse(content, {
         columns: true,
         skip_empty_lines: true,
         delimiter: delimiter,
+        relaxColumnCount: false,
       });
 
       console.log(`CSV parsed successfully. Found ${records.length} records`);
@@ -25,6 +49,7 @@ export class ParsingService {
         console.log(`Sample record: ${JSON.stringify(records[0])}`);
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const requirements = records.map((record: any) =>
         this._mapToRequirement(record),
       );
@@ -48,7 +73,11 @@ export class ParsingService {
         result.REQ_IF.CONTENT &&
         result.REQ_IF.CONTENT.SPEC_OBJECTS
       ) {
-        const specObjects = Array.isArray(result.REQ_IF.CONTENT.SPEC_OBJECTS.SPEC_OBJECT,)? result.REQ_IF.CONTENT.SPEC_OBJECTS.SPEC_OBJECT: [result.REQ_IF.CONTENT.SPEC_OBJECTS.SPEC_OBJECT];
+        const specObjects = Array.isArray(
+          result.REQ_IF.CONTENT.SPEC_OBJECTS.SPEC_OBJECT,
+        )
+          ? result.REQ_IF.CONTENT.SPEC_OBJECTS.SPEC_OBJECT
+          : [result.REQ_IF.CONTENT.SPEC_OBJECTS.SPEC_OBJECT];
 
         for (const specObject of specObjects) {
           const req = this._parseReqIFSpecObject(specObject);
@@ -62,39 +91,24 @@ export class ParsingService {
       throw new Error(`Failed to parse ReqIF: ${error}`);
     }
   }
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private _mapToRequirement(record: any): Requirement {
-    // Use Name as ID, removing any whitespace
-    const id =
-      record.Name?.trim() ||
-      record.name?.trim() ||
-      record.ID ||
-      record.Id ||
-      record.id ||
-      record.reqId ||
-      `REQ-${Date.now()}`;
-
     return {
-      id,
-      description: record.Notes || record.notes || record.Description || record.description || record.text || record.Text || "",
+      id: record.GUID || record.guid || record.id || `REQ-${Date.now()}`,
+      name: record.Name || record.name || record.title || record.Title || "",
+      description: record.Notes || record.Description || record.text || "",
       type: record.Type || record.type || "unspecified",
-      priority: record.Priority || record.priority || "medium",
-      status: record.Status || record.status || "draft",
+      status: record.status || record.Status || "draft",
       version: record.Version || record.version || "1.0",
-      metadata: {
-        createdAt: new Date().toISOString(),
-        source: "csv",
-        guid: record.GUID?.replace(/[{}]/g, ""), // Store GUID in metadata if needed
-        rawData: record,
-      },
     };
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private _parseReqIFSpecObject(specObject: any): Requirement {
     let id = "";
+    let name = "";
     let description = "";
     let type = "unspecified";
-    let priority = "medium";
     let status = "draft";
     let version = "1.0";
 
@@ -106,19 +120,25 @@ export class ParsingService {
 
       for (const attr of attributes) {
         if (attr.DEFINITION && attr.DEFINITION.LONG_NAME) {
-          const name = attr.DEFINITION.LONG_NAME.toLowerCase();
+          const attr_name = attr.DEFINITION.LONG_NAME.toLowerCase();
 
-          if (name.includes("id")) {
+          if (attr_name.includes("id")) {
             id = attr.VALUE || attr.VALUES || "";
-          } else if (name.includes("description") || name.includes("text")) {
+          } else if (
+            attr_name.includes("name") ||
+            attr_name.includes("title")
+          ) {
+            name = attr.VALUE || attr.VALUES || "";
+          } else if (
+            attr_name.includes("description") ||
+            attr_name.includes("text")
+          ) {
             description = attr.VALUE || attr.VALUES || "";
-          } else if (name.includes("type")) {
+          } else if (attr_name.includes("type")) {
             type = attr.VALUE || attr.VALUES || "unspecified";
-          } else if (name.includes("priority")) {
-            priority = attr.VALUE || attr.VALUES || "medium";
-          } else if (name.includes("status")) {
+          } else if (attr_name.includes("status")) {
             status = attr.VALUE || attr.VALUES || "draft";
-          } else if (name.includes("version")) {
+          } else if (attr_name.includes("version")) {
             version = attr.VALUE || attr.VALUES || "1.0";
           }
         }
@@ -127,21 +147,19 @@ export class ParsingService {
 
     // Ensure we have an ID
     if (id == "") {
-      id = specObject.IDENTIFIER || specObject.$.IDENTIFIER || `REQ-${Date.now()}`;
+      id =
+        specObject.IDENTIFIER ||
+        (specObject.$ && specObject.$.IDENTIFIER) ||
+        `REQ-${Date.now()}`;
     }
 
     return {
       id,
+      name,
       description,
       type,
-      priority,
       status,
       version,
-      metadata: {
-        createdAt: new Date().toISOString(),
-        source: "reqif",
-        rawData: specObject,
-      },
     };
   }
 }

@@ -1,26 +1,27 @@
 export interface CodeReference {
   filePath: string;
-  lineStart: number;
-  lineEnd: number;
+  lineNumber: number;
   snippet: string;
   score: number;
-  relevanceExplanation?: string; // Add this field
+  relevanceExplanation?: string;
 }
+
+export type ImplementationStatus =
+  | "confirmed-match"
+  | "possible-match"
+  | "unlikely-match";
 
 export interface TrackingResult {
   requirementId: string;
   codeReferences: CodeReference[];
-  implementationStatus:
-    | "implemented"
-    | "partially-implemented"
-    | "not-implemented";
+  implementationStatus: ImplementationStatus;
   score: number;
 }
 
 export interface TrackingResultSummary {
   totalRequirements: number;
-  implementedRequirements: number;
-  partiallyImplementedRequirements: number;
-  unimplementedRequirements: number;
+  confirmedMatches: number;
+  possibleMatches: number;
+  unlikelyMatches: number;
   requirementDetails: Map<string, TrackingResult>;
 }

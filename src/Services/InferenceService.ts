@@ -1,62 +1,27 @@
 import * as vscode from "vscode";
 import { ILanguageModel } from "../Interfaces/ILanguageModel";
 import { IVectorDatabase } from "../Interfaces/IVectorDatabase";
-import {PromptTemplate} from "@langchain/core/prompts";
+import { PromptTemplate } from "@langchain/core/prompts";
 
 export class InferenceService {
   private _languageModel: ILanguageModel;
   private _vectorDatabase: IVectorDatabase;
 
-  constructor(
-    languageModel: ILanguageModel,
-    vectorDatabase: IVectorDatabase,
-  ) {
+  constructor(languageModel: ILanguageModel, vectorDatabase: IVectorDatabase) {
     this._languageModel = languageModel;
     this._vectorDatabase = vectorDatabase;
   }
 
-  public async generateEmbeddings(
-    content: string,
-    metadata: never,
-    dataType: string,
-  ): Promise<void> {
+  public async query(question: string): Promise<string> {
     try {
-      const collectionName =
-        dataType === "requirements"
-          ? this._vectorDatabase.REQUIREMENTS_COLLECTION
-          : this._vectorDatabase.DOCUMENTS_COLLECTION;
+      const files = await this._vectorDatabase.queryForFiles(question);
 
-      await this._vectorDatabase.add(content, metadata, collectionName);
-    } catch (error) {
-      console.error(`Error generating embeddings:`, error);
-      throw error;
-    }
-  }
-
-  public async query(question: string, dataType?: string): Promise<string> {
-    try {
-      // Determine which collection to query
-      const collectionName = dataType || "documents";
-
-      // Retrieve relevant context from the vector database
-      const relevantDocs = await this._vectorDatabase.query(
-        question,
-        collectionName,
-      );
-
-      if (relevantDocs.length === 0) {
-        return "I couldn't find any relevant information to answer your question.";
-      }
-
-      // Create a context string from the retrieved documents
-      const context = relevantDocs
-        .map((doc) => {
-          const source = doc.metadata.filePath
-            ? `Source: ${doc.metadata.filePath}`
-            : "";
-          return `${doc.text}\n${source}`;
-        })
-        .join("\n\n");
+      const context = files
+        .map(
+          (file) =>
+            `FilePath: ${file.filePath}\nContent:\n ${file.originalContent}\n`,
+        )
+        .join("\n");
 
       // Create a prompt template that includes the context
       const promptTemplate = PromptTemplate.fromTemplate(`

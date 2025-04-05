@@ -1,4 +1,4 @@
-import {Config, ConfigFilters, ConfigKey} from "../Models/Config";
+import { Config, ConfigFilters, ConfigKey } from "../Models/Config";
 import ConfigService from "../Services/ConfigService";
 
 export class ConfigServiceFacade {
@@ -21,7 +21,7 @@ export class ConfigServiceFacade {
 
   public static GetInstance(): ConfigServiceFacade {
     if (!ConfigServiceFacade._instance) {
-        throw new Error("ConfigServiceFacade must be initialized first!");
+      throw new Error("ConfigServiceFacade must be initialized first!");
     }
 
     return ConfigServiceFacade._instance;

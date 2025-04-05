@@ -87,22 +87,12 @@
     },
     "commands": [
       {
-        "command": "requirements-tracker.openSidebar",
-        "title": "ReqTracker: Open Requirements Tracker Sidebar"
+        "command": "requirementsTracker.clearChatHistory",
+        "title": "ReqTracker: Clear chat history"
       },
       {
-        "command": "requirements-tracker.openSettings",
-        "title": "ReqTracker: Open Settings"
-      },
-      {
-        "command": "requirementsTracker.interrogateSelection",
-        "title": "ReqTracker: Interrogate on selected code based on requirements",
-        "icon": "$(comment-discussion)"
-      },
-      {
-        "command": "requirementsTracker.interrogateDocument",
-        "title": "ReqTracker: Interrogate on entire document based on requirements",
-        "icon": "$(book)"
+        "command": "requirementsTracker.clearRequirementsHistory",
+        "title": "ReqTracker: Clear requirements history"
       },
       {
         "command": "requirementsTracker.indexCurrentFile",
@@ -113,8 +103,22 @@
         "title": "ReqTracker: Index workspace"
       },
       {
-        "command": "requirementsTracker.clearChatHistory",
-        "title": "ReqTracker: Clear chat history"
+        "command": "requirementsTracker.interrogateDocument",
+        "title": "ReqTracker: Interrogate on entire document based on requirements",
+        "icon": "$(book)"
+      },
+      {
+        "command": "requirementsTracker.interrogateSelection",
+        "title": "ReqTracker: Interrogate on selected code based on requirements",
+        "icon": "$(comment-discussion)"
+      },
+      {
+        "command": "requirements-tracker.openSettings",
+        "title": "ReqTracker: Open Settings"
+      },
+      {
+        "command": "requirements-tracker.openSidebar",
+        "title": "ReqTracker: Open Requirements Tracker Sidebar"
       },
       {
         "command": "requirementsTracker.resetDatabase",
@@ -201,8 +205,7 @@
     "test:all": "npm run test:unit && npm run test:integration && npm run test:e2e"
   },
   "dependencies": {
-    "@lancedb/lancedb": "^0.12.0",
-    "@langchain/community": "^0.3.36",
+    "@lancedb/lancedb": "^0.18.0",
     "@langchain/ollama": "0.2.0",
     "@vscode/codicons": "^0.0.36",
     "csv-parse": "^5.3.5",

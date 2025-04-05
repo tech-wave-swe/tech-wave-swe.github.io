@@ -1,10 +1,6 @@
 import * as vscode from "vscode";
-import {RequirementsServiceFacade} from "../Facades/RequirementsServiceFacade";
-import {
-  TrackingResultSummary,
-  TrackingResult,
-} from "../Models/TrackingModels";
-import {TrackerWebView} from "../WebViews/TrackerWebView";
+import { RequirementsServiceFacade } from "../Facades/RequirementsServiceFacade";
+import { TrackerWebView } from "../WebViews/TrackerWebView";
 import path from "path";
 
 export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
@@ -41,7 +37,10 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
   private _webviewViewConfiguration(webviewView: vscode.WebviewView): void {
     webviewView.webview.options = {
       enableScripts: true,
-      localResourceRoots: [this._extensionUri, vscode.Uri.file(path.join(this._extensionUri.fsPath, 'node_modules')),],
+      localResourceRoots: [
+        this._extensionUri,
+        vscode.Uri.file(path.join(this._extensionUri.fsPath, "node_modules")),
+      ],
     };
 
     webviewView.webview.html = this._trackerWebView.getHtmlForWebview(
@@ -50,60 +49,53 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
   }
 
   private _webviewViewHandleEvents(webviewView: vscode.WebviewView): void {
-    webviewView.webview.onDidReceiveMessage(
-      async (message) => {
-        await this._handleMessageFromWebview(message);
-      }
-    );
+    webviewView.webview.onDidReceiveMessage(async (message) => {
+      await this._handleMessageFromWebview(message);
+    });
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private _sendMessageToWebview(message: any): void {
     if (this._webviewView) {
       this._webviewView.webview.postMessage(message);
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private async _handleMessageFromWebview(message: any): Promise<void> {
-    try {
-      switch (message.type) {
-        case "importRequirements":
-          await this._onImportRequirements(
-            message.content,
-            message.format,
-            message.options,
-          );
-          break;
+    switch (message.type) {
+      case "importRequirements":
+        await this._onImportRequirements(
+          message.content,
+          message.format,
+          message.options,
+        );
+        break;
 
-        case "trackRequirements":
-          await this._onTrackRequirements(message.requirementIds);
-          break;
+      case "trackRequirements":
+        await this._onTrackRequirements(message.requirementIds);
+        break;
 
-        case "showUnimplemented":
-          await this._onShowUnimplemented();
-          break;
+      case "showUnimplemented":
+        await this._onShowUnimplemented();
+        break;
 
-        case "openFile":
-          await this._onOpenFile(message.filePath, message.lineStart);
-          break;
+      case "openFile":
+        await this._onOpenFile(message.filePath, message.lineStart);
+        break;
 
-        case "clearRequirements":
-          await this._onClearRequirements();
-          break;
+      case "clearRequirements":
+        await this._onClearRequirements();
+        break;
 
-        case "editRequirement":
-          await this._onEditRequirement(message.requirementId);
-          break;
+      case "editRequirement":
+        await this._onEditRequirement(message.requirementId);
+        break;
 
-        case "deleteRequirement":
-          await this._onDeleteRequirement(message.requirementId);
-          break;
+      case "deleteRequirement":
+        await this._onDeleteRequirement(message.requirementId);
+        break;
       }
-    } catch (error) {
-      this._sendMessageToWebview({
-        type: "error",
-        message: `Error: ${error instanceof Error ? error.message : "Unknown error"}`,
-      });
-    }
   }
 
   private async _onImportRequirements(
@@ -114,17 +106,18 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
     console.log(
       `Starting file upload handler. Format: ${format}, Content length: ${fileContent.length}`,
     );
-    this._sendMessageToWebview({type: "setLoading", isLoading: true});
+    this._sendMessageToWebview({ type: "setLoading", isLoading: true });
 
     try {
       console.log(
         `Calling requirementsService.importRequirements with format: ${format}`,
       );
-      const requirements = await this._requirementsServiceFacade.importRequirements(
-        fileContent,
-        format,
-        options,
-      );
+      const requirements =
+        await this._requirementsServiceFacade.importRequirements(
+          fileContent,
+          format,
+          options,
+        );
 
       console.log(`Import complete. Got ${requirements.length} requirements`);
       this._sendMessageToWebview({
@@ -148,35 +141,61 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
         message: `Failed to import requirements: ${error}`,
       });
     } finally {
-      this._sendMessageToWebview({type: "setLoading", isLoading: false});
+      this._sendMessageToWebview({ type: "setLoading", isLoading: false });
     }
   }
 
-  private async _onTrackRequirements(
-    requirementIds?: string[],
-  ): Promise<void> {
-    this._sendMessageToWebview({type: "setLoading", isLoading: true});
+  private async _onTrackRequirements(requirementIds?: string[]): Promise<void> {
+    this._sendMessageToWebview({ type: "setLoading", isLoading: true });
 
-    const trackingResults =
-      await this._requirementsServiceFacade.trackRequirements(requirementIds);
+    try {
+      const trackingResults =
+        await this._requirementsServiceFacade.trackRequirements(requirementIds);
 
-    this._sendMessageToWebview({
-      type: "trackingResults",
-      summary: this._serializeTrackingResultSummary(trackingResults),
-    });
+      console.log("Tracking complete. Results:", trackingResults);
 
-    vscode.window.showInformationMessage(
-      `Tracked ${trackingResults.totalRequirements} requirements: ` +
-      `${trackingResults.implementedRequirements} implemented, ` +
-      `${trackingResults.partiallyImplementedRequirements} partially implemented, ` +
-      `${trackingResults.unimplementedRequirements} not implemented`,
-    );
+      // Convert to a plain object for serialization
+      const serializedResults = {
+        ...trackingResults,
+        requirementDetails: Object.fromEntries(
+          trackingResults.requirementDetails,
+        ),
+      };
 
-    this._sendMessageToWebview({type: "setLoading", isLoading: false});
+      console.log("Serialized result:", serializedResults);
+
+      this._sendMessageToWebview({
+        type: "trackingResults",
+        summary: serializedResults,
+      });
+
+      console.log("Tracking complete");
+
+      const time = new Date().toLocaleTimeString();
+      console.log(`Tracking results received at ${time}`);
+
+      vscode.window.showInformationMessage(
+        `Analysis complete: ${trackingResults.confirmedMatches} implemented, ` +
+          `${trackingResults.possibleMatches} partially implemented, ` +
+          `${trackingResults.unlikelyMatches} not implemented`,
+      );
+    } catch (error) {
+      console.error("Error tracking requirements:", error);
+      this._sendMessageToWebview({
+        type: "error",
+        message:
+          error instanceof Error ? error.message : "Unknown error occurred",
+      });
+    } finally {
+      const time = new Date().toLocaleTimeString();
+      console.log(`Ended at ${time}`);
+
+      this._sendMessageToWebview({ type: "setLoading", isLoading: false });
+    }
   }
 
   private async _onShowUnimplemented(): Promise<void> {
-    this._sendMessageToWebview({type: "setLoading", isLoading: true});
+    this._sendMessageToWebview({ type: "setLoading", isLoading: true });
 
     const unimplemented =
       await this._requirementsServiceFacade.getUnimplementedRequirements();
@@ -186,7 +205,7 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
       requirements: unimplemented,
     });
 
-    this._sendMessageToWebview({type: "setLoading", isLoading: false});
+    this._sendMessageToWebview({ type: "setLoading", isLoading: false });
   }
 
   private async _onOpenFile(
@@ -231,7 +250,12 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
     if (requirements.length > 0) {
       this._sendMessageToWebview({
         type: "updateRequirementsTable",
-        requirements,
+        requirements: requirements,
+      });
+
+      // Also send a refresh signal to ensure the view updates
+      this._sendMessageToWebview({
+        type: "refreshView",
       });
     }
   }
@@ -249,23 +273,5 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
     } catch (error) {
       vscode.window.showErrorMessage(`Failed to delete requirement: ${error}`);
     }
-  }
-
-  private _serializeTrackingResultSummary(summary: TrackingResultSummary) {
-    // Convert Map to a serializable object for sending to webview
-    const detailsObject: Record<string, TrackingResult> = {};
-
-    summary.requirementDetails.forEach((value, key) => {
-      detailsObject[key] = value;
-    });
-
-    return {
-      totalRequirements: summary.totalRequirements,
-      implementedRequirements: summary.implementedRequirements,
-      partiallyImplementedRequirements:
-      summary.partiallyImplementedRequirements,
-      unimplementedRequirements: summary.unimplementedRequirements,
-      requirementDetails: detailsObject,
-    };
   }
 }

@@ -309,32 +309,34 @@ function updateResultsDisplay(summary) {
 }
 
 function updateChartDisplay(summary) {
-  const chartImplemented = document.getElementById("chart-implemented");
-  const chartPartially = document.getElementById("chart-partially");
-  const chartNotImplemented = document.getElementById("chart-not-implemented");
+  const chartConfirmed = document.getElementById("chart-confirmed-match");
+  const chartPossible = document.getElementById("chart-possible-match");
+  const chartUnlikely = document.getElementById("chart-unlikely-match");
 
   const total = summary.totalRequirements;
-  const implemented = summary.implementedRequirements;
-  const partially = summary.partiallyImplementedRequirements;
-  const notImplemented = summary.unimplementedRequirements;
+  const confirmed = summary.confirmedMatches;
+  const possible = summary.possibleMatches;
+  const unlikely = summary.unlikelyMatches;
 
   // Update chart
-  chartImplemented.style.width = `${(implemented / total) * 100}%`;
-  chartPartially.style.width = `${(partially / total) * 100}%`;
-  chartNotImplemented.style.width = `${(notImplemented / total) * 100}%`;
+  chartConfirmed.style.width = `${(confirmed / total) * 100}%`;
+  chartPossible.style.width = `${(possible / total) * 100}%`;
+  chartUnlikely.style.width = `${(unlikely / total) * 100}%`;
 }
 
 function updateLegendDisplay(summary) {
-  const legendImplemented = document.getElementById("legend-implemented");
-  const legendPartially = document.getElementById("legend-partially");
-  const legendNotImplemented = document.getElementById(
-    "legend-not-implemented",
-  );
+  const legendConfirmed = document.getElementById("legend-confirmed-match");
+  const legendPossible = document.getElementById("legend-possible-match");
+  const legendUnlikely = document.getElementById("legend-unlikely-match");
+
+  const confirmed = summary.confirmedMatches;
+  const possible = summary.possibleMatches;
+  const unlikely = summary.unlikelyMatches;
 
   // Update legend
-  legendImplemented.textContent = `Implemented: ${summary.implementedRequirements}`;
-  legendPartially.textContent = `Partially: ${summary.partiallyImplementedRequirements}`;
-  legendNotImplemented.textContent = `Not Implemented: ${summary.unimplementedRequirements}`;
+  legendConfirmed.textContent = `Confirmed Match: ${confirmed}`;
+  legendPossible.textContent = `Possible Match: ${possible}`;
+  legendUnlikely.textContent = `Unlikely Match: ${unlikely}`;
 }
 
 function updateRequirementsDisplay(summary) {
@@ -365,21 +367,21 @@ function updateRequirementsDisplay(summary) {
     const item = document.createElement("li");
     item.className = "requirement-item";
 
-    let statusClass = "";
-    switch (result.implementationStatus) {
-      case "implemented":
-        statusClass = "status-implemented";
-        break;
-      case "partially-implemented":
-        statusClass = "status-partially";
-        break;
-      case "not-implemented":
-        statusClass = "status-not-implemented";
-        break;
-    }
+      let statusClass = "";
+      switch (result.implementationStatus) {
+        case "confirmed-match":
+          statusClass = "status-confirmed-match";
+          break;
+        case "possible-match":
+          statusClass = "status-possible-match";
+          break;
+        case "unlikely-match":
+          statusClass = "status-unlikely-match";
+          break;
+      }
 
     item.innerHTML = `
-        <div class="requirement-id">${req.id}</div>
+        <div class="requirement-id">${req.name}</div>
         <div class="requirement-description">${req.description}</div>
         <div class="requirement-meta">
           Type: ${req.type} | Priority: ${req.priority} | Status: ${req.status}
@@ -402,25 +404,25 @@ function updateRequirementsDisplay(summary) {
       refsHeader.style.marginTop = "5px";
       refsContainer.appendChild(refsHeader);
 
-      result.codeReferences.forEach((ref) => {
-        const refItem = document.createElement("div");
-        refItem.className = "code-reference";
-        refItem.setAttribute("data-path", ref.filePath);
-        refItem.setAttribute("data-line", ref.lineStart);
+        result.codeReferences.forEach((ref) => {
+          const refItem = document.createElement("div");
+          refItem.className = "code-reference";
+          refItem.setAttribute("data-path", ref.filePath);
+          refItem.setAttribute("data-line", ref.lineNumber);
 
-        refItem.innerHTML = `
-            <div class="file-path">${ref.filePath}:${ref.lineStart}</div>
+          refItem.innerHTML = `
+            <div class="file-path">${ref.filePath}:${ref.lineNumber}</div>
             <div class="code-snippet">${escapeHtml(formatSnippet(ref.snippet))}</div>
             ${ref.relevanceExplanation ? `<div class="relevance-info">${ref.relevanceExplanation}</div>` : ""}
           `;
 
-        refItem.addEventListener("click", () => {
-          vscode.postMessage({
-            type: "openFile",
-            filePath: ref.filePath,
-            lineStart: ref.lineStart,
+          refItem.addEventListener("click", () => {
+            vscode.postMessage({
+              type: "openFile",
+              filePath: ref.filePath,
+              lineStart: ref.lineNumber,
+            });
           });
-        });
 
         refsContainer.appendChild(refItem);
       });

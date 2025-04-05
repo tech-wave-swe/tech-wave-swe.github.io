@@ -1,9 +1,9 @@
 export interface Requirement {
   id: string;
+  name: string;
   description: string;
   type: string;
-  priority: string;
-  status: string;
   version: string;
-  metadata: any;
+  status?: string;
+  score?: string;
 }
