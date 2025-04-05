@@ -10,22 +10,13 @@ export class RequirementsService {
 
   constructor(globalStateService: GlobalStateService) {
     this._globalStateService = globalStateService;
-
-    const res = this.getRequirements();
-    res.forEach((requirement) => {
-      this._requirements.set(requirement.id, requirement);
-    });
+    this._loadRequirements();
   }
 
   public async addRequirement(requirement: Requirement): Promise<void> {
-    const reqs: Requirement[] = [];
-
     this._requirements.set(requirement.id, requirement);
-    this._requirements.forEach((requirement: Requirement) => {
-      reqs.push(requirement);
-    });
 
-    await this.saveRequirement(reqs);
+    await this._saveRequirement();
   }
 
   public async saveRequirement(requirements: Requirement[]): Promise<void> {
@@ -35,21 +26,11 @@ export class RequirementsService {
       this._requirements.set(requirement.id, requirement);
     });
 
-    await this._saveRequirement(requirements);
+    await this._saveRequirement();
   }
 
-  private async _saveRequirement(requirements: Requirement[]): Promise<void> {
-    await this._globalStateService.updateState(
-      StateKeys.REQUIREMENTS,
-      requirements,
-    );
-  }
-
-  // ToDo(MonettiLuca): Use cache layer instead of global state
   public getRequirements(): Requirement[] {
-    return this._globalStateService.getState(
-      StateKeys.REQUIREMENTS,
-    ) as Requirement[];
+    return Array.from(this._requirements.values());
   }
 
   public async clearRequirements(): Promise<void> {
@@ -59,5 +40,20 @@ export class RequirementsService {
 
   public getById(id: string): Requirement | undefined {
     return this._requirements.get(id);
+  }
+
+  private async _saveRequirement(): Promise<void> {
+    await this._globalStateService.updateState(
+      StateKeys.REQUIREMENTS,
+      Array.from(this._requirements.values()),
+    );
+  }
+
+  private _loadRequirements(): void {
+    const res = this._globalStateService.getState(StateKeys.REQUIREMENTS) as Requirement[];
+
+    res.forEach((requirement) => {
+      this._requirements.set(requirement.id, requirement);
+    });
   }
 }
