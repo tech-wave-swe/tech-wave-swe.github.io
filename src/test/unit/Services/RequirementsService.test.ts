@@ -53,7 +53,7 @@ describe("RequirementsService", () => {
         new Map<string, Requirement>([
           ["1", mockRequirements[0]],
           ["2", mockRequirements[1]],
-        ]),
+        ])
       );
     });
 
@@ -81,12 +81,35 @@ describe("RequirementsService", () => {
         version: "1.0.0",
       };
 
-      requirementService.addRequirements([newRequirement]);
-      await requirementService.saveRequirements();
+      await requirementService.addRequirement(newRequirement);
 
       expect(mockGlobalStateService.updateState).toHaveBeenCalledWith(
         StateKeys.REQUIREMENTS,
-        [mockRequirements[0], mockRequirements[1], newRequirement],
+        [mockRequirements[0], mockRequirements[1], newRequirement]
+      );
+    });
+
+    it("should add a requirement list and update global state", async () => {
+      const newRequirement: Requirement[] = [{
+        id: "3",
+        name: "Requirement 3",
+        description: "Description 3",
+        type: "requirement",
+        version: "1.0.0",
+      },
+        {
+          id: "4",
+          name: "Requirement 4",
+          description: "Description 4",
+          type: "requirement",
+          version: "1.0.0",
+        }];
+
+      requirementService.addRequirements(newRequirement);
+
+      expect(mockGlobalStateService.updateState).toHaveBeenCalledWith(
+        StateKeys.REQUIREMENTS,
+        [mockRequirements[0], mockRequirements[1], ...newRequirement]
       );
     });
   });
@@ -110,12 +133,11 @@ describe("RequirementsService", () => {
         },
       ];
 
-      requirementService.addRequirements(newRequirementList);
-      await requirementService.saveRequirements();
+      await requirementService.saveRequirements(newRequirementList);
 
       expect(mockGlobalStateService.updateState).toHaveBeenCalledWith(
         StateKeys.REQUIREMENTS,
-        [...mockRequirements, ...newRequirementList],
+        [...newRequirementList]
       );
 
       const requirements = (requirementService as any)._requirements as Map<
@@ -124,25 +146,41 @@ describe("RequirementsService", () => {
       >;
       expect(requirements).toEqual(
         new Map<string, Requirement>([
-          ["1", mockRequirements[0]],
-          ["2", mockRequirements[1]],
           ["3", newRequirementList[0]],
           ["4", newRequirementList[1]],
-        ]),
+        ])
       );
 
       expect(mockGlobalStateService.updateState).toHaveBeenCalledWith(
         StateKeys.REQUIREMENTS,
-        Array.from(requirements.values()),
+        Array.from(requirements.values())
       );
     });
   });
 
   describe("getRequirements", () => {
     it("should retrive requirements list from globalstate", async () => {
+
+      const requirements = requirementService.getRequirements();
+
       expect(mockGlobalStateService.getState).toBeCalledWith(
-        StateKeys.REQUIREMENTS,
+        StateKeys.REQUIREMENTS
       );
+      expect(requirements).toEqual(mockRequirements);
+    });
+  });
+
+  describe("deleteRequirement", () => {
+    it("should delete a requirement and update globalstate", async () => {
+      await requirementService.deleteRequirement("1");
+
+      const requirements = requirementService.getRequirements();
+
+      expect(mockGlobalStateService.updateState).toBeCalledWith(
+        StateKeys.REQUIREMENTS,
+        [mockRequirements[1]]
+      );
+      expect(requirements).toEqual([mockRequirements[1]]);
     });
   });
 
@@ -161,7 +199,7 @@ describe("RequirementsService", () => {
       >;
 
       expect(mockGlobalStateService.clearState).toBeCalledWith(
-        StateKeys.REQUIREMENTS,
+        StateKeys.REQUIREMENTS
       );
       expect(requirements.size).toBe(0);
     });

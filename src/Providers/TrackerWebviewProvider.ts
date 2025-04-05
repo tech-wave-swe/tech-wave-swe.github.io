@@ -235,7 +235,6 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
     try {
       await this._requirementsServiceFacade.clearRequirements();
       vscode.window.showInformationMessage("Requirements cleared successfully");
-      this._sendMessageToWebview({type: "clearRequirements"});
     } catch (error) {
       vscode.window.showErrorMessage(`Failed to clear requirements: ${error}`);
     } finally {

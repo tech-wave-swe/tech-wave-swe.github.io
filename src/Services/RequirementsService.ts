@@ -16,17 +16,25 @@ export class RequirementsService {
   public async addRequirement(requirement: Requirement): Promise<void> {
     this._requirements.set(requirement.id, requirement);
 
-    await this._saveRequirement();
+    await this._saveRequirements();
   }
 
-  public async saveRequirement(requirements: Requirement[]): Promise<void> {
+  public async addRequirements(requirements: Requirement[]): Promise<void> {
+    requirements.forEach((requirement) => {
+      this._requirements.set(requirement.id, requirement);
+    });
+
+    await this._saveRequirements();
+  }
+
+  public async saveRequirements(requirements: Requirement[]): Promise<void> {
     this._requirements.clear();
 
     requirements.forEach((requirement) => {
       this._requirements.set(requirement.id, requirement);
     });
 
-    await this._saveRequirement();
+    await this._saveRequirements();
   }
 
   public getRequirements(): Requirement[] {
@@ -44,10 +52,10 @@ export class RequirementsService {
 
   public async deleteRequirement(id: string): Promise<void> {
     this._requirements.delete(id);
-    await this._saveRequirement();
+    await this._saveRequirements();
   }
 
-  private async _saveRequirement(): Promise<void> {
+  private async _saveRequirements(): Promise<void> {
     await this._globalStateService.updateState(
       StateKeys.REQUIREMENTS,
       Array.from(this._requirements.values()),

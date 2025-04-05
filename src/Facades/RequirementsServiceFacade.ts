@@ -74,8 +74,7 @@ export class RequirementsServiceFacade {
 
       // Store the requirements
       console.log(`Storing ${requirements.length} requirements in memory`);
-      this._requirementsService.addRequirements(requirements);
-      await this._requirementsService.saveRequirements();
+      await this._requirementsService.addRequirements(requirements);
 
       // Embed the requirements
       console.log(
@@ -151,11 +150,6 @@ export class RequirementsServiceFacade {
   }
 
   public async clearRequirements(): Promise<void> {
-    try {
-      await this._requirementsService.clearRequirements();
-    } catch (error) {
-      console.error(`Error clearing requirements:`, error);
-      throw error;
-    }
+    return await this._requirementsService.clearRequirements();
   }
 }

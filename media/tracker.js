@@ -455,10 +455,10 @@ function updateRequirementsTable() {
   const headerRow = document.createElement("tr");
   headerRow.innerHTML = `
     <th></th>
-    <th className="req-table-id">ID</th>
-    <th className="req-table-desc">Description</th>
-    <th className="req-table-status">Status</th>
-    <th className="req-table-actions">Actions</th>`;
+    <th class="req-table-id">ID</th>
+    <th class="req-table-desc">Description</th>
+    <th class="req-table-status">Status</th>
+    <th class="req-table-actions">Actions</th>`;
 
   thead.appendChild(headerRow);
   table.appendChild(thead);
@@ -492,7 +492,7 @@ function updateRequirementsTable() {
 
     item.innerHTML = `
       <td><input id="${req.id}" name="${req.id}" type="checkbox"></td>
-      <td class="req-table-id">${req.id}</td>
+      <td class="req-table-id">${req.name}</td>
       <td class="req-table-desc">${req.description}</td>
       <td class="req-table-status">${req.status}</td>
       <td class="req-table-actions">

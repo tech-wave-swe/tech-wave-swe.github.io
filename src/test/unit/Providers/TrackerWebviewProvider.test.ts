@@ -6,6 +6,7 @@ import { RequirementsServiceFacade } from "../../../Facades/RequirementsServiceF
 import { TrackerWebviewProvider } from "../../../Providers/TrackerWebviewProvider";
 import { Requirement } from "../../../Models/Requirement";
 import { TrackingResultSummary } from "../../../Models/TrackingModels";
+import { window } from "../Mock/vscode";
 
 jest.mock("path");
 
@@ -30,6 +31,8 @@ describe("TrackerWebviewProvider", () => {
       getAllRequirements: jest.fn<() => Requirement[]>(),
       importRequirements: jest.fn<() => Promise<Requirement[]>>(),
       trackRequirements: jest.fn(),
+      clearRequirements: jest.fn(),
+      deleteRequirement: jest.fn(),
       getUnimplementedRequirements: jest.fn(),
     } as unknown as jest.Mocked<RequirementsServiceFacade>;
 
@@ -96,7 +99,7 @@ describe("TrackerWebviewProvider", () => {
         mockRequirementsServiceFacade.getAllRequirements,
       ).toHaveBeenCalled();
       expect(mockWebviewView.webview.postMessage).toHaveBeenCalledWith({
-        type: "updateRequirements",
+        type: "updateRequirementsTable",
         requirements: mockRequirements,
       });
     });
@@ -561,6 +564,97 @@ describe("TrackerWebviewProvider", () => {
       expect(vscode.window.showErrorMessage).toHaveBeenCalledWith(
         "Failed to open file: Error: File not found",
       );
+    });
+
+    it("should handle clearRequirements message", async () => {
+      (mockRequirementsServiceFacade.getAllRequirements as jest.Mock<() => Requirement[]>).mockReturnValue([]);
+
+      // Create test message
+      const message = {
+        type: "clearRequirements",
+      };
+
+      // Use reflection to call private method
+      const handleMessageMethod = (
+        trackerWebviewProvider as any
+      )._handleMessageFromWebview.bind(trackerWebviewProvider);
+      await handleMessageMethod(message);
+
+      expect(mockRequirementsServiceFacade.clearRequirements).toHaveBeenCalled();
+      expect(mockWebviewView.webview.postMessage).toHaveBeenCalledWith({type: "updateRequirementsTable", requirements: []});
+    });
+
+    it("should handle clearRequirements error", async () => {
+      (mockRequirementsServiceFacade.clearRequirements as jest.Mock<() => Promise<void>>).mockRejectedValue(new Error("Test Error"));
+
+      // Create test message
+      const message = {
+        type: "clearRequirements",
+      };
+
+      // Use reflection to call private method
+      const handleMessageMethod = (
+        trackerWebviewProvider as any
+      )._handleMessageFromWebview.bind(trackerWebviewProvider);
+      await handleMessageMethod(message);
+
+      expect(mockRequirementsServiceFacade.clearRequirements).toHaveBeenCalled();
+      expect(vscode.window.showErrorMessage).toHaveBeenCalledWith("Failed to clear requirements: Error: Test Error");
+    });
+
+    it("should handle editRequirement message", async () => {
+      (mockRequirementsServiceFacade.getAllRequirements as jest.Mock<() => Requirement[]>).mockReturnValue([]);
+
+      // Create test message
+      const message = {
+        type: "editRequirement",
+        requirementId: "1",
+      };
+
+      // Use reflection to call private method
+      const handleMessageMethod = (
+        trackerWebviewProvider as any
+      )._handleMessageFromWebview.bind(trackerWebviewProvider);
+      await handleMessageMethod(message);
+
+    });
+
+    it("should handle deleteRequirement message", async () => {
+      (mockRequirementsServiceFacade.getAllRequirements as jest.Mock<() => Requirement[]>).mockReturnValue([mockRequirements[1]]);
+
+      // Create test message
+      const message = {
+        type: "deleteRequirement",
+        requirementId: "1",
+      };
+
+      // Use reflection to call private method
+      const handleMessageMethod = (
+        trackerWebviewProvider as any
+      )._handleMessageFromWebview.bind(trackerWebviewProvider);
+      await handleMessageMethod(message);
+
+      expect(mockRequirementsServiceFacade.deleteRequirement).toHaveBeenCalledWith("1");
+      expect(mockWebviewView.webview.postMessage).toHaveBeenCalledWith({type: "updateRequirementsTable", requirements: [mockRequirements[1]]});
+    });
+
+    it("should handle deleteRequirement error", async () => {
+      (mockRequirementsServiceFacade.deleteRequirement as jest.Mock<(id: string) => Promise<void>>).mockRejectedValue(new Error("Test Error"));
+
+      // Create test message
+      const message = {
+        type: "deleteRequirement",
+        requirementId: "1",
+      };
+
+      // Use reflection to call private method
+      const handleMessageMethod = (
+        trackerWebviewProvider as any
+      )._handleMessageFromWebview.bind(trackerWebviewProvider);
+      await handleMessageMethod(message);
+
+      expect(mockRequirementsServiceFacade.deleteRequirement).toHaveBeenCalledWith("1");
+      expect(vscode.window.showErrorMessage).toHaveBeenCalledWith("Failed to delete requirement: Error: Test Error");
     });
 
     it("should handle Error thrown errors", async () => {

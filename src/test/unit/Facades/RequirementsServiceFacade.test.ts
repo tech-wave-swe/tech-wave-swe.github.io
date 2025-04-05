@@ -79,6 +79,7 @@ describe("RequirementsServiceFacade", () => {
     requirementsService = {
       addRequirements: jest.fn(),
       saveRequirements: jest.fn(),
+      deleteRequirement: jest.fn(),
       getRequirements: jest.fn(),
       clearRequirements: jest.fn(),
       getById: jest.fn(),
@@ -309,6 +310,57 @@ describe("RequirementsServiceFacade", () => {
     it("should return all the requirements imported", () => {
       expect(requirementServiceFacade.getAllRequirements()).toEqual(
         mockRequirements,
+      );
+    });
+  });
+
+  describe("deleteRequirement", () => {
+    it("should delete the specified requirement", async () => {
+      await requirementServiceFacade.deleteRequirement("Req-1");
+
+      requirementsService.getRequirements.mockReturnValue([
+        mockRequirements[1],
+        mockRequirements[2],
+        mockRequirements[3],
+      ]);
+
+      const result = requirementServiceFacade.getAllRequirements();
+
+      expect(requirementsService.deleteRequirement).toHaveBeenCalledWith("Req-1");
+      expect(result).toEqual(
+        [
+          mockRequirements[1],
+          mockRequirements[2],
+          mockRequirements[3],
+        ]
+      );
+    });
+  });
+
+  describe("clearRequirements", () => {
+    it("should clear the globalstate", async () => {
+      await requirementServiceFacade.clearRequirements();
+
+      requirementsService.getRequirements.mockReturnValue([]);
+
+      const result = requirementsService.getRequirements();
+
+      expect(requirementsService.clearRequirements).toHaveBeenCalled();
+      expect(result).toEqual(
+        []
+      );
+    });
+
+    it("should throw error on clearRequirementsError", async () => {
+      await requirementServiceFacade.clearRequirements();
+
+      requirementsService.getRequirements.mockReturnValue([]);
+
+      const result = requirementsService.getRequirements();
+
+      expect(requirementsService.clearRequirements).toHaveBeenCalled();
+      expect(result).toEqual(
+        []
       );
     });
   });
