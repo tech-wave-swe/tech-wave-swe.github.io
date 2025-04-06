@@ -126,6 +126,19 @@ Utilizzo nel progetto:
 
 Documentazione: Vector Embeddings (provvisorio)
 
+#### LanceDB
+
+LanceDB è un database vettoriale open-source progettato per offrire elevate prestazioni nella gestione e nella ricerca di Vector Embeddings. È particolarmente indicato per applicazioni che fanno uso intensivo di modelli di linguaggio (%%LLM|llm%%) e analisi semantica di dati testuali. LanceDB combina un motore di ricerca vettoriale efficiente con un formato di storage ottimizzato (Lance), permettendo interrogazioni rapide anche su dataset di grandi dimensioni. 
+
+Utilizzo nel progetto:
+- Indicizzazione e ricerca vettoriale: LanceDB viene utilizzato per indicizzare i requisiti e il codice sorgente rappresentati come embeddings vettoriali, permettendo un confronto efficiente basato sulla similarità semantica.
+- Persistenza locale dei dati: Il database permette di salvare localmente i dati elaborati, garantendo prestazioni elevate senza dover dipendere da servizi cloud.
+- Ottimizzazione delle risposte %%LLM|llm%%: Utilizzando LanceDB è possibile migliorare la qualità delle risposte generate dai modelli %%LLM|llm%%, restringendo il contesto ai risultati più rilevanti trovati tramite la ricerca vettoriale.
+
+Versione: 0.3.3
+
+Documentazione: [LanceDB documentation](https://lancedb.github.io/lancedb/)
+
 ### Strumenti per i test
 
 #### Jest
