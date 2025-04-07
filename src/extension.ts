@@ -25,6 +25,7 @@ import { InterrogateSelectionCommand } from "./Commands/InterrogateSelectionComm
 import { OpenSettingsCommand } from "./Commands/OpenSettingsCommand";
 import { OpenSidebarCommand } from "./Commands/OpenSidebarCommand";
 import { InterrogateDocumentCommand } from "./Commands/InterrogateDocumentCommand";
+import { ClearRequirementsHistoryCommand } from "./Commands/ClearRequirementsHistoryCommand";
 
 export function activate(context: vscode.ExtensionContext) {
   try {
@@ -177,7 +178,10 @@ function _initializeCommands(context: vscode.ExtensionContext) {
     context.extensionUri,
   );
   // Commands
-  const clearChathistory = new ClearChatHistoryCommand(chatService);
+  const clearChatHistory = new ClearChatHistoryCommand(chatService);
+  const clearRequirementsHistory = new ClearRequirementsHistoryCommand(
+    requirementsService,
+  );
   const resetDatabase = new ResetDatabaseCommand(vectorDatabase);
   const interrogateSelection = new InterrogateSelectionCommand(
     chatWebviewProvider,
@@ -192,7 +196,8 @@ function _initializeCommands(context: vscode.ExtensionContext) {
 
   const commandRegistry = new CommandRegistry(context);
   commandRegistry.registerCommands([
-    clearChathistory,
+    clearChatHistory,
+    clearRequirementsHistory,
     resetDatabase,
     interrogateSelection,
     interrogateDocument,
