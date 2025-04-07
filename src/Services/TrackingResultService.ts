@@ -51,6 +51,34 @@ export class TrackingResultService {
     this._details = undefined;
   }
 
+  public async removeCodeReference(id: string, codeReferenceId: number): Promise<void> {
+    if (this._details == undefined) {
+      throw new Error("No details found.");
+    }
+
+    const res = this._results.get(id);
+
+    if (res) {
+      res.codeReferences.splice(codeReferenceId, 1);
+
+      if (res.codeReferences.length == 0) {
+        if(res.implementationStatus == "unlikely-match") {
+          this._details.unlikelyMatches--;
+        } else {
+          this._details.possibleMatches--;
+        }
+
+        this._details.totalRequirements--;
+
+        this._results.delete(id);
+      } else {
+        this._results.set(id, res);
+      }
+
+      await this._saveTrackingResult();
+    }
+  }
+
   public getById(id: string): TrackingResult | undefined {
     return this._results.get(id);
   }

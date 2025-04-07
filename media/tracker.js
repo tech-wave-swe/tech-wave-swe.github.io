@@ -441,7 +441,7 @@ function updateRequirementsDisplay(summary) {
       refsHeader.style.marginBottom = "5px";
       refsContainer.appendChild(refsHeader);
 
-      result.codeReferences.forEach((ref) => {
+      result.codeReferences.forEach((ref, refIndex) => {
         const refItem = document.createElement("div");
         refItem.className = "code-reference nested-dropdown-container";
         refItem.setAttribute("data-path", ref.filePath);
@@ -507,6 +507,18 @@ function updateRequirementsDisplay(summary) {
               type: "confirmRequirementImplementation",
               requirementId: reqId,
               codeReference: ref,
+            });
+          })
+        })
+
+        refItem.querySelectorAll('.delete-req-action').forEach(actionButton => {
+          actionButton.addEventListener("click", (e) => {
+            e.stopPropagation(); // Prevent triggering the dropdown toggle
+
+            vscode.postMessage({
+              type: "rejectRequirementImplementation",
+              requirementId: reqId,
+              codeReferenceId: refIndex,
             });
           })
         })

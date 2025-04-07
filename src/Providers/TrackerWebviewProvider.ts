@@ -103,12 +103,23 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
         break;
 
       case "confirmRequirementImplementation":
-        await this._onConfirmRequirement(message.requirementId, message.codeReference);
+        await this._onConfirmRequirementImplementation(message.requirementId, message.codeReference);
         break;
+
+      case "rejectRequirementImplementation":
+        await this._onRejectRequirementImplementation(message.requirementId, message.codeReferenceId);
     }
   }
 
-  private async _onConfirmRequirement(requirementId: string, codeReference: CodeReference): Promise<void> {
+  private async _onRejectRequirementImplementation(requirementId: string, codeReferenceId: number): Promise<void> {
+    await this._trackingResultService.removeCodeReference(requirementId, codeReferenceId);
+
+    vscode.window.showInformationMessage("Code reference rejected successfully");
+
+    this._updateTrackingResultsDisplay();
+  }
+
+  private async _onConfirmRequirementImplementation(requirementId: string, codeReference: CodeReference): Promise<void> {
     await this._requirementsServiceFacade.updateRequirementCodeReference(requirementId, codeReference);
     await this._trackingResultService.confirmResult(requirementId);
 
