@@ -1,7 +1,7 @@
 import { ParsingService } from "../Services/ParsingService";
 import { RequirementsTrackerService } from "../Services/RequirementsTrackerService";
 import { Requirement } from "../Models/Requirement";
-import { TrackingResultSummary } from "../Models/TrackingModels";
+import {CodeReference, TrackingResultSummary} from "../Models/TrackingModels";
 import { RequirementsService } from "../Services/RequirementsService";
 import { IVectorDatabase } from "../Interfaces/IVectorDatabase";
 
@@ -154,5 +154,9 @@ export class RequirementsServiceFacade {
 
   public async clearRequirements(): Promise<void> {
     return await this._requirementsService.clearRequirements();
+  }
+
+  public async updateRequirementCodeReference(reqId: string, codeReference: CodeReference): Promise<void> {
+    await this._requirementsService.updateRequirementCodeReference(reqId, codeReference);
   }
 }

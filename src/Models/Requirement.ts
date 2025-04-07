@@ -1,3 +1,5 @@
+import {CodeReference} from "./TrackingModels";
+
 export interface Requirement {
   id: string;
   name: string;
@@ -6,4 +8,5 @@ export interface Requirement {
   version: string;
   status?: string;
   score?: string;
+  codeReference?: CodeReference;
 }

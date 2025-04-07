@@ -345,6 +345,8 @@ function updateRequirementsDisplay(summary) {
   // Generate requirement details
   requirementsResults.innerHTML = "";
 
+  console.log(summary);
+
   const details = summary.requirementDetails;
   const requirementIds = Object.keys(details);
 
@@ -495,6 +497,19 @@ function updateRequirementsDisplay(summary) {
             lineStart: ref.lineNumber,
           });
         });
+
+        // Add eventHandling for feedback buttons
+        refItem.querySelectorAll('.confirm-req-action').forEach(actionButton => {
+          actionButton.addEventListener("click", (e) => {
+            e.stopPropagation(); // Prevent triggering the dropdown toggle
+
+            vscode.postMessage({
+              type: "confirmRequirementImplementation",
+              requirementId: reqId,
+              codeReference: ref,
+            });
+          })
+        })
 
         refsContainer.appendChild(refItem);
       });

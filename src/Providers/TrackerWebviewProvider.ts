@@ -3,6 +3,7 @@ import { RequirementsServiceFacade } from "../Facades/RequirementsServiceFacade"
 import { TrackerWebView } from "../WebViews/TrackerWebView";
 import path from "path";
 import {TrackingResultService} from "../Services/TrackingResultService";
+import {CodeReference} from "../Models/TrackingModels";
 
 export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
   private _webviewView?: vscode.WebviewView;
@@ -100,7 +101,20 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
       case "deleteRequirement":
         await this._onDeleteRequirement(message.requirementId);
         break;
-      }
+
+      case "confirmRequirementImplementation":
+        await this._onConfirmRequirement(message.requirementId, message.codeReference);
+        break;
+    }
+  }
+
+  private async _onConfirmRequirement(requirementId: string, codeReference: CodeReference): Promise<void> {
+    await this._requirementsServiceFacade.updateRequirementCodeReference(requirementId, codeReference);
+    await this._trackingResultService.confirmResult(requirementId);
+
+    vscode.window.showInformationMessage("Requirement confirmed successfully");
+
+    this._updateTrackingResultsDisplay();
   }
 
   private async _onImportRequirements(

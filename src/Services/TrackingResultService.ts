@@ -20,7 +20,7 @@ export class TrackingResultService {
   public async saveTrackingResult(trs: TrackingResultSummary): Promise<void> {
     this._TRStoDS(trs);
 
-    await this._saveRequirements();
+    await this._saveTrackingResult();
   }
 
   public getTrakingResult(): TrackingResult[] {
@@ -55,7 +55,28 @@ export class TrackingResultService {
     return this._results.get(id);
   }
 
-  private async _saveRequirements(): Promise<void> {
+  public async confirmResult(id: string) {
+    if (this._details == undefined) {
+      throw new Error("No details found.");
+    }
+
+    const res = this._results.get(id);
+
+    if (res) {
+      this._details.confirmedMatches++;
+
+      if(res.implementationStatus == "unlikely-match") {
+        this._details.unlikelyMatches--;
+      } else {
+        this._details.possibleMatches--;
+      }
+
+      this._results.delete(id);
+      await this._saveTrackingResult();
+    }
+  }
+
+  private async _saveTrackingResult(): Promise<void> {
     await this._globalStateService.updateState(
       StateKeys.TRACKING_RESULTS,
       this._DStoGS(),

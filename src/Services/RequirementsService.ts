@@ -1,5 +1,6 @@
 import { Requirement } from "../Models/Requirement";
 import { GlobalStateService, StateKeys } from "./GlobalStateService";
+import {CodeReference} from "../Models/TrackingModels";
 
 export class RequirementsService {
   private _requirements: Map<string, Requirement> = new Map<
@@ -25,6 +26,21 @@ export class RequirementsService {
     });
 
     await this._saveRequirements();
+  }
+
+  public async updateRequirementCodeReference(reqId: string, codeReference: CodeReference): Promise<void> {
+    const res = this._requirements.get(reqId);
+
+    if (!res) {
+      return;
+    }
+
+    res.codeReference = codeReference;
+    this._requirements.set(reqId, res);
+
+    await this._saveRequirements();
+
+    console.log("Updated requirement code reference:", reqId, codeReference);
   }
 
   public async saveRequirements(requirements: Requirement[]): Promise<void> {
