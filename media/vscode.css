@@ -89,3 +89,25 @@ input::placeholder,
 textarea::placeholder {
 	color: var(--vscode-input-placeholderForeground);
 }
+
+.edit-req-action,
+.delete-req-action,
+.confirm-req-action {
+	padding: 4px 6px;
+	background-color: transparent;
+	color: var(--vscode-button-foreground);
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+}
+
+.edit-req-action:hover {
+	background-color: var(--vscode-editorInfo-foreground);
+}
+.delete-req-action:hover {
+	background-color: var(--vscode-editorError-foreground);
+}
+.confirm-req-action:hover {
+	background-color: var(--vscode-charts-green);
+}

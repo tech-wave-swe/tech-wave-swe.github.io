@@ -90,10 +90,7 @@ button:hover {
 }
 
 .requirement-item {
-    padding: 10px;
     margin-bottom: 5px;
-    border-radius: 4px;
-    background-color: var(--vscode-editor-inactiveSelectionBackground);
     position: relative;
 }
 
@@ -273,26 +270,151 @@ button:hover {
     text-wrap: nowrap;
 }
 
-.requirements-table .req-table-actions ul {
+.requirements-table .req-table-actions ul, .req-actions {
     list-style: none;
     display: flex;
     gap: 5px;
+    padding-left: 0;
 }
 
-.edit-req-action,
-.delete-req-action {
-    padding: 4px 6px;
-    background-color: transparent;
-    color: var(--vscode-button-foreground);
-    border: none;
+/* Base dropdown styles */
+.dropdown-container,
+.nested-dropdown-container {
+    border: 1px solid var(--vscode-editor-lineHighlightBorder, #282828);
     border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+    margin-bottom: 10px;
+    overflow: hidden;
 }
 
-.edit-req-action:hover {
-    background-color: var(--vscode-button-secondaryHoverBackground);
+.dropdown-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background-color: var(--vscode-editor-lineHighlightBackground, #2a2d2e);
+    cursor: pointer;
 }
-.delete-req-action:hover {
-    background-color: var(--vscode-editorError-foreground);
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.dropdown-container.expanded > .dropdown-content,
+.nested-dropdown-container.expanded > .dropdown-content {
+    max-height: 1500px; /* Adjust this value as needed */
+    transition: max-height 0.5s ease-in;
+}
+
+/* Requirement-specific styles */
+.requirements-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.requirement-item {
+    margin-bottom: 15px;
+}
+
+.requirement-header-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+.requirement-id {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.requirement-content {
+    background-color: var(--vscode-editor-background);
+}
+
+.implementation-status {
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.85em;
+    text-transform: capitalize;
+}
+
+.status-confirmed-match {
+    background-color: #2da44e;
+    color: white;
+}
+
+.status-possible-match {
+    background-color: #bf8700;
+    color: white;
+}
+
+.status-unlikely-match {
+    background-color: #cf222e;
+    color: white;
+}
+
+.requirement-meta {
+    color: var(--vscode-descriptionForeground);
+    font-size: 0.9em;
+    margin: 8px 0;
+}
+
+.requirement-description {
+    margin-bottom: 10px;
+}
+
+/* Code reference styles */
+.code-references {
+    margin-top: 15px;
+}
+
+.nested-dropdown-container {
+    margin: 5px 0;
+}
+
+.file-path {
+    color: var(--vscode-textLink-foreground);
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.code-snippet {
+    padding: 10px;
+    overflow-x: auto;
+    font-family: var(--vscode-editor-font-family);
+    font-size: var(--vscode-editor-font-size);
+}
+
+.req-action-wrapper {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--vscode-editor-lineHighlightBorder, #282828);
+}
+
+.req-actions {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.req-actions li {
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.req-actions li:hover {
+    background-color: var(--vscode-list-hoverBackground);
 }

@@ -365,72 +365,140 @@ function updateRequirementsDisplay(summary) {
     }
 
     const item = document.createElement("li");
-    item.className = "requirement-item";
+    item.className = "requirement-item dropdown-container";
 
-      let statusClass = "";
-      switch (result.implementationStatus) {
-        case "confirmed-match":
-          statusClass = "status-confirmed-match";
-          break;
-        case "possible-match":
-          statusClass = "status-possible-match";
-          break;
-        case "unlikely-match":
-          statusClass = "status-unlikely-match";
-          break;
-      }
+    let statusClass = "";
+    switch (result.implementationStatus) {
+      case "confirmed-match":
+        statusClass = "status-confirmed-match";
+        break;
+      case "possible-match":
+        statusClass = "status-possible-match";
+        break;
+      case "unlikely-match":
+        statusClass = "status-unlikely-match";
+        break;
+    }
 
-    item.innerHTML = `
-        <div class="requirement-id">${req.name}</div>
+    // Create the requirement header (dropdown toggle)
+    const reqHeaderHTML = `
+      <div class="dropdown-header requirement-header">
+        <div class="requirement-header-content">
+          <div class="requirement-id">${req.name}</div>
+          <span class="implementation-status ${statusClass}">
+            ${result.implementationStatus.replace("-", " ")}
+          </span>
+        </div>
+        <div class="dropdown-toggle"><i class="codicon codicon-chevron-down"></i></div>
+      </div>
+    `;
+
+    // Create the requirement content with a unique container for code references
+    const refsContainerId = `refs-${req.id.replace("{", "").replace("}", "")}`;
+    const reqContentHTML = `
+      <div class="dropdown-content requirement-content">
         <div class="requirement-description">${req.description}</div>
         <div class="requirement-meta">
           Type: ${req.type} | Priority: ${req.priority} | Status: ${req.status}
         </div>
         <div class="implementation-info">
-          <span class="implementation-status ${statusClass}">
-            ${result.implementationStatus.replace("-", " ")}
-          </span>
           <span>Score: ${Math.round(result.score * 100)}%</span>
         </div>
-      `;
+        <div class="code-references" id="${refsContainerId}"></div>
+      </div>
+    `;
 
+    // Combine header and content
+    item.innerHTML = reqHeaderHTML + reqContentHTML;
+
+    // Add toggle functionality to requirement
+    const reqHeader = item.querySelector('.requirement-header');
+    reqHeader.addEventListener('click', (e) => {
+      e.stopPropagation();
+      item.classList.toggle('expanded');
+      const toggleIcon = reqHeader.querySelector('.dropdown-toggle i');
+      if (item.classList.contains('expanded')) {
+        toggleIcon.classList.replace('codicon-chevron-down', 'codicon-chevron-up');
+      } else {
+        toggleIcon.classList.replace('codicon-chevron-up', 'codicon-chevron-down');
+      }
+    });
+
+    list.appendChild(item);
+
+    // Add code references to the requirement content
     if (result.codeReferences && result.codeReferences.length > 0) {
-      const refsContainer = document.createElement("div");
-      refsContainer.className = "code-references";
+      const refsContainer = item.querySelector(`#${refsContainerId}`);
+
+      console.log(refsContainerId, item);
 
       const refsHeader = document.createElement("div");
       refsHeader.textContent = "Code References:";
       refsHeader.style.fontWeight = "bold";
-      refsHeader.style.marginTop = "5px";
+      refsHeader.style.marginTop = "10px";
+      refsHeader.style.marginBottom = "5px";
       refsContainer.appendChild(refsHeader);
 
-        result.codeReferences.forEach((ref) => {
-          const refItem = document.createElement("div");
-          refItem.className = "code-reference";
-          refItem.setAttribute("data-path", ref.filePath);
-          refItem.setAttribute("data-line", ref.lineNumber);
+      result.codeReferences.forEach((ref) => {
+        const refItem = document.createElement("div");
+        refItem.className = "code-reference nested-dropdown-container";
+        refItem.setAttribute("data-path", ref.filePath);
+        refItem.setAttribute("data-line", ref.lineNumber);
 
-          refItem.innerHTML = `
+        // Create the reference header (nested dropdown toggle)
+        const refHeaderHTML = `
+          <div class="dropdown-header ref-header">
             <div class="file-path">${ref.filePath}:${ref.lineNumber}</div>
-            <div class="code-snippet">${escapeHtml(formatSnippet(ref.snippet))}</div>
-            ${ref.relevanceExplanation ? `<div class="relevance-info">${ref.relevanceExplanation}</div>` : ""}
-          `;
+            <div class="dropdown-toggle"><i class="codicon codicon-chevron-down"></i></div>
+          </div>
+        `;
 
-          refItem.addEventListener("click", () => {
-            vscode.postMessage({
-              type: "openFile",
-              filePath: ref.filePath,
-              lineStart: ref.lineNumber,
-            });
+        // Create the reference content
+        const refContentHTML = `
+          <div class="dropdown-content ref-content">
+            <div class="code-snippet">${escapeHtml(formatSnippet(ref.snippet))}</div>
+            <div class="req-action-wrapper">
+              <div>
+                <p>${ref.relevanceExplanation}</p>
+              </div>
+              <ul class="req-actions">
+                <li class="edit-req-action"><i class="codicon codicon-edit"></i></li>
+                <li class="confirm-req-action"><i class="codicon codicon-check"></i></li>
+                <li class="delete-req-action"><i class="codicon codicon-trash"></i></li>
+              </ul>
+            </div>
+          </div>
+        `;
+
+        // Combine reference header and content
+        refItem.innerHTML = refHeaderHTML + refContentHTML;
+
+        // Add toggle functionality to code reference
+        const refHeader = refItem.querySelector('.ref-header');
+        refHeader.addEventListener('click', (e) => {
+          e.stopPropagation();
+          refItem.classList.toggle('expanded');
+          const toggleIcon = refHeader.querySelector('.dropdown-toggle i');
+          if (refItem.classList.contains('expanded')) {
+            toggleIcon.classList.replace('codicon-chevron-down', 'codicon-chevron-up');
+          } else {
+            toggleIcon.classList.replace('codicon-chevron-up', 'codicon-chevron-down');
+          }
+        });
+
+        // Keep the openFile functionality but attach it to the file path specifically
+        refItem.querySelector('.file-path').addEventListener("click", (e) => {
+          e.stopPropagation(); // Prevent triggering the dropdown toggle
+          vscode.postMessage({
+            type: "openFile",
+            filePath: ref.filePath,
+            lineStart: ref.lineNumber,
           });
+        });
 
         refsContainer.appendChild(refItem);
       });
-
-      item.appendChild(refsContainer);
     }
-
-    list.appendChild(item);
   });
 
   requirementsResults.appendChild(list);

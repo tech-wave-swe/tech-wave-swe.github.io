@@ -70,7 +70,7 @@
         },
         "reqTracker.endpoint": {
           "type": "string",
-          "default": "http://192.168.178.250:31028",
+          "default": "http://localhost:11434",
           "description": "Endpoint for Ollama service"
         },
         "reqTracker.chunkSize": {

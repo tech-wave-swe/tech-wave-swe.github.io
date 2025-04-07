@@ -159,7 +159,7 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
         ...trackingResults,
         requirementDetails: Object.fromEntries(
           trackingResults.requirementDetails,
-        ),
+        )
       };
 
       console.log("Serialized result:", serializedResults);

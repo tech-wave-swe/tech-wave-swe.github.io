@@ -27,19 +27,8 @@ export class RequirementsService {
     await this._saveRequirements();
   }
 
-  // <<<<<<< Updated upstream
   public async saveRequirements(requirements: Requirement[]): Promise<void> {
     this._requirements.clear();
-    // =======
-    //   public addRequirements(requirement: Requirement[]): void {
-    //     requirement.forEach((req) => {
-    //       console.log(`Adding ${req.id} with value ${req}`);
-
-    //       this._requirements.set(req.id, req);
-    //     });
-    //     console.log(`Added ${requirement.length} requirements`);
-    //   }
-    // >>>>>>> Stashed changes
 
     requirements.forEach((requirement) => {
       this._requirements.set(requirement.id, requirement);

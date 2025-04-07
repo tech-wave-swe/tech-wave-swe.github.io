@@ -231,7 +231,7 @@ export class RequirementsTrackerService {
       return [];
     }
 
-    const defaultPattern = "**/*.{c,h,cpp,hpp,rs}";
+    const {include: pathInclude, exclude: pathExclude} = this._getFilters();
 
     console.log(
       `Scanning workspace folders: ${workspaceFolders.map((f) => f.name).join(", ")}`,
@@ -241,8 +241,8 @@ export class RequirementsTrackerService {
       console.log(`Scanning folder: ${folder.name}`);
 
       const files = await vscode.workspace.findFiles(
-        new vscode.RelativePattern(folder, defaultPattern),
-        "**/node_modules/**",
+        new vscode.RelativePattern(folder, pathInclude),
+        new vscode.RelativePattern(folder, pathExclude),
       );
 
       const folderFiles = files.map((file) => file.fsPath);
@@ -254,5 +254,49 @@ export class RequirementsTrackerService {
 
     console.log(`Total files found: ${codeFiles.length}`);
     return codeFiles;
+  }
+
+  private _getFilters(): {include: string, exclude: string} {
+    const extensionFileFilters = this._filterService.getFileExtensionFilter();
+    const pathFilters = this._filterService.getPathFilter();
+
+    const includePath = pathFilters.include.join(",");
+    const excludePath = pathFilters.exclude.join(",");
+
+    let pathInclude = "";
+
+    if (includePath == "") {
+      if (extensionFileFilters.include.length == 0) {
+        pathInclude = "**/*.*";
+      } else {
+        pathInclude = `**/*.{${extensionFileFilters.include.join(",")}}`;
+      }
+    } else {
+      pathInclude = `{${includePath}`;
+
+      if (extensionFileFilters.include.length == 0) {
+        pathInclude += "}";
+      } else {
+        pathInclude += `,${extensionFileFilters.include.map((ext) => "**/*." + ext).join(",")}}`;
+      }
+    }
+
+    let pathExclude = "";
+
+    if (excludePath == "") {
+      if (extensionFileFilters.exclude.length != 0) {
+        pathExclude = `**/*.{${extensionFileFilters.exclude.join(",")}}`;
+      }
+    } else {
+      pathExclude = `{${excludePath}`;
+
+      if (extensionFileFilters.exclude.length == 0) {
+        pathExclude += "}";
+      } else {
+        pathExclude += `,${extensionFileFilters.exclude.map((ext) => "**/*." + ext).join(",")}}`;
+      }
+    }
+
+    return {include: pathInclude, exclude: pathExclude};
   }
 }
