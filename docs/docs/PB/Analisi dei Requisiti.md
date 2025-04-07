@@ -23,7 +23,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                             | Autore                | Data Verifica | Verificatore          |
 | ---------- | -------- | --------------------------------------- | --------------------- | ------------- | --------------------- |
-| 07/04/2025 | 2.6.0    | //TODO                                  | Pistori Gaia          | 08/04/2025    | Piola Andrea          |
+| 07/04/2025 | 2.6.0    | Miglioramento granularità use cases     | Pistori Gaia          | 08/04/2025    | Piola Andrea          |
 | 17/02/2025 | 2.5.0    | Miglioramento granularità requisiti     | Piola Andrea          | 21/02/2025    | Pistori Gaia          |
 | 14/02/2025 | 2.4.0    | Correzioni documento                    | Vasquez Manuel Felipe | 15/02/2025    | Monetti Luca          |
 | 09/02/2025 | 2.3.0    | Aggiunta Use Cases                      | Monetti Luca          | 14/02/2025    | Vasquez Manuel Felipe |
@@ -139,9 +139,9 @@ L'%%Applicativo|applicativo%% si intefaccia con un singolo attore secondario:
 4. L’Utente programmatore seleziona il modello di embedding (UC1.3)
 5. L’Utente programmatore seleziona la "temperature" del modello (UC1.4)
 6. L’Utente programmatore inserisce il bearer token (UC1.5)
-6. L’Utente programmatore inserisce il numero massimo di risultati per ogni ricerca (UC1.6)
-6. L’Utente programmatore specifica il prompt per la richiesta al modello di generazione del codice (UC1.7)
-7. La modifica viene applicata.
+7. L’Utente programmatore inserisce il numero massimo di risultati per ogni ricerca (UC1.6)
+8. L’Utente programmatore specifica il prompt per la richiesta al modello di generazione del codice (UC1.7)
+9. La modifica viene applicata.
 
 **User story:**
 
@@ -1320,41 +1320,41 @@ Table: Requisiti qualitativi
 
 | Caso d'uso | Requisito                                                              |
 | ---------- | ---------------------------------------------------------------------- |
-| UC1        | RFO_1 ,RFO_2 , RFD_5 , RFP_6 , RFP_7                                   |
-| UC1.1      | RFP_7                                                                  |
+| UC1        | RFO_1 ,RFO_2 , RFD_7 , RFP_8 , RFP_9 , RFP_10 , RFP_11                 |
+| UC1.1      | RFP_9                                                                  |
 | UC1.2      | RFO_1                                                                  |
 | UC1.3      | RFO_2                                                                  |
-| UC1.4      | RFD_5                                                                  |
-| UC1.5      | RFP_6                                                                  |
-| UC1.6      |                                                                   |
-| UC1.7      |                                                                   |
-| UC2        | RFO_8                                                                  |
-| UC3        | RFO_9                                                                  |
-| UC4        | RFO_4                                                                  |
+| UC1.4      | RFD_7                                                                  |
+| UC1.5      | RFP_8                                                                  |
+| UC1.6      | RFP_10                                                                 |
+| UC1.7      | RFP_11                                                                 |
+| UC2        | RFO_12                                                                 |
+| UC3        | RFO_13                                                                 |
+| UC4        | RFO_5                                                                  |
 | UC5        | RFD_3                                                                  |
-| UC6        | RFD_3                                                                  |
-| UC7        | RFO_4                                                                  |
-| UC8        | RFO_10                                                                 |
-| UC9        | RFO_11                                                                 |
-| UC10       | RFO_12                                                                 |
-| UC11       | RFO_13, RFO_14, RFD_16, RFD_17, RFD_18, RFD_19 ,RFD_20, RFO_24, RFO_25 |
-| UC11.1     | RFO_13                                                                 |
-| UC11.2     | RFO_14, RFO_24, RFO_25,                                                |
-| UC11.3     | RFD_16, RFD_17, RFD_18, RFD_19 ,RFD_20                                 |
-| UC12       | RFO_24, RF0_26 , RF0_27                                                |
-| UC13       | RFD_30                                                                 |
-| UC14       | RFD_30                                                                 |
-| UC15       | RFD_15, RFP_42, RFP_43, RFP_44                                         |
-| UC15.1     | RFD_15                                                                 |
-| UC15.2     | RFP_42, RFP_43, RFP_44                                                 |
-| UC16       | RFD_21                                                                 |
-| UC17       | RFO_22, RFD_29                                                         |
-| UC18       | RFO_34                                                                 |
-| UC19       | RFO_23                                                                 |
-| UC20       | RFO_45, RFO_46, RFO_47                                                 |
-| UC21       | RFO_25, RFO_28, RF0_35, RFO_37, RFD_38, RFP_39                         |
-| UC22       | RFO_40, RFO_41                                                         |
-| UC23       | RFP_36                                                                 |
+| UC6        | RFD_4                                                                  |
+| UC7        | RFO_6                                                                  |
+| UC8        | RFO_14                                                                 |
+| UC9        | RFO_15                                                                 |
+| UC10       | RFP_16                                                                 |
+| UC11       | RFO_17, RFO_18, RFD_20, RFD_21, RFD_22, RFD_23 ,RFD_24, RFO_28, RFO_29 |
+| UC11.1     | RFO_17                                                                 |
+| UC11.2     | RFO_18, RFO_28, RFO_29                                                 |
+| UC11.3     | RFD_20, RFD_21, RFD_22, RFD_23 ,RFD_24                                 |
+| UC12       | RFO_28, RF0_30 , RF0_31                                                |
+| UC13       | RFD_34                                                                 |
+| UC14       | RFD_34                                                                 |
+| UC15       | RFD_19, RFP_46, RFP_47, RFP_48                                         |
+| UC15.1     | RFD_19                                                                 |
+| UC15.2     | RFP_46, RFP_47, RFP_48                                                 |
+| UC16       | RFD_25                                                                 |
+| UC17       | RFO_26, RFD_33                                                         |
+| UC18       | RFO_38                                                                 |
+| UC19       | RFO_27                                                                 |
+| UC20       | RFO_49, RFO_50, RFO_51                                                 |
+| UC21       | RFO_29, RFO_32, RF0_39, RFO_41, RFD_42, RFP_43                         |
+| UC22       | RFO_44, RFO_45                                                         |
+| UC23       | RFP_40                                                                 |
 
 Table: Tracciamento caso d'uso e requisito associato
 
