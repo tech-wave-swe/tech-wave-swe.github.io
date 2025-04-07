@@ -326,5 +326,4 @@ def main():
             inspector.interactive_mode()
 
 if __name__ == "__main__":
-    os.environ["LANCEDB_PATH"] = '../../test-tmp/lancedb/'
     main()

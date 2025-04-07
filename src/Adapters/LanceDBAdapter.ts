@@ -101,13 +101,13 @@ export class LanceDBAdapter implements IVectorDatabase {
         }
 
         // Generate embedding for file content
-        const embedding = await this._embeddings.embedQuery(
-          file.originalContent,
-        );
+        // const embedding = await this._embeddings.embedQuery(
+        //   file.originalContent,
+        // );
 
         await table.add([
           {
-            vector: embedding,
+            vector: Array(this._embeddingDimension).fill(0),
             original_content: file.originalContent,
             file_path: file.filePath,
             checksum: file.checksum,
