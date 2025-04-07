@@ -43,7 +43,7 @@ const mockDocumentFormatterService = {
 } as unknown as jest.Mocked<DocumentFormatterService>;
 
 const mockIVectorDatabase = {
-  fileExists: jest.fn<(filePath: string) => Promise<boolean>>(),
+  fileExists: jest.fn<(filePath: string, checksum?: string) => Promise<boolean>>(),
   addFiles: jest.fn((files: File[]): Promise<void> => Promise.resolve()),
   addChunks: jest.fn((chunks: Chunk[]): Promise<void> => Promise.resolve()),
   addRequirements: jest.fn((docs: any[]) => Promise.resolve()),
@@ -66,12 +66,19 @@ describe("DocumentServiceFacade", () => {
 
   describe("processFiles", () => {
     it("should skip already indexed files", async () => {
+      // We need to mock the file stats and content for the checksum to be calculated
+      (fs.statSync as jest.Mock).mockReturnValue({ size: 1000 });
+      (fs.readFileSync as jest.Mock).mockReturnValue("const a = 1;");
+      jest.spyOn(FileSystemService, "getChecksum").mockReturnValue("existingChecksum");
+      
+      // Now mock fileExists to return true to simulate an existing file
       mockIVectorDatabase.fileExists.mockResolvedValue(true);
 
       await facade.processFiles(["file1.ts"]);
 
-      expect(mockIVectorDatabase.fileExists).toHaveBeenCalledWith("file1.ts");
-      expect(fs.statSync).not.toHaveBeenCalled();
+      expect(mockIVectorDatabase.fileExists).toHaveBeenCalledWith("file1.ts", "existingChecksum");
+      expect(fs.statSync).toHaveBeenCalled();
+      expect(fs.readFileSync).toHaveBeenCalled();
       expect(mockDocumentFormatterService.formatSourceCode).not.toHaveBeenCalled();
     });
 
@@ -83,7 +90,7 @@ describe("DocumentServiceFacade", () => {
 
       await facade.processFiles(["file2.ts"]);
 
-      expect(mockIVectorDatabase.fileExists).toHaveBeenCalledWith("file2.ts");
+      expect(mockIVectorDatabase.fileExists).toHaveBeenCalledWith("file2.ts", "dummyChecksum");
       expect(fs.statSync).toHaveBeenCalledWith("file2.ts");
       expect(fs.readFileSync).toHaveBeenCalledWith("file2.ts", "utf8");
       expect(FileSystemService.getChecksum).toHaveBeenCalledWith("file2.ts");

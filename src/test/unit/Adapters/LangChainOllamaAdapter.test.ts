@@ -19,6 +19,7 @@ jest.mock("../../../Facades/ConfigServiceFacade", () => ({
       getOllamaModel: jest.fn(() => "fake-ollama-model"),
       getEmbeddingModel: jest.fn(() => "fake-embedding-model"),
       getTemperature: jest.fn(() => 0.7),
+      getBearerToken: jest.fn(() => "fake-token"),
     })),
   },
 }));
