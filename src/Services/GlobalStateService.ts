@@ -1,10 +1,12 @@
 import * as vscode from "vscode";
 import { ChatMessage } from "../Models/ChatMessage";
 import { Requirement } from "../Models/Requirement";
+import {TrackingResultSummary} from "../Models/TrackingModels";
 
 export enum StateKeys {
   CHAT_MESSAGES = "chatMessages",
   REQUIREMENTS = "requirements",
+  TRACKING_RESULTS = "trackingResults",
 }
 
 export class GlobalStateService {
@@ -16,18 +18,18 @@ export class GlobalStateService {
 
   public async updateState(
     stateKey: StateKeys,
-    data: ChatMessage[] | Requirement[],
+    data: ChatMessage[] | Requirement[] | any,
   ) {
     await this._globalState.update(stateKey, data);
   }
 
-  public getState(stateKey: StateKeys): ChatMessage[] | Requirement[] {
+  public getState(stateKey: StateKeys): ChatMessage[] | Requirement[] | any {
     return this._globalState.get(stateKey, []);
   }
 
   public async clearState(
     stateKey: StateKeys,
-    resetValue: ChatMessage[] | Requirement[] = [],
+    resetValue: ChatMessage[] | Requirement[] | any = [],
   ) {
     await this._globalState.update(stateKey, resetValue);
   }

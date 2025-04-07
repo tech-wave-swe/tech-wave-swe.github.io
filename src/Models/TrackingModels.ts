@@ -18,10 +18,13 @@ export interface TrackingResult {
   score: number;
 }
 
-export interface TrackingResultSummary {
+export interface TrackingResultDetails {
   totalRequirements: number;
   confirmedMatches: number;
   possibleMatches: number;
   unlikelyMatches: number;
+}
+
+export interface TrackingResultSummary extends TrackingResultDetails {
   requirementDetails: Map<string, TrackingResult>;
 }

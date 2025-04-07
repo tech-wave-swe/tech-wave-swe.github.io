@@ -1,31 +1,32 @@
 import * as vscode from "vscode";
-import { ConfigServiceFacade } from "./Facades/ConfigServiceFacade";
-import { ChatWebviewProvider } from "./Providers/ChatWebviewProvider";
-import { TrackerWebviewProvider } from "./Providers/TrackerWebviewProvider";
-import { InferenceService } from "./Services/InferenceService";
-import { LangChainOllamaAdapter } from "./Adapters/LangChainOllamaAdapter";
-import { LanceDBAdapter } from "./Adapters/LanceDBAdapter";
-import { DocumentFormatterService } from "./Services/DocumentFormatterService";
-import { DocumentServiceFacade } from "./Facades/DocumentServiceFacade";
-import { ParsingService } from "./Services/ParsingService";
-import { RequirementsTrackerService } from "./Services/RequirementsTrackerService";
-import { RequirementsServiceFacade } from "./Facades/RequirementsServiceFacade";
+import {ConfigServiceFacade} from "./Facades/ConfigServiceFacade";
+import {ChatWebviewProvider} from "./Providers/ChatWebviewProvider";
+import {TrackerWebviewProvider} from "./Providers/TrackerWebviewProvider";
+import {InferenceService} from "./Services/InferenceService";
+import {LangChainOllamaAdapter} from "./Adapters/LangChainOllamaAdapter";
+import {LanceDBAdapter} from "./Adapters/LanceDBAdapter";
+import {DocumentFormatterService} from "./Services/DocumentFormatterService";
+import {DocumentServiceFacade} from "./Facades/DocumentServiceFacade";
+import {ParsingService} from "./Services/ParsingService";
+import {RequirementsTrackerService} from "./Services/RequirementsTrackerService";
+import {RequirementsServiceFacade} from "./Facades/RequirementsServiceFacade";
 import FileSystemService from "./Services/FileSystemService";
 import ConfigService from "./Services/ConfigService";
-import { ChatService } from "./Services/ChatService";
-import { GlobalStateService } from "./Services/GlobalStateService";
-import { RequirementsService } from "./Services/RequirementsService";
-import { FilterService } from "./Services/FilterService";
-import { ChatWebView } from "./WebViews/ChatWebView";
-import { TrackerWebView } from "./WebViews/TrackerWebView";
-import { CommandRegistry } from "./Commands/CommandsRegistry";
-import { ClearChatHistoryCommand } from "./Commands/ClearChatHistoryCommand";
-import { ResetDatabaseCommand } from "./Commands/ResetDatabaseCommand";
-import { InterrogateSelectionCommand } from "./Commands/InterrogateSelectionCommand";
-import { OpenSettingsCommand } from "./Commands/OpenSettingsCommand";
-import { OpenSidebarCommand } from "./Commands/OpenSidebarCommand";
-import { InterrogateDocumentCommand } from "./Commands/InterrogateDocumentCommand";
-import { ClearRequirementsHistoryCommand } from "./Commands/ClearRequirementsHistoryCommand";
+import {ChatService} from "./Services/ChatService";
+import {GlobalStateService, StateKeys} from "./Services/GlobalStateService";
+import {RequirementsService} from "./Services/RequirementsService";
+import {FilterService} from "./Services/FilterService";
+import {ChatWebView} from "./WebViews/ChatWebView";
+import {TrackerWebView} from "./WebViews/TrackerWebView";
+import {CommandRegistry} from "./Commands/CommandsRegistry";
+import {ClearChatHistoryCommand} from "./Commands/ClearChatHistoryCommand";
+import {ResetDatabaseCommand} from "./Commands/ResetDatabaseCommand";
+import {InterrogateSelectionCommand} from "./Commands/InterrogateSelectionCommand";
+import {OpenSettingsCommand} from "./Commands/OpenSettingsCommand";
+import {OpenSidebarCommand} from "./Commands/OpenSidebarCommand";
+import {InterrogateDocumentCommand} from "./Commands/InterrogateDocumentCommand";
+import {TrackingResultService} from "./Services/TrackingResultService";
+import {ClearRequirementsHistoryCommand} from "./Commands/ClearRequirementsHistoryCommand";
 
 export function activate(context: vscode.ExtensionContext) {
   try {
@@ -126,6 +127,7 @@ function _initializeTrackerViewProvider(context: vscode.ExtensionContext) {
       context.extensionUri,
       new FileSystemService(context.extensionUri.fsPath),
     ),
+    new TrackingResultService(new GlobalStateService(context.globalState),),
     context.extensionUri,
   );
 

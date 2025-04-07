@@ -2,20 +2,24 @@ import * as vscode from "vscode";
 import { RequirementsServiceFacade } from "../Facades/RequirementsServiceFacade";
 import { TrackerWebView } from "../WebViews/TrackerWebView";
 import path from "path";
+import {TrackingResultService} from "../Services/TrackingResultService";
 
 export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
   private _webviewView?: vscode.WebviewView;
   private _trackerWebView: TrackerWebView;
   private _requirementsServiceFacade: RequirementsServiceFacade;
   private _extensionUri: vscode.Uri;
+  private _trackingResultService: TrackingResultService;
 
   constructor(
     requirementsServiceFacade: RequirementsServiceFacade,
     trackerWebView: TrackerWebView,
+    trackingResultService: TrackingResultService,
     extensionUri: vscode.Uri,
   ) {
     this._trackerWebView = trackerWebView;
     this._requirementsServiceFacade = requirementsServiceFacade;
+    this._trackingResultService = trackingResultService;
 
     this._extensionUri = extensionUri;
   }
@@ -32,6 +36,7 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
 
     // Show current requirements if available
     this._updateRequirementsDisplay();
+    this._updateTrackingResultsDisplay();
   }
 
   private _webviewViewConfiguration(webviewView: vscode.WebviewView): void {
@@ -154,6 +159,8 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
 
       console.log("Tracking complete. Results:", trackingResults);
 
+      await this._trackingResultService.saveTrackingResult(trackingResults);
+
       // Convert to a plain object for serialization
       const serializedResults = {
         ...trackingResults,
@@ -255,6 +262,25 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
       // Also send a refresh signal to ensure the view updates
       this._sendMessageToWebview({
         type: "refreshView",
+      });
+    }
+  }
+
+  private _updateTrackingResultsDisplay(): void {
+    const trackingResults = this._trackingResultService.getTrakingResultSummary();
+
+    if (trackingResults) {
+      // Convert to a plain object for serialization
+      const serializedResults = {
+        ...trackingResults,
+        requirementDetails: Object.fromEntries(
+          trackingResults.requirementDetails,
+        )
+      };
+
+      this._sendMessageToWebview({
+        type: "trackingResults",
+        summary: serializedResults,
       });
     }
   }
