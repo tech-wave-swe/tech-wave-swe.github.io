@@ -8,11 +8,11 @@ import { Chunk } from "../Models/Chunk";
 
 export class DocumentServiceFacade {
   private _formatterService: DocumentFormatterService;
-  private _vectorDatabase: IVectorDatabase; // Add this
+  private _vectorDatabase: IVectorDatabase;
 
   constructor(
     formatterService: DocumentFormatterService,
-    vectorDatabase: IVectorDatabase, // Add this parameter
+    vectorDatabase: IVectorDatabase,
   ) {
     this._formatterService = formatterService;
     this._vectorDatabase = vectorDatabase;

@@ -21,19 +21,13 @@ import { TrackerWebView } from "./WebViews/TrackerWebView";
 import { CommandRegistry } from "./Commands/CommandsRegistry";
 import { ClearChatHistoryCommand } from "./Commands/ClearChatHistoryCommand";
 import { ResetDatabaseCommand } from "./Commands/ResetDatabaseCommand";
+import { InterrogateSelectionCommand } from "./Commands/InterrogateSelectionCommand";
+import { OpenSettingsCommand } from "./Commands/OpenSettingsCommand";
+import { OpenSidebarCommand } from "./Commands/OpenSidebarCommand";
+import { InterrogateDocumentCommand } from "./Commands/InterrogateDocumentCommand";
 
 export function activate(context: vscode.ExtensionContext) {
   try {
-    process.env.RUST_LOG = "error";
-    process.env.RUST_BACKTRACE = "0";
-
-    console.log(
-      `Set RUST_LOG environment variable to: ${process.env.RUST_LOG}`,
-    );
-    console.log(
-      `Set RUST_BACKTRACE environment variable to: ${process.env.RUST_BACKTRACE}`,
-    );
-
     // Initialize Services
     _initializeConfigService(context);
 
@@ -166,13 +160,45 @@ function _initializeCommands(context: vscode.ExtensionContext) {
 
   const globalStateService = new GlobalStateService(context.globalState);
   const chatService = new ChatService(globalStateService);
+  const requirementsService = new RequirementsService(
+    new GlobalStateService(context.globalState),
+  );
+  const inferenceService = new InferenceService(
+    new LangChainOllamaAdapter(),
+    vectorDatabase,
+  );
+  const fileSystemService = new FileSystemService(context.extensionUri.fsPath);
+  const chatWebView = new ChatWebView(context.extensionUri, fileSystemService);
 
+  const chatWebviewProvider = new ChatWebviewProvider(
+    chatService,
+    inferenceService,
+    chatWebView,
+    context.extensionUri,
+  );
   // Commands
   const clearChathistory = new ClearChatHistoryCommand(chatService);
   const resetDatabase = new ResetDatabaseCommand(vectorDatabase);
+  const interrogateSelection = new InterrogateSelectionCommand(
+    chatWebviewProvider,
+    requirementsService,
+  );
+  const interrogateDocument = new InterrogateDocumentCommand(
+    chatWebviewProvider,
+    requirementsService,
+  );
+  const openSettings = new OpenSettingsCommand();
+  const openSidebar = new OpenSidebarCommand();
 
   const commandRegistry = new CommandRegistry(context);
-  commandRegistry.registerCommands([clearChathistory, resetDatabase]);
+  commandRegistry.registerCommands([
+    clearChathistory,
+    resetDatabase,
+    interrogateSelection,
+    interrogateDocument,
+    openSettings,
+    openSidebar,
+  ]);
 }
 
 function _startupCheck(context: vscode.ExtensionContext) {

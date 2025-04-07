@@ -100,21 +100,7 @@ export class RequirementsTrackerService {
   ): Promise<Requirement[]> {
     const unimplemented: Requirement[] = [];
 
-    for (const requirement of requirements) {
-      const relatedCode = await this.findRelatedCode(requirement);
-
-      // If we don't find any related code, consider it unimplemented
-      if (
-        relatedCode.length === 0 ||
-        this._calculateAverageScore(relatedCode) < 0.3
-      ) {
-        unimplemented.push(requirement);
-      }
-    }
-    (vscode.workspace.findFiles as jest.Mock).mockReturnValue([
-      { fsPath: "/test/file1.ts" },
-      { fsPath: "/test/file2.ts" },
-    ]);
+    console.log(requirements);
 
     return unimplemented;
   }

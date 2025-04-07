@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<REQ-IF xmlns="http://www.omg.org/spec/ReqIF/20110401/reqif.xsd">
+  <THE-HEADER>
+    <REQ-IF-HEADER IDENTIFIER="ADC_Requirements">
+      <CREATION-TIME>2024-02-14T12:00:00Z</CREATION-TIME>
+      <REQ-IF-TOOL-ID>ReqIF Converter</REQ-IF-TOOL-ID>
+      <REQ-IF-VERSION>1.0</REQ-IF-VERSION>
+      <SOURCE-TOOL-ID>CSV Converter</SOURCE-TOOL-ID>
+    </REQ-IF-HEADER>
+  </THE-HEADER>
+  <CORE-CONTENT>
+    <REQ-IF-CONTENT>
+      <SPECIFICATIONS>
+        <SPECIFICATION IDENTIFIER="SPEC-ADC-Requirements" LONG-NAME="ADC Requirements Specification">
+          <CHILDREN>
+            <SPEC-HIERARCHY IDENTIFIER="SH-0">
+              <OBJECT>
+                <SPEC-OBJECT IDENTIFIER="{31A38164-4AD9-4ec4-BF4F-7877AB2FC7B1}">
+                  <VALUES>
+                    <ATTRIBUTE-VALUE-STRING>
+                      <DEFINITION>Name</DEFINITION>
+                      <THE-VALUE>REQ-0</THE-VALUE>
+                    </ATTRIBUTE-VALUE-STRING>
+                    <ATTRIBUTE-VALUE-STRING>
+                      <DEFINITION>Type</DEFINITION>
+                      <THE-VALUE>Requirement</THE-VALUE>
+                    </ATTRIBUTE-VALUE-STRING>
+                    <ATTRIBUTE-VALUE-STRING>
+                      <DEFINITION>Version</DEFINITION>
+                      <THE-VALUE>1.0</THE-VALUE>
+                    </ATTRIBUTE-VALUE-STRING>
+                  </VALUES>
+                </SPEC-OBJECT>
+              </OBJECT>
+            </SPEC-HIERARCHY>
+
+            <SPEC-HIERARCHY IDENTIFIER="SH-1">
+              <OBJECT>
+                <SPEC-OBJECT IDENTIFIER="{DEA4AB3D-B7F5-4ac6-A522-27D8FD6DA667}">
+                  <VALUES>
+                    <ATTRIBUTE-VALUE-STRING>
+                      <DEFINITION>Name</DEFINITION>
+                      <THE-VALUE>REQ-1</THE-VALUE>
+                    </ATTRIBUTE-VALUE-STRING>
+                    <ATTRIBUTE-VALUE-STRING>
+                      <DEFINITION>Description</DEFINITION>
+                      <THE-VALUE>The system shall enable the ADC1 internal voltage regulator before any conversions are performed.</THE-VALUE>
+                    </ATTRIBUTE-VALUE-STRING>
+                    <ATTRIBUTE-VALUE-STRING>
+                      <DEFINITION>Type</DEFINITION>
+                      <THE-VALUE>Requirement</THE-VALUE>
+                    </ATTRIBUTE-VALUE-STRING>
+                    <ATTRIBUTE-VALUE-STRING>
+                      <DEFINITION>Version</DEFINITION>
+                      <THE-VALUE>1.0</THE-VALUE>
+                    </ATTRIBUTE-VALUE-STRING>
+                  </VALUES>
+                </SPEC-OBJECT>
+              </OBJECT>
+            </SPEC-HIERARCHY>
+
+            <!-- Similar SPEC-HIERARCHY blocks would continue for REQ-2 through REQ-40 -->
+
+          </CHILDREN>
+        </SPECIFICATION>
+      </SPECIFICATIONS>
+    </REQ-IF-CONTENT>
+  </CORE-CONTENT>
+</REQ-IF>

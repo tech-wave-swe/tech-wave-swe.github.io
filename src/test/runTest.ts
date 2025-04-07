@@ -1,5 +1,5 @@
 import * as path from "path";
-import { runTests } from "@vscode/test-electron";
+import { runTests, downloadAndUnzipVSCode } from "@vscode/test-electron";
 
 async function main() {
   try {
@@ -7,7 +7,10 @@ async function main() {
     const extensionDevelopmentPath = path.resolve(__dirname, "../../");
 
     // The path to test runner
-    const extensionTestsPath = path.resolve(__dirname, "./suite/index");
+    const extensionTestsPath = path.resolve(__dirname, "./integration/index");
+
+    // The path to the VSCode executable
+    const vscodeExecutablePath = await downloadAndUnzipVSCode("1.85.0");
 
     // Additional arguments to pass to the test runner
     const launchArgs = [
@@ -27,6 +30,7 @@ async function main() {
     await runTests({
       extensionDevelopmentPath,
       extensionTestsPath,
+      vscodeExecutablePath,
       launchArgs,
     });
   } catch (err) {

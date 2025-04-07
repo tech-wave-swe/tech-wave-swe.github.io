@@ -1,7 +1,7 @@
 // jest.config.js
 module.exports = {
   // Specify the test match pattern to only run .test.ts files
-  testMatch: ["<rootDir>/src/test/**/*.test.ts"],
+  testMatch: ["<rootDir>/src/test/unit/**/*.test.ts"],
 
   // Specify file extensions to process
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],

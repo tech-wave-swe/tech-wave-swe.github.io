@@ -14,7 +14,7 @@ export class LanceDBAdapter implements IVectorDatabase {
   private _embeddings: OllamaEmbeddings = new OllamaEmbeddings();
   private readonly _dbPath: string;
   private _dbConnection: Connection | null = null;
-  private _embeddingDimension = 384;
+  private _embeddingDimension = 768;
   private _maxTextLength = 8000;
 
   constructor(storagePath: string) {
@@ -86,32 +86,39 @@ export class LanceDBAdapter implements IVectorDatabase {
   }
 
   public async addFiles(files: File[]): Promise<void> {
-    if (files.length === 0) {
-      console.log("No files to add");
-      return;
-    }
-
-    const table = await this._getTable(COLLECTION_TYPE.file);
-
-    for (const file of files) {
-      if (await this.fileExists(file.filePath)) {
-        console.log(`Skipping existing file: ${file.filePath}`);
-        continue;
+    try {
+      if (files.length === 0) {
+        console.log("No files to add");
+        return;
       }
 
-      try {
+      const table = await this._getTable(COLLECTION_TYPE.file);
+
+      for (const file of files) {
+        if (await this.fileExists(file.filePath)) {
+          console.log(`Skipping existing file: ${file.filePath}`);
+          continue;
+        }
+
+        // Generate embedding for file content
+        const embedding = await this._embeddings.embedQuery(
+          file.originalContent,
+        );
+
         await table.add([
           {
+            vector: embedding,
+            original_content: file.originalContent,
             file_path: file.filePath,
             checksum: file.checksum,
           },
         ]);
 
         console.log(`Successfully added file: ${file.filePath}`);
-      } catch (error) {
-        console.error(`Error adding file ${file.filePath} to LanceDB:`, error);
-        throw error;
       }
+    } catch (error) {
+      console.error(`Error adding files to LanceDB:`, error);
+      throw error;
     }
   }
 
@@ -364,6 +371,7 @@ export class LanceDBAdapter implements IVectorDatabase {
       this._dbConnection = await connect(this._dbPath);
     } catch (error) {
       console.error("Error connecting to LanceDB:", error);
+      throw new Error(`Failed to connect to LanceDB: ${error}`);
     }
   }
 
@@ -376,7 +384,7 @@ export class LanceDBAdapter implements IVectorDatabase {
     } catch (error) {
       console.error("Error determining embedding dimension:", error);
       // Return default dimension if detection fails
-      return 384;
+      return 768;
     }
   }
 
@@ -406,17 +414,15 @@ export class LanceDBAdapter implements IVectorDatabase {
         // Create a new table with proper schema
         console.log(`Creating table ${collectionName}...`);
 
-        // Determine embedding dimension if not already known
-        if (this._embeddingDimension === 384) {
-          this._embeddingDimension = await this._determineEmbeddingDimension();
-          console.log(
-            `Detected embedding dimension: ${this._embeddingDimension}`,
-          );
-        }
+        this._embeddingDimension = await this._determineEmbeddingDimension();
+        console.log(
+          `Detected embedding dimension: ${this._embeddingDimension}`,
+        );
 
         if (collectionName === COLLECTION_TYPE.file) {
           return await db.createTable(collectionName, [
             {
+              vector: Array(this._embeddingDimension).fill(0),
               original_content: "",
               file_path: "",
               checksum: "",

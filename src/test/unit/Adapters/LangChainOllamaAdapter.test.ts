@@ -1,6 +1,5 @@
 import { LangChainOllamaAdapter } from "../../../Adapters/LangChainOllamaAdapter";
 import { Ollama, OllamaEmbeddings } from "@langchain/ollama";
-import { ConfigServiceFacade } from "../../../Facades/ConfigServiceFacade";
 
 // Mock of the Ollama instance with only the invoke method
 const mockOllamaInstance = {
@@ -35,7 +34,7 @@ describe("LangChainOllamaAdapter", () => {
   let adapter: LangChainOllamaAdapter;
 
   beforeEach(() => {
-    jest.clearAllMocks(); 
+    jest.clearAllMocks();
     adapter = new LangChainOllamaAdapter();
   });
 
@@ -49,7 +48,7 @@ describe("LangChainOllamaAdapter", () => {
   it("should generate a response correctly", async () => {
     // Configure the mock to return a fixed response
     mockOllamaInstance.invoke.mockResolvedValue("Generated response");
-    
+
     // Call the method and verify the result
     const response = await adapter.generate("Test prompt");
     expect(response).toBe("Generated response");
@@ -59,10 +58,10 @@ describe("LangChainOllamaAdapter", () => {
   it("should handle errors in generate method", async () => {
     // Configure the mock to simulate an error
     mockOllamaInstance.invoke.mockRejectedValue(new Error("Mocked error"));
-    
+
     // Verify that the error is correctly propagated
     await expect(adapter.generate("Test prompt")).rejects.toThrow(
-      "Failed to generate response: Error: Mocked error"
+      "Failed to generate response: Error: Mocked error",
     );
   });
 
@@ -70,7 +69,7 @@ describe("LangChainOllamaAdapter", () => {
   it("should generate embeddings correctly", async () => {
     // Configure the mock to return a fake array of values
     mockEmbeddingsInstance.embedQuery.mockResolvedValue([0.1, 0.2, 0.3]);
-    
+
     // Call the method and verify the result
     const embeddings = await adapter.generateEmbeddings("Test text");
     expect(embeddings).toEqual([0.1, 0.2, 0.3]);
@@ -79,11 +78,13 @@ describe("LangChainOllamaAdapter", () => {
   // ERROR HANDLING IN EMBEDDINGS GENERATION
   it("should handle errors in generateEmbeddings method", async () => {
     // Configure the mock to simulate an error
-    mockEmbeddingsInstance.embedQuery.mockRejectedValue(new Error("Mocked embedding error"));
-    
+    mockEmbeddingsInstance.embedQuery.mockRejectedValue(
+      new Error("Mocked embedding error"),
+    );
+
     // Verify that the error is correctly propagated
     await expect(adapter.generateEmbeddings("Test text")).rejects.toThrow(
-      "Failed to generate embeddings: Error: Mocked embedding error"
+      "Failed to generate embeddings: Error: Mocked embedding error",
     );
   });
 
@@ -92,14 +93,14 @@ describe("LangChainOllamaAdapter", () => {
     // Get the mocked original classes
     const mockedOllama = jest.mocked(Ollama);
     const mockedEmbeddings = jest.mocked(OllamaEmbeddings);
-    
+
     // Count how many times they have been called
     const initialOllamaCalls = mockedOllama.mock.calls.length;
     const initialEmbeddingCalls = mockedEmbeddings.mock.calls.length;
-    
+
     // Execute the refresh
     adapter.refreshModels();
-    
+
     // Verify that new instances have been created
     expect(mockedOllama).toHaveBeenCalledTimes(initialOllamaCalls + 1);
     expect(mockedEmbeddings).toHaveBeenCalledTimes(initialEmbeddingCalls + 1);

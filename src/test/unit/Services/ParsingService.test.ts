@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { expect } from "@jest/globals";
 import { ParsingService } from "../../../Services/ParsingService";
 import { Requirement } from "../../../Models/Requirement";

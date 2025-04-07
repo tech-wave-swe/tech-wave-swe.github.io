@@ -12,7 +12,7 @@ export function run(): Promise<void> {
 
   // Create the mocha test
   const mocha = new Mocha({
-    ui: "bdd",
+    ui: "tdd",
     color: true,
   });
 
@@ -26,12 +26,13 @@ export function run(): Promise<void> {
     );
   }
 
-  const testsRoot = path.resolve(__dirname, "..");
+  const testsRoot = path.resolve(__dirname, ".");
 
   return new Promise<void>((resolve, reject) => {
-    // @ts-ignore
     glob("**/*.test.js", { cwd: testsRoot })
       .then((files: string[]) => {
+        console.log("Test files found:", files);
+
         files.forEach((f: string) => mocha.addFile(path.resolve(testsRoot, f)));
 
         try {

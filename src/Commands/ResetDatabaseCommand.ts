@@ -10,7 +10,7 @@ export class ResetDatabaseCommand implements ICommand {
   }
 
   public getName(): string {
-    return "reqTracker.resetDatabase";
+    return "requirementsTracker.resetDatabase";
   }
 
   public async execute(): Promise<void> {

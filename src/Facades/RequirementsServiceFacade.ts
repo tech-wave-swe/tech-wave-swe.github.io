@@ -116,6 +116,9 @@ export class RequirementsServiceFacade {
       if (reqs.length === 0) {
         throw new Error("No requirements found to track");
       }
+      console.log(
+        `Tracking ${reqs.length} requirements. First requirement ID: ${reqs[0].id}`,
+      );
 
       // Track the requirements
       return await this._trackerService.trackAllRequirements(reqs);

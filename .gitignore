@@ -24,3 +24,4 @@ test/**/*.js.map
 .vscode-test
 test-reports/
 coverage/
+test-tmp

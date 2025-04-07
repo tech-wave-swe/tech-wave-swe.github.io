@@ -326,5 +326,5 @@ def main():
             inspector.interactive_mode()
 
 if __name__ == "__main__":
-    os.environ["LANCEDB_PATH"] = '/home/v/.config/Code/User/globalStorage/tech-wave-swe.requirements-tracker/lancedb/'
+    os.environ["LANCEDB_PATH"] = '../../test-tmp/lancedb/'
     main()

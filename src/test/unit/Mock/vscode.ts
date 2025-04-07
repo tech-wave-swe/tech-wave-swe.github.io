@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { jest } from "@jest/globals";
-import vscode from "vscode";
+import * as vscode from "vscode";
 
 export const workspace = {
   getConfiguration: jest.fn().mockReturnValue({
@@ -14,6 +14,13 @@ export const workspace = {
   findFiles: jest.fn(),
 };
 
+// export const TextEditor = {
+//   document: {
+//     getText: jest.fn(),
+//   },
+//   selection: {},
+// };
+
 export const window = {
   withProgress: jest.fn((_options, task: any) =>
     task({ report: jest.fn() }, { isCancellationRequested: false }),
@@ -22,6 +29,7 @@ export const window = {
   showWarningMessage: jest.fn(),
   showErrorMessage: jest.fn(),
   showTextDocument: jest.fn(),
+  activeTextEditor: {},
 };
 
 export const ProgressLocation = { Notification: 15 };
@@ -38,6 +46,7 @@ class RelativePattern {
 export { RelativePattern };
 
 export const commands = {
+  executeCommand: jest.fn(),
   registerCommand: jest.fn(),
 };
 

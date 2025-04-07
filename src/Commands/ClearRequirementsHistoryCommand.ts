@@ -10,7 +10,7 @@ export class ClearRequirementsHistoryCommand implements ICommand {
   }
 
   public getName(): string {
-    return "requirementsTracker.clearRequirements History";
+    return "requirementsTracker.clearRequirementsHistory";
   }
 
   public async execute(): Promise<void> {

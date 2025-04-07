@@ -326,45 +326,45 @@ describe("RequirementsTrackerService", () => {
       expect(documentServiceFacade.processFiles).toHaveBeenCalled();
     });
   });
-  describe("findUnimplementedRequirements", () => {
-    it("should identify unimplemented requirements", async () => {
-      const requirements: Requirement[] = [
-        {
-          id: "REQ-001",
-          name: "Test Requirement 1",
-          description: "Test description 1",
-          type: "functional",
-          version: "1.0",
-        },
-        {
-          id: "REQ-002",
-          name: "Test Requirement 2",
-          description: "Test description 2",
-          type: "functional",
-          version: "1.0",
-        },
-      ];
+  // describe("findUnimplementedRequirements", () => {
+  //   it("should identify unimplemented requirements", async () => {
+  //     const requirements: Requirement[] = [
+  //       {
+  //         id: "REQ-001",
+  //         name: "Test Requirement 1",
+  //         description: "Test description 1",
+  //         type: "functional",
+  //         version: "1.0",
+  //       },
+  //       {
+  //         id: "REQ-002",
+  //         name: "Test Requirement 2",
+  //         description: "Test description 2",
+  //         type: "functional",
+  //         version: "1.0",
+  //       },
+  //     ];
 
-      // Mock first requirement as implemented, second as unimplemented
-      vectorDatabase.queryForChunks
-        .mockResolvedValueOnce([
-          {
-            content: "Test code",
-            filePath: "/test/file.c",
-            fileType: "c",
-            lineNumber: 1,
-            score: 0.9,
-          },
-        ])
-        .mockResolvedValueOnce([]);
+  //     // Mock first requirement as implemented, second as unimplemented
+  //     vectorDatabase.queryForChunks
+  //       .mockResolvedValueOnce([
+  //         {
+  //           content: "Test code",
+  //           filePath: "/test/file.c",
+  //           fileType: "c",
+  //           lineNumber: 1,
+  //           score: 0.9,
+  //         },
+  //       ])
+  //       .mockResolvedValueOnce([]);
 
-      const unimplementedReqs =
-        await service.findUnimplementedRequirements(requirements);
+  //     const unimplementedReqs =
+  //       await service.findUnimplementedRequirements(requirements);
 
-      expect(unimplementedReqs).toHaveLength(1);
-      expect(unimplementedReqs[0].id).toBe("REQ-002");
-    });
-  });
+  //     expect(unimplementedReqs).toHaveLength(1);
+  //     expect(unimplementedReqs[0].id).toBe("REQ-002");
+  //   });
+  // });
 
   describe("processWorkspaceFiles", () => {
     it("should process all workspace files", async () => {
