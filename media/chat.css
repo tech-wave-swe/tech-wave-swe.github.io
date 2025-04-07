@@ -1,13 +1,15 @@
 body {
     padding: 0;
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 #chat--container {
     display: flex;
     flex-direction: column;
-    max-height: 100vh;
     overflow: hidden;
+    max-height: 100vh;
 }
 
 .chat-messages--container {
@@ -15,8 +17,6 @@ body {
     display: flex;
     flex-direction: column;
     padding: 10px;
-
-    height: 80vh;
     overflow-y: scroll;
 }
 
@@ -94,7 +94,7 @@ body {
     margin-bottom: 0.5em;
 }
 
-.chat-item--header .codicon{
+.chat-item--header .codicon {
     font-size: 1.5em !important;
 }
 
@@ -211,14 +211,16 @@ body {
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .loading-indicator {
     position: relative;
 
     display: flex;
-    gap: 5px
+    gap: 5px;
 }
 
 .dot-flashing {
@@ -234,11 +236,11 @@ body {
 }
 
 .dot-flashing:nth-child(2) {
-    animation: dot-flashing 1.2s .2s infinite;
+    animation: dot-flashing 1.2s 0.2s infinite;
 }
 
 .dot-flashing:nth-child(3) {
-    animation: dot-flashing 1.2s .4s infinite;
+    animation: dot-flashing 1.2s 0.4s infinite;
 }
 
 @keyframes dot-flashing {

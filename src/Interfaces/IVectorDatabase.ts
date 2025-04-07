@@ -21,7 +21,7 @@ export interface IVectorDatabase {
   /**
    * Check if a document exists in the vector database
    */
-  fileExists(filePath: string): Promise<boolean>;
+  fileExists(filePath: string, checksum: string): Promise<boolean>;
 
   /**
    * Query the vector database for similar files

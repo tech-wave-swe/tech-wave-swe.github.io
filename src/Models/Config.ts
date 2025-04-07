@@ -1,13 +1,12 @@
-import {FileExtensionFilter, PathFilter, RequirementFilter} from "./Filter";
+import { FileExtensionFilter, PathFilter, RequirementFilter } from "./Filter";
 
 export enum ConfigKey {
   ENDPOINT = "endpoint",
+  BEARER_TOKEN = "bearerToken",
   MODEL = "model",
   EMBEDDING_MODEL = "embeddingModel",
   TEMPERATURE = "temperature",
   MAX_RESULTS = "maxResults",
-  CHUNK_SIZE = "chunkSize",
-  CHUNK_OVERLAP = "chunkOverlap",
   FILTERS = "filters",
 }
 
@@ -19,12 +18,10 @@ export interface ConfigFilters {
 
 export interface Config {
   endpoint: string;
+  bearerToken: string;
   model: string;
   embeddingModel: string;
   temperature: number;
   maxResults: number;
-  chunkSize: number;
-  chunkOverlap: number;
   filters: ConfigFilters;
-  // bearerToken: string;
 }

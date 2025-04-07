@@ -65,12 +65,8 @@ export class ConfigServiceFacade {
     return this._getConfigValue(ConfigKey.ENDPOINT) as string;
   }
 
-  public getChunkSize(): number {
-    return this._getConfigValue(ConfigKey.CHUNK_SIZE) as number;
-  }
-
-  public getChunkOverlap(): number {
-    return this._getConfigValue(ConfigKey.CHUNK_OVERLAP) as number;
+  public getBearerToken(): string {
+    return this._getConfigValue(ConfigKey.BEARER_TOKEN) as string;
   }
 
   public getFilters(): ConfigFilters {

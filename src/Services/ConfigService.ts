@@ -16,11 +16,13 @@ export default class ConfigService {
   }
 
   public GetConfig(): Config {
-    const globalConfig = workspace.getConfiguration("reqTracker");
+    const globalConfig = workspace.getConfiguration("requirementsTracker");
     const projectConfig: Partial<Config> = this._getLocalConfig();
 
     return {
       endpoint: projectConfig?.endpoint ?? globalConfig[ConfigKey.ENDPOINT],
+      bearerToken:
+        projectConfig?.bearerToken ?? globalConfig[ConfigKey.BEARER_TOKEN],
       model: projectConfig?.model ?? globalConfig[ConfigKey.MODEL],
       embeddingModel:
         projectConfig?.embeddingModel ??
@@ -29,9 +31,6 @@ export default class ConfigService {
         projectConfig?.temperature ?? globalConfig[ConfigKey.TEMPERATURE],
       maxResults:
         projectConfig?.maxResults ?? globalConfig[ConfigKey.MAX_RESULTS],
-      chunkSize: projectConfig?.chunkSize ?? globalConfig[ConfigKey.CHUNK_SIZE],
-      chunkOverlap:
-        projectConfig?.chunkOverlap ?? globalConfig[ConfigKey.CHUNK_OVERLAP],
       filters: projectConfig?.filters ?? {
         path: { type: "path", include: [], exclude: [] },
         file_extension: { type: "file_extension", include: [], exclude: [] },
@@ -55,6 +54,12 @@ export default class ConfigService {
       ) {
         validConfig.endpoint = rawConfig.endpoint;
       }
+      if (
+        ConfigKey.BEARER_TOKEN in rawConfig &&
+        typeof rawConfig.bearerToken === "string"
+      ) {
+        validConfig.bearerToken = rawConfig.bearerToken;
+      }
       if (ConfigKey.MODEL in rawConfig && typeof rawConfig.model === "string") {
         validConfig.model = rawConfig.model;
       }
@@ -76,18 +81,7 @@ export default class ConfigService {
       ) {
         validConfig.maxResults = rawConfig.maxResults;
       }
-      if (
-        ConfigKey.CHUNK_SIZE in rawConfig &&
-        typeof rawConfig.chunkSize === "number"
-      ) {
-        validConfig.chunkSize = rawConfig.chunkSize;
-      }
-      if (
-        ConfigKey.CHUNK_OVERLAP in rawConfig &&
-        typeof rawConfig.chunkOverlap === "number"
-      ) {
-        validConfig.chunkOverlap = rawConfig.chunkOverlap;
-      }
+
       if (ConfigKey.FILTERS in rawConfig) {
         validConfig.filters = {
           path: this._validatePathFilters(rawConfig.filters.path),

@@ -16,16 +16,26 @@ export class LangChainOllamaAdapter implements ILanguageModel {
     const embeddingModel =
       ConfigServiceFacade.GetInstance().getEmbeddingModel();
     const temperature = ConfigServiceFacade.GetInstance().getTemperature();
+    const bearerToken = ConfigServiceFacade.GetInstance().getBearerToken();
+
+    const headers = bearerToken
+      ? new Headers({ Authorization: `Bearer ${bearerToken}` })
+      : undefined;
+
+    console.log(`headers: ${headers}`);
+    console.log(`bearer token:  ${bearerToken}`);
 
     this._ollama = new Ollama({
       baseUrl: baseUrl,
       model: model,
       temperature: temperature,
+      headers: headers,
     });
 
     this._embeddings = new OllamaEmbeddings({
       baseUrl: baseUrl,
       model: embeddingModel,
+      headers: headers,
     });
   }
 

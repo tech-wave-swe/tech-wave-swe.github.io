@@ -5,11 +5,10 @@ import { ConfigServiceFacade } from "../../../Facades/ConfigServiceFacade";
 describe("ConfigServiceFacade", () =>{
     const mockConfigContent = {
         endpoint: "http://localhost:11434",
+        bearerToken: "your-secret-token-here",
         model: "qwen2.5-coder:7b",
         embeddingModel: "nomic-embed-text:latest",
         temperature: 0.7,
-        chunkOverlap: 200,
-        chunkSize: 1000,
         maxResults: 5,
         filters: {
           path: {
@@ -101,14 +100,10 @@ describe("ConfigServiceFacade", () =>{
             expect(configServiceFacade.getEndpoint()).toEqual(mockConfigContent.endpoint);
         });
 
-        it("should return the chunk size value", () => {
-            let configServiceFacade = ConfigServiceFacade.Init(configService);
-            expect(configServiceFacade.getChunkSize()).toEqual(mockConfigContent.chunkSize);
-        });
 
-        it("should return the chunk overlap value", () => {
+        it("should return the bearer token value", () => {
             let configServiceFacade = ConfigServiceFacade.Init(configService);
-            expect(configServiceFacade.getChunkOverlap()).toEqual(mockConfigContent.chunkOverlap);
+            expect(configServiceFacade.getBearerToken()).toEqual(mockConfigContent.bearerToken);
         });
 
         it("should return the config filters", () => {
