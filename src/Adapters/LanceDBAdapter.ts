@@ -18,10 +18,7 @@ export class LanceDBAdapter implements IVectorDatabase {
 
   constructor(storagePath: string) {
     this._dbPath = path.join(storagePath, "lancedb");
-    this._initialize().catch((event) => {
-      console.error("Error initializing LanceDB:", event);
-      throw new Error(`Failed to initialize LanceDB: ${event}`);
-    });
+    this._initialize();
   }
 
   public async resetDatabase(): Promise<void> {
@@ -66,6 +63,7 @@ export class LanceDBAdapter implements IVectorDatabase {
         return rows.some((doc) => doc.file_path === filePath);
       }
 
+      // If checksum is provided, verify it matches
       return rows.some(
         (doc) => doc.file_path === filePath && doc.checksum === checksum,
       );
@@ -249,7 +247,6 @@ export class LanceDBAdapter implements IVectorDatabase {
       const requirements: Requirement[] = [];
 
       const keyMapping: Record<string, string> = {
-        id: "id",
         name: "name",
         description: "description",
         type: "type",
