@@ -1,16 +1,25 @@
 import * as vscode from "vscode";
-import { RequirementsServiceFacade } from "../Facades/RequirementsServiceFacade";
-import { TrackerWebView } from "../WebViews/TrackerWebView";
+import {RequirementsServiceFacade} from "../Facades/RequirementsServiceFacade";
+import {TrackerWebView} from "../WebViews/TrackerWebView";
 import path from "path";
 import {TrackingResultService} from "../Services/TrackingResultService";
 import {CodeReference} from "../Models/TrackingModels";
+import {TextEditorSelectionChangeEvent} from "vscode";
 
 export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
   private _webviewView?: vscode.WebviewView;
   private _trackerWebView: TrackerWebView;
   private _requirementsServiceFacade: RequirementsServiceFacade;
-  private _extensionUri: vscode.Uri;
+  private readonly _extensionUri: vscode.Uri;
   private _trackingResultService: TrackingResultService;
+
+  private _isEditMode: boolean;
+  private _currentEditingReference: {
+    requirementId: string,
+    codeReferenceId: number,
+    codeReference: CodeReference
+  } | undefined;
+  private _currentSelectedReference: CodeReference | undefined;
 
   constructor(
     requirementsServiceFacade: RequirementsServiceFacade,
@@ -23,6 +32,8 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
     this._trackingResultService = trackingResultService;
 
     this._extensionUri = extensionUri;
+
+    this._isEditMode = false;
   }
 
   public resolveWebviewView(
@@ -38,6 +49,28 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
     // Show current requirements if available
     this._updateRequirementsDisplay();
     this._updateTrackingResultsDisplay();
+  }
+
+  public onChangeTextEditorSelection(event: TextEditorSelectionChangeEvent): void {
+    if (!this._isEditMode) {
+      return;
+    }
+
+    const editor = event.textEditor;
+    const selection = editor.selection;
+
+    if (selection) {
+      const selectionRange = new vscode.Range(selection.start.line, 0, selection.end.line, selection.end.character);
+
+      this._currentSelectedReference = {
+        filePath: editor.document.uri.fsPath,
+        lineNumber: selection.active.line,
+        snippet: editor.document.getText(selectionRange),
+        score: 1
+      };
+    }
+
+    this._sendMessageToWebview({type: "updateSelectedReference", codeReference: this._currentSelectedReference});
   }
 
   private _webviewViewConfiguration(webviewView: vscode.WebviewView): void {
@@ -108,13 +141,90 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
 
       case "rejectRequirementImplementation":
         await this._onRejectRequirementImplementation(message.requirementId, message.codeReferenceId);
+        break;
+
+      // Edit Mode
+
+      case "startEditMode":
+        await this._onStartEditMode(message.requirementId, message.codeReferenceId, message.codeReference);
+        break;
+
+      case "endEditMode":
+        await this._onEndEditMode();
+        break;
+
+      case "confirmEditImplementation":
+        await this._onConfirmEditImplementation();
+        break;
+
+      case "cancelEditImplementation":
+        await this._onCancelEditImplementation();
+        break;
     }
+  }
+
+  private async _onCancelEditImplementation(): Promise<void> {
+    if (!this._currentEditingReference) {
+      throw new Error("No current editing reference");
+    }
+
+    this._stopEditMode();
+  }
+
+  private async _onConfirmEditImplementation(): Promise<void> {
+    if (!this._currentEditingReference) {
+      throw new Error("No current editing reference");
+    }
+
+    if (!this._currentSelectedReference) {
+      throw new Error("No current selected reference");
+    }
+
+    await this._requirementsServiceFacade.updateRequirementCodeReference(
+      this._currentEditingReference.requirementId,
+      this._currentSelectedReference
+    );
+
+    await this._trackingResultService.confirmResult(
+      this._currentEditingReference.requirementId
+    );
+
+    vscode.window.showInformationMessage("Requirement confirmed successfully");
+
+    this._stopEditMode();
+
+    // Update the requirements display
+    this._updateTrackingResultsDisplay();
+  }
+
+  private async _onStartEditMode(requirementId: string, codeReferenceId: number, codeReference: CodeReference): Promise<void> {
+    this._isEditMode = true;
+    this._currentEditingReference = {
+      requirementId: requirementId,
+      codeReferenceId: codeReferenceId,
+      codeReference: codeReference,
+    };
+
+    vscode.window.showInformationMessage("Edit mode started. Select the implementation of the current requirement.");
+
+    this._sendMessageToWebview({type: "startEditMode", requirementId: requirementId, codeReference: codeReference})
+  }
+
+  private async _onEndEditMode(): Promise<void> {
+    this._isEditMode = false;
+    this._currentEditingReference = undefined;
+
+    vscode.window.showInformationMessage("Edit mode ended");
   }
 
   private async _onRejectRequirementImplementation(requirementId: string, codeReferenceId: number): Promise<void> {
     await this._trackingResultService.removeCodeReference(requirementId, codeReferenceId);
 
     vscode.window.showInformationMessage("Code reference rejected successfully");
+
+    if (this._isEditMode) {
+      this._stopEditMode();
+    }
 
     this._updateTrackingResultsDisplay();
   }
@@ -125,6 +235,10 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
 
     vscode.window.showInformationMessage("Requirement confirmed successfully");
 
+    if (this._isEditMode) {
+      this._stopEditMode();
+    }
+
     this._updateTrackingResultsDisplay();
   }
 
@@ -133,10 +247,15 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
     format: string,
     options: { delimiter?: string } = {},
   ): Promise<void> {
+
+    if (this._isEditMode) {
+      this._stopEditMode();
+    }
+
     console.log(
       `Starting file upload handler. Format: ${format}, Content length: ${fileContent.length}`,
     );
-    this._sendMessageToWebview({ type: "setLoading", isLoading: true });
+    this._sendMessageToWebview({type: "setLoading", isLoading: true});
 
     try {
       console.log(
@@ -171,12 +290,16 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
         message: `Failed to import requirements: ${error}`,
       });
     } finally {
-      this._sendMessageToWebview({ type: "setLoading", isLoading: false });
+      this._sendMessageToWebview({type: "setLoading", isLoading: false});
     }
   }
 
   private async _onTrackRequirements(requirementIds?: string[]): Promise<void> {
-    this._sendMessageToWebview({ type: "setLoading", isLoading: true });
+    if (this._isEditMode) {
+      this._stopEditMode();
+    }
+
+    this._sendMessageToWebview({type: "setLoading", isLoading: true});
 
     try {
       const trackingResults =
@@ -208,8 +331,8 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
 
       vscode.window.showInformationMessage(
         `Analysis complete: ${trackingResults.confirmedMatches} implemented, ` +
-          `${trackingResults.possibleMatches} partially implemented, ` +
-          `${trackingResults.unlikelyMatches} not implemented`,
+        `${trackingResults.possibleMatches} partially implemented, ` +
+        `${trackingResults.unlikelyMatches} not implemented`,
       );
     } catch (error) {
       console.error("Error tracking requirements:", error);
@@ -222,12 +345,16 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
       const time = new Date().toLocaleTimeString();
       console.log(`Ended at ${time}`);
 
-      this._sendMessageToWebview({ type: "setLoading", isLoading: false });
+      this._sendMessageToWebview({type: "setLoading", isLoading: false});
     }
   }
 
   private async _onShowUnimplemented(): Promise<void> {
-    this._sendMessageToWebview({ type: "setLoading", isLoading: true });
+    if (this._isEditMode) {
+      this._stopEditMode();
+    }
+
+    this._sendMessageToWebview({type: "setLoading", isLoading: true});
 
     const unimplemented =
       await this._requirementsServiceFacade.getUnimplementedRequirements();
@@ -237,13 +364,17 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
       requirements: unimplemented,
     });
 
-    this._sendMessageToWebview({ type: "setLoading", isLoading: false });
+    this._sendMessageToWebview({type: "setLoading", isLoading: false});
   }
 
   private async _onOpenFile(
     filePath: string,
     lineNumber: number,
   ): Promise<void> {
+    if (this._isEditMode) {
+      this._stopEditMode();
+    }
+
     try {
       const document = await vscode.workspace.openTextDocument(filePath);
       const editor = await vscode.window.showTextDocument(document);
@@ -262,6 +393,10 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
   }
 
   private async _onClearRequirements(): Promise<void> {
+    if (this._isEditMode) {
+      this._stopEditMode();
+    }
+
     this._sendMessageToWebview({type: "setLoading", isLoading: true});
 
     try {
@@ -271,11 +406,18 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
       vscode.window.showErrorMessage(`Failed to clear requirements: ${error}`);
     } finally {
       this._sendMessageToWebview({type: "setLoading", isLoading: false});
-      this._sendMessageToWebview({type: "updateRequirementsTable", requirements: this._requirementsServiceFacade.getAllRequirements()});
+      this._sendMessageToWebview({
+        type: "updateRequirementsTable",
+        requirements: this._requirementsServiceFacade.getAllRequirements()
+      });
     }
   }
 
   private _updateRequirementsDisplay(): void {
+    if (this._isEditMode) {
+      this._stopEditMode();
+    }
+
     const requirements = this._requirementsServiceFacade.getAllRequirements();
 
     if (requirements.length > 0) {
@@ -311,10 +453,16 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
   }
 
   private async _onEditRequirement(requirementId: string): Promise<void> {
-
+    if (this._isEditMode) {
+      this._stopEditMode();
+    }
   }
 
   private async _onDeleteRequirement(requirementId: string): Promise<void> {
+    if (this._isEditMode) {
+      this._stopEditMode();
+    }
+
     try {
       await this._requirementsServiceFacade.deleteRequirement(requirementId);
       vscode.window.showInformationMessage("Requirement deleted successfully");
@@ -323,5 +471,14 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
     } catch (error) {
       vscode.window.showErrorMessage(`Failed to delete requirement: ${error}`);
     }
+  }
+
+  private _stopEditMode(): void {
+    // Clear the current editing reference
+    this._currentEditingReference = undefined;
+    this._currentSelectedReference = undefined;
+    this._isEditMode = false;
+
+    this._sendMessageToWebview({type: "stopEditMode"});
   }
 }

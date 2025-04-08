@@ -38,6 +38,9 @@ function handleEvents() {
     "requirements-checklist",
   );
 
+  const confirmEditButton = document.getElementById("confirm-edit");
+  const cancelEditButton = document.getElementById("cancel-edit");
+
   // Tab switching
   tabs.forEach((tab) => {
     tab.addEventListener("click", () => {
@@ -80,6 +83,16 @@ function handleEvents() {
     handleClearRequirementsButtonClick();
   });
 
+  // Confirm edit button
+  confirmEditButton.addEventListener("click", (e) => {
+    handleConfirmEditButtonClick(e);
+  });
+
+  // Cancel edit button
+  cancelEditButton.addEventListener("click", (e) => {
+    handleCancelEditButtonClick(e);
+  });
+
   // Handle messages from the extension
   window.addEventListener("message", (event) => {
     const message = event.data;
@@ -116,8 +129,69 @@ function handleEvents() {
         requirements = message.requirements;
         updateRequirementsTable();
         break;
+
+      case "startEditMode":
+        handleStartEditMode(message);
+        break;
+
+      case "stopEditMode":
+        handleStopEditMode(message);
+        break;
+
+      case "updateSelectedReference":
+        handleUpdateSelectedReference(message.codeReference);
+        break;
     }
   });
+}
+
+function handleConfirmEditButtonClick(event) {
+  if (!event.target.getAttribute("disabled")) {
+    vscode.postMessage({
+      type: "confirmEditImplementation"
+    });
+  }
+}
+
+function handleCancelEditButtonClick(event) {
+  vscode.postMessage({
+    type: "cancelEditImplementation"
+  });
+}
+
+function handleUpdateSelectedReference(codeReference) {
+  const currentSelection = document.getElementById("current-selection");
+  const confirmEditButton = document.getElementById("confirm-edit");
+  const cancelEditButton = document.getElementById("cancel-edit");
+
+  confirmEditButton.removeAttribute("disabled");
+
+  currentSelection.innerText = codeReference.snippet;
+}
+
+function handleStartEditMode(message) {
+  const { requirementId, codeReference } = message;
+  const requirement = requirements.find((req) => req.id === requirementId);
+
+  if (!requirement) {
+    console.error("Requirement not found");
+    return;
+  }
+
+  const editModeUI = document.getElementById("edit-mode-ui");
+
+  editModeUI.classList.remove("hidden");
+}
+
+function handleStopEditMode(message) {
+  const currentSelection = document.getElementById("current-selection");
+  const confirmEditButton = document.getElementById("confirm-edit");
+  const editModeUI = document.getElementById("edit-mode-ui");
+
+  confirmEditButton.setAttribute("disabled", "");
+  currentSelection.innerText = "No text selected";
+
+  editModeUI.classList.add("hidden");
 }
 
 function handleTabClick(tabs, tab) {
@@ -345,8 +419,6 @@ function updateRequirementsDisplay(summary) {
   // Generate requirement details
   requirementsResults.innerHTML = "";
 
-  console.log(summary);
-
   const details = summary.requirementDetails;
   const requirementIds = Object.keys(details);
 
@@ -431,8 +503,6 @@ function updateRequirementsDisplay(summary) {
     // Add code references to the requirement content
     if (result.codeReferences && result.codeReferences.length > 0) {
       const refsContainer = item.querySelector(`#${refsContainerId}`);
-
-      console.log(refsContainerId, item);
 
       const refsHeader = document.createElement("div");
       refsHeader.textContent = "Code References:";
@@ -519,6 +589,19 @@ function updateRequirementsDisplay(summary) {
               type: "rejectRequirementImplementation",
               requirementId: reqId,
               codeReferenceId: refIndex,
+            });
+          })
+        })
+
+        refItem.querySelectorAll('.edit-req-action').forEach(actionButton => {
+          actionButton.addEventListener("click", (e) => {
+            e.stopPropagation(); // Prevent triggering the dropdown toggle
+
+            vscode.postMessage({
+              type: "startEditMode",
+              requirementId: reqId,
+              codeReferenceId: refIndex,
+              codeReferece: ref
             });
           })
         })
@@ -631,7 +714,6 @@ function handleRequirementsEvents() {
   deleteReqActions.forEach(deleteReqAction => {
     deleteReqAction.addEventListener("click", () => {
       const requirementId = deleteReqAction.dataset.requirement;
-      console.log("Deleting requirement with ID inside:", requirementId);
 
       vscode.postMessage({
         type: "deleteRequirement",

@@ -12,9 +12,10 @@
     <link href="{{styleVSCodeUri}}" rel="stylesheet"/>
     <link href="{{styleTrackerUri}}" rel="stylesheet"/>
     <link href="{{styleCodiconsUri}}" rel="stylesheet"/>
+    <link href="{{styleEditModeUri}}" rel="stylesheet"/>
 </head>
 <body>
-<div class="container">
+<div id="tracker-ui" class="container">
     <div class="tab-container">
         <button class="tab active" data-tab="import">Import</button>
         <button class="tab" data-tab="track">Track</button>
@@ -110,6 +111,23 @@
         <div id="requirements-results">
             <p>No tracking results yet. Go to the Track tab to analyze requirements.</p>
         </div>
+    </div>
+</div>
+<div id="edit-mode-ui" class="hidden edit-mode-container">
+    <div class="edit-mode-header">
+        <div class="edit-mode-title">Modalità Editing</div>
+        <div class="edit-mode-subtitle">Seleziona nuove linee di codice come puntatore</div>
+    </div>
+    <div class="edit-mode-instructions">
+        <p>Riferimento originale: ${this.currentEditingReference.originalPath}:${this.currentEditingReference.originalLine}</p>
+        <p>Seleziona una o più righe in un file per impostare un nuovo puntatore</p>
+    </div>
+    <div class="edit-mode-selection" id="current-selection">
+        Nessuna selezione
+    </div>
+    <div class="edit-mode-actions">
+        <button id="confirm-edit" class="action-button confirm" disabled>Conferma</button>
+        <button id="cancel-edit" class="action-button cancel">Annulla</button>
     </div>
 </div>
 

@@ -418,3 +418,119 @@ button:hover {
 .req-actions li:hover {
     background-color: var(--vscode-list-hoverBackground);
 }
+
+/**
+ * Edit Mode
+ */
+
+.hidden {
+    display: none;
+}
+
+/* Stili per la modalità di editing */
+.edit-mode-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--vscode-editor-background);
+    border-top: 2px solid var(--vscode-activityBarBadge-background);
+    padding: 15px;
+    z-index: 1000;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.edit-mode-header {
+    margin-bottom: 10px;
+}
+
+.edit-mode-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--vscode-editor-foreground);
+}
+
+.edit-mode-subtitle {
+    font-size: 12px;
+    color: var(--vscode-descriptionForeground);
+    margin-top: 2px;
+}
+
+.edit-mode-instructions {
+    margin-bottom: 15px;
+    font-size: 13px;
+    color: var(--vscode-editor-foreground);
+}
+
+.edit-mode-selection {
+    background-color: var(--vscode-editor-lineHighlightBackground);
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-family: var(--vscode-editor-font-family);
+    font-size: var(--vscode-editor-font-size);
+}
+
+.edit-mode-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.action-button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.action-button.confirm {
+    background-color: var(--vscode-button-background);
+    color: var(--vscode-button-foreground);
+}
+
+.action-button.confirm:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.action-button.cancel {
+    background-color: var(--vscode-button-secondaryBackground);
+    color: var(--vscode-button-secondaryForeground);
+}
+
+/* Dialog di conferma */
+.confirm-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.confirm-dialog-content {
+    background-color: var(--vscode-editor-background);
+    border-radius: 6px;
+    padding: 20px;
+    width: 400px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.confirm-dialog-content h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--vscode-editor-foreground);
+}
+
+.confirm-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}

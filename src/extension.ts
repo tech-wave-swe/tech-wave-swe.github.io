@@ -13,7 +13,7 @@ import {RequirementsServiceFacade} from "./Facades/RequirementsServiceFacade";
 import FileSystemService from "./Services/FileSystemService";
 import ConfigService from "./Services/ConfigService";
 import {ChatService} from "./Services/ChatService";
-import {GlobalStateService, StateKeys} from "./Services/GlobalStateService";
+import {GlobalStateService} from "./Services/GlobalStateService";
 import {RequirementsService} from "./Services/RequirementsService";
 import {FilterService} from "./Services/FilterService";
 import {ChatWebView} from "./WebViews/ChatWebView";
@@ -137,6 +137,13 @@ function _initializeTrackerViewProvider(context: vscode.ExtensionContext) {
       "requirementsTracker.trackerView",
       trackerWebviewProvider,
     ),
+  );
+
+  // Handle events
+  context.subscriptions.push(
+    vscode.window.onDidChangeTextEditorSelection((event) => {
+      trackerWebviewProvider.onChangeTextEditorSelection(event);
+    })
   );
 }
 
