@@ -20,11 +20,10 @@ describe("ConfigService", () => {
     // Mock workspace.getConfiguration to return default values
     (workspace.getConfiguration as jest.Mock).mockReturnValue({
       endpoint: "http://global-endpoint",
+      bearerToken: "your-secret-token-here",
       model: "global-model",
       embeddingModel: "global-embedding-model",
       temperature: 0.5,
-      chunkOverlap: 100,
-      chunkSize: 500,
       maxResults: 3,
     });
   });
@@ -33,11 +32,10 @@ describe("ConfigService", () => {
     fileSystemService.read.mockImplementation(() => {
       return JSON.stringify({
         endpoint: "http://localhost:11434",
+        bearerToken: "your-secret-token-here",
         model: "qwen2.5-coder:7b",
         embeddingModel: "nomic-embed-text:latest",
         temperature: 0.7,
-        chunkOverlap: 200,
-        chunkSize: 1000,
         maxResults: 5,
         filters: {
           path: {
@@ -62,11 +60,10 @@ describe("ConfigService", () => {
 
     const testConfig: Config = {
       endpoint: "http://localhost:11434",
+      bearerToken: "your-secret-token-here",
       model: "qwen2.5-coder:7b",
       embeddingModel: "nomic-embed-text:latest",
       temperature: 0.7,
-      chunkOverlap: 200,
-      chunkSize: 1000,
       maxResults: 5,
       filters: {
         path: {
@@ -104,11 +101,10 @@ describe("ConfigService", () => {
     // Local values should override global ones
     expect(config).toEqual({
       endpoint: "http://local-endpoint", // from local
+      bearerToken: "your-secret-token-here",
       model: "local-model", // from local
       embeddingModel: "global-embedding-model", // from global
       temperature: 0.5, // from global
-      chunkOverlap: 100, // from global
-      chunkSize: 500, // from global
       maxResults: 3, // from global
       filters: {
         path: { type: "path", include: [], exclude: [] },
@@ -127,11 +123,10 @@ describe("ConfigService", () => {
 
     expect(config).toEqual({
       endpoint: "http://global-endpoint",
+      bearerToken: "your-secret-token-here",
       model: "global-model",
       embeddingModel: "global-embedding-model",
       temperature: 0.5,
-      chunkOverlap: 100,
-      chunkSize: 500,
       maxResults: 3,
       filters: {
         path: { type: "path", include: [], exclude: [] },

@@ -1,5 +1,6 @@
 import { LangChainOllamaAdapter } from "../../../Adapters/LangChainOllamaAdapter";
 import { Ollama, OllamaEmbeddings } from "@langchain/ollama";
+import { ConfigServiceFacade } from "../../../Facades/ConfigServiceFacade";
 
 // Mock of the Ollama instance with only the invoke method
 const mockOllamaInstance = {
@@ -19,6 +20,7 @@ jest.mock("../../../Facades/ConfigServiceFacade", () => ({
       getOllamaModel: jest.fn(() => "fake-ollama-model"),
       getEmbeddingModel: jest.fn(() => "fake-embedding-model"),
       getTemperature: jest.fn(() => 0.7),
+      getBearerToken: jest.fn(() => "fake-token"),
     })),
   },
 }));
@@ -29,80 +31,100 @@ jest.mock("@langchain/ollama", () => ({
   OllamaEmbeddings: jest.fn(() => mockEmbeddingsInstance),
 }));
 
-// TEST SUITE
 describe("LangChainOllamaAdapter", () => {
   let adapter: LangChainOllamaAdapter;
 
   beforeEach(() => {
     jest.clearAllMocks();
+
     adapter = new LangChainOllamaAdapter();
   });
 
-  // INITIALIZATION TEST
-  it("should initialize Ollama and Embeddings correctly", () => {
-    // Verify that the returned embeddings instance is the mock
-    expect(adapter.getEmbeddings()).toBe(mockEmbeddingsInstance);
+  describe("_initialize", () => {
+    it("should initialize Ollama and Embeddings with correct parameters", () => {
+      expect(Ollama).toHaveBeenCalledWith({
+        baseUrl: "http://fake-endpoint",
+        model: "fake-ollama-model",
+        temperature: 0.7,
+        headers: new Headers({ Authorization: "Bearer fake-token" }),
+      });
+
+      expect(OllamaEmbeddings).toHaveBeenCalledWith({
+        baseUrl: "http://fake-endpoint",
+        model: "fake-embedding-model",
+        headers: new Headers({ Authorization: "Bearer fake-token" }),
+      });
+    });
+
+    it("should initialize Ollama and Embeddings without bearer token", () => {
+      (ConfigServiceFacade.GetInstance as jest.Mock).mockReturnValue({
+        getEndpoint: jest.fn().mockReturnValue("http://localhost:11434"),
+        getOllamaModel: jest.fn(() => "fake-ollama-model"),
+        getEmbeddingModel: jest.fn(() => "fake-embedding-model"),
+        getTemperature: jest.fn(() => 0.7),
+        getBearerToken: jest.fn().mockReturnValue(undefined),
+      });
+      adapter["_initialize"]();
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      expect((adapter as any)._ollama).not.toBe(null);
+    });
   });
 
-  // RESPONSE GENERATION TEST
-  it("should generate a response correctly", async () => {
-    // Configure the mock to return a fixed response
-    mockOllamaInstance.invoke.mockResolvedValue("Generated response");
+  describe("generate", () => {
+    it("should generate a response correctly", async () => {
+      mockOllamaInstance.invoke.mockResolvedValue("Generated response");
 
-    // Call the method and verify the result
-    const response = await adapter.generate("Test prompt");
-    expect(response).toBe("Generated response");
+      const response = await adapter.generate("Test prompt");
+      expect(response).toBe("Generated response");
+    });
+
+    it("should handle errors in generate method", async () => {
+      mockOllamaInstance.invoke.mockRejectedValue(new Error("Mocked error"));
+
+      await expect(adapter.generate("Test prompt")).rejects.toThrow(
+        "Failed to generate response: Error: Mocked error",
+      );
+    });
   });
 
-  // ERROR HANDLING IN RESPONSE GENERATION
-  it("should handle errors in generate method", async () => {
-    // Configure the mock to simulate an error
-    mockOllamaInstance.invoke.mockRejectedValue(new Error("Mocked error"));
+  describe("generateEmbeddings", () => {
+    it("should generate embeddings correctly", async () => {
+      mockEmbeddingsInstance.embedQuery.mockResolvedValue([0.1, 0.2, 0.3]);
 
-    // Verify that the error is correctly propagated
-    await expect(adapter.generate("Test prompt")).rejects.toThrow(
-      "Failed to generate response: Error: Mocked error",
-    );
+      const embeddings = await adapter.generateEmbeddings("Test text");
+      expect(embeddings).toEqual([0.1, 0.2, 0.3]);
+    });
+
+    it("should handle errors in generateEmbeddings method", async () => {
+      mockEmbeddingsInstance.embedQuery.mockRejectedValue(
+        new Error("Mocked embedding error"),
+      );
+
+      await expect(adapter.generateEmbeddings("Test text")).rejects.toThrow(
+        "Failed to generate embeddings: Error: Mocked embedding error",
+      );
+    });
   });
 
-  // EMBEDDINGS GENERATION TEST
-  it("should generate embeddings correctly", async () => {
-    // Configure the mock to return a fake array of values
-    mockEmbeddingsInstance.embedQuery.mockResolvedValue([0.1, 0.2, 0.3]);
-
-    // Call the method and verify the result
-    const embeddings = await adapter.generateEmbeddings("Test text");
-    expect(embeddings).toEqual([0.1, 0.2, 0.3]);
+  describe("getEmbeddings", () => {
+    it("should initialize Ollama and Embeddings correctly", () => {
+      expect(adapter.getEmbeddings()).toBe(mockEmbeddingsInstance);
+    });
   });
 
-  // ERROR HANDLING IN EMBEDDINGS GENERATION
-  it("should handle errors in generateEmbeddings method", async () => {
-    // Configure the mock to simulate an error
-    mockEmbeddingsInstance.embedQuery.mockRejectedValue(
-      new Error("Mocked embedding error"),
-    );
+  describe("refreshModels", () => {
+    it("should refresh models", () => {
+      const mockedOllama = jest.mocked(Ollama);
+      const mockedEmbeddings = jest.mocked(OllamaEmbeddings);
 
-    // Verify that the error is correctly propagated
-    await expect(adapter.generateEmbeddings("Test text")).rejects.toThrow(
-      "Failed to generate embeddings: Error: Mocked embedding error",
-    );
-  });
+      const initialOllamaCalls = mockedOllama.mock.calls.length;
+      const initialEmbeddingCalls = mockedEmbeddings.mock.calls.length;
 
-  // MODEL REFRESH TEST
-  it("should refresh models", () => {
-    // Get the mocked original classes
-    const mockedOllama = jest.mocked(Ollama);
-    const mockedEmbeddings = jest.mocked(OllamaEmbeddings);
+      adapter.refreshModels();
 
-    // Count how many times they have been called
-    const initialOllamaCalls = mockedOllama.mock.calls.length;
-    const initialEmbeddingCalls = mockedEmbeddings.mock.calls.length;
-
-    // Execute the refresh
-    adapter.refreshModels();
-
-    // Verify that new instances have been created
-    expect(mockedOllama).toHaveBeenCalledTimes(initialOllamaCalls + 1);
-    expect(mockedEmbeddings).toHaveBeenCalledTimes(initialEmbeddingCalls + 1);
+      expect(mockedOllama).toHaveBeenCalledTimes(initialOllamaCalls + 1);
+      expect(mockedEmbeddings).toHaveBeenCalledTimes(initialEmbeddingCalls + 1);
+    });
   });
 });

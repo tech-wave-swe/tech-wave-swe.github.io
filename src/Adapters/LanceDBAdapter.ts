@@ -3,7 +3,6 @@ import * as path from "path";
 import { connect, Table, Connection } from "@lancedb/lancedb";
 import { OllamaEmbeddings } from "@langchain/ollama";
 import { ConfigServiceFacade } from "../Facades/ConfigServiceFacade";
-import FileSystemService from "../Services/FileSystemService";
 import { File } from "../Models/File";
 import { Requirement } from "../Models/Requirement";
 import { Chunk } from "../Models/Chunk";
@@ -19,10 +18,7 @@ export class LanceDBAdapter implements IVectorDatabase {
 
   constructor(storagePath: string) {
     this._dbPath = path.join(storagePath, "lancedb");
-    this._initialize().catch((event) => {
-      console.error("Error initializing LanceDB:", event);
-      throw new Error(`Failed to initialize LanceDB: ${event}`);
-    });
+    this._initialize();
   }
 
   public async resetDatabase(): Promise<void> {
@@ -42,7 +38,6 @@ export class LanceDBAdapter implements IVectorDatabase {
       fs.mkdirSync(this._dbPath, { recursive: true });
       console.log("Created fresh database directory");
 
-      // Initialize
       await this._initialize();
       console.log("Database reset complete");
     } catch (error) {
@@ -51,7 +46,10 @@ export class LanceDBAdapter implements IVectorDatabase {
     }
   }
 
-  public async fileExists(filePath: string): Promise<boolean> {
+  public async fileExists(
+    filePath: string,
+    checksum?: string,
+  ): Promise<boolean> {
     try {
       const table = await this._getTable(COLLECTION_TYPE.file);
 
@@ -60,28 +58,18 @@ export class LanceDBAdapter implements IVectorDatabase {
         .where(`file_path = '${filePath}'`)
         .toArray();
 
-      const checksum = FileSystemService.getChecksum(filePath);
+      // if no checksum is provided, check only for file path
+      if (!checksum) {
+        return rows.some((doc) => doc.file_path === filePath);
+      }
 
-      const results = rows.filter((doc) => {
-        try {
-          if (doc.file_path && typeof doc.file_path === "string") {
-            return doc.file_path === filePath && doc.checksum === checksum;
-          }
-          return false;
-        } catch (error) {
-          console.error(
-            `Error checking document existence for ${filePath}:`,
-            error,
-          );
-          return false;
-        }
-      });
-
-      console.log(`Trovati ${results.length} documenti corrispondenti.`);
-      return results.length > 0 ? true : false;
+      // If checksum is provided, verify it matches
+      return rows.some(
+        (doc) => doc.file_path === filePath && doc.checksum === checksum,
+      );
     } catch (error) {
-      console.error("Errore durante la ricerca nel documento LanceDB:", error);
-      throw error; // Rilancia l'errore per gestione esterna se necessario
+      console.error(`Error checking file existence for ${filePath}:`, error);
+      throw error;
     }
   }
 
@@ -96,15 +84,16 @@ export class LanceDBAdapter implements IVectorDatabase {
 
       for (const file of files) {
         if (await this.fileExists(file.filePath)) {
-          console.log(`Skipping existing file: ${file.filePath}`);
-          continue;
+          if (await this.fileExists(file.filePath, file.checksum)) {
+            console.log(`Skipping existing file: ${file.filePath}`);
+            continue;
+          } else {
+            console.log(
+              `File ${file.filePath} already exists, deleting it first`,
+            );
+            await this.deleteFiles([file]);
+          }
         }
-
-        // Generate embedding for file content
-        // const embedding = await this._embeddings.embedQuery(
-        //   file.originalContent,
-        // );
-
         await table.add([
           {
             vector: Array(this._embeddingDimension).fill(0),
@@ -198,13 +187,10 @@ export class LanceDBAdapter implements IVectorDatabase {
     maxResults = 0,
   ): Promise<File[]> {
     try {
-      // Get the table
       const table = await this._getTable(COLLECTION_TYPE.file);
 
-      // Generate embedding for the query
       const embedding = await this._embeddings.embedQuery(question);
 
-      // Set the limit
       const limit =
         maxResults || ConfigServiceFacade.GetInstance().getMaxResults();
 
@@ -245,13 +231,10 @@ export class LanceDBAdapter implements IVectorDatabase {
     maxResults = 0,
   ): Promise<Requirement[]> {
     try {
-      // Get the table
       const table = await this._getTable(COLLECTION_TYPE.requirements);
 
-      // Generate embedding for the query
       const query = await this._embeddings.embedQuery(question);
 
-      // Set the limit
       const limit =
         maxResults || ConfigServiceFacade.GetInstance().getMaxResults();
 
@@ -264,7 +247,6 @@ export class LanceDBAdapter implements IVectorDatabase {
       const requirements: Requirement[] = [];
 
       const keyMapping: Record<string, string> = {
-        id: "id",
         name: "name",
         description: "description",
         type: "type",
@@ -296,13 +278,10 @@ export class LanceDBAdapter implements IVectorDatabase {
     maxResults = 0,
   ): Promise<Chunk[]> {
     try {
-      // Get the table
       const table = await this._getTable(COLLECTION_TYPE.chunks);
 
-      // Generate embedding for the query
       const query = await this._embeddings.embedQuery(question);
 
-      // Set the limit
       const limit =
         maxResults || ConfigServiceFacade.GetInstance().getMaxResults();
 
@@ -341,7 +320,37 @@ export class LanceDBAdapter implements IVectorDatabase {
     }
   }
 
-  // This method will be used by other services that need direct access to embeddings
+  public async deleteFiles(files: File[]): Promise<void> {
+    try {
+      if (files.length === 0) {
+        console.log("No files to remove");
+        return;
+      }
+
+      const files_table = await this._getTable(COLLECTION_TYPE.file);
+      const chunks_table = await this._getTable(COLLECTION_TYPE.chunks);
+
+      for (const file of files) {
+        await files_table.delete(`file_path = '${file.filePath}'`);
+
+        const rows = await chunks_table
+          .query()
+          .where(`file_path = '${file.filePath}'`)
+          .toArray();
+
+        console.log(`Found ${rows.length} corresponding chunks to the file`);
+
+        await chunks_table.delete(`file_path = '${file.filePath}'`);
+      }
+
+      console.log(`Deleted ${files.length} files`);
+      return;
+    } catch (error) {
+      console.log(`Error while deleting files: ${error}`);
+      throw error;
+    }
+  }
+
   public getEmbeddings(): OllamaEmbeddings {
     return this._embeddings;
   }
@@ -360,14 +369,18 @@ export class LanceDBAdapter implements IVectorDatabase {
     const baseUrl = ConfigServiceFacade.GetInstance().getEndpoint();
     const embeddingModel =
       ConfigServiceFacade.GetInstance().getEmbeddingModel();
+    const bearerToken = ConfigServiceFacade.GetInstance().getBearerToken();
+    const headers = bearerToken
+      ? new Headers({ Authorization: `Bearer ${bearerToken}` })
+      : undefined;
 
     this._embeddings = new OllamaEmbeddings({
       baseUrl: baseUrl,
       model: embeddingModel,
+      headers: headers,
     });
 
     try {
-      // Initialize connection
       this._dbConnection = await connect(this._dbPath);
     } catch (error) {
       console.error("Error connecting to LanceDB:", error);
@@ -375,7 +388,6 @@ export class LanceDBAdapter implements IVectorDatabase {
     }
   }
 
-  // Determine the embedding dimension by generating a sample embedding
   private async _determineEmbeddingDimension(): Promise<number> {
     try {
       const sampleText = "Sample text for embedding dimension detection";
@@ -411,7 +423,6 @@ export class LanceDBAdapter implements IVectorDatabase {
       if (await this._tableExists(collectionName)) {
         return await db.openTable(collectionName);
       } else {
-        // Create a new table with proper schema
         console.log(`Creating table ${collectionName}...`);
 
         this._embeddingDimension = await this._determineEmbeddingDimension();

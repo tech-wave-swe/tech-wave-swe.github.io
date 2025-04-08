@@ -21,7 +21,7 @@
     "configuration": {
       "title": "Requirements Tracker",
       "properties": {
-        "reqTracker.model": {
+        "requirementsTracker.model": {
           "type": "string",
           "enum": [
             "qwen2.5-coder:7b",
@@ -34,13 +34,13 @@
           "description": "Ollama model to use",
           "order": 2
         },
-        "reqTracker.custom-model": {
+        "requirementsTracker.custom-model": {
           "type": "string",
           "default": "",
           "description": "Custom model name",
           "order": 3
         },
-        "reqTracker.embeddingModel": {
+        "requirementsTracker.embeddingModel": {
           "type": "string",
           "enum": [
             "mxbai-embed-large:latest",
@@ -52,36 +52,31 @@
           "description": "Ollama model to use for embeddings",
           "order": 4
         },
-        "reqTracker.custom-embeddingModel": {
+        "requirementsTracker.custom-embeddingModel": {
           "type": "string",
           "default": "",
           "description": "Custom embedding model name",
           "order": 5
         },
-        "reqTracker.maxResults": {
-          "type": "number",
-          "default": 5,
-          "description": "Maximum number of results to return from vector search"
-        },
-        "reqTracker.temperature": {
-          "type": "number",
-          "default": 0.7,
-          "description": "Temperature parameter for text generation"
-        },
-        "reqTracker.endpoint": {
+        "requirementsTracker.endpoint": {
           "type": "string",
           "default": "http://localhost:11434",
           "description": "Endpoint for Ollama service"
         },
-        "reqTracker.chunkSize": {
-          "type": "number",
-          "default": 1000,
-          "description": "Size of text chunks for document splitting"
+        "requirementsTracker.bearerToken": {
+          "type": "string",
+          "default": "",
+          "description": "(Optional) Bearer token for authenticating with Ollama API if behind a secure reverse-proxy"
         },
-        "reqTracker.chunkOverlap": {
+        "requirementsTracker.maxResults": {
           "type": "number",
-          "default": 200,
-          "description": "Overlap between consecutive chunks"
+          "default": 5,
+          "description": "Maximum number of results to return from vector search"
+        },
+        "requirementsTracker.temperature": {
+          "type": "number",
+          "default": 0.7,
+          "description": "Temperature parameter for text generation"
         }
       }
     },
@@ -200,7 +195,7 @@
     "xml2js": "^0.5.0"
   },
   "devDependencies": {
-    "@eslint/js": "9.15.0",
+    "@eslint/js": "9.24.0",
     "@jest/globals": "^29.7.0",
     "@stylistic/eslint-plugin": "2.11.0",
     "@types/glob": "^8.1.0",
@@ -219,7 +214,6 @@
     "ts-jest": "^29.3.0",
     "ts-node": "^10.9.2",
     "typescript": "^4.8.4",
-    "typescript-eslint": "8.15.0",
-    "vscode-test": "^1.6.1"
+    "typescript-eslint": "8.15.0"
   }
 }

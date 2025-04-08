@@ -33,18 +33,21 @@ export function activate(context: vscode.ExtensionContext) {
     // Initialize Services
     _initializeConfigService(context);
 
+    const languageModel = new LangChainOllamaAdapter();
+    const lanceDBAdapter = new LanceDBAdapter(context.globalStorageUri.fsPath);
+
     // Initialize View Providers
-    _initializeChatViewProvider(context);
-    _initializeTrackerViewProvider(context);
+    _initializeChatViewProvider(context, languageModel, lanceDBAdapter);
+    _initializeTrackerViewProvider(context, lanceDBAdapter);
 
     // Initialize Commands
-    _initializeCommands(context);
+    _initializeCommands(context, languageModel, lanceDBAdapter);
 
     // Handle Events
-    _handleEvents(context);
+    _handleEvents(context, languageModel, lanceDBAdapter);
 
     // Check system requirements on startup
-    _startupCheck(context);
+    _startupCheck(context, languageModel, lanceDBAdapter);
 
     console.log("Requirements Tracker extension is now active");
   } catch (error) {
@@ -68,12 +71,13 @@ function _initializeConfigService(context: vscode.ExtensionContext) {
   ConfigServiceFacade.Init(configService);
 }
 
-function _initializeChatViewProvider(context: vscode.ExtensionContext) {
+function _initializeChatViewProvider(
+  context: vscode.ExtensionContext,
+  languageModel: LangChainOllamaAdapter,
+  lanceDBAdapter: LanceDBAdapter,
+) {
   const globalStateService = new GlobalStateService(context.globalState);
   const chatService = new ChatService(globalStateService);
-
-  const lanceDBAdapter = new LanceDBAdapter(context.globalStorageUri.fsPath);
-  const languageModel = new LangChainOllamaAdapter();
 
   const inferenceService = new InferenceService(languageModel, lanceDBAdapter);
 
@@ -96,13 +100,14 @@ function _initializeChatViewProvider(context: vscode.ExtensionContext) {
   );
 }
 
-function _initializeTrackerViewProvider(context: vscode.ExtensionContext) {
+function _initializeTrackerViewProvider(
+  context: vscode.ExtensionContext,
+  lanceDBAdapter: LanceDBAdapter,
+) {
   const parsingService = new ParsingService();
   const requirementsService = new RequirementsService(
     new GlobalStateService(context.globalState),
   );
-
-  const lanceDBAdapter = new LanceDBAdapter(context.globalStorageUri.fsPath);
 
   const documentServiceFacade = new DocumentServiceFacade(
     new DocumentFormatterService(),
@@ -147,16 +152,20 @@ function _initializeTrackerViewProvider(context: vscode.ExtensionContext) {
   );
 }
 
-function _handleEvents(context: vscode.ExtensionContext) {
-  const ollamaAdapter = new LangChainOllamaAdapter();
-  const lanceDBAdapter = new LanceDBAdapter(context.globalStorageUri.fsPath);
-
+function _handleEvents(
+  context: vscode.ExtensionContext,
+  languageModel: LangChainOllamaAdapter,
+  lanceDBAdapter: LanceDBAdapter,
+) {
   // Handle configuration changes
   context.subscriptions.push(
     vscode.workspace.onDidChangeConfiguration(async (event) => {
-      if (event.affectsConfiguration("reqTracker")) {
-        await ollamaAdapter.refreshModels();
+      if (event.affectsConfiguration("requirementsTracker")) {
+        ConfigServiceFacade.GetInstance().sync();
+
+        await languageModel.refreshModels();
         await lanceDBAdapter.refreshEmbeddings();
+
         vscode.window.showInformationMessage(
           "Requirements Tracker configuration updated",
         );
@@ -165,18 +174,17 @@ function _handleEvents(context: vscode.ExtensionContext) {
   );
 }
 
-function _initializeCommands(context: vscode.ExtensionContext) {
-  const vectorDatabase = new LanceDBAdapter(context.globalStorageUri.fsPath);
-
+function _initializeCommands(
+  context: vscode.ExtensionContext,
+  languageModel: LangChainOllamaAdapter,
+  lanceDBAdapter: LanceDBAdapter,
+) {
   const globalStateService = new GlobalStateService(context.globalState);
   const chatService = new ChatService(globalStateService);
   const requirementsService = new RequirementsService(
     new GlobalStateService(context.globalState),
   );
-  const inferenceService = new InferenceService(
-    new LangChainOllamaAdapter(),
-    vectorDatabase,
-  );
+  const inferenceService = new InferenceService(languageModel, lanceDBAdapter);
   const fileSystemService = new FileSystemService(context.extensionUri.fsPath);
   const chatWebView = new ChatWebView(context.extensionUri, fileSystemService);
 
@@ -191,7 +199,7 @@ function _initializeCommands(context: vscode.ExtensionContext) {
   const clearRequirementsHistory = new ClearRequirementsHistoryCommand(
     requirementsService,
   );
-  const resetDatabase = new ResetDatabaseCommand(vectorDatabase);
+  const resetDatabase = new ResetDatabaseCommand(lanceDBAdapter);
   const interrogateSelection = new InterrogateSelectionCommand(
     chatWebviewProvider,
     requirementsService,
@@ -215,9 +223,11 @@ function _initializeCommands(context: vscode.ExtensionContext) {
   ]);
 }
 
-function _startupCheck(context: vscode.ExtensionContext) {
-  const languageModel = new LangChainOllamaAdapter();
-  const lanceDBAdapter = new LanceDBAdapter(context.globalStorageUri.fsPath);
+function _startupCheck(
+  context: vscode.ExtensionContext,
+  languageModel: LangChainOllamaAdapter,
+  lanceDBAdapter: LanceDBAdapter,
+) {
   const inferenceService = new InferenceService(languageModel, lanceDBAdapter);
 
   inferenceService.checkSystemRequirements().catch((error) => {

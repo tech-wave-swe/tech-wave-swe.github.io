@@ -114,8 +114,6 @@ export class RequirementsTrackerService {
     let unlikely = 0;
 
     try {
-      await this.processWorkspaceFiles();
-
       return await vscode.window.withProgress(
         {
           location: vscode.ProgressLocation.Notification,
@@ -123,6 +121,8 @@ export class RequirementsTrackerService {
           cancellable: true,
         },
         async (progress, token) => {
+          await this.processWorkspaceFiles();
+
           const total = requirements.length;
           const batchSize = 20;
 

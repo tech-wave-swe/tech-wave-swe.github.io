@@ -26,14 +26,6 @@ export class DocumentServiceFacade {
     // Format all documents first
     for (const filePath of filePaths) {
       try {
-        const exists = await this._vectorDatabase.fileExists(filePath);
-
-        if (exists) {
-          console.log(`Skipping ${filePath} - already indexed`);
-          existingFiles.push(filePath);
-          continue;
-        }
-
         // Check file size before reading
         const stats = fs.statSync(filePath);
         const MAX_FILE_SIZE = 20 * 1024 * 1024; // 20MB limit
@@ -46,9 +38,18 @@ export class DocumentServiceFacade {
           continue;
         }
 
-        // TODO: Use FileSystemService to read file content
+        // Read file content and calculate checksum
         const content = fs.readFileSync(filePath, "utf8");
         const checksum = FileSystemService.getChecksum(filePath);
+
+        // Check if file already exists with the same checksum
+        const exists = await this._vectorDatabase.fileExists(filePath, checksum);
+        
+        if (exists) {
+          console.log(`Skipping ${filePath} - already indexed with same checksum`);
+          existingFiles.push(filePath);
+          continue;
+        }
 
         const file = {
           originalContent: content,
@@ -56,8 +57,9 @@ export class DocumentServiceFacade {
           checksum: checksum,
         } as File;
 
-        this._vectorDatabase.addFiles([file]);
+        await this._vectorDatabase.addFiles([file]);
 
+        // Only format and add chunks if the file is new or has been modified
         formattedDocs.push(
           ...this._formatterService.formatSourceCode(content, filePath),
         );
