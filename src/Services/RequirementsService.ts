@@ -1,5 +1,5 @@
-import { Requirement } from "../Models/Requirement";
-import { GlobalStateService, StateKeys } from "./GlobalStateService";
+import {Requirement, RequirementStatus} from "../Models/Requirement";
+import {GlobalStateService, StateKeys} from "./GlobalStateService";
 import {CodeReference} from "../Models/TrackingModels";
 
 export class RequirementsService {
@@ -36,6 +36,8 @@ export class RequirementsService {
     }
 
     res.codeReference = codeReference;
+    res.status = RequirementStatus.TRACKED;
+
     this._requirements.set(reqId, res);
 
     await this._saveRequirements();

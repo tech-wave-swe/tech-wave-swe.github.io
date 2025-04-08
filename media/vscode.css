@@ -92,7 +92,8 @@ textarea::placeholder {
 
 .edit-req-action,
 .delete-req-action,
-.confirm-req-action {
+.confirm-req-action,
+.view-req-action{
 	padding: 4px 6px;
 	background-color: transparent;
 	color: var(--vscode-button-foreground);
@@ -102,7 +103,7 @@ textarea::placeholder {
 	transition: background-color 0.2s ease;
 }
 
-.edit-req-action:hover {
+.edit-req-action:hover, .view-req-action:hover {
 	background-color: var(--vscode-editorInfo-foreground);
 }
 .delete-req-action:hover {

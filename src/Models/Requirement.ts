@@ -6,7 +6,14 @@ export interface Requirement {
   description: string;
   type: string;
   version: string;
-  status?: string;
+  status: RequirementStatus;
   score?: string;
   codeReference?: CodeReference;
+}
+
+export enum RequirementStatus {
+  TRACKED = "Tracked",
+  NOT_TRACKED = "Not Tracked",
+  PENDING = "Pending",
+  UNKNOWN = "Unknown"
 }

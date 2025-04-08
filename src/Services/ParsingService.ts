@@ -1,4 +1,4 @@
-import { Requirement } from "../Models/Requirement";
+import {Requirement, RequirementStatus} from "../Models/Requirement";
 import * as csv from "csv-parse/sync";
 import * as xml2js from "xml2js";
 
@@ -98,7 +98,7 @@ export class ParsingService {
       name: record.Name || record.name || record.title || record.Title || "",
       description: record.Notes || record.Description || record.text || "",
       type: record.Type || record.type || "unspecified",
-      status: record.status || record.Status || "draft",
+      status: record.status || record.Status || RequirementStatus.NOT_TRACKED,
       version: record.Version || record.version || "1.0",
     };
   }
@@ -109,7 +109,7 @@ export class ParsingService {
     let name = "";
     let description = "";
     let type = "unspecified";
-    let status = "draft";
+    let status = RequirementStatus.NOT_TRACKED;
     let version = "1.0";
 
     // Extract ID from attributes if available
@@ -137,7 +137,7 @@ export class ParsingService {
           } else if (attr_name.includes("type")) {
             type = attr.VALUE || attr.VALUES || "unspecified";
           } else if (attr_name.includes("status")) {
-            status = attr.VALUE || attr.VALUES || "draft";
+            status = attr.VALUE || attr.VALUES || RequirementStatus.NOT_TRACKED;
           } else if (attr_name.includes("version")) {
             version = attr.VALUE || attr.VALUES || "1.0";
           }

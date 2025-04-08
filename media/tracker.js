@@ -624,7 +624,6 @@ function updateRequirementsTable() {
   const requirementsWrapper = document.getElementById("requirements-table-wrapper");
 
   requirementsWrapper.innerHTML = "";
-  reqReferences = [];
 
   if (requirements.length === 0) {
     requirementsWrapper.innerHTML = "<p>No requirements available.</p>";
@@ -652,26 +651,11 @@ function updateRequirementsTable() {
   requirements.forEach((req) => {
     const item = document.createElement("tr");
 
-    // {
-    //   "id": "REQ-39",
-    //   "description": "ADC oversampling features shall be disabled by default during initialization.",
-    //   "type": "Requirement",
-    //   "priority": "medium",
-    //   "status": "draft",
-    //   "version": "1.0",
-    //   "metadata": {
-    //   "createdAt": "2025-04-04T09:52:27.394Z",
-    //     "source": "csv",
-    //     "guid": "B4BC92E3-A4A0-4e93-91C6-A9FFF65B9656",
-    //     "rawData": {
-    //     "GUID": "{B4BC92E3-A4A0-4e93-91C6-A9FFF65B9656}",
-    //       "Name": "REQ-39",
-    //       "Notes": "ADC oversampling features shall be disabled by default during initialization.",
-    //       "Type": "Requirement",
-    //       "Version": "1.0"
-    //   }
-    // }
-    // }
+    const viewAction = req.codeReference ? `
+        <li class="view-req-action" title="View tracked implementation" data-requirement="${req.id}" data-path="${req.codeReference.filePath}" data-line="${req.codeReference.lineNumber}">
+            <i class="codicon codicon-code"></i>
+        </li>
+    ` : "";
 
     item.innerHTML = `
       <td><input id="${req.id}" name="${req.id}" type="checkbox"></td>
@@ -680,10 +664,11 @@ function updateRequirementsTable() {
       <td class="req-table-status">${req.status}</td>
       <td class="req-table-actions">
         <ul>
-          <li class="edit-req-action" data-requirement="${req.id}">
+          ${viewAction}
+          <li class="edit-req-action" title="Edit tracked implementation" data-requirement="${req.id}">
             <i class="codicon codicon-edit"></i>
           </li>
-          <li class="delete-req-action" data-requirement="${req.id}">
+          <li class="delete-req-action" title="Delete Requirement" data-requirement="${req.id}">
             <i class="codicon codicon-trash"></i>
           </li>
         </ul>
@@ -702,6 +687,7 @@ function handleRequirementsEvents() {
   const selectRequirements = document.querySelectorAll("td input");
   const deleteReqActions = document.querySelectorAll(".delete-req-action");
   const editReqActions = document.querySelectorAll(".edit-req-action");
+  const viewReqActions = document.querySelectorAll(".view-req-action");
 
   // Select Requirements interaction
   selectRequirements.forEach(requirement => {
@@ -733,6 +719,20 @@ function handleRequirementsEvents() {
       vscode.postMessage({
         type: "editRequirement",
         requirementId,
+      });
+    });
+  });
+
+  viewReqActions.forEach(viewReqAction => {
+    viewReqAction.addEventListener("click", () => {
+      const requirementId = viewReqAction.getAttribute("data-requirement");
+      const filePath = viewReqAction.getAttribute("data-path");
+      const lineNumber = viewReqAction.getAttribute("data-line");
+
+      vscode.postMessage({
+        type: "openFile",
+        filePath: filePath,
+        lineStart: parseInt(lineNumber),
       });
     });
   });

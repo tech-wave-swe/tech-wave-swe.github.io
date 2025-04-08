@@ -240,6 +240,7 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
     }
 
     this._updateTrackingResultsDisplay();
+    this._updateRequirementsDisplay();
   }
 
   private async _onImportRequirements(
