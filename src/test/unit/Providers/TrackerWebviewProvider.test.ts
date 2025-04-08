@@ -1,12 +1,12 @@
-import { expect, jest } from "@jest/globals";
+import {expect, jest} from "@jest/globals";
+import type {TextDocument, TextEditor} from "vscode";
 import * as vscode from "vscode";
-import type { TextDocument, TextEditor } from "vscode";
-import { TrackerWebView } from "../../../WebViews/TrackerWebView";
-import { RequirementsServiceFacade } from "../../../Facades/RequirementsServiceFacade";
-import { TrackerWebviewProvider } from "../../../Providers/TrackerWebviewProvider";
-import { Requirement } from "../../../Models/Requirement";
-import { TrackingResultSummary } from "../../../Models/TrackingModels";
-import { window } from "../Mock/vscode";
+import {TrackerWebView} from "../../../WebViews/TrackerWebView";
+import {RequirementsServiceFacade} from "../../../Facades/RequirementsServiceFacade";
+import {TrackerWebviewProvider} from "../../../Providers/TrackerWebviewProvider";
+import {Requirement, RequirementStatus} from "../../../Models/Requirement";
+import {TrackingResultSummary} from "../../../Models/TrackingModels";
+import {TrackingResultService} from "../../../Services/TrackingResultService";
 
 jest.mock("path");
 
@@ -16,7 +16,9 @@ describe("TrackerWebviewProvider", () => {
   let mockRequirementsServiceFacade: jest.Mocked<RequirementsServiceFacade>;
   let mockExtensionUri: jest.Mocked<vscode.Uri>;
   let mockWebviewView: jest.Mocked<vscode.WebviewView>;
+  let mockTrackingResultService: jest.Mocked<TrackingResultService>;
   let mockRequirements: Requirement[];
+  let mockTrackingResultSummary: jest.Mocked<TrackingResultSummary>;
 
   beforeEach(() => {
     mockTrackerWebview = {
@@ -27,6 +29,25 @@ describe("TrackerWebviewProvider", () => {
       fsPath: "mock/extension/path",
     } as unknown as jest.Mocked<vscode.Uri>;
 
+    mockRequirements = [
+      {
+        id: "1",
+        name: "Requirement 1",
+        description: "Description 1",
+        type: "requirement",
+        version: "1.0.0",
+        status: RequirementStatus.TRACKED,
+      },
+      {
+        id: "2",
+        name: "Requirement 2",
+        description: "Description 2",
+        type: "requirement",
+        version: "1.0.0",
+        status: RequirementStatus.TRACKED,
+      },
+    ];
+
     mockRequirementsServiceFacade = {
       getAllRequirements: jest.fn<() => Requirement[]>(),
       importRequirements: jest.fn<() => Promise<Requirement[]>>(),
@@ -36,24 +57,22 @@ describe("TrackerWebviewProvider", () => {
       getUnimplementedRequirements: jest.fn(),
     } as unknown as jest.Mocked<RequirementsServiceFacade>;
 
-    mockRequirements = [
-      {
-        id: "1",
-        name: "Requirement 1",
-        description: "Description 1",
-        type: "requirement",
-        version: "1.0.0",
-        status: "implemented",
-      },
-      {
-        id: "2",
-        name: "Requirement 2",
-        description: "Description 2",
-        type: "requirement",
-        version: "1.0.0",
-        status: "implemented",
-      },
-    ];
+    mockTrackingResultSummary = {
+      totalRequirements: 2,
+      confirmedMatches: 0,
+      possibleMatches: 0,
+      unlikelyMatches: 0,
+      requirementDetails: new Map<string, Requirement>([
+        ["REQ-001", mockRequirements[0]],
+        ["REQ-002", mockRequirements[1]],
+      ]),
+    } as unknown as jest.Mocked<TrackingResultSummary>;
+
+    mockTrackingResultService = {
+      getTrakingResultSummary: jest.fn(() => mockTrackingResultSummary),
+      getRequirementDetails: jest.fn(),
+      saveTrackingResult: jest.fn(),
+    } as unknown as jest.Mocked<TrackingResultService>;
 
     // Create a mock WebviewView
     mockWebviewView = {
@@ -69,6 +88,7 @@ describe("TrackerWebviewProvider", () => {
     trackerWebviewProvider = new TrackerWebviewProvider(
       mockRequirementsServiceFacade,
       mockTrackerWebview,
+      mockTrackingResultService,
       mockExtensionUri,
     );
   });
@@ -425,7 +445,7 @@ describe("TrackerWebviewProvider", () => {
           name: "Unimplemented requirement",
           description: "Unimplemented requirement",
           type: "requirement",
-          status: "not-implemented",
+          status: RequirementStatus.NOT_TRACKED,
           version: "1.0.0",
         },
         {
@@ -433,7 +453,7 @@ describe("TrackerWebviewProvider", () => {
           name: "Another unimplemented requirement",
           description: "Another unimplemented requirement",
           type: "requirement",
-          status: "not-implemented",
+          status: RequirementStatus.NOT_TRACKED,
           version: "1.0.0",
         },
       ];

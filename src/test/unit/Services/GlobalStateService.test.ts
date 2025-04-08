@@ -1,11 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { expect, jest } from "@jest/globals";
-import {
-  GlobalStateService,
-  StateKeys,
-} from "../../../Services/GlobalStateService";
-import { ChatMessage } from "../../../Models/ChatMessage";
-import { Requirement } from "../../../Models/Requirement";
+import {expect, jest} from "@jest/globals";
+import {GlobalStateService, StateKeys,} from "../../../Services/GlobalStateService";
+import {ChatMessage} from "../../../Models/ChatMessage";
+import {Requirement, RequirementStatus} from "../../../Models/Requirement";
 
 import * as vscode from "vscode";
 
@@ -51,7 +48,7 @@ describe("GlobalStateService", () => {
           name: "Requirement 1",
           description: "Requirement 1",
           type: "requirement",
-          status: "implemented",
+          status: RequirementStatus.TRACKED,
           version: "1.0.0",
         },
         {
@@ -59,7 +56,7 @@ describe("GlobalStateService", () => {
           name: "Requirement 2",
           description: "Requirement 2",
           type: "requirement",
-          status: "implemented",
+          status: RequirementStatus.TRACKED,
           version: "1.0.0",
         },
       ];
@@ -125,7 +122,7 @@ describe("GlobalStateService", () => {
           name: "Requirement 1",
           description: "Requirement 1",
           type: "requirement",
-          status: "implemented",
+          status: RequirementStatus.TRACKED,
           version: "1.0.0",
         },
       ];

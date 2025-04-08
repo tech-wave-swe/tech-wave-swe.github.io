@@ -1,21 +1,34 @@
-import { describe, expect, it, jest, beforeEach } from "@jest/globals";
-import { RequirementsTrackerService } from "../../../Services/RequirementsTrackerService";
-import { IVectorDatabase } from "../../../Interfaces/IVectorDatabase";
-import { DocumentServiceFacade } from "../../../Facades/DocumentServiceFacade";
-import { FilterService } from "../../../Services/FilterService";
-import { Requirement } from "../../../Models/Requirement";
-import { Chunk } from "../../../Models/Chunk";
+import {beforeEach, describe, expect, it, jest} from "@jest/globals";
+import {RequirementsTrackerService} from "../../../Services/RequirementsTrackerService";
+import {IVectorDatabase} from "../../../Interfaces/IVectorDatabase";
+import {DocumentServiceFacade} from "../../../Facades/DocumentServiceFacade";
+import {FilterService} from "../../../Services/FilterService";
+import {Requirement, RequirementStatus} from "../../../Models/Requirement";
+import {Chunk} from "../../../Models/Chunk";
 import * as vscode from "../Mock/vscode";
-import { CodeReference } from "../../../Models/TrackingModels";
+import {CodeReference} from "../../../Models/TrackingModels";
+import {FileExtensionFilter, PathFilter} from "../../../Models/Filter";
 
 describe("RequirementsTrackerService", () => {
   let vectorDatabase: jest.Mocked<IVectorDatabase>;
   let documentServiceFacade: jest.Mocked<DocumentServiceFacade>;
   let filterService: jest.Mocked<FilterService>;
   let service: RequirementsTrackerService;
+  let mockPathFilter: PathFilter;
+  let mockExtensionFilter: FileExtensionFilter;
 
   beforeEach(() => {
     jest.clearAllMocks();
+
+    mockPathFilter = {
+      include: ["/test/uno", "test/due"],
+      exclude: ["/test/tre", "test/quattro"],
+    } as unknown as PathFilter;
+
+    mockExtensionFilter = {
+      include: ["c", "cpp"],
+      exclude: ["txt", "md"],
+    } as unknown as FileExtensionFilter;
 
     vectorDatabase = {
       queryForChunks: jest.fn(),
@@ -34,8 +47,8 @@ describe("RequirementsTrackerService", () => {
     } as unknown as jest.Mocked<DocumentServiceFacade>;
 
     filterService = {
-      getPathFilter: jest.fn(),
-      getFileExtensionFilter: jest.fn(),
+      getPathFilter: jest.fn(() => mockPathFilter),
+      getFileExtensionFilter: jest.fn(() => mockExtensionFilter),
       getRequirementsFilters: jest.fn(),
     } as unknown as jest.Mocked<FilterService>;
 
@@ -54,6 +67,7 @@ describe("RequirementsTrackerService", () => {
         description: "Test description",
         type: "functional",
         version: "1.0",
+        status: RequirementStatus.NOT_TRACKED
       };
 
       vectorDatabase.queryForChunks.mockRejectedValue(
@@ -91,6 +105,7 @@ describe("RequirementsTrackerService", () => {
         description: "Test description",
         type: "functional",
         version: "1.0",
+        status: RequirementStatus.NOT_TRACKED
       };
 
       const mockChunks: Chunk[] = [
@@ -120,6 +135,7 @@ describe("RequirementsTrackerService", () => {
         description: "Test description",
         type: "functional",
         version: "1.0",
+        status: RequirementStatus.NOT_TRACKED
       };
 
       vectorDatabase.queryForChunks.mockRejectedValue(new Error("Test error"));
@@ -173,6 +189,7 @@ describe("RequirementsTrackerService", () => {
           description: "Test description",
           type: "functional",
           version: "1.0",
+          status: RequirementStatus.NOT_TRACKED
         },
       ];
 
@@ -193,6 +210,7 @@ describe("RequirementsTrackerService", () => {
           description: "Test description 1",
           type: "functional",
           version: "1.0",
+          status: RequirementStatus.NOT_TRACKED
         },
         {
           id: "REQ-002",
@@ -200,6 +218,7 @@ describe("RequirementsTrackerService", () => {
           description: "Test description 2",
           type: "functional",
           version: "1.0",
+          status: RequirementStatus.NOT_TRACKED
         },
       ];
 
@@ -240,6 +259,7 @@ describe("RequirementsTrackerService", () => {
           description: "Test description 1",
           type: "functional",
           version: "1.0",
+          status: RequirementStatus.NOT_TRACKED
         },
         {
           id: "REQ-002",
@@ -247,6 +267,7 @@ describe("RequirementsTrackerService", () => {
           description: "Test description 2",
           type: "functional",
           version: "1.0",
+          status: RequirementStatus.NOT_TRACKED
         },
       ];
 
@@ -287,6 +308,7 @@ describe("RequirementsTrackerService", () => {
           description: "Test description 1",
           type: "functional",
           version: "1.0",
+          status: RequirementStatus.NOT_TRACKED
         },
         {
           id: "REQ-002",
@@ -294,6 +316,7 @@ describe("RequirementsTrackerService", () => {
           description: "Test description 2",
           type: "functional",
           version: "1.0",
+          status: RequirementStatus.NOT_TRACKED
         },
       ];
 

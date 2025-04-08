@@ -1,13 +1,11 @@
-import { describe, expect, it, jest } from "@jest/globals";
-import { ParsingService } from "../../../Services/ParsingService";
-import { RequirementsTrackerService } from "../../../Services/RequirementsTrackerService";
-import { RequirementsService } from "../../../Services/RequirementsService";
-import { IVectorDatabase } from "../../../Interfaces/IVectorDatabase";
-import {
-  TrackingResult,
-  TrackingResultSummary,
-} from "../../../Models/TrackingModels";
-import { RequirementsServiceFacade } from "../../../Facades/RequirementsServiceFacade";
+import {describe, expect, it, jest} from "@jest/globals";
+import {ParsingService} from "../../../Services/ParsingService";
+import {RequirementsTrackerService} from "../../../Services/RequirementsTrackerService";
+import {RequirementsService} from "../../../Services/RequirementsService";
+import {IVectorDatabase} from "../../../Interfaces/IVectorDatabase";
+import {TrackingResult, TrackingResultSummary,} from "../../../Models/TrackingModels";
+import {RequirementsServiceFacade} from "../../../Facades/RequirementsServiceFacade";
+import {RequirementStatus} from "../../../Models/Requirement";
 
 describe("RequirementsServiceFacade", () => {
   let parsingService: jest.Mocked<ParsingService>;
@@ -22,7 +20,7 @@ describe("RequirementsServiceFacade", () => {
       name: "Requirement 1",
       description: "Requirement 1",
       type: "Requirement",
-      status: "implemented",
+      status: RequirementStatus.TRACKED,
       version: "1.0",
     },
     {
@@ -30,7 +28,7 @@ describe("RequirementsServiceFacade", () => {
       name: "Requirement 2",
       description: "Requirement 2",
       type: "Requirement",
-      status: "unimplemented",
+      status: RequirementStatus.NOT_TRACKED,
       version: "1.0",
     },
     {
@@ -38,7 +36,7 @@ describe("RequirementsServiceFacade", () => {
       name: "Requirement 3",
       description: "Requirement 3",
       type: "Requirement",
-      status: "unimplemented",
+      status: RequirementStatus.NOT_TRACKED,
       version: "1.0",
     },
   ];
@@ -48,7 +46,7 @@ describe("RequirementsServiceFacade", () => {
       name: "Requirement 2",
       description: "Requirement 2",
       type: "Requirement",
-      status: "unimplemented",
+      status: RequirementStatus.NOT_TRACKED,
       version: "1.0",
     },
     {
@@ -56,7 +54,7 @@ describe("RequirementsServiceFacade", () => {
       name: "Requirement 3",
       description: "Requirement 3",
       type: "Requirement",
-      status: "unimplemented",
+      status: RequirementStatus.NOT_TRACKED,
       version: "1.0",
     },
   ];
@@ -287,7 +285,7 @@ describe("RequirementsServiceFacade", () => {
         name: "Requirement 1",
         description: "Requirement 1",
         type: "Requirement",
-        status: "implemented",
+        status: RequirementStatus.TRACKED,
         version: "1.0",
       };
       requirementsService.getById.mockReturnValueOnce(mockRequirement);

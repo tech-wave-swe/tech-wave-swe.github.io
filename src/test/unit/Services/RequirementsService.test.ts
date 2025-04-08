@@ -1,10 +1,7 @@
-import { expect, jest } from "@jest/globals";
-import {
-  GlobalStateService,
-  StateKeys,
-} from "../../../Services/GlobalStateService";
-import { RequirementsService } from "../../../Services/RequirementsService";
-import { Requirement } from "../../../Models/Requirement";
+import {expect, jest} from "@jest/globals";
+import {GlobalStateService, StateKeys,} from "../../../Services/GlobalStateService";
+import {RequirementsService} from "../../../Services/RequirementsService";
+import {Requirement, RequirementStatus} from "../../../Models/Requirement";
 
 describe("RequirementsService", () => {
   let requirementService: RequirementsService;
@@ -19,6 +16,7 @@ describe("RequirementsService", () => {
         description: "Description 1",
         type: "requirement",
         version: "1.0.0",
+        status: RequirementStatus.NOT_TRACKED
       },
       {
         id: "2",
@@ -26,6 +24,7 @@ describe("RequirementsService", () => {
         description: "Description 2",
         type: "requirement",
         version: "1.0.0",
+        status: RequirementStatus.NOT_TRACKED
       },
     ];
 
@@ -79,6 +78,7 @@ describe("RequirementsService", () => {
         description: "Description 3",
         type: "requirement",
         version: "1.0.0",
+        status: RequirementStatus.NOT_TRACKED
       };
 
       await requirementService.addRequirement(newRequirement);
@@ -96,6 +96,7 @@ describe("RequirementsService", () => {
         description: "Description 3",
         type: "requirement",
         version: "1.0.0",
+        status: RequirementStatus.NOT_TRACKED
       },
         {
           id: "4",
@@ -103,6 +104,7 @@ describe("RequirementsService", () => {
           description: "Description 4",
           type: "requirement",
           version: "1.0.0",
+          status: RequirementStatus.NOT_TRACKED
         }];
 
       requirementService.addRequirements(newRequirement);
@@ -123,6 +125,7 @@ describe("RequirementsService", () => {
           description: "Description 3",
           type: "requirement",
           version: "1.0.0",
+          status: RequirementStatus.NOT_TRACKED
         },
         {
           id: "4",
@@ -130,6 +133,7 @@ describe("RequirementsService", () => {
           description: "Description 4",
           type: "requirement",
           version: "1.0.0",
+          status: RequirementStatus.NOT_TRACKED
         },
       ];
 
