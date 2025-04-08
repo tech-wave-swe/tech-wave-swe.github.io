@@ -119,7 +119,10 @@
         <div class="edit-mode-subtitle">Seleziona nuove linee di codice come puntatore</div>
     </div>
     <div class="edit-mode-instructions">
-        <p>Riferimento originale: ${this.currentEditingReference.originalPath}:${this.currentEditingReference.originalLine}</p>
+        <p>Riferimento originale:</p>
+        <div class="edit-mode-original">
+            <span id="edit-mode-original-path"></span>:<span id="edit-mode-original-line"></span>
+        </div>
         <p>Seleziona una o più righe in un file per impostare un nuovo puntatore</p>
     </div>
     <div class="edit-mode-selection" id="current-selection">

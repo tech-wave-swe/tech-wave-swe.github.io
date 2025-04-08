@@ -179,6 +179,11 @@ function handleStartEditMode(message) {
   }
 
   const editModeUI = document.getElementById("edit-mode-ui");
+  const originalPath = editModeUI.querySelector("#edit-mode-original-path");
+  const originalLine = editModeUI.querySelector("#edit-mode-original-line");
+
+  originalPath.innerHTML = codeReference.filePath;
+  originalLine.innerHTML = (codeReference.lineNumber + 1).toString();
 
   editModeUI.classList.remove("hidden");
 }
@@ -513,7 +518,7 @@ function updateRequirementsDisplay(summary) {
 
       result.codeReferences.forEach((ref, refIndex) => {
         const refItem = document.createElement("div");
-        refItem.className = "code-reference nested-dropdown-container";
+        refItem.className = "code-reference nested-dropdown-container expanded";
         refItem.setAttribute("data-path", ref.filePath);
         refItem.setAttribute("data-line", ref.lineNumber);
 
@@ -578,8 +583,8 @@ function updateRequirementsDisplay(summary) {
               requirementId: reqId,
               codeReference: ref,
             });
-          })
-        })
+          });
+        });
 
         refItem.querySelectorAll('.delete-req-action').forEach(actionButton => {
           actionButton.addEventListener("click", (e) => {
@@ -601,7 +606,7 @@ function updateRequirementsDisplay(summary) {
               type: "startEditMode",
               requirementId: reqId,
               codeReferenceId: refIndex,
-              codeReferece: ref
+              codeReference: ref
             });
           })
         })

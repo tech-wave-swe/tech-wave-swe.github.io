@@ -462,7 +462,7 @@ button:hover {
     color: var(--vscode-editor-foreground);
 }
 
-.edit-mode-selection {
+.edit-mode-selection, .edit-mode-original {
     background-color: var(--vscode-editor-lineHighlightBackground);
     padding: 8px 12px;
     border-radius: 4px;

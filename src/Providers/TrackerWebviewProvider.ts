@@ -207,7 +207,7 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
 
     vscode.window.showInformationMessage("Edit mode started. Select the implementation of the current requirement.");
 
-    this._sendMessageToWebview({type: "startEditMode", requirementId: requirementId, codeReference: codeReference})
+    this._sendMessageToWebview({type: "startEditMode", requirementId: requirementId, codeReference: codeReference});
   }
 
   private async _onEndEditMode(): Promise<void> {
