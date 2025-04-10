@@ -116,21 +116,12 @@ export class TrackingResultService {
   }
 
   private _TRStoDS(trs: TrackingResultSummary): void {
-    if (!this._details) {
-      this._details = {
-        totalRequirements: trs.totalRequirements,
-        confirmedMatches: trs.confirmedMatches,
-        possibleMatches: trs.possibleMatches,
-        unlikelyMatches: trs.unlikelyMatches,
-      };
-    } else {
-      this._details.totalRequirements = trs.totalRequirements;
-      this._details.confirmedMatches = trs.confirmedMatches;
-      this._details.possibleMatches = trs.possibleMatches;
-      this._details.unlikelyMatches = trs.unlikelyMatches;
-    }
-
-    console.log(trs.requirementDetails);
+    this._details = {
+      totalRequirements: trs.totalRequirements,
+      confirmedMatches: trs.confirmedMatches,
+      possibleMatches: trs.possibleMatches,
+      unlikelyMatches: trs.unlikelyMatches,
+    };
 
     if (trs.requirementDetails) {
       (trs.requirementDetails as Map<string, TrackingResult>).forEach((requirementDetail) => {
@@ -168,6 +159,8 @@ export class TrackingResultService {
     const res = this._globalStateService.getState(
       StateKeys.TRACKING_RESULTS,
     ) as CustomGSData;
+
+    console.log(res);
 
     if (res && res.details && res.results) {
       this._details = res.details;

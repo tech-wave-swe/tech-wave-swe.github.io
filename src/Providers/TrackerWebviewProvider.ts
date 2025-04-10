@@ -41,14 +41,19 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
     _context: vscode.WebviewViewResolveContext,
     _token: vscode.CancellationToken,
   ): void {
+
+    console.log("Resolving webview view...");
+
     this._webviewViewConfiguration(webviewView);
     this._webviewViewHandleEvents(webviewView);
 
     this._webviewView = webviewView;
 
-    // Show current requirements if available
-    this._updateRequirementsDisplay();
-    this._updateTrackingResultsDisplay();
+    this._sendMessageToWebview({type: "showImportTab"});
+
+    if (this._isEditMode) {
+      this._sendMessageToWebview({type: "startEditMode", requirementId: this._currentEditingReference?.requirementId, codeReference: this._currentEditingReference?.codeReference});
+    }
   }
 
   public onChangeTextEditorSelection(event: TextEditorSelectionChangeEvent): void {
@@ -160,6 +165,45 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
       case "cancelEditImplementation":
         await this._onCancelEditImplementation();
         break;
+
+      // Tabs
+      case "tabToImport":
+        this._onTabToImport();
+        break;
+
+      case "tabToTrack":
+        this._onTabToTrack();
+        break;
+
+      case "tabToResults":
+        this._onTabToResults();
+        break;
+    }
+  }
+
+  private _onTabToImport(): void {
+    console.log("Switching to import tab");
+    this._sendMessageToWebview({type: "showImportTab"});
+  }
+
+  private _onTabToTrack(): void {
+    console.log("Switching to track");
+    this._sendMessageToWebview({type: "showTrackTab", requirements: this._requirementsServiceFacade.getAllRequirements()});
+  }
+
+  private _onTabToResults(): void {
+    const trackingResults = this._trackingResultService.getTrakingResultSummary();
+
+    if (trackingResults) {
+      // Convert to a plain object for serialization
+      const serializedResults = {
+        ...trackingResults,
+        requirementDetails: Object.fromEntries(
+          trackingResults.requirementDetails,
+        )
+      };
+      console.log("Switching to result results");
+      this._sendMessageToWebview({type: "showResultsTab", summary: serializedResults});
     }
   }
 
@@ -195,9 +239,14 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
 
     // Update the requirements display
     this._updateTrackingResultsDisplay();
+    this._updateRequirementsDisplay();
   }
 
   private async _onStartEditMode(requirementId: string, codeReferenceId: number, codeReference: CodeReference): Promise<void> {
+    await this._startEditMode(requirementId, codeReferenceId, codeReference);
+  }
+
+  private async _startEditMode(requirementId: string, codeReferenceId: number, codeReference: CodeReference): Promise<void> {
     this._isEditMode = true;
     this._currentEditingReference = {
       requirementId: requirementId,
@@ -457,6 +506,25 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
     if (this._isEditMode) {
       this._stopEditMode();
     }
+
+    const requirement = this._requirementsServiceFacade.getRequirement(requirementId);
+
+    if (!requirement) {
+      vscode.window.showErrorMessage("Requirement not found");
+      return;
+    }
+
+    let codeReference = requirement.codeReference;
+    if (!codeReference) {
+      codeReference = {
+        filePath: "",
+        lineNumber: 0,
+        snippet: "",
+        score: 0,
+      };
+    }
+
+    await this._startEditMode(requirementId, 0, codeReference);
   }
 
   private async _onDeleteRequirement(requirementId: string): Promise<void> {

@@ -24,6 +24,9 @@ function setInitialState() {
 
 function handleEvents() {
   const tabs = document.querySelectorAll(".tab");
+  const tabImport = document.querySelector("#tab-import");
+  const tabTrack = document.querySelector("#tab-track");
+  const tabResults = document.querySelector("#tab-results");
   const loadingElement = document.getElementById("loading");
   const fileInput = document.getElementById("file-input");
   const importFormatSelect = document.getElementById("import-format");
@@ -42,10 +45,16 @@ function handleEvents() {
   const cancelEditButton = document.getElementById("cancel-edit");
 
   // Tab switching
-  tabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      handleTabClick(tabs, tab);
-    });
+  tabImport.addEventListener("click", function (e) {
+    handleTabImportClick(e);
+  });
+
+  tabTrack.addEventListener("click", function (e) {
+    handleTabTrackClick(e);
+  });
+
+  tabResults.addEventListener("click", function (e) {
+    handleTabResults(e);
   });
 
   // File input handling
@@ -110,7 +119,7 @@ function handleEvents() {
 
       case "trackingResults":
         trackingResults = message.summary;
-        handleTrackingResultsEvent(trackingResults);
+        handleTrackingResultsEvent();
         break;
 
       case "unimplementedRequirements":
@@ -141,8 +150,43 @@ function handleEvents() {
       case "updateSelectedReference":
         handleUpdateSelectedReference(message.codeReference);
         break;
+
+      // Show Tabs
+      case "showImportTab":
+        handleShowTabImport(tabImport);
+        break;
+
+      case "showTrackTab":
+        handleShowTabTrack(tabTrack, message.requirements);
+        break;
+
+      case "showResultsTab":
+        handleShowTabResults(tabResults, message.summary);
+        break;
     }
   });
+}
+
+function handleShowTabImport(tab) {
+  changeActiveTab(tab);
+}
+
+function handleShowTabTrack(tab, reqs) {
+  console.log(reqs);
+
+  requirements = reqs;
+  updateRequirementsTable();
+
+  changeActiveTab(tab);
+}
+
+function handleShowTabResults(tab, summary) {
+  console.log(summary);
+
+  trackingResults = summary;
+  updateResultsDisplay();
+
+  changeActiveTab(tab);
 }
 
 function handleConfirmEditButtonClick(event) {
@@ -199,10 +243,27 @@ function handleStopEditMode(message) {
   editModeUI.classList.add("hidden");
 }
 
-function handleTabClick(tabs, tab) {
-  const tabContents = document.querySelectorAll(".tab-content");
+function handleTabImportClick(event) {
+  vscode.postMessage({
+    type: "tabToImport"
+  })
+}
 
-  const tabId = tab.getAttribute("data-tab");
+function handleTabTrackClick(event) {
+  vscode.postMessage({
+    type: "tabToTrack"
+  })
+}
+
+function handleTabResults(event) {
+  vscode.postMessage({
+    type: "tabToResults"
+  })
+}
+
+function changeActiveTab(tab) {
+  const tabs = document.querySelectorAll(".tab");
+  const tabContents = document.querySelectorAll(".tab-content");
 
   // Update active tab
   tabs.forEach((t) => t.classList.remove("active"));
@@ -211,14 +272,10 @@ function handleTabClick(tabs, tab) {
   // Show corresponding content
   tabContents.forEach((content) => {
     content.classList.remove("active");
-    if (content.id === tabId + "-tab") {
+    if (content.id === `${tab.getAttribute("data-tab")}-tab`) {
       content.classList.add("active");
     }
   });
-
-  if (tabId === "track") {
-    updateRequirementsTable();
-  }
 }
 
 function handleFileInputChange(event, textContent) {
@@ -329,8 +386,8 @@ function handleUnimplementedButtonClick(trackAllCheckbox, requirementsChecklist)
   });
 }
 
-function handleTrackingResultsEvent(trackingResults) {
-  updateResultsDisplay(trackingResults);
+function handleTrackingResultsEvent() {
+  updateResultsDisplay();
 
   // Switch to results tab
   switchToTab(2);
@@ -375,27 +432,27 @@ function handleClearRequirementsButtonClick() {
 }
 
 // Update tracking results display
-function updateResultsDisplay(summary) {
+function updateResultsDisplay() {
   const summarySection = document.getElementById("summary-section");
 
   // Show summary section
   summarySection.style.display = "block";
 
   // Update Views
-  updateChartDisplay(summary);
-  updateLegendDisplay(summary);
-  updateRequirementsDisplay(summary);
+  updateChartDisplay();
+  updateLegendDisplay();
+  updateRequirementsDisplay();
 }
 
-function updateChartDisplay(summary) {
+function updateChartDisplay() {
   const chartConfirmed = document.getElementById("chart-confirmed-match");
   const chartPossible = document.getElementById("chart-possible-match");
   const chartUnlikely = document.getElementById("chart-unlikely-match");
 
-  const total = summary.totalRequirements;
-  const confirmed = summary.confirmedMatches;
-  const possible = summary.possibleMatches;
-  const unlikely = summary.unlikelyMatches;
+  const total = trackingResults.totalRequirements;
+  const confirmed = trackingResults.confirmedMatches;
+  const possible = trackingResults.possibleMatches;
+  const unlikely = trackingResults.unlikelyMatches;
 
   // Update chart
   chartConfirmed.style.width = `${(confirmed / total) * 100}%`;
@@ -403,14 +460,14 @@ function updateChartDisplay(summary) {
   chartUnlikely.style.width = `${(unlikely / total) * 100}%`;
 }
 
-function updateLegendDisplay(summary) {
+function updateLegendDisplay() {
   const legendConfirmed = document.getElementById("legend-confirmed-match");
   const legendPossible = document.getElementById("legend-possible-match");
   const legendUnlikely = document.getElementById("legend-unlikely-match");
 
-  const confirmed = summary.confirmedMatches;
-  const possible = summary.possibleMatches;
-  const unlikely = summary.unlikelyMatches;
+  const confirmed = trackingResults.confirmedMatches;
+  const possible = trackingResults.possibleMatches;
+  const unlikely = trackingResults.unlikelyMatches;
 
   // Update legend
   legendConfirmed.textContent = `Confirmed Match: ${confirmed}`;
@@ -418,13 +475,13 @@ function updateLegendDisplay(summary) {
   legendUnlikely.textContent = `Unlikely Match: ${unlikely}`;
 }
 
-function updateRequirementsDisplay(summary) {
+function updateRequirementsDisplay() {
   const requirementsResults = document.getElementById("requirements-results");
 
   // Generate requirement details
   requirementsResults.innerHTML = "";
 
-  const details = summary.requirementDetails;
+  const details = trackingResults.requirementDetails;
   const requirementIds = Object.keys(details);
 
   if (requirementIds.length === 0) {
