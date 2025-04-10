@@ -5,7 +5,7 @@ documentclass: TWDocumentFull
 toc: true
 lof: true
 numbersections: true
-version: 2.4.4
+version: 2.4.6
 classification: Esterno
 ---
 
@@ -23,7 +23,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                                                                            | Autore                | Data Verifica | Verificatore          |
 | ---------- | -------- | -------------------------------------------------------------------------------------- | --------------------- | ------------- | --------------------- |
-| 31/03/2025 | 2.4.6    | Aggiunta consuntivo sprint 8                                                           | Carraro Agnese        | 31/03/2025    | 
+| 31/03/2025 | 2.4.6    | Aggiunta consuntivo sprint 8                                                           | Carraro Agnese        | 31/03/2025    | Marcon Giulia         |
 | 30/03/2025 | 2.4.5    | Controllo consistenza maiuscole                                                        | Dal Bianco Riccardo   | 30/03/2025    | Vasquez Manuel Felipe |
 | 17/03/2025 | 2.4.4    | Aggiunta preventivo sprint 8                                                           | Carraro Agnese        | 18/03/2025    | Marcon Giulia         |
 | 17/03/2025 | 2.4.3    | Aggiunta consuntivo sprint 7                                                           | Manuel Felipe Vasquez | 14/03/2025    | Pistori Gaia          |
@@ -775,7 +775,7 @@ Di seguito vengono indicate le spese effettive dell'ottavo %%sprint|sprint%%
 | Amministratore di sistema | 37,17                | +3,17         | 20               | 743,4     | +63,4           |
 | Programmatore             | 33                   | 0             | 15               | 495       | 0               |
 | Verificatore              | 24,25                | +0,91         | 15               | 363,75    | +13,65          |
-| _Totale consuntivo_       | _167,42_             | _+6,58_       |                  | _3569,65_ | _+142,05_       |
+| _Totale consuntivo_       | _171,42_             | _+6,58_       |                  | _3569,65_ | _+142,05_       |
 
 Table: Consuntivo Sprint 8
 
