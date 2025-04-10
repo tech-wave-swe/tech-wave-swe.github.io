@@ -1,12 +1,12 @@
-import {expect, jest} from "@jest/globals";
-import type {TextDocument, TextEditor} from "vscode";
+import { expect, jest } from "@jest/globals";
+import type { TextDocument, TextEditor } from "vscode";
 import * as vscode from "vscode";
-import {TrackerWebView} from "../../../WebViews/TrackerWebView";
-import {RequirementsServiceFacade} from "../../../Facades/RequirementsServiceFacade";
-import {TrackerWebviewProvider} from "../../../Providers/TrackerWebviewProvider";
-import {Requirement, RequirementStatus} from "../../../Models/Requirement";
-import {TrackingResultSummary} from "../../../Models/TrackingModels";
-import {TrackingResultService} from "../../../Services/TrackingResultService";
+import { TrackerWebView } from "../../../WebViews/TrackerWebView";
+import { RequirementsServiceFacade } from "../../../Facades/RequirementsServiceFacade";
+import { TrackerWebviewProvider } from "../../../Providers/TrackerWebviewProvider";
+import { Requirement, RequirementStatus } from "../../../Models/Requirement";
+import { TrackingResultSummary } from "../../../Models/TrackingModels";
+import { TrackingResultService } from "../../../Services/TrackingResultService";
 
 jest.mock("path");
 
@@ -300,6 +300,10 @@ describe("TrackerWebviewProvider", () => {
                   snippet: "function test() {}",
                   score: 55,
                   relevanceExplanation: "Match score: 55%",
+                  contextRange: {
+                    start: 7,
+                    end: 13,
+                  },
                 },
               ],
             },
@@ -317,6 +321,10 @@ describe("TrackerWebviewProvider", () => {
                   snippet: "function test() {}",
                   score: 55,
                   relevanceExplanation: "Match score: 55%",
+                  contextRange: {
+                    start: 7,
+                    end: 13,
+                  },
                 },
               ],
             },
@@ -366,6 +374,10 @@ describe("TrackerWebviewProvider", () => {
                   snippet: "function test() {}",
                   score: 55,
                   relevanceExplanation: "Match score: 55%",
+                  contextRange: {
+                    start: 7,
+                    end: 13,
+                  },
                 },
               ],
             },
@@ -380,6 +392,10 @@ describe("TrackerWebviewProvider", () => {
                   snippet: "function test() {}",
                   score: 55,
                   relevanceExplanation: "Match score: 55%",
+                  contextRange: {
+                    start: 7,
+                    end: 13,
+                  },
                 },
               ],
             },
@@ -395,59 +411,6 @@ describe("TrackerWebviewProvider", () => {
       expect(vscode.window.showInformationMessage).toHaveBeenCalledWith(
         "Analysis complete: 5 implemented, 3 partially implemented, 2 not implemented",
       );
-    });
-
-    it("should handle showUnimplemented message", async () => {
-      const mockUnimplementedReqs: Requirement[] = [
-        {
-          id: "REQ-002",
-          name: "Unimplemented requirement",
-          description: "Unimplemented requirement",
-          type: "requirement",
-          status: RequirementStatus.NOT_TRACKED,
-          version: "1.0.0",
-        },
-        {
-          id: "REQ-003",
-          name: "Another unimplemented requirement",
-          description: "Another unimplemented requirement",
-          type: "requirement",
-          status: RequirementStatus.NOT_TRACKED,
-          version: "1.0.0",
-        },
-      ];
-      mockRequirementsServiceFacade.getUnimplementedRequirements.mockResolvedValue(
-        mockUnimplementedReqs,
-      );
-
-      const message = {
-        type: "showUnimplemented",
-      };
-
-      // Use reflection to call private method
-      const handleMessageMethod = (
-        trackerWebviewProvider as any
-      )._handleMessageFromWebview.bind(trackerWebviewProvider);
-      await handleMessageMethod(message);
-
-      expect(
-        mockRequirementsServiceFacade.getUnimplementedRequirements,
-      ).toHaveBeenCalled();
-
-      expect(mockWebviewView.webview.postMessage).toHaveBeenCalledWith({
-        type: "setLoading",
-        isLoading: true,
-      });
-
-      expect(mockWebviewView.webview.postMessage).toHaveBeenCalledWith({
-        type: "unimplementedRequirements",
-        requirements: mockUnimplementedReqs,
-      });
-
-      expect(mockWebviewView.webview.postMessage).toHaveBeenCalledWith({
-        type: "setLoading",
-        isLoading: false,
-      });
     });
 
     it("should handle unknown message types", async () => {

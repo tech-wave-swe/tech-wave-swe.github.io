@@ -5,6 +5,7 @@ import {
   TrackingResultSummary,
   ImplementationStatus,
 } from "../Models/TrackingModels";
+import { ILanguageModel } from "../Interfaces/ILanguageModel";
 import { IVectorDatabase } from "../Interfaces/IVectorDatabase";
 import { DocumentServiceFacade } from "../Facades/DocumentServiceFacade";
 import * as vscode from "vscode";
@@ -15,15 +16,53 @@ export class RequirementsTrackerService {
   private _vectorDatabase: IVectorDatabase;
   private _documentServiceFacade: DocumentServiceFacade;
   private _filterService: FilterService;
+  private _languageModel: ILanguageModel;
 
   constructor(
     vectorDatabase: IVectorDatabase,
     documentServiceFacade: DocumentServiceFacade,
     filterService: FilterService,
+    languageModel: ILanguageModel,
   ) {
     this._vectorDatabase = vectorDatabase;
     this._documentServiceFacade = documentServiceFacade;
     this._filterService = filterService;
+    this._languageModel = languageModel;
+  }
+
+  public async analyzeImplementation(
+    requirement: Requirement,
+    codeReferences: CodeReference[],
+  ): Promise<string> {
+    console.log("Analyzing Implementations");
+    console.log(requirement);
+    console.log(codeReferences);
+
+    try {
+      const prompt = `Analyze if this code implements the requirement. Be specific and concise.
+
+  Requirement:
+  ${requirement.description}
+
+  Implementations:
+  ${codeReferences
+    .map(
+      (ref) => `
+File: ${ref.filePath}:${ref.lineNumber}
+Code:
+${ref.snippet}`,
+    )
+    .join("\n")}
+  Provide your analysis focusing on:
+  1. How well the code implements the requirement
+  2. Any missing aspects
+  3. Suggestions for improvement`;
+
+      return await this._languageModel.generate(prompt);
+    } catch (error) {
+      console.error("Error analyzing implementation:", error);
+      throw error;
+    }
   }
 
   private async trackRequirementImplementation(
@@ -89,12 +128,15 @@ export class RequirementsTrackerService {
           filePath: chunk.filePath,
           lineNumber: chunk.lineNumber,
           score: chunk.score ?? 0,
-          relevanceExplanation: `Match score: ${Math.round((chunk.score || 0) * 100)}%`,
+          revelanceExplanation: `Match score: ${Math.round((chunk.score || 0) * 100)}%`,
+          contextRange: {
+            start: chunk.lineNumber - 3 > 0 ? chunk.lineNumber - 3 : 0,
+            end: chunk.lineNumber + 3,
+          },
         };
       })
       .sort((a, b) => b.score - a.score); // Sort by score in descending order
   }
-
   public async findUnimplementedRequirements(
     requirements: Requirement[],
   ): Promise<Requirement[]> {
@@ -231,7 +273,7 @@ export class RequirementsTrackerService {
       return [];
     }
 
-    const {include: pathInclude, exclude: pathExclude} = this._getFilters();
+    const { include: pathInclude, exclude: pathExclude } = this._getFilters();
 
     console.log(
       `Scanning workspace folders: ${workspaceFolders.map((f) => f.name).join(", ")}`,
@@ -256,7 +298,7 @@ export class RequirementsTrackerService {
     return codeFiles;
   }
 
-  private _getFilters(): {include: string, exclude: string} {
+  private _getFilters(): { include: string; exclude: string } {
     const extensionFileFilters = this._filterService.getFileExtensionFilter();
     const pathFilters = this._filterService.getPathFilter();
 
@@ -297,6 +339,6 @@ export class RequirementsTrackerService {
       }
     }
 
-    return {include: pathInclude, exclude: pathExclude};
+    return { include: pathInclude, exclude: pathExclude };
   }
 }

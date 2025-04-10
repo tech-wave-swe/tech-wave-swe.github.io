@@ -5,11 +5,18 @@ export class DocumentFormatterService {
   public formatSourceCode(code: string, filePath: string): Chunk[] {
     const language = this._getLanguageFromPath(filePath);
     const chunks: Chunk[] = [];
+    const lines = code.split("\n");
 
-    code.split("\n").forEach((line, index) => {
+    // Process chunks with context
+    lines.forEach((line, index) => {
       if (line.trim().length > 0) {
+        // Get context window (3 lines before and after)
+        const contextStart = Math.max(0, index - 3);
+        const contextEnd = Math.min(lines.length - 1, index + 3);
+        const contextLines = lines.slice(contextStart, contextEnd + 1);
+
         chunks.push({
-          content: line,
+          content: contextLines.join("\n"),
           filePath: filePath,
           fileType: language,
           lineNumber: index + 1,

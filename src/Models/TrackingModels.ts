@@ -3,7 +3,11 @@ export interface CodeReference {
   lineNumber: number;
   snippet: string;
   score: number;
-  relevanceExplanation?: string;
+  revelanceExplanation?: string;
+  contextRange?: {
+    start: number;
+    end: number;
+  };
 }
 
 export type ImplementationStatus =

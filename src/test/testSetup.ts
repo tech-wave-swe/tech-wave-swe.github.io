@@ -44,10 +44,17 @@ export async function setupTestServices(workspacePath: string) {
     vectorDatabase,
   );
 
+  const mockLanguageModel: ILanguageModel = {
+    generate: async (prompt: string) => `Mock response for: ${prompt}`,
+    generateEmbeddings: async (_text: string) => [0.1, 0.2, 0.3],
+    refreshModels: async () => {},
+  };
+
   const trackerService = new RequirementsTrackerService(
     vectorDatabase,
     documentServiceFacade,
     filterService,
+    mockLanguageModel,
   );
 
   const requirementsServiceFacade = new RequirementsServiceFacade(
@@ -59,11 +66,7 @@ export async function setupTestServices(workspacePath: string) {
 
   // Initialize chat service
   const chatService = new ChatService(globalStateService);
-  const mockLanguageModel: ILanguageModel = {
-    generate: async (prompt: string) => `Mock response for: ${prompt}`,
-    generateEmbeddings: async (_text: string) => [0.1, 0.2, 0.3],
-    refreshModels: async () => {},
-  };
+
   const inferenceService = new InferenceService(
     mockLanguageModel,
     vectorDatabase,

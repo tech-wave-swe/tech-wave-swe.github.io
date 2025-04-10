@@ -1,11 +1,14 @@
-import {describe, expect, it, jest} from "@jest/globals";
-import {ParsingService} from "../../../Services/ParsingService";
-import {RequirementsTrackerService} from "../../../Services/RequirementsTrackerService";
-import {RequirementsService} from "../../../Services/RequirementsService";
-import {IVectorDatabase} from "../../../Interfaces/IVectorDatabase";
-import {TrackingResult, TrackingResultSummary,} from "../../../Models/TrackingModels";
-import {RequirementsServiceFacade} from "../../../Facades/RequirementsServiceFacade";
-import {RequirementStatus} from "../../../Models/Requirement";
+import { describe, expect, it, jest } from "@jest/globals";
+import { ParsingService } from "../../../Services/ParsingService";
+import { RequirementsTrackerService } from "../../../Services/RequirementsTrackerService";
+import { RequirementsService } from "../../../Services/RequirementsService";
+import { IVectorDatabase } from "../../../Interfaces/IVectorDatabase";
+import {
+  TrackingResult,
+  TrackingResultSummary,
+} from "../../../Models/TrackingModels";
+import { RequirementsServiceFacade } from "../../../Facades/RequirementsServiceFacade";
+import { RequirementStatus } from "../../../Models/Requirement";
 
 describe("RequirementsServiceFacade", () => {
   let parsingService: jest.Mocked<ParsingService>;
@@ -253,31 +256,6 @@ describe("RequirementsServiceFacade", () => {
     });
   });
 
-  describe("getUnimplementedRequirements", () => {
-    it("should return the unimplemented requirements", async () => {
-      await expect(
-        requirementServiceFacade.getUnimplementedRequirements(),
-      ).resolves.toEqual(unimplementedRequirements);
-    });
-
-    it("should return an error if unimplemented requirements are not found", async () => {
-      const consoleSpy = jest.spyOn(console, "error");
-      trackerService.findUnimplementedRequirements.mockImplementationOnce(
-        () => {
-          throw new Error("Test error");
-        },
-      );
-
-      await expect(
-        requirementServiceFacade.getUnimplementedRequirements(),
-      ).rejects.toThrow();
-      expect(consoleSpy).toHaveBeenCalledWith(
-        "Error finding unimplemented requirements:",
-        expect.any(Error),
-      );
-    });
-  });
-
   describe("getRequirement", () => {
     it("should return the requirement searched by its id", () => {
       const mockRequirement = {
@@ -324,14 +302,14 @@ describe("RequirementsServiceFacade", () => {
 
       const result = requirementServiceFacade.getAllRequirements();
 
-      expect(requirementsService.deleteRequirement).toHaveBeenCalledWith("Req-1");
-      expect(result).toEqual(
-        [
-          mockRequirements[1],
-          mockRequirements[2],
-          mockRequirements[3],
-        ]
+      expect(requirementsService.deleteRequirement).toHaveBeenCalledWith(
+        "Req-1",
       );
+      expect(result).toEqual([
+        mockRequirements[1],
+        mockRequirements[2],
+        mockRequirements[3],
+      ]);
     });
   });
 
@@ -344,9 +322,7 @@ describe("RequirementsServiceFacade", () => {
       const result = requirementsService.getRequirements();
 
       expect(requirementsService.clearRequirements).toHaveBeenCalled();
-      expect(result).toEqual(
-        []
-      );
+      expect(result).toEqual([]);
     });
 
     it("should throw error on clearRequirementsError", async () => {
@@ -357,9 +333,7 @@ describe("RequirementsServiceFacade", () => {
       const result = requirementsService.getRequirements();
 
       expect(requirementsService.clearRequirements).toHaveBeenCalled();
-      expect(result).toEqual(
-        []
-      );
+      expect(result).toEqual([]);
     });
   });
 });

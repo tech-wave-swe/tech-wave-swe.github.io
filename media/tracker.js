@@ -30,7 +30,6 @@ function handleEvents() {
   const importButton = document.getElementById("import-button");
   const trackAllCheckbox = document.getElementById("track-all");
   const trackButton = document.getElementById("track-button");
-  const unimplementedButton = document.getElementById("unimplemented-button");
   const clearRequirements = document.getElementById("clear-requirements");
   const textContent = document.getElementById("text-content");
   const requirementSelection = document.getElementById("requirement-selection");
@@ -73,11 +72,6 @@ function handleEvents() {
     handleTrackButtonClick(trackAllCheckbox, requirementsChecklist);
   });
 
-  // Unimplemented button
-  unimplementedButton.addEventListener("click", () => {
-    handleUnimplementedButtonClick(trackAllCheckbox, requirementsChecklist);
-  });
-
   // Clear requirements button
   clearRequirements.addEventListener("click", () => {
     handleClearRequirementsButtonClick();
@@ -98,6 +92,48 @@ function handleEvents() {
     const message = event.data;
 
     switch (message.type) {
+      case "analysisResult":
+        const { requirementId, analysis } = message;
+        const reqItem = document.querySelector(
+          `.requirement-item[data-requirement="${requirementId}"]`,
+        );
+
+        if (reqItem) {
+          console.log("Found requirement item:", reqItem);
+          const analysisDiv = reqItem.querySelector(".ollama-analysis");
+          if (!analysisDiv) {
+            console.error(
+              `Could not find analysis div for requirement ${requirementId}`,
+            );
+            return;
+          }
+
+          const spinner = analysisDiv.querySelector(".loading-spinner");
+          const contentDiv = analysisDiv.querySelector(".analysis-content");
+
+          if (spinner) {
+            spinner.classList.add("hidden");
+          } else {
+            console.error(
+              `Could not find loading spinner for requirement ${requirementId}`,
+            );
+            return;
+          }
+
+          if (contentDiv) {
+            contentDiv.innerHTML = analysis
+              .split("\n")
+              .map((line) => `<p>${line}</p>`)
+              .join("");
+          } else {
+            console.error(
+              `Could not find content div for requirement ${requirementId}`,
+            );
+            return;
+          }
+        }
+        break;
+
       case "requirementsImported":
         requirements = message.requirements;
         updateRequirementsDisplay();
@@ -148,14 +184,14 @@ function handleEvents() {
 function handleConfirmEditButtonClick(event) {
   if (!event.target.getAttribute("disabled")) {
     vscode.postMessage({
-      type: "confirmEditImplementation"
+      type: "confirmEditImplementation",
     });
   }
 }
 
 function handleCancelEditButtonClick(event) {
   vscode.postMessage({
-    type: "cancelEditImplementation"
+    type: "cancelEditImplementation",
   });
 }
 
@@ -284,43 +320,13 @@ function handleTrackButtonClick(trackAllCheckbox, requirementsChecklist) {
   let requirementIds = undefined;
 
   // Get selected requirements
-  requirementIds = Array.from(
-    document.querySelectorAll(
-      'td input',
-    ),
-  ).filter((check) => check.checked).map((checkbox) => checkbox.id);
+  requirementIds = Array.from(document.querySelectorAll("td input"))
+    .filter((check) => check.checked)
+    .map((checkbox) => checkbox.id);
 
   if (requirementIds.length === 0) {
     alert("Please select at least one requirement to track");
     return;
-  }
-
-  vscode.postMessage({
-    type: "trackRequirements",
-    requirementIds,
-  });
-}
-
-function handleUnimplementedButtonClick(trackAllCheckbox, requirementsChecklist) {
-  if (requirements.length === 0) {
-    alert("No requirements available to track");
-    return;
-  }
-
-  let requirementIds = undefined;
-
-  if (!trackAllCheckbox.checked) {
-    // Get selected requirements
-    requirementIds = Array.from(
-      requirementsChecklist.querySelectorAll(
-        'input[type="checkbox"]:checked',
-      ),
-    ).map((checkbox) => checkbox.value);
-
-    if (requirementIds.length === 0) {
-      alert("Please select at least one requirement to track");
-      return;
-    }
   }
 
   vscode.postMessage({
@@ -365,18 +371,19 @@ function handleUnimplementedRequirements(message) {
     requirementsResults.appendChild(unimplementedList);
   }
 
-  switchToTab(2)
+  switchToTab(2);
 }
 
 function handleClearRequirementsButtonClick() {
   vscode.postMessage({
-    type: "clearRequirements"
+    type: "clearRequirements",
   });
 }
 
 // Update tracking results display
 function updateResultsDisplay(summary) {
   const summarySection = document.getElementById("summary-section");
+  trackingResults = summary;
 
   // Show summary section
   summarySection.style.display = "block";
@@ -445,6 +452,7 @@ function updateRequirementsDisplay(summary) {
 
     const item = document.createElement("li");
     item.className = "requirement-item dropdown-container";
+    item.setAttribute("data-requirement", reqId);
 
     let statusClass = "";
     switch (result.implementationStatus) {
@@ -468,6 +476,13 @@ function updateRequirementsDisplay(summary) {
             ${result.implementationStatus.replace("-", " ")}
           </span>
         </div>
+        <div class="requirement-actions">
+          <ul class="req-actions">
+            <li class="analyze-req-action" title="Analyze Implementation">
+              <i class="codicon codicon-search"></i>
+            </li>
+          </ul>
+        </div>
         <div class="dropdown-toggle"><i class="codicon codicon-chevron-down"></i></div>
       </div>
     `;
@@ -482,6 +497,16 @@ function updateRequirementsDisplay(summary) {
         </div>
         <div class="implementation-info">
           <span>Score: ${Math.round(result.score * 100)}%</span>
+          <button class="analyze-button" data-requirement="${reqId}">
+            <i class="codicon codicon-search"></i> Analyze Implementation
+          </button>
+        </div>
+        <div class="ollama-analysis hidden">
+          <div class="analysis-header">
+            <span>Ollama's Analysis</span>
+            <div class="loading-spinner hidden"></div>
+          </div>
+          <div class="analysis-content"></div>
         </div>
         <div class="code-references" id="${refsContainerId}"></div>
       </div>
@@ -491,15 +516,21 @@ function updateRequirementsDisplay(summary) {
     item.innerHTML = reqHeaderHTML + reqContentHTML;
 
     // Add toggle functionality to requirement
-    const reqHeader = item.querySelector('.requirement-header');
-    reqHeader.addEventListener('click', (e) => {
+    const reqHeader = item.querySelector(".requirement-header");
+    reqHeader.addEventListener("click", (e) => {
       e.stopPropagation();
-      item.classList.toggle('expanded');
-      const toggleIcon = reqHeader.querySelector('.dropdown-toggle i');
-      if (item.classList.contains('expanded')) {
-        toggleIcon.classList.replace('codicon-chevron-down', 'codicon-chevron-up');
+      item.classList.toggle("expanded");
+      const toggleIcon = reqHeader.querySelector(".dropdown-toggle i");
+      if (item.classList.contains("expanded")) {
+        toggleIcon.classList.replace(
+          "codicon-chevron-down",
+          "codicon-chevron-up",
+        );
       } else {
-        toggleIcon.classList.replace('codicon-chevron-up', 'codicon-chevron-down');
+        toggleIcon.classList.replace(
+          "codicon-chevron-up",
+          "codicon-chevron-down",
+        );
       }
     });
 
@@ -551,20 +582,26 @@ function updateRequirementsDisplay(summary) {
         refItem.innerHTML = refHeaderHTML + refContentHTML;
 
         // Add toggle functionality to code reference
-        const refHeader = refItem.querySelector('.ref-header');
-        refHeader.addEventListener('click', (e) => {
+        const refHeader = refItem.querySelector(".ref-header");
+        refHeader.addEventListener("click", (e) => {
           e.stopPropagation();
-          refItem.classList.toggle('expanded');
-          const toggleIcon = refHeader.querySelector('.dropdown-toggle i');
-          if (refItem.classList.contains('expanded')) {
-            toggleIcon.classList.replace('codicon-chevron-down', 'codicon-chevron-up');
+          refItem.classList.toggle("expanded");
+          const toggleIcon = refHeader.querySelector(".dropdown-toggle i");
+          if (refItem.classList.contains("expanded")) {
+            toggleIcon.classList.replace(
+              "codicon-chevron-down",
+              "codicon-chevron-up",
+            );
           } else {
-            toggleIcon.classList.replace('codicon-chevron-up', 'codicon-chevron-down');
+            toggleIcon.classList.replace(
+              "codicon-chevron-up",
+              "codicon-chevron-down",
+            );
           }
         });
 
         // Keep the openFile functionality but attach it to the file path specifically
-        refItem.querySelector('.file-path').addEventListener("click", (e) => {
+        refItem.querySelector(".file-path").addEventListener("click", (e) => {
           e.stopPropagation(); // Prevent triggering the dropdown toggle
           vscode.postMessage({
             type: "openFile",
@@ -574,31 +611,35 @@ function updateRequirementsDisplay(summary) {
         });
 
         // Add eventHandling for feedback buttons
-        refItem.querySelectorAll('.confirm-req-action').forEach(actionButton => {
-          actionButton.addEventListener("click", (e) => {
-            e.stopPropagation(); // Prevent triggering the dropdown toggle
+        refItem
+          .querySelectorAll(".confirm-req-action")
+          .forEach((actionButton) => {
+            actionButton.addEventListener("click", (e) => {
+              e.stopPropagation(); // Prevent triggering the dropdown toggle
 
-            vscode.postMessage({
-              type: "confirmRequirementImplementation",
-              requirementId: reqId,
-              codeReference: ref,
+              vscode.postMessage({
+                type: "confirmRequirementImplementation",
+                requirementId: reqId,
+                codeReference: ref,
+              });
             });
           });
-        });
 
-        refItem.querySelectorAll('.delete-req-action').forEach(actionButton => {
-          actionButton.addEventListener("click", (e) => {
-            e.stopPropagation(); // Prevent triggering the dropdown toggle
+        refItem
+          .querySelectorAll(".delete-req-action")
+          .forEach((actionButton) => {
+            actionButton.addEventListener("click", (e) => {
+              e.stopPropagation(); // Prevent triggering the dropdown toggle
 
-            vscode.postMessage({
-              type: "rejectRequirementImplementation",
-              requirementId: reqId,
-              codeReferenceId: refIndex,
+              vscode.postMessage({
+                type: "rejectRequirementImplementation",
+                requirementId: reqId,
+                codeReferenceId: refIndex,
+              });
             });
-          })
-        })
+          });
 
-        refItem.querySelectorAll('.edit-req-action').forEach(actionButton => {
+        refItem.querySelectorAll(".edit-req-action").forEach((actionButton) => {
           actionButton.addEventListener("click", (e) => {
             e.stopPropagation(); // Prevent triggering the dropdown toggle
 
@@ -606,10 +647,10 @@ function updateRequirementsDisplay(summary) {
               type: "startEditMode",
               requirementId: reqId,
               codeReferenceId: refIndex,
-              codeReference: ref
+              codeReference: ref,
             });
-          })
-        })
+          });
+        });
 
         refsContainer.appendChild(refItem);
       });
@@ -617,11 +658,65 @@ function updateRequirementsDisplay(summary) {
   });
 
   requirementsResults.appendChild(list);
+
+  const analyzeButtons = document.querySelectorAll(".analyze-button");
+
+  // Analyze Implementation interaction
+  analyzeButtons.forEach((analyzeButton) => {
+    analyzeButton.addEventListener("click", async (e) => {
+      e.stopPropagation();
+
+      console.log("Analyze button clicked");
+
+      console.log("Tracking results:", trackingResults);
+
+      // Get the parent requirement item
+      const requirementItem = analyzeButton.closest(".requirement-item");
+      const analysisDiv = requirementItem.querySelector(".ollama-analysis");
+      const spinner = analysisDiv.querySelector(".loading-spinner");
+      const contentDiv = analysisDiv.querySelector(".analysis-content");
+
+      // Get requirement ID and find the corresponding tracking result
+      const reqId = requirementItem.getAttribute("data-requirement"); // Make sure this attribute exists
+      const result = trackingResults.requirementDetails[reqId];
+
+      if (!result) {
+        console.error(`No tracking results found for requirement ${reqId}`);
+        return;
+      }
+
+      // Show loading state
+      analysisDiv.classList.remove("hidden");
+      spinner.classList.remove("hidden");
+      contentDiv.textContent = "Analyzing...";
+
+      // Find the requirement object
+      const requirement = requirements.find((r) => r.id === reqId);
+      if (!requirement) {
+        console.error(`No requirement found for ID ${reqId}`);
+        return;
+      }
+
+      console.log("Sending analyze implementation message", {
+        requirement,
+        codeReferences: result.codeReferences,
+      });
+
+      vscode.postMessage({
+        type: "analyzeImplementation",
+        requirementId: reqId,
+        requirement: requirement,
+        codeReferences: result.codeReferences,
+      });
+    });
+  });
 }
 
 // Update requirements table
 function updateRequirementsTable() {
-  const requirementsWrapper = document.getElementById("requirements-table-wrapper");
+  const requirementsWrapper = document.getElementById(
+    "requirements-table-wrapper",
+  );
 
   requirementsWrapper.innerHTML = "";
 
@@ -651,11 +746,13 @@ function updateRequirementsTable() {
   requirements.forEach((req) => {
     const item = document.createElement("tr");
 
-    const viewAction = req.codeReference ? `
+    const viewAction = req.codeReference
+      ? `
         <li class="view-req-action" title="View tracked implementation" data-requirement="${req.id}" data-path="${req.codeReference.filePath}" data-line="${req.codeReference.lineNumber}">
             <i class="codicon codicon-code"></i>
         </li>
-    ` : "";
+    `
+      : "";
 
     item.innerHTML = `
       <td><input id="${req.id}" name="${req.id}" type="checkbox"></td>
@@ -675,7 +772,7 @@ function updateRequirementsTable() {
       </td>
     `;
     tbody.appendChild(item);
-  })
+  });
 
   table.appendChild(tbody);
   requirementsWrapper.appendChild(table);
@@ -690,7 +787,7 @@ function handleRequirementsEvents() {
   const viewReqActions = document.querySelectorAll(".view-req-action");
 
   // Select Requirements interaction
-  selectRequirements.forEach(requirement => {
+  selectRequirements.forEach((requirement) => {
     requirement.addEventListener("change", () => {
       if (!requirement.checked) {
         const trackAllCheckbox = document.getElementById("track-all");
@@ -699,10 +796,10 @@ function handleRequirementsEvents() {
         }
       }
     });
-  })
+  });
 
   // Actions
-  deleteReqActions.forEach(deleteReqAction => {
+  deleteReqActions.forEach((deleteReqAction) => {
     deleteReqAction.addEventListener("click", () => {
       const requirementId = deleteReqAction.dataset.requirement;
 
@@ -711,9 +808,9 @@ function handleRequirementsEvents() {
         requirementId,
       });
     });
-  })
+  });
 
-  editReqActions.forEach(editReqAction => {
+  editReqActions.forEach((editReqAction) => {
     editReqAction.addEventListener("click", () => {
       const requirementId = editReqAction.getAttribute("data-requirement");
       vscode.postMessage({
@@ -723,7 +820,7 @@ function handleRequirementsEvents() {
     });
   });
 
-  viewReqActions.forEach(viewReqAction => {
+  viewReqActions.forEach((viewReqAction) => {
     viewReqAction.addEventListener("click", () => {
       const requirementId = viewReqAction.getAttribute("data-requirement");
       const filePath = viewReqAction.getAttribute("data-path");

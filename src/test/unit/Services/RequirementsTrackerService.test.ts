@@ -1,13 +1,14 @@
-import {beforeEach, describe, expect, it, jest} from "@jest/globals";
-import {RequirementsTrackerService} from "../../../Services/RequirementsTrackerService";
-import {IVectorDatabase} from "../../../Interfaces/IVectorDatabase";
-import {DocumentServiceFacade} from "../../../Facades/DocumentServiceFacade";
-import {FilterService} from "../../../Services/FilterService";
-import {Requirement, RequirementStatus} from "../../../Models/Requirement";
-import {Chunk} from "../../../Models/Chunk";
+import { beforeEach, describe, expect, it, jest } from "@jest/globals";
+import { RequirementsTrackerService } from "../../../Services/RequirementsTrackerService";
+import { IVectorDatabase } from "../../../Interfaces/IVectorDatabase";
+import { DocumentServiceFacade } from "../../../Facades/DocumentServiceFacade";
+import { FilterService } from "../../../Services/FilterService";
+import { Requirement, RequirementStatus } from "../../../Models/Requirement";
+import { Chunk } from "../../../Models/Chunk";
 import * as vscode from "../Mock/vscode";
-import {CodeReference} from "../../../Models/TrackingModels";
-import {FileExtensionFilter, PathFilter} from "../../../Models/Filter";
+import { CodeReference } from "../../../Models/TrackingModels";
+import { FileExtensionFilter, PathFilter } from "../../../Models/Filter";
+import { ILanguageModel } from "../../../Interfaces/ILanguageModel";
 
 describe("RequirementsTrackerService", () => {
   let vectorDatabase: jest.Mocked<IVectorDatabase>;
@@ -52,10 +53,17 @@ describe("RequirementsTrackerService", () => {
       getRequirementsFilters: jest.fn(),
     } as unknown as jest.Mocked<FilterService>;
 
+    const mockLanguageModel: ILanguageModel = {
+      generate: async (prompt: string) => `Mock response for: ${prompt}`,
+      generateEmbeddings: async (_text: string) => [0.1, 0.2, 0.3],
+      refreshModels: async () => {},
+    };
+
     service = new RequirementsTrackerService(
       vectorDatabase,
       documentServiceFacade,
       filterService,
+      mockLanguageModel,
     );
   });
 
@@ -67,7 +75,7 @@ describe("RequirementsTrackerService", () => {
         description: "Test description",
         type: "functional",
         version: "1.0",
-        status: RequirementStatus.NOT_TRACKED
+        status: RequirementStatus.NOT_TRACKED,
       };
 
       vectorDatabase.queryForChunks.mockRejectedValue(
@@ -105,7 +113,7 @@ describe("RequirementsTrackerService", () => {
         description: "Test description",
         type: "functional",
         version: "1.0",
-        status: RequirementStatus.NOT_TRACKED
+        status: RequirementStatus.NOT_TRACKED,
       };
 
       const mockChunks: Chunk[] = [
@@ -135,7 +143,7 @@ describe("RequirementsTrackerService", () => {
         description: "Test description",
         type: "functional",
         version: "1.0",
-        status: RequirementStatus.NOT_TRACKED
+        status: RequirementStatus.NOT_TRACKED,
       };
 
       vectorDatabase.queryForChunks.mockRejectedValue(new Error("Test error"));
@@ -189,7 +197,7 @@ describe("RequirementsTrackerService", () => {
           description: "Test description",
           type: "functional",
           version: "1.0",
-          status: RequirementStatus.NOT_TRACKED
+          status: RequirementStatus.NOT_TRACKED,
         },
       ];
 
@@ -210,7 +218,7 @@ describe("RequirementsTrackerService", () => {
           description: "Test description 1",
           type: "functional",
           version: "1.0",
-          status: RequirementStatus.NOT_TRACKED
+          status: RequirementStatus.NOT_TRACKED,
         },
         {
           id: "REQ-002",
@@ -218,7 +226,7 @@ describe("RequirementsTrackerService", () => {
           description: "Test description 2",
           type: "functional",
           version: "1.0",
-          status: RequirementStatus.NOT_TRACKED
+          status: RequirementStatus.NOT_TRACKED,
         },
       ];
 
@@ -259,7 +267,7 @@ describe("RequirementsTrackerService", () => {
           description: "Test description 1",
           type: "functional",
           version: "1.0",
-          status: RequirementStatus.NOT_TRACKED
+          status: RequirementStatus.NOT_TRACKED,
         },
         {
           id: "REQ-002",
@@ -267,7 +275,7 @@ describe("RequirementsTrackerService", () => {
           description: "Test description 2",
           type: "functional",
           version: "1.0",
-          status: RequirementStatus.NOT_TRACKED
+          status: RequirementStatus.NOT_TRACKED,
         },
       ];
 
@@ -308,7 +316,7 @@ describe("RequirementsTrackerService", () => {
           description: "Test description 1",
           type: "functional",
           version: "1.0",
-          status: RequirementStatus.NOT_TRACKED
+          status: RequirementStatus.NOT_TRACKED,
         },
         {
           id: "REQ-002",
@@ -316,7 +324,7 @@ describe("RequirementsTrackerService", () => {
           description: "Test description 2",
           type: "functional",
           version: "1.0",
-          status: RequirementStatus.NOT_TRACKED
+          status: RequirementStatus.NOT_TRACKED,
         },
       ];
 
