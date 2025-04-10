@@ -23,8 +23,10 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                                                                            | Autore                | Data Verifica | Verificatore          |
 | ---------- | -------- | -------------------------------------------------------------------------------------- | --------------------- | ------------- | --------------------- |
+| 31/03/2025 | 2.4.6    | Aggiunta consuntivo sprint 8                                                           | Carraro Agnese        | 31/03/2025    | 
+| 30/03/2025 | 2.4.5    | Controllo consistenza maiuscole                                                        | Dal Bianco Riccardo   | 30/03/2025    | Vasquez Manuel Felipe |
 | 17/03/2025 | 2.4.4    | Aggiunta preventivo sprint 8                                                           | Carraro Agnese        | 18/03/2025    | Marcon Giulia         |
-| 30/03/2025 | 2.4.3    | Controllo consistenza maiuscole                                                        | Dal Bianco Riccardo   | 30/03/2025    | Vasquez Manuel Felipe |
+| 17/03/2025 | 2.4.3    | Aggiunta consuntivo sprint 7                                                           | Manuel Felipe Vasquez | 14/03/2025    | Pistori Gaia          |
 | 10/03/2025 | 2.4.2    | Aggiunta preventivo sprint 7                                                           | Manuel Felipe Vasquez | 14/03/2025    | Monetti Luca          |
 | 07/03/2025 | 2.4.1    | Aggiunta consuntivo sprint 6                                                           | Marcon Giulia         | 07/03/2025    | Monetti Luca          |
 | 28/02/2025 | 2.4.0    | Aggiunta diagrammi Gantt                                                               | Piola Andrea          | 28/02/2025    | Marcon Giulia         |
@@ -674,7 +676,7 @@ Table: Suddivisione ruoli Sprint 7
 
 ###### Preventivo
 
-A seguito si riporta la tabella del preventivo per il sesto %%sprint|sprint%%
+A seguito si riporta la tabella del preventivo per il settimo %%sprint|sprint%%
 
 | Ruolo                     | Ore svolte (h) | Costo (€)  |
 | ------------------------- | -------------- | ---------- |
@@ -705,7 +707,7 @@ Di seguito vengono indicate le spese effettive del settimo %%sprint|sprint%%
 
 Table: Consuntivo Sprint 7
 
-Considerando il costo di **637,4** il residuo disponibile ammonta a **7.667,3€**.
+Considerando il costo di **637,4** il residuo disponibile ammonta a **8202,2€**.
 
 ###### Retrospettiva
 
@@ -719,26 +721,27 @@ In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni rispetto a
 
 <img src="/img/Gantt/Sprint7.png" alt="Diagramma Gantt sprint 7" data-width="70%" />
 
+
 ##### Sprint 8
 
 - Periodo 17/03/2025 - 30/03/2025
 
 ###### Pianificazione
 
-In questo periodo, il gruppo si concentrerà sulla progettazione e sul miglioramento della documentazione.
+In questo periodo, il gruppo si concentrerà sulla progettazione e sul miglioramento della documentazione. 
 
 ###### Ruoli
 
 A seguito si riporta la tabella con la suddivisione dei ruoli:
 
-| **Ruolo**                 | **Membri**                 |
-| ------------------------- | -------------------------- |
-| Responsabile di progetto  | Carraro Agnese             |
-| Analista                  | Pistori Gaia, Piola Andrea |
-| Progettista               | Monetti Luca               |
-| Amministratore di sistema | Dal Bianco Riccardo        |
-| Programmatore             | Manuel Felipe Vasquez      |
-| Verificatore              | Marcon Giulia              |
+| **Ruolo**                 | **Membri**                          |
+|---------------------------|-------------------------------------|
+| Responsabile di progetto  | Carraro Agnese                      |
+| Analista                  | Pistori Gaia, Piola Andrea          |
+| Progettista               | Monetti Luca                        |
+| Amministratore di sistema | Dal Bianco Riccardo                 |
+| Programmatore             | Manuel Felipe Vasquez               |
+| Verificatore              | Marcon Giulia                       |
 
 Table: Suddivisione ruoli Sprint 8
 
@@ -746,18 +749,47 @@ Table: Suddivisione ruoli Sprint 8
 
 A seguito si riporta la tabella del preventivo per l'ottavo %%sprint|sprint%%:
 
-| Ruolo                     | Ore svolte (h) | Costo (€) |
-| ------------------------- | -------------- | --------- |
-| Responsabile di progetto  | 4,5            | 135       |
-| Analista                  | 20             | 500       |
-| Progettista               | 13             | 325       |
-| Amministratore di sistema | 14,7           | 294       |
-| Programmatore             | 12             | 180       |
-| Verificatore              | 2,82           | 42,3      |
-| _Totale_                  | _67,02_        | _1476,3_  |
-| _Bilancio_                |                | \_\_      |
+| Ruolo                     | Ore svolte (h) | Costo (€)  |
+|---------------------------|----------------|------------|
+| Responsabile di progetto  | 8              | 240        |
+| Analista                  | 24             | 600        |
+| Progettista               | 42,5           | 1062,50    |
+| Amministratore di sistema | 34             | 680        |
+| Programmatore             | 33             | 495        |
+| Verificatore              | 23,34          | 350,1      |
+| _Totale_                  | _164,84_       | _3427,6_   |
+| _Bilancio_                |                | _4775,2_   |
 
 Table: Preventivo Sprint 8
+
+
+###### Consuntivo
+
+Di seguito vengono indicate le spese effettive dell'ottavo %%sprint|sprint%%
+
+| Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
+|---------------------------|----------------------|---------------|------------------|-----------|-----------------|
+| Responsabile di progetto  | 8,5                  | +0,5          | 30               | 255       | +15             |
+| Analista                  | 26                   | +2            | 25               | 650       | +50             |
+| Progettista               | 42,5                 | 0             | 25               | 1062,5    | 0               |
+| Amministratore di sistema | 37,17                | +3,17         | 20               | 743,4     | +63,4           |
+| Programmatore             | 33                   | 0             | 15               | 495       | 0               |
+| Verificatore              | 24,25                | +0,91         | 15               | 363,75    | +13,65          |
+| _Totale consuntivo_       | _167,42_             | _+6,58_       |                  | _3569,65_ | _+142,05_       |
+
+Table: Consuntivo Sprint 8
+
+Considerando il costo di **3569,65€** il residuo disponibile ammonta a **4632,55€**.
+
+###### Retrospettiva
+L'ottavo %%sprint|sprint%% ha visto un considerevole avanzamento, principalmente nell'%%attività|attività%% di progettazione, ma anche nel miglioramento della documentazione e nell'%%attività|attività%% di codifica. Sono state completate tutte le %%attività|attività%% previste, incluse quelle arretrate del settimo %%sprint|sprint%%.
+
+###### Conclusione
+In conclusione, l'ottavo %%sprint|sprint%% ha segnato un grande avanzamento. Infatti, il costo finale di 3569,65€ mostra un notevole aumento della produttività. Il tempo richiesto per il completamento delle %%attività|attività%% ha leggermente superato quello previsto (+6,58 ore), ma tutti gli obiettivi prefissati sono stati raggiunti.
+
+###### Gantt
+
+<img src="/img/Gantt/Sprint8.png" alt="Diagramma Gantt sprint 8" data-width="70%" />
 
 <!-- ::: {.no-export} -->
 
