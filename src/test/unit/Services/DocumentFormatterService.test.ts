@@ -17,19 +17,22 @@ describe("DocumentFormatterService", () => {
           code: "int main() {\n    return 0;\n}",
           expectedChunks: [
             {
-              content: "int main() {",
+              content: "int main() {\n    return 0;\n}",
+              lineContent: "int main() {",
               filePath: "test.c",
               fileType: "c",
               lineNumber: 1,
             },
             {
-              content: "    return 0;",
+              content: "int main() {\n    return 0;\n}",
+              lineContent: "    return 0;",
               filePath: "test.c",
               fileType: "c",
               lineNumber: 2,
             },
             {
-              content: "}",
+              content: "int main() {\n    return 0;\n}",
+              lineContent: "}",
               filePath: "test.c",
               fileType: "c",
               lineNumber: 3,
@@ -41,19 +44,22 @@ describe("DocumentFormatterService", () => {
           code: 'void test() {\n    cout << "Hello";\n}',
           expectedChunks: [
             {
-              content: "void test() {",
+              content: 'void test() {\n    cout << "Hello";\n}',
+              lineContent: "void test() {",
               filePath: "test.cpp",
               fileType: "cpp",
               lineNumber: 1,
             },
             {
-              content: '    cout << "Hello";',
+              content: 'void test() {\n    cout << "Hello";\n}',
+              lineContent: '    cout << "Hello";',
               filePath: "test.cpp",
               fileType: "cpp",
               lineNumber: 2,
             },
             {
-              content: "}",
+              content: 'void test() {\n    cout << "Hello";\n}',
+              lineContent: "}",
               filePath: "test.cpp",
               fileType: "cpp",
               lineNumber: 3,
@@ -73,21 +79,21 @@ describe("DocumentFormatterService", () => {
       const code = 'fn main() {\n    println!("Hello");\n}';
       const expectedChunks: Chunk[] = [
         {
-          content: "fn main() {",
+          content: 'fn main() {\n    println!("Hello");\n}',
           lineContent: "fn main() {",
           filePath: "test.rs",
           fileType: "rust",
           lineNumber: 1,
         },
         {
-          content: '    println!("Hello");',
+          content: 'fn main() {\n    println!("Hello");\n}',
           lineContent: '    println!("Hello");',
           filePath: "test.rs",
           fileType: "rust",
           lineNumber: 2,
         },
         {
-          content: "}",
+          content: 'fn main() {\n    println!("Hello");\n}',
           lineContent: "}",
           filePath: "test.rs",
           fileType: "rust",
@@ -104,21 +110,21 @@ describe("DocumentFormatterService", () => {
       const code = "int main() {\n\n    return 0;\n\n}";
       const expectedChunks: Chunk[] = [
         {
-          content: "int main() {",
+          content: "int main() {\n\n    return 0;\n",
           lineContent: "int main() {",
           filePath: "test.c",
           fileType: "c",
           lineNumber: 1,
         },
         {
-          content: "    return 0;",
+          content: "int main() {\n\n    return 0;\n\n}",
           lineContent: "    return 0;",
           filePath: "test.c",
           fileType: "c",
           lineNumber: 3,
         },
         {
-          content: "}",
+          content: "\n    return 0;\n\n}",
           lineContent: "}",
           filePath: "test.c",
           fileType: "c",
@@ -135,14 +141,14 @@ describe("DocumentFormatterService", () => {
       const code = "line 1\nline 2";
       const expectedChunks: Chunk[] = [
         {
-          content: "line 1",
+          content: "line 1\nline 2",
           lineContent: "line 1",
           filePath: "test.unknown",
           fileType: "text",
           lineNumber: 1,
         },
         {
-          content: "line 2",
+          content: "line 1\nline 2",
           lineContent: "line 2",
           filePath: "test.unknown",
           fileType: "text",
@@ -161,19 +167,22 @@ describe("DocumentFormatterService", () => {
           code: "#ifndef TEST_H\n#define TEST_H\n#endif",
           expectedChunks: [
             {
-              content: "#ifndef TEST_H",
+              content: "#ifndef TEST_H\n#define TEST_H\n#endif",
+              lineContent: "#ifndef TEST_H",
               filePath: "test.h",
               fileType: "c",
               lineNumber: 1,
             },
             {
-              content: "#define TEST_H",
+              content: "#ifndef TEST_H\n#define TEST_H\n#endif",
+              lineContent: "#define TEST_H",
               filePath: "test.h",
               fileType: "c",
               lineNumber: 2,
             },
             {
-              content: "#endif",
+              content: "#ifndef TEST_H\n#define TEST_H\n#endif",
+              lineContent: "#endif",
               filePath: "test.h",
               fileType: "c",
               lineNumber: 3,
@@ -185,13 +194,15 @@ describe("DocumentFormatterService", () => {
           code: "#pragma once\nclass Test {};",
           expectedChunks: [
             {
-              content: "#pragma once",
+              content: "#pragma once\nclass Test {};",
+              lineContent: "#pragma once",
               filePath: "test.hpp",
               fileType: "cpp",
               lineNumber: 1,
             },
             {
-              content: "class Test {};",
+              content: "#pragma once\nclass Test {};",
+              lineContent: "class Test {};",
               filePath: "test.hpp",
               fileType: "cpp",
               lineNumber: 2,
