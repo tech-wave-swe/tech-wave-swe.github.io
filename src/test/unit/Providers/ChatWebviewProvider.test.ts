@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { expect, jest } from "@jest/globals";
 import { ChatWebviewProvider } from "../../../Providers/ChatWebviewProvider";
 import { ChatService } from "../../../Services/ChatService";

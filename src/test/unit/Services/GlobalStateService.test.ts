@@ -1,8 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {expect, jest} from "@jest/globals";
-import {GlobalStateService, StateKeys,} from "../../../Services/GlobalStateService";
-import {ChatMessage} from "../../../Models/ChatMessage";
-import {Requirement, RequirementStatus} from "../../../Models/Requirement";
+import { expect, jest } from "@jest/globals";
+import {
+  GlobalStateService,
+  StateKeys,
+} from "../../../Services/GlobalStateService";
+import { ChatMessage } from "../../../Models/ChatMessage";
+import { Requirement, RequirementStatus } from "../../../Models/Requirement";
 
 import * as vscode from "vscode";
 
