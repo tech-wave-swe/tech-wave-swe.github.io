@@ -148,13 +148,16 @@ function handleEvents() {
             const selectedReference =
               result.codeReferences[implementationIndex];
 
+            // const refsContainerId = `refs-${requirementId.replace("{", "").replace("}", "")}`;
+            // const refsContainer = reqItem.querySelector(`#${refsContainerId}`);
+
             // Update analysis content
-            contentDiv.innerHTML = `<p>${analysisText}</p>`;
+            contentDiv.innerHTML = `
+              <div class="analysis-text">
+                <p>${analysisText}</p>
+              </div>`;
 
-            // Create new code reference div
-            const refsContainerId = `refs-${requirementId.replace("{", "").replace("}", "")}`;
-            const refsContainer = reqItem.querySelector(`#${refsContainerId}`);
-
+            // Create code reference div within the analysis content
             const refItem = document.createElement("div");
             refItem.className =
               "code-reference nested-dropdown-container expanded";
@@ -175,7 +178,7 @@ function handleEvents() {
                 <div class="code-snippet">${escapeHtml(formatSnippet(codeSnippet))}</div>
                 <div class="req-action-wrapper">
                   <div>
-                    <p>Analysis: ${analysisText}</p>
+                    <p>Best matching implementation</p>
                   </div>
                   <ul class="req-actions">
                     <li class="edit-req-action"><i class="codicon codicon-edit"></i></li>
@@ -213,7 +216,7 @@ function handleEvents() {
                 vscode.postMessage({
                   type: "rejectRequirementImplementation",
                   requirementId,
-                  codeReferenceId: refsContainer.children.length,
+                  codeReferenceId: implementationIndex,
                 });
               });
 
@@ -224,11 +227,14 @@ function handleEvents() {
                 vscode.postMessage({
                   type: "startEditMode",
                   requirementId,
-                  codeReferenceId: refsContainer.children.length,
+                  codeReferenceId: implementationIndex,
                   codeReference,
                 });
               });
-            refsContainer.appendChild(refItem);
+            const analysisCodeSnippet = analysisDiv.querySelector(
+              ".analysis-code-snippet",
+            );
+            analysisCodeSnippet.appendChild(refItem);
           } else {
             console.error(
               `Could not find content div for requirement ${requirementId}`,
@@ -611,6 +617,7 @@ function updateRequirementsDisplay(summary) {
             <div class="loading-spinner hidden"></div>
           </div>
           <div class="analysis-content"></div>
+          <div class="analysis-code-snippet"></div>
         </div>
         <div class="code-references" id="${refsContainerId}"></div>
       </div>

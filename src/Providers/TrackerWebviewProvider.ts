@@ -96,8 +96,6 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
     codeReferences: CodeReference[],
   ): Promise<void> {
     try {
-      this._sendMessageToWebview({ type: "setLoading", isLoading: true });
-
       const analysis =
         await this._requirementsServiceFacade.analyzeImplementation(
           requirement,
@@ -110,12 +108,8 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
         requirementId,
         analysis,
       });
-      // Show the analysis in a information message
-      // vscode.window.showInformationMessage(analysis, { modal: true });
     } catch (error) {
       vscode.window.showErrorMessage(`Analysis failed: ${error}`);
-    } finally {
-      this._sendMessageToWebview({ type: "setLoading", isLoading: false });
     }
   }
 
