@@ -74,18 +74,21 @@ describe("DocumentFormatterService", () => {
       const expectedChunks: Chunk[] = [
         {
           content: "fn main() {",
+          lineContent: "fn main() {",
           filePath: "test.rs",
           fileType: "rust",
           lineNumber: 1,
         },
         {
           content: '    println!("Hello");',
+          lineContent: '    println!("Hello");',
           filePath: "test.rs",
           fileType: "rust",
           lineNumber: 2,
         },
         {
           content: "}",
+          lineContent: "}",
           filePath: "test.rs",
           fileType: "rust",
           lineNumber: 3,
@@ -102,18 +105,21 @@ describe("DocumentFormatterService", () => {
       const expectedChunks: Chunk[] = [
         {
           content: "int main() {",
+          lineContent: "int main() {",
           filePath: "test.c",
           fileType: "c",
           lineNumber: 1,
         },
         {
           content: "    return 0;",
+          lineContent: "    return 0;",
           filePath: "test.c",
           fileType: "c",
           lineNumber: 3,
         },
         {
           content: "}",
+          lineContent: "}",
           filePath: "test.c",
           fileType: "c",
           lineNumber: 5,
@@ -130,12 +136,14 @@ describe("DocumentFormatterService", () => {
       const expectedChunks: Chunk[] = [
         {
           content: "line 1",
+          lineContent: "line 1",
           filePath: "test.unknown",
           fileType: "text",
           lineNumber: 1,
         },
         {
           content: "line 2",
+          lineContent: "line 2",
           filePath: "test.unknown",
           fileType: "text",
           lineNumber: 2,

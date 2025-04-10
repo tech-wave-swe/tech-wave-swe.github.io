@@ -119,6 +119,7 @@ describe("RequirementsTrackerService", () => {
       const mockChunks: Chunk[] = [
         {
           content: "Test code",
+          lineContent: "Test line content",
           filePath: "/test/file.c",
           fileType: "c",
           lineNumber: 1,
@@ -233,6 +234,7 @@ describe("RequirementsTrackerService", () => {
       const mockChunks: Chunk[] = [
         {
           content: "Test code",
+          lineContent: "Test line content",
           filePath: "/test/file.c",
           fileType: "c",
           lineNumber: 1,
@@ -282,6 +284,7 @@ describe("RequirementsTrackerService", () => {
       const mockChunks: Chunk[] = [
         {
           content: "Test code",
+          lineContent: "Test line content",
           filePath: "/test/file.c",
           fileType: "c",
           lineNumber: 1,
@@ -331,6 +334,7 @@ describe("RequirementsTrackerService", () => {
       const mockChunks: Chunk[] = [
         {
           content: "Test code",
+          lineContent: "Test line content",
           filePath: "/test/file.c",
           fileType: "c",
           lineNumber: 1,
@@ -459,6 +463,7 @@ describe("RequirementsTrackerService", () => {
       const chunks: Chunk[] = [
         {
           content: "Test code 1",
+          lineContent: "Test line content",
           filePath: "/test/file1.c",
           fileType: "c",
           lineNumber: 1,
@@ -466,6 +471,7 @@ describe("RequirementsTrackerService", () => {
         },
         {
           content: "Test code 2",
+          lineContent: "Test line content",
           filePath: "/test/file2.c",
           fileType: "c",
           lineNumber: 1,

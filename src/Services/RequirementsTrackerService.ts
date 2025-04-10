@@ -47,16 +47,24 @@ export class RequirementsTrackerService {
   Implementations:
   ${codeReferences
     .map(
-      (ref) => `
+      (ref, idx) => `
+Implementation #${idx + 1}:
 File: ${ref.filePath}:${ref.lineNumber}
 Code:
 ${ref.snippet}`,
     )
     .join("\n")}
-  Provide your analysis focusing on:
-  1. How well the code implements the requirement
-  2. Any missing aspects
-  3. Suggestions for improvement`;
+
+  Respond in this exact format, using the markers exactly as shown:
+  [CODE_START]
+  <paste the most relevant code implementation here>
+  [CODE_END]
+  [INDEX_START]
+  <write the implementation number (1-${codeReferences.length}) that best matches>
+  [INDEX_END]
+  [ANALYSIS_START]
+  <write your analysis here>
+  [ANALYSIS_END]`;
 
       return await this._languageModel.generate(prompt);
     } catch (error) {
@@ -125,10 +133,11 @@ ${ref.snippet}`,
       .map((chunk) => {
         return {
           snippet: chunk.content,
+          lineContent: chunk.lineContent,
           filePath: chunk.filePath,
           lineNumber: chunk.lineNumber,
           score: chunk.score ?? 0,
-          revelanceExplanation: `Match score: ${Math.round((chunk.score || 0) * 100)}%`,
+          relevanceExplanation: `Match score: ${Math.round((chunk.score || 0) * 100)}%`,
           contextRange: {
             start: chunk.lineNumber - 3 > 0 ? chunk.lineNumber - 3 : 0,
             end: chunk.lineNumber + 3,
@@ -281,7 +290,8 @@ ${ref.snippet}`,
 
     for (const folder of workspaceFolders) {
       console.log(`Scanning folder: ${folder.name}`);
-
+      console.log(`Using file pattern: ${pathInclude}`);
+      console.log(`Excluding files: ${pathExclude}`);
       const files = await vscode.workspace.findFiles(
         new vscode.RelativePattern(folder, pathInclude),
         new vscode.RelativePattern(folder, pathExclude),

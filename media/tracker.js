@@ -121,10 +121,114 @@ function handleEvents() {
           }
 
           if (contentDiv) {
-            contentDiv.innerHTML = analysis
-              .split("\n")
-              .map((line) => `<p>${line}</p>`)
-              .join("");
+            // Parse marked sections
+            const getMarkedContent = (text, startMarker, endMarker) => {
+              const start = text.indexOf(startMarker) + startMarker.length;
+              const end = text.indexOf(endMarker);
+              return text.substring(start, end).trim();
+            };
+
+            const codeSnippet = getMarkedContent(
+              analysis,
+              "[CODE_START]",
+              "[CODE_END]",
+            );
+            const implementationIndex =
+              parseInt(
+                getMarkedContent(analysis, "[INDEX_START]", "[INDEX_END]"),
+              ) - 1;
+            const analysisText = getMarkedContent(
+              analysis,
+              "[ANALYSIS_START]",
+              "[ANALYSIS_END]",
+            );
+
+            // Get the selected code reference
+            const result = trackingResults.requirementDetails[requirementId];
+            const selectedReference =
+              result.codeReferences[implementationIndex];
+
+            // Update analysis content
+            contentDiv.innerHTML = `<p>${analysisText}</p>`;
+
+            // Create new code reference div
+            const refsContainerId = `refs-${requirementId.replace("{", "").replace("}", "")}`;
+            const refsContainer = reqItem.querySelector(`#${refsContainerId}`);
+
+            const refItem = document.createElement("div");
+            refItem.className =
+              "code-reference nested-dropdown-container expanded";
+            refItem.setAttribute("data-path", selectedReference.filePath);
+            refItem.setAttribute("data-line", selectedReference.lineNumber);
+
+            // Create reference header
+            const refHeaderHTML = `
+              <div class="dropdown-header ref-header">
+                <div class="file-path">${selectedReference.filePath}:${selectedReference.lineNumber}</div>
+                <div class="dropdown-toggle"><i class="codicon codicon-chevron-down"></i></div>
+              </div>
+            `;
+
+            // Create reference content with action buttons
+            const refContentHTML = `
+              <div class="dropdown-content ref-content">
+                <div class="code-snippet">${escapeHtml(formatSnippet(codeSnippet))}</div>
+                <div class="req-action-wrapper">
+                  <div>
+                    <p>Analysis: ${analysisText}</p>
+                  </div>
+                  <ul class="req-actions">
+                    <li class="edit-req-action"><i class="codicon codicon-edit"></i></li>
+                    <li class="confirm-req-action"><i class="codicon codicon-check"></i></li>
+                    <li class="delete-req-action"><i class="codicon codicon-trash"></i></li>
+                  </ul>
+                </div>
+              </div>
+            `;
+
+            refItem.innerHTML = refHeaderHTML + refContentHTML;
+
+            // Add event handlers for the action buttons
+            const codeReference = {
+              filePath: selectedReference.filePath,
+              lineNumber: selectedReference.lineNumber, // We'll need to get this from the analysis
+              snippet: codeSnippet,
+            };
+
+            refItem
+              .querySelector(".confirm-req-action")
+              .addEventListener("click", (e) => {
+                e.stopPropagation();
+                vscode.postMessage({
+                  type: "confirmRequirementImplementation",
+                  requirementId,
+                  codeReference,
+                });
+              });
+
+            refItem
+              .querySelector(".delete-req-action")
+              .addEventListener("click", (e) => {
+                e.stopPropagation();
+                vscode.postMessage({
+                  type: "rejectRequirementImplementation",
+                  requirementId,
+                  codeReferenceId: refsContainer.children.length,
+                });
+              });
+
+            refItem
+              .querySelector(".edit-req-action")
+              .addEventListener("click", (e) => {
+                e.stopPropagation();
+                vscode.postMessage({
+                  type: "startEditMode",
+                  requirementId,
+                  codeReferenceId: refsContainer.children.length,
+                  codeReference,
+                });
+              });
+            refsContainer.appendChild(refItem);
           } else {
             console.error(
               `Could not find content div for requirement ${requirementId}`,
@@ -708,6 +812,16 @@ function updateRequirementsDisplay(summary) {
         requirement: requirement,
         codeReferences: result.codeReferences,
       });
+
+      // Create code reference container if it doesn't exist
+      const refsContainerId = `refs-${reqId.replace("{", "").replace("}", "")}`;
+      let refsContainer = requirementItem.querySelector(`#${refsContainerId}`);
+      if (!refsContainer) {
+        refsContainer = document.createElement("div");
+        refsContainer.className = "code-references";
+        refsContainer.id = refsContainerId;
+        requirementItem.appendChild(refsContainer);
+      }
     });
   });
 }

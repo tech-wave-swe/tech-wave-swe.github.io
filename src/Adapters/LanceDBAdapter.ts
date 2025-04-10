@@ -157,12 +157,13 @@ export class LanceDBAdapter implements IVectorDatabase {
 
     for (const chunk of chunks) {
       try {
-        const embedding = await this._embeddings.embedQuery(chunk.content);
+        const embedding = await this._embeddings.embedQuery(chunk.lineContent);
 
         await table.add([
           {
             vector: embedding,
             content: chunk.content,
+            line_content: chunk.lineContent,
             file_path: chunk.filePath,
             file_type: chunk.fileType,
             line_number: chunk.lineNumber,
@@ -295,6 +296,7 @@ export class LanceDBAdapter implements IVectorDatabase {
 
       const keyMapping: Record<string, string> = {
         content: "content",
+        line_content: "lineContent",
         file_path: "filePath",
         file_type: "fileType",
         line_number: "lineNumber",
@@ -455,6 +457,7 @@ export class LanceDBAdapter implements IVectorDatabase {
             {
               vector: Array(this._embeddingDimension).fill(0),
               content: "",
+              line_content: "",
               file_path: "",
               file_type: "",
               line_number: 0,

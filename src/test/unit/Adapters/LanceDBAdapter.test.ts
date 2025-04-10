@@ -98,7 +98,7 @@ describe("LanceDBAdapter", () => {
       });
 
       await expect(adapter.resetDatabase()).rejects.toThrow(
-        "Failed to reset database"
+        "Failed to reset database",
       );
     });
   });
@@ -147,7 +147,7 @@ describe("LanceDBAdapter", () => {
       const filePath = "/test/file.txt";
 
       (mockQuery.toArray as jest.Mock<() => Promise<any[]>>).mockRejectedValue(
-        new Error("Database error")
+        new Error("Database error"),
       );
 
       await expect(adapter.fileExists(filePath)).rejects.toThrow();
@@ -211,11 +211,11 @@ describe("LanceDBAdapter", () => {
       expect(adapter.fileExists).toHaveBeenNthCalledWith(
         2,
         "123abc",
-        "new-checksum"
+        "new-checksum",
       );
 
       expect(mockTable.delete).toHaveBeenCalledWith(
-        `file_path = '${file.filePath}'`
+        `file_path = '${file.filePath}'`,
       );
     });
 
@@ -283,7 +283,7 @@ describe("LanceDBAdapter", () => {
       ).mockRejectedValue(new Error("Failed to add requirement"));
 
       await expect(adapter.addRequirements(requirements)).rejects.toThrow(
-        "Failed to add requirement"
+        "Failed to add requirement",
       );
     });
   });
@@ -297,12 +297,14 @@ describe("LanceDBAdapter", () => {
       const chunks: Chunk[] = [
         {
           content: "Chunk 1",
+          lineContent: "Line 1",
           filePath: "file.txt",
           fileType: "text",
           lineNumber: 1,
         },
         {
           content: "Chunk 2",
+          lineContent: "Line 2",
           filePath: "file.txt",
           fileType: "text",
           lineNumber: 2,
@@ -318,6 +320,7 @@ describe("LanceDBAdapter", () => {
       const chunks: Chunk[] = [
         {
           content: "Chunk 1",
+          lineContent: "Line 1",
           filePath: "file1.txt",
           fileType: "text",
           lineNumber: 1,
@@ -329,7 +332,7 @@ describe("LanceDBAdapter", () => {
       ).mockRejectedValue(new Error("Failed to add chunk"));
 
       await expect(adapter.addChunks(chunks)).rejects.toThrow(
-        "Failed to add chunk"
+        "Failed to add chunk",
       );
     });
   });
@@ -357,7 +360,7 @@ describe("LanceDBAdapter", () => {
       ];
 
       (mockQuery.toArray as jest.Mock<() => Promise<any[]>>).mockResolvedValue(
-        queryResults
+        queryResults,
       );
       mockEmbeddings.embedQuery.mockResolvedValue([0.1, 0.2, 0.3]);
 
@@ -366,7 +369,7 @@ describe("LanceDBAdapter", () => {
       expect(result).toEqual(expectedFiles);
       expect(mockEmbeddings.embedQuery).toHaveBeenCalledWith(searchTerm);
       expect(mockQuery.nearestTo).toHaveBeenCalledWith(
-        new Float32Array([0.1, 0.2, 0.3])
+        new Float32Array([0.1, 0.2, 0.3]),
       );
     });
 
@@ -374,11 +377,11 @@ describe("LanceDBAdapter", () => {
       const searchTerm = "test";
 
       (mockQuery.toArray as jest.Mock<() => Promise<any[]>>).mockRejectedValue(
-        new Error("Database error")
+        new Error("Database error"),
       );
 
       await expect(adapter.queryForFiles(searchTerm)).rejects.toThrow(
-        "Database error"
+        "Database error",
       );
     });
   });
@@ -409,7 +412,7 @@ describe("LanceDBAdapter", () => {
       ];
 
       (mockQuery.toArray as jest.Mock<() => Promise<any[]>>).mockResolvedValue(
-        queryResults
+        queryResults,
       );
       mockEmbeddings.embedQuery.mockResolvedValue([0.1, 0.2, 0.3]);
 
@@ -418,7 +421,7 @@ describe("LanceDBAdapter", () => {
       expect(result).toEqual(expectedRequirements);
       expect(mockEmbeddings.embedQuery).toHaveBeenCalledWith(searchTerm);
       expect(mockQuery.nearestTo).toHaveBeenCalledWith(
-        new Float32Array([0.1, 0.2, 0.3])
+        new Float32Array([0.1, 0.2, 0.3]),
       );
     });
 
@@ -426,11 +429,11 @@ describe("LanceDBAdapter", () => {
       const searchTerm = "test";
 
       (mockQuery.toArray as jest.Mock<() => Promise<any[]>>).mockRejectedValue(
-        new Error("Database error")
+        new Error("Database error"),
       );
 
       await expect(adapter.queryForRequirements(searchTerm)).rejects.toThrow(
-        "Database error"
+        "Database error",
       );
     });
   });
@@ -460,7 +463,7 @@ describe("LanceDBAdapter", () => {
       ];
 
       (mockQuery.toArray as jest.Mock<() => Promise<any[]>>).mockResolvedValue(
-        queryResults
+        queryResults,
       );
 
       const result = await adapter.queryForChunks(searchTerm);
@@ -468,7 +471,7 @@ describe("LanceDBAdapter", () => {
       expect(result).toEqual(expectedChunks);
       expect(mockEmbeddings.embedQuery).toHaveBeenCalledWith(searchTerm);
       expect(mockQuery.nearestTo).toHaveBeenCalledWith(
-        new Float32Array([0.1, 0.2, 0.3])
+        new Float32Array([0.1, 0.2, 0.3]),
       );
     });
 
@@ -476,11 +479,11 @@ describe("LanceDBAdapter", () => {
       const searchTerm = "test";
 
       (mockQuery.toArray as jest.Mock<() => Promise<any[]>>).mockRejectedValue(
-        new Error("Database error")
+        new Error("Database error"),
       );
 
       await expect(adapter.queryForChunks(searchTerm)).rejects.toThrow(
-        "Database error"
+        "Database error",
       );
     });
   });
@@ -517,7 +520,7 @@ describe("LanceDBAdapter", () => {
       ).mockRejectedValue(new Error("Failed to delete files"));
 
       await expect(adapter.deleteFiles(filePaths)).rejects.toThrow(
-        "Failed to delete files"
+        "Failed to delete files",
       );
     });
   });
@@ -575,7 +578,7 @@ describe("LanceDBAdapter", () => {
       (fs.existsSync as jest.Mock).mockReturnValue(true);
 
       await expect(adapter["_initialize"]()).rejects.toThrow(
-        "Failed to initialize LanceDB"
+        "Failed to initialize LanceDB",
       );
     });
   });
@@ -642,7 +645,7 @@ describe("LanceDBAdapter", () => {
       ).mockRejectedValue(new Error("Database error"));
 
       await expect(
-        adapter["_tableExists"](COLLECTION_TYPE.file)
+        adapter["_tableExists"](COLLECTION_TYPE.file),
       ).rejects.toThrow("Database error");
     });
   });
@@ -660,7 +663,7 @@ describe("LanceDBAdapter", () => {
 
     it("should return an error if a unknow collection type is given", () => {
       expect(() =>
-        adapter["_getTable"]("unknown_collection_type" as any)
+        adapter["_getTable"]("unknown_collection_type" as any),
       ).rejects.toThrow("Unknown collection type");
     });
 
@@ -688,7 +691,7 @@ describe("LanceDBAdapter", () => {
       ).mockRejectedValue(new Error("Database error"));
 
       await expect(adapter["_getTable"](COLLECTION_TYPE.file)).rejects.toThrow(
-        "Database error"
+        "Database error",
       );
     });
   });

@@ -17,6 +17,7 @@ export class DocumentFormatterService {
 
         chunks.push({
           content: contextLines.join("\n"),
+          lineContent: line,
           filePath: filePath,
           fileType: language,
           lineNumber: index + 1,
