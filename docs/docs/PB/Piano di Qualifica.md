@@ -1,11 +1,11 @@
 ---
 id: piano_di_qualifica
-title: "Piano di Qualifica - v1.7.4"
+title: "Piano di Qualifica - v1.8.0"
 documentclass: TWDocumentFull
 toc: true
 lof: true
 numbersections: true
-version: 1.7.4
+version: 1.8.0
 classification: Esterno
 ---
 
@@ -23,7 +23,8 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                              | Autore                | Data Verifica | Verificatore          |
 | ---------- | -------- | ---------------------------------------- | --------------------- | ------------- | --------------------- |
-| 30/03/2025 | 1.7.4    | Controllo consistenza maiuscile          | Dal Bianco Riccardo   | 30/03/2025    | Vasquez Manuel Felipe |
+| 10/04/2025 | 1.8.0    | Aggiunta test di unità                   | Carraro Agnese        |
+| 30/03/2025 | 1.7.4    | Controllo consistenza maiuscole          | Dal Bianco Riccardo   | 30/03/2025    | Vasquez Manuel Felipe |
 | 07/03/2025 | 1.7.3    | Aggiunta interpretazione dei grafici     | Monetti Luca          | 07/03/2025    | Pistori Gaia          |
 | 06/03/2025 | 1.7.2    | miglioramento metriche                   | Piola Andrea          | 07/03/2025    | Luca Monetti          |
 | 24/02/2025 | 1.7.1    | fix indici tabelle                       | Piola Andrea          | 25/02/2025    | Gaia Pistori          |
@@ -336,6 +337,250 @@ Table: Metriche di portabilità per la qualità di prodotto
 ## Specifica dei test
 
 I test di verifica e validazione vengono eseguiti in tutte le fasi del ciclo di sviluppo, garantendo la conformità del prodotto con i requisiti specificati e gli standard qualitativi prestabiliti dal team. I test vengono classificati in quattro categorie principali: test di unità, test di integrazione, test di sistema e test di accettazione.
+
+### Test di unità
+
+| ID   | Descrizione                                                                                                                                                                        | Stato        |
+|------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|
+| TU01 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _resetDatabase_ resetti il database rimuovendo e ricreando la directory                                                   | Superato |
+| TU02 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _resetDatabase_ gestisca correttamente i casi di errore                                                                   | Superato |
+| TU03 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _fileExists_ ritorni true se il file esiste                                                                               | Superato |
+| TU04 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _fileExists_ ritorni true se il file esiste con una checksum corrispondente                                               | Superato |
+| TU05 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _fileExists_ ritorni false se il file esiste con una checksum non corrispondente                                          | Superato |
+| TU06 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _fileExists_ gestisca correttamente errori nel database                                                                   | Superato |
+| TU07 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _addFiles_ gestisca correttamente il caso in cui viene chiamata senza files                                               | Superato |
+| TU08 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _addFiles_ aggiunga i files al database                                                                                   | Superato |
+| TU09 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _addFiles_ non aggiunga il file al database se è già presente                                                             | Superato |
+| TU10 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _addFiles_ elimini un file già esistente se la checksum non è corrispondente                                              | Superato |
+| TU11 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _addFiles_ gestisca correttamente i casi di errore durante l'aggiunta dei files                                           | Superato |
+| TU12 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _addRequirements_ gestisca correttamente il caso in cui viene chiamata senza requisiti                                    | Superato |
+| TU13 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _addRequirements_ aggiunga i requisiti al database                                                                        | Superato |
+| TU14 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _addRequirements_ gestisca correttamente i casi di errore durante l'aggiunta dei requisiti                                | Superato |
+| TU15 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _addChunks_ gestisca correttamente il caso in cui viene chiamata senza chunks                                             | Superato |
+| TU16 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _addChunks_ aggiunga i chunk al database                                                                                  | Superato |
+| TU17 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _addChunks_ gestisca correttamente i casi di errore durante l'aggiunta dei chunk                                          | Superato |  
+| TU18 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _queryForFiles_ interroghi i files in base a un termine di ricerca                                                        | Superato |
+| TU19 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _queryForFiles_ gestisca correttamente i casi di errore durante l'interrogazione dei files                                | Superato |
+| TU20 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _queryForRequirements_ interroghi i requisiti in base a un termine di ricerca                                             | Superato |
+| TU21 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _queryForRequirements_ gestisca correttamente i casi di errore durante l'interrogazione dei requisiti                     | Superato |
+| TU22 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _queryForChunks_ interroghi i chunks in base a un termine di ricerca                                                      | Superato |
+| TU23 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _queryForChunks_ gestisca correttamente i casi di errore durante l'interrogazione dei chunks                              | Superato |
+| TU24 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _getEmbeddings_ ritorni gli embeddings correttamente                                                                      | Superato |
+| TU25 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _deleteFiles_ gestisca correttamente il caso in cui viene chiamata senza files da rimuovere                               | Superato |
+| TU26 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _deleteFiles_ rimuova i files al database                                                                                 | Superato |
+| TU27 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _deleteFiles_ gestisca correttamente i casi di errore durante la rimozione dei files                                      | Superato |
+| TU28 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _refreshEmbeddings_ re-inizializzi gli embeddings correttamente                                                           | Superato |
+| TU29 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _\_initialize_ inizializzi la connessione al database e la tabella                                                        | Superato |
+| TU30 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _\_initialize_ gestisca il caso in cui il bearer token sia indefinito                                                     | Superato |
+| TU31 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _\_initialize_ gestisca i casi di errore durante l'inizializzazione                                                       | Superato |
+| TU32 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _\_determineEmbeddingDimension_ determini la dimensione degli embeddings correttamente                                    | Superato |
+| TU33 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _\_determineEmbeddingDimension_ ritorni il valore di default se non riesce a incorporare la query                         | Superato |
+| TU34 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _\_getDB_ ritorni la connessione al database                                                                              | Superato |
+| TU35 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _\_getDB_ crei la connessione al database se questa non esiste                                                            | Superato |
+| TU36 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _\_tableExists_ ritorni true se la tabella esiste                                                                         | Superato |
+| TU37 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _\_tableExists_ ritorni false se la tabella non esiste                                                                    | Superato |
+| TU38 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _\_tableExists_ gestisca correttamente i casi di errore durante il controllo dell'esistenza della tabella                 | Superato |
+| TU39 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _\_getTable_ ritorni la tabella se esiste                                                                                 | Superato |
+| TU40 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _\_getTable_ ritorni un errore se viene fornito un tipo sconnosciuto                                                      | Superato |
+| TU41 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _\_getTable_ crei una tabella se non esiste                                                                               | Superato |
+| TU42 | Verifica, sulla classe _LanceDBAdapter_, che la funzione _\_getTable_ gestisca correttamente i casi di errore durante il recupero della tabella                                    | Superato |
+| TU43 | Verifica, sulla classe _LangChainOllamaAdapter_, che Ollama e gli embedding siano inizializzati con i parametri corretti                                                           | Superato |
+| TU44 | Verifica, sulla classe _LangChainOllamaAdapter_, che Ollama e gli embedding siano inizializzati senza il bearer token                                                              | Superato |
+| TU45 | Verifica, sulla classe _LangChainOllamaAdapter_, che la funzione _generate_ generi la risposta correttamente                                                                       | Superato |
+| TU46 | Verifica, sulla classe _LangChainOllamaAdapter_, che la funzione _generate_ gestisca correttamente i casi di errore                                                                | Superato |
+| TU47 | Verifica, sulla classe _LangChainOllamaAdapter_, che la funzione _generateEmbeddings_ generi l'array di embeddings correttamente                                                   | Superato |
+| TU48 | Verifica, sulla classe _LangChainOllamaAdapter_, che la funzione _generateEmbeddings_ gestisca correttamente i casi di errore                                                      | Superato |
+| TU49 | Verifica, sulla classe _LangChainOllamaAdapter_, che la funzione _getEmbeddings_ inizializzi correttamente gli embeddings e Ollama                                                 | Superato |
+| TU50 | Verifica, sulla classe _LangChainOllamaAdapter_, che la funzione _refreshModels_ re-inizializzi Ollama e gli embedding correttamente                                               | Superato |
+| TU51 | Verifica, sulla classe _ClearChatHistoryCommand_, che la funzione _getName_ ritorni il nome corretto del comando                                                                   | Superato |
+| TU52 | Verifica, sulla classe _ClearChatHistoryCommand_, che la funzione _execute_ chiami la funzione _clearMessages_ della classe _ChatService_                                          | Superato |
+| TU53 | Verifica, sulla classe _ClearChatHistoryCommand_, che la funzione _execute_ mostri all'utente un messaggio di conferma per la cancellazione la cronologia della chat               | Superato |
+| TU54 | Verifica, sulla classe _ClearChatHistoryCommand_, che la funzione _execute_ mostri il messeggio di conferma solo dopo che è stata cancellata la cronologia della chat              | Superato |
+| TU55 | Verifica, sulla classe _ClearChatHistoryCommand_, che la funzione _execute_ gestisca correttamente i casi di errore provenienti dalla classe _ChatService_                         | Superato |
+| TU56 | Verifica, sulla classe _ClearRequirementsHistoryCommand_, che la funzione _getName_ ritorni il nome corretto del comando                                                           | Superato |
+| TU57 | Verifica, sulla classe _ClearRequirementsHistoryCommand_, che la funzione _execute_ esegua il comando e apra la sidebar                                                            | Superato |
+| TU58 | Verifica, sulla classe _CommandRegistry_, che la funzione _registerCommand_ registri un comando e lo aggiunga all'array _subscriptions_                                            | Superato |
+| TU59 | Verifica, sulla classe _CommandRegistry_, che la funzione _registerCommands_ registri più comandi e gli aggiunga all'array _subscriptions_                                         | Superato |
+| TU60 | Verifica, sulla classe _CommandRegistry_, che la funzione _getCommand_ ritorni il comando se esiste                                                                                | Superato |
+| TU61 | Verifica, sulla classe _CommandRegistry_, che la funzione _getCommand_ ritorni errore se il comando non esiste                                                                     | Superato |
+| TU62 | Verifica, sulla classe _CommandRegistry_, che, dopo che un comando è stato registrato, venga chiamata la funzione _execute_ quando quel comando viene attivato                     | Superato |
+| TU62 | Verifica, sulla classe _InterrogateDocumentCommand_, che la funzione _getName_ ritorni il nome corretto del comando                                                                | Superato |
+| TU63 | Verifica, sulla classe _InterrogateDocumentCommand_, che la funzione _execute_ esegua il comando e gestisca il caso in cui nessun requisito sia stato caricato                     | Superato |
+| TU64 | Verifica, sulla classe _InterrogateDocumentCommand_, che la funzione _execute_ esegua il comando e gestisca il caso in cui non ci sia nessun editor attivo                         | Superato |
+| TU65 | Verifica, sulla classe _InterrogateDocumentCommand_, che la funzione _execute_ esegua il comando e gestisca il caso in cui non sia stato trovato nessun testo                      | Superato |
+| TU66 | Verifica, sulla classe _InterrogateDocumentCommand_, che la funzione _execute_ esegua il comando e invii un messaggio alla chat view                                               | Superato |
+| TU67 | Verifica, sulla classe _InterrogateSelectionCommand_, che la funzione _getName_ ritorni il nome corretto del comando                                                               | Superato |
+| TU68 | Verifica, sulla classe _InterrogateSelectionCommand_, che la funzione _execute_ esegua il comando e gestisca il caso in cui nessun requisito sia stato caricato                    | Superato |
+| TU69 | Verifica, sulla classe _InterrogateSelectionCommand_, che la funzione _execute_ esegua il comando e gestisca il caso in cui non ci sia nessun editor attivo                        | Superato |
+| TU70 | Verifica, sulla classe _InterrogateSelectionCommand_, che la funzione _execute_ esegua il comando e gestisca il caso in cui non sia stato trovato nessun testo                     | Superato |
+| TU71 | Verifica, sulla classe _InterrogateSelectionCommand_, che la funzione _execute_ esegua il comando e invii un messaggio alla chat view                                              | Superato |
+| TU72 | Verifica, sulla classe _OpenSettingsCommand_, che la funzione _getName_ ritorni il nome corretto del comando                                                                       | Superato |
+| TU73 | Verifica, sulla classe _OpenSettingsCommand_, che la funzione _execute_ esegua il comando e apra la sidebar                                                                        | Superato |
+| TU74 | Verifica, sulla classe _OpenSidebarCommand_, che la funzione _getName_ ritorni il nome corretto del comando                                                                        | Superato |
+| TU75 | Verifica, sulla classe _OpenSidebarCommand_, che la funzione _execute_ esegua il comando e apra la sidebar                                                                         | Superato |
+| TU76 | Verifica, sulla classe _ResetDatabaseCommand_, che la funzione _getName_ ritorni il nome corretto del comando                                                                      | Superato |
+| TU77 | Verifica, sulla classe _ResetDatabaseCommand_, che la funzione _execute_ esegua il comando e resetti il database                                                                   | Superato |
+| TU78 | Verifica, sulla classe _ResetDatabaseCommand_, che la funzione _execute_ non resetti il database se l'utente sceglie l'opzione "No"                                                | Superato |
+| TU79 | Verifica, sulla classe _ResetDatabaseCommand_, che la funzione _execute_ gestisca correttamente i casi di errore mentre resetta il database                                        | Superato |
+| TU80 | Verifica, sulla classe _ConfigServiceFacade_, che la funzione _GetInstance_ ritorni un errore se l'istanza non è inizializzata                                                     | Superato |
+| TU81 | Verifica, sulla classe _ConfigServiceFacade_, che la funzione _Init_ ritorni un errore per ogni chiave quando il valore di configurazione è indefinito                             | Superato |
+| TU82 | Verifica, sulla classe _ConfigServiceFacade_, che la funzione _Init_ abbia inizializzato una configServiceFacade                                                                   | Superato |
+| TU83 | Verifica, sulla classe _ConfigServiceFacade_, che la funzione _GetInstance_ ritorni un'istanza di configServiceFacade                                                              | Superato |
+| TU84 | Verifica, sulla classe _ConfigServiceFacade_, che la funzione _sync_ sincronizzi la configurazione del ConfigService con la configurazione del ConfigServiceFacade                 | Superato |
+| TU85 | Verifica, sulla classe _ConfigServiceFacade_, che la funzione _getOllamaModel_ ritorni il nome corretto del modello di Ollama                                                      | Superato |
+| TU86 | Verifica, sulla classe _ConfigServiceFacade_, che la funzione _getEmbeddingModel_ ritorni il nome corretto del modello di embedding                                                | Superato |
+| TU87 | Verifica, sulla classe _ConfigServiceFacade_, che la funzione _getMaxResults_ ritorni il valore del risultato massimo                                                              | Superato |
+| TU88 | Verifica, sulla classe _ConfigServiceFacade_, che la funzione _getTemperature_ ritorni il valore della temperatura                                                                 | Superato |
+| TU89 | Verifica, sulla classe _ConfigServiceFacade_, che la funzione _getEndpoint_ ritorni il valore di endpoint                                                                          | Superato |
+| TU90 | Verifica, sulla classe _ConfigServiceFacade_, che la funzione _getBearerToken_ ritorni il valore del bearer token                                                                  | Superato |
+| TU91 | Verifica, sulla classe _ConfigServiceFacade_, che la funzione _getFilters_ ritorni la configurazione dei filtri                                                                    | Superato |
+| TU92 | Verifica, sulla classe _DocumentServiceFacade_, che la funzione _processFiles_ salti files già indicizzati                                                                         | Superato |
+| TU93 | Verifica, sulla classe _DocumentServiceFacade_, che la funzione _processFiles_ elabori un file valido                                                                              | Superato |
+| TU94 | Verifica, sulla classe _DocumentServiceFacade_, che la funzione _processFiles_ salti files più grandi di 20MB                                                                      | Superato |
+| TU95 | Verifica, sulla classe _DocumentServiceFacade_, che la funzione _processFiles_ gestisca correttamente i casi di errore durante l'elaborazione dei files                            | Superato |
+| TU96 | Verifica, sulla classe _DocumentServiceFacade_, che la funzione _processWorkspaceFiles_ ritorni un errore se nessuna cartella di workspace è aperta                                | Superato |
+| TU97 | Verifica, sulla classe _DocumentServiceFacade_, che la funzione _processWorkspaceFiles_ ritorni un warning se non vengono trovati files corrispondenti                             | Superato |
+| TU98 | Verifica, sulla classe _DocumentServiceFacade_, che la funzione _processWorkspaceFiles_ elabori i files del workspace correttamente                                                | Superato |
+| TU43 | Verifica, sulla classe _RequirementsServiceFacade_, che il costruttore inizializzi l'oggetto con i servizi forniti                                                                 | Implementato |
+| TU44 | Verifica, sulla classe _RequirementsServiceFacade_, che la funzione _importRequirements_ ritorni un errore se il file dei requisiti non è supportato                               | Implementato |
+| TU45 | Verifica, sulla classe _RequirementsServiceFacade_, che la funzione _importRequirements_ importi i requisiti da un file di requisiti csv con un delimitatore indefinito            | Implementato |
+| TU46 | Verifica, sulla classe _RequirementsServiceFacade_, che la funzione _importRequirements_ importi i requisiti da un file di requisiti csv con un delimitatore personalizzato        | Implementato |
+| TU47 | Verifica, sulla classe _RequirementsServiceFacade_, che la funzione _importRequirements_ importi i requisiti da un file di requisiti requif                                        | Implementato |
+| TU48 | Verifica, sulla classe _RequirementsServiceFacade_, che la funzione _importRequirements_ ritorni un messaggio di warning se non sono presenti requisiti nel file                   | Implementato |
+| TU49 | Verifica, sulla classe _RequirementsServiceFacade_, che la funzione _trackRequirements_ ritorni il risultato del tracciamento dei requisiti selezionati                            | Implementato |
+| TU50 | Verifica, sulla classe _RequirementsServiceFacade_, che la funzione _trackRequirements_ ritorni il risultato del tracciamento di tutti i requisiti                                 | Implementato | 
+| TU51 | Verifica, sulla classe _RequirementsServiceFacade_, che la funzione _trackRequirements_ ritorni un errore se è stato trovato nessun requisito da tracciare                         | Implementato |
+| TU52 | Verifica, sulla classe _RequirementsServiceFacade_, che la funzione _getUnimplementedRequirements_ ritorni i requisiti non implementati                                            | Implementato |
+| TU53 | Verifica, sulla classe _RequirementsServiceFacade_, che la funzione _getUnimplementedRequirements_ ritorni un errore se non sono stati trovati requisiti non implementati          | Implementato |
+| TU54 | Verifica, sulla classe _RequirementsServiceFacade_, che la funzione _getRequirement_ ritorni il requisito cercato tramite id                                                       | Implementato |
+| TU55 | Verifica, sulla classe _RequirementsServiceFacade_, che la funzione _getRequirement_ ritorni undefined se un requisito non è stato caricato                                        | Implementato |
+| TU56 | Verifica, sulla classe _RequirementsServiceFacade_, che la funzione _getAllRequirements_ ritorni tutti i requisiti caricati                                                        | Implementato |
+| TU57 | Verifica, sulla classe _RequirementsServiceFacade_, che la funzione _deleteRequirement_ rimuova il requisito specificato                                                           | Implementato |
+| TU58 | Verifica, sulla classe _RequirementsServiceFacade_, che la funzione _clearRequirements_ rimuova tutti i requisiti                                                                  | Implementato |
+| TU59 | Verifica, sulla classe _RequirementsServiceFacade_, che la funzione _clearRequirements_ ritorni un errore se nessun requisito è presente                                           | Implementato |
+| TU60 | Verifica che l'enumerazione _COLLECTION\_TYPE_ abbia i valori corretti                                                                                                             | Superato |
+| TU61 | Verifica, sulla classe _ChatWebviewProvider_, che il costruttore inizializzi l'oggetto con il servizio e il URI forniti                                                            | Superato |
+| TU62 | Verifica, sulla classe _ChatWebviewProvider_, che la funzione _resolveWebviewView_ configuri la webview e carichi la cronologia della chat                                         | Superato |
+| TU63 | Verifica, sulla classe _ChatWebviewProvider_, che la funzione _resolveWebviewView_ gestisca correttamente il caso in cui la cronologia della chat sia vuota                        | Superato | 
+| TU64 | Verifica, sulla classe _ChatWebviewProvider_, che la funzione _\_onSendMessage_ invii il messaggio dell'utente e riceva la risposta del modello                                    | Superato |
+| TU65 | Verifica, sulla classe _ChatWebviewProvider_, che la funzione _\_onSendMessage_ gestisca gli errori del servizio di inferenza                                                      | Superato |
+| TU66 | Verifica, sulla classe _ChatWebviewProvider_, che la funzione _\_onSendMessage_ gestisca gli errori sconosciuti                                                                    | Superato |
+| TU67 | Verifica, sulla classe _ChatWebviewProvider_, che la funzione _\_onClearHistory_ cancelli la cronologia della chat                                                                 | Superato |
+| TU68 | Verifica, sulla classe _ChatWebviewProvider_, che, quando viene chiamata la funzione _\_onDidReceiveMessage_ gestisca correttamente il messagio ricevuto                           | Superato |
+| TU69 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _resolveWebviewView_ configuri la webview e aggiorni la visualizzazione dei requisiti                             | Implementato |
+| TU70 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _resolveWebviewView_ non invii un messaggio di aggiornamento quando non esistono requisiti                        | Implementato |
+| TU71 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_handleMessageFromWebview_ gestisca correttamente il messaggio di caricamento di un requisito                   | Implementato |
+| TU72 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_handleMessageFromWebview_ gestisca correttamente il messaggio di caricamento di un requisito con opzioni di default | Implementato |
+| TU73 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_handleMessageFromWebview_ gestisca correttamente i casi di errore in messaggi di caricamento di un requisito   | Implementato |
+| TU74 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_handleMessageFromWebview_ gestisca correttamente il messaggio di tracciamento dei requisiti                    | Implementato |
+| TU75 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_handleMessageFromWebview_ gestisca correttamente il messaggio di tipo "showUnimplemented"                      | Implementato |
+| TU76 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_handleMessageFromWebview_ gestisca correttamente i casi in cui il messaggio ha un tipo sconosciuto             | Implementato |
+| TU77 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_handleMessageFromWebview_ gestisca correttamente il messaggio di apertura file                                 | Implementato |
+| TU78 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_handleMessageFromWebview_ gestisca correttamente i casi di errore in messaggi di apertura file                 | Implementato |
+| TU79 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_handleMessageFromWebview_ gestisca correttamente il messaggio di cancellazione dei requisiti                   | Implementato |
+| TU80 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_handleMessageFromWebview_ gestisca correttamente i casi di errore in messaggi di cancellazione dei requisiti   | Implementato |
+| TU81 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_handleMessageFromWebview_ gestisca correttamente il messaggio di modifica dei requisiti                        | Implementato |
+| TU82 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_handleMessageFromWebview_ gestisca correttamente il messaggio di cancellazione di un requisito                 | Implementato |
+| TU83 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_handleMessageFromWebview_ gestisca correttamente i casi di errore in messaggi di cancellazione di un requisito | Implementato |
+| TU84 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_handleMessageFromWebview_ gestisca correttamente i casi di errore                                              | Implementato |
+| TU85 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_handleMessageFromWebview_ gestisca correttamente i casi di errore sconosciuti                                  | Implementato |
+| TU86 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_handleMessageFromWebview_ gestisca correttamente i casi in cui gli oggetti vengono lanciati come errori        | Implementato |
+| TU87 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_handleMessageFromWebview_ venga chiamata correttamente quando viene ricevuto un messaggio                      | Implementato |
+| TU88 | Verifica, sulla classe _ChatService_, che la funzione _addMessage_ aggiunga correttamente un nuovo messaggio                                                                       | Superato |
+| TU89 | Verifica, sulla classe _ChatService_, che la funzione _clearMessages_ rimuova tutti i messaggi                                                                                     | Superato |
+| TU90 | Verifica, sulla classe _ConfigService_, che la funzione _GetConfig_ ritorni un valore di tipo Config                                                                               | Superato |
+| TU91 | Verifica, sulla classe _ConfigService_, che la funzione _GetConfig_ carichi e unisca i valori locali di configurazione                                                             | Superato |
+| TU92 | Verifica, sulla classe _ConfigService_, che la funzione _GetConfig_ carichi da una configurazione globale se non è stata trovata una locale                                        | Superato |
+| TU93 | Verifica, sulla classe _ConfigService_, che la funzione _GetConfig_ gestisca correttamente valori non validi di configurazione locale                                              | Superato |
+| TU94 | Verifica, sulla classe _ConfigService_, che la funzione _GetConfig_ gestisca correttamente file di configurazione locale vuoti o malformati                                        | Superato |
+| TU95 | Verifica, sulla classe _ConfigService_, che la funzione _GetConfig_ gestisca correttamente il caso in cui il percorso di ricerca sia mancante nei filtri dei requisiti             | Superato |
+| TU96 | Verifica, sulla classe _DocumentFormatterService_, che la funzione _formatSourceCode_ formatti correttamente il codice sorgente in C o C++                                         | Superato |
+| TU97 | Verifica, sulla classe _DocumentFormatterService_, che la funzione _formatSourceCode_ formatti correttamente il codice sorgente in Rust                                            | Superato |
+| TU98 | Verifica, sulla classe _DocumentFormatterService_, che la funzione _formatSourceCode_ gestisca le linee vuote correttamente                                                        | Superato |
+| TU99 | Verifica, sulla classe _DocumentFormatterService_, che la funzione _formatSourceCode_ gestisca estensioni di file sconosciute come testo                                           | Superato |
+| TU100 | Verifica, sulla classe _DocumentFormatterService_, che la funzione _formatSourceCode_ gestisca i header files correttamente                                                       | Superato |
+| TU101 | Verifica, sulla classe _FileSystemService_, che la funzione _read_ legga il file correttamente                                                                                    | Superato |
+| TU102 | Verifica, sulla classe _FileSystemService_, che la funzione _read_ ritorni un errore se la lettura del file fallisce                                                              | Superato |
+| TU103 | Verifica, sulla classe _FileSystemService_, che la funzione _read_ ritorni correttamente un checksum per un dato contenuto del file                                               | Superato |
+| TU104 | Verifica, sulla classe _FileSystemService_, che la funzione _read_ ritorni un errore se il calcolo del chacksum fallisce                                                          | Superato |
+| TU105 | Verifica, sulla classe _FilterService_, che il costruttore recuperi i filtri dal servizio di configurazione                                                                       | Superato |
+| TU106 | Verifica, sulla classe _FilterService_, che la funzione _getPathFilter_ ritorni il path filter correttamente                                                                      | Superato |
+| TU107 | Verifica, sulla classe _FilterService_, che la funzione _getFileExtensionFilter_ ritorni il filtro dell'estensione correttamente                                                  | Superato |
+| TU108 | Verifica, sulla classe _FilterService_, che la funzione _getRequirementsFilters_ ritorni il filtro dei requisiti correttamente                                                    | Superato |
+| TU109 | Verifica, sulla classe _FilterService_, che la funzione _getRequirementsFilters_ ritorni il filtro dei requisiti correttamente                                                    | Superato |
+| TU110 | Verifica, sulla classe _FilterService_, che la funzione _getRequirementsFilters_ ritorni il un oggetto vuoto nel caso in cui il filtro dei requisiti non esista                   | Superato |
+| TU111 | Verifica, sulla classe _GlobalStateService_, che la funzione _updateState_ aggiorni lo stato tramite i messaggi della chat                                                        | Superato |
+| TU112 | Verifica, sulla classe _GlobalStateService_, che la funzione _updateState_ aggiorni lo stato tramite i requisiti                                                                  | Superato |
+| TU113 | Verifica, sulla classe _GlobalStateService_, che la funzione _getState_ ritorni i messaggi della chat dallo stato globale                                                         | Superato |
+| TU114 | Verifica, sulla classe _GlobalStateService_, che la funzione _getState_ ritorni un array vuoto se non esiste uno stato                                                            | Superato |
+| TU115 | Verifica, sulla classe _GlobalStateService_, che la funzione _clearState_ cancelli lo stato rendendolo un array vuoto per default                                                 | Superato |
+| TU116 | Verifica, sulla classe _GlobalStateService_, che la funzione _clearState_ cancelli lo stato con un valore di reset personalizzato                                                 | Superato |
+| TU117 | Verifica, sulla classe _InferenceService_, che la funzione _query_ recuperi i files rilevanti e generi una risposta                                                               | Superato |
+| TU118 | Verifica, sulla classe _InferenceService_, che la funzione _query_ gestisca i casi di errore durante la query correttamente                                                       | Superato |
+| TU119 | Verifica, sulla classe _InferenceService_, che la funzione _query_ gestisca i casi di errore sconosciuti correttamente                                                            | Superato |
+| TU120 | Verifica, sulla classe _InferenceService_, che la funzione _checkSystemRequirements_ controlli la connessione al modello di Ollama                                                | Superato |
+| TU121 | Verifica, sulla classe _InferenceService_, che la funzione _checkSystemRequirements_ gestisca correttamente il caso di errore di connessione                                      | Superato |
+| TU121 | Verifica, sulla classe _ParsingService_, che la funzione _parseCSV_ ritorni un array di requisiti da una stringa csv con tutti i dati e attributi di nome diverso                 | Superato |
+| TU122 | Verifica, sulla classe _ParsingService_, che la funzione _parseCSV_ ritorni un array di requisiti da una stringa csv con dati mancanti                                            | Superato |
+| TU123 | Verifica, sulla classe _ParsingService_, che la funzione _parseCSV_ ritorni un array di requisiti da una stringa csv con id mancante                                              | Superato |
+| TU124 | Verifica, sulla classe _ParsingService_, che la funzione _parseCSV_ ritorni un array vuoto se la stringa è vuota                                                                  | Superato |
+| TU125 | Verifica, sulla classe _ParsingService_, che la funzione _parseCSV_ ritorni un errore se il delimitatore è sbagliato                                                              | Superato |
+| TU126 | Verifica, sulla classe _ParsingService_, che la funzione _parseCSV_ ritorni un errore se mancano dati                                                                             | Superato |
+| TU127 | Verifica, sulla classe _ParsingService_, che la funzione _parseCSV_ ritorni un array di requisiti da una stringa csv con tutti i dati e con un delimitatore predefinito           | Superato |
+| TU128 | Verifica, sulla classe _ParsingService_, che la funzione _parseCSV_ ritorni un errore se la lunghezza delle linee è minnore di due                                                | Superato |
+| TU129 | Verifica, sulla classe _ParsingService_, che la funzione _parseREQIF_ ritorni un array di requisiti da una stringa reqif con tutti i dati e attributi di nome diverso             | Superato |
+| TU130 | Verifica, sulla classe _ParsingService_, che la funzione _parseREQIF_ ritorni un array di requisiti da una stringa reqif con dati mancanti                                        | Superato |
+| TU131 | Verifica, sulla classe _ParsingService_, che la funzione _parseREQIF_ ritorni un errore se la stringa è vuota                                                                     | Superato |
+| TU132 | Verifica, sulla classe _ParsingService_, che la funzione _parseReqIFSpecObject_ gestisca correttamente sia un singolo SPEC_OBJECT che un array di SPEC_OBJECTS                    | Superato |
+| TU133 | Verifica, sulla classe _ParsingService_, che la funzione _parseReqIFSpecObject_ gestisca correttamente variazioni di nomi di attributo in csv                                     | Superato |
+| TU134 | Verifica, sulla classe _ParsingService_, che la funzione _parseReqIFSpecObject_ gestisca correttamente sia singoli attributi che array di essi                                    | Superato |
+| TU135 | Verifica, sulla classe _ParsingService_, che la funzione _parseReqIFSpecObject_ gestisca correttamente sia un singolo valore che più valori negli attributi                       | Superato |
+| TU136 | Verifica, sulla classe _ParsingService_, che la funzione _parseReqIFSpecObject_ gestisca correttamente variazioni di identificativo                                               | Superato |
+| TU137 | Verifica, sulla classe _RequirementsService_, che il costruttore inizializzi correttamente i requisiti dallo stato globale                                                        | Implementato |
+| TU138 | Verifica, sulla classe _RequirementsService_, che il costruttore gestisca correttamente il caso in cui lo stato globale è vuoto                                                   | Implementato |
+| TU139 | Verifica, sulla classe _RequirementsService_, che la funzione _addRequirement_ aggiunga il requisito e aggiorni lo stato globale                                                  | Implementato |
+| TU140 | Verifica, sulla classe _RequirementsService_, che la funzione _addRequirement_ aggiunga una lista di requisiti e aggiorni lo stato globale                                        | Implementato |
+| TU141 | Verifica, sulla classe _RequirementsService_, che la funzione _saveRequirements_ aggiorni la lista dei requisiti nello stato globale                                              | Implementato |
+| TU142 | Verifica, sulla classe _RequirementsService_, che la funzione _getRequirements_ recuperi la lista dei requisiti dallo stato globale                                               | Implementato |
+| TU143 | Verifica, sulla classe _RequirementsService_, che la funzione _deleteRequirement_ rimuova un requisito e aggiorni lo stato globale                                                | Implementato |
+| TU144 | Verifica, sulla classe _RequirementsService_, che la funzione _clearRequirements_ rimuova tutti i requisiti dalla lista nello stato globale                                       | Implementato |
+| TU145 | Verifica, sulla classe _RequirementsService_, che la funzione _getById_ recuperi un requisito in base al suo id                                                                   | Implementato |
+| TU146 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _trackRequirementImplementation_ gestisca correttamente gli errori durante il tracciamento dei requisiti     | Implementato |
+| TU147 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _processWorkspaceFiles_ gestisca correttamente gli errori durante l'elaborazione dei files                   | Implementato |
+| TU148 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _findRelatedCode_ ritorni pezzi di codice correlati al requisito                                             | Implementato |
+| TU149 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _addRequirement_ gestisca correttamente gli errori durante la ricerca di codice correlato                    | Implementato |
+| TU150 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_determineImplementationStatus_ ritorni "unlikely-match" nel caso di riferimenti vuoti                     | Implementato |
+| TU151 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_determineImplementationStatus_ ritorni "confirmed-match" nel caso di punteggi alti                        | Implementato |
+| TU152 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_determineImplementationStatus_ ritorni "possible-match" nel caso di punteggi medi                         | Implementato |
+| TU153 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_determineImplementationStatus_ ritorni "unlikely-match" nel caso di punteggi bassi                        | Implementato |
+| TU154 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _trackAllRequirements_ gestisca correttamente gli errori durante il tracciamento                             | Implementato |
+| TU155 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _trackAllRequirements_ tracci i requisiti e ritorni un riassunto                                             | Implementato |
+| TU156 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _trackAllRequirements_ copra il caso "possible-match"                                                        | Implementato |
+| TU157 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _trackAllRequirements_ copra il caso "unlikely-match"                                                        | Implementato |
+| TU158 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _processWorkspaceFiles_ elabori tutti i files del workspace                                                  | Implementato |
+| TU159 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _processWorkspaceFiles_ gestisca il caso in cui il workspace non abbia cartelle                              | Implementato |
+| TU160 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_findWorkspaceCodeFiles_ ritorni un warning se non sono state trovate cartelle nel workspace               | Implementato |
+| TU161 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_calculateImplementationScore_ calcoli correttamente il punteggio di implementazione                       | Implementato |
+| TU162 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_calculateImplementationScore_ ritorni zero se i riferimenti sono vuoti                                    | Implementato |
+| TU163 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_calculateAverageScore_ ritorni zero se il punteggio medio è indefinito                                    | Implementato |
+| TU164 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_convertToCodeReferences_ ordini al contrario                                                              | Implementato |
+| TU165 | Verifica, sulla classe _ChatWebView_, che la funzione _getHtmlForWebview_ ritorni contenuto in HTML per la webview senza CSS o JavaScript                                         | Superato |
+| TU166 | Verifica, sulla classe _ChatWebView_, che la funzione _getHtmlForWebview_ ritorni contenuto in HTML per la webview con CSS o JavaScript                                           | Superato |
+| TU167 | Verifica, sulla classe _ChatWebView_, che la funzione _getHtmlForWebview_ gestica correttamente i casi di errore durante la lettura del file HTML                                 | Superato |
+| TU168 | Verifica, sulla classe _ChatWebView_, che la funzione _getNonce_ ritorni una stringa di lunghezza 32                                                                              | Superato |
+| TU169 | Verifica, sulla classe _ChatWebView_, che la funzione _getNonce_ ritorni una stringa di soli caratteri alfanumerici                                                               | Superato |
+| TU170 | Verifica, sulla classe _ChatWebView_, che la funzione _getNonce_ generi nonces diversi se viene chiamata più volte                                                                | Superato |
+| TU171 | Verifica, sulla classe _TrackerWebView_, che la funzione _getHtmlForWebview_ ritorni contenuto in HTML per la webview senza CSS o JavaScript                                      | Superato |
+| TU172 | Verifica, sulla classe _TrackerWebView_, che la funzione _getHtmlForWebview_ ritorni contenuto in HTML per la webview con CSS o JavaScript                                        | Superato |
+| TU173 | Verifica, sulla classe _TrackerWebView_, che la funzione _getHtmlForWebview_ gestica correttamente i casi di errore durante la lettura del file HTML                              | Superato |
+| TU174 | Verifica, sulla classe _TrackerWebView_, che la funzione _getNonce_ ritorni una stringa di lunghezza 32                                                                           | Superato |
+| TU175 | Verifica, sulla classe _TrackerWebView_, che la funzione _getNonce_ ritorni una stringa di soli caratteri alfanumerici                                                            | Superato |
+| TU176 | Verifica, sulla classe _TrackerWebView_, che la funzione _getNonce_ generi nonces diversi se viene chiamata più volte                                                             | Superato |
+
+
+
+             
+
 
 ### Test di sistema
 
