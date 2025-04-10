@@ -44,6 +44,15 @@ describe("RequirementsServiceFacade", () => {
     },
   ];
 
+  const mockCodeReferences = [
+    {
+      filePath: "test.ts",
+      lineNumber: 1,
+      snippet: "test code",
+      score: 0.9,
+    },
+  ];
+
   beforeEach(() => {
     jest.clearAllMocks();
 
@@ -57,6 +66,7 @@ describe("RequirementsServiceFacade", () => {
       findRelatedCode: jest.fn(),
       findUnimplementedRequirements: jest.fn(),
       trackAllRequirements: jest.fn(),
+      analyzeImplementation: jest.fn(),
     } as unknown as jest.Mocked<RequirementsTrackerService>;
 
     requirementsService = {
@@ -66,7 +76,12 @@ describe("RequirementsServiceFacade", () => {
       getRequirements: jest.fn(),
       clearRequirements: jest.fn(),
       getById: jest.fn(),
+      updateRequirementCodeReference: jest.fn(),
     } as unknown as jest.Mocked<RequirementsService>;
+
+    vectorDatabase = {
+      addRequirements: jest.fn(),
+    } as unknown as jest.Mocked<IVectorDatabase>;
 
     parsingService.parseCSV.mockReturnValue(mockRequirements);
     parsingService.parseREQIF.mockResolvedValue(mockRequirements);
@@ -168,20 +183,31 @@ describe("RequirementsServiceFacade", () => {
       );
     });
 
-    // it("should give an error message if the embedding fails", async () => {
-    //   const consoleSpy = jest.spyOn(global.console, "error");
+    it("should embed requirements in vector database during import", async () => {
+      const content = "some content";
+      const format = "reqif";
+      
+      await requirementServiceFacade.importRequirements(content, format);
+      
+      expect(vectorDatabase.addRequirements).toHaveBeenCalledWith(mockRequirements);
+    });
 
-    //   await requirementServiceFacade.importRequirements("", "reqif", options);
+    it("should handle vector database embedding errors gracefully", async () => {
+      const consoleSpy = jest.spyOn(console, "error");
+      const error = new Error("Embedding failed");
+      vectorDatabase.addRequirements.mockRejectedValueOnce(error);
 
-    //   expect(consoleSpy).toHaveBeenCalledWith(
-    //     "Error embedding requirements:",
-    //     expect.any(Error),
-    //   );
-    //   expect(consoleSpy).toHaveBeenCalledWith(
-    //     "Error during requirements embedding:",
-    //     expect.any(Error),
-    //   );
-    // });
+      const content = "some content";
+      const format = "reqif";
+      
+      const result = await requirementServiceFacade.importRequirements(content, format);
+      
+      expect(consoleSpy).toHaveBeenCalledWith(
+        "Error during requirements embedding:",
+        error
+      );
+      expect(result).toEqual(mockRequirements);
+    });
   });
 
   describe("trackRequirements", () => {
@@ -303,16 +329,47 @@ describe("RequirementsServiceFacade", () => {
       expect(requirementsService.clearRequirements).toHaveBeenCalled();
       expect(result).toEqual([]);
     });
+  });
 
-    it("should throw error on clearRequirementsError", async () => {
-      await requirementServiceFacade.clearRequirements();
+  describe("updateRequirementCodeReference", () => {
+    it("should update code reference for a requirement", async () => {
+      const reqId = "Req-1";
+      const codeReference = mockCodeReferences[0];
 
-      requirementsService.getRequirements.mockReturnValue([]);
+      await requirementServiceFacade.updateRequirementCodeReference(reqId, codeReference);
 
-      const result = requirementsService.getRequirements();
+      expect(requirementsService.updateRequirementCodeReference).toHaveBeenCalledWith(
+        reqId,
+        codeReference
+      );
+    });
+  });
 
-      expect(requirementsService.clearRequirements).toHaveBeenCalled();
-      expect(result).toEqual([]);
+  describe("analyzeImplementation", () => {
+    it("should analyze implementation for a requirement", async () => {
+      const mockAnalysis = "Implementation analysis result";
+      trackerService.analyzeImplementation.mockResolvedValue(mockAnalysis);
+
+      const result = await requirementServiceFacade.analyzeImplementation(
+        mockRequirements[0],
+        mockCodeReferences
+      );
+
+      expect(trackerService.analyzeImplementation).toHaveBeenCalledWith(
+        mockRequirements[0],
+        mockCodeReferences
+      );
+      expect(result).toBe(mockAnalysis);
+    });
+
+    it("should handle error during implementation analysis", async () => {
+      const error = new Error("Analysis error");
+      trackerService.analyzeImplementation.mockRejectedValue(error);
+      
+      await expect(requirementServiceFacade.analyzeImplementation(
+        mockRequirements[0],
+        mockCodeReferences
+      )).rejects.toThrow(error);
     });
   });
 });
