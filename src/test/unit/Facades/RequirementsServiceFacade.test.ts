@@ -43,24 +43,6 @@ describe("RequirementsServiceFacade", () => {
       version: "1.0",
     },
   ];
-  const unimplementedRequirements = [
-    {
-      id: "Req-2",
-      name: "Requirement 2",
-      description: "Requirement 2",
-      type: "Requirement",
-      status: RequirementStatus.NOT_TRACKED,
-      version: "1.0",
-    },
-    {
-      id: "Req-3",
-      name: "Requirement 3",
-      description: "Requirement 3",
-      type: "Requirement",
-      status: RequirementStatus.NOT_TRACKED,
-      version: "1.0",
-    },
-  ];
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -89,9 +71,6 @@ describe("RequirementsServiceFacade", () => {
     parsingService.parseCSV.mockReturnValue(mockRequirements);
     parsingService.parseREQIF.mockResolvedValue(mockRequirements);
     requirementsService.getRequirements.mockReturnValue(mockRequirements);
-    trackerService.findUnimplementedRequirements.mockResolvedValue(
-      unimplementedRequirements,
-    );
 
     requirementServiceFacade = new RequirementsServiceFacade(
       parsingService,

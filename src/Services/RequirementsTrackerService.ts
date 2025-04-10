@@ -146,15 +146,6 @@ ${ref.snippet}`,
       })
       .sort((a, b) => b.score - a.score); // Sort by score in descending order
   }
-  public async findUnimplementedRequirements(
-    requirements: Requirement[],
-  ): Promise<Requirement[]> {
-    const unimplemented: Requirement[] = [];
-
-    console.log(requirements);
-
-    return unimplemented;
-  }
 
   public async trackAllRequirements(
     requirements: Requirement[],
