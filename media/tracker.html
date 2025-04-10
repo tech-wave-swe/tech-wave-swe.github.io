@@ -1,10 +1,9 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <meta
-            content="default-src 'none'; style-src {{styleSrc}} 'unsafe-inline';font-src 'self' vscode-resource:; script-src 'nonce-{{nonce}}';"
+    <head>
+        <meta charset="UTF-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <meta
             http-equiv="Content-Security-Policy"
     />
     <title>Requirements Tracker</title>
@@ -22,9 +21,9 @@
         <button class="tab" id="tab-results" data-tab="results">Results</button>
     </div>
 
-    <div class="loading" id="loading" style="display: none">
-        <div class="loading-spinner"></div>
-    </div>
+            <div class="loading" id="loading" style="display: none">
+                <div class="loading-spinner"></div>
+            </div>
 
             <div id="import-tab" class="tab-content active">
                 <h2>Import Requirements</h2>
@@ -36,46 +35,44 @@
                     </select>
                 </div>
 
-        <!-- Add CSV delimiter option -->
-        <div class="form-group" id="csv-options">
-            <label for="csv-delimiter">CSV Delimiter:</label>
-            <input id="csv-delimiter" maxlength="1" style="width: 40px" type="text" value=","/>
-            <p style="font-size: 0.8em; color: var(--vscode-descriptionForeground)">
-                Default is comma (,). Use $ or other character for custom separators.
-            </p>
-        </div>
+                <!-- Add CSV delimiter option -->
+                <div class="form-group" id="csv-options">
+                    <label for="csv-delimiter">CSV Delimiter:</label>
+                    <input id="csv-delimiter" maxlength="1" style="width: 40px" type="text" value="," />
+                    <p style="font-size: 0.8em; color: var(--vscode-descriptionForeground)">
+                        Default is comma (,). Use $ or other character for custom separators.
+                    </p>
+                </div>
 
-        <div class="form-group">
-            <label for="file-input">Choose File:</label>
-            <input id="file-input" type="file"/>
-        </div>
+                <div class="form-group">
+                    <label for="file-input">Choose File:</label>
+                    <input id="file-input" type="file" />
+                </div>
 
-        <div class="form-group">
-            <label for="text-content">Or Paste Content:</label>
-            <textarea id="text-content" rows="10" style="width: 100%; resize: none"></textarea>
-        </div>
+                <div class="form-group">
+                    <label for="text-content">Or Paste Content:</label>
+                    <textarea id="text-content" rows="10" style="width: 100%; resize: none"></textarea>
+                </div>
 
-        <button id="import-button">Import Requirements</button>
-    </div>
+                <button id="import-button">Import Requirements</button>
+            </div>
 
-    <div class="tab-content" id="track-tab">
-        <h2>Track Requirements</h2>
-        <p>Track implementation status of requirements in your codebase.</p>
+            <div class="tab-content" id="track-tab">
+                <h2>Track Requirements</h2>
+                <p>Track implementation status of requirements in your codebase.</p>
 
-        <div class="controls-wrapper">
-            <button id="track-button">Start Tracking</button>
-            <button id="unimplemented-button">Show Unimplemented</button>
-            <button id="clear-requirements">Clear Requirements</button>
-        </div>
+                <div class="controls-wrapper">
+                    <button id="track-button">Start Tracking</button>
+                    <button id="clear-requirements">Clear Requirements</button>
+                </div>
 
-        <div class="form-group">
-            <label> <input checked id="track-all" type="checkbox"/> Track all requirements </label>
-        </div>
-        <div id="requirements-table-wrapper">
-        </div>
-    </div>
-    <div class="tab-content" id="results-tab">
-        <h2>Tracking Results</h2>
+                <div class="form-group">
+                    <label> <input checked id="track-all" type="checkbox" /> Track all requirements </label>
+                </div>
+                <div id="requirements-table-wrapper"></div>
+            </div>
+            <div class="tab-content" id="results-tab">
+                <h2>Tracking Results</h2>
 
                 <div id="summary-section" style="display: none">
                     <h3>Code Match Summary</h3>
@@ -108,32 +105,30 @@
                     </div>
                 </div>
 
-        <div id="requirements-results">
-            <p>No tracking results yet. Go to the Track tab to analyze requirements.</p>
+                <div id="requirements-results">
+                    <p>No tracking results yet. Go to the Track tab to analyze requirements.</p>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-<div id="edit-mode-ui" class="hidden edit-mode-container">
-    <div class="edit-mode-header">
-        <div class="edit-mode-title">Modalità Editing</div>
-        <div class="edit-mode-subtitle">Seleziona nuove linee di codice come puntatore</div>
-    </div>
-    <div class="edit-mode-instructions">
-        <p>Riferimento originale:</p>
-        <div class="edit-mode-original">
-            <span id="edit-mode-original-path"></span>:<span id="edit-mode-original-line"></span>
+        <div id="edit-mode-ui" class="hidden edit-mode-container">
+            <div class="edit-mode-header">
+                <div class="edit-mode-title">Modalità Editing</div>
+                <div class="edit-mode-subtitle">Seleziona nuove linee di codice come puntatore</div>
+            </div>
+            <div class="edit-mode-instructions">
+                <p>Riferimento originale:</p>
+                <div class="edit-mode-original">
+                    <span id="edit-mode-original-path"></span>:<span id="edit-mode-original-line"></span>
+                </div>
+                <p>Seleziona una o più righe in un file per impostare un nuovo puntatore</p>
+            </div>
+            <div class="edit-mode-selection" id="current-selection">Nessuna selezione</div>
+            <div class="edit-mode-actions">
+                <button id="confirm-edit" class="action-button confirm" disabled>Conferma</button>
+                <button id="cancel-edit" class="action-button cancel">Annulla</button>
+            </div>
         </div>
-        <p>Seleziona una o più righe in un file per impostare un nuovo puntatore</p>
-    </div>
-    <div class="edit-mode-selection" id="current-selection">
-        Nessuna selezione
-    </div>
-    <div class="edit-mode-actions">
-        <button id="confirm-edit" class="action-button confirm" disabled>Conferma</button>
-        <button id="cancel-edit" class="action-button cancel">Annulla</button>
-    </div>
-</div>
 
-<script nonce="{{nonce}}" src="{{scriptTrackerUri}}"></script>
-</body>
+        <script nonce="{{nonce}}" src="{{scriptTrackerUri}}"></script>
+    </body>
 </html>

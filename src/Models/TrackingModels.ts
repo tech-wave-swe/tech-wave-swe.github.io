@@ -4,6 +4,10 @@ export interface CodeReference {
   snippet: string;
   score: number;
   relevanceExplanation?: string;
+  contextRange?: {
+    start: number;
+    end: number;
+  };
 }
 
 export type ImplementationStatus =

@@ -1,7 +1,7 @@
 import { ParsingService } from "../Services/ParsingService";
 import { RequirementsTrackerService } from "../Services/RequirementsTrackerService";
 import { Requirement } from "../Models/Requirement";
-import {CodeReference, TrackingResultSummary} from "../Models/TrackingModels";
+import { CodeReference, TrackingResultSummary } from "../Models/TrackingModels";
 import { RequirementsService } from "../Services/RequirementsService";
 import { IVectorDatabase } from "../Interfaces/IVectorDatabase";
 
@@ -127,15 +127,17 @@ export class RequirementsServiceFacade {
       throw error;
     }
   }
-
-  public async getUnimplementedRequirements(): Promise<Requirement[]> {
+  public async analyzeImplementation(
+    requirement: Requirement,
+    codeReference: CodeReference[],
+  ): Promise<string> {
     try {
-      const reqs = Array.from(
-        this._requirementsService.getRequirements().values(),
+      return await this._trackerService.analyzeImplementation(
+        requirement,
+        codeReference,
       );
-      return await this._trackerService.findUnimplementedRequirements(reqs);
     } catch (error) {
-      console.error(`Error finding unimplemented requirements:`, error);
+      console.error(`Error analyzing implementation:`, error);
       throw error;
     }
   }
@@ -156,7 +158,13 @@ export class RequirementsServiceFacade {
     return await this._requirementsService.clearRequirements();
   }
 
-  public async updateRequirementCodeReference(reqId: string, codeReference: CodeReference): Promise<void> {
-    await this._requirementsService.updateRequirementCodeReference(reqId, codeReference);
+  public async updateRequirementCodeReference(
+    reqId: string,
+    codeReference: CodeReference,
+  ): Promise<void> {
+    await this._requirementsService.updateRequirementCodeReference(
+      reqId,
+      codeReference,
+    );
   }
 }

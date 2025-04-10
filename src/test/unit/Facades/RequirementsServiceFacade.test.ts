@@ -1,11 +1,14 @@
-import {describe, expect, it, jest} from "@jest/globals";
-import {ParsingService} from "../../../Services/ParsingService";
-import {RequirementsTrackerService} from "../../../Services/RequirementsTrackerService";
-import {RequirementsService} from "../../../Services/RequirementsService";
-import {IVectorDatabase} from "../../../Interfaces/IVectorDatabase";
-import {TrackingResult, TrackingResultSummary,} from "../../../Models/TrackingModels";
-import {RequirementsServiceFacade} from "../../../Facades/RequirementsServiceFacade";
-import {RequirementStatus} from "../../../Models/Requirement";
+import { describe, expect, it, jest } from "@jest/globals";
+import { ParsingService } from "../../../Services/ParsingService";
+import { RequirementsTrackerService } from "../../../Services/RequirementsTrackerService";
+import { RequirementsService } from "../../../Services/RequirementsService";
+import { IVectorDatabase } from "../../../Interfaces/IVectorDatabase";
+import {
+  TrackingResult,
+  TrackingResultSummary,
+} from "../../../Models/TrackingModels";
+import { RequirementsServiceFacade } from "../../../Facades/RequirementsServiceFacade";
+import { RequirementStatus } from "../../../Models/Requirement";
 
 describe("RequirementsServiceFacade", () => {
   let parsingService: jest.Mocked<ParsingService>;
@@ -40,22 +43,13 @@ describe("RequirementsServiceFacade", () => {
       version: "1.0",
     },
   ];
-  const unimplementedRequirements = [
+
+  const mockCodeReferences = [
     {
-      id: "Req-2",
-      name: "Requirement 2",
-      description: "Requirement 2",
-      type: "Requirement",
-      status: RequirementStatus.NOT_TRACKED,
-      version: "1.0",
-    },
-    {
-      id: "Req-3",
-      name: "Requirement 3",
-      description: "Requirement 3",
-      type: "Requirement",
-      status: RequirementStatus.NOT_TRACKED,
-      version: "1.0",
+      filePath: "test.ts",
+      lineNumber: 1,
+      snippet: "test code",
+      score: 0.9,
     },
   ];
 
@@ -72,6 +66,7 @@ describe("RequirementsServiceFacade", () => {
       findRelatedCode: jest.fn(),
       findUnimplementedRequirements: jest.fn(),
       trackAllRequirements: jest.fn(),
+      analyzeImplementation: jest.fn(),
     } as unknown as jest.Mocked<RequirementsTrackerService>;
 
     requirementsService = {
@@ -81,14 +76,16 @@ describe("RequirementsServiceFacade", () => {
       getRequirements: jest.fn(),
       clearRequirements: jest.fn(),
       getById: jest.fn(),
+      updateRequirementCodeReference: jest.fn(),
     } as unknown as jest.Mocked<RequirementsService>;
+
+    vectorDatabase = {
+      addRequirements: jest.fn(),
+    } as unknown as jest.Mocked<IVectorDatabase>;
 
     parsingService.parseCSV.mockReturnValue(mockRequirements);
     parsingService.parseREQIF.mockResolvedValue(mockRequirements);
     requirementsService.getRequirements.mockReturnValue(mockRequirements);
-    trackerService.findUnimplementedRequirements.mockResolvedValue(
-      unimplementedRequirements,
-    );
 
     requirementServiceFacade = new RequirementsServiceFacade(
       parsingService,
@@ -186,20 +183,31 @@ describe("RequirementsServiceFacade", () => {
       );
     });
 
-    // it("should give an error message if the embedding fails", async () => {
-    //   const consoleSpy = jest.spyOn(global.console, "error");
+    it("should embed requirements in vector database during import", async () => {
+      const content = "some content";
+      const format = "reqif";
+      
+      await requirementServiceFacade.importRequirements(content, format);
+      
+      expect(vectorDatabase.addRequirements).toHaveBeenCalledWith(mockRequirements);
+    });
 
-    //   await requirementServiceFacade.importRequirements("", "reqif", options);
+    it("should handle vector database embedding errors gracefully", async () => {
+      const consoleSpy = jest.spyOn(console, "error");
+      const error = new Error("Embedding failed");
+      vectorDatabase.addRequirements.mockRejectedValueOnce(error);
 
-    //   expect(consoleSpy).toHaveBeenCalledWith(
-    //     "Error embedding requirements:",
-    //     expect.any(Error),
-    //   );
-    //   expect(consoleSpy).toHaveBeenCalledWith(
-    //     "Error during requirements embedding:",
-    //     expect.any(Error),
-    //   );
-    // });
+      const content = "some content";
+      const format = "reqif";
+      
+      const result = await requirementServiceFacade.importRequirements(content, format);
+      
+      expect(consoleSpy).toHaveBeenCalledWith(
+        "Error during requirements embedding:",
+        error
+      );
+      expect(result).toEqual(mockRequirements);
+    });
   });
 
   describe("trackRequirements", () => {
@@ -253,31 +261,6 @@ describe("RequirementsServiceFacade", () => {
     });
   });
 
-  describe("getUnimplementedRequirements", () => {
-    it("should return the unimplemented requirements", async () => {
-      await expect(
-        requirementServiceFacade.getUnimplementedRequirements(),
-      ).resolves.toEqual(unimplementedRequirements);
-    });
-
-    it("should return an error if unimplemented requirements are not found", async () => {
-      const consoleSpy = jest.spyOn(console, "error");
-      trackerService.findUnimplementedRequirements.mockImplementationOnce(
-        () => {
-          throw new Error("Test error");
-        },
-      );
-
-      await expect(
-        requirementServiceFacade.getUnimplementedRequirements(),
-      ).rejects.toThrow();
-      expect(consoleSpy).toHaveBeenCalledWith(
-        "Error finding unimplemented requirements:",
-        expect.any(Error),
-      );
-    });
-  });
-
   describe("getRequirement", () => {
     it("should return the requirement searched by its id", () => {
       const mockRequirement = {
@@ -324,14 +307,14 @@ describe("RequirementsServiceFacade", () => {
 
       const result = requirementServiceFacade.getAllRequirements();
 
-      expect(requirementsService.deleteRequirement).toHaveBeenCalledWith("Req-1");
-      expect(result).toEqual(
-        [
-          mockRequirements[1],
-          mockRequirements[2],
-          mockRequirements[3],
-        ]
+      expect(requirementsService.deleteRequirement).toHaveBeenCalledWith(
+        "Req-1",
       );
+      expect(result).toEqual([
+        mockRequirements[1],
+        mockRequirements[2],
+        mockRequirements[3],
+      ]);
     });
   });
 
@@ -344,22 +327,49 @@ describe("RequirementsServiceFacade", () => {
       const result = requirementsService.getRequirements();
 
       expect(requirementsService.clearRequirements).toHaveBeenCalled();
-      expect(result).toEqual(
-        []
+      expect(result).toEqual([]);
+    });
+  });
+
+  describe("updateRequirementCodeReference", () => {
+    it("should update code reference for a requirement", async () => {
+      const reqId = "Req-1";
+      const codeReference = mockCodeReferences[0];
+
+      await requirementServiceFacade.updateRequirementCodeReference(reqId, codeReference);
+
+      expect(requirementsService.updateRequirementCodeReference).toHaveBeenCalledWith(
+        reqId,
+        codeReference
       );
     });
+  });
 
-    it("should throw error on clearRequirementsError", async () => {
-      await requirementServiceFacade.clearRequirements();
+  describe("analyzeImplementation", () => {
+    it("should analyze implementation for a requirement", async () => {
+      const mockAnalysis = "Implementation analysis result";
+      trackerService.analyzeImplementation.mockResolvedValue(mockAnalysis);
 
-      requirementsService.getRequirements.mockReturnValue([]);
-
-      const result = requirementsService.getRequirements();
-
-      expect(requirementsService.clearRequirements).toHaveBeenCalled();
-      expect(result).toEqual(
-        []
+      const result = await requirementServiceFacade.analyzeImplementation(
+        mockRequirements[0],
+        mockCodeReferences
       );
+
+      expect(trackerService.analyzeImplementation).toHaveBeenCalledWith(
+        mockRequirements[0],
+        mockCodeReferences
+      );
+      expect(result).toBe(mockAnalysis);
+    });
+
+    it("should handle error during implementation analysis", async () => {
+      const error = new Error("Analysis error");
+      trackerService.analyzeImplementation.mockRejectedValue(error);
+      
+      await expect(requirementServiceFacade.analyzeImplementation(
+        mockRequirements[0],
+        mockCodeReferences
+      )).rejects.toThrow(error);
     });
   });
 });

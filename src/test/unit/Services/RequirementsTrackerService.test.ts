@@ -1,13 +1,14 @@
-import {beforeEach, describe, expect, it, jest} from "@jest/globals";
-import {RequirementsTrackerService} from "../../../Services/RequirementsTrackerService";
-import {IVectorDatabase} from "../../../Interfaces/IVectorDatabase";
-import {DocumentServiceFacade} from "../../../Facades/DocumentServiceFacade";
-import {FilterService} from "../../../Services/FilterService";
-import {Requirement, RequirementStatus} from "../../../Models/Requirement";
-import {Chunk} from "../../../Models/Chunk";
+import { beforeEach, describe, expect, it, jest } from "@jest/globals";
+import { RequirementsTrackerService } from "../../../Services/RequirementsTrackerService";
+import { IVectorDatabase } from "../../../Interfaces/IVectorDatabase";
+import { DocumentServiceFacade } from "../../../Facades/DocumentServiceFacade";
+import { FilterService } from "../../../Services/FilterService";
+import { Requirement, RequirementStatus } from "../../../Models/Requirement";
+import { Chunk } from "../../../Models/Chunk";
 import * as vscode from "../Mock/vscode";
-import {CodeReference} from "../../../Models/TrackingModels";
-import {FileExtensionFilter, PathFilter} from "../../../Models/Filter";
+import { CodeReference } from "../../../Models/TrackingModels";
+import { FileExtensionFilter, PathFilter } from "../../../Models/Filter";
+import { ILanguageModel } from "../../../Interfaces/ILanguageModel";
 
 describe("RequirementsTrackerService", () => {
   let vectorDatabase: jest.Mocked<IVectorDatabase>;
@@ -52,10 +53,17 @@ describe("RequirementsTrackerService", () => {
       getRequirementsFilters: jest.fn(),
     } as unknown as jest.Mocked<FilterService>;
 
+    const mockLanguageModel: ILanguageModel = {
+      generate: async (prompt: string) => `Mock response for: ${prompt}`,
+      generateEmbeddings: async (_text: string) => [0.1, 0.2, 0.3],
+      refreshModels: async () => {},
+    };
+
     service = new RequirementsTrackerService(
       vectorDatabase,
       documentServiceFacade,
       filterService,
+      mockLanguageModel,
     );
   });
 
@@ -67,7 +75,7 @@ describe("RequirementsTrackerService", () => {
         description: "Test description",
         type: "functional",
         version: "1.0",
-        status: RequirementStatus.NOT_TRACKED
+        status: RequirementStatus.NOT_TRACKED,
       };
 
       vectorDatabase.queryForChunks.mockRejectedValue(
@@ -105,12 +113,13 @@ describe("RequirementsTrackerService", () => {
         description: "Test description",
         type: "functional",
         version: "1.0",
-        status: RequirementStatus.NOT_TRACKED
+        status: RequirementStatus.NOT_TRACKED,
       };
 
       const mockChunks: Chunk[] = [
         {
           content: "Test code",
+          lineContent: "Test line content",
           filePath: "/test/file.c",
           fileType: "c",
           lineNumber: 1,
@@ -135,7 +144,7 @@ describe("RequirementsTrackerService", () => {
         description: "Test description",
         type: "functional",
         version: "1.0",
-        status: RequirementStatus.NOT_TRACKED
+        status: RequirementStatus.NOT_TRACKED,
       };
 
       vectorDatabase.queryForChunks.mockRejectedValue(new Error("Test error"));
@@ -189,7 +198,7 @@ describe("RequirementsTrackerService", () => {
           description: "Test description",
           type: "functional",
           version: "1.0",
-          status: RequirementStatus.NOT_TRACKED
+          status: RequirementStatus.NOT_TRACKED,
         },
       ];
 
@@ -210,7 +219,7 @@ describe("RequirementsTrackerService", () => {
           description: "Test description 1",
           type: "functional",
           version: "1.0",
-          status: RequirementStatus.NOT_TRACKED
+          status: RequirementStatus.NOT_TRACKED,
         },
         {
           id: "REQ-002",
@@ -218,13 +227,14 @@ describe("RequirementsTrackerService", () => {
           description: "Test description 2",
           type: "functional",
           version: "1.0",
-          status: RequirementStatus.NOT_TRACKED
+          status: RequirementStatus.NOT_TRACKED,
         },
       ];
 
       const mockChunks: Chunk[] = [
         {
           content: "Test code",
+          lineContent: "Test line content",
           filePath: "/test/file.c",
           fileType: "c",
           lineNumber: 1,
@@ -259,7 +269,7 @@ describe("RequirementsTrackerService", () => {
           description: "Test description 1",
           type: "functional",
           version: "1.0",
-          status: RequirementStatus.NOT_TRACKED
+          status: RequirementStatus.NOT_TRACKED,
         },
         {
           id: "REQ-002",
@@ -267,13 +277,14 @@ describe("RequirementsTrackerService", () => {
           description: "Test description 2",
           type: "functional",
           version: "1.0",
-          status: RequirementStatus.NOT_TRACKED
+          status: RequirementStatus.NOT_TRACKED,
         },
       ];
 
       const mockChunks: Chunk[] = [
         {
           content: "Test code",
+          lineContent: "Test line content",
           filePath: "/test/file.c",
           fileType: "c",
           lineNumber: 1,
@@ -308,7 +319,7 @@ describe("RequirementsTrackerService", () => {
           description: "Test description 1",
           type: "functional",
           version: "1.0",
-          status: RequirementStatus.NOT_TRACKED
+          status: RequirementStatus.NOT_TRACKED,
         },
         {
           id: "REQ-002",
@@ -316,13 +327,14 @@ describe("RequirementsTrackerService", () => {
           description: "Test description 2",
           type: "functional",
           version: "1.0",
-          status: RequirementStatus.NOT_TRACKED
+          status: RequirementStatus.NOT_TRACKED,
         },
       ];
 
       const mockChunks: Chunk[] = [
         {
           content: "Test code",
+          lineContent: "Test line content",
           filePath: "/test/file.c",
           fileType: "c",
           lineNumber: 1,
@@ -349,45 +361,6 @@ describe("RequirementsTrackerService", () => {
       expect(documentServiceFacade.processFiles).toHaveBeenCalled();
     });
   });
-  // describe("findUnimplementedRequirements", () => {
-  //   it("should identify unimplemented requirements", async () => {
-  //     const requirements: Requirement[] = [
-  //       {
-  //         id: "REQ-001",
-  //         name: "Test Requirement 1",
-  //         description: "Test description 1",
-  //         type: "functional",
-  //         version: "1.0",
-  //       },
-  //       {
-  //         id: "REQ-002",
-  //         name: "Test Requirement 2",
-  //         description: "Test description 2",
-  //         type: "functional",
-  //         version: "1.0",
-  //       },
-  //     ];
-
-  //     // Mock first requirement as implemented, second as unimplemented
-  //     vectorDatabase.queryForChunks
-  //       .mockResolvedValueOnce([
-  //         {
-  //           content: "Test code",
-  //           filePath: "/test/file.c",
-  //           fileType: "c",
-  //           lineNumber: 1,
-  //           score: 0.9,
-  //         },
-  //       ])
-  //       .mockResolvedValueOnce([]);
-
-  //     const unimplementedReqs =
-  //       await service.findUnimplementedRequirements(requirements);
-
-  //     expect(unimplementedReqs).toHaveLength(1);
-  //     expect(unimplementedReqs[0].id).toBe("REQ-002");
-  //   });
-  // });
 
   describe("processWorkspaceFiles", () => {
     it("should process all workspace files", async () => {
@@ -424,6 +397,74 @@ describe("RequirementsTrackerService", () => {
     });
   });
 
+  describe("_getFilters", () => {
+    it("should ", () => {
+      mockPathFilter.include = ["/"];
+      mockExtensionFilter.include = [];
+      mockPathFilter.exclude = ["/"];
+      mockExtensionFilter.exclude = [];
+
+      const result = service["_getFilters"]();
+      expect(result.include).toBe("{/}");
+      expect(result.exclude).toBe("{/}");
+    });
+
+    it("should return correct filters with both path and extension includes", () => {
+      mockPathFilter.include = ["/test/uno", "test/due"];
+      mockExtensionFilter.include = ["c", "cpp"];
+      mockPathFilter.exclude = [];
+      mockExtensionFilter.exclude = [];
+
+      const result = service["_getFilters"]();
+      expect(result.include).toBe("{/test/uno,test/due,**/*.c,**/*.cpp}");
+      expect(result.exclude).toBe("");
+    });
+
+    it("should return correct filters with only extension includes", () => {
+      mockPathFilter.include = [];
+      mockExtensionFilter.include = ["c", "cpp"];
+      mockPathFilter.exclude = [];
+      mockExtensionFilter.exclude = [];
+
+      const result = service["_getFilters"]();
+      expect(result.include).toBe("**/*.{c,cpp}");
+      expect(result.exclude).toBe("");
+    });
+
+    it("should return correct filters with no includes", () => {
+      mockPathFilter.include = [];
+      mockExtensionFilter.include = [];
+      mockPathFilter.exclude = [];
+      mockExtensionFilter.exclude = [];
+
+      const result = service["_getFilters"]();
+      expect(result.include).toBe("**/*.*");
+      expect(result.exclude).toBe("");
+    });
+
+    it("should handle path and extension excludes correctly", () => {
+      mockPathFilter.include = [];
+      mockExtensionFilter.include = [];
+      mockPathFilter.exclude = ["/test/tre", "test/quattro"];
+      mockExtensionFilter.exclude = ["txt", "md"];
+
+      const result = service["_getFilters"]();
+      expect(result.include).toBe("**/*.*");
+      expect(result.exclude).toBe("{/test/tre,test/quattro,**/*.txt,**/*.md}");
+    });
+
+    it("should handle only extension excludes", () => {
+      mockPathFilter.include = [];
+      mockExtensionFilter.include = [];
+      mockPathFilter.exclude = [];
+      mockExtensionFilter.exclude = ["txt", "md"];
+
+      const result = service["_getFilters"]();
+      expect(result.include).toBe("**/*.*");
+      expect(result.exclude).toBe("**/*.{txt,md}");
+    });
+  });
+
   describe("_calculateImplementationScore", () => {
     it("should calculate the implementation score", () => {
       const references: CodeReference[] = [];
@@ -451,6 +492,7 @@ describe("RequirementsTrackerService", () => {
       const chunks: Chunk[] = [
         {
           content: "Test code 1",
+          lineContent: "Test line content",
           filePath: "/test/file1.c",
           fileType: "c",
           lineNumber: 1,
@@ -458,6 +500,7 @@ describe("RequirementsTrackerService", () => {
         },
         {
           content: "Test code 2",
+          lineContent: "Test line content",
           filePath: "/test/file2.c",
           fileType: "c",
           lineNumber: 1,
@@ -467,6 +510,133 @@ describe("RequirementsTrackerService", () => {
 
       const codeReferences = service["_convertToCodeReferences"](chunks);
       expect(codeReferences).toHaveLength(2);
+    });
+
+    it("should handle line number calculation for context range", () => {
+      const chunks: Chunk[] = [
+        {
+          content: "Test code 1",
+          lineContent: "Test line content",
+          filePath: "/test/file1.c",
+          fileType: "c",
+          lineNumber: 2,
+          score: 0.8,
+        },
+        {
+          content: "Test code 2",
+          lineContent: "Test line content",
+          filePath: "/test/file2.c",
+          fileType: "c",
+          lineNumber: 5,
+          score: 0.9,
+        },
+      ];
+
+      const codeReferences = service["_convertToCodeReferences"](chunks);
+      expect(codeReferences[0]?.contextRange?.start).toBe(2); // 5 - 3
+      expect(codeReferences[1]?.contextRange?.start).toBe(0); // 2 - 3 < 0, so 0
+      expect(codeReferences[0]?.contextRange?.end).toBe(8); // 5 + 3
+      expect(codeReferences[1]?.contextRange?.end).toBe(5); // 2 + 3
+    });
+  });
+
+  describe("analyzeImplementation", () => {
+    it("should analyze implementation successfully", async () => {
+      const requirement: Requirement = {
+        id: "REQ-001",
+        name: "Test Requirement",
+        description: "Test description",
+        type: "functional",
+        version: "1.0",
+        status: RequirementStatus.NOT_TRACKED,
+      };
+
+      const codeReferences: CodeReference[] = [
+        {
+          snippet: "Test code snippet",
+          filePath: "/test/file.c",
+          lineNumber: 1,
+          score: 0.9,
+          relevanceExplanation: "Match score: 90%",
+          contextRange: {
+            start: 0,
+            end: 4,
+          },
+        },
+      ];
+
+      const mockResponse = "Mock analysis response";
+      const mockLanguageModel = {
+        ...service["_languageModel"],
+        generate: jest
+          .fn<(prompt: string) => Promise<string>>()
+          .mockResolvedValue(mockResponse),
+      };
+
+      // Replace the language model with our mock
+      Object.defineProperty(service, "_languageModel", {
+        value: mockLanguageModel,
+      });
+
+      const result = await service.analyzeImplementation(
+        requirement,
+        codeReferences,
+      );
+
+      expect(result).toBe(mockResponse);
+      expect(mockLanguageModel.generate).toHaveBeenCalled();
+      expect(mockLanguageModel.generate.mock.calls[0][0]).toContain(
+        "Requirement:",
+      );
+      expect(mockLanguageModel.generate.mock.calls[0][0]).toContain(
+        "Implementation #1:",
+      );
+    });
+
+    it("should handle errors when analyzing implementation", async () => {
+      const requirement: Requirement = {
+        id: "REQ-001",
+        name: "Test Requirement",
+        description: "Test description",
+        type: "functional",
+        version: "1.0",
+        status: RequirementStatus.NOT_TRACKED,
+      };
+
+      const codeReferences: CodeReference[] = [
+        {
+          snippet: "Test code snippet",
+          filePath: "/test/file.c",
+          lineNumber: 1,
+          score: 0.9,
+          relevanceExplanation: "Match score: 90%",
+          contextRange: {
+            start: 0,
+            end: 4,
+          },
+        },
+      ];
+
+      const mockLanguageModel = {
+        ...service["_languageModel"],
+        generate: jest
+          .fn<(prompt: string) => Promise<string>>()
+          .mockRejectedValue(new Error("Language model error")),
+      };
+
+      // Replace the language model with our mock
+      Object.defineProperty(service, "_languageModel", {
+        value: mockLanguageModel,
+      });
+
+      try {
+        await service.analyzeImplementation(requirement, codeReferences);
+        fail("Expected promise to be rejected");
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          expect(error.message).toBe("Language model error");
+        }
+      }
     });
   });
 });

@@ -1,7 +1,6 @@
 import * as vscode from "vscode";
 import { ChatMessage } from "../Models/ChatMessage";
 import { Requirement } from "../Models/Requirement";
-import {TrackingResultSummary} from "../Models/TrackingModels";
 
 export enum StateKeys {
   CHAT_MESSAGES = "chatMessages",

@@ -262,7 +262,7 @@ button:hover {
     padding: 5px;
 }
 
-.requirements-table tr{
+.requirements-table tr {
     border-bottom: 1px solid var(--vscode-tree-tableColumnsBorder);
 }
 
@@ -270,7 +270,8 @@ button:hover {
     text-wrap: nowrap;
 }
 
-.requirements-table .req-table-actions ul, .req-actions {
+.requirements-table .req-table-actions ul,
+.req-actions {
     list-style: none;
     display: flex;
     gap: 5px;
@@ -319,8 +320,42 @@ button:hover {
     margin: 0;
 }
 
+.requirement-actions {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.requirement-actions .req-actions {
+    display: flex;
+    gap: 5px;
+    margin: 0;
+    padding: 0;
+}
+
+.analyze-req-action {
+    padding: 4px 6px;
+    background-color: transparent;
+    color: var(--vscode-button-foreground);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.analyze-req-action:hover {
+    background-color: var(--vscode-editorInfo-foreground);
+}
+
 .requirement-item {
     margin-bottom: 15px;
+}
+
+.requirement-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
 }
 
 .requirement-header-content {
@@ -462,7 +497,8 @@ button:hover {
     color: var(--vscode-editor-foreground);
 }
 
-.edit-mode-selection, .edit-mode-original {
+.edit-mode-selection,
+.edit-mode-original {
     background-color: var(--vscode-editor-lineHighlightBackground);
     padding: 8px 12px;
     border-radius: 4px;
@@ -533,4 +569,68 @@ button:hover {
     justify-content: flex-end;
     gap: 10px;
     margin-top: 20px;
+}
+.analyze-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: 10px;
+    padding: 4px 8px;
+    background-color: var(--vscode-button-secondaryBackground);
+    color: var(--vscode-button-secondaryForeground);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.analyze-button:hover {
+    background-color: var(--vscode-button-secondaryHoverBackground);
+}
+
+.ollama-analysis {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: var(--vscode-editor-inactiveSelectionBackground);
+    border-radius: 4px;
+}
+
+.ollama-analysis.hidden {
+    display: none;
+}
+
+.analysis-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--vscode-editor-foreground);
+}
+
+.analysis-content {
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.analysis-content p {
+    margin: 4px 0;
+}
+
+.loading-spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--vscode-progressBar-background);
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+}
+
+.loading-spinner.hidden {
+    display: none;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
 }
