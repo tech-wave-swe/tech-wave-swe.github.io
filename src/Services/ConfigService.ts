@@ -1,13 +1,12 @@
-import {Config, ConfigKey} from "../Models/Config";
+import { Config, ConfigKey } from "../Models/Config";
 
-import {workspace} from "vscode";
+import { workspace } from "vscode";
 import {
   FileExtensionFilter,
   PathFilter,
   RequirementFilter,
 } from "../Models/Filter";
 import FileSystemService from "./FileSystemService";
-import {glob} from "glob";
 
 export default class ConfigService {
   private _fileSystemService: FileSystemService;
@@ -20,27 +19,44 @@ export default class ConfigService {
     const globalConfig = workspace.getConfiguration("requirementsTracker");
     const projectConfig: Partial<Config> = this._getLocalConfig();
 
-    console.log("Project config",);
+    console.log("Project config");
 
     return {
-      endpoint: (projectConfig[ConfigKey.ENDPOINT] ? projectConfig[ConfigKey.ENDPOINT] : null) ?? globalConfig[ConfigKey.ENDPOINT],
+      endpoint:
+        (projectConfig[ConfigKey.ENDPOINT]
+          ? projectConfig[ConfigKey.ENDPOINT]
+          : null) ?? globalConfig[ConfigKey.ENDPOINT],
       bearerToken:
-        (projectConfig[ConfigKey.BEARER_TOKEN] ? projectConfig[ConfigKey.BEARER_TOKEN] : null) ?? globalConfig[ConfigKey.BEARER_TOKEN],
-      model: (projectConfig[ConfigKey.MODEL] ? projectConfig[ConfigKey.MODEL] : null) ??
-        (globalConfig[ConfigKey.CUSTOM_MODEL] ? globalConfig[ConfigKey.CUSTOM_MODEL] : null) ??
+        (projectConfig[ConfigKey.BEARER_TOKEN]
+          ? projectConfig[ConfigKey.BEARER_TOKEN]
+          : null) ?? globalConfig[ConfigKey.BEARER_TOKEN],
+      model:
+        (projectConfig[ConfigKey.MODEL]
+          ? projectConfig[ConfigKey.MODEL]
+          : null) ??
+        (globalConfig[ConfigKey.CUSTOM_MODEL]
+          ? globalConfig[ConfigKey.CUSTOM_MODEL]
+          : null) ??
         globalConfig[ConfigKey.MODEL],
       embeddingModel:
-        (projectConfig[ConfigKey.EMBEDDING_MODEL] ? projectConfig[ConfigKey.EMBEDDING_MODEL] : null) ??
-        (globalConfig[ConfigKey.CUSTOM_EMBEDDING_MODEL] ? globalConfig[ConfigKey.CUSTOM_EMBEDDING_MODEL] : null) ??
+        (projectConfig[ConfigKey.EMBEDDING_MODEL]
+          ? projectConfig[ConfigKey.EMBEDDING_MODEL]
+          : null) ??
+        (globalConfig[ConfigKey.CUSTOM_EMBEDDING_MODEL]
+          ? globalConfig[ConfigKey.CUSTOM_EMBEDDING_MODEL]
+          : null) ??
         globalConfig[ConfigKey.EMBEDDING_MODEL],
       temperature:
-        projectConfig[ConfigKey.TEMPERATURE] ?? globalConfig[ConfigKey.TEMPERATURE],
+        projectConfig[ConfigKey.TEMPERATURE] ??
+        globalConfig[ConfigKey.TEMPERATURE],
       maxResults:
-        projectConfig[ConfigKey.MAX_RESULTS] ?? globalConfig[ConfigKey.MAX_RESULTS],
-      promptRequirementAnalysis: projectConfig[ConfigKey.PROMPT] ?? globalConfig[ConfigKey.PROMPT],
+        projectConfig[ConfigKey.MAX_RESULTS] ??
+        globalConfig[ConfigKey.MAX_RESULTS],
+      promptRequirementAnalysis:
+        projectConfig[ConfigKey.PROMPT] ?? globalConfig[ConfigKey.PROMPT],
       filters: projectConfig[ConfigKey.FILTERS] ?? {
-        path: {type: "path", include: [], exclude: []},
-        file_extension: {type: "file_extension", include: [], exclude: []},
+        path: { type: "path", include: [], exclude: [] },
+        file_extension: { type: "file_extension", include: [], exclude: [] },
         requirement: {},
       },
     };
@@ -78,7 +94,8 @@ export default class ConfigService {
         ConfigKey.EMBEDDING_MODEL in rawConfig &&
         typeof rawConfig[ConfigKey.EMBEDDING_MODEL] === "string"
       ) {
-        validConfig[ConfigKey.EMBEDDING_MODEL] = rawConfig[ConfigKey.EMBEDDING_MODEL];
+        validConfig[ConfigKey.EMBEDDING_MODEL] =
+          rawConfig[ConfigKey.EMBEDDING_MODEL];
       }
       if (
         ConfigKey.TEMPERATURE in rawConfig &&
@@ -133,9 +150,9 @@ export default class ConfigService {
   private _validateFileExtensionFilters(
     filter:
       | {
-      include: string[];
-      exclude: string[];
-    }
+          include: string[];
+          exclude: string[];
+        }
       | undefined,
   ): FileExtensionFilter {
     return {

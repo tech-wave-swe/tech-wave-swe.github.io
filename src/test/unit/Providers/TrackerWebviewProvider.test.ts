@@ -130,6 +130,37 @@ describe("TrackerWebviewProvider", () => {
         expect.objectContaining({ type: "updateRequirements" }),
       );
     });
+
+    it("should send startEditMode message when in edit mode", () => {
+      // Setup edit mode
+      const editReference = {
+        requirementId: "REQ-001",
+        codeReferenceId: 1,
+        codeReference: {
+          filePath: "test/file.ts",
+          lineNumber: 1,
+          snippet: "test code",
+          score: 85,
+          contextRange: { start: 1, end: 2 }
+        }
+      };
+
+      // Set edit mode manually
+      (trackerWebviewProvider as any)._isEditMode = true;
+      (trackerWebviewProvider as any)._currentEditingReference = editReference;
+
+      trackerWebviewProvider.resolveWebviewView(
+        mockWebviewView as unknown as vscode.WebviewView,
+        {} as vscode.WebviewViewResolveContext,
+        {} as vscode.CancellationToken,
+      );
+
+      expect(mockWebviewView.webview.postMessage).toHaveBeenCalledWith({
+        type: "startEditMode",
+        requirementId: editReference.requirementId,
+        codeReference: editReference.codeReference
+      });
+    });
   });
 
   describe("message handling", () => {
@@ -1199,6 +1230,79 @@ describe("TrackerWebviewProvider", () => {
 
       expect(mockWebviewView.webview.postMessage).toHaveBeenCalledWith({
         type: "stopEditMode"
+      });
+    });
+
+    describe('tab switching', () => {
+      it('should handle tabToImport message', async () => {
+        const message = {
+          type: "tabToImport"
+        };
+
+        const handleMessageMethod = (
+          trackerWebviewProvider as any
+        )._handleMessageFromWebview.bind(trackerWebviewProvider);
+        await handleMessageMethod(message);
+
+        expect(mockWebviewView.webview.postMessage).toHaveBeenCalledWith({
+          type: "showImportTab"
+        });
+      });
+
+      it('should handle tabToTrack message', async () => {
+        mockRequirementsServiceFacade.getAllRequirements.mockReturnValue(mockRequirements);
+
+        const message = {
+          type: "tabToTrack"
+        };
+
+        const handleMessageMethod = (
+          trackerWebviewProvider as any
+        )._handleMessageFromWebview.bind(trackerWebviewProvider);
+        await handleMessageMethod(message);
+
+        expect(mockWebviewView.webview.postMessage).toHaveBeenCalledWith({
+          type: "showTrackTab",
+          requirements: mockRequirements
+        });
+      });
+
+      it('should handle tabToResults message', async () => {
+        mockTrackingResultService.getTrakingResultSummary.mockReturnValue(mockTrackingResultSummary);
+
+        const message = {
+          type: "tabToResults"
+        };
+
+        const handleMessageMethod = (
+          trackerWebviewProvider as any
+        )._handleMessageFromWebview.bind(trackerWebviewProvider);
+        await handleMessageMethod(message);
+
+        expect(mockWebviewView.webview.postMessage).toHaveBeenCalledWith({
+          type: "showResultsTab",
+          summary: {
+            ...mockTrackingResultSummary,
+            requirementDetails: Object.fromEntries(mockTrackingResultSummary.requirementDetails)
+          }
+        });
+      });
+
+      it('should not send message when tabToResults has no tracking results', async () => {
+        mockTrackingResultService.getTrakingResultSummary.mockReturnValue(undefined);
+
+        const message = {
+          type: "tabToResults"
+        };
+
+        const handleMessageMethod = (
+          trackerWebviewProvider as any
+        )._handleMessageFromWebview.bind(trackerWebviewProvider);
+        await handleMessageMethod(message);
+
+        expect(mockWebviewView.webview.postMessage).not.toHaveBeenCalledWith(
+          expect.objectContaining({ type: "showResultsTab" })
+        );
       });
     });
 

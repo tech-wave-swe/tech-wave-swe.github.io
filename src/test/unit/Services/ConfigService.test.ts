@@ -12,6 +12,7 @@ describe("ConfigService", () => {
     // Create a mock FileSystemService
     fileSystemService = {
       read: jest.fn(),
+      setRootFolder: jest.fn(),
     } as unknown as jest.Mocked<FileSystemService>;
 
     // Create ConfigService instance with mocked FileSystemService
@@ -37,6 +38,7 @@ describe("ConfigService", () => {
         embeddingModel: "nomic-embed-text:latest",
         temperature: 0.7,
         maxResults: 5,
+        promptRequirementAnalysis: "true",
         filters: {
           path: {
             type: "path",
@@ -65,6 +67,7 @@ describe("ConfigService", () => {
       embeddingModel: "nomic-embed-text:latest",
       temperature: 0.7,
       maxResults: 5,
+      promptRequirementAnalysis: "true",
       filters: {
         path: {
           type: "path",
@@ -106,6 +109,7 @@ describe("ConfigService", () => {
       embeddingModel: "global-embedding-model", // from global
       temperature: 0.5, // from global
       maxResults: 3, // from global
+      promptRequirementAnalysis: undefined,
       filters: {
         path: { type: "path", include: [], exclude: [] },
         file_extension: { type: "file_extension", include: [], exclude: [] },
@@ -128,6 +132,7 @@ describe("ConfigService", () => {
       embeddingModel: "global-embedding-model",
       temperature: 0.5,
       maxResults: 3,
+      promptRequirementAnalysis: undefined,
       filters: {
         path: { type: "path", include: [], exclude: [] },
         file_extension: { type: "file_extension", include: [], exclude: [] },
@@ -191,8 +196,6 @@ describe("ConfigService", () => {
 
     const config = configService.GetConfig();
 
-    console.log(config);
-
     expect(config.filters.requirement).toEqual({
       req2: {
         type: "requirement",
@@ -203,5 +206,66 @@ describe("ConfigService", () => {
         search_path: [],
       },
     });
+  });
+
+  it("should set workspace folder", () => {
+    const workspaceFolder = "/test/workspace";
+    configService.setWorkspaceFolder(workspaceFolder);
+    expect(fileSystemService.setRootFolder).toHaveBeenCalledWith(workspaceFolder);
+  });
+
+  it("should use custom model over default model when available", () => {
+    fileSystemService.read.mockImplementation(() => {
+      return JSON.stringify({});
+    });
+
+    const mockConfig = {
+      endpoint: "http://global-endpoint",
+      bearerToken: "your-secret-token-here",
+      model: "global-model",
+      customModel: "custom-global-model",
+      embeddingModel: "global-embedding-model",
+      customEmbeddingModel: "custom-global-embedding-model",
+      temperature: 0.5,
+      maxResults: 3,
+    };
+    (workspace.getConfiguration as jest.Mock).mockReturnValue(mockConfig);
+
+    const config = configService.GetConfig();
+    expect(config.model).toBe("custom-global-model");
+    expect(config.embeddingModel).toBe("custom-global-embedding-model");
+  });
+
+  it("should use custom embedding model over default embedding model when available", () => {
+    fileSystemService.read.mockImplementation(() => {
+      return JSON.stringify({});
+    });
+
+    const mockConfig = {
+      endpoint: "http://global-endpoint",
+      bearerToken: "your-secret-token-here",
+      model: "global-model",
+      embeddingModel: "global-embedding-model",
+      customEmbeddingModel: "custom-global-embedding-model",
+      temperature: 0.5,
+      maxResults: 3,
+    };
+    (workspace.getConfiguration as jest.Mock).mockReturnValue(mockConfig);
+
+    const config = configService.GetConfig();
+    expect(config.embeddingModel).toBe("custom-global-embedding-model");
+  });
+
+  it("should prioritize local model over custom and default models", () => {
+    fileSystemService.read.mockImplementation(() => {
+      return JSON.stringify({
+        model: "local-model",
+        embeddingModel: "local-embedding-model"
+      });
+    });
+
+    const config = configService.GetConfig();
+    expect(config.model).toBe("local-model");
+    expect(config.embeddingModel).toBe("local-embedding-model");
   });
 });

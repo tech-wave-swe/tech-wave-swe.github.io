@@ -41,6 +41,28 @@ describe("FileSystemService", () => {
       );
     });
 
+    it("should throw an error when root folder is not set", () => {
+      fileSystemService.setRootFolder("");
+      expect(() => fileSystemService.read(mockFilePath)).toThrow(
+        "Root folder is not set."
+      );
+    });
+
+    it("should update root folder when setRootFolder is called", () => {
+      const newRootFolder = "/new/root/folder";
+      const testFilePath = "test.txt";
+      const newFullPath = path.resolve(newRootFolder, testFilePath);
+      const mockContent = "New content";
+
+      fileSystemService.setRootFolder(newRootFolder);
+      (fs.readFileSync as jest.Mock).mockReturnValue(mockContent);
+
+      const result = fileSystemService.read(testFilePath);
+
+      expect(result).toBe(mockContent);
+      expect(fs.readFileSync).toHaveBeenCalledWith(newFullPath, "utf-8");
+    });
+
     it("should return correctly a checksum for a given file content", () => {
       const fileContent = "Hello, World!";
       const expectedChecksum =
@@ -49,7 +71,7 @@ describe("FileSystemService", () => {
       // Mock fs.readFileSync to return mock content
       (fs.readFileSync as jest.Mock).mockReturnValue(fileContent);
 
-      const result = FileSystemService.getChecksum(mockFilePath);
+      const result = FileSystemService.getChecksum(mockFullPath);
 
       expect(result).toBe(expectedChecksum);
       expect(fs.readFileSync).toHaveBeenCalledWith(mockFullPath, "utf-8");
@@ -64,8 +86,8 @@ describe("FileSystemService", () => {
       throw mockError;
     });
 
-    expect(() => FileSystemService.getChecksum(mockFilePath)).toThrow(
-      `Error reading file ${mockFilePath}: ${mockError}`,
+    expect(() => FileSystemService.getChecksum(mockFullPath)).toThrow(
+      `Error reading file ${mockFullPath}: ${mockError}`,
     );
   });
 });

@@ -5,6 +5,7 @@ import { DocumentServiceFacade } from "../../../Facades/DocumentServiceFacade";
 import { FilterService } from "../../../Services/FilterService";
 import { Requirement, RequirementStatus } from "../../../Models/Requirement";
 import { Chunk } from "../../../Models/Chunk";
+import { ConfigServiceFacade } from "../../../Facades/ConfigServiceFacade";
 import * as vscode from "../Mock/vscode";
 import { CodeReference } from "../../../Models/TrackingModels";
 import { FileExtensionFilter, PathFilter } from "../../../Models/Filter";
@@ -20,6 +21,12 @@ describe("RequirementsTrackerService", () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+
+    // Mock ConfigServiceFacade
+    const mockConfigServiceFacade = {
+      getPrompt: jest.fn().mockReturnValue("Test prompt"),
+    };
+    jest.spyOn(ConfigServiceFacade, 'GetInstance').mockReturnValue(mockConfigServiceFacade as unknown as ConfigServiceFacade);
 
     mockPathFilter = {
       include: ["/test/uno", "test/due"],

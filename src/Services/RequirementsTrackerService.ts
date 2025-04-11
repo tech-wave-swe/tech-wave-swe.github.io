@@ -11,7 +11,6 @@ import { DocumentServiceFacade } from "../Facades/DocumentServiceFacade";
 import * as vscode from "vscode";
 import { FilterService } from "./FilterService";
 import { Chunk } from "../Models/Chunk";
-import ConfigService from "./ConfigService";
 import {ConfigServiceFacade} from "../Facades/ConfigServiceFacade";
 
 export class RequirementsTrackerService {
