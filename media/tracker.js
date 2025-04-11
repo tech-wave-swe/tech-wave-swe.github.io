@@ -391,20 +391,20 @@ function handleStopEditMode(message) {
 
 function handleTabImportClick(event) {
   vscode.postMessage({
-    type: "tabToImport"
-  })
+    type: "tabToImport",
+  });
 }
 
 function handleTabTrackClick(event) {
   vscode.postMessage({
-    type: "tabToTrack"
-  })
+    type: "tabToTrack",
+  });
 }
 
 function handleTabResults(event) {
   vscode.postMessage({
-    type: "tabToResults"
-  })
+    type: "tabToResults",
+  });
 }
 
 function changeActiveTab(tab) {
@@ -641,13 +641,6 @@ function updateRequirementsDisplay() {
           <span class="implementation-status ${statusClass}">
             ${result.implementationStatus.replace("-", " ")}
           </span>
-        </div>
-        <div class="requirement-actions">
-          <ul class="req-actions">
-            <li class="analyze-req-action" title="Analyze Implementation">
-              <i class="codicon codicon-search"></i>
-            </li>
-          </ul>
         </div>
         <div class="dropdown-toggle"><i class="codicon codicon-chevron-down"></i></div>
       </div>
