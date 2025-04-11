@@ -1,12 +1,13 @@
-import { Config, ConfigKey } from "../Models/Config";
+import {Config, ConfigKey} from "../Models/Config";
 
-import { workspace } from "vscode";
+import {workspace} from "vscode";
 import {
   FileExtensionFilter,
   PathFilter,
   RequirementFilter,
 } from "../Models/Filter";
 import FileSystemService from "./FileSystemService";
+import {glob} from "glob";
 
 export default class ConfigService {
   private _fileSystemService: FileSystemService;
@@ -19,24 +20,34 @@ export default class ConfigService {
     const globalConfig = workspace.getConfiguration("requirementsTracker");
     const projectConfig: Partial<Config> = this._getLocalConfig();
 
+    console.log("Project config",);
+
     return {
-      endpoint: projectConfig?.endpoint ?? globalConfig[ConfigKey.ENDPOINT],
+      endpoint: (projectConfig[ConfigKey.ENDPOINT] ? projectConfig[ConfigKey.ENDPOINT] : null) ?? globalConfig[ConfigKey.ENDPOINT],
       bearerToken:
-        projectConfig?.bearerToken ?? globalConfig[ConfigKey.BEARER_TOKEN],
-      model: projectConfig?.model ?? globalConfig[ConfigKey.MODEL],
+        (projectConfig[ConfigKey.BEARER_TOKEN] ? projectConfig[ConfigKey.BEARER_TOKEN] : null) ?? globalConfig[ConfigKey.BEARER_TOKEN],
+      model: (projectConfig[ConfigKey.MODEL] ? projectConfig[ConfigKey.MODEL] : null) ??
+        (globalConfig[ConfigKey.CUSTOM_MODEL] ? globalConfig[ConfigKey.CUSTOM_MODEL] : null) ??
+        globalConfig[ConfigKey.MODEL],
       embeddingModel:
-        projectConfig?.embeddingModel ??
+        (projectConfig[ConfigKey.EMBEDDING_MODEL] ? projectConfig[ConfigKey.EMBEDDING_MODEL] : null) ??
+        (globalConfig[ConfigKey.CUSTOM_EMBEDDING_MODEL] ? globalConfig[ConfigKey.CUSTOM_EMBEDDING_MODEL] : null) ??
         globalConfig[ConfigKey.EMBEDDING_MODEL],
       temperature:
-        projectConfig?.temperature ?? globalConfig[ConfigKey.TEMPERATURE],
+        projectConfig[ConfigKey.TEMPERATURE] ?? globalConfig[ConfigKey.TEMPERATURE],
       maxResults:
-        projectConfig?.maxResults ?? globalConfig[ConfigKey.MAX_RESULTS],
-      filters: projectConfig?.filters ?? {
-        path: { type: "path", include: [], exclude: [] },
-        file_extension: { type: "file_extension", include: [], exclude: [] },
+        projectConfig[ConfigKey.MAX_RESULTS] ?? globalConfig[ConfigKey.MAX_RESULTS],
+      promptRequirementAnalysis: projectConfig[ConfigKey.PROMPT] ?? globalConfig[ConfigKey.PROMPT],
+      filters: projectConfig[ConfigKey.FILTERS] ?? {
+        path: {type: "path", include: [], exclude: []},
+        file_extension: {type: "file_extension", include: [], exclude: []},
         requirement: {},
       },
     };
+  }
+
+  public setWorkspaceFolder(workspaceFolder: string): void {
+    this._fileSystemService.setRootFolder(workspaceFolder);
   }
 
   private _getLocalConfig(): Partial<Config> {
@@ -50,46 +61,52 @@ export default class ConfigService {
       // Only use values with the correct type
       if (
         ConfigKey.ENDPOINT in rawConfig &&
-        typeof rawConfig.endpoint === "string"
+        typeof rawConfig[ConfigKey.ENDPOINT] === "string"
       ) {
-        validConfig.endpoint = rawConfig.endpoint;
+        validConfig[ConfigKey.ENDPOINT] = rawConfig[ConfigKey.ENDPOINT];
       }
       if (
         ConfigKey.BEARER_TOKEN in rawConfig &&
-        typeof rawConfig.bearerToken === "string"
+        typeof rawConfig[ConfigKey.BEARER_TOKEN] === "string"
       ) {
-        validConfig.bearerToken = rawConfig.bearerToken;
+        validConfig[ConfigKey.BEARER_TOKEN] = rawConfig[ConfigKey.BEARER_TOKEN];
       }
       if (ConfigKey.MODEL in rawConfig && typeof rawConfig.model === "string") {
-        validConfig.model = rawConfig.model;
+        validConfig[ConfigKey.MODEL] = rawConfig[ConfigKey.MODEL];
       }
       if (
         ConfigKey.EMBEDDING_MODEL in rawConfig &&
-        typeof rawConfig.embeddingModel === "string"
+        typeof rawConfig[ConfigKey.EMBEDDING_MODEL] === "string"
       ) {
-        validConfig.embeddingModel = rawConfig.embeddingModel;
+        validConfig[ConfigKey.EMBEDDING_MODEL] = rawConfig[ConfigKey.EMBEDDING_MODEL];
       }
       if (
         ConfigKey.TEMPERATURE in rawConfig &&
-        typeof rawConfig.temperature === "number"
+        typeof rawConfig[ConfigKey.TEMPERATURE] === "number"
       ) {
-        validConfig.temperature = rawConfig.temperature;
+        validConfig[ConfigKey.TEMPERATURE] = rawConfig[ConfigKey.TEMPERATURE];
+      }
+      if (
+        ConfigKey.PROMPT in rawConfig &&
+        typeof rawConfig[ConfigKey.PROMPT] === "string"
+      ) {
+        validConfig[ConfigKey.PROMPT] = rawConfig[ConfigKey.PROMPT];
       }
       if (
         ConfigKey.MAX_RESULTS in rawConfig &&
-        typeof rawConfig.maxResults === "number"
+        typeof rawConfig[ConfigKey.MAX_RESULTS] === "number"
       ) {
-        validConfig.maxResults = rawConfig.maxResults;
+        validConfig[ConfigKey.MAX_RESULTS] = rawConfig[ConfigKey.MAX_RESULTS];
       }
 
       if (ConfigKey.FILTERS in rawConfig) {
-        validConfig.filters = {
-          path: this._validatePathFilters(rawConfig.filters.path),
+        validConfig[ConfigKey.FILTERS] = {
+          path: this._validatePathFilters(rawConfig[ConfigKey.FILTERS].path),
           file_extension: this._validateFileExtensionFilters(
-            rawConfig.filters.file_extension,
+            rawConfig[ConfigKey.FILTERS].file_extension,
           ),
           requirement: this._validateRequirementFilters(
-            rawConfig.filters.requirements,
+            rawConfig[ConfigKey.FILTERS].requirements,
           ),
         };
       }
@@ -116,9 +133,9 @@ export default class ConfigService {
   private _validateFileExtensionFilters(
     filter:
       | {
-          include: string[];
-          exclude: string[];
-        }
+      include: string[];
+      exclude: string[];
+    }
       | undefined,
   ): FileExtensionFilter {
     return {

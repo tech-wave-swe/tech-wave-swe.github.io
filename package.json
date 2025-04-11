@@ -34,7 +34,7 @@
           "description": "Ollama model to use",
           "order": 2
         },
-        "requirementsTracker.custom-model": {
+        "requirementsTracker.customModel": {
           "type": "string",
           "default": "",
           "description": "Custom model name",
@@ -52,7 +52,7 @@
           "description": "Ollama model to use for embeddings",
           "order": 4
         },
-        "requirementsTracker.custom-embeddingModel": {
+        "requirementsTracker.customEmbeddingModel": {
           "type": "string",
           "default": "",
           "description": "Custom embedding model name",
@@ -77,6 +77,11 @@
           "type": "number",
           "default": 0.7,
           "description": "Temperature parameter for text generation"
+        },
+        "requirementsTracker.promptRequirementAnalysis": {
+          "type": "string",
+          "default": "Analyze if this code implements the requirement. Be specific and concise.",
+          "description": "Prompt for requirement analysis"
         }
       }
     },

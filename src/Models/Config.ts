@@ -8,6 +8,9 @@ export enum ConfigKey {
   TEMPERATURE = "temperature",
   MAX_RESULTS = "maxResults",
   FILTERS = "filters",
+  PROMPT = "promptRequirementAnalysis",
+  CUSTOM_EMBEDDING_MODEL = "customEmbeddingModel",
+  CUSTOM_MODEL = "customModel",
 }
 
 export interface ConfigFilters {
@@ -20,8 +23,11 @@ export interface Config {
   endpoint: string;
   bearerToken: string;
   model: string;
+  customModel?: string;
   embeddingModel: string;
+  customEmbeddingModel?: string;
   temperature: number;
   maxResults: number;
+  promptRequirementAnalysis: string,
   filters: ConfigFilters;
 }

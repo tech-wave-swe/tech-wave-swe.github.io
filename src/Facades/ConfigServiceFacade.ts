@@ -1,5 +1,6 @@
 import { Config, ConfigFilters, ConfigKey } from "../Models/Config";
 import ConfigService from "../Services/ConfigService";
+import {WorkspaceFolder} from "vscode";
 
 export class ConfigServiceFacade {
   private static _instance: ConfigServiceFacade;
@@ -31,6 +32,12 @@ export class ConfigServiceFacade {
     this._config = this._configService.GetConfig();
 
     console.log("Config loaded:", this._config);
+  }
+
+  public setWorkspaceFolder(workspaceFolder: readonly WorkspaceFolder[]) {
+    this._configService.setWorkspaceFolder(workspaceFolder[0].uri.fsPath);
+
+    this.sync();
   }
 
   private _getConfigValue(key: ConfigKey): Config[ConfigKey] {
@@ -71,5 +78,9 @@ export class ConfigServiceFacade {
 
   public getFilters(): ConfigFilters {
     return this._getConfigValue(ConfigKey.FILTERS) as ConfigFilters;
+  }
+
+  public getPrompt(): string {
+    return this._getConfigValue(ConfigKey.PROMPT) as string;
   }
 }

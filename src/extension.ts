@@ -65,7 +65,13 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 function _initializeConfigService(context: vscode.ExtensionContext) {
-  const fileSystemService = new FileSystemService(context.extensionUri.fsPath);
+  let workspaceFolder = "";
+
+  if (vscode.workspace.workspaceFolders) {
+    workspaceFolder = vscode.workspace.workspaceFolders[0].uri.fsPath;
+  }
+
+  const fileSystemService = new FileSystemService(workspaceFolder);
   const configService = new ConfigService(fileSystemService);
 
   ConfigServiceFacade.Init(configService);
@@ -152,6 +158,13 @@ function _initializeTrackerViewProvider(
     vscode.window.onDidChangeTextEditorSelection((event) => {
       trackerWebviewProvider.onChangeTextEditorSelection(event);
     }),
+  );
+
+  // Handle Folder opening
+  context.subscriptions.push(
+    vscode.workspace.onDidChangeWorkspaceFolders((event) => {
+      ConfigServiceFacade.GetInstance().setWorkspaceFolder(event.added);
+    })
   );
 }
 

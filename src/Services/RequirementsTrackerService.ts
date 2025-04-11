@@ -11,6 +11,8 @@ import { DocumentServiceFacade } from "../Facades/DocumentServiceFacade";
 import * as vscode from "vscode";
 import { FilterService } from "./FilterService";
 import { Chunk } from "../Models/Chunk";
+import ConfigService from "./ConfigService";
+import {ConfigServiceFacade} from "../Facades/ConfigServiceFacade";
 
 export class RequirementsTrackerService {
   private _vectorDatabase: IVectorDatabase;
@@ -38,8 +40,10 @@ export class RequirementsTrackerService {
     console.log(requirement);
     console.log(codeReferences);
 
+    const initPrompt = ConfigServiceFacade.GetInstance().getPrompt();
+
     try {
-      const prompt = `Analyze if this code implements the requirement. Be specific and concise.
+      const prompt = `${initPrompt}
 
   Requirement:
   ${requirement.description}
@@ -65,6 +69,8 @@ ${ref.snippet}`,
   [ANALYSIS_START]
   <write your analysis here>
   [ANALYSIS_END]`;
+
+      console.log(prompt);
 
       return await this._languageModel.generate(prompt);
     } catch (error) {
