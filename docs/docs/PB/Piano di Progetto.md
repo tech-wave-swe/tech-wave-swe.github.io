@@ -120,9 +120,8 @@ Table: Rischi organizzativi e interpersonali
 | Codice  | Rischio                             | Descrizione                                                                                                                                 | Grado di rischio | Pericolosità |
 | ------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ------------ |
 | **RT1** | **Mancanza di conoscenze tecniche** | Alcuni membri del gruppo potrebbero non aver familiarità con tutte le tecnologie utilizzate durante lo sviluppo o la gestione del progetto. | 4                | Bassa        |
-| **RT2**                                                                                                                                                                | **Apprendimento ed utilizzo di nuove tecnologie**      | L’apprendimento e l’applicazione delle tecnologie individuate possono costituire un rischio significativo per l’avanzamento del progetto, poiché è possibile che l’approfondimento necessario richieda tempi superiori a quelli inizialmente stimati. | 3                | Media        |
-| **RT3**                                                                                                                                                                | **Mancanza di esperienza con Jest per i test unitari** |
-| Alcuni membri del team non hanno mai utilizzato il framework Jest per scrivere test unitari in ambiente TypeScript, il che può portare a ritardi o test poco efficaci. | 3                                                      | Media                                                                                                                                                                                                                                                 |
+| **RT2** | **Apprendimento ed utilizzo di nuove tecnologie**      | L’apprendimento e l’applicazione delle tecnologie individuate possono costituire un rischio significativo per l’avanzamento del progetto, poiché è possibile che l’approfondimento necessario richieda tempi superiori a quelli inizialmente stimati. | 3                | Media        |
+| **RT3** | **Mancanza di esperienza con Jest per i test unitari** | Alcuni membri del team non hanno mai utilizzato il framework Jest per scrivere test unitari in ambiente TypeScript, il che può portare a ritardi o test poco efficaci. | 3      | Media        |
 
 Table: Rischi tecnologici
 
@@ -679,8 +678,8 @@ In questo periodo, il gruppo si concentrerà sul completamento della documentazi
 - _RO2_: Ritardi dovuti a problemi individuali
 
 **Rischi occorsi**
-Durante lo Sprint 7, il gruppo ha incontrato diversi rischi previsti in fase di pianificazione. In particolare, il rischio RO1 – avanzamento lento per mancanza di esperienza – si è concretizzato nella difficoltà di conciliare le attività di progetto con la preparazione della presentazione RTB e la finalizzazione dei documenti. Questo ha rallentato l’avanzamento generale dei lavori, ma il gruppo è riuscito a recuperare nei giorni successivi grazie a una riorganizzazione delle attività.
-Si è manifestato anche il rischio RO5, legato alla sottostima delle attività. I compiti di completamento e revisione della documentazione hanno richiesto più tempo del previsto, rendendo necessario uno sforzo aggiuntivo nelle fasi finali dello sprint.
+Durante lo %%sprint|sprint%% 7, il gruppo ha incontrato diversi rischi previsti in fase di pianificazione. In particolare, il rischio RO1 – avanzamento lento per mancanza di esperienza – si è concretizzato nella difficoltà di conciliare le attività di progetto con la preparazione della presentazione RTB e la finalizzazione dei documenti. Questo ha rallentato l’avanzamento generale dei lavori, ma il gruppo è riuscito a recuperare nei giorni successivi grazie a una riorganizzazione delle attività.
+Si è manifestato anche il rischio RO5, legato alla sottostima delle attività. I compiti di completamento e revisione della documentazione hanno richiesto più tempo del previsto, rendendo necessario uno sforzo aggiuntivo nelle fasi finali dello %%sprint|sprint%%.
 Infine, si è verificato anche il rischio RO2, relativo a problemi individuali, in forma di discontinuità nella partecipazione alle riunioni. Non tutti i membri sono riusciti a essere presenti agli incontri di gruppo. Il problema è stato mitigato aggiornando singolarmente i membri assenti con resoconti sintetici di quanto discusso.
 
 
@@ -764,9 +763,9 @@ In questo periodo, il gruppo si concentrerà sulla progettazione e sul miglioram
 - _TO6_: Difficoltà nella scrittura della documentazione tecnica
 
 **Rischi occorsi**
-Durante lo Sprint 8, il team ha affrontato il rischio TO6, relativo alla difficoltà nella stesura della documentazione tecnica, in particolare del documento delle specifiche tecniche. La complessità e la quantità di dettagli richiesti hanno rallentato il lavoro inizialmente. Per velocizzare la redazione e amumentare l'efficenza nella risoluzione dei dubbi, il gruppo incaricato ha suddiviso il documento in sezioni, distribuendo il lavoro e agevolando il confronto tra i membri.
+Durante lo %%sprint|sprint%% 8, il team ha affrontato il rischio TO6, relativo alla difficoltà nella stesura della documentazione tecnica, in particolare del documento delle specifiche tecniche. La complessità e la quantità di dettagli richiesti hanno rallentato il lavoro inizialmente. Per velocizzare la redazione e amumentare l'efficenza nella risoluzione dei dubbi, il gruppo incaricato ha suddiviso il documento in sezioni, distribuendo il lavoro e agevolando il confronto tra i membri.
 Si sono verificati anche i rischi RT2 e RT3, entrambi legati all’uso di tecnologie, in particolare Jest per i test unitari. La difficoltà iniziale è stata superata grazie al supporto dei membri con maggiore esperienza, sono state organizzati test di gruppo, durante le quali i dubbi sono stati chiariti in tempo reale. Questo approccio ha permesso un rapido apprendimento e una maggiore sicurezza nell’utilizzo dello strumento.
-Infine, si è manifestato anche il rischio RO2, relativo agli impegni personali. Alcuni membri del team hanno avuto difficoltà a garantire la piena disponibilità durante lo sprint.
+Infine, si è manifestato anche il rischio RO2, relativo agli impegni personali. Alcuni membri del team hanno avuto difficoltà a garantire la piena disponibilità durante lo %%sprint|sprint%%.
 
 ###### Ruoli
 
