@@ -296,12 +296,14 @@ I componenti sono suddivisi in diversi blocchi funzionali:
 
 Il  modello di comunicazione ibrido permette di sfruttare la flessibilità dell'architettura event-driven nelle interazioni con VS Code, mantenendo al contempo un flusso di controllo chiaro e prevedibile all'interno dell'estensione stessa.
 
-[INSERIRE QUI IMMAGINE DEL DIAGRAMMA DELLE CLASSI]
+<img src="/img/Diagrams/diagram.png" alt="UML Diagram" data-width="70%" />
 
 
 #### Architettura di dettaglio
 
 #### Model
+
+<img src="/img/Diagrams/models.png" alt="Models UML Diagram" data-width="70%" />
 
 ##### ChatMessage
 
@@ -344,6 +346,8 @@ Definisce l’interfaccia _TrackingResultSummary_ che estende _TrackingResultDet
 
 #### View
 
+<img src="/img/Diagrams/views.png" alt="Views UML Diagram" data-width="70%" />
+
 ##### ChatWebView
 
 La classe *ChatWebView* è responsabile della generazione e della gestione dell’interfaccia grafica della chat dell’estensione. Infatti si occupa della gestione del codice HTML, CSS e si interfaccia con il _FileSystemService_.
@@ -352,6 +356,8 @@ La classe *ChatWebView* è responsabile della generazione e della gestione dell�
 La classe *ChatWebView* è responsabile della generazione e della gestione dell’interfaccia grafica del tracker dei requisiti. Infatti si occupa della gestione del codice HTML, CSS e si interfaccia con il _FileSystemService_.
 
 #### Presenter (Providers)
+
+<img src="/img/Diagrams/providers.png" alt="Providers UML Diagram" data-width="70%" />
 
 ##### ChatWebViewProvider
 
@@ -398,6 +404,8 @@ Mette a disposizione i metodi:
 
 #### Command
 
+<img src="/img/Diagrams/commands.png" alt="Commands UML Diagram" data-width="70%" />
+
 ##### CommandsRegistry
 
 La classe *CommandsRegistry* si occupa di gestire la registrazione e l’esecuzione dei comandi dell’estensione (_ICommand_). Infatti è responsabile della gestione tra l’itnerfaccia utente e la business logic.
@@ -415,59 +423,17 @@ I comandi implementati nell’estensione sono classi che estendono _ICommands_. 
 - *OpenSidebarCommand* permette di aprire la barra laterale dell'estensione Requirements Tracker all'interno di VSCode. È accessibile con il nome "requirementsTracker.openSidebar".
 - *ResetDatabaseCommand* permette di reimpostare il database vettoriale utilizzato per l'indicizzazione di codice e requisiti. È accessibile con il nome "requirementsTracker.resetDatabase".
 
-#### Interfaces
-
 ##### ICommand
 
 L’interfaccia *ICommand* ha lo scopo di modellare un comando dell’applicazione. Modella i metodi:
 - execute il quale permette l’esecuzione del comando e restiuisce un _Promise_.
 - getName il quale permette la restituzione del nome del comando.
 
-##### ILanguageModel
-
-L’interfaccia *ILanguageModel* ha lo scopo di modellare l’interazione con i modelli LLM. Modella i metodi:
-- generate il quale genera una risposta testuale a partire da un prompt.
-- generateEmbeddings il quale esegue l’embedding di una stringa.
-- refreshModels il quale aggiorna i modelli in seguito a cambiamenti nella configurazione.
-
-##### IVectorDatabase
-
-L’interfaccia *IVectorDatabase* ha lo scopo di modellare l’interazione con il databse vettoriale. Modella i metodi:
-- addFiles il quale permette l’aggiunta di un file nel database vettoriale.
-- addRequirements il quale permette l’aggiunta di un requisiti nel database vettoriale.
-- addChunks il quale permette l’aggiunta di frammenti di codice nel database vettoriale.
-- fileExists il quale verifica se un file con un dato percorso e checksum esiste già nel database.
-- queryForFiles il quale cerca file simili semanticamente alla domanda fornita.
-- queryForRequirements il quale cerca requisiti simili semanticamente alla domanda fornita.
-- queryForChunks il quale cerca frammenti di codice simili semanticamente alla domanda fornita.
-- resetDatabase il quale permette di reimpostare il database, eliminando tutti i dati memorizzati.
-- refreshEmbeddings il quale permette di aggiornare il modello di embedding o la connessione.
-
-####Adapter
-
-#### LangChainOllamaAdapter
-
-La classe *LangChainOllamaAdapter* implementa l’interfaccia _ILanguageModel_ e si occupa di fornire un’implementazione per l’interazione dei modelli usando Ollama.
-Oltre a fornire l’implementazione dei metodi dell’interfaccia, mette a disposizione:
-- /_initialize il quale permette di configurare le istanze di Ollama e OllamaEmbeddings con i parametri di configurazione.
-- getEmbeddings il quale permette di restituire l'istanza di OllamaEmbeddings utilizzata per generare gli embedding.
-
-#### LanceDBAdapter
-
-La classe *LanceDbAdapter* implementa l’interfaccia _IVectorDatabase_ e si occupa di fornire un’implementazione per la gestione dei file e dei requisiti usanto LanceDB come database vettoriale.
-Oltre a fornire l’implementazione dei metodi dell’interfaccia, mette a disposizione:
-- deleteFiles il quale permette di eliminare file dal database.
-- getEmbedding il quale restituisce l'istanza di _OllamaEmbeddings_ utilizzata per generare gli embedding.
-- /_initialize il quale permette di inizializzare la connessione al database e configura il servizio di embedding.
-- /_determineEmbeddingDimension il quale permette di determinare la dimensione degli embedding generando un embedding di prova.
-- /_getDB  il quale permette di ottienere o creare una connessione al database.
-- /_tableExists il quale permette di verificare se una tabella esiste nel database.
-- /_getTable il quale permette di ottienere o creare una tabella nel database in base al tipo di collezione.
-
-
 #### Servizi / Facade
 
 ##### FileSystemService
+
+<img src="/img/Diagrams/fileSystem.png" alt="FileSystem Service UML Diagram" data-width="70%" />
 
 La classe *FileSystemService* si occupa delle interazioni con il il file system per la gestione dei file.
 Mette a disposizione i metodi:
@@ -476,13 +442,19 @@ Mette a disposizione i metodi:
 
 ##### GlobalStateService
 
+<img src="/img/Diagrams/globalState.png" alt="GlobalState Service UML Diagram" data-width="70%" />
+
 La classe *GlobalStateService* si occupa della gestione dello stato globale dell’estensione usando l’API di stato globale di VS Code.
 Mette a disposizione i metodi:
 - updateState il quale permette di aggiornare lo stato dell’applicazione riguardo i requisiti o la chat.
 - getState il quale permette di ottenere lo stato dell’applicazione riguardo i requisiti o la chat.
 - clearState il quale permette di cancellare lo stato dell’applicazione riguardo i requisiti o la chat.
 
-##### ConfigService
+##### Config
+
+<img src="/img/Diagrams/config.png" alt="Config Service UML Diagram" data-width="70%" />
+
+###### ConfigService
 
 La classe *ConfigService* si occupa di gestire la configurazione dell’estensione combinando le impostazioni globali provenienti da VS Code con le configurazioni globali del progetto.
 Al suo interno contiene un'istanza del servizio _FileSystemService_ per l’aggiornamento delle configurazioni dell’applicativo.
@@ -493,7 +465,7 @@ Mette a disposizione i metodi:
 - /_validateFileExtensionFilters il quale controlla la validità delle estensioni indicate nei filtri.
 - /_validateRequirementFilters il quale controlla la validità dei requisiti indicati nei filtri.
 
-##### ConfigServiceFacade
+###### ConfigServiceFacade
 
 La classe *ConfigServiceFacade* fornisce un accesso semplificato alla configurazione del sistema. Implementa il pattern facade e utilizza un singleton per garantire un’unica istanza dell'applicazione.
 Mette a disposizione i metodi:
@@ -509,7 +481,11 @@ Mette a disposizione i metodi:
 - getBearerToken il quale restituisce il token di autenticazione configurato.
 - getFilters il quale restituisce i filtri scelti.
 
-##### RequirementsService
+##### Requirement
+
+<img src="/img/Diagrams/requirement.png" alt="Requirement Service UML Diagram" data-width="70%" />
+
+###### RequirementsService
 
 La classe *RequirementsService* si occupa della gestione dei requisiti mappati con identificativo e oggetto _Requirement_ e interagisce con il _GlobalStateService_. 
 Mette a disposizione i metodi:
@@ -523,7 +499,7 @@ Mette a disposizione i metodi:
 - _saveRequirements il quale salva nel _GlobalStateService_ i requisiti
 - _loadRequirements il quale aggiorna nel _GlobalStateService_ i requisiti
 
-##### RequirementsServiceFacade
+###### RequirementsServiceFacade
 
 La classe *RequirementsServiceFacade* fornisce un accesso semplificato al servizio di tracciamento dei requisiti (_RequirementsTrackerService_, _ParsingService_ e _RequirementsService_).
 Mette a disposizione i metodi:
@@ -536,7 +512,25 @@ Mette a disposizione i metodi:
 - clearRequirements il quale elimina tutti i requisiti.
 - updateRequirementCodeReference(reqId, codeReference): Aggiorna il riferimento al codice per un requisito specifico.
 
-##### RequirementsTrackerService
+###### ParsingService
+
+La classe *ParsingService* si occupa dell’analisi e della conversione di file in
+formato csv o reqif in una struttura dati contenente i requisiti memorizzati al loro interno.
+Mette a disposizione i metodi:
+- parseCSV il quale gestisce la conversione dei file in formato csv che utilizzano separatori differenti.
+- parseREQIF il quale gestisce la conversione dei file in formato reqif
+- /_mapToRequirement il quale restituisce un oggetto del tipo _Requirement_ a partire dai singoli record ottenuti dal file CSV.
+- /_parseReqIFObject il quale restituisce un oggetto del tipo _Requirement_ a partire dai singoli record ottenuti dal file reqif.
+
+###### FilterService
+
+La classe *FilterService* si occupa della gestione dei filtri ottenuti tramite _ConfigServicefacade_ e memorizzati in un oggetto _ConfigFilters_.
+Mette a disposizione i metodi:
+- getPathFilter il quale restituisce i filtri per path memorizzati all’interno dell'istanza di _ConfigFilters_.
+- getFileExtensionFilter il quale restituisce i filtri per estensione del file memorizzati all’interno dell'istanza di _ConfigFilters_.
+- getPathFilter il quale restituisce i filtri per requisiti memorizzati all’interno dell'istanza di _ConfigFilters_.
+
+###### RequirementsTrackerService
 
 La classe *RequirementsTrackerService* si occupa della gestione del tracciamento dell’implementazione dei requisiti nel codice sorgente. Interagisce con  il database vettoriale (_IVectorDatabase_), il servizio di gestione dei documenti (_DocumentServiceFacade_), i filtri (_FilterService_) e il modello LLM (_ILanguageModel_).
 Mette a disposizione i metodi:
@@ -553,6 +547,8 @@ Mette a disposizione i metodi:
 - /_getFilters il quale restituisce i filtri per file e percorsi.
 
 ##### TrackingResultService
+
+<img src="/img/Diagrams/trackingResult.png" alt="Tracking Result Service UML Diagram" data-width="70%" />
 
 La classe *TrackingResultService* si occupa della gestione della persistenza e della manipolazione dei risultati del tracciamento dei requisiti.
 Mette a disposizione i metodi:
@@ -571,44 +567,77 @@ Mette a disposizione i metodi:
 - /_DStoGS il quale converte le strutture dati interne nel formato richiesto per la persistenza nello stato globale.
 - /_GStoDS il quale converte i dati provenienti dallo stato globale nelle strutture dati interne del servizio.
 
-##### DocumentFormatterService
+##### Document
+
+<img src="/img/Diagrams/document.png" alt="Document Service UML Diagram" data-width="70%" />
+
+###### DocumentFormatterService
 
 La classe *DocumentFormatterService* si occupa della formattazione del codice sorgente in frammenti (_chunks_) a seconda del linguaggio rilevato dal path  (_language_). 
 Mette a disposizione il metodo:
 - /_getLanguageFromPath il quale restituisce il linguaggio a partire dall’estensione del file.
 
-##### DocumentServiceFacade
+###### DocumentServiceFacade
 
 La classe *DocumentServiceFacade* fornisce un accesso semplificato al servizio di gestione dei documenti (_DocumentFormatterService_).
 Mette a disposizione i metodi:
 - processFiles il quale elabora un elenco di file, formattandoli e aggiungedoli al database vettoriale. Gestisce controlli di dimensione, calcolo di checksum e verifica dell'esistenza.
 - processWorkspaceFiles il quale trova e processa tutti i file presenti nella cartella del progetto.
 
-##### ParsingService
+##### Inference
 
-La classe *ParsingService* si occupa dell’analisi e della conversione di file in
-formato csv o reqif in una struttura dati contenente i requisiti memorizzati al loro interno.
-Mette a disposizione i metodi:
-- parseCSV il quale gestisce la conversione dei file in formato csv che utilizzano separatori differenti.
-- parseREQIF il quale gestisce la conversione dei file in formato reqif
-- /_mapToRequirement il quale restituisce un oggetto del tipo _Requirement_ a partire dai singoli record ottenuti dal file CSV.
-- /_parseReqIFObject il quale restituisce un oggetto del tipo _Requirement_ a partire dai singoli record ottenuti dal file reqif.
+<img src="/img/Diagrams/inference.png" alt="Inference Service UML Diagram" data-width="70%" />
 
-##### InferenceService
+###### InferenceService
 
 La classe *InferenceService* si occupa della gestione delle inference basate sui modelli LLM a partire da query eseguite sul database vettoriale.
 Mette a disposizione i metodi:
 - query il quale permette di effettuare una chiamata a LLM tramite Ollama.
 - checkSystemRequirement il quale permettedi effettuare un controllo sulla connessione al servizio Ollama.
 
-##### FilterService
-La classe *FilterService* si occupa della gestione dei filtri ottenuti tramite _ConfigServicefacade_ e memorizzati in un oggetto _ConfigFilters_.
-Mette a disposizione i metodi:
-- getPathFilter il quale restituisce i filtri per path memorizzati all’interno dell'istanza di _ConfigFilters_.
-- getFileExtensionFilter il quale restituisce i filtri per estensione del file memorizzati all’interno dell'istanza di _ConfigFilters_.
-- getPathFilter il quale restituisce i filtri per requisiti memorizzati all’interno dell'istanza di _ConfigFilters_.
+###### ILanguageModel
+
+L’interfaccia *ILanguageModel* ha lo scopo di modellare l’interazione con i modelli LLM. Modella i metodi:
+- generate il quale genera una risposta testuale a partire da un prompt.
+- generateEmbeddings il quale esegue l’embedding di una stringa.
+- refreshModels il quale aggiorna i modelli in seguito a cambiamenti nella configurazione.
+
+###### IVectorDatabase
+
+L’interfaccia *IVectorDatabase* ha lo scopo di modellare l’interazione con il databse vettoriale. Modella i metodi:
+- addFiles il quale permette l’aggiunta di un file nel database vettoriale.
+- addRequirements il quale permette l’aggiunta di un requisiti nel database vettoriale.
+- addChunks il quale permette l’aggiunta di frammenti di codice nel database vettoriale.
+- fileExists il quale verifica se un file con un dato percorso e checksum esiste già nel database.
+- queryForFiles il quale cerca file simili semanticamente alla domanda fornita.
+- queryForRequirements il quale cerca requisiti simili semanticamente alla domanda fornita.
+- queryForChunks il quale cerca frammenti di codice simili semanticamente alla domanda fornita.
+- resetDatabase il quale permette di reimpostare il database, eliminando tutti i dati memorizzati.
+- refreshEmbeddings il quale permette di aggiornare il modello di embedding o la connessione.
+
+###### LangChainOllamaAdapter
+
+La classe *LangChainOllamaAdapter* implementa l’interfaccia _ILanguageModel_ e si occupa di fornire un’implementazione per l’interazione dei modelli usando Ollama.
+Oltre a fornire l’implementazione dei metodi dell’interfaccia, mette a disposizione:
+- /_initialize il quale permette di configurare le istanze di Ollama e OllamaEmbeddings con i parametri di configurazione.
+- getEmbeddings il quale permette di restituire l'istanza di OllamaEmbeddings utilizzata per generare gli embedding.
+
+###### LanceDBAdapter
+
+La classe *LanceDbAdapter* implementa l’interfaccia _IVectorDatabase_ e si occupa di fornire un’implementazione per la gestione dei file e dei requisiti usanto LanceDB come database vettoriale.
+Oltre a fornire l’implementazione dei metodi dell’interfaccia, mette a disposizione:
+- deleteFiles il quale permette di eliminare file dal database.
+- getEmbedding il quale restituisce l'istanza di _OllamaEmbeddings_ utilizzata per generare gli embedding.
+- /_initialize il quale permette di inizializzare la connessione al database e configura il servizio di embedding.
+- /_determineEmbeddingDimension il quale permette di determinare la dimensione degli embedding generando un embedding di prova.
+- /_getDB  il quale permette di ottienere o creare una connessione al database.
+- /_tableExists il quale permette di verificare se una tabella esiste nel database.
+- /_getTable il quale permette di ottienere o creare una tabella nel database in base al tipo di collezione.
 
 ##### ChatService
+
+<img src="/img/Diagrams/chat.png" alt="Chat Service UML Diagram" data-width="70%" />
+
 La classe *ChatService* rappresenta il servizio di chat fornito dall’estensione.
 Al suo interno contiene un'istanza del servizio _GlobalStateService_ per l’aggiornamento dello stato dell’applicativo.
 Mette a disposizione i metodi asincroni:
