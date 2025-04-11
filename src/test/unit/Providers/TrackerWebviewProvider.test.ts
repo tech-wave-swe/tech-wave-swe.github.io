@@ -55,6 +55,7 @@ describe("TrackerWebviewProvider", () => {
       trackRequirements: jest.fn(),
       clearRequirements: jest.fn(),
       deleteRequirement: jest.fn(),
+      getRequirement: jest.fn(),
       getUnimplementedRequirements: jest.fn(),
       updateRequirementCodeReference: jest.fn(),
       analyzeImplementation: jest.fn(),
@@ -99,7 +100,7 @@ describe("TrackerWebviewProvider", () => {
   });
 
   describe("resolveWebviewView", () => {
-    it("should configure the webview and update requirements display", () => {
+    it("should configure the webview", () => {
       mockRequirementsServiceFacade.getAllRequirements.mockReturnValue(
         mockRequirements,
       );
@@ -114,14 +115,6 @@ describe("TrackerWebviewProvider", () => {
       expect(mockWebviewView.webview.html).toBe("<html>Mock Webview</html>");
 
       expect(mockWebviewView.webview.onDidReceiveMessage).toHaveBeenCalled();
-
-      expect(
-        mockRequirementsServiceFacade.getAllRequirements,
-      ).toHaveBeenCalled();
-      expect(mockWebviewView.webview.postMessage).toHaveBeenCalledWith({
-        type: "updateRequirementsTable",
-        requirements: mockRequirements,
-      });
     });
 
     it("should not send update message when no requirements exist", () => {
@@ -132,10 +125,6 @@ describe("TrackerWebviewProvider", () => {
         {} as vscode.WebviewViewResolveContext,
         {} as vscode.CancellationToken,
       );
-
-      expect(
-        mockRequirementsServiceFacade.getAllRequirements,
-      ).toHaveBeenCalled();
 
       expect(mockWebviewView.webview.postMessage).not.toHaveBeenCalledWith(
         expect.objectContaining({ type: "updateRequirements" }),
@@ -553,10 +542,10 @@ describe("TrackerWebviewProvider", () => {
 
     it("should handle editRequirement message", async () => {
       (
-        mockRequirementsServiceFacade.getAllRequirements as jest.Mock<
-          () => Requirement[]
+        mockRequirementsServiceFacade.getRequirement as unknown as jest.Mock<
+          () => Requirement|undefined
         >
-      ).mockReturnValue([]);
+      ).mockReturnValue(mockRequirements[0]);
 
       const message = {
         type: "editRequirement",

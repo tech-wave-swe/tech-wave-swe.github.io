@@ -174,7 +174,7 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
         break;
 
       case "editRequirement":
-        await this._onEditRequirement();
+        await this._onEditRequirement(message.requirementId);
         break;
 
       case "deleteRequirement":
@@ -555,7 +555,7 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
     }
   }
 
-  private async _onEditRequirement(): Promise<void> {
+  private async _onEditRequirement(requirementId: string): Promise<void> {
     if (this._isEditMode) {
       this._stopEditMode();
     }
