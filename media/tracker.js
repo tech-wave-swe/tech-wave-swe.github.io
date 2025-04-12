@@ -1,322 +1,526 @@
-let vscode;
+// @ts-check
+// @ts-ignore
+const vscode = acquireVsCodeApi();
+
+/**
+ * @template T
+ * @typedef {T extends null ? never : T} NonNull
+ */
+
+/**
+ * Safely asserts that a value is not null and returns it
+ * @template T
+ * @param {T | null | undefined} value - Value to check
+ * @param {string} message - Error message if value is null
+ * @returns {NonNull<T>}
+ */
+function assertNonNull(value, message) {
+  if (value === null || value === undefined) {
+    throw new Error(message);
+  }
+  return /** @type {NonNull<T>} */ (value);
+}
 
 // Store requirements
+/** @type {Array<{id: string, name: string, description: string, type: string, priority: string, status: string, codeReference?: {filePath: string, lineNumber: number}}>} */
 let requirements = [];
+
+/** @type {{
+  totalRequirements: number,
+  confirmedMatches: number,
+  possibleMatches: number,
+  unlikelyMatches: number,
+  requirementDetails: Record<string, {
+    implementationStatus: string,
+    score: number,
+    codeReferences: Array<{
+      filePath: string,
+      lineNumber: number,
+      snippet: string,
+      score: number,
+      relevanceExplanation?: string
+    }>
+  }>
+} | null} */
 let trackingResults = null;
 
-document.addEventListener("DOMContentLoaded", function (e) {
-  vscode = acquireVsCodeApi();
+/**
+ * @param {unknown} error - The error to handle
+ */
+function handleError(error) {
+  const message = error instanceof Error ? error.message : String(error);
+  console.error(message);
+  vscode.postMessage({
+    type: "error",
+    message: message,
+  });
+}
 
+// Store requirements
+// let requirements = [];
+// let trackingResults = null;
+
+document.addEventListener("DOMContentLoaded", function (e) {
   setInitialState();
-  handleEvents();
 });
 
 function setInitialState() {
-  const importFormatSelect = document.getElementById("import-format");
-  const trackAllCheckbox = document.getElementById("track-all");
+  const importFormatSelect = /** @type {HTMLSelectElement} */ (
+    document.getElementById("import-format")
+  );
+  const trackAllCheckbox = /** @type {HTMLInputElement} */ (
+    document.getElementById("track-all")
+  );
+  const csvOptions = document.getElementById("csv-options");
+
+  if (!importFormatSelect || !trackAllCheckbox || !csvOptions) {
+    console.error("Required DOM elements not found in setInitialState");
+    return;
+  }
 
   // Initial state
-  document.getElementById("csv-options").style.display =
+  csvOptions.style.display =
     importFormatSelect.value === "csv" ? "block" : "none";
-
   trackAllCheckbox.checked = false;
 }
 
-function handleEvents() {
-  const tabs = document.querySelectorAll(".tab");
-  const tabImport = document.querySelector("#tab-import");
-  const tabTrack = document.querySelector("#tab-track");
-  const tabResults = document.querySelector("#tab-results");
-  const loadingElement = document.getElementById("loading");
-  const fileInput = document.getElementById("file-input");
-  const importFormatSelect = document.getElementById("import-format");
-  const importButton = document.getElementById("import-button");
-  const trackAllCheckbox = document.getElementById("track-all");
-  const trackButton = document.getElementById("track-button");
-  const clearRequirements = document.getElementById("clear-requirements");
-  const textContent = document.getElementById("text-content");
-  const requirementSelection = document.getElementById("requirement-selection");
-  const requirementsChecklist = document.getElementById(
-    "requirements-checklist",
-  );
+const tabImport = /** @type {HTMLElement} */ (
+  document.querySelector("#tab-import")
+);
+const tabTrack = /** @type {HTMLElement} */ (
+  document.querySelector("#tab-track")
+);
+const tabResults = /** @type {HTMLElement} */ (
+  document.querySelector("#tab-results")
+);
+const loadingElement = document.getElementById("loading");
+const fileInput = /** @type {HTMLInputElement} */ (
+  document.getElementById("file-input")
+);
+const importFormatSelect = /** @type {HTMLSelectElement} */ (
+  document.getElementById("import-format")
+);
+const importButton = document.getElementById("import-button");
+const trackAllCheckbox = /** @type {HTMLInputElement} */ (
+  document.getElementById("track-all")
+);
+const trackButton = document.getElementById("track-button");
+const clearRequirements = document.getElementById("clear-requirements");
+const textContent = /** @type {HTMLTextAreaElement} */ (
+  document.getElementById("text-content")
+);
+const requirementSelection = document.getElementById("requirement-selection");
+const requirementsChecklist = document.getElementById("requirements-checklist");
 
-  const confirmEditButton = document.getElementById("confirm-edit");
-  const cancelEditButton = document.getElementById("cancel-edit");
+// Check for required elements
+if (
+  !tabImport ||
+  !tabTrack ||
+  !tabResults ||
+  !loadingElement ||
+  !fileInput ||
+  !importFormatSelect ||
+  !importButton ||
+  !trackAllCheckbox ||
+  !trackButton ||
+  !clearRequirements ||
+  !textContent
+) {
+  console.error("Required DOM elements not found in handleEvents");
+  throw new Error("Required DOM elements not found in handleEvents");
+}
 
-  // Tab switching
-  tabImport.addEventListener("click", function (e) {
-    handleTabImportClick(e);
-  });
+const confirmEditButton = /** @type {HTMLButtonElement} */ (
+  document.getElementById("confirm-edit")
+);
+const cancelEditButton = /** @type {HTMLButtonElement} */ (
+  document.getElementById("cancel-edit")
+);
 
-  tabTrack.addEventListener("click", function (e) {
-    handleTabTrackClick(e);
-  });
+if (!confirmEditButton || !cancelEditButton) {
+  console.error("Edit buttons not found");
+  throw new Error("Edit buttons not found");
+}
 
-  tabResults.addEventListener("click", function (e) {
-    handleTabResults(e);
-  });
+// Tab switching
+tabImport.addEventListener("click", function (e) {
+  if (!tabImport) return;
+  handleTabImportClick(e);
+});
 
-  // File input handling
-  fileInput.addEventListener("change", (event) => {
-    handleFileInputChange(event, textContent);
-  });
+tabTrack.addEventListener("click", function (e) {
+  if (!tabTrack) return;
+  handleTabTrackClick(e);
+});
 
-  // Show/hide CSV options based on format selection
-  importFormatSelect.addEventListener("change", () => {
-    handleImportFormatChange(importFormatSelect);
-  });
+tabResults.addEventListener("click", function (e) {
+  if (!tabResults) return;
+  handleTabResults(e);
+});
 
-  // Import button
-  importButton.addEventListener("click", () => {
-    handleImportButtonClick(importFormatSelect, textContent);
-  });
+// File input handling
+if (!fileInput || !textContent) {
+  console.error("Required elements not found");
+  throw new Error("Required elements not found");
+}
+fileInput.addEventListener("change", (event) => {
+  if (!fileInput.files || fileInput.files.length === 0) return;
 
-  // Track all checkbox
-  trackAllCheckbox.addEventListener("change", () => {
-    handleTrackAllCheckboxChange(requirementSelection, trackAllCheckbox);
-  });
+  const file = fileInput.files[0];
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    if (e.target && typeof e.target.result === "string") {
+      textContent.value = e.target.result;
+    }
+  };
+  reader.readAsText(file);
+});
 
-  // Track button
-  trackButton.addEventListener("click", () => {
-    handleTrackButtonClick(trackAllCheckbox, requirementsChecklist);
-  });
+// Show/hide CSV options based on format selection
+if (!importFormatSelect) {
+  console.error("importFormatSelect element not found");
+  throw new Error("importFormatSelect element not found");
+}
 
-  // Clear requirements button
-  clearRequirements.addEventListener("click", () => {
-    handleClearRequirementsButtonClick();
-  });
+// function handleImportFormatChange(select) {
+//   const csvOptions = document.getElementById("csv-options");
+//   if (csvOptions) {
+//     csvOptions.style.display = select.value === "csv" ? "block" : "none";
+//   }
+// }
 
-  // Confirm edit button
-  confirmEditButton.addEventListener("click", (e) => {
-    handleConfirmEditButtonClick(e);
-  });
+importFormatSelect.addEventListener("change", (event) => {
+  const csvOptions = document.getElementById("csv-options");
+  if (csvOptions) {
+    csvOptions.style.display = importFormatSelect.value === "csv" ? "block" : "none";
+  }
+});
 
-  // Cancel edit button
-  cancelEditButton.addEventListener("click", (e) => {
-    handleCancelEditButtonClick(e);
-  });
+// Set initial state
+handleImportFormatChange(importFormatSelect);
 
-  // Handle messages from the extension
-  window.addEventListener("message", (event) => {
-    const message = event.data;
+// Import button
+if (!importButton) {
+  console.error("Import button element not found");
+  throw new Error("Import button element not found");
+}
+importButton.addEventListener("click", () => {
+  handleImportButtonClick(importFormatSelect, textContent);
+});
 
-    switch (message.type) {
-      case "analysisResult":
-        const { requirementId, analysis } = message;
-        const reqItem = document.querySelector(
-          `.requirement-item[data-requirement="${requirementId}"]`,
-        );
-
-        if (reqItem) {
-          console.log("Found requirement item:", reqItem);
-          const analysisDiv = reqItem.querySelector(".ollama-analysis");
-          if (!analysisDiv) {
-            console.error(
-              `Could not find analysis div for requirement ${requirementId}`,
-            );
-            return;
-          }
-
-          const spinner = analysisDiv.querySelector(".loading-spinner");
-          const contentDiv = analysisDiv.querySelector(".analysis-content");
-
-          if (spinner) {
-            spinner.classList.add("hidden");
-          } else {
-            console.error(
-              `Could not find loading spinner for requirement ${requirementId}`,
-            );
-            return;
-          }
-
-          if (contentDiv) {
-            // Parse marked sections
-            const getMarkedContent = (text, startMarker, endMarker) => {
-              const start = text.indexOf(startMarker) + startMarker.length;
-              const end = text.indexOf(endMarker);
-              return text.substring(start, end).trim();
-            };
-
-            const codeSnippet = getMarkedContent(
-              analysis,
-              "[CODE_START]",
-              "[CODE_END]",
-            );
-            const implementationIndex =
-              parseInt(
-                getMarkedContent(analysis, "[INDEX_START]", "[INDEX_END]"),
-              ) - 1;
-            const analysisText = getMarkedContent(
-              analysis,
-              "[ANALYSIS_START]",
-              "[ANALYSIS_END]",
-            );
-
-            // Get the selected code reference
-            const result = trackingResults.requirementDetails[requirementId];
-            const selectedReference =
-              result.codeReferences[implementationIndex];
-
-            // const refsContainerId = `refs-${requirementId.replace("{", "").replace("}", "")}`;
-            // const refsContainer = reqItem.querySelector(`#${refsContainerId}`);
-
-            // Update analysis content
-            contentDiv.innerHTML = `
-              <div class="analysis-text">
-                <p>${analysisText}</p>
-              </div>`;
-
-            // Create code reference div within the analysis content
-            const refItem = document.createElement("div");
-            refItem.className =
-              "code-reference nested-dropdown-container expanded";
-            refItem.setAttribute("data-path", selectedReference.filePath);
-            refItem.setAttribute("data-line", selectedReference.lineNumber);
-
-            // Create reference header
-            const refHeaderHTML = `
-              <div class="dropdown-header ref-header">
-                <div class="file-path">${selectedReference.filePath}:${selectedReference.lineNumber}</div>
-                <div class="dropdown-toggle"><i class="codicon codicon-chevron-down"></i></div>
-              </div>
-            `;
-
-            // Create reference content with action buttons
-            const refContentHTML = `
-              <div class="dropdown-content ref-content">
-                <div class="code-snippet">${escapeHtml(formatSnippet(codeSnippet))}</div>
-                <div class="req-action-wrapper">
-                  <div>
-                    <p>Best matching implementation</p>
-                  </div>
-                  <ul class="req-actions">
-                    <li class="edit-req-action"><i class="codicon codicon-edit"></i></li>
-                    <li class="confirm-req-action"><i class="codicon codicon-check"></i></li>
-                    <li class="delete-req-action"><i class="codicon codicon-trash"></i></li>
-                  </ul>
-                </div>
-              </div>
-            `;
-
-            refItem.innerHTML = refHeaderHTML + refContentHTML;
-
-            // Add event handlers for the action buttons
-            const codeReference = {
-              filePath: selectedReference.filePath,
-              lineNumber: selectedReference.lineNumber, // We'll need to get this from the analysis
-              snippet: codeSnippet,
-            };
-
-            refItem
-              .querySelector(".confirm-req-action")
-              .addEventListener("click", (e) => {
-                e.stopPropagation();
-                vscode.postMessage({
-                  type: "confirmRequirementImplementation",
-                  requirementId,
-                  codeReference,
-                });
-              });
-
-            refItem
-              .querySelector(".delete-req-action")
-              .addEventListener("click", (e) => {
-                e.stopPropagation();
-                vscode.postMessage({
-                  type: "rejectRequirementImplementation",
-                  requirementId,
-                  codeReferenceId: implementationIndex,
-                });
-              });
-
-            refItem
-              .querySelector(".edit-req-action")
-              .addEventListener("click", (e) => {
-                e.stopPropagation();
-                vscode.postMessage({
-                  type: "startEditMode",
-                  requirementId,
-                  codeReferenceId: implementationIndex,
-                  codeReference,
-                });
-              });
-            const analysisCodeSnippet = analysisDiv.querySelector(
-              ".analysis-code-snippet",
-            );
-            analysisCodeSnippet.appendChild(refItem);
-          } else {
-            console.error(
-              `Could not find content div for requirement ${requirementId}`,
-            );
-            return;
-          }
-        }
-        break;
-
-      case "requirementsImported":
-        requirements = message.requirements;
-        updateRequirementsDisplay();
-        break;
-
-      case "updateRequirements":
-        requirements = message.requirements;
-        updateRequirementsDisplay();
-        break;
-
-      case "trackingResults":
-        trackingResults = message.summary;
-        handleTrackingResultsEvent();
-        break;
-
-      case "unimplementedRequirements":
-        handleUnimplementedRequirements();
-        break;
-
-      case "setLoading":
-        loadingElement.style.display = message.isLoading ? "flex" : "none";
-        break;
-
-      case "error":
-        alert(message.message);
-        break;
-
-      case "updateRequirementsTable":
-        requirements = message.requirements;
-        updateRequirementsTable();
-        break;
-
-      case "startEditMode":
-        handleStartEditMode(message);
-        break;
-
-      case "stopEditMode":
-        handleStopEditMode(message);
-        break;
-
-      case "updateSelectedReference":
-        handleUpdateSelectedReference(message.codeReference);
-        break;
-
-      // Show Tabs
-      case "showImportTab":
-        handleShowTabImport(tabImport);
-        break;
-
-      case "showTrackTab":
-        handleShowTabTrack(tabTrack, message.requirements);
-        break;
-
-      case "showResultsTab":
-        handleShowTabResults(tabResults, message.summary);
-        break;
+function handleTrackAllChange(checkbox) {
+  const selectRequirements = document.querySelectorAll("td input");
+  selectRequirements.forEach((req) => {
+    if (req instanceof HTMLInputElement) {
+      req.checked = checkbox.checked;
     }
   });
 }
 
+// Track all checkbox
+if (!trackAllCheckbox) {
+  console.error("Track all checkbox not found");
+  throw new Error("Track all checkbox not found");
+}
+trackAllCheckbox.addEventListener("change", (event) => {
+  const selectRequirements = document.querySelectorAll("td input");
+  selectRequirements.forEach((req) => {
+    if (req instanceof HTMLInputElement) {
+      req.checked = trackAllCheckbox.checked;
+    }
+  });
+});
+
+// Track button
+if (!trackButton) {
+  console.error("Track button not found");
+  throw new Error("Track button not found");
+}
+trackButton.addEventListener("click", (event) => {
+  if (requirements.length === 0) {
+    alert("No requirements available to track");
+    return;
+  }
+
+  const checkboxes = document.querySelectorAll("td input:checked");
+  const selectedCheckboxes = Array.from(checkboxes).filter(
+    (checkbox) => checkbox instanceof HTMLInputElement,
+  );
+  const requirementIds = selectedCheckboxes.map((checkbox) => checkbox.id);
+
+  if (requirementIds.length === 0) {
+    alert("Please select at least one requirement to track");
+    return;
+  }
+
+  vscode.postMessage({
+    type: "trackRequirements",
+    requirementIds,
+  });
+});
+
+// Clear requirements button
+clearRequirements.addEventListener("click", () => {
+  handleClearRequirementsButtonClick();
+});
+
+// Confirm edit button
+confirmEditButton.addEventListener("click", () => {
+  if (!confirmEditButton.hasAttribute("disabled")) {
+    vscode.postMessage({
+      type: "confirmEditImplementation",
+    });
+  }
+});
+
+// Cancel edit button
+cancelEditButton.addEventListener("click", (e) => {
+  handleCancelEditButtonClick(e);
+});
+
+// Handle messages from the extension
+window.addEventListener("message", (event) => {
+  const message = event.data;
+
+  switch (message.type) {
+    case "analysisResult": {
+      const { requirementId, analysis } = message;
+      const reqItem = document.querySelector(
+        `.requirement-item[data-requirement="${requirementId}"]`,
+      );
+
+      if (!reqItem) {
+        console.error(`Could not find requirement item for ${requirementId}`);
+        return;
+      }
+
+      console.log("Found requirement item:", reqItem);
+      const analysisDiv = reqItem.querySelector(".ollama-analysis");
+      if (!analysisDiv) {
+        console.error(
+          `Could not find analysis div for requirement ${requirementId}`,
+        );
+        return;
+      }
+
+      const spinner = analysisDiv.querySelector(".loading-spinner");
+      const contentDiv = analysisDiv.querySelector(".analysis-content");
+
+      if (!spinner || !contentDiv) {
+        console.error(
+          `Could not find spinner or content div for requirement ${requirementId}`,
+        );
+        return;
+      }
+
+      spinner.classList.add("hidden");
+
+      // Parse marked sections
+      /**
+       *
+       * @param {string} text
+       * @param {string} startMarker
+       * @param {string} endMarker
+       * @returns
+       */
+      const getMarkedContent = (text, startMarker, endMarker) => {
+        const start = text.indexOf(startMarker) + startMarker.length;
+        const end = text.indexOf(endMarker);
+        return text.substring(start, end).trim();
+      };
+
+      const codeSnippet = getMarkedContent(
+        analysis,
+        "[CODE_START]",
+        "[CODE_END]",
+      );
+      const implementationIndex =
+        parseInt(getMarkedContent(analysis, "[INDEX_START]", "[INDEX_END]")) -
+        1;
+      const analysisText = getMarkedContent(
+        analysis,
+        "[ANALYSIS_START]",
+        "[ANALYSIS_END]",
+      );
+
+      if (!trackingResults?.requirementDetails) {
+        console.error("Tracking results or requirement details not found");
+        return;
+      }
+
+      // Get the selected code reference
+      const result = trackingResults.requirementDetails[requirementId];
+      if (!result?.codeReferences) {
+        console.error("Code references not found for requirement");
+        return;
+      }
+
+      const selectedReference = result.codeReferences[implementationIndex];
+
+      // Update analysis content
+      contentDiv.innerHTML = `
+        <div class="analysis-text">
+          <p>${analysisText}</p>
+        </div>`;
+
+      // Create code reference div within the analysis content
+      const refItem = document.createElement("div");
+      refItem.className = "code-reference nested-dropdown-container expanded";
+      refItem.setAttribute("data-path", selectedReference.filePath);
+      refItem.setAttribute("data-line", String(selectedReference.lineNumber));
+
+      // Create reference header
+      const refHeaderHTML = `
+        <div class="dropdown-header ref-header">
+          <div class="file-path">${selectedReference.filePath}:${selectedReference.lineNumber}</div>
+          <div class="dropdown-toggle"><i class="codicon codicon-chevron-down"></i></div>
+        </div>
+      `;
+
+      // Create reference content with action buttons
+      const refContentHTML = `
+        <div class="dropdown-content ref-content">
+          <div class="code-snippet">${escapeHtml(formatSnippet(codeSnippet))}</div>
+          <div class="req-action-wrapper">
+            <div>
+              <p>Best matching implementation</p>
+            </div>
+            <ul class="req-actions">
+              <li class="edit-req-action"><i class="codicon codicon-edit"></i></li>
+              <li class="confirm-req-action"><i class="codicon codicon-check"></i></li>
+              <li class="delete-req-action"><i class="codicon codicon-trash"></i></li>
+            </ul>
+          </div>
+        </div>
+      `;
+
+      refItem.innerHTML = refHeaderHTML + refContentHTML;
+
+      // Add event handlers for the action buttons
+      const codeReference = {
+        filePath: selectedReference.filePath,
+        lineNumber: selectedReference.lineNumber,
+        snippet: codeSnippet,
+      };
+
+      const confirmReqAction = refItem.querySelector(".confirm-req-action");
+      if (confirmReqAction) {
+        confirmReqAction.addEventListener("click", (e) => {
+          e.stopPropagation();
+          vscode.postMessage({
+            type: "confirmRequirementImplementation",
+            requirementId,
+            codeReference,
+          });
+        });
+      }
+
+      const deleteReqAction = refItem.querySelector(".delete-req-action");
+      if (deleteReqAction) {
+        deleteReqAction.addEventListener("click", (e) => {
+          e.stopPropagation();
+          vscode.postMessage({
+            type: "rejectRequirementImplementation",
+            requirementId,
+            codeReferenceId: implementationIndex,
+          });
+        });
+      }
+
+      const editReqAction = refItem.querySelector(".edit-req-action");
+      if (editReqAction) {
+        editReqAction.addEventListener("click", (e) => {
+          e.stopPropagation();
+          vscode.postMessage({
+            type: "startEditMode",
+            requirementId,
+            codeReferenceId: implementationIndex,
+            codeReference,
+          });
+        });
+      }
+
+      const analysisCodeSnippet = analysisDiv.querySelector(
+        ".analysis-code-snippet",
+      );
+      if (analysisCodeSnippet) {
+        analysisCodeSnippet.appendChild(refItem);
+      }
+      break;
+    }
+
+    case "requirementsImported":
+      requirements = message.requirements;
+      updateRequirementsDisplay();
+      break;
+
+    case "updateRequirements":
+      requirements = message.requirements;
+      updateRequirementsDisplay();
+      break;
+
+    case "trackingResults":
+      trackingResults = message.summary;
+      handleTrackingResultsEvent();
+      break;
+
+    case "unimplementedRequirements":
+      handleUnimplementedRequirements();
+      break;
+
+    case "setLoading":
+      loadingElement.style.display = message.isLoading ? "flex" : "none";
+      break;
+
+    case "error":
+      alert(message.message);
+      break;
+
+    case "updateRequirementsTable":
+      requirements = message.requirements;
+      updateRequirementsTable();
+      break;
+
+    case "startEditMode":
+      handleStartEditMode(message);
+      break;
+
+    case "stopEditMode":
+      handleStopEditMode(message);
+      break;
+
+    case "updateSelectedReference":
+      handleUpdateSelectedReference(message.codeReference);
+      break;
+
+    case "showImportTab":
+      handleShowTabImport(tabImport);
+      break;
+
+    case "showTrackTab":
+      handleShowTabTrack(tabTrack, message.requirements);
+      break;
+
+    case "showResultsTab":
+      handleShowTabResults(tabResults, message.summary);
+      break;
+  }
+});
+// }
+//   });
+// }
+
+/**
+ * @param {HTMLElement} tab
+ */
 function handleShowTabImport(tab) {
   changeActiveTab(tab);
 }
 
+/**
+ * @param {HTMLElement} tab
+ * @param {{ id: string; name: string; description: string; type: string; priority: string; status: string; codeReference?: { filePath: string; lineNumber: number; } | undefined; }[]} reqs
+ */
 function handleShowTabTrack(tab, reqs) {
   console.log(reqs);
 
@@ -326,6 +530,10 @@ function handleShowTabTrack(tab, reqs) {
   changeActiveTab(tab);
 }
 
+/**
+ * @param {HTMLElement} tab
+ * @param {{ totalRequirements: number; confirmedMatches: number; possibleMatches: number; unlikelyMatches: number; requirementDetails: Record<string, { implementationStatus: string; score: number; codeReferences: { filePath: string; lineNumber: number; snippet: string; score: number; relevanceExplanation?: string | undefined; }[]; }>; } | null} summary
+ */
 function handleShowTabResults(tab, summary) {
   console.log(summary);
 
@@ -335,30 +543,51 @@ function handleShowTabResults(tab, summary) {
   changeActiveTab(tab);
 }
 
+/**
+ *
+ * @param {Event} event
+ */
 function handleConfirmEditButtonClick(event) {
-  if (!event.target.getAttribute("disabled")) {
+  const target = event.target instanceof HTMLElement ? event.target : null;
+  if (target && !target.getAttribute("disabled")) {
     vscode.postMessage({
       type: "confirmEditImplementation",
     });
   }
 }
 
+/**
+ * @param {MouseEvent} event
+ */
 function handleCancelEditButtonClick(event) {
   vscode.postMessage({
     type: "cancelEditImplementation",
   });
 }
 
+/**
+ * @param {{ filePath: string; lineNumber: number; snippet: string; score: number; relevanceExplanation?: string; contextRange?: { start: number; end: number; }; }} codeReference
+ */
 function handleUpdateSelectedReference(codeReference) {
   const currentSelection = document.getElementById("current-selection");
-  const confirmEditButton = document.getElementById("confirm-edit");
-  const cancelEditButton = document.getElementById("cancel-edit");
+  const confirmEditButton = /** @type {HTMLButtonElement} */ (
+    document.getElementById("confirm-edit")
+  );
+
+  if (!currentSelection || !confirmEditButton) {
+    console.error(
+      "Required elements not found in handleUpdateSelectedReference",
+    );
+    return;
+  }
 
   confirmEditButton.removeAttribute("disabled");
-
   currentSelection.innerText = codeReference.snippet;
 }
 
+/**
+ * @param {{ requirementId: string; codeReference: any; }} message
+ */
 function handleStartEditMode(message) {
   const { requirementId, codeReference } = message;
   const requirement = requirements.find((req) => req.id === requirementId);
@@ -369,8 +598,22 @@ function handleStartEditMode(message) {
   }
 
   const editModeUI = document.getElementById("edit-mode-ui");
-  const originalPath = editModeUI.querySelector("#edit-mode-original-path");
-  const originalLine = editModeUI.querySelector("#edit-mode-original-line");
+  if (!editModeUI) {
+    console.error("Edit mode UI not found");
+    return;
+  }
+
+  const originalPath = /** @type {HTMLElement} */ (
+    editModeUI.querySelector("#edit-mode-original-path")
+  );
+  const originalLine = /** @type {HTMLElement} */ (
+    editModeUI.querySelector("#edit-mode-original-line")
+  );
+
+  if (!originalPath || !originalLine) {
+    console.error("Edit mode path/line elements not found");
+    return;
+  }
 
   originalPath.innerHTML = codeReference.filePath;
   originalLine.innerHTML = (codeReference.lineNumber + 1).toString();
@@ -378,10 +621,20 @@ function handleStartEditMode(message) {
   editModeUI.classList.remove("hidden");
 }
 
+/**
+ * @param {any} message
+ */
 function handleStopEditMode(message) {
   const currentSelection = document.getElementById("current-selection");
-  const confirmEditButton = document.getElementById("confirm-edit");
+  const confirmEditButton = /** @type {HTMLButtonElement} */ (
+    document.getElementById("confirm-edit")
+  );
   const editModeUI = document.getElementById("edit-mode-ui");
+
+  if (!currentSelection || !confirmEditButton || !editModeUI) {
+    console.error("Required elements not found in handleStopEditMode");
+    return;
+  }
 
   confirmEditButton.setAttribute("disabled", "");
   currentSelection.innerText = "No text selected";
@@ -389,24 +642,36 @@ function handleStopEditMode(message) {
   editModeUI.classList.add("hidden");
 }
 
+/**
+ * @param {MouseEvent} event
+ */
 function handleTabImportClick(event) {
   vscode.postMessage({
     type: "tabToImport",
   });
 }
 
+/**
+ * @param {MouseEvent} event
+ */
 function handleTabTrackClick(event) {
   vscode.postMessage({
     type: "tabToTrack",
   });
 }
 
+/**
+ * @param {MouseEvent} event
+ */
 function handleTabResults(event) {
   vscode.postMessage({
     type: "tabToResults",
   });
 }
 
+/**
+ * @param {{ classList: { add: (arg0: string) => void; }; getAttribute: (arg0: string) => any; }} tab
+ */
 function changeActiveTab(tab) {
   const tabs = document.querySelectorAll(".tab");
   const tabContents = document.querySelectorAll(".tab-content");
@@ -424,36 +689,62 @@ function changeActiveTab(tab) {
   });
 }
 
+/**
+ * @param {Event} event
+ * @param {HTMLTextAreaElement} textContent
+ */
 function handleFileInputChange(event, textContent) {
-  const file = event.target.files[0];
-  if (!file) {
+  const fileInput = /** @type {HTMLInputElement} */ (event.target);
+  const file = fileInput?.files?.[0];
+  if (!file || !textContent) {
     return;
   }
 
   const reader = new FileReader();
   reader.onload = (e) => {
-    textContent.value = e.target.result;
+    const result = e.target?.result;
+    if (typeof result === "string") {
+      textContent.value = result;
+    }
   };
   reader.readAsText(file);
 }
 
+/**
+ * @param {HTMLSelectElement} importFormatSelect
+ */
 function handleImportFormatChange(importFormatSelect) {
   const csvOptions = document.getElementById("csv-options");
+  if (!csvOptions || !importFormatSelect) {
+    console.error("Required elements not found");
+    return;
+  }
 
   csvOptions.style.display =
     importFormatSelect.value === "csv" ? "block" : "none";
 }
 
+/**
+ * @param {HTMLSelectElement} importFormatSelect
+ * @param {HTMLTextAreaElement} textContent
+ */
 function handleImportButtonClick(importFormatSelect, textContent) {
+  if (!importFormatSelect || !textContent) {
+    console.error("Required elements not found");
+    return;
+  }
+
   const format = importFormatSelect.value;
   const content = textContent.value.trim();
   const options = {};
 
   // Get delimiter if CSV is selected
   if (format === "csv") {
-    const delimiter = document.getElementById("csv-delimiter").value;
-    if (delimiter && delimiter !== ",") {
-      options.delimiter = delimiter;
+    const delimiter = /** @type {HTMLInputElement} */ (
+      document.getElementById("csv-delimiter")
+    );
+    if (delimiter && delimiter.value !== ",") {
+      options.delimiter = delimiter.value;
     }
   }
 
@@ -470,25 +761,30 @@ function handleImportButtonClick(importFormatSelect, textContent) {
   });
 }
 
+/**
+ * @param {HTMLElement | null} requirementSelection
+ * @param {HTMLInputElement} trackAllCheckbox
+ */
 function handleTrackAllCheckboxChange(requirementSelection, trackAllCheckbox) {
-  const selectRequirements = document.querySelectorAll("td input");
+  if (!trackAllCheckbox) return;
 
+  const selectRequirements = document.querySelectorAll("td input");
   selectRequirements.forEach((checkbox) => {
-    checkbox.checked = trackAllCheckbox.checked;
+    if (checkbox instanceof HTMLInputElement) {
+      checkbox.checked = trackAllCheckbox.checked;
+    }
   });
 }
 
-function handleTrackButtonClick(trackAllCheckbox, requirementsChecklist) {
+function handleTrackButtonClick() {
   if (requirements.length === 0) {
     alert("No requirements available to track");
     return;
   }
 
-  let requirementIds = undefined;
-
-  // Get selected requirements
-  requirementIds = Array.from(document.querySelectorAll("td input"))
-    .filter((check) => check.checked)
+  const checkboxes = document.querySelectorAll("td input");
+  const requirementIds = Array.from(checkboxes)
+    .filter((check) => check instanceof HTMLInputElement && check.checked)
     .map((checkbox) => checkbox.id);
 
   if (requirementIds.length === 0) {
@@ -509,30 +805,35 @@ function handleTrackingResultsEvent() {
   switchToTab(2);
 }
 
-function handleUnimplementedRequirements(message) {
+function handleUnimplementedRequirements() {
   const requirementsResults = document.getElementById("requirements-results");
+
+  if (!requirementsResults) {
+    console.error("Requirements results element not found");
+    return;
+  }
 
   requirementsResults.innerHTML = "<h3>Unimplemented Requirements</h3>";
   const unimplementedList = document.createElement("ul");
   unimplementedList.className = "requirements-list";
 
-  if (message.requirements.length === 0) {
+  if (!requirements || requirements.length === 0) {
     requirementsResults.innerHTML +=
       "<p>All requirements appear to be implemented!</p>";
   } else {
-    message.requirements.forEach((req) => {
+    requirements.forEach((req) => {
       const item = document.createElement("li");
       item.className = "requirement-item";
       item.innerHTML = `
-              <div class="requirement-id">${req.id}</div>
-              <div class="requirement-description">${req.description}</div>
-              <div class="requirement-meta">
-                Type: ${req.type} | Priority: ${req.priority} | Status: ${req.status}
-              </div>
-              <div class="implementation-info">
-                <span class="implementation-status status-not-implemented">Not implemented</span>
-              </div>
-            `;
+                <div class="requirement-id">${req.id}</div>
+                <div class="requirement-description">${req.description}</div>
+                <div class="requirement-meta">
+                  Type: ${req.type} | Priority: ${req.priority} | Status: ${req.status}
+                </div>
+                <div class="implementation-info">
+                  <span class="implementation-status status-not-implemented">Not implemented</span>
+                </div>
+              `;
       unimplementedList.appendChild(item);
     });
     requirementsResults.appendChild(unimplementedList);
@@ -550,6 +851,10 @@ function handleClearRequirementsButtonClick() {
 // Update tracking results display
 function updateResultsDisplay() {
   const summarySection = document.getElementById("summary-section");
+  if (!summarySection) {
+    console.error("Summary section not found");
+    return;
+  }
 
   // Show summary section
   summarySection.style.display = "block";
@@ -561,9 +866,20 @@ function updateResultsDisplay() {
 }
 
 function updateChartDisplay() {
-  const chartConfirmed = document.getElementById("chart-confirmed-match");
-  const chartPossible = document.getElementById("chart-possible-match");
-  const chartUnlikely = document.getElementById("chart-unlikely-match");
+  const chartConfirmed = /** @type {HTMLElement} */ (
+    document.getElementById("chart-confirmed-match")
+  );
+  const chartPossible = /** @type {HTMLElement} */ (
+    document.getElementById("chart-possible-match")
+  );
+  const chartUnlikely = /** @type {HTMLElement} */ (
+    document.getElementById("chart-unlikely-match")
+  );
+
+  if (!chartConfirmed || !chartPossible || !chartUnlikely || !trackingResults) {
+    console.error("Chart elements or tracking results not found");
+    return;
+  }
 
   const total = trackingResults.totalRequirements;
   const confirmed = trackingResults.confirmedMatches;
@@ -581,6 +897,16 @@ function updateLegendDisplay() {
   const legendPossible = document.getElementById("legend-possible-match");
   const legendUnlikely = document.getElementById("legend-unlikely-match");
 
+  if (
+    !legendConfirmed ||
+    !legendPossible ||
+    !legendUnlikely ||
+    !trackingResults
+  ) {
+    console.error("Legend elements or tracking results not found");
+    return;
+  }
+
   const confirmed = trackingResults.confirmedMatches;
   const possible = trackingResults.possibleMatches;
   const unlikely = trackingResults.unlikelyMatches;
@@ -593,11 +919,20 @@ function updateLegendDisplay() {
 
 function updateRequirementsDisplay() {
   const requirementsResults = document.getElementById("requirements-results");
+  if (!requirementsResults) {
+    console.error("Requirements results container not found");
+    return;
+  }
 
   // Generate requirement details
   requirementsResults.innerHTML = "";
 
-  const details = trackingResults.requirementDetails;
+  const details = trackingResults?.requirementDetails;
+  if (!details) {
+    requirementsResults.innerHTML = "<p>No requirements found.</p>";
+    return;
+  }
+
   const requirementIds = Object.keys(details);
 
   if (requirementIds.length === 0) {
@@ -676,11 +1011,17 @@ function updateRequirementsDisplay() {
     item.innerHTML = reqHeaderHTML + reqContentHTML;
 
     // Add toggle functionality to requirement
-    const reqHeader = item.querySelector(".requirement-header");
+    const reqHeader = assertNonNull(
+      item.querySelector(".requirement-header"),
+      "Requirement header not found",
+    );
     reqHeader.addEventListener("click", (e) => {
       e.stopPropagation();
       item.classList.toggle("expanded");
-      const toggleIcon = reqHeader.querySelector(".dropdown-toggle i");
+      const toggleIcon = assertNonNull(
+        reqHeader.querySelector(".dropdown-toggle i"),
+        "Toggle icon not found",
+      );
       if (item.classList.contains("expanded")) {
         toggleIcon.classList.replace(
           "codicon-chevron-down",
@@ -698,7 +1039,10 @@ function updateRequirementsDisplay() {
 
     // Add code references to the requirement content
     if (result.codeReferences && result.codeReferences.length > 0) {
-      const refsContainer = item.querySelector(`#${refsContainerId}`);
+      const refsContainer = assertNonNull(
+        item.querySelector(`#${refsContainerId}`),
+        "References container not found",
+      );
 
       const refsHeader = document.createElement("div");
       refsHeader.textContent = "Code References:";
@@ -711,7 +1055,7 @@ function updateRequirementsDisplay() {
         const refItem = document.createElement("div");
         refItem.className = "code-reference nested-dropdown-container expanded";
         refItem.setAttribute("data-path", ref.filePath);
-        refItem.setAttribute("data-line", ref.lineNumber);
+        refItem.setAttribute("data-line", String(ref.lineNumber));
 
         // Create the reference header (nested dropdown toggle)
         const refHeaderHTML = `
@@ -742,11 +1086,17 @@ function updateRequirementsDisplay() {
         refItem.innerHTML = refHeaderHTML + refContentHTML;
 
         // Add toggle functionality to code reference
-        const refHeader = refItem.querySelector(".ref-header");
+        const refHeader = assertNonNull(
+          refItem.querySelector(".ref-header"),
+          "Reference header not found",
+        );
         refHeader.addEventListener("click", (e) => {
           e.stopPropagation();
           refItem.classList.toggle("expanded");
-          const toggleIcon = refHeader.querySelector(".dropdown-toggle i");
+          const toggleIcon = assertNonNull(
+            refHeader.querySelector(".dropdown-toggle i"),
+            "Toggle icon not found",
+          );
           if (refItem.classList.contains("expanded")) {
             toggleIcon.classList.replace(
               "codicon-chevron-down",
@@ -761,7 +1111,11 @@ function updateRequirementsDisplay() {
         });
 
         // Keep the openFile functionality but attach it to the file path specifically
-        refItem.querySelector(".file-path").addEventListener("click", (e) => {
+        const filePath = assertNonNull(
+          refItem.querySelector(".file-path"),
+          "File path element not found",
+        );
+        filePath.addEventListener("click", (e) => {
           e.stopPropagation(); // Prevent triggering the dropdown toggle
           vscode.postMessage({
             type: "openFile",
@@ -831,14 +1185,29 @@ function updateRequirementsDisplay() {
       console.log("Tracking results:", trackingResults);
 
       // Get the parent requirement item
-      const requirementItem = analyzeButton.closest(".requirement-item");
-      const analysisDiv = requirementItem.querySelector(".ollama-analysis");
-      const spinner = analysisDiv.querySelector(".loading-spinner");
-      const contentDiv = analysisDiv.querySelector(".analysis-content");
+      const requirementItem = assertNonNull(
+        analyzeButton.closest(".requirement-item"),
+        "Requirement item not found",
+      );
+      const analysisDiv = assertNonNull(
+        requirementItem.querySelector(".ollama-analysis"),
+        "Analysis div not found",
+      );
+      const spinner = assertNonNull(
+        analysisDiv.querySelector(".loading-spinner"),
+        "Spinner not found",
+      );
+      const contentDiv = assertNonNull(
+        analysisDiv.querySelector(".analysis-content"),
+        "Content div not found",
+      );
 
       // Get requirement ID and find the corresponding tracking result
-      const reqId = requirementItem.getAttribute("data-requirement"); // Make sure this attribute exists
-      const result = trackingResults.requirementDetails[reqId];
+      const reqId = assertNonNull(
+        requirementItem.getAttribute("data-requirement"),
+        "Requirement ID not found",
+      );
+      const result = trackingResults?.requirementDetails?.[reqId];
 
       if (!result) {
         console.error(`No tracking results found for requirement ${reqId}`);
@@ -870,7 +1239,7 @@ function updateRequirementsDisplay() {
       });
 
       // Create code reference container if it doesn't exist
-      const refsContainerId = `refs-${reqId.replace("{", "").replace("}", "")}`;
+      const refsContainerId = `refs-${reqId?.replace("{", "").replace("}", "")}`;
       let refsContainer = requirementItem.querySelector(`#${refsContainerId}`);
       if (!refsContainer) {
         refsContainer = document.createElement("div");
@@ -884,9 +1253,13 @@ function updateRequirementsDisplay() {
 
 // Update requirements table
 function updateRequirementsTable() {
-  const requirementsWrapper = document.getElementById(
-    "requirements-table-wrapper",
+  const requirementsWrapper = /** @type {HTMLElement} */ (
+    document.getElementById("requirements-table-wrapper")
   );
+  if (!requirementsWrapper) {
+    console.error("Requirements wrapper not found");
+    return;
+  }
 
   requirementsWrapper.innerHTML = "";
 
@@ -914,8 +1287,9 @@ function updateRequirementsTable() {
   tbody.id = "requirements-list";
 
   requirements.forEach((req) => {
-    const item = document.createElement("tr");
+    if (!req) return;
 
+    const item = document.createElement("tr");
     const viewAction = req.codeReference
       ? `
         <li class="view-req-action" title="View tracked implementation" data-requirement="${req.id}" data-path="${req.codeReference.filePath}" data-line="${req.codeReference.lineNumber}">
@@ -926,9 +1300,9 @@ function updateRequirementsTable() {
 
     item.innerHTML = `
       <td><input id="${req.id}" name="${req.id}" type="checkbox"></td>
-      <td class="req-table-id">${req.name}</td>
-      <td class="req-table-desc">${req.description}</td>
-      <td class="req-table-status">${req.status}</td>
+      <td class="req-table-id">${req.name || ""}</td>
+      <td class="req-table-desc">${req.description || ""}</td>
+      <td class="req-table-status">${req.status || ""}</td>
       <td class="req-table-actions">
         <ul>
           ${viewAction}
@@ -958,31 +1332,40 @@ function handleRequirementsEvents() {
 
   // Select Requirements interaction
   selectRequirements.forEach((requirement) => {
-    requirement.addEventListener("change", () => {
-      if (!requirement.checked) {
-        const trackAllCheckbox = document.getElementById("track-all");
-        if (trackAllCheckbox.checked) {
-          trackAllCheckbox.checked = false;
+    if (requirement instanceof HTMLInputElement) {
+      requirement.addEventListener("change", () => {
+        if (!requirement.checked) {
+          const trackAllCheckbox = /** @type {HTMLInputElement} */ (
+            document.getElementById("track-all")
+          );
+          if (trackAllCheckbox?.checked) {
+            trackAllCheckbox.checked = false;
+          }
         }
-      }
-    });
+      });
+    }
   });
 
   // Actions
   deleteReqActions.forEach((deleteReqAction) => {
-    deleteReqAction.addEventListener("click", () => {
-      const requirementId = deleteReqAction.dataset.requirement;
+    if (deleteReqAction instanceof HTMLElement) {
+      deleteReqAction.addEventListener("click", () => {
+        const requirementId = deleteReqAction.dataset?.requirement;
+        if (!requirementId) return;
 
-      vscode.postMessage({
-        type: "deleteRequirement",
-        requirementId,
+        vscode.postMessage({
+          type: "deleteRequirement",
+          requirementId,
+        });
       });
-    });
+    }
   });
 
   editReqActions.forEach((editReqAction) => {
     editReqAction.addEventListener("click", () => {
       const requirementId = editReqAction.getAttribute("data-requirement");
+      if (!requirementId) return;
+
       vscode.postMessage({
         type: "editRequirement",
         requirementId,
@@ -992,13 +1375,14 @@ function handleRequirementsEvents() {
 
   viewReqActions.forEach((viewReqAction) => {
     viewReqAction.addEventListener("click", () => {
-      const requirementId = viewReqAction.getAttribute("data-requirement");
       const filePath = viewReqAction.getAttribute("data-path");
       const lineNumber = viewReqAction.getAttribute("data-line");
 
+      if (!filePath || !lineNumber) return;
+
       vscode.postMessage({
         type: "openFile",
-        filePath: filePath,
+        filePath,
         lineStart: parseInt(lineNumber),
       });
     });
@@ -1006,6 +1390,9 @@ function handleRequirementsEvents() {
 }
 
 // Helper to escape HTML
+/**
+ * @param {string} text
+ */
 function escapeHtml(text) {
   return text
     .replace(/&/g, "&amp;")
@@ -1016,6 +1403,9 @@ function escapeHtml(text) {
 }
 
 // Helper to format code snippets
+/**
+ * @param {string} snippet
+ */
 function formatSnippet(snippet) {
   if (!snippet) {
     return "";
@@ -1026,6 +1416,9 @@ function formatSnippet(snippet) {
   return snippet;
 }
 
+/**
+ * @param {number} tabId
+ */
 function switchToTab(tabId) {
   const tabs = document.querySelectorAll(".tab");
   const tabContents = document.querySelectorAll(".tab-content");
@@ -1034,4 +1427,13 @@ function switchToTab(tabId) {
   tabs[tabId].classList.add("active");
   tabContents.forEach((c) => c.classList.remove("active"));
   tabContents[tabId].classList.add("active");
+}
+
+// Export helper functions for testing
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = {
+    escapeHtml,
+    formatSnippet,
+    assertNonNull,
+  };
 }

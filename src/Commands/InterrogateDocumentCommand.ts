@@ -51,7 +51,7 @@ export class InterrogateDocumentCommand implements ICommand {
     // Create analysis prompt
     const message = {
       type: "sendMessage",
-      text: `Analyze the following code and provide insights based on the loaded requirements:\n\n${textToAnalyze}`,
+      text: `Analyze the following code and provide insights based on the loaded requirements:\n\nCode:\n${textToAnalyze}\nRequirements:\n${requirements.join("\n")}\n`,
     };
 
     // Use reflection to access private method

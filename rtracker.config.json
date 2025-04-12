@@ -1,11 +1,11 @@
 {
   "filters": {
     "path": {
-      "include": [],
+      "include": ["Src", "Inc", "test"],
       "exclude": ["**/Projects/**"]
     },
     "file_extension": {
-      "include": ["md"],
+      "include": ["md", "c", "h", "rs"],
       "exclude": []
     },
     "requirements": {

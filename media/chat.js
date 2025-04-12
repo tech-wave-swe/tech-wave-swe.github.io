@@ -1,32 +1,30 @@
-let vscode;
+// @ts-check
+// @ts-ignore
+const vscode = acquireVsCodeApi();
 
 document.addEventListener("DOMContentLoaded", function (e) {
-  vscode = acquireVsCodeApi();
-
   handleEvents();
 });
 
+/**
+ * @param {string} text
+ */
 function formatMessageText(text) {
-  // Replace newlines with <br>
-  text = text.replace(/\n/g, "<br>");
-
-  // Format code blocks (```code```)
-  text = text.replace(/```([\s\S]*?)```/g, '<pre class="code-block">$1</pre>');
-
-  // Format inline code (`code`)
-  text = text.replace(/`([^`]+)`/g, "<code>$1</code>");
-
-  return text;
+  // @ts-ignore
+  return marked(text);
 }
 
 function handleEvents() {
-  const chatInput = document.getElementById("chat-input");
+  const chatInput = /** @type {HTMLTextAreaElement} */ (
+    document.getElementById("chat-input")
+  );
   const sendButton = document.getElementById("chat-controls--send-button");
   const clearButton = document.getElementById("chat-controls--clear-button");
 
-  // const chatTextArea = document.getElementById('chat-input');
-  // const chatSendButton = document.getElementById('chat-controls-send-msg');
-  // const chatClearButton = document.getElementById('chat-controls-clear-history');
+  if (!chatInput || !sendButton || !clearButton) {
+    console.error("Required DOM elements not found");
+    return;
+  }
 
   handleEQEvents();
 
@@ -37,7 +35,6 @@ function handleEvents() {
   chatInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-
       onSendMessage();
     }
   });
@@ -70,19 +67,64 @@ function handleEvents() {
       case "error":
         onError(message);
         break;
+
+      case "updateMessage":
+        onUpdateMessage(message.message);
+        break;
     }
   });
 }
 
+/**
+ * @param {{ text: string; }} message
+ */
+function onUpdateMessage(message) {
+  if (message) {
+    updateMessage(message);
+  }
+}
+
+/**
+ * @param {{ text: string; }} message
+ */
+function updateMessage(message) {
+  console.log("updateMessage", message);
+
+  const messagesContainer = document.getElementById("chat-messages-list");
+  if (!messagesContainer) return;
+
+  // Find the last message from the model
+  const modelMessages = messagesContainer.querySelectorAll(
+    ".chat-message--item.model",
+  );
+  if (modelMessages.length === 0) {
+    // If no existing message, add it as new
+    addMessage(message);
+    return;
+  }
+
+  const lastModelMessage = modelMessages[modelMessages.length - 1];
+  const textElement = lastModelMessage.querySelector(".message-text");
+  if (textElement) {
+    textElement.innerHTML = formatMessageText(message.text);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+}
+
 function handleEQEvents() {
-  const chatInput = document.getElementById("chat-input");
+  const chatInput = /** @type {HTMLTextAreaElement} */ (
+    document.getElementById("chat-input")
+  );
+  if (!chatInput) return;
 
   document.querySelectorAll(".example-questions li").forEach((li) => {
     li.addEventListener("click", () => {
-      chatInput.value = li.textContent;
-      chatInput.style.height = "auto";
-      chatInput.style.height = chatInput.scrollHeight + "px";
-      chatInput.focus();
+      if (li.textContent) {
+        chatInput.value = li.textContent;
+        chatInput.style.height = "auto";
+        chatInput.style.height = chatInput.scrollHeight + "px";
+        chatInput.focus();
+      }
     });
   });
 }
@@ -90,7 +132,9 @@ function handleEQEvents() {
 // Events Handler
 
 function onSendMessage() {
-  const userInput = document.getElementById("chat-input");
+  const userInput = /** @type {HTMLTextAreaElement} */ (
+    document.getElementById("chat-input")
+  );
   if (!userInput) return;
 
   const text = userInput.value.trim();
@@ -105,12 +149,18 @@ function onSendMessage() {
   }
 }
 
+/**
+ * @param {{ text: string; }} message
+ */
 function onAddMessage(message) {
   if (message) {
     addMessage(message);
   }
 }
 
+/**
+ * @param {{ text: string; }[]} messages
+ */
 function onSetHistory(messages) {
   if (messages && messages.length > 0) {
     setHistory(messages);
@@ -121,12 +171,18 @@ function onClearHistory() {
   clearHistory();
 }
 
+/**
+ * @param {boolean} isLoading
+ */
 function onSetLoading(isLoading) {
   if (isLoading !== undefined) {
     setLoading(isLoading);
   }
 }
 
+/**
+ * @param {{ text: string; }} message
+ */
 function onError(message) {
   if (message) {
     handleError(message);
@@ -135,6 +191,9 @@ function onError(message) {
 
 // Event actions
 
+/**
+ * @param {{ text?: string; message?: any; }} message
+ */
 function handleError(message) {
   console.error(message.message);
 
@@ -155,6 +214,9 @@ function handleError(message) {
   messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
 
+/**
+ * @param {{ text: any; sender?: any; timestamp?: any; }} message
+ */
 function addMessage(message) {
   console.log("addMessage", message);
 
@@ -188,8 +250,9 @@ function addMessage(message) {
   const chatContent = document.createElement("div");
   chatContent.classList.add("chat-message--content");
 
-  const text = document.createElement("p");
-  text.textContent = message.text;
+  const text = document.createElement("div");
+  text.classList.add("message-text");
+  text.innerHTML = formatMessageText(message.text);
 
   chatContent.appendChild(text);
   messageElement.appendChild(chatContent);
@@ -208,6 +271,9 @@ function addMessage(message) {
   messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
 
+/**
+ * @param {boolean} isLoading
+ */
 function setLoading(isLoading) {
   const loadingElement = document.getElementById("loading-indicator");
   if (!loadingElement) return;
@@ -215,6 +281,9 @@ function setLoading(isLoading) {
   loadingElement.style.display = isLoading ? "flex" : "none";
 }
 
+/**
+ * @param {{ text: string; }[]} messages
+ */
 function setHistory(messages) {
   const messagesContainer = document.getElementById("chat-messages-list");
   if (!messagesContainer) return;

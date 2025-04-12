@@ -30,7 +30,10 @@ describe("InferenceService", () => {
     mockLanguageModel = {
       generateEmbeddings: jest.fn(),
       generate: jest.fn(),
+      generateStream: jest.fn(),
       refreshModels: jest.fn(),
+      checkModelAvailability: jest.fn(),
+      pullModel: jest.fn(),
     } as jest.Mocked<ILanguageModel>;
 
     mockVectorDatabase = {

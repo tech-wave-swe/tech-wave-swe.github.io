@@ -21,9 +21,8 @@ export class ChatWebView {
 
       return this._parseHTML(html, webview);
     } catch (error) {
-
       console.error(error);
-      vscode.window.showErrorMessage(`Failed to load chat HTML file: ${error}`)
+      vscode.window.showErrorMessage(`Failed to load chat HTML file: ${error}`);
       return "";
     }
   }
@@ -48,6 +47,9 @@ export class ChatWebView {
         "codicon.css",
       ),
     );
+    const scriptMarkedUri = webview.asWebviewUri(
+      vscode.Uri.joinPath(this._extensionUri, "media", "marked.min.js"),
+    );
     const scriptChatUri = webview.asWebviewUri(
       vscode.Uri.joinPath(this._extensionUri, "media", "chat.js"),
     );
@@ -62,6 +64,7 @@ export class ChatWebView {
       .replace("{{styleResetUri}}", styleResetUri.toString())
       .replace("{{styleVSCodeUri}}", styleVSCodeUri.toString())
       .replace("{{styleCodiconsUri}}", styleCodiconsUri.toString())
+      .replace("{{scriptMarkedUri}}", scriptMarkedUri.toString())
       .replace("{{scriptChatUri}}", scriptChatUri.toString());
   }
 

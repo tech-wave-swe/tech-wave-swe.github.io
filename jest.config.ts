@@ -11,6 +11,7 @@ module.exports = {
 
   moduleNameMapper: {
     "^vscode$": "<rootDir>/src/test/unit/Mock/vscode.ts",
+    "^marked$": "<rootDir>/media/marked.min.js",
   },
 
   // Test environment (typically 'node' for VSCode extensions)
@@ -27,6 +28,8 @@ module.exports = {
   // Specify which files to collect coverage from
   collectCoverageFrom: [
     "src/**/*.ts",
+    "media/**/*.js",
+    "!media/marked.min.js",
     "!src/test/**/*.ts",
     "!src/**/*.d.ts",
     "!src/extension.ts", // Exclude main extension file if needed

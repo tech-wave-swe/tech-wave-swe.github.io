@@ -31,7 +31,7 @@ import { ClearRequirementsHistoryCommand } from "./Commands/ClearRequirementsHis
 export function activate(context: vscode.ExtensionContext) {
   try {
     // Initialize Services
-    _initializeConfigService(context);
+    _initializeConfigService();
 
     const languageModel = new LangChainOllamaAdapter();
     const lanceDBAdapter = new LanceDBAdapter(context.globalStorageUri.fsPath);
@@ -64,7 +64,7 @@ export function activate(context: vscode.ExtensionContext) {
   return api;
 }
 
-function _initializeConfigService(context: vscode.ExtensionContext) {
+function _initializeConfigService() {
   let workspaceFolder = "";
 
   if (vscode.workspace.workspaceFolders) {
@@ -164,7 +164,7 @@ function _initializeTrackerViewProvider(
   context.subscriptions.push(
     vscode.workspace.onDidChangeWorkspaceFolders((event) => {
       ConfigServiceFacade.GetInstance().setWorkspaceFolder(event.added);
-    })
+    }),
   );
 }
 
@@ -177,7 +177,57 @@ function _handleEvents(
   context.subscriptions.push(
     vscode.workspace.onDidChangeConfiguration(async (event) => {
       if (event.affectsConfiguration("requirementsTracker")) {
+        const configServiceFacade = ConfigServiceFacade.GetInstance();
         ConfigServiceFacade.GetInstance().sync();
+
+        const model = configServiceFacade.getOllamaModel();
+        const embeddingModel = configServiceFacade.getEmbeddingModel();
+
+        console.log("Model:", model);
+        console.log("Embedding Model:", embeddingModel);
+
+        for (const mod of [model, embeddingModel]) {
+          console.log("Checking model availability:", mod);
+          const res = await languageModel.checkModelAvailability(mod);
+
+          console.log("Model availability:", res);
+
+          if (!res) {
+            const userChoice = await vscode.window.showQuickPick(
+              ["Yes", "No"],
+              {
+                title:
+                  "Model " +
+                  mod +
+                  " not found, do you want to try pulling the model?",
+              },
+            );
+            if (userChoice === "Yes") {
+              try {
+                vscode.window.showInformationMessage(
+                  "Pulling model " + mod + " ...",
+                );
+                const res = await languageModel.pullModel(mod);
+                if (res) {
+                  vscode.window.showInformationMessage(
+                    "Model pulled successfully.",
+                  );
+                }
+              } catch (error) {
+                vscode.window.showErrorMessage(
+                  "Failed to pull model: " + error,
+                );
+                return;
+              }
+            } else {
+              vscode.window.showErrorMessage(
+                "Cannot proceed without model, please select an available model.",
+              );
+
+              return;
+            }
+          }
+        }
 
         await languageModel.refreshModels();
         await lanceDBAdapter.refreshEmbeddings();

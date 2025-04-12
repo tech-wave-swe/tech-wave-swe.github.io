@@ -25,25 +25,33 @@ export class ChatWebviewProvider implements vscode.WebviewViewProvider {
     this._chatWebView = chatWebView;
   }
 
-  public resolveWebviewView(
+  public async resolveWebviewView(
     webviewView: vscode.WebviewView,
     _context: vscode.WebviewViewResolveContext,
     _token: vscode.CancellationToken,
-  ): void {
+  ): Promise<void> {
     this._webviewViewConfigure(webviewView);
     this._webviewViewHandleEvents(webviewView);
 
     this._webviewView = webviewView;
 
-    // Load chat history
-    this._chatService.getMessages().then((messages) => {
+    // Set initial loading state
+    this._sendMessageToWebview({ type: "setLoading", isLoading: true });
+
+    try {
+      // Load chat history
+      const messages = await this._chatService.getMessages();
       if (messages.length > 0) {
         this._sendMessageToWebview({ type: "setHistory", messages });
-        this._sendMessageToWebview({ type: "setLoading", isLoading: false });
       } else {
-        this._sendMessageToWebview({ type: "setLoading", isLoading: false });
+        this._sendMessageToWebview({ type: "clearHistory" });
       }
-    });
+    } catch (error) {
+      console.error("Failed to load chat history:", error);
+      this._sendMessageToWebview({ type: "clearHistory" });
+    } finally {
+      this._sendMessageToWebview({ type: "setLoading", isLoading: false });
+    }
   }
 
   private _webviewViewConfigure(webviewView: vscode.WebviewView) {
@@ -95,21 +103,47 @@ export class ChatWebviewProvider implements vscode.WebviewViewProvider {
     // Show a loading indicator
     this._sendMessageToWebview({ type: "setLoading", isLoading: true });
 
+    let accumulatedText = "";
+    const timestamp = Date.now();
+
     try {
-      // Get response from the inference service
-      const response = await this._inferenceService.query(message.text);
-
-      const modelMessage: ChatMessage = {
+      // Create and add initial empty model message
+      const initialMessage: ChatMessage = {
         sender: "model",
-        text: response,
-        timestamp: Date.now(),
+        text: "",
+        timestamp: timestamp,
       };
-
-      await this._chatService.addMessage(modelMessage);
       this._sendMessageToWebview({
         type: "addMessage",
-        message: modelMessage,
+        message: initialMessage,
       });
+
+      // Start streaming updates
+      await this._inferenceService.queryStream(
+        message.text,
+        (token: string) => {
+          accumulatedText += token;
+
+          // Update the existing message with new content
+          const modelMessage: ChatMessage = {
+            sender: "model",
+            text: accumulatedText,
+            timestamp: timestamp,
+          };
+          this._sendMessageToWebview({
+            type: "updateMessage",
+            message: modelMessage,
+          });
+        },
+      );
+
+      // Save the final message to chat history
+      const finalMessage: ChatMessage = {
+        sender: "model",
+        text: accumulatedText,
+        timestamp: timestamp,
+      };
+      await this._chatService.addMessage(finalMessage);
     } catch (error) {
       this._sendMessageToWebview({
         type: "error",

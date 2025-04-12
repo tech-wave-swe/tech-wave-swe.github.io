@@ -48,6 +48,15 @@ export async function setupTestServices(workspacePath: string) {
     generate: async (prompt: string) => `Mock response for: ${prompt}`,
     generateEmbeddings: async (_text: string) => [0.1, 0.2, 0.3],
     refreshModels: async () => {},
+    generateStream: async (
+      prompt: string,
+      _context: string,
+      onToken: (token: string) => void,
+    ) => {
+      onToken(`Mock stream response for: ${prompt}`);
+    },
+    checkModelAvailability: async () => true,
+    pullModel: async (_model: string) => true,
   };
 
   const trackerService = new RequirementsTrackerService(

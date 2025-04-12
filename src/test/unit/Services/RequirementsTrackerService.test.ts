@@ -26,7 +26,11 @@ describe("RequirementsTrackerService", () => {
     const mockConfigServiceFacade = {
       getPrompt: jest.fn().mockReturnValue("Test prompt"),
     };
-    jest.spyOn(ConfigServiceFacade, 'GetInstance').mockReturnValue(mockConfigServiceFacade as unknown as ConfigServiceFacade);
+    jest
+      .spyOn(ConfigServiceFacade, "GetInstance")
+      .mockReturnValue(
+        mockConfigServiceFacade as unknown as ConfigServiceFacade,
+      );
 
     mockPathFilter = {
       include: ["/test/uno", "test/due"],
@@ -64,6 +68,16 @@ describe("RequirementsTrackerService", () => {
       generate: async (prompt: string) => `Mock response for: ${prompt}`,
       generateEmbeddings: async (_text: string) => [0.1, 0.2, 0.3],
       refreshModels: async () => {},
+      generateStream: async (
+        prompt: string,
+        context: string,
+        onToken: (token: string) => void,
+      ): Promise<void> => {
+        onToken("Mock stream response");
+        return Promise.resolve();
+      },
+      checkModelAvailability: async () => true,
+      pullModel: async (_model: string) => true,
     };
 
     service = new RequirementsTrackerService(
