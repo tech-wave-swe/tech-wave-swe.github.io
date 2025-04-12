@@ -48,7 +48,7 @@ export class InterrogateSelectionCommand implements ICommand {
 
     const message = {
       type: "sendMessage",
-      text: `Analyze the following code and provide insights based on the loaded requirements:\n\n${textToAnalyze}`,
+      text: `Analyze the following code and provide insights based on the loaded requirements:\n\n${textToAnalyze} \n\nRequirements:\n${JSON.stringify(requirements)}`,
     };
 
     // Using reflection to access private method

@@ -1,11 +1,11 @@
 {
   "filters": {
     "path": {
-      "include": [],
-      "exclude": ["**/Projects/**"]
+      "include": ["**/Projects/NUCLEO-G071RB/Examples_LL/ADC/ADC_SingleConversion_TriggerSW_Init/Src/**"],
+      "exclude": []
     },
     "file_extension": {
-      "include": ["md"],
+      "include": ["c"],
       "exclude": []
     },
     "requirements": {

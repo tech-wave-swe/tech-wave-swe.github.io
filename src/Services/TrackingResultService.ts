@@ -1,10 +1,13 @@
 import {GlobalStateService, StateKeys} from "./GlobalStateService";
 import {TrackingResult, TrackingResultDetails, TrackingResultSummary} from "../Models/TrackingModels";
 
-interface CustomGSData {details: TrackingResultDetails, results: TrackingResult[]}
+interface CustomGSData {
+  details: TrackingResultDetails,
+  results: TrackingResult[]
+}
 
 export class TrackingResultService {
-  private _details: TrackingResultDetails|undefined;
+  private _details: TrackingResultDetails | undefined;
   private _results: Map<string, TrackingResult> = new Map<
     string,
     TrackingResult
@@ -21,6 +24,12 @@ export class TrackingResultService {
     this._TRStoDS(trs);
 
     await this._saveTrackingResult();
+  }
+
+  public async deleteRequirement(requirementId: string): Promise<void> {
+    if (this._details != undefined) {
+      await this._deleteRequirement(requirementId);
+    }
   }
 
   public getTrakingResult(): TrackingResult[] {
@@ -49,6 +58,9 @@ export class TrackingResultService {
     await this._globalStateService.clearState(StateKeys.TRACKING_RESULTS);
     this._results.clear();
     this._details = undefined;
+
+    console.log(this._globalStateService.getState(StateKeys.TRACKING_RESULTS));
+    console.log(this._results.size, this._details);
   }
 
   public async removeCodeReference(id: string, codeReferenceId: number): Promise<void> {
@@ -62,15 +74,7 @@ export class TrackingResultService {
       res.codeReferences.splice(codeReferenceId, 1);
 
       if (res.codeReferences.length == 0) {
-        if(res.implementationStatus == "unlikely-match") {
-          this._details.unlikelyMatches--;
-        } else {
-          this._details.possibleMatches--;
-        }
-
-        this._details.totalRequirements--;
-
-        this._results.delete(id);
+        await this._deleteRequirement(id);
       } else {
         this._results.set(id, res);
       }
@@ -88,18 +92,25 @@ export class TrackingResultService {
       throw new Error("No details found.");
     }
 
-    const res = this._results.get(id);
+    await this._deleteRequirement(id);
+  }
 
-    if (res) {
-      this._details.confirmedMatches++;
+  private async _deleteRequirement(requirementId: string): Promise<void> {
+    if (this._details != undefined) {
+      const res = this._results.get(requirementId);
 
-      if(res.implementationStatus == "unlikely-match") {
-        this._details.unlikelyMatches--;
-      } else {
-        this._details.possibleMatches--;
+      if (res != undefined) {
+        if (res.implementationStatus == "unlikely-match") {
+          this._details.unlikelyMatches--;
+        } else {
+          this._details.possibleMatches--;
+        }
+
+        this._details.totalRequirements--;
+
+        this._results.delete(requirementId);
       }
 
-      this._results.delete(id);
       await this._saveTrackingResult();
     }
   }
@@ -132,7 +143,13 @@ export class TrackingResultService {
 
   private _DStoTRS(): TrackingResultSummary {
     if (!this._details) {
-      throw new Error("No tracking details found.");
+      return {
+        totalRequirements: 0,
+        confirmedMatches: 0,
+        possibleMatches: 0,
+        unlikelyMatches: 0,
+        requirementDetails: new Map<string, TrackingResult>(),
+      };
     }
 
     return {

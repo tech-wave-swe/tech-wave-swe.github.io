@@ -15,13 +15,16 @@ export class InferenceService {
   public async query(question: string): Promise<string> {
     try {
       const files = await this._vectorDatabase.queryForFiles(question);
+      const reqs = await this._vectorDatabase.queryForRequirements(question);
 
-      const context = files
+      let context = files
         .map(
           (file) =>
             `FilePath: ${file.filePath}\nContent:\n ${file.originalContent}\n`,
         )
         .join("\n");
+
+      context += reqs.map((req) => `Requirement: Id:${req.id} Status:${req.status} Name${req.name} Description:${req.description}\n`).join("\n");
 
       // Create a prompt template that includes the context
       const promptTemplate = PromptTemplate.fromTemplate(`
@@ -40,6 +43,8 @@ Answer:`);
         context,
         question,
       });
+
+      console.log(prompt);
 
       // Get the response from Ollama
       const response = await this._languageModel.generate(prompt);

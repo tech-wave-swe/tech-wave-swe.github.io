@@ -503,6 +503,8 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
 
     try {
       await this._requirementsServiceFacade.clearRequirements();
+      await this._trackingResultService.clearRequirements();
+
       vscode.window.showInformationMessage("Requirements cleared successfully");
     } catch (error) {
       vscode.window.showErrorMessage(`Failed to clear requirements: ${error}`);
@@ -587,6 +589,7 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
 
     try {
       await this._requirementsServiceFacade.deleteRequirement(requirementId);
+      await this._trackingResultService.deleteRequirement(requirementId);
       vscode.window.showInformationMessage("Requirement deleted successfully");
 
       this._updateRequirementsDisplay();

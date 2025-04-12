@@ -98,7 +98,7 @@ export class ParsingService {
       name: record.Name || record.name || record.title || record.Title || "",
       description: record.Notes || record.Description || record.text || "",
       type: record.Type || record.type || "unspecified",
-      status: record.status || record.Status || RequirementStatus.NOT_TRACKED,
+      status: RequirementStatus.NOT_TRACKED,
       version: record.Version || record.version || "1.0",
     };
   }

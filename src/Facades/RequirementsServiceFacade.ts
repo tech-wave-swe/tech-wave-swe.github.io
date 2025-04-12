@@ -127,6 +127,7 @@ export class RequirementsServiceFacade {
       throw error;
     }
   }
+
   public async analyzeImplementation(
     requirement: Requirement,
     codeReference: CodeReference[],
