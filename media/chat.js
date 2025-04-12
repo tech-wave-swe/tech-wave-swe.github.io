@@ -44,35 +44,40 @@ function handleEvents() {
     vscode.postMessage({ type: "clearHistory" });
   });
 
-  window.addEventListener("message", (event) => {
-    const message = event.data;
+  // { data: { type: string; } }
+  window.addEventListener(
+    "message",
+    /** @type {(event: MessageEvent<{  type: string; message: {text: string}; messages: {text: string}[]; isLoading: boolean; }>) => void} */
+    (event) => {
+      const message = event.data;
 
-    switch (message.type) {
-      case "addMessage":
-        onAddMessage(message.message);
-        break;
+      switch (message.type) {
+        case "addMessage":
+          onAddMessage(message.message);
+          break;
 
-      case "setHistory":
-        onSetHistory(message.messages);
-        break;
+        case "setHistory":
+          onSetHistory(message.messages);
+          break;
 
-      case "clearHistory":
-        onClearHistory();
-        break;
+        case "clearHistory":
+          onClearHistory();
+          break;
 
-      case "setLoading":
-        onSetLoading(message.isLoading);
-        break;
+        case "setLoading":
+          onSetLoading(message.isLoading);
+          break;
 
-      case "error":
-        onError(message);
-        break;
+        case "error":
+          onError(message.message);
+          break;
 
-      case "updateMessage":
-        onUpdateMessage(message.message);
-        break;
-    }
-  });
+        case "updateMessage":
+          onUpdateMessage(message.message);
+          break;
+      }
+    },
+  );
 }
 
 /**
@@ -98,14 +103,14 @@ function updateMessage(message) {
     ".chat-message--item.model",
   );
   if (modelMessages.length === 0) {
-    // If no existing message, add it as new
+    if (!message) return;
     addMessage(message);
     return;
   }
 
   const lastModelMessage = modelMessages[modelMessages.length - 1];
   const textElement = lastModelMessage.querySelector(".message-text");
-  if (textElement) {
+  if (textElement && message) {
     textElement.innerHTML = formatMessageText(message.text);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
   }
@@ -185,21 +190,21 @@ function onSetLoading(isLoading) {
  */
 function onError(message) {
   if (message) {
-    handleError(message);
+    handleError(message.text);
   }
 }
 
 // Event actions
 
 /**
- * @param {{ text?: string; message?: any; }} message
+ * @param {string} message
  */
 function handleError(message) {
-  console.error(message.message);
+  console.error(message);
 
   vscode.postMessage({
     type: "sendMessage",
-    text: `Error: ${message.message}`,
+    text: `Error: ${message}`,
   });
 
   const messagesContainer = document.getElementById("chat-messages-list");
@@ -207,7 +212,7 @@ function handleError(message) {
 
   const errorElement = document.createElement("div");
   errorElement.classList.add("message", "model");
-  errorElement.textContent = message.message;
+  errorElement.textContent = message;
   errorElement.style.color = "var(--vscode-errorForeground)";
 
   messagesContainer.appendChild(errorElement);
@@ -331,4 +336,25 @@ function clearHistory() {
   messagesContainer.appendChild(welcomeMessage);
 
   handleEQEvents();
+}
+
+/* istanbul ignore next */
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = {
+    formatMessageText,
+    handleEvents,
+    handleEQEvents,
+    onSendMessage,
+    onAddMessage,
+    onSetHistory,
+    onClearHistory,
+    onSetLoading,
+    onError,
+    handleError,
+    addMessage,
+    setLoading,
+    setHistory,
+    clearHistory,
+    updateMessage,
+  };
 }
