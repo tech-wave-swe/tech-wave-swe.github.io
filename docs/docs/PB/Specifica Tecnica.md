@@ -648,16 +648,46 @@ Mette a disposizione i metodi asincroni:
 
 ### Progettazione grafica
 
-[spiegazione generale: dove si apre il pannello, che icona ha ecc ecc]
+L'estensione si integra direttamente nell’interfaccia di %%VSCode|vscode%%, aggiungendo un nuovo pannello laterale identificato dal nome "REQUIREMENTS TRACKER". L'icona del pannello, rappresentata dal logo di %%Ollama|ollama%%, è visibile nella barra laterale sinistra, accanto a quelle di Explorer, Git, ecc.
+
+Il pannello si compone di quattro sezioni principali, accessibili tramite tab nella parte superiore: Import, Track, Results e Chat.
+
+#### Import
+
+<img src="/img/GraphicDesign/Import.png" alt="Pannello Import" data-width="70%" />
 
 Il pannello *Import* permette di caricare dei requisiti in due modalità:
-- caricando un file.
+- caricamento di un file locale (es. .csv o .reqIF), selezionabile tramite il pulsante “Choose File”.
 - incollando i requisiti direttamente sulla sezione apposita (sotto “Or Paste Content”).
 
-Per caricare i requisiti bisogna inoltre selezionare il tipo di file (CSV o  reqIF) sul pulsante di selezione sotto la sezione “Format”. Esiste anche l’opzione di scegliere un delimitatore csv personalizzato sotto la sezione “CSV Delimiter”. Una volta scelto il file o dopo aver incollato a mano i requisiti, questi possono essere caricati tramite il pulsante “Import Requirements”.  
-- il pannello *Track* permette di tracciare o specifici requisiti, scegliendoli dalla lista di requisiti caricati, oppure tutti i requisiti, selezionando l’opzione “Track all requirements”. Tramite il pulsante “Start Tracking” si può avviare il tracciamento dei requisiti. Il pulsante “Show Unimplemented” permette di trovare facilmente i requisiti che non sono stati ancora implementati nel codice e il pulsante “Clear Requirements” permette di rimuovere tutti i requisiti per poter caricarne di nuovi.
-- il pannello *Results* permette di visualizzare i risultati del tracciamento.
-- il pannello *Chat* permette all’utente di fare domande più specifiche sui requisiti e sulla loro implementazione utilizzando modelli di intelligenza artificiale forniti da Ollama.
+Per caricare i requisiti bisogna inoltre selezionare il tipo di file (CSV o  reqIF) sul pulsante di selezione sotto la sezione “Format”. Esiste anche l’opzione di scegliere un delimitatore csv personalizzato sotto la sezione “CSV Delimiter”. Una volta scelto il file o dopo aver incollato a mano i requisiti, questi possono essere caricati tramite il pulsante “Import Requirements”.
+
+#### Track
+
+<img src="/img/GraphicDesign/Track.png" alt="Pannello Track" data-width="70%" />
+
+Nel pannello Track l’utente può:
+- tracciare requisiti specifici selezionandoli dalla lista caricata.
+- tracciare tutti i requisiti contemporaneamente selezionando l’opzione “Track all requirements”.
+
+Il tracciamento si avvia con il pulsante “Start Tracking”.
+
+Sono inoltre disponibili le seguenti funzionalità:
+- “Show Unimplemented”: evidenzia i requisiti non ancora implementati nel codice.
+- “Clear Requirements”: rimuove tutti i requisiti attualmente caricati per permettere un nuovo caricamento.
+
+#### Results
+
+<img src="/img/GraphicDesign/Results.png" alt="Pannello Results" data-width="70%" />
+
+Nel pannello Results vengono mostrati i risultati dell’analisi:
+- una sezione “Code Match Summary” presenta un riepilogo dei requisiti suddivisi in Confirmed match, Possible match e Unlikely match.
+- l’utente può visualizzare i dettagli di ciascun requisito tracciato e cliccare su un riferimento per confermarne l’implementazione.
+ 
+#### Chat
+
+Il pannello Chat consente all’utente di porre domande sui requisiti e sulla loro implementazione.
+L’assistenza è fornita tramite modelli di intelligenza artificiale integrati con %%Ollama|ollama%%, e può essere utilizzata per approfondimenti, verifiche o spiegazioni specifiche relative al contenuto e allo stato dei requisiti. 
 
 <!-- ::: {.no-export} -->
 </NumberedWrapper>
