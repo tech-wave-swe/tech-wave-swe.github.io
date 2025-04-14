@@ -7,30 +7,22 @@ const vscode = acquireVsCodeApi();
  * @typedef {T extends null ? never : T} NonNull
  */
 
-// Store requirements
-/** @type {Array<{id: string, name: string, description: string, type: string, priority: string, status: string, codeReference?: {filePath: string, lineNumber: number}}>} */
-let requirements = [];
+/**
+ * @typedef {{filePath: string, lineNumber: number, snippet: string,score: number, relevanceExplanation: string}} CodeReference
+ * @typedef {{id: string, name: string, description: string, type: string, priority: string, status: string, codeReference: CodeReference}} Requirement
+ *
+ * @typedef {{ implementationStatus: string, score: number, codeReferences: Array<CodeReference> }} RequirementDetail
+ * @typedef {{
+ *  totalRequirements: number,
+ *  confirmedMatches: number,
+ *  possibleMatches: number,
+ *  unlikelyMatches: number,
+ *  requirementDetails:
+ *    Record<string, RequirementDetail>
+ *  }} TrackingSummary
+ */
 
-/** @type {{
-  totalRequirements: number,
-  confirmedMatches: number,
-  possibleMatches: number,
-  unlikelyMatches: number,
-  requirementDetails: Record<string, {
-    implementationStatus: string,
-    score: number,
-    codeReferences: Array<{
-      filePath: string,
-      lineNumber: number,
-      snippet: string,
-      score: number,
-      relevanceExplanation?: string
-    }>
-  }>
-} | null} */
-let trackingResults = null;
-
-document.addEventListener("DOMContentLoaded", function (e) {
+document.addEventListener("DOMContentLoaded", function () {
   initializeUI();
   attachEventListeners();
 });
@@ -89,15 +81,15 @@ function setupMessageHandler() {
 
     switch (message.type) {
       case "requirementsImported":
-        onRequirementsImported(message.requirements);
+        onRequirementsImported(message.summary, message.requirements);
         break;
 
       case "updateRequirements":
-        onRequirementsUpdated(message.requirements);
+        onRequirementsUpdated(message.summary, message.requirements);
         break;
 
       case "trackingResults":
-        onTrackingResults(message.summary);
+        onTrackingResults(message.summary, message.requirements);
         break;
 
       case "setLoading":
@@ -113,11 +105,11 @@ function setupMessageHandler() {
         break;
 
       case "startEditMode":
-        onStartEditMode(message);
+        onStartEditMode(message.requirement, message.codeReference);
         break;
 
       case "stopEditMode":
-        onStopEditMode(message);
+        onStopEditMode();
         break;
 
       case "updateSelectedReference":
@@ -133,11 +125,11 @@ function setupMessageHandler() {
         break;
 
       case "showResultsTab":
-        onShowResultsTab(message.summary);
+        onShowResultsTab(message.summary, message.requirements);
         break;
 
       case "analysisResult":
-        onAnalysisResult(message);
+        onAnalysisResult(message.requirementId, message.analysis);
         break;
     }
   });
@@ -253,37 +245,25 @@ function attachEditModeEventListeners() {
 
 // Event Handlers
 
-/**
- * @param {MouseEvent} event
- */
-function handleTabImportClick(event) {
+function handleTabImportClick() {
   vscode.postMessage({
     type: "tabToImport",
   });
 }
 
-/**
- * @param {MouseEvent} event
- */
-function handleTabTrackClick(event) {
+function handleTabTrackClick() {
   vscode.postMessage({
     type: "tabToTrack",
   });
 }
 
-/**
- * @param {MouseEvent} event
- */
-function handleTabResultsClick(event) {
+function handleTabResultsClick() {
   vscode.postMessage({
     type: "tabToResults",
   });
 }
 
-/**
- * @param {Event} event
- */
-function handleFileInputChange(event) {
+function handleFileInputChange() {
   const fileInput = event.target;
   if (
     !(fileInput instanceof HTMLInputElement) ||
@@ -370,7 +350,7 @@ function handleImportButtonClick() {
   });
 }
 
-function handleTrackButtonClick() {
+function handleTrackButtonClick(requirements) {
   if (requirements.length === 0) {
     alert("No requirements available to track");
     return;
@@ -401,10 +381,7 @@ function handleClearRequirementsButtonClick() {
   });
 }
 
-/**
- * @param {MouseEvent} event
- */
-function handleConfirmEditButtonClick(event) {
+function handleConfirmEditButtonClick() {
   const confirmEditButton = document.getElementById("confirm-edit");
 
   if (
@@ -417,10 +394,7 @@ function handleConfirmEditButtonClick(event) {
   }
 }
 
-/**
- * @param {MouseEvent} event
- */
-function handleCancelEditButtonClick(event) {
+function handleCancelEditButtonClick() {
   vscode.postMessage({
     type: "cancelEditImplementation",
   });
@@ -429,27 +403,27 @@ function handleCancelEditButtonClick(event) {
 // Message Event Handlers
 
 /**
- * @param {any[]} importedRequirements
+ * @param {TrackingSummary} summary
+ * @param {Requirement[]} requirements
  */
-function onRequirementsImported(importedRequirements) {
-  requirements = importedRequirements;
-  updateRequirementsDisplay();
+function onRequirementsImported(summary, requirements) {
+  updateRequirementsDisplay(summary, requirements);
 }
 
 /**
- * @param {any[]} updatedRequirements
+ * @param {TrackingSummary} summary
+ * @param {Requirement[]} requirements
  */
-function onRequirementsUpdated(updatedRequirements) {
-  requirements = updatedRequirements;
-  updateRequirementsDisplay();
+function onRequirementsUpdated(summary, requirements) {
+  updateRequirementsDisplay(summary, requirements);
 }
 
 /**
- * @param {any} summary
+ * @param {TrackingSummary} summary
+ * @param {Requirement[]} requirements
  */
-function onTrackingResults(summary) {
-  trackingResults = summary;
-  handleTrackingResultsEvent();
+function onTrackingResults(summary, requirements) {
+  handleTrackingResultsEvent(summary, requirements);
 }
 
 /**
@@ -470,20 +444,17 @@ function onError(message) {
 }
 
 /**
- * @param {any[]} updatedRequirements
+ * @param {Requirement[]} requirements
  */
-function onUpdateRequirementsTable(updatedRequirements) {
-  requirements = updatedRequirements;
-  updateRequirementsTable();
+function onUpdateRequirementsTable(requirements) {
+  updateRequirementsTable(requirements);
 }
 
 /**
- * @param {{ requirementId: string, codeReference: any }} message
+ * @param {Requirement} requirement
+ * @param {CodeReference} codeReference
  */
-function onStartEditMode(message) {
-  const { requirementId, codeReference } = message;
-  const requirement = requirements.find((req) => req.id === requirementId);
-
+function onStartEditMode(requirement, codeReference) {
   if (!requirement) {
     console.error("Requirement not found");
     return;
@@ -512,10 +483,7 @@ function onStartEditMode(message) {
   editModeUI.classList.remove("hidden");
 }
 
-/**
- * @param {any} message
- */
-function onStopEditMode(message) {
+function onStopEditMode() {
   const currentSelection = document.getElementById("current-selection");
   const confirmEditButton = document.getElementById("confirm-edit");
   const editModeUI = document.getElementById("edit-mode-ui");
@@ -559,11 +527,10 @@ function onShowImportTab() {
 }
 
 /**
- * @param {any[]} reqs
+ * @param {Requirement[]} requirements
  */
-function onShowTrackTab(reqs) {
-  requirements = reqs;
-  updateRequirementsTable();
+function onShowTrackTab(requirements) {
+  updateRequirementsTable(requirements);
 
   const tabTrack = document.querySelector("#tab-track");
   if (tabTrack instanceof HTMLElement) {
@@ -572,11 +539,11 @@ function onShowTrackTab(reqs) {
 }
 
 /**
- * @param {any} summary
+ * @param {TrackingSummary} summary
+ * @param {Requirement[]} requirements
  */
-function onShowResultsTab(summary) {
-  trackingResults = summary;
-  updateResultsDisplay();
+function onShowResultsTab(summary, requirements) {
+  updateResultsDisplay(summary, requirements);
 
   const tabResults = document.querySelector("#tab-results");
   if (tabResults instanceof HTMLElement) {
@@ -585,10 +552,11 @@ function onShowResultsTab(summary) {
 }
 
 /**
- * @param {{ requirementId: string, analysis: string }} message
+ * @param {TrackingSummary} summary
+ * @param {string} requirementId
+ * @param {string} analysis
  */
-function onAnalysisResult(message) {
-  const { requirementId, analysis } = message;
+function onAnalysisResult(summary, requirementId, analysis) {
   const reqItem = document.querySelector(
     `.requirement-item[data-requirement="${requirementId}"]`,
   );
@@ -639,13 +607,13 @@ function onAnalysisResult(message) {
     "[ANALYSIS_END]",
   );
 
-  if (!trackingResults?.requirementDetails) {
+  if (!summary.requirementDetails) {
     console.error("Tracking results or requirement details not found");
     return;
   }
 
   // Get the selected code reference
-  const result = trackingResults.requirementDetails[requirementId];
+  const result = summary.requirementDetails[requirementId];
   if (!result?.codeReferences) {
     console.error("Code references not found for requirement");
     return;
@@ -750,16 +718,20 @@ function onAnalysisResult(message) {
 
 // UI Update Functions
 
-function updateRequirementsDisplay() {
-  updateRequirementsTable();
-}
-
-function handleTrackingResultsEvent() {
-  updateResultsDisplay();
+/**
+ * @param {TrackingSummary} summary
+ * @param {Requirement[]} requirements
+ */
+function handleTrackingResultsEvent(summary, requirements) {
+  updateResultsDisplay(summary, requirements);
   switchToTab(2); // Switch to results tab
 }
 
-function updateResultsDisplay() {
+/**
+ * @param {TrackingSummary} summary
+ * @param {Requirement[]} requirements
+ */
+function updateResultsDisplay(summary, requirements) {
   const summarySection = document.getElementById("summary-section");
   if (!summarySection) {
     console.error("Summary section not found");
@@ -770,32 +742,38 @@ function updateResultsDisplay() {
   summarySection.style.display = "block";
 
   // Update Views
-  updateChartDisplay();
-  updateLegendDisplay();
-  updateRequirementsDisplay();
+  updateChartDisplay(summary);
+  updateLegendDisplay(summary);
+  updateRequirementsDisplay(summary, requirements);
 }
 
-function updateChartDisplay() {
+/**
+ * @param {TrackingSummary} summary
+ */
+function updateChartDisplay(summary) {
   const chartConfirmed = document.getElementById("chart-confirmed-match");
   const chartPossible = document.getElementById("chart-possible-match");
   const chartUnlikely = document.getElementById("chart-unlikely-match");
 
-  if (!chartConfirmed || !chartPossible || !chartUnlikely || !trackingResults) {
+  if (!chartConfirmed || !chartPossible || !chartUnlikely || !summary) {
     console.error("Chart elements or tracking results not found");
     return;
   }
 
-  const total = trackingResults.totalRequirements;
-  const confirmed = trackingResults.confirmedMatches;
-  const possible = trackingResults.possibleMatches;
-  const unlikely = trackingResults.unlikelyMatches;
+  const total = summary.totalRequirements;
+  const confirmed = summary.confirmedMatches;
+  const possible = summary.possibleMatches;
+  const unlikely = summary.unlikelyMatches;
 
   chartConfirmed.style.width = `${(confirmed / total) * 100}%`;
   chartPossible.style.width = `${(possible / total) * 100}%`;
   chartUnlikely.style.width = `${(unlikely / total) * 100}%`;
 }
 
-function updateLegendDisplay() {
+/**
+ * @param {TrackingSummary} summary
+ */
+function updateLegendDisplay(summary) {
   const legendConfirmed = document.getElementById("legend-confirmed-match");
   const legendPossible = document.getElementById("legend-possible-match");
   const legendUnlikely = document.getElementById("legend-unlikely-match");
@@ -804,15 +782,15 @@ function updateLegendDisplay() {
     !legendConfirmed ||
     !legendPossible ||
     !legendUnlikely ||
-    !trackingResults
+    !summary
   ) {
     console.error("Legend elements or tracking results not found");
     return;
   }
 
-  const confirmed = trackingResults.confirmedMatches;
-  const possible = trackingResults.possibleMatches;
-  const unlikely = trackingResults.unlikelyMatches;
+  const confirmed = summary.confirmedMatches;
+  const possible = summary.possibleMatches;
+  const unlikely = summary.unlikelyMatches;
 
   // Update legend
   legendConfirmed.textContent = `Confirmed Match: ${confirmed}`;
@@ -820,7 +798,308 @@ function updateLegendDisplay() {
   legendUnlikely.textContent = `Unlikely Match: ${unlikely}`;
 }
 
-function updateRequirementsTable() {
+/**
+ * @param {TrackingSummary} summary
+ * @param {Requirement[]} requirements
+ */
+function updateRequirementsDisplay(summary, requirements) {
+  const requirementsResults = document.getElementById("requirements-results");
+
+  // Generate requirement details
+  requirementsResults.innerHTML = "";
+
+  const details = summary.requirementDetails;
+  const requirementIds = Object.keys(details);
+
+  if (requirementIds.length === 0) {
+    requirementsResults.innerHTML = "<p>No requirements found.</p>";
+    return;
+  }
+
+  const list = document.createElement("ul");
+  list.className = "requirements-list";
+
+  console.log(requirementIds);
+
+  requirementIds.forEach((reqId) => {
+    console.log(reqId);
+    const result = details[reqId];
+    const req = requirements.find((r) => r.id === reqId);
+
+    if (!req) {
+      return;
+    }
+
+    const item = document.createElement("li");
+    item.className = "requirement-item dropdown-container";
+    item.setAttribute("data-requirement", reqId);
+
+    let statusClass = "";
+    switch (result.implementationStatus) {
+      case "confirmed-match":
+        statusClass = "status-confirmed-match";
+        break;
+      case "possible-match":
+        statusClass = "status-possible-match";
+        break;
+      case "unlikely-match":
+        statusClass = "status-unlikely-match";
+        break;
+    }
+
+    // Create the requirement header (dropdown toggle)
+    const reqHeaderHTML = `
+      <div class="dropdown-header requirement-header">
+        <div class="requirement-header-content">
+          <div class="requirement-id">${req.name}</div>
+          <span class="implementation-status ${statusClass}">
+            ${result.implementationStatus.replace("-", " ")}
+          </span>
+        </div>
+        <div class="dropdown-toggle"><i class="codicon codicon-chevron-down"></i></div>
+      </div>
+    `;
+
+    // Create the requirement content with a unique container for code references
+    const refsContainerId = `refs-${req.id.replace("{", "").replace("}", "")}`;
+    const reqContentHTML = `
+      <div class="dropdown-content requirement-content">
+        <div class="requirement-description">${req.description}</div>
+        <div class="requirement-meta">
+          Type: ${req.type} | Priority: ${req.priority} | Status: ${req.status}
+        </div>
+        <div class="implementation-info">
+          <span>Score: ${Math.round(result.score * 100)}%</span>
+          <button class="analyze-button" data-requirement="${reqId}">
+            <i class="codicon codicon-search"></i> Analyze Implementation
+          </button>
+        </div>
+        <div class="ollama-analysis hidden">
+          <div class="analysis-header">
+            <span>Ollama's Analysis</span>
+            <div class="loading-spinner hidden"></div>
+          </div>
+          <div class="analysis-content"></div>
+          <div class="analysis-code-snippet"></div>
+        </div>
+        <div class="code-references" id="${refsContainerId}"></div>
+      </div>
+    `;
+
+    // Combine header and content
+    item.innerHTML = reqHeaderHTML + reqContentHTML;
+
+    // Add toggle functionality to requirement
+    const reqHeader = item.querySelector(".requirement-header");
+    reqHeader.addEventListener("click", (e) => {
+      e.stopPropagation();
+      item.classList.toggle("expanded");
+      const toggleIcon = reqHeader.querySelector(".dropdown-toggle i");
+      if (item.classList.contains("expanded")) {
+        toggleIcon.classList.replace(
+          "codicon-chevron-down",
+          "codicon-chevron-up",
+        );
+      } else {
+        toggleIcon.classList.replace(
+          "codicon-chevron-up",
+          "codicon-chevron-down",
+        );
+      }
+    });
+
+    list.appendChild(item);
+
+    // Add code references to the requirement content
+    if (result.codeReferences && result.codeReferences.length > 0) {
+      const refsContainer = item.querySelector(`#${refsContainerId}`);
+
+      const refsHeader = document.createElement("div");
+      refsHeader.textContent = "Code References:";
+      refsHeader.style.fontWeight = "bold";
+      refsHeader.style.marginTop = "10px";
+      refsHeader.style.marginBottom = "5px";
+      refsContainer.appendChild(refsHeader);
+
+      result.codeReferences.forEach((ref, refIndex) => {
+        const refItem = document.createElement("div");
+        refItem.className = "code-reference nested-dropdown-container expanded";
+        refItem.setAttribute("data-path", ref.filePath);
+        refItem.setAttribute("data-line", ref.lineNumber);
+
+        // Create the reference header (nested dropdown toggle)
+        const refHeaderHTML = `
+          <div class="dropdown-header ref-header">
+            <div class="file-path">${ref.filePath}:${ref.lineNumber}</div>
+            <div class="dropdown-toggle"><i class="codicon codicon-chevron-down"></i></div>
+          </div>
+        `;
+
+        // Create the reference content
+        const refContentHTML = `
+          <div class="dropdown-content ref-content">
+            <div class="code-snippet">${escapeHtml(formatSnippet(ref.snippet))}</div>
+            <div class="req-action-wrapper">
+              <div>
+                <p>${ref.relevanceExplanation}</p>
+              </div>
+              <ul class="req-actions">
+                <li class="edit-req-action"><i class="codicon codicon-edit"></i></li>
+                <li class="confirm-req-action"><i class="codicon codicon-check"></i></li>
+                <li class="delete-req-action"><i class="codicon codicon-trash"></i></li>
+              </ul>
+            </div>
+          </div>
+        `;
+
+        // Combine reference header and content
+        refItem.innerHTML = refHeaderHTML + refContentHTML;
+
+        // Add toggle functionality to code reference
+        const refHeader = refItem.querySelector(".ref-header");
+        refHeader.addEventListener("click", (e) => {
+          e.stopPropagation();
+          refItem.classList.toggle("expanded");
+          const toggleIcon = refHeader.querySelector(".dropdown-toggle i");
+          if (refItem.classList.contains("expanded")) {
+            toggleIcon.classList.replace(
+              "codicon-chevron-down",
+              "codicon-chevron-up",
+            );
+          } else {
+            toggleIcon.classList.replace(
+              "codicon-chevron-up",
+              "codicon-chevron-down",
+            );
+          }
+        });
+
+        // Keep the openFile functionality but attach it to the file path specifically
+        refItem.querySelector(".file-path").addEventListener("click", (e) => {
+          e.stopPropagation(); // Prevent triggering the dropdown toggle
+          vscode.postMessage({
+            type: "openFile",
+            filePath: ref.filePath,
+            lineStart: ref.lineNumber,
+          });
+        });
+
+        // Add eventHandling for feedback buttons
+        refItem
+          .querySelectorAll(".confirm-req-action")
+          .forEach((actionButton) => {
+            actionButton.addEventListener("click", (e) => {
+              e.stopPropagation(); // Prevent triggering the dropdown toggle
+
+              vscode.postMessage({
+                type: "confirmRequirementImplementation",
+                requirementId: reqId,
+                codeReference: ref,
+              });
+            });
+          });
+
+        refItem
+          .querySelectorAll(".delete-req-action")
+          .forEach((actionButton) => {
+            actionButton.addEventListener("click", (e) => {
+              e.stopPropagation(); // Prevent triggering the dropdown toggle
+
+              vscode.postMessage({
+                type: "rejectRequirementImplementation",
+                requirementId: reqId,
+                codeReferenceId: refIndex,
+              });
+            });
+          });
+
+        refItem.querySelectorAll(".edit-req-action").forEach((actionButton) => {
+          actionButton.addEventListener("click", (e) => {
+            e.stopPropagation(); // Prevent triggering the dropdown toggle
+
+            vscode.postMessage({
+              type: "startEditMode",
+              requirementId: reqId,
+              codeReferenceId: refIndex,
+              codeReference: ref,
+            });
+          });
+        });
+
+        refsContainer.appendChild(refItem);
+      });
+    }
+  });
+
+  requirementsResults.appendChild(list);
+
+  const analyzeButtons = document.querySelectorAll(".analyze-button");
+
+  // Analyze Implementation interaction
+  analyzeButtons.forEach((analyzeButton) => {
+    analyzeButton.addEventListener("click", async (e) => {
+      e.stopPropagation();
+
+      console.log("Analyze button clicked");
+
+      console.log("Tracking results:", summary);
+
+      // Get the parent requirement item
+      const requirementItem = analyzeButton.closest(".requirement-item");
+      const analysisDiv = requirementItem.querySelector(".ollama-analysis");
+      const spinner = analysisDiv.querySelector(".loading-spinner");
+      const contentDiv = analysisDiv.querySelector(".analysis-content");
+
+      // Get requirement ID and find the corresponding tracking result
+      const reqId = requirementItem.getAttribute("data-requirement"); // Make sure this attribute exists
+      const result = summary.requirementDetails[reqId];
+
+      if (!result) {
+        console.error(`No tracking results found for requirement ${reqId}`);
+        return;
+      }
+
+      // Show loading state
+      analysisDiv.classList.remove("hidden");
+      spinner.classList.remove("hidden");
+      contentDiv.textContent = "Analyzing...";
+
+      // Find the requirement object
+      const requirement = requirements.find((r) => r.id === reqId);
+      if (!requirement) {
+        console.error(`No requirement found for ID ${reqId}`);
+        return;
+      }
+
+      console.log("Sending analyze implementation message", {
+        requirement,
+        codeReferences: result.codeReferences,
+      });
+
+      vscode.postMessage({
+        type: "analyzeImplementation",
+        requirementId: reqId,
+        requirement: requirement,
+        codeReferences: result.codeReferences,
+      });
+
+      // Create code reference container if it doesn't exist
+      const refsContainerId = `refs-${reqId.replace("{", "").replace("}", "")}`;
+      let refsContainer = requirementItem.querySelector(`#${refsContainerId}`);
+      if (!refsContainer) {
+        refsContainer = document.createElement("div");
+        refsContainer.className = "code-references";
+        refsContainer.id = refsContainerId;
+        requirementItem.appendChild(refsContainer);
+      }
+    });
+  });
+}
+
+/**
+ * @param {Requirement[]} requirements
+ */
+function updateRequirementsTable(requirements) {
   const requirementsWrapper = document.getElementById(
     "requirements-table-wrapper",
   );

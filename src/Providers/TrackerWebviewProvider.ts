@@ -1,11 +1,11 @@
 import * as vscode from "vscode";
-import { RequirementsServiceFacade } from "../Facades/RequirementsServiceFacade";
-import { TrackerWebView } from "../WebViews/TrackerWebView";
+import {TextEditorSelectionChangeEvent} from "vscode";
+import {RequirementsServiceFacade} from "../Facades/RequirementsServiceFacade";
+import {TrackerWebView} from "../WebViews/TrackerWebView";
 import path from "path";
-import { TrackingResultService } from "../Services/TrackingResultService";
-import { CodeReference } from "../Models/TrackingModels";
-import { TextEditorSelectionChangeEvent } from "vscode";
-import { Requirement } from "../Models/Requirement";
+import {TrackingResultService} from "../Services/TrackingResultService";
+import {CodeReference, TrackingResultSummary} from "../Models/TrackingModels";
+import {Requirement} from "../Models/Requirement";
 
 export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
   private _webviewView?: vscode.WebviewView;
@@ -51,11 +51,11 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
 
     this._sendMessageToWebview({ type: "showImportTab" });
 
-    if (this._isEditMode) {
+    if (this._isEditMode && this._currentEditingReference != undefined) {
       this._sendMessageToWebview({
         type: "startEditMode",
-        requirementId: this._currentEditingReference?.requirementId,
-        codeReference: this._currentEditingReference?.codeReference,
+        requirementId: this._requirementsServiceFacade.getRequirement(this._currentEditingReference.requirementId),
+        codeReference: this._currentEditingReference.codeReference,
       });
     }
   }
@@ -259,17 +259,11 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
       this._trackingResultService.getTrakingResultSummary();
 
     if (trackingResults) {
-      // Convert to a plain object for serialization
-      const serializedResults = {
-        ...trackingResults,
-        requirementDetails: Object.fromEntries(
-          trackingResults.requirementDetails,
-        ),
-      };
       console.log("Switching to result results");
       this._sendMessageToWebview({
         type: "showResultsTab",
-        summary: serializedResults,
+        summary: this._serializeTrackingResults(trackingResults),
+        requirements: this._requirementsServiceFacade.getAllRequirements(),
       });
     }
   }
@@ -335,7 +329,7 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
 
     this._sendMessageToWebview({
       type: "startEditMode",
-      requirementId: requirementId,
+      requirement: this._requirementsServiceFacade.getRequirement(requirementId),
       codeReference: codeReference,
     });
   }
@@ -417,6 +411,7 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
         type: "requirementsImported",
         count: requirements.length,
         requirements: requirements,
+        summary: this._trackingResultService.getTrakingResultSummary(),
       });
 
       // Update the requirements display
@@ -453,19 +448,10 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
 
       await this._trackingResultService.saveTrackingResult(trackingResults);
 
-      // Convert to a plain object for serialization
-      const serializedResults = {
-        ...trackingResults,
-        requirementDetails: Object.fromEntries(
-          trackingResults.requirementDetails,
-        ),
-      };
-
-      console.log("Serialized result:", serializedResults);
-
       this._sendMessageToWebview({
         type: "trackingResults",
-        summary: serializedResults,
+        summary: this._serializeTrackingResults(trackingResults),
+        requirements: this._requirementsServiceFacade.getAllRequirements()
       });
 
       console.log("Tracking complete");
@@ -491,6 +477,15 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
 
       this._sendMessageToWebview({ type: "setLoading", isLoading: false });
     }
+  }
+
+  private _serializeTrackingResults(trackingResults: TrackingResultSummary) {
+    return {
+      ...trackingResults,
+      requirementDetails: Object.fromEntries(
+        trackingResults.requirementDetails,
+      ),
+    };
   }
 
   private async _onOpenFile(
@@ -566,17 +561,10 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
       this._trackingResultService.getTrakingResultSummary();
 
     if (trackingResults) {
-      // Convert to a plain object for serialization
-      const serializedResults = {
-        ...trackingResults,
-        requirementDetails: Object.fromEntries(
-          trackingResults.requirementDetails,
-        ),
-      };
-
       this._sendMessageToWebview({
         type: "trackingResults",
-        summary: serializedResults,
+        summary: this._serializeTrackingResults(trackingResults),
+        requirements: this._requirementsServiceFacade.getAllRequirements(),
       });
     }
   }

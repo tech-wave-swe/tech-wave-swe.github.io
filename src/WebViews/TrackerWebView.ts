@@ -39,7 +39,7 @@ export class TrackerWebView {
       vscode.Uri.joinPath(this._extensionUri, "media", "tracker.css"),
     );
     const scriptTrackerUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, "media", "tracker.js"),
+      vscode.Uri.joinPath(this._extensionUri, "media", "track.js"),
     );
 
     const styleCodiconsUri = webview.asWebviewUri(
