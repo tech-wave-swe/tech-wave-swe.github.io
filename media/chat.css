@@ -9,15 +9,16 @@ body {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    max-height: 100vh;
+    min-height: 100vh;
+    justify-content: space-between;
 }
 
 .chat-messages--container {
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 10px;
     overflow-y: scroll;
+    padding: 10px 10px 130px;
 }
 
 .chat-input-wrapper {
@@ -121,6 +122,10 @@ body {
 #chat-input--container {
     padding: 10px;
     border-top: 1px solid var(--vscode-panel-border);
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    background-color: var(--vscode-editorWidget-background);
 }
 
 .chat-input--decorator {
