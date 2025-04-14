@@ -5,7 +5,7 @@ documentclass: TWDocumentFull
 toc: true
 lof: true
 numbersections: true
-version: 2.5.0
+version: 2.6.0
 classification: Esterno
 ---
 
@@ -23,6 +23,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                             | Autore                | Data Verifica | Verificatore          |
 | ---------- | -------- | --------------------------------------- | --------------------- | ------------- | --------------------- |
+| 07/04/2025 | 2.6.0    | Miglioramento granularità use cases     | Pistori Gaia          | 08/04/2025    | Piola Andrea          |
 | 17/02/2025 | 2.5.0    | Miglioramento granularità requisiti     | Piola Andrea          | 21/02/2025    | Pistori Gaia          |
 | 14/02/2025 | 2.4.0    | Correzioni documento                    | Vasquez Manuel Felipe | 15/02/2025    | Monetti Luca          |
 | 09/02/2025 | 2.3.0    | Aggiunta Use Cases                      | Monetti Luca          | 14/02/2025    | Vasquez Manuel Felipe |
@@ -136,9 +137,11 @@ L'%%Applicativo|applicativo%% si intefaccia con un singolo attore secondario:
 2. L’Utente programmatore inserisce l’endpoint di %%Ollama|ollama%% (UC1.1)
 3. L’Utente programmatore seleziona il modello per la generazione del codice (UC1.2)
 4. L’Utente programmatore seleziona il modello di embedding (UC1.3)
-5. L’Utente programmatore seleziona la "temperature’ del modello (UC1.4)
+5. L’Utente programmatore seleziona la "temperature" del modello (UC1.4)
 6. L’Utente programmatore inserisce il bearer token (UC1.5)
-7. La modifica viene applicata.
+7. L’Utente programmatore inserisce il numero massimo di risultati per ogni ricerca (UC1.6)
+8. L’Utente programmatore specifica il prompt per la richiesta al modello di generazione del codice (UC1.7)
+9. La modifica viene applicata.
 
 **User story:**
 
@@ -575,6 +578,60 @@ Come Utente programmatore devo poter indicare un bearer token necessario per l�
 **User story:**
 
 Come Utente programmatore voglio ricevere un messaggio di errore chiaro e informativo se il bearer token inserito non consente l’autorizzazione.
+
+---
+
+<img src="/img/UseCases/UC1.6.png" alt="Inserimento numero massimo di risultati per ogni ricerca" data-width="70%" />
+
+#### UC1.6 - Inserimento numero massimo di risultati per ogni ricerca
+
+**Attore primario:**
+
+- Utente programmatore
+
+**Precondizioni:**
+
+- L’Utente programmatore sta effettuando la configurazione dell’estensione (UC1)
+
+**Postcondizioni:**
+
+- Il limite ai risultati è stato configurato
+
+**Scenario principale:**
+
+1. L’Utente programmatore seleziona la voce per modificare il numero massimo di risultati
+2. L’Utente programmatore indica il numero di risultati da ottenere per ogni ricerca
+
+**User story:**
+
+Come Utente programmatore devo poter inserire il numero massimo di risultati da ottenere per ogni ricerca.
+
+---
+
+<img src="/img/UseCases/UC1.7.png" alt="Specifica del prompt per la richiesta al modello di generazione del codice" data-width="70%" />
+
+#### UC1.7 - Specificare il prompt per la richiesta al modello di generazione del codice
+
+**Attore primario:**
+
+- Utente programmatore
+
+**Precondizioni:**
+
+- L’Utente programmatore sta effettuando la configurazione dell’estensione (UC1)
+
+**Postcondizioni:**
+
+- Il prompt è stato configurato
+
+**Scenario principale:**
+
+1. L’Utente programmatore seleziona la voce per modificare il prompt per la richiesta al modello di generazione del codice
+2. L’Utente programmatore specifica il prompt per la richiesta al modello di generazione del codice
+
+**User story:**
+
+Come Utente programmatore devo poter specificare il prompt per la richiesta al modello di generazione del codice.
 
 ---
 
@@ -1109,7 +1166,6 @@ Come Utente programmatore voglio ricevere un messaggio di errore chiaro e inform
 
 #### UC23 - Utilizzo del chatbot
 
-
 **Attore primario:**
 
 - Utente programmatore
@@ -1154,20 +1210,24 @@ I requisiti vengono identificati ciascuno da un codice identificativo nel format
 
 - L'utente deve poter configurare l'%%Applicativo|applicativo%% da interfaccia grafica, in particolare:
 
-| ID         | Descrizione                                                                                                                                                                                                                                                                                       | Use Cases        |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
-| **RFO_1**  | L'utente può scegliere il modello da utilizzare per generare codice.                                                                                                                                                                                                                              | **UC1.2**        |
-| **RFO_2**  | L'utente può scegliere il modello da utilizzare per l'embedding.                                                                                                                                                                                                                                  | **UC1.3**        |
-| **RFD_3**  | L'utente può scegliere di utilizzare un modello custom. Nella scelta del modello per generare codice o per l'embedding è possibile indicare il nome di un modello personalizzato e installato nel dispositivo dell'utente.                                                                        | **UC5**, **UC6** |
-| **RFO_4**  | L'utente può selezionare uno dei modelli proposti. Nella scelta del modello per generare codice o per l'embedding è possibile selezionare uno dei modelli consigliati. dell'utente.                                                                                                               | **UC4**, **UC7** |
-| **RFD_5**  | L'utente può impostare la temperature di ogni modello, inserendo un valore decimale compreso tra 0 e 1.                                                                                                                                                                                           | **UC1.4**        |
-| **RFP_6**  | L'utente può inserire un Bearer Token per usare Ollama in un server esterno.                                                                                                                                                                                                                      | **UC1.5**        |
-| **RFP_7**  | L'utente può inserire un endpoint specifico a cui indirizzare le richieste di Ollama.                                                                                                                                                                                                             | **UC1.1**        |
-| **RFO_8**  | L'Applicativo restituisce un messaggio d'errore se Ollama non risulta installato all'endpoint indicato. Il messaggio deve fornire una possibile soluzione al problema e deve indicare chiaramente il campo che ha generato l'errore.                                                              | **UC2**          |
-| **RFO_9**  | L'Applicativo restituisce un messaggio d'errore se l'endpoint indicato non è raggiungibile. Il messaggio deve fornire una possibile soluzione al problema e deve indicare chiaramente il campo che ha generato l'errore.                                                                          | **UC3**          |
-| **RFO_10** | L'Applicativo restituisce un messaggio d'errore se il modello, scelto tra quelli proposti o custom, non è installato nel dispositivo. Il messaggio deve fornire una possibile soluzione al problema e deve indicare chiaramente il campo che ha generato l'errore.                                | **UC8**          |
-| **RFO_11** | L'Applicativo restituisce un messaggio d'errore se il modello custom indicato non esiste. Il messaggio deve fornire una possibile soluzione al problema e deve indicare chiaramente il campo che ha generato l'errore.                                                                            | **UC9**          |
-| **RFO_12** | L'Applicativo restituisce un messaggio d'errore se il bearer token indicato fallisce l'autenticazione e non viene autorizzato al collegamento con il server esterno. Il messaggio deve fornire una possibile soluzione al problema e deve indicare chiaramente il campo che ha generato l'errore. | **UC10**         |
+| ID         | Descrizione                                                                                                                                                                                                                                                                                       | Use Cases |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | --- |
+| **RFO_1**  | L'utente può scegliere il modello da utilizzare per generare codice.                                                                                                                                                                                                                              | **UC1.2** |
+| **RFO_2**  | L'utente può scegliere il modello da utilizzare per l'embedding.                                                                                                                                                                                                                                  | **UC1.3** |
+| **RFD_3**  | L'utente può scegliere di utilizzare un modello custom per generare codice. È possibile indicare il nome di un modello personalizzato e installato nel dispositivo dell'utente.                                                                                                                   | **UC5**   |
+| **RFD_4**  | L'utente può scegliere di utilizzare un modello custom per l'embedding. È possibile indicare il nome di un modello personalizzato e installato nel dispositivo dell'utente.                                                                                                                       | **UC6**   |
+| **RFO_5**  | L'utente può selezionare uno dei modelli proposti per generare codice selezionando uno dei modelli consigliati. dell'utente.                                                                                                                                                                      | **UC4**   |
+| **RFO_6**  | L'utente può selezionare uno dei modelli proposti per l'embedding selezionando uno dei modelli consigliati. dell'utente.                                                                                                                                                                          | **UC7**   |
+| **RFD_7**  | L'utente può impostare la temperature del modello per generare codice, inserendo un valore decimale compreso tra 0 e 1.                                                                                                                                                                           | **UC1.4** |
+| **RFP_8**  | L'utente può inserire un Bearer Token per usare Ollama in un server esterno.                                                                                                                                                                                                                      | **UC1.5** |
+| **RFP_9**  | L'utente può inserire un endpoint specifico a cui indirizzare le richieste di Ollama.                                                                                                                                                                                                             | **UC1.1** | '   |
+| **RFP_10** | L'utente può impostare il numero massimo di risultati da ottenere per ogni ricerca.                                                                                                                                                                                                               | **UC1.6** |
+| **RFP_11** | L'utente può specificare il prompt per la richiesta al modello di generazione del codice.                                                                                                                                                                                                         | **UC1.7** |
+| **RFO_12** | L'Applicativo restituisce un messaggio d'errore se Ollama non risulta installato all'endpoint indicato. Il messaggio deve fornire una possibile soluzione al problema e deve indicare chiaramente il campo che ha generato l'errore.                                                              | **UC2**   |
+| **RFO_13** | L'Applicativo restituisce un messaggio d'errore se l'endpoint indicato non è raggiungibile. Il messaggio deve fornire una possibile soluzione al problema e deve indicare chiaramente il campo che ha generato l'errore.                                                                          | **UC3**   |
+| **RFO_14** | L'Applicativo restituisce un messaggio d'errore se il modello, scelto tra quelli proposti o custom, non è installato nel dispositivo. Il messaggio deve fornire una possibile soluzione al problema e deve indicare chiaramente il campo che ha generato l'errore.                                | **UC8**   |
+| **RFO_15** | L'Applicativo restituisce un messaggio d'errore se il modello custom indicato non esiste. Il messaggio deve fornire una possibile soluzione al problema e deve indicare chiaramente il campo che ha generato l'errore.                                                                            | **UC9**   |
+| **RFP_16** | L'Applicativo restituisce un messaggio d'errore se il bearer token indicato fallisce l'autenticazione e non viene autorizzato al collegamento con il server esterno. Il messaggio deve fornire una possibile soluzione al problema e deve indicare chiaramente il campo che ha generato l'errore. | **UC10**  |
 
 Table: Requisiti funzionali per la configurazione dell'estensione
 
@@ -1175,17 +1235,17 @@ Table: Requisiti funzionali per la configurazione dell'estensione
 
 | ID         | Descrizione                                                                                                                                                                   | Use Cases  |
 | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| **RFO_13** | L'utente deve indicare la cartella del progetto software.                                                                                                                     | **UC11.1** |
-| **RFO_14** | L'utente deve indicare il file con presente la lista dei requisiti.                                                                                                           | **UC11.2** |
-| **RFD_15** | L'utente può effettuare una selezione dei requisiti da analizzare.                                                                                                            | **UC15.1** |
-| **RFD_16** | L'utente può specificare dei filtri: può selezionare quali requisiti ricercare nel codice e quali ignorare.                                                                   | **UC11.3** |
-| **RFD_17** | L'utente può specificare dei filtri: può indicare quali cartelle includere o escludere nella ricerca del codice.                                                              | **UC11.3** |
-| **RFD_18** | L'utente può specificare dei filtri: può indicare quali file includere o escludere nella ricerca del codice.                                                                  | **UC11.3** |
-| **RFD_19** | L'utente può specificare dei filtri: può indicare quali estensioni di file includere o escludere nella ricerca del codice.                                                    | **UC11.3** |
-| **RFD_20** | L'utente può specificare dei filtri: può indicare un file nel quale ricercare l'implementazione di un preciso requisito.                                                      | **UC11.3** |
-| **RFD_21** | L'utente può selezionare una porzione di codice sulla quale eseguire nuovamente la ricerca.                                                                                   | **UC16**   |
-| **RFO_22** | L'utente può effettuare una nuova ricerca su tutto il codice.                                                                                                                 | **UC17**   |
-| **RFO_23** | L'utente può visualizzare, tramite interfaccia grafica, la porzione di codice che implementa un requisito tramite il puntatore indicato nella tabella che lo riporta al file. | **UC19**   |
+| **RFO_17** | L'utente deve indicare la cartella del progetto software.                                                                                                                     | **UC11.1** |
+| **RFO_18** | L'utente deve indicare il file con presente la lista dei requisiti.                                                                                                           | **UC11.2** |
+| **RFD_19** | L'utente può effettuare una selezione dei requisiti da analizzare.                                                                                                            | **UC15.1** |
+| **RFD_20** | L'utente può specificare dei filtri: può selezionare quali requisiti ricercare nel codice e quali ignorare.                                                                   | **UC11.3** |
+| **RFD_21** | L'utente può specificare dei filtri: può indicare quali cartelle includere o escludere nella ricerca del codice.                                                              | **UC11.3** |
+| **RFD_22** | L'utente può specificare dei filtri: può indicare quali file includere o escludere nella ricerca del codice.                                                                  | **UC11.3** |
+| **RFD_23** | L'utente può specificare dei filtri: può indicare quali estensioni di file includere o escludere nella ricerca del codice.                                                    | **UC11.3** |
+| **RFD_24** | L'utente può specificare dei filtri: può indicare un file nel quale ricercare l'implementazione di un preciso requisito.                                                      | **UC11.3** |
+| **RFD_25** | L'utente può selezionare una porzione di codice sulla quale eseguire nuovamente la ricerca.                                                                                   | **UC16**   |
+| **RFO_26** | L'utente può effettuare una nuova ricerca su tutto il codice.                                                                                                                 | **UC17**   |
+| **RFO_27** | L'utente può visualizzare, tramite interfaccia grafica, la porzione di codice che implementa un requisito tramite il puntatore indicato nella tabella che lo riporta al file. | **UC19**   |
 
 Table: Requisiti funzionali per le funzionalità di controllo
 
@@ -1193,19 +1253,19 @@ Table: Requisiti funzionali per le funzionalità di controllo
 
 | ID         | Descrizione                                                                                                                                                                                                                                            | Use Cases            |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------- |
-| **RFO_24** | L'Applicativo deve effettuare il parsing del documento dei requisiti.                                                                                                                                                                                  | **UC11.2**, **UC12** |
-| **RFO_25** | L'Applicativo deve generare una struttura dati a partire dal parsing del documento dei requisiti.                                                                                                                                                      | **UC11.2**, **UC21** |
-| **RFO_26** | L'Applicativo deve generare una notifica di errore se il parsing non è andato a buon fine a causa del formato file scorretto.                                                                                                                          | **UC12**             |
-| **RFO_27** | L'Applicativo deve generare una notifica di errore se il parsing non è andato a buon fine a causa del formato non supportato.                                                                                                                          | **UC12**             |
-| **RFO_28** | La struttura dati memorizza per ogni requisito: codice identificativo, testo del requisito, stato di implementazione (implementato o non implementato) e il puntatore al frammento di codice (funzione o parte di essa) dove presume sia implementato. | **UC21**             |
-| **RFD_29** | L'Applicativo per ogni requisito applica il filtro corrispondente, se presente.                                                                                                                                                                        | **UC17**             |
-| **RFD_30** | L'Applicativo deve generare una notifica di errore se i filtri indicati dall'utente non sono applicabili.                                                                                                                                              | **UC13**, **UC14**   |
-| **RFO_31** | L'Applicativo per ogni requisito selezionato produce il codice corrispondente interrogando il modello selezionato per la generazione del codice.                                                                                                       | **UC15**             |
-| **RFO_32** | L'Applicativo deve effettuare, per ogni requisito selezionato, il pattern matching tra il codice generato e il codice del progetto utilizzando il modello selezionato.                                                                                 | **UC15**             |
-| **RFD_33** | L'Applicativo deve invalidare i requisiti associati ad un file che ha subito modifiche in seguito alla ricerca.                                                                                                                                        | **UC15**             |
-| **RFO_34** | L'Applicativo deve generare una notifica di errore se una o più richieste ai modelli sono fallite.                                                                                                                                                     | **UC18**             |
-| **RFO_35** | L'Applicativo, alla fine dell'esecuzione, deve aggiornare la struttura dati, modificando lo stato di implementazione e il puntatore al codice.                                                                                                         | **UC15**, **UC21**   |
-| **RFP_36** | L'Applicativo fornisce un chatbot per porre domande al modello di generazione del codice.                                                                                                                                                              | **UC23**             |
+| **RFO_28** | L'Applicativo deve effettuare il parsing del documento dei requisiti.                                                                                                                                                                                  | **UC11.2**, **UC12** |
+| **RFO_29** | L'Applicativo deve generare una struttura dati a partire dal parsing del documento dei requisiti.                                                                                                                                                      | **UC11.2**, **UC21** |
+| **RFO_30** | L'Applicativo deve generare una notifica di errore se il parsing non è andato a buon fine a causa del formato file scorretto.                                                                                                                          | **UC12**             |
+| **RFO_31** | L'Applicativo deve generare una notifica di errore se il parsing non è andato a buon fine a causa del formato non supportato.                                                                                                                          | **UC12**             |
+| **RFO_32** | La struttura dati memorizza per ogni requisito: codice identificativo, testo del requisito, stato di implementazione (implementato o non implementato) e il puntatore al frammento di codice (funzione o parte di essa) dove presume sia implementato. | **UC21**             |
+| **RFD_33** | L'Applicativo per ogni requisito applica il filtro corrispondente, se presente.                                                                                                                                                                        | **UC17**             |
+| **RFD_34** | L'Applicativo deve generare una notifica di errore se i filtri indicati dall'utente non sono applicabili.                                                                                                                                              | **UC13**, **UC14**   |
+| **RFO_35** | L'Applicativo per ogni requisito selezionato produce il codice corrispondente interrogando il modello selezionato per la generazione del codice.                                                                                                       | **UC15**             |
+| **RFO_36** | L'Applicativo deve effettuare, per ogni requisito selezionato, il pattern matching tra il codice generato e il codice del progetto utilizzando il modello selezionato.                                                                                 | **UC15**             |
+| **RFD_37** | L'Applicativo deve invalidare i requisiti associati ad un file che ha subito modifiche in seguito alla ricerca.                                                                                                                                        | **UC15**             |
+| **RFO_38** | L'Applicativo deve generare una notifica di errore se una o più richieste ai modelli sono fallite.                                                                                                                                                     | **UC18**             |
+| **RFO_39** | L'Applicativo, alla fine dell'esecuzione, deve aggiornare la struttura dati, modificando lo stato di implementazione e il puntatore al codice.                                                                                                         | **UC15**, **UC21**   |
+| **RFP_40** | L'Applicativo fornisce un chatbot per porre domande al modello di generazione del codice.                                                                                                                                                              | **UC23**             |
 
 Table: Requisiti funzionali per l'esecuzione dell'estensione
 
@@ -1213,17 +1273,17 @@ Table: Requisiti funzionali per l'esecuzione dell'estensione
 
 | ID         | Descrizione                                                                                                                                                                                                                                                                                   | Use Cases  |
 | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| **RFO_37** | L'Applicativo deve fornire un'interfaccia grafica per la visualizzazione della struttura dati in forma tabellare. Per ogni requisito devono essere mostrati: sigla identificativa, descrizione testuale, puntatore alla porzione di codice, stato di implementazione e stato di approvazione. | **UC21**   |
-| **RFD_38** | L'interfaccia grafica per la visualizzazione della struttura dati deve permettere di selezionare o escludere un requisito dalla ricerca.                                                                                                                                                      | **UC21**   |
-| **RFP_39** | La struttura dati deve essere esportabile in formato .csv e deve memorizzare l'hash code della commit per il versionamento.                                                                                                                                                                   | **UC21**   |
-| **RFO_40** | L'Applicativo deve generare una notifica di errore se la struttura dati non è leggibile se il file risulta cancellato.                                                                                                                                                                        | **UC22**   |
-| **RFO_41** | L'Applicativo deve generare una notifica di errore se la struttura dati non è leggibile se il file risulta corrotto.                                                                                                                                                                          | **UC22**   |
-| **RFP_42** | L'Applicativo richiede all'utente di fornire un feedback riguardo la correttezza dei risultati della ricerca memorizzati nella struttura dati mostrata: può approvare la proposta.                                                                                                            | **UC15.2** |
-| **RFP_43** | L'Applicativo richiede all'utente di fornire un feedback riguardo la correttezza dei risultati della ricerca memorizzati nella struttura dati mostrata: può scartare la proposta.                                                                                                             | **UC15.2** |
-| **RFP_44** | L'Applicativo richiede all'utente di fornire un feedback riguardo la correttezza dei risultati della ricerca memorizzati nella struttura dati mostrata: può modificare il puntatore alla porzione di codice.                                                                                  | **UC15.2** |
-| **RFO_45** | L'Applicativo deve generare una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile se il puntatore è scorretto.                                                                                                                                      | **UC20**   |
-| **RFO_46** | L'Applicativo deve generare una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile se file è stato cancellato.                                                                                                                                       | **UC20**   |
-| **RFO_47** | L'Applicativo deve generare una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile se il file è corrotto.                                                                                                                                            | **UC20**   |
+| **RFO_41** | L'Applicativo deve fornire un'interfaccia grafica per la visualizzazione della struttura dati in forma tabellare. Per ogni requisito devono essere mostrati: sigla identificativa, descrizione testuale, puntatore alla porzione di codice, stato di implementazione e stato di approvazione. | **UC21**   |
+| **RFD_42** | L'interfaccia grafica per la visualizzazione della struttura dati deve permettere di selezionare o escludere un requisito dalla ricerca.                                                                                                                                                      | **UC21**   |
+| **RFP_43** | La struttura dati deve essere esportabile in formato .csv e deve memorizzare l'hash code della commit per il versionamento.                                                                                                                                                                   | **UC21**   |
+| **RFO_44** | L'Applicativo deve generare una notifica di errore se la struttura dati non è leggibile se il file risulta cancellato.                                                                                                                                                                        | **UC22**   |
+| **RFO_45** | L'Applicativo deve generare una notifica di errore se la struttura dati non è leggibile se il file risulta corrotto.                                                                                                                                                                          | **UC22**   |
+| **RFP_46** | L'Applicativo richiede all'utente di fornire un feedback riguardo la correttezza dei risultati della ricerca memorizzati nella struttura dati mostrata: può approvare la proposta.                                                                                                            | **UC15.2** |
+| **RFP_47** | L'Applicativo richiede all'utente di fornire un feedback riguardo la correttezza dei risultati della ricerca memorizzati nella struttura dati mostrata: può scartare la proposta.                                                                                                             | **UC15.2** |
+| **RFP_48** | L'Applicativo richiede all'utente di fornire un feedback riguardo la correttezza dei risultati della ricerca memorizzati nella struttura dati mostrata: può modificare il puntatore alla porzione di codice.                                                                                  | **UC15.2** |
+| **RFO_49** | L'Applicativo deve generare una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile se il puntatore è scorretto.                                                                                                                                      | **UC20**   |
+| **RFO_50** | L'Applicativo deve generare una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile se file è stato cancellato.                                                                                                                                       | **UC20**   |
+| **RFO_51** | L'Applicativo deve generare una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile se il file è corrotto.                                                                                                                                            | **UC20**   |
 
 Table: Requisiti funzionali per l'output dei risultati dell'esecuzione
 
@@ -1260,39 +1320,41 @@ Table: Requisiti qualitativi
 
 | Caso d'uso | Requisito                                                              |
 | ---------- | ---------------------------------------------------------------------- |
-| UC1        | RFO_1 ,RFO_2 , RFD_5 , RFP_6 , RFP_7                                   |
-| UC1.1      | RFP_7                                                                  |
+| UC1        | RFO_1 ,RFO_2 , RFD_7 , RFP_8 , RFP_9 , RFP_10 , RFP_11                 |
+| UC1.1      | RFP_9                                                                  |
 | UC1.2      | RFO_1                                                                  |
 | UC1.3      | RFO_2                                                                  |
-| UC1.4      | RFD_5                                                                  |
-| UC1.5      | RFP_6                                                                  |
-| UC2        | RFO_8                                                                  |
-| UC3        | RFO_9                                                                  |
-| UC4        | RFO_4                                                                  |
+| UC1.4      | RFD_7                                                                  |
+| UC1.5      | RFP_8                                                                  |
+| UC1.6      | RFP_10                                                                 |
+| UC1.7      | RFP_11                                                                 |
+| UC2        | RFO_12                                                                 |
+| UC3        | RFO_13                                                                 |
+| UC4        | RFO_5                                                                  |
 | UC5        | RFD_3                                                                  |
-| UC6        | RFD_3                                                                  |
-| UC7        | RFO_4                                                                  |
-| UC8        | RFO_10                                                                 |
-| UC9        | RFO_11                                                                 |
-| UC10       | RFO_12                                                                 |
-| UC11       | RFO_13, RFO_14, RFD_16, RFD_17, RFD_18, RFD_19 ,RFD_20, RFO_24, RFO_25 |
-| UC11.1     | RFO_13                                                                 |
-| UC11.2     | RFO_14, RFO_24, RFO_25,                                                |
-| UC11.3     | RFD_16, RFD_17, RFD_18, RFD_19 ,RFD_20                                 |
-| UC12       | RFO_24, RF0_26 , RF0_27                                                |
-| UC13       | RFD_30                                                                 |
-| UC14       | RFD_30                                                                 |
-| UC15       | RFD_15, RFP_42, RFP_43, RFP_44                                         |
-| UC15.1     | RFD_15                                                                 |
-| UC15.2     | RFP_42, RFP_43, RFP_44                                                 |
-| UC16       | RFD_21                                                                 |
-| UC17       | RFO_22, RFD_29                                                         |
-| UC18       | RFO_34                                                                 |
-| UC19       | RFO_23                                                                 |
-| UC20       | RFO_45, RFO_46, RFO_47                                                 |
-| UC21       | RFO_25, RFO_28, RF0_35, RFO_37, RFD_38, RFP_39                         |
-| UC22       | RFO_40, RFO_41                                                         |
-| UC23       | RFP_36                                                         |
+| UC6        | RFD_4                                                                  |
+| UC7        | RFO_6                                                                  |
+| UC8        | RFO_14                                                                 |
+| UC9        | RFO_15                                                                 |
+| UC10       | RFP_16                                                                 |
+| UC11       | RFO_17, RFO_18, RFD_20, RFD_21, RFD_22, RFD_23 ,RFD_24, RFO_28, RFO_29 |
+| UC11.1     | RFO_17                                                                 |
+| UC11.2     | RFO_18, RFO_28, RFO_29                                                 |
+| UC11.3     | RFD_20, RFD_21, RFD_22, RFD_23 ,RFD_24                                 |
+| UC12       | RFO_28, RF0_30 , RF0_31                                                |
+| UC13       | RFD_34                                                                 |
+| UC14       | RFD_34                                                                 |
+| UC15       | RFD_19, RFP_46, RFP_47, RFP_48                                         |
+| UC15.1     | RFD_19                                                                 |
+| UC15.2     | RFP_46, RFP_47, RFP_48                                                 |
+| UC16       | RFD_25                                                                 |
+| UC17       | RFO_26, RFD_33                                                         |
+| UC18       | RFO_38                                                                 |
+| UC19       | RFO_27                                                                 |
+| UC20       | RFO_49, RFO_50, RFO_51                                                 |
+| UC21       | RFO_29, RFO_32, RF0_39, RFO_41, RFD_42, RFP_43                         |
+| UC22       | RFO_44, RFO_45                                                         |
+| UC23       | RFP_40                                                                 |
 
 Table: Tracciamento caso d'uso e requisito associato
 
