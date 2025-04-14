@@ -12,23 +12,27 @@ import * as vscode from "vscode";
 import { FilterService } from "./FilterService";
 import { Chunk } from "../Models/Chunk";
 import {ConfigServiceFacade} from "../Facades/ConfigServiceFacade";
+import {TrackingResultService} from "./TrackingResultService";
 
 export class RequirementsTrackerService {
   private _vectorDatabase: IVectorDatabase;
   private _documentServiceFacade: DocumentServiceFacade;
   private _filterService: FilterService;
   private _languageModel: ILanguageModel;
+  private _trackingResultService: TrackingResultService;
 
   constructor(
     vectorDatabase: IVectorDatabase,
     documentServiceFacade: DocumentServiceFacade,
     filterService: FilterService,
     languageModel: ILanguageModel,
+    trackingResultService: TrackingResultService,
   ) {
     this._vectorDatabase = vectorDatabase;
     this._documentServiceFacade = documentServiceFacade;
     this._filterService = filterService;
     this._languageModel = languageModel;
+    this._trackingResultService = trackingResultService;
   }
 
   public async analyzeImplementation(
@@ -173,6 +177,18 @@ ${ref.snippet}`,
           const total = requirements.length;
           const batchSize = 20;
 
+          let summary = this._trackingResultService.getTrakingResultSummary();
+
+          if (!summary) {
+            summary = {
+              totalRequirements: requirements.length,
+              confirmedMatches: 0,
+              possibleMatches: 0,
+              unlikelyMatches: 0,
+              requirementDetails: new Map<string, TrackingResult>,
+            };
+          }
+
           for (
             let i = 0;
             i < requirements.length && !token.isCancellationRequested;
@@ -192,7 +208,13 @@ ${ref.snippet}`,
             const batchResults = await Promise.all(batchPromises);
 
             for (const { requirement, result } of batchResults) {
-              results.set(requirement.id, result);
+              const previousResult = summary.requirementDetails.get(requirement.id);
+
+              if (previousResult) {
+                summary[previousResult.implementationStatus]--;
+              }
+
+
               switch (result.implementationStatus) {
                 case "confirmed-match":
                   confirmed++;
