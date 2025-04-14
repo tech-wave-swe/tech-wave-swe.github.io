@@ -147,7 +147,9 @@ export class ChatWebviewProvider implements vscode.WebviewViewProvider {
     } catch (error) {
       this._sendMessageToWebview({
         type: "error",
-        message: `Error: ${error instanceof Error ? error.message : "Unknown error"}`,
+        message: {
+          text: `Error: ${error instanceof Error ? error.message : "Unknown error"}`,
+        },
       });
     } finally {
       this._sendMessageToWebview({ type: "setLoading", isLoading: false });
