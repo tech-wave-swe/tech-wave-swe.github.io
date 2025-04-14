@@ -5,7 +5,7 @@ documentclass: TWDocumentFull
 toc: true
 lof: true
 numbersections: true
-version: 2.4.6
+version: 2.4.7
 classification: Esterno
 ---
 
@@ -23,7 +23,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                                                                            | Autore                | Data Verifica | Verificatore          |
 | ---------- | -------- | -------------------------------------------------------------------------------------- | --------------------- | ------------- | --------------------- |
-| 10/04/2025 | 2.4.7    | Aggiornate sezioni rischi negli sprint                                                 | Dal Bianco Riccardo   | 11/04/2025    | Pistori Gaia          |
+| 10/04/2025 | 2.4.7    | Aggiornamento sezioni rischi negli sprint                                              | Dal Bianco Riccardo   | 11/04/2025    | Pistori Gaia          |
 | 31/03/2025 | 2.4.6    | Aggiunta consuntivo sprint 8                                                           | Carraro Agnese        | 31/03/2025    | Marcon Giulia         |
 | 30/03/2025 | 2.4.5    | Controllo consistenza maiuscole                                                        | Dal Bianco Riccardo   | 30/03/2025    | Vasquez Manuel Felipe |
 | 17/03/2025 | 2.4.4    | Aggiunta preventivo sprint 8                                                           | Carraro Agnese        | 18/03/2025    | Marcon Giulia         |
