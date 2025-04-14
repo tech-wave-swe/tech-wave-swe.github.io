@@ -74,7 +74,7 @@ Per evitare incomprensioni riguardanti la terminologia utilizzata all'interno de
 
 #### Importare requisiti
 [screen tab "import" dell'estensione]
-[descrizione procedura per requif e csv]
+[descrizione procedura per reqif e csv]
 
 #### Tracciamento
 [screen tab "track" dell'estensione]
