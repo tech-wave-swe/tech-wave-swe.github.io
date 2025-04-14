@@ -35,6 +35,12 @@ export class ChatWebviewProvider implements vscode.WebviewViewProvider {
 
     this._webviewView = webviewView;
 
+    if (webviewView.visible) {
+      await this._loadChat();
+    }
+  }
+
+  private async _loadChat() {
     // Set initial loading state
     this._sendMessageToWebview({ type: "setLoading", isLoading: true });
 
@@ -71,6 +77,12 @@ export class ChatWebviewProvider implements vscode.WebviewViewProvider {
   private _webviewViewHandleEvents(webviewView: WebviewView) {
     webviewView.webview.onDidReceiveMessage(async (message) => {
       await this._handleMessageFromWebview(message);
+    });
+
+    webviewView.onDidChangeVisibility(async () => {
+      if (webviewView.visible) {
+        await this._loadChat();
+      }
     });
   }
 
