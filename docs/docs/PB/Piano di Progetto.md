@@ -672,12 +672,12 @@ In questo periodo, il gruppo si concentrerà sul completamento della documentazi
 
 ###### Gestione dei rischi
 
-**Rischi attesi**
+####### Rischi attesi
 
 - _RO1_: Avanzamento lento per mancanza di esperienza.
 - _RO2_: Ritardi dovuti a problemi individuali.
 
-**Rischi occorsi**
+####### Rischi occorsi
 Durante lo %%sprint|sprint%% 7, il gruppo ha incontrato diversi rischi previsti in fase di pianificazione. In particolare, il rischio RO1 "avanzamento lento per mancanza di esperienza" si è concretizzato nella difficoltà di conciliare le attività di progetto con la preparazione della presentazione RTB e la finalizzazione dei documenti. Questo ha rallentato l’avanzamento generale dei lavori, ma il gruppo è riuscito a recuperare nei giorni successivi grazie a una riorganizzazione delle attività.
 Si è manifestato anche il rischio RO5, legato alla sottostima delle attività. I compiti di completamento e revisione della documentazione hanno richiesto più tempo del previsto, rendendo necessario uno sforzo aggiuntivo nelle fasi finali dello %%sprint|sprint%%.
 Infine, si è verificato anche il rischio RO2, relativo a problemi individuali, in forma di discontinuità nella partecipazione alle riunioni. Non tutti i membri sono riusciti a essere presenti agli incontri di gruppo. Il problema è stato mitigato aggiornando singolarmente i membri assenti con brevi resoconti di quanto discusso.
@@ -756,13 +756,13 @@ In questo periodo, il gruppo si concentrerà sulla progettazione e sul miglioram
 
 ###### Gestione dei rischi
 
-**Rischi attesi**
+####### Rischi attesi
 
 - _RT2_: Apprendimento e utilizzo di nuove tecnologie.
 - _RT3_: Mancanza di esperienza con Jest per i test unitari.
 - _TO6_: Difficoltà nella scrittura della documentazione tecnica.
 
-**Rischi occorsi**
+####### Rischi occorsi
 Durante lo %%sprint|sprint%% 8, il team ha affrontato il rischio TO6, relativo alla difficoltà nella stesura della documentazione tecnica, in particolare nella redazione del documento delle specifiche tecniche. La complessità e la quantità di dettagli richiesti hanno rallentato il lavoro inizialmente. Per velocizzare la redazione e aumentare l'efficienza nella risoluzione dei dubbi, il gruppo incaricato ha suddiviso il documento in sezioni, distribuendo il lavoro e agevolando il confronto tra i membri.
 Si sono verificati anche i rischi RT2 e RT3, entrambi legati all’uso di tecnologie, in particolare Jest per i test unitari. La difficoltà iniziale è stata superata grazie al supporto dei membri con maggiore esperienza, sono stati organizzati test di gruppo, durante i quali i dubbi sono stati chiariti in tempo reale. Questo approccio ha permesso un rapido apprendimento e una maggiore sicurezza nell’utilizzo dello strumento.
 Infine, si è manifestato anche il rischio RO2, relativo agli impegni personali. Alcuni membri del team hanno avuto difficoltà a garantire la piena disponibilità durante lo %%sprint|sprint%%.
