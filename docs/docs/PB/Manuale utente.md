@@ -48,10 +48,11 @@ Per evitare incomprensioni riguardanti la terminologia utilizzata all'interno de
 ### Prerequisiti
 [riferimenti all'installazione di software esterni:]
 [VS Code, node.js, Ollama]
+[Riferimenti alla documentazione dei prodotti / guida di installazione]
 
 
 ### Avvio
-[ comandi per l'avvio]
+[ NO comandi per l'avvio "in modalità sviluppo"]
 
 #### Apertura di un progetto e configurazione
 [screen VS Code area progetto -> "Esplora risorse"]
@@ -67,7 +68,7 @@ Per evitare incomprensioni riguardanti la terminologia utilizzata all'interno de
 
 #### Configurazione filtri
 [screen file per filtri]
-[descrizione procedura]
+[descrizione procedura e spiegazione funzionamento]
 
 
 ### Utilizzo
