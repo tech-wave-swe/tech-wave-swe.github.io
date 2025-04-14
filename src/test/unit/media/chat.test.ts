@@ -2,7 +2,6 @@
 import { jest, expect, describe, beforeEach, it } from "@jest/globals";
 import { JSDOM } from "jsdom";
 
-// Create DOM environment first
 const dom = new JSDOM(`
   <!DOCTYPE html>
   <html>
@@ -27,7 +26,6 @@ const dom = new JSDOM(`
   </html>
 `);
 
-// Mock the document and window objects
 global.document = dom.window.document;
 global.window = dom.window as any;
 global.HTMLInputElement = dom.window.HTMLInputElement;

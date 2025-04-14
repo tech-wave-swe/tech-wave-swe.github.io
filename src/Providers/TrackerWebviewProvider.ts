@@ -1,11 +1,11 @@
 import * as vscode from "vscode";
-import {TextEditorSelectionChangeEvent} from "vscode";
-import {RequirementsServiceFacade} from "../Facades/RequirementsServiceFacade";
-import {TrackerWebView} from "../WebViews/TrackerWebView";
+import { TextEditorSelectionChangeEvent } from "vscode";
+import { RequirementsServiceFacade } from "../Facades/RequirementsServiceFacade";
+import { TrackerWebView } from "../WebViews/TrackerWebView";
 import path from "path";
-import {TrackingResultService} from "../Services/TrackingResultService";
-import {CodeReference, TrackingResultSummary} from "../Models/TrackingModels";
-import {Requirement} from "../Models/Requirement";
+import { TrackingResultService } from "../Services/TrackingResultService";
+import { CodeReference, TrackingResultSummary } from "../Models/TrackingModels";
+import { Requirement } from "../Models/Requirement";
 
 export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
   private _webviewView?: vscode.WebviewView;
@@ -54,7 +54,9 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
     if (this._isEditMode && this._currentEditingReference != undefined) {
       this._sendMessageToWebview({
         type: "startEditMode",
-        requirementId: this._requirementsServiceFacade.getRequirement(this._currentEditingReference.requirementId),
+        requirementId: this._requirementsServiceFacade.getRequirement(
+          this._currentEditingReference.requirementId,
+        ),
         codeReference: this._currentEditingReference.codeReference,
       });
     }
@@ -109,11 +111,17 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
         );
 
       console.log("Analysis result:", analysis);
-      this._sendMessageToWebview({
-        type: "analysisResult",
-        requirementId,
-        analysis,
-      });
+      const trackingResults =
+        this._trackingResultService.getTrakingResultSummary();
+
+      if (trackingResults) {
+        this._sendMessageToWebview({
+          type: "analysisResult",
+          requirementId,
+          analysis,
+          summary: this._serializeTrackingResults(trackingResults),
+        });
+      }
     } catch (error) {
       vscode.window.showErrorMessage(`Analysis failed: ${error}`);
     }
@@ -329,7 +337,8 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
 
     this._sendMessageToWebview({
       type: "startEditMode",
-      requirement: this._requirementsServiceFacade.getRequirement(requirementId),
+      requirement:
+        this._requirementsServiceFacade.getRequirement(requirementId),
       codeReference: codeReference,
     });
   }
@@ -409,9 +418,8 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
       console.log(`Import complete. Got ${requirements.length} requirements`);
       this._sendMessageToWebview({
         type: "requirementsImported",
-        count: requirements.length,
-        requirements: requirements,
         summary: this._trackingResultService.getTrakingResultSummary(),
+        requirements: requirements,
       });
 
       // Update the requirements display
@@ -451,7 +459,7 @@ export class TrackerWebviewProvider implements vscode.WebviewViewProvider {
       this._sendMessageToWebview({
         type: "trackingResults",
         summary: this._serializeTrackingResults(trackingResults),
-        requirements: this._requirementsServiceFacade.getAllRequirements()
+        requirements: this._requirementsServiceFacade.getAllRequirements(),
       });
 
       console.log("Tracking complete");

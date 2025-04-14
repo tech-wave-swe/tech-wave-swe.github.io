@@ -34,24 +34,6 @@ export class ChatWebviewProvider implements vscode.WebviewViewProvider {
     this._webviewViewHandleEvents(webviewView);
 
     this._webviewView = webviewView;
-
-    // Set initial loading state
-    this._sendMessageToWebview({ type: "setLoading", isLoading: true });
-
-    try {
-      // Load chat history
-      const messages = await this._chatService.getMessages();
-      if (messages.length > 0) {
-        this._sendMessageToWebview({ type: "setHistory", messages });
-      } else {
-        this._sendMessageToWebview({ type: "clearHistory" });
-      }
-    } catch (error) {
-      console.error("Failed to load chat history:", error);
-      this._sendMessageToWebview({ type: "clearHistory" });
-    } finally {
-      this._sendMessageToWebview({ type: "setLoading", isLoading: false });
-    }
   }
 
   private _webviewViewConfigure(webviewView: vscode.WebviewView) {
@@ -81,6 +63,11 @@ export class ChatWebviewProvider implements vscode.WebviewViewProvider {
     switch (message.type) {
       case "sendMessage": {
         await this._onSendMessage(message);
+        break;
+      }
+
+      case "getMessageHistory": {
+        await this._onGetMessageHistory();
         break;
       }
 
@@ -151,6 +138,26 @@ export class ChatWebviewProvider implements vscode.WebviewViewProvider {
           text: `Error: ${error instanceof Error ? error.message : "Unknown error"}`,
         },
       });
+    } finally {
+      this._sendMessageToWebview({ type: "setLoading", isLoading: false });
+    }
+  }
+
+  private async _onGetMessageHistory() {
+    // Set initial loading state
+    this._sendMessageToWebview({ type: "setLoading", isLoading: true });
+
+    try {
+      // Load chat history
+      const messages = await this._chatService.getMessages();
+      if (messages.length > 0) {
+        this._sendMessageToWebview({ type: "setHistory", messages });
+      } else {
+        this._sendMessageToWebview({ type: "clearHistory" });
+      }
+    } catch (error) {
+      console.error("Failed to load chat history:", error);
+      this._sendMessageToWebview({ type: "clearHistory" });
     } finally {
       this._sendMessageToWebview({ type: "setLoading", isLoading: false });
     }
