@@ -27,14 +27,25 @@ import { OpenSidebarCommand } from "./Commands/OpenSidebarCommand";
 import { InterrogateDocumentCommand } from "./Commands/InterrogateDocumentCommand";
 import { TrackingResultService } from "./Services/TrackingResultService";
 import { ClearRequirementsHistoryCommand } from "./Commands/ClearRequirementsHistoryCommand";
+import path from "path";
 
 export function activate(context: vscode.ExtensionContext) {
   try {
     // Initialize Services
     _initializeConfigService();
 
+    let lancedbPath = context.globalStorageUri.fsPath;
+    const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
+
+    if (workspaceFolder) {
+      lancedbPath = path.join(lancedbPath, workspaceFolder.name);
+    }
+
+    console.log(workspaceFolder);
+    console.log(lancedbPath);
+
     const languageModel = new LangChainOllamaAdapter();
-    const lanceDBAdapter = new LanceDBAdapter(context.globalStorageUri.fsPath);
+    const lanceDBAdapter = new LanceDBAdapter(lancedbPath);
 
     // Initialize View Providers
     _initializeChatViewProvider(context, languageModel, lanceDBAdapter);

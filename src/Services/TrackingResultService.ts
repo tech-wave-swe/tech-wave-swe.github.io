@@ -92,6 +92,9 @@ export class TrackingResultService {
       throw new Error("No details found.");
     }
 
+    // Increment confirmed matches before deleting the requirement
+    this._details.confirmedMatches++;
+    
     await this._deleteRequirement(id);
   }
 
@@ -141,15 +144,9 @@ export class TrackingResultService {
     }
   }
 
-  private _DStoTRS(): TrackingResultSummary {
+  private _DStoTRS(): TrackingResultSummary | undefined {
     if (!this._details) {
-      return {
-        totalRequirements: 0,
-        confirmedMatches: 0,
-        possibleMatches: 0,
-        unlikelyMatches: 0,
-        requirementDetails: new Map<string, TrackingResult>(),
-      };
+      return undefined;
     }
 
     return {
@@ -185,7 +182,7 @@ export class TrackingResultService {
 
       res.results.forEach((result: TrackingResult) => {
         this._results.set(result.requirementId, result);
-      })
+      });
     }
   }
 }
