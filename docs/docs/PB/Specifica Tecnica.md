@@ -1,11 +1,11 @@
 ---
 id: specifica_tecnica
-title: "Specifica Tecnica"
+title: "Specifica Tecnica - v1.0.0"
 documentclass: TWDocumentFull
 toc: true
 lof: true
 numbersections: true
-version: 0.3.0
+version: 1.0.0
 classification: Esterno
 ---
 
@@ -17,11 +17,16 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 <details>
   <summary>Changelog</summary>
 
-| Data       | Versione | Descrizione                    | Autore                | Data Verifica | Verificatore  |
-|------------|----------|--------------------------------|-----------------------|---------------|---------------|
-| 07/04/2025 | 0.3.0    |                                |                       |               |               |
-| 19/03/2025 | 0.2.0    | Prima stesura delle tecnologie | Marcon Giulia         |               |               |
-| 18/03/2025 | 0.1.0    | Prima stesura del documento    | Vasquez Manuel Felipe | 19/03/2025    | Marcon Giulia |
+| Data       | Versione | Descrizione                                          | Autore                | Data Verifica | Verificatore        |
+|------------|----------|------------------------------------------------------|-----------------------|---------------|---------------------|
+| 12/04/2025 | 1.0.0    | Sezione Progettazione grafica                        | Carraro Agnese        | 14/04/2025    | Marcon Giulia       |
+| 08/04/2025 | 0.6.0    | Aggiunta classi View e Command                       | Piola Andrea          | 09/04/2025    | Dal Bianco Riccardo |
+| 08/04/2025 | 0.5.1    | Correzione sezione Tecnologie                        | Marcon Giulia         | 08/04/2025    | Pistori Gaia        |
+| 02/04/2025 | 0.5.0    | Sezione Diagramma delle classi                       | Dal Bianco Riccardo   | 06/04/2025    | Monetti Luca        |
+| 28/03/2025 | 0.4.0    | Sezione Design pattern                               | Piola Andrea          | 30/03/2025    | Monetti Luca        |
+| 25/03/2025 | 0.3.0    | Sezione Architettura logica                          | Pistori Gaia          | 25/03/2025    | Piola Andrea        |
+| 19/03/2025 | 0.2.0    | Sezione Tecnologie                                   | Marcon Giulia         | 21/03/2025    | Monetti Luca        |
+| 18/03/2025 | 0.1.0    | Prima stesura del documento. Sezione Introduzione    | Vasquez Manuel Felipe | 19/03/2025    | Marcon Giulia       |
 
 </details>
 
@@ -52,7 +57,7 @@ Per evitare incomprensioni riguardanti la terminologia utilizzata all'interno de
 #### Riferimenti normativi
 
 - **Norme di Progetto**: [Norme di Progetto - v1.8.1](../RTB/Norme%20di%20Progetto.md)
-- **Capitolato d'appalto C8: Requirement Tracker- Plug-in VS Code**: [https://www.math.unipd.it/~tullio/IS-1/2024/Progetto/C8.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Progetto/C8.pdf)
+- **Capitolato d'appalto C8: Requirement Tracker- Plug-in VSCode**: [https://www.math.unipd.it/~tullio/IS-1/2024/Progetto/C8.pdf](https://www.math.unipd.it/~tullio/IS-1/2024/Progetto/C8.pdf)
 
 #### Riferimenti informativi
 
@@ -71,7 +76,7 @@ Per evitare incomprensioni riguardanti la terminologia utilizzata all'interno de
 
 ## Tecnologie
 
-In questa sezione vengono descritti gli strumenti e le tecnologie utilizzati per lo sviluppo e l"implementazione del Requirement Tracker, un’estensione per Visual Studio Code (%%VSCode|vscode%%) che permette di tracciare e verificare i requisiti software. Le tecnologie sono state selezionate per garantire un’%%architettura|architettura%% modulare, scalabile e di facile manutenzione, con un focus particolare sull’integrazione con modelli di linguaggio avanzati (%%LLM|llm%%) e sulla gestione efficiente dei requisiti.
+In questa sezione vengono descritti gli strumenti e le tecnologie utilizzati per lo sviluppo e l'implementazione del Requirement Tracker, un’estensione per Visual Studio Code (%%VSCode|vscode%%) che permette di tracciare e verificare i requisiti software. Le tecnologie sono state selezionate per garantire un’%%architettura|architettura%% modulare, scalabile e di facile manutenzione, con un focus particolare sull’integrazione con modelli di linguaggio avanzati (%%LLM|llm%%) e sulla gestione efficiente dei requisiti.
 
 ### Linguaggio di programmazione
 
@@ -151,7 +156,7 @@ Documentazione: [LanceDB documentation](https://lancedb.github.io/lancedb/)
 Jest è un framework di testing JavaScript open-source sviluppato da Facebook. È utilizzato per scrivere e eseguire %%test|test%% automatizzati, garantendo che il codice funzioni come previsto. Jest è particolarmente apprezzato per la sua configurazione minima e per le sue capacità avanzate come il mock delle funzioni e la gestione dei %%test|test%% paralleli. È compatibile con progetti che utilizzano TypeScript e offre un'ottima integrazione con altri strumenti di sviluppo, come i framework di build e i bundler.
 
 Utilizzo nel progetto:
--Testing unitario: Jest è utilizzato per scrivere %%test|test%% unitari che verificano il corretto funzionamento delle singole funzioni e componenti dell'estensione.
+- Testing unitario: Jest è utilizzato per scrivere %%test|test%% unitari che verificano il corretto funzionamento delle singole funzioni e componenti dell'estensione.
 - Testing di integrazione: I %%test|test%% di integrazione sono stati scritti per garantire che diverse parti dell'estensione interagiscano correttamente, ad esempio, tra la logica di business e l'integrazione con le API di %%VSCode|vscode%%.
 - Mocking di funzioni esterne: Jest consente di simulare comportamenti di funzioni esterne come la comunicazione con i modelli di linguaggio, facilitando i %%test|test%% senza dipendenze esterne.
 - %%Verifica|verifica%% dei flussi di lavoro: Vengono testati i flussi di lavoro principali dell'estensione, come il caricamento dei requisiti, l'analisi del codice e l'interazione dell'utente.
@@ -187,35 +192,35 @@ Documentazione: [ReqIF specification](https://www.omg.org/spec/ReqIF/About-ReqIF
 
 ### Architettura logica
 
-L’architettura implementata si basa sugli eventi (EDA) generati dall’utente tramite l’applicativo VS Code. Per questo motivo, è stato scelto di usare l’architettura Model View Presenter (MVP).
+L’%%architettura|architettura%% implementata si basa sugli eventi (EDA) generati dall’utente tramite l’applicativo %%VSCode|vscode%%. Per questo motivo, è stato scelto di usare l’%%architettura|architettura%% Model View Presenter (%%MVP|mvp%%).
 
 #### Event driven architecture (EDA)
 
-Un’architettura guidata dagli eventi (EDA) è un’architettura software e un modello per la progettazione di applicazioni. Molti progetti di applicazioni moderne sono event-driven, come ad esempio il framework di Visual Studio Code. Le applicazioni event-driven possono essere create in qualsiasi linguaggio di programmazione, perché l’event-driven è un approccio di programmazione, non un linguaggio. Un’EDA è generalmente loosely coupled, perché i produttori di eventi non sanno quali consumatori sono in ascolto per un evento e l’evento non sa quali sono le conseguenze del suo “arrivo”. L’architettura event-driven offre infatti il grande vantaggio del disaccoppiamento, in cui produttori e consumatori di dati o servizi non devono comunicare direttamente, ma la loro attività è gestita centralmente da un componente terzo, consentendo un sistema più flessibile e scalabile. Questo a sua volta semplifica l’integrazione di nuovi componenti, promuove la tolleranza ai guasti e migliora l’efficienza complessiva del sistema.
+Un’%%architettura|architettura%% guidata dagli eventi (EDA) è un’%%architettura|architettura%% software e un modello per la progettazione di applicazioni. Molti progetti di applicazioni moderne sono event-driven, come ad esempio il framework di Visual Studio Code. Le applicazioni event-driven possono essere create in qualsiasi linguaggio di programmazione, perché l’event-driven è un approccio di programmazione, non un linguaggio. Un’EDA è generalmente loosely coupled, perché i produttori di eventi non sanno quali consumatori sono in ascolto per un evento e l’evento non sa quali sono le conseguenze del suo “arrivo”. L’%%architettura|architettura%% event-driven offre infatti il grande vantaggio del disaccoppiamento, in cui produttori e consumatori di dati o servizi non devono comunicare direttamente, ma la loro attività è gestita centralmente da un componente terzo, consentendo un sistema più flessibile e scalabile. Questo a sua volta semplifica l’integrazione di nuovi componenti, promuove la tolleranza ai guasti e migliora l’efficienza complessiva del sistema.
 
 #### Model View Presenter (MVP)
 
-Il Model-View-Presenter (MVP) è una derivazione dello schema Model-View-Controller (MVC). Entrambi sono ampiamente utilizzati per la creazione di applicazioni con interfaccia utente.
-I principali vantaggi del modello MVP sono:
+Il Model-View-Presenter (%%MVP|mvp%%) è una derivazione dello schema Model-View-Controller (MVC). Entrambi sono ampiamente utilizzati per la creazione di applicazioni con interfaccia utente.
+I principali vantaggi del modello %%MVP|mvp%% sono:
 - Separation of Concerns: dividere il codice in parti separate, ciascuna con la propria responsabilità. Ciò rende il codice più semplice, più riutilizzabile e più facile da gestire.
 - Unit Testing: poiché la logica (il presenter) dell'interfaccia utente è separata dal livello visivo (la view), è molto più facile testare queste parti in modo isolato.
 
-In MVP le tre componenti sono suddivise come segue:
+In %%MVP|mvp%% le tre componenti sono suddivise come segue:
 - Il model è un interfaccia che definisce i dati da visualizzare o su cui agire dall’'interfaccia utente.
 - La view è un interfaccia passiva che visualizza i dati (dal modello) e indirizza i comandi dell'utente (eventi) al presenter affinché agisca su tali dati.
-- Il presenter agisce sul model e sulla view. Recupera i dati dai repository (il modello) e li formatta per la visualizzazione nella vista.
+- Il presenter agisce sul model e sulla view. Recupera i dati dai %%repository|repository%% (il modello) e li formatta per la visualizzazione nella vista.
 
 ### Architettura di deployment
 
 #### Monolite
 
-Un'architettura monolitica è un modello tradizionale di un programma software, che è costruito come un'unità unificata, autosufficiente e indipendente da altre applicazioni. Un'architettura monolitica è una rete di elaborazione singolare e di grandi dimensioni con una codebase che unisce insieme tutti i business concerns. Per apportare una modifica a questo tipo di applicazione è necessario aggiornare l'intero stack accedendo alla codebase e creando e distribuendo una versione aggiornata dell'interfaccia lato servizio. Ciò rende gli aggiornamenti restrittivi, dispendiosi in termini di tempo e consente di rilasciare tutto il monolite in una volta.
+Un'%%architettura|architettura%% monolitica è un modello tradizionale di un programma software, che è costruito come un'unità unificata, autosufficiente e indipendente da altre applicazioni. Un'%%architettura|architettura%% monolitica è una rete di elaborazione singolare e di grandi dimensioni con una codebase che unisce insieme tutti i business concerns. Per apportare una modifica a questo tipo di applicazione è necessario aggiornare l'intero stack accedendo alla codebase e creando e distribuendo una versione aggiornata dell'interfaccia lato servizio. Ciò rende gli aggiornamenti restrittivi, dispendiosi in termini di tempo e consente di rilasciare tutto il monolite in una volta.
 
-I vantaggi di un'architettura monolitica includono: 
+I vantaggi di un'%%architettura|architettura%% monolitica includono: 
 - Facile distribuzione : un file eseguibile o una directory semplificano la distribuzione.
 - Sviluppo: quando un'applicazione viene creata con una singola codebase, è più facile svilupparla.
-- Prestazioni: in una codebase e un repository centralizzati, un'API può spesso eseguire la stessa funzione che numerose API eseguono con i microservizi.
-- Test semplificati: poiché un'applicazione monolitica è un'unità singola e centralizzata, i test end-to-end possono essere eseguiti più velocemente rispetto ad un'applicazione distribuita. 
+- Prestazioni: in una codebase e un %%repository|repository%% centralizzati, un'API può spesso eseguire la stessa funzione che numerose API eseguono con i microservizi.
+- %%Test|test%% semplificati: poiché un'applicazione monolitica è un'unità singola e centralizzata, i %%test|test%% end-to-end possono essere eseguiti più velocemente rispetto ad un'applicazione distribuita. 
 - Debug semplice: con tutto il codice in un unico posto, è più facile seguire una richiesta e trovare un problema.
 
 Gli svantaggi di un monolite includono: 
@@ -230,11 +235,11 @@ Gli svantaggi di un monolite includono:
 
 ####  Dependency Injection 
 
-È un *pattern architetturale* che consiste nel fornire le dipendenze di un oggetto dall’esterno, tramite il passaggio di parametri nel costruttore, invece di crearle internamente. Questo facilita l’implementazione di test di unità che utilizzano mock e garantisce di avere oggetti validi sin dall’istanziazione dell’oggetto della classe.
+È un *pattern architetturale* che consiste nel fornire le dipendenze di un oggetto dall’esterno, tramite il passaggio di parametri nel costruttore, invece di crearle internamente. Questo facilita l’implementazione di %%test|test%% di unità che utilizzano mock e garantisce di avere oggetti validi sin dall’istanziazione dell’oggetto della classe.
 
 #### MVP
 
-È un *pattern architetturale* con lo scopo di separare le responsabilità dei componenti di un’applicazione. Come già indicato nella sezione _/Architettura Logica/_ è stato utilizzato per l’implementazione dell’intero applicativo in quanto era necessario coordinare le componenti di dati e logica e interfaccia utente. 
+È un *pattern architetturale* con lo scopo di separare le responsabilità dei componenti di un’applicazione. Come già indicato nella sezione _/Architettura Logica/_ è stato utilizzato per l’implementazione dell’intero %%applicativo|applicativo%% in quanto era necessario coordinare le componenti di dati e logica e interfaccia utente. 
 Il *model* è implementata dalle classi _TrackingResultService_, _ChatService_ e _InferenceService_.
 La *view*, ovvero l’interfaccia grafica, è implementata dalla classe _TrackerWebView_, che rappresenta il pannello di visualizzazione dello stato di implementazione dei requisiti, e dalla classe _ChatWebView_ che rappresenta la chat tra l’utente e il modello.
 Il * presenter* è implementato dalle rispettive classi _ChatWebviewProvider_ e _TrackerWebviewProvider_ e rappresenta la gestione tra la business logic e l’interfaccia utente.
@@ -242,20 +247,20 @@ Il * presenter* è implementato dalle rispettive classi _ChatWebviewProvider_ e 
 #### Singleton
 
 È un *pattern creazionale* che garantisce l’esistenza di un’unica istanza di una classe e permette di avere un punto di accesso globale a questa. 
-È stato utilizzato nella classe _GlobalStateService_ la quale rappresenta lo stato nell’applicativo. All’interno sono memorizzati la chat e la lista dei requisiti con le relative informazioni. È necessario garantire l’unicità in quanto, per ogni scheda di VS Code aperta, è possibile avere una sola istanza dell’estensione.
+È stato utilizzato nella classe _GlobalStateService_ la quale rappresenta lo stato nell’%%applicativo|applicativo%%. All’interno sono memorizzati la chat e la lista dei requisiti con le relative informazioni. È necessario garantire l’unicità in quanto, per ogni scheda di %%VSCode|vscode%% aperta, è possibile avere una sola istanza dell’estensione.
 Allo stesso modo, la classe _ConfigServiceFacade_ rappresenta le configurazioni scelte dall’utente sia nel contesto globale che nel singolo progetto ed è necessario quindi siano memorizzate in un’unica istanza per non generare conflitti.
 In entrambi i casi risulta molto utile l’uso del Singleton per avere un punto di accesso globale alle informazioni.
 
 #### Adapter
 
 È un *pattern strutturale* che permette di convertire un’interfaccia di una classe in un’altra. Questo si implementa definendo una classe adapter che adatti le interfacce.
-È stato utilizzato nella classe _LanceDBAdapter_ per permettere all’applicativo di interfacciarsi con il database vettoriale per memorizzare il parsing dei requisiti e il loro stato.
-È stato utilizzato anche nella _LangChainOllamaAdapter_ che permette l’interfaccia con l’applicativo Ollama che gestisce l’interrogazione e il funzionamento dei modelli LLM.
+È stato utilizzato nella classe _LanceDBAdapter_ per permettere all’%%applicativo|applicativo%% di interfacciarsi con il database vettoriale per memorizzare il parsing dei requisiti e il loro stato.
+È stato utilizzato anche nella _LangChainOllamaAdapter_ che permette l’interfaccia con l’applicativo %%Ollama|ollama%% che gestisce l’interrogazione e il funzionamento dei modelli %%LLM|llm%%.
 
 #### Facade
 
 È un *pattern strutturale* che permette di fornire un’interfaccia unica semplice per un sottosistema complesso. Questo permette di diminuire la complessità del sistema.
-È stato usato nella classe _DocumentServiceFacade_ la quale fornisce una serie di metodi per la formattazione e la trasformazione in formato vettoriale dei documenti da analizzare da LLM. Infatti, la classe si interfaccia con l'estensione e il contesto dell’utente per analizzare i file selezionati e per permetterne l’elaborazione e la memorizzazione nel database.
+È stato usato nella classe _DocumentServiceFacade_ la quale fornisce una serie di metodi per la formattazione e la trasformazione in formato vettoriale dei documenti da analizzare da %%LLM|llm%%. Infatti, la classe si interfaccia con l'estensione e il contesto dell’utente per analizzare i file selezionati e per permetterne l’elaborazione e la memorizzazione nel database.
 In modo simile, è stato usato nella classe _RequirementsServiceFacade_ la quale implementa al suo interno i metodi per la gestione dell’importazione e il tracciamento dei requisiti.
 È stato usato anche nella classe _ConfigServiceFacade_ la quale mette a disposizione i metodi per la modifica delle configurazioni dell’utente e dialoga con la classe _ConfigService_.
 Queste scelte hanno permesso di diminuire la complessità del sistema unificando funzionalità articolate all’interno di metodi di utilità.
@@ -268,7 +273,7 @@ _OpenSidebarCommand_ e _ResetDatabaseCommand_. Queste corrispondono ai comandi c
 
 #### Memento
 È un *pattern comportamentale* che permette di salvare e recuperare lo stato di un oggetto senza rivelare dettagli della sua implementazione.
-Questa scelta architetturale è imposta da VS Code Extension API che richiede di utilizzarlo per la gestione del _workspaceState_ e del _globalState_, da noi utilizzate nella classe _GlobalStateService_.
+Questa scelta architetturale è imposta da %%VSCode|vscode%% Extension API che richiede di utilizzarlo per la gestione del _workspaceState_ e del _globalState_, da noi utilizzate nella classe _GlobalStateService_.
 
 [Documentazione Memento](https://code.visualstudio.com/api/references/vscode-api#Memento) 
 
@@ -277,24 +282,24 @@ Questa scelta architetturale è imposta da VS Code Extension API che richiede di
 È un *pattern comportamentale* che definisce una famiglia di algoritmi, rendendoli interscambiabili e indipendenti dal client.
 Usato nella classe _ParsingService_ in quanto si ha l’esigenza di avere due differenti varianti dello stesso algoritmo. Infatti l’estrapolazione di requisiti può essere svolta prendendo le informazioni da un file in formato csv o in requif. Questo permette il riuso del contesto ed una gestione separata dei due algoritmi. Rende facile anche l’implementazione di nuovi algoritmi per la gestione di formati diversi.
 
-### Diagramma delle classi = servizi implementati [generale + singola classe]
+### Diagramma delle classi
 
-Il diagramma delle classi fornisce una panoramica generale della struttura interna dell'estensione, evidenziando i principali componenti software, le loro responsabilità e le relazioni tra essi. L'architettura è progettata per essere modulare e estendibile seguendo un approccio event-driven nelle interazioni con VS Code e basato sul pattern MVP per l'organizzazione interna.
+Il diagramma delle classi fornisce una panoramica generale della struttura interna dell'estensione, evidenziando i principali componenti software, le loro responsabilità e le relazioni tra essi. L'%%architettura|architettura%% è progettata per essere modulare e estendibile seguendo un approccio event-driven nelle interazioni con %%VSCode|vscode%% e basato sul pattern %%MVP|mvp%% per l'organizzazione interna.
 
 I componenti sono suddivisi in diversi blocchi funzionali:
 
 - **Comandi**: Rappresentano le azioni attivabili dall'utente. Sono centralizzati nel CommandRegistry e implementano un'interfaccia comune che definisce il comportamento standard dei comandi.
-- **Interfaccia VS Code**: Contiene le componenti fornite da VS Code e gestisce la creazione e la visualizzazione delle WebView.
+- **Interfaccia VSCode**: Contiene le componenti fornite da %%VSCode|vscode%% e gestisce la creazione e la visualizzazione delle WebView.
 - **Provider**: Agiscono come intermediari tra la WebView e i servizi applicativi. Ricevono eventi dalla UI e instradano le richieste verso i servizi appropriati.
 - **WebView**: Sono i componenti grafici visualizzati all'interno dell'estensione. Si interfacciano con i rispettivi provider per ricevere dati o inviare comandi.
 - **Servizi centrali**: Contengono la logica principale per la gestione delle interazioni in chat e l'esecuzione di inferenze su modelli linguistici. Interagiscono direttamente con adattatori e il database vettoriale.
 - **Gestione dello stato**: Implementato come singleton, mantiene lo stato persistente dell'estensione e fornisce metodi di lettura/scrittura accessibili a più componenti.
-- **Adapter e interfacce esterne**: Permettono di astrarre e integrare tecnologie esterne per il database vettoriale e i modelli LLM.
+- **Adapter e interfacce esterne**: Permettono di astrarre e integrare tecnologie esterne per il database vettoriale e i modelli %%LLM|llm%%.
 - **Servizi di tracciamento e gestione requisiti**: Coordinano le attività legate alla gestione, analisi e tracciamento dei requisiti software.
 - **Servizi documentali**: Gestiscono l'elaborazione dei file sorgente in frammenti per l'analisi semantica.
 - **Configurazione e file system**: Si occupano rispettivamente della lettura e validazione delle configurazioni e dell'accesso al file system del progetto.
 
-Il  modello di comunicazione ibrido permette di sfruttare la flessibilità dell'architettura event-driven nelle interazioni con VS Code, mantenendo al contempo un flusso di controllo chiaro e prevedibile all'interno dell'estensione stessa.
+Il  modello di comunicazione ibrido permette di sfruttare la flessibilità dell'%%architettura|architettura%% event-driven nelle interazioni con %%VSCode|vscode%%, mantenendo al contempo un flusso di controllo chiaro e prevedibile all'interno dell'estensione stessa.
 
 <img src="/img/Diagrams/diagram.png" alt="UML Diagram" data-width="70%" />
 
@@ -308,7 +313,7 @@ Il  modello di comunicazione ibrido permette di sfruttare la flessibilità dell'
 ##### ChatMessage
 
 L’interfaccia *ChatMessage* ha lo scopo di modellare un messaggio di una chat.
-Definisce la struttura di ogni messaggio indicando il mittente (_sender_) che può essere l’utente (_user_) o il modello LLM (_model_), il contenuto del messaggio in forma di stringa (_text_) e un timestamp che indica quando il messaggio è stato inviato.
+Definisce la struttura di ogni messaggio indicando il mittente (_sender_) che può essere l’utente (_user_) o il modello %%LLM|llm%% (_model_), il contenuto del messaggio in forma di stringa (_text_) e un timestamp che indica quando il messaggio è stato inviato.
 
 ##### File
 
@@ -316,7 +321,7 @@ L’interfaccia *File* ha lo scopo di modellare un file all’interno del proget
 
 ##### Requirement
 
-L’interfaccia *Requirement* ha lo scopo di modellare un requisito software. Memorizza, all'interno di campi testuali: l’identificativo univoco (_id_), il nome (_name_), la descrizione (_description_), la tipologia (_type_) e la versione (_version_). Inoltre vengono memorizzati: lo stato tramite un oggetto del tipo _RequirementStatus_ (_status_) e come campi opzionali il punteggio (_score_) e la porzione di codice dove è stato implementato (_codereference_).
+L’interfaccia *Requirement* ha lo scopo di modellare un %%requisito software|requisito_software%%. Memorizza, all'interno di campi testuali: l’identificativo univoco (_id_), il nome (_name_), la descrizione (_description_), la tipologia (_type_) e la versione (_version_). Inoltre vengono memorizzati: lo stato tramite un oggetto del tipo _RequirementStatus_ (_status_) e come campi opzionali il punteggio (_score_) e la porzione di codice dove è stato implementato (_codereference_).
 _RequirementStatus_ è un enum definito all’interno che rappresenta lo stato di implementazione di un requisito: tracciato (_TRACKED_), non tracciato (_NOT/_TRACKED_), pendente (_PENDING_) e sconosciuto (_UNKNOW_).
 
 ##### Chunk
@@ -330,7 +335,7 @@ L’enum *CollectionType* ha lo scopo di modellare di categorizzare i tipi di co
 ##### Config
 
 Il modulo *Config* ha lo scopo di modellare la configurazione del sistema.
-Contiene un enum (_ConfigKey_) e la rispettiva interfaccia (_Config_) la quale rappresenta l’insieme delle configurazioni. In campi testuali vengono rappresenti: endpoint dell’applicativo Ollama (_endpoint_), il token di autenticazione (_bearerToken_), il nome del modello per la generazione di codice (_model_), il nome del modello per l’embedding (_embeddingModel_). In campi numerici vengono rappresentati la temperature dei modelli (_temperature_) e il numero massimo di risultati (_maxResults_). Inoltre è presente un campo per l’interfaccia _ConfigFilters_ anch’essa definita all’interno del modulo e che rappresenta i filtri applicabili nella ricerca: basati su percorsi dei file (_path_), sulle estensioni dei file (_file/_extension_) e sui requisiti selezionati (_requirement_).
+Contiene un enum (_ConfigKey_) e la rispettiva interfaccia (_Config_) la quale rappresenta l’insieme delle configurazioni. In campi testuali vengono rappresenti: endpoint dell’applicativo %%Ollama|ollama%% (_endpoint_), il token di autenticazione (_bearerToken_), il nome del modello per la generazione di codice (_model_), il nome del modello per l’embedding (_embeddingModel_). In campi numerici vengono rappresentati la temperature dei modelli (_temperature_) e il numero massimo di risultati (_maxResults_). Inoltre è presente un campo per l’interfaccia _ConfigFilters_ anch’essa definita all’interno del modulo e che rappresenta i filtri applicabili nella ricerca: basati su percorsi dei file (_path_), sulle estensioni dei file (_file/_extension_) e sui requisiti selezionati (_requirement_).
 
 ##### Filter
 
@@ -419,8 +424,8 @@ I comandi implementati nell’estensione sono classi che estendono _ICommands_. 
 - *ClearRequirementsHistoryCommand* permette la cancellazione di tutti i requisiti caricati nel sistema. È accessibile con il nome "requirementsTracker.clearRequirementsHistory".
 - *InterrogateDocumentCommand* permette di analizzare l'intero contenuto del documento attivo nel contesto dei requisiti caricati. È accessibile con il nome "requirementsTracker.interrogateDocument".
 - *InterrogateSelectionCommand* permette di analizzare solo il testo selezionato nell'editor attivo nel contesto dei requisiti caricati. È accessibile con il nome "requirementsTracker.interrogateSelection".
-- *OpenSettingsCommand* permette di aprire direttamente la pagina delle impostazioni dell'estensione Requirements Tracker nell'interfaccia delle impostazioni di VSCode. È accessibile con il nome "requirementsTracker.openSettings".
-- *OpenSidebarCommand* permette di aprire la barra laterale dell'estensione Requirements Tracker all'interno di VSCode. È accessibile con il nome "requirementsTracker.openSidebar".
+- *OpenSettingsCommand* permette di aprire direttamente la pagina delle impostazioni dell'estensione Requirements Tracker nell'interfaccia delle impostazioni di %%VSCode|vscode%%. È accessibile con il nome "requirementsTracker.openSettings".
+- *OpenSidebarCommand* permette di aprire la barra laterale dell'estensione Requirements Tracker all'interno di %%VSCode|vscode%%. È accessibile con il nome "requirementsTracker.openSidebar".
 - *ResetDatabaseCommand* permette di reimpostare il database vettoriale utilizzato per l'indicizzazione di codice e requisiti. È accessibile con il nome "requirementsTracker.resetDatabase".
 
 ##### ICommand
@@ -444,7 +449,7 @@ Mette a disposizione i metodi:
 
 <img src="/img/Diagrams/globalState.png" alt="GlobalState Service UML Diagram" data-width="70%" />
 
-La classe *GlobalStateService* si occupa della gestione dello stato globale dell’estensione usando l’API di stato globale di VS Code.
+La classe *GlobalStateService* si occupa della gestione dello stato globale dell’estensione usando l’API di stato globale di %%VSCode|vscode%%.
 Mette a disposizione i metodi:
 - updateState il quale permette di aggiornare lo stato dell’applicazione riguardo i requisiti o la chat.
 - getState il quale permette di ottenere lo stato dell’applicazione riguardo i requisiti o la chat.
@@ -456,8 +461,8 @@ Mette a disposizione i metodi:
 
 ###### ConfigService
 
-La classe *ConfigService* si occupa di gestire la configurazione dell’estensione combinando le impostazioni globali provenienti da VS Code con le configurazioni globali del progetto.
-Al suo interno contiene un'istanza del servizio _FileSystemService_ per l’aggiornamento delle configurazioni dell’applicativo.
+La classe *ConfigService* si occupa di gestire la configurazione dell’estensione combinando le impostazioni globali provenienti da %%VSCode|vscode%% con le configurazioni globali del progetto.
+Al suo interno contiene un'istanza del servizio _FileSystemService_ per l’aggiornamento delle configurazioni dell’%%applicativo|applicativo%%.
 Mette a disposizione i metodi:
 - GetConfig il quale ritorna un array di oggetti contenenti lo stato di tutte le configurazioni
 - /_getLocalConfig il quale ritorna lo stato delle configurazioni locali.
@@ -472,12 +477,12 @@ Mette a disposizione i metodi:
 - Init il quale inizializza l'istanza singleton e la restituisce.
 - GetInstance il quale restituisce l'istanza singleton esistente.
 - sync il quale sincronizza la cache interna con le configurazioni più recenti.
-- _getConfigValue il quale restituisce un valore di configurazione specifico, sincronizzando se necessario.
+- /_getConfigValue il quale restituisce un valore di configurazione specifico, sincronizzando se necessario.
 - getOllamaModel il quale restituisce il nome del modello per la generazione del codice scelto.
 - getEmbeddingModel il quale restituisce il modello di embedding scelto.
 - getMaxResults il quale restituisce il numero massimo di risultati configurato.
 - getTemperature il quale restituisce la temperatura configurata per il modello.
-- getEndpoint il quale restituisce l'endpoint di Ollama configurato.
+- getEndpoint il quale restituisce l'endpoint di %%Ollama|ollama%% configurato.
 - getBearerToken il quale restituisce il token di autenticazione configurato.
 - getFilters il quale restituisce i filtri scelti.
 
@@ -496,8 +501,8 @@ Mette a disposizione i metodi:
 - clearRequirements il quale cancella la lista dei requisiti
 - getById il quale restituisce un requisito a partire dal suo id
 - deleteRequirement il quale cancella un requisito a partire dal suo id
-- _saveRequirements il quale salva nel _GlobalStateService_ i requisiti
-- _loadRequirements il quale aggiorna nel _GlobalStateService_ i requisiti
+- /_saveRequirements il quale salva nel _GlobalStateService_ i requisiti
+- /_loadRequirements il quale aggiorna nel _GlobalStateService_ i requisiti
 
 ###### RequirementsServiceFacade
 
@@ -532,7 +537,7 @@ Mette a disposizione i metodi:
 
 ###### RequirementsTrackerService
 
-La classe *RequirementsTrackerService* si occupa della gestione del tracciamento dell’implementazione dei requisiti nel codice sorgente. Interagisce con  il database vettoriale (_IVectorDatabase_), il servizio di gestione dei documenti (_DocumentServiceFacade_), i filtri (_FilterService_) e il modello LLM (_ILanguageModel_).
+La classe *RequirementsTrackerService* si occupa della gestione del tracciamento dell’implementazione dei requisiti nel codice sorgente. Interagisce con  il database vettoriale (_IVectorDatabase_), il servizio di gestione dei documenti (_DocumentServiceFacade_), i filtri (_FilterService_) e il modello %%LLM|llm%% (_ILanguageModel_).
 Mette a disposizione i metodi:
 - analyzeImplementation il quale analizza se il codice fornito implementa effettivamente il requisito creando il prompt con il quale interrogare il modello.
 - trackRequirementImplementation il quale traccia l'implementazione di un singolo requisito, trovando codice correlato, convertendolo in riferimenti e determinando lo stato di implementazione e il punteggio.
@@ -543,7 +548,7 @@ Mette a disposizione i metodi:
 - /_determineImplementationStatus il quale determina lo stato di implementazione  in base al punteggio medio dei riferimenti al codice.
 - /_calculateImplementationScore il quale calcola un punteggio complessivo per l'implementazione basato sui singoli riferimenti al codice trovati.
 - /_calculateAverageScore il quale calcola il punteggio medio del punteggio dell'implementazione.
-- /_findWorkspaceCodeFiles il quale trova tutti i file di codice nel workspace VS Code applicando i filtri di inclusione ed esclusione configurati.
+- /_findWorkspaceCodeFiles il quale trova tutti i file di codice nel workspace %%VSCode|vscode%% applicando i filtri di inclusione ed esclusione configurati.
 - /_getFilters il quale restituisce i filtri per file e percorsi.
 
 ##### TrackingResultService
@@ -590,14 +595,14 @@ Mette a disposizione i metodi:
 
 ###### InferenceService
 
-La classe *InferenceService* si occupa della gestione delle inference basate sui modelli LLM a partire da query eseguite sul database vettoriale.
+La classe *InferenceService* si occupa della gestione delle inference basate sui modelli %%LLM|llm%% a partire da query eseguite sul database vettoriale.
 Mette a disposizione i metodi:
-- query il quale permette di effettuare una chiamata a LLM tramite Ollama.
-- checkSystemRequirement il quale permettedi effettuare un controllo sulla connessione al servizio Ollama.
+- query il quale permette di effettuare una chiamata a %%LLM|llm%% tramite %%Ollama|ollama%%.
+- checkSystemRequirement il quale permettedi effettuare un controllo sulla connessione al servizio %%Ollama|ollama%%.
 
 ###### ILanguageModel
 
-L’interfaccia *ILanguageModel* ha lo scopo di modellare l’interazione con i modelli LLM. Modella i metodi:
+L’interfaccia *ILanguageModel* ha lo scopo di modellare l’interazione con i modelli %%LLM|llm%%. Modella i metodi:
 - generate il quale genera una risposta testuale a partire da un prompt.
 - generateEmbeddings il quale esegue l’embedding di una stringa.
 - refreshModels il quale aggiorna i modelli in seguito a cambiamenti nella configurazione.
@@ -617,9 +622,9 @@ L’interfaccia *IVectorDatabase* ha lo scopo di modellare l’interazione con i
 
 ###### LangChainOllamaAdapter
 
-La classe *LangChainOllamaAdapter* implementa l’interfaccia _ILanguageModel_ e si occupa di fornire un’implementazione per l’interazione dei modelli usando Ollama.
+La classe *LangChainOllamaAdapter* implementa l’interfaccia _ILanguageModel_ e si occupa di fornire un’implementazione per l’interazione dei modelli usando %%Ollama|ollama%%.
 Oltre a fornire l’implementazione dei metodi dell’interfaccia, mette a disposizione:
-- /_initialize il quale permette di configurare le istanze di Ollama e OllamaEmbeddings con i parametri di configurazione.
+- /_initialize il quale permette di configurare le istanze di %%Ollama|ollama%% e OllamaEmbeddings con i parametri di configurazione.
 - getEmbeddings il quale permette di restituire l'istanza di OllamaEmbeddings utilizzata per generare gli embedding.
 
 ###### LanceDBAdapter
@@ -639,7 +644,7 @@ Oltre a fornire l’implementazione dei metodi dell’interfaccia, mette a dispo
 <img src="/img/Diagrams/chat.png" alt="Chat Service UML Diagram" data-width="70%" />
 
 La classe *ChatService* rappresenta il servizio di chat fornito dall’estensione.
-Al suo interno contiene un'istanza del servizio _GlobalStateService_ per l’aggiornamento dello stato dell’applicativo.
+Al suo interno contiene un'istanza del servizio _GlobalStateService_ per l’aggiornamento dello stato dell’%%applicativo|applicativo%%.
 Mette a disposizione i metodi asincroni:
 - addMessage il quale permette l’aggiunta di nuovi messaggi.
 - saveMessage il quale permette il salvataggio della cronologia della chat.
@@ -657,8 +662,8 @@ Il pannello si compone di quattro sezioni principali, accessibili tramite tab ne
 <img src="/img/GraphicDesign/Import.png" alt="Pannello Import" data-width="70%" />
 
 Il pannello *Import* permette di caricare dei requisiti in due modalità:
-- caricamento di un file locale (es. .csv o .reqIF), selezionabile tramite il pulsante “Choose File”.
-- incollando i requisiti direttamente sulla sezione apposita (sotto “Or Paste Content”).
+- Caricamento di un file locale (es. .csv o .reqIF), selezionabile tramite il pulsante “Choose File”.
+- Incollando i requisiti direttamente sulla sezione apposita (sotto “Or Paste Content”).
 
 Per caricare i requisiti bisogna inoltre selezionare il tipo di file (CSV o  reqIF) sul pulsante di selezione sotto la sezione “Format”. Esiste anche l’opzione di scegliere un delimitatore csv personalizzato sotto la sezione “CSV Delimiter”. Una volta scelto il file o dopo aver incollato a mano i requisiti, questi possono essere caricati tramite il pulsante “Import Requirements”.
 
@@ -667,8 +672,8 @@ Per caricare i requisiti bisogna inoltre selezionare il tipo di file (CSV o  req
 <img src="/img/GraphicDesign/Track.png" alt="Pannello Track" data-width="70%" />
 
 Nel pannello Track l’utente può:
-- tracciare requisiti specifici selezionandoli dalla lista caricata.
-- tracciare tutti i requisiti contemporaneamente selezionando l’opzione “Track all requirements”.
+- Tracciare requisiti specifici selezionandoli dalla lista caricata.
+- Tracciare tutti i requisiti contemporaneamente selezionando l’opzione “Track all requirements”.
 
 Il tracciamento si avvia con il pulsante “Start Tracking”.
 
@@ -681,8 +686,8 @@ Sono inoltre disponibili le seguenti funzionalità:
 <img src="/img/GraphicDesign/Results.png" alt="Pannello Results" data-width="70%" />
 
 Nel pannello Results vengono mostrati i risultati dell’analisi:
-- una sezione “Code Match Summary” presenta un riepilogo dei requisiti suddivisi in Confirmed match, Possible match e Unlikely match.
-- l’utente può visualizzare i dettagli di ciascun requisito tracciato e cliccare su un riferimento per confermarne l’implementazione.
+- Una sezione “Code Match Summary” presenta un riepilogo dei requisiti suddivisi in Confirmed match, Possible match e Unlikely match.
+- L’utente può visualizzare i dettagli di ciascun requisito tracciato e cliccare su un riferimento per confermarne l’implementazione.
  
 #### Chat
 
