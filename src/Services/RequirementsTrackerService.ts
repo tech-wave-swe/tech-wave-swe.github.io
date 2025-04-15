@@ -1,4 +1,4 @@
-import { Requirement } from "../Models/Requirement";
+import {Requirement, RequirementStatus} from "../Models/Requirement";
 import {
   TrackingResult,
   CodeReference,
@@ -12,23 +12,28 @@ import * as vscode from "vscode";
 import { FilterService } from "./FilterService";
 import { Chunk } from "../Models/Chunk";
 import {ConfigServiceFacade} from "../Facades/ConfigServiceFacade";
+import {TrackingResultService} from "./TrackingResultService";
+import {RequirementsServiceFacade} from "../Facades/RequirementsServiceFacade";
 
 export class RequirementsTrackerService {
   private _vectorDatabase: IVectorDatabase;
   private _documentServiceFacade: DocumentServiceFacade;
   private _filterService: FilterService;
   private _languageModel: ILanguageModel;
+  private _trackingResultService: TrackingResultService;
 
   constructor(
     vectorDatabase: IVectorDatabase,
     documentServiceFacade: DocumentServiceFacade,
     filterService: FilterService,
     languageModel: ILanguageModel,
+    trackingResultService: TrackingResultService,
   ) {
     this._vectorDatabase = vectorDatabase;
     this._documentServiceFacade = documentServiceFacade;
     this._filterService = filterService;
     this._languageModel = languageModel;
+    this._trackingResultService = trackingResultService;
   }
 
   public async analyzeImplementation(
@@ -155,11 +160,6 @@ ${ref.snippet}`,
   public async trackAllRequirements(
     requirements: Requirement[],
   ): Promise<TrackingResultSummary> {
-    const results = new Map<string, TrackingResult>();
-    let confirmed = 0;
-    let possible = 0;
-    let unlikely = 0;
-
     try {
       return await vscode.window.withProgress(
         {
@@ -172,6 +172,18 @@ ${ref.snippet}`,
 
           const total = requirements.length;
           const batchSize = 20;
+
+          let summary = this._trackingResultService.getTrakingResultSummary();
+
+          if (!summary) {
+            summary = {
+              totalRequirements: requirements.length,
+              confirmedMatches: 0,
+              possibleMatches: 0,
+              unlikelyMatches: 0,
+              requirementDetails: new Map<string, TrackingResult>,
+            };
+          }
 
           for (
             let i = 0;
@@ -192,18 +204,38 @@ ${ref.snippet}`,
             const batchResults = await Promise.all(batchPromises);
 
             for (const { requirement, result } of batchResults) {
-              results.set(requirement.id, result);
+              const previousResult = summary.requirementDetails.get(requirement.id);
+
+              if (previousResult) {
+                summary.totalRequirements--;
+
+                switch (result.implementationStatus) {
+                  case "confirmed-match":
+                    summary.confirmedMatches--;
+                    break;
+                  case "possible-match":
+                    summary.possibleMatches--;
+                    break;
+                  case "unlikely-match":
+                    summary.unlikelyMatches--;
+                    break;
+                }
+              }
+
+              summary.totalRequirements++;
               switch (result.implementationStatus) {
                 case "confirmed-match":
-                  confirmed++;
+                  summary.confirmedMatches++;
                   break;
                 case "possible-match":
-                  possible++;
+                  summary.possibleMatches++;
                   break;
                 case "unlikely-match":
-                  unlikely++;
+                  summary.unlikelyMatches++;
                   break;
               }
+
+              summary.requirementDetails.set(requirement.id, result);
             }
 
             // Update progress
@@ -213,13 +245,7 @@ ${ref.snippet}`,
             });
           }
 
-          const summary = {
-            totalRequirements: requirements.length,
-            confirmedMatches: confirmed,
-            possibleMatches: possible,
-            unlikelyMatches: unlikely,
-            requirementDetails: results,
-          };
+          console.log(summary);
 
           return summary;
         },

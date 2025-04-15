@@ -20,6 +20,19 @@ export class RequirementsService {
     await this._saveRequirements();
   }
 
+  public async updateRequirementStatus(requirementId: string, status: RequirementStatus): Promise<void> {
+    const res = this._requirements.get(requirementId);
+
+    if (!res) {
+      return;
+    }
+
+    res.status = status;
+    this._requirements.set(requirementId, res);
+
+    await this._saveRequirements();
+  }
+
   public async addRequirements(requirements: Requirement[]): Promise<void> {
     requirements.forEach((requirement) => {
       this._requirements.set(requirement.id, requirement);

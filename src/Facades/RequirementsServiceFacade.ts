@@ -1,6 +1,6 @@
 import { ParsingService } from "../Services/ParsingService";
 import { RequirementsTrackerService } from "../Services/RequirementsTrackerService";
-import { Requirement } from "../Models/Requirement";
+import {Requirement, RequirementStatus} from "../Models/Requirement";
 import { CodeReference, TrackingResultSummary } from "../Models/TrackingModels";
 import { RequirementsService } from "../Services/RequirementsService";
 import { IVectorDatabase } from "../Interfaces/IVectorDatabase";
@@ -96,6 +96,10 @@ export class RequirementsServiceFacade {
     }
   }
 
+  public async updateRequirementStatus(requirementId: string, status: RequirementStatus): Promise<void> {
+    this._requirementsService.updateRequirementStatus(requirementId, status);
+  }
+
   public async trackRequirements(
     requirementIds?: string[],
   ): Promise<TrackingResultSummary> {
@@ -121,7 +125,13 @@ export class RequirementsServiceFacade {
       );
 
       // Track the requirements
-      return await this._trackerService.trackAllRequirements(reqs);
+      const res = await this._trackerService.trackAllRequirements(reqs);
+
+      for (const req of reqs) {
+        await this._requirementsService.updateRequirementStatus(req.id, RequirementStatus.PENDING);
+      }
+
+      return res;
     } catch (error) {
       console.error(`Error tracking requirements:`, error);
       throw error;

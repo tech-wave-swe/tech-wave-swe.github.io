@@ -111,9 +111,10 @@ function _initializeTrackerViewProvider(
   languageModel: LangChainOllamaAdapter,
   lanceDBAdapter: LanceDBAdapter,
 ) {
+  const globalStateService = new GlobalStateService(context.globalState);
   const parsingService = new ParsingService();
   const requirementsService = new RequirementsService(
-    new GlobalStateService(context.globalState),
+    globalStateService,
   );
 
   const documentServiceFacade = new DocumentServiceFacade(
@@ -121,11 +122,14 @@ function _initializeTrackerViewProvider(
     lanceDBAdapter,
   );
 
+  const trackingResultService = new TrackingResultService(globalStateService);
+
   const trackerService = new RequirementsTrackerService(
     lanceDBAdapter,
     documentServiceFacade,
     new FilterService(),
     languageModel,
+    trackingResultService,
   );
 
   const requirementsServiceFacade = new RequirementsServiceFacade(
@@ -141,7 +145,7 @@ function _initializeTrackerViewProvider(
       context.extensionUri,
       new FileSystemService(context.extensionUri.fsPath),
     ),
-    new TrackingResultService(new GlobalStateService(context.globalState)),
+    trackingResultService,
     context.extensionUri,
   );
 
