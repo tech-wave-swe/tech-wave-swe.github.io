@@ -78,6 +78,9 @@ function handleEvents() {
       }
     },
   );
+
+  console.log("Initialize chat history");
+  getMessageHistory();
 }
 
 /**
@@ -284,6 +287,12 @@ function setLoading(isLoading) {
   if (!loadingElement) return;
 
   loadingElement.style.display = isLoading ? "flex" : "none";
+}
+
+function getMessageHistory() {
+  vscode.postMessage({
+    type: "getMessageHistory",
+  });
 }
 
 /**

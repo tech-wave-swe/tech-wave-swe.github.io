@@ -500,4 +500,60 @@ describe("TrackingResultService", () => {
       );
     });
   });
+
+  describe("deleteRequirement", () => {
+    it("should delete a requirement and update counts", async () => {
+      // First save to create initial details
+      await trackingResultService.saveTrackingResult(mockTrackingSummary);
+      
+      // Verify initial state
+      expect(trackingResultService.getById(mockTrackingResult.requirementId)).toBeDefined();
+      expect(trackingResultService.getTrackingDetails().possibleMatches).toBe(1);
+      
+      // Delete the requirement
+      await trackingResultService.deleteRequirement(mockTrackingResult.requirementId);
+      
+      // Verify the requirement was deleted
+      expect(trackingResultService.getById(mockTrackingResult.requirementId)).toBeUndefined();
+      expect(trackingResultService.getTrackingDetails().possibleMatches).toBe(0);
+      expect(trackingResultService.getTrackingDetails().totalRequirements).toBe(0);
+    });
+    
+    it("should do nothing when details are undefined", async () => {
+      // Clear any existing data
+      await trackingResultService.clearRequirements();
+      
+      // Attempt to delete a requirement that doesn't exist
+      await trackingResultService.deleteRequirement("non-existent-id");
+      
+      // Verify no error was thrown
+      expect(() => trackingResultService.getTrackingDetails()).toThrow();
+    });
+  });
+  
+  describe("getTrakingResultSummary error handling", () => {
+    it("should return undefined when an error occurs in _DStoTRS", async () => {
+      // Save a valid tracking result
+      await trackingResultService.saveTrackingResult(mockTrackingSummary);
+      
+      // Mock console.error to not pollute test output
+      const originalConsoleError = console.error;
+      console.error = jest.fn();
+      
+      // Force _DStoTRS to throw an error by spying on it and making it throw
+      jest.spyOn(trackingResultService as unknown as { _DStoTRS(): TrackingResultSummary | undefined }, '_DStoTRS').mockImplementationOnce(() => {
+        throw new Error("Test error");
+      });
+      
+      // Call the method
+      const result = trackingResultService.getTrakingResultSummary();
+      
+      // Verify the result is undefined due to the caught error
+      expect(result).toBeUndefined();
+      expect(console.error).toHaveBeenCalled();
+      
+      // Restore console.error
+      console.error = originalConsoleError;
+    });
+  });
 });

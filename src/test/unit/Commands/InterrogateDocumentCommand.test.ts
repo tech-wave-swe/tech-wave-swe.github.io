@@ -93,7 +93,7 @@ describe("InterrogateDocumentCommand", () => {
       chatWebviewProvider["_handleMessageFromWebview"],
     ).toHaveBeenCalledWith({
       type: "sendMessage",
-      text: "Analyze the following code and provide insights based on the loaded requirements:\n\nsome text",
+      text: `Analyze the following code and provide insights based on the loaded requirements:\n\nCode:\nsome text\nRequirements:\n${{ id: "1", text: "Requirement 1" }}\n`,
     });
   });
 });

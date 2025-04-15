@@ -129,7 +129,11 @@ function setupMessageHandler() {
         break;
 
       case "analysisResult":
-        onAnalysisResult(message.requirementId, message.analysis);
+        onAnalysisResult(
+          message.summary,
+          message.requirementId,
+          message.analysis,
+        );
         break;
     }
   });
@@ -150,21 +154,9 @@ function attachTabEventListeners() {
     return;
   }
 
-  tabImport.addEventListener(
-    "click",
-    /** @param {Event} event */ (event) =>
-      handleTabImportClick(/** @type {MouseEvent} */ (event)),
-  );
-  tabTrack.addEventListener(
-    "click",
-    /** @param {Event} event */ (event) =>
-      handleTabTrackClick(/** @type {MouseEvent} */ (event)),
-  );
-  tabResults.addEventListener(
-    "click",
-    /** @param {Event} event */ (event) =>
-      handleTabResultsClick(/** @type {MouseEvent} */ (event)),
-  );
+  tabImport.addEventListener("click", handleTabImportClick);
+  tabTrack.addEventListener("click", handleTabTrackClick);
+  tabResults.addEventListener("click", handleTabResultsClick);
 }
 
 /**
@@ -263,7 +255,11 @@ function handleTabResultsClick() {
   });
 }
 
-function handleFileInputChange() {
+/**
+ * Handle file input change event
+ * @param {Event} event - The change event
+ */
+function handleFileInputChange(event) {
   const fileInput = event.target;
   if (
     !(fileInput instanceof HTMLInputElement) ||
@@ -350,12 +346,10 @@ function handleImportButtonClick() {
   });
 }
 
-function handleTrackButtonClick(requirements) {
-  if (requirements.length === 0) {
-    alert("No requirements available to track");
-    return;
-  }
-
+/**
+ * Handle track button click - find selected requirements and send tracking request
+ */
+function handleTrackButtonClick() {
   const checkboxes = document.querySelectorAll("td input:checked");
   const selectedCheckboxes = Array.from(checkboxes).filter(
     (checkbox) => checkbox instanceof HTMLInputElement,
@@ -403,6 +397,7 @@ function handleCancelEditButtonClick() {
 // Message Event Handlers
 
 /**
+ * Handler for when requirements are imported
  * @param {TrackingSummary} summary
  * @param {Requirement[]} requirements
  */
@@ -411,6 +406,7 @@ function onRequirementsImported(summary, requirements) {
 }
 
 /**
+ * Handler for when requirements are updated
  * @param {TrackingSummary} summary
  * @param {Requirement[]} requirements
  */
@@ -451,8 +447,9 @@ function onUpdateRequirementsTable(requirements) {
 }
 
 /**
- * @param {Requirement} requirement
- * @param {CodeReference} codeReference
+ * Handles entering edit mode for a requirement implementation
+ * @param {Requirement|null} requirement - The requirement being edited
+ * @param {CodeReference} codeReference - The code reference to edit
  */
 function onStartEditMode(requirement, codeReference) {
   if (!requirement) {
@@ -542,7 +539,7 @@ function onShowTrackTab(requirements) {
  * @param {TrackingSummary} summary
  * @param {Requirement[]} requirements
  */
-function onShowResultsTab(summary, requirements) {
+function onShowResultsTab(summary, requirements = []) {
   updateResultsDisplay(summary, requirements);
 
   const tabResults = document.querySelector("#tab-results");
@@ -552,9 +549,10 @@ function onShowResultsTab(summary, requirements) {
 }
 
 /**
- * @param {TrackingSummary} summary
- * @param {string} requirementId
- * @param {string} analysis
+ * Handle analysis result from the API
+ * @param {TrackingSummary} summary - The tracking summary containing requirement details
+ * @param {string} requirementId - The ID of the requirement being analyzed
+ * @param {string} analysis - The analysis text with special markers
  */
 function onAnalysisResult(summary, requirementId, analysis) {
   const reqItem = document.querySelector(
@@ -586,11 +584,12 @@ function onAnalysisResult(summary, requirementId, analysis) {
 
   spinner.classList.add("hidden");
 
-  // Parse marked sections
   /**
-   * @param {string} text
-   * @param {string} startMarker
-   * @param {string} endMarker
+   * Extract content between markers in the analysis text
+   * @param {string} text - The text to parse
+   * @param {string} startMarker - The starting marker
+   * @param {string} endMarker - The ending marker
+   * @returns {string} The extracted content
    */
   const getMarkedContent = (text, startMarker, endMarker) => {
     const start = text.indexOf(startMarker) + startMarker.length;
@@ -607,23 +606,25 @@ function onAnalysisResult(summary, requirementId, analysis) {
     "[ANALYSIS_END]",
   );
 
-  if (!summary.requirementDetails) {
+  if (!summary || !summary.requirementDetails) {
     console.error("Tracking results or requirement details not found");
     return;
   }
 
+  console.log(summary);
+
   // Get the selected code reference
   const result = summary.requirementDetails[requirementId];
-  if (!result?.codeReferences) {
+  if (!result || !result.codeReferences) {
     console.error("Code references not found for requirement");
     return;
   }
 
-  console.log(implementationIndex);
-
   const selectedReference = result.codeReferences[implementationIndex];
-
-  console.log(selectedReference);
+  if (!selectedReference) {
+    console.error(`No code reference found at index ${implementationIndex}`);
+    return;
+  }
 
   // Update analysis content
   contentDiv.innerHTML = `
@@ -671,6 +672,28 @@ function onAnalysisResult(summary, requirementId, analysis) {
     snippet: codeSnippet,
   };
 
+  setReqActions(refItem, requirementId, codeReference, implementationIndex);
+
+  const analysisCodeSnippet = analysisDiv.querySelector(
+    ".analysis-code-snippet",
+  );
+  if (analysisCodeSnippet) {
+    analysisCodeSnippet.appendChild(refItem);
+  }
+}
+
+/**
+ * @param {HTMLDivElement} refItem
+ * @param {string} requirementId
+ * @param {{ filePath: string; lineNumber: number; snippet: string; }} codeReference
+ * @param {number} implementationIndex
+ */
+function setReqActions(
+  refItem,
+  requirementId,
+  codeReference,
+  implementationIndex,
+) {
   const confirmReqAction = refItem.querySelector(".confirm-req-action");
   if (confirmReqAction) {
     confirmReqAction.addEventListener("click", (e) => {
@@ -706,13 +729,6 @@ function onAnalysisResult(summary, requirementId, analysis) {
         codeReference,
       });
     });
-  }
-
-  const analysisCodeSnippet = analysisDiv.querySelector(
-    ".analysis-code-snippet",
-  );
-  if (analysisCodeSnippet) {
-    analysisCodeSnippet.appendChild(refItem);
   }
 }
 
@@ -778,12 +794,7 @@ function updateLegendDisplay(summary) {
   const legendPossible = document.getElementById("legend-possible-match");
   const legendUnlikely = document.getElementById("legend-unlikely-match");
 
-  if (
-    !legendConfirmed ||
-    !legendPossible ||
-    !legendUnlikely ||
-    !summary
-  ) {
+  if (!legendConfirmed || !legendPossible || !legendUnlikely || !summary) {
     console.error("Legend elements or tracking results not found");
     return;
   }
@@ -802,100 +813,22 @@ function updateLegendDisplay(summary) {
  * @param {TrackingSummary} summary
  * @param {Requirement[]} requirements
  */
-function updateRequirementsDisplay(summary, requirements) {
-  const requirementsResults = document.getElementById("requirements-results");
+/**
+ * Adds dropdown toggle functionality to an element
+ * @param {HTMLElement} element - The element to add toggle functionality to
+ * @param {string} toggleSelector - Selector for the toggle element
+ * @param {string} iconSelector - Selector for the icon within the toggle
+ */
+function addDropdownToggleEventHandler(element, toggleSelector, iconSelector) {
+  const toggleElement = element.querySelector(toggleSelector);
+  if (!toggleElement) return;
 
-  // Generate requirement details
-  requirementsResults.innerHTML = "";
-
-  const details = summary.requirementDetails;
-  const requirementIds = Object.keys(details);
-
-  if (requirementIds.length === 0) {
-    requirementsResults.innerHTML = "<p>No requirements found.</p>";
-    return;
-  }
-
-  const list = document.createElement("ul");
-  list.className = "requirements-list";
-
-  console.log(requirementIds);
-
-  requirementIds.forEach((reqId) => {
-    console.log(reqId);
-    const result = details[reqId];
-    const req = requirements.find((r) => r.id === reqId);
-
-    if (!req) {
-      return;
-    }
-
-    const item = document.createElement("li");
-    item.className = "requirement-item dropdown-container";
-    item.setAttribute("data-requirement", reqId);
-
-    let statusClass = "";
-    switch (result.implementationStatus) {
-      case "confirmed-match":
-        statusClass = "status-confirmed-match";
-        break;
-      case "possible-match":
-        statusClass = "status-possible-match";
-        break;
-      case "unlikely-match":
-        statusClass = "status-unlikely-match";
-        break;
-    }
-
-    // Create the requirement header (dropdown toggle)
-    const reqHeaderHTML = `
-      <div class="dropdown-header requirement-header">
-        <div class="requirement-header-content">
-          <div class="requirement-id">${req.name}</div>
-          <span class="implementation-status ${statusClass}">
-            ${result.implementationStatus.replace("-", " ")}
-          </span>
-        </div>
-        <div class="dropdown-toggle"><i class="codicon codicon-chevron-down"></i></div>
-      </div>
-    `;
-
-    // Create the requirement content with a unique container for code references
-    const refsContainerId = `refs-${req.id.replace("{", "").replace("}", "")}`;
-    const reqContentHTML = `
-      <div class="dropdown-content requirement-content">
-        <div class="requirement-description">${req.description}</div>
-        <div class="requirement-meta">
-          Type: ${req.type} | Priority: ${req.priority} | Status: ${req.status}
-        </div>
-        <div class="implementation-info">
-          <span>Score: ${Math.round(result.score * 100)}%</span>
-          <button class="analyze-button" data-requirement="${reqId}">
-            <i class="codicon codicon-search"></i> Analyze Implementation
-          </button>
-        </div>
-        <div class="ollama-analysis hidden">
-          <div class="analysis-header">
-            <span>Ollama's Analysis</span>
-            <div class="loading-spinner hidden"></div>
-          </div>
-          <div class="analysis-content"></div>
-          <div class="analysis-code-snippet"></div>
-        </div>
-        <div class="code-references" id="${refsContainerId}"></div>
-      </div>
-    `;
-
-    // Combine header and content
-    item.innerHTML = reqHeaderHTML + reqContentHTML;
-
-    // Add toggle functionality to requirement
-    const reqHeader = item.querySelector(".requirement-header");
-    reqHeader.addEventListener("click", (e) => {
-      e.stopPropagation();
-      item.classList.toggle("expanded");
-      const toggleIcon = reqHeader.querySelector(".dropdown-toggle i");
-      if (item.classList.contains("expanded")) {
+  toggleElement.addEventListener("click", (e) => {
+    e.stopPropagation();
+    element.classList.toggle("expanded");
+    const toggleIcon = toggleElement.querySelector(iconSelector);
+    if (toggleIcon) {
+      if (element.classList.contains("expanded")) {
         toggleIcon.classList.replace(
           "codicon-chevron-down",
           "codicon-chevron-up",
@@ -906,152 +839,195 @@ function updateRequirementsDisplay(summary, requirements) {
           "codicon-chevron-down",
         );
       }
-    });
-
-    list.appendChild(item);
-
-    // Add code references to the requirement content
-    if (result.codeReferences && result.codeReferences.length > 0) {
-      const refsContainer = item.querySelector(`#${refsContainerId}`);
-
-      const refsHeader = document.createElement("div");
-      refsHeader.textContent = "Code References:";
-      refsHeader.style.fontWeight = "bold";
-      refsHeader.style.marginTop = "10px";
-      refsHeader.style.marginBottom = "5px";
-      refsContainer.appendChild(refsHeader);
-
-      result.codeReferences.forEach((ref, refIndex) => {
-        const refItem = document.createElement("div");
-        refItem.className = "code-reference nested-dropdown-container expanded";
-        refItem.setAttribute("data-path", ref.filePath);
-        refItem.setAttribute("data-line", ref.lineNumber);
-
-        // Create the reference header (nested dropdown toggle)
-        const refHeaderHTML = `
-          <div class="dropdown-header ref-header">
-            <div class="file-path">${ref.filePath}:${ref.lineNumber}</div>
-            <div class="dropdown-toggle"><i class="codicon codicon-chevron-down"></i></div>
-          </div>
-        `;
-
-        // Create the reference content
-        const refContentHTML = `
-          <div class="dropdown-content ref-content">
-            <div class="code-snippet">${escapeHtml(formatSnippet(ref.snippet))}</div>
-            <div class="req-action-wrapper">
-              <div>
-                <p>${ref.relevanceExplanation}</p>
-              </div>
-              <ul class="req-actions">
-                <li class="edit-req-action"><i class="codicon codicon-edit"></i></li>
-                <li class="confirm-req-action"><i class="codicon codicon-check"></i></li>
-                <li class="delete-req-action"><i class="codicon codicon-trash"></i></li>
-              </ul>
-            </div>
-          </div>
-        `;
-
-        // Combine reference header and content
-        refItem.innerHTML = refHeaderHTML + refContentHTML;
-
-        // Add toggle functionality to code reference
-        const refHeader = refItem.querySelector(".ref-header");
-        refHeader.addEventListener("click", (e) => {
-          e.stopPropagation();
-          refItem.classList.toggle("expanded");
-          const toggleIcon = refHeader.querySelector(".dropdown-toggle i");
-          if (refItem.classList.contains("expanded")) {
-            toggleIcon.classList.replace(
-              "codicon-chevron-down",
-              "codicon-chevron-up",
-            );
-          } else {
-            toggleIcon.classList.replace(
-              "codicon-chevron-up",
-              "codicon-chevron-down",
-            );
-          }
-        });
-
-        // Keep the openFile functionality but attach it to the file path specifically
-        refItem.querySelector(".file-path").addEventListener("click", (e) => {
-          e.stopPropagation(); // Prevent triggering the dropdown toggle
-          vscode.postMessage({
-            type: "openFile",
-            filePath: ref.filePath,
-            lineStart: ref.lineNumber,
-          });
-        });
-
-        // Add eventHandling for feedback buttons
-        refItem
-          .querySelectorAll(".confirm-req-action")
-          .forEach((actionButton) => {
-            actionButton.addEventListener("click", (e) => {
-              e.stopPropagation(); // Prevent triggering the dropdown toggle
-
-              vscode.postMessage({
-                type: "confirmRequirementImplementation",
-                requirementId: reqId,
-                codeReference: ref,
-              });
-            });
-          });
-
-        refItem
-          .querySelectorAll(".delete-req-action")
-          .forEach((actionButton) => {
-            actionButton.addEventListener("click", (e) => {
-              e.stopPropagation(); // Prevent triggering the dropdown toggle
-
-              vscode.postMessage({
-                type: "rejectRequirementImplementation",
-                requirementId: reqId,
-                codeReferenceId: refIndex,
-              });
-            });
-          });
-
-        refItem.querySelectorAll(".edit-req-action").forEach((actionButton) => {
-          actionButton.addEventListener("click", (e) => {
-            e.stopPropagation(); // Prevent triggering the dropdown toggle
-
-            vscode.postMessage({
-              type: "startEditMode",
-              requirementId: reqId,
-              codeReferenceId: refIndex,
-              codeReference: ref,
-            });
-          });
-        });
-
-        refsContainer.appendChild(refItem);
-      });
     }
   });
+}
 
-  requirementsResults.appendChild(list);
+/**
+ * @param {{ querySelector: (arg0: string) => any; }} refItem
+ * @param {{ filePath: any; lineNumber: any; }} ref
+ */
+function setFilePath(refItem, ref) {
+  const filePath = refItem.querySelector(".file-path");
+  if (filePath) {
+    filePath.addEventListener("click", (e) => {
+      e.stopPropagation();
+      vscode.postMessage({
+        type: "openFile",
+        filePath: ref.filePath,
+        lineStart: ref.lineNumber,
+      });
+    });
+  }
+}
 
-  const analyzeButtons = document.querySelectorAll(".analyze-button");
+/**
+ * Creates a code reference DOM element
+ * @param {CodeReference} ref - The code reference data
+ * @param {number} refIndex - The index of this reference
+ * @param {string} requirementId - The ID of the requirement
+ * @returns {HTMLDivElement} - The created code reference element
+ */
+function createCodeReferenceItem(ref, refIndex, requirementId) {
+  const refItem = document.createElement("div");
+  refItem.className = "code-reference nested-dropdown-container expanded";
+  refItem.setAttribute("data-path", ref.filePath);
+  refItem.setAttribute("data-line", String(ref.lineNumber));
 
-  // Analyze Implementation interaction
+  // Create the reference header (nested dropdown toggle)
+  const refHeaderHTML = `
+    <div class="dropdown-header ref-header">
+      <div class="file-path">${ref.filePath}:${ref.lineNumber}</div>
+      <div class="dropdown-toggle"><i class="codicon codicon-chevron-down"></i></div>
+    </div>
+  `;
+
+  // Create the reference content
+  const refContentHTML = `
+    <div class="dropdown-content ref-content">
+      <div class="code-snippet">${escapeHtml(formatSnippet(ref.snippet))}</div>
+      <div class="req-action-wrapper">
+        <div>
+          <p>${ref.relevanceExplanation}</p>
+        </div>
+        <ul class="req-actions">
+          <li class="edit-req-action"><i class="codicon codicon-edit"></i></li>
+          <li class="confirm-req-action"><i class="codicon codicon-check"></i></li>
+          <li class="delete-req-action"><i class="codicon codicon-trash"></i></li>
+        </ul>
+      </div>
+    </div>
+  `;
+
+  // Combine reference header and content
+  refItem.innerHTML = refHeaderHTML + refContentHTML;
+
+  // Add toggle functionality to code reference
+  addDropdownToggleEventHandler(refItem, ".ref-header", ".dropdown-toggle i");
+
+  setFilePath(refItem, ref);
+
+  setReqActions(refItem, requirementId, ref, refIndex);
+
+  return refItem;
+}
+
+/**
+ * Creates a requirement item DOM element
+ * @param {string} reqId - The requirement ID
+ * @param {RequirementDetail} result - The requirement result data
+ * @param {Requirement} req - The requirement data
+ * @returns {HTMLLIElement} - The created requirement item element
+ */
+function createRequirementItem(reqId, result, req) {
+  const item = document.createElement("li");
+  item.className = "requirement-item dropdown-container";
+  item.setAttribute("data-requirement", reqId);
+
+  let statusClass = "";
+  switch (result.implementationStatus) {
+    case "confirmed-match":
+      statusClass = "status-confirmed-match";
+      break;
+    case "possible-match":
+      statusClass = "status-possible-match";
+      break;
+    case "unlikely-match":
+      statusClass = "status-unlikely-match";
+      break;
+  }
+
+  // Create the requirement header (dropdown toggle)
+  const reqHeaderHTML = `
+    <div class="dropdown-header requirement-header">
+      <div class="requirement-header-content">
+        <div class="requirement-id">${req.name}</div>
+        <span class="implementation-status ${statusClass}">
+          ${result.implementationStatus.replace("-", " ")}
+        </span>
+      </div>
+      <div class="dropdown-toggle"><i class="codicon codicon-chevron-down"></i></div>
+    </div>
+  `;
+
+  // Create the requirement content with a unique container for code references
+  const refsContainerId = `refs-${req.id.replace("{", "").replace("}", "")}`;
+  const reqContentHTML = `
+    <div class="dropdown-content requirement-content">
+      <div class="requirement-description">${req.description}</div>
+      <div class="requirement-meta">
+        Type: ${req.type} | Priority: ${req.priority} | Status: ${req.status}
+      </div>
+      <div class="implementation-info">
+        <span>Score: ${Math.round(result.score * 100)}%</span>
+        <button class="analyze-button" data-requirement="${reqId}">
+          <i class="codicon codicon-search"></i> Analyze Implementation
+        </button>
+      </div>
+      <div class="ollama-analysis hidden">
+        <div class="analysis-header">
+          <span>Ollama's Analysis</span>
+          <div class="loading-spinner hidden"></div>
+        </div>
+        <div class="analysis-content"></div>
+        <div class="analysis-code-snippet"></div>
+      </div>
+      <div class="code-references" id="${refsContainerId}"></div>
+    </div>
+  `;
+
+  // Combine header and content
+  item.innerHTML = reqHeaderHTML + reqContentHTML;
+
+  // Add toggle functionality to requirement
+  addDropdownToggleEventHandler(
+    item,
+    ".requirement-header",
+    ".dropdown-toggle i",
+  );
+
+  return item;
+}
+
+/**
+ * Sets up analyze button event handlers for all requirements
+ * @param {NodeListOf<Element>} analyzeButtons - The analyze buttons
+ * @param {TrackingSummary} summary - The tracking summary data
+ * @param {Requirement[]} requirements - The requirements data
+ */
+function setupAnalysisEventHandlers(analyzeButtons, summary, requirements) {
   analyzeButtons.forEach((analyzeButton) => {
     analyzeButton.addEventListener("click", async (e) => {
       e.stopPropagation();
 
-      console.log("Analyze button clicked");
-
-      console.log("Tracking results:", summary);
-
       // Get the parent requirement item
       const requirementItem = analyzeButton.closest(".requirement-item");
+      if (!requirementItem) {
+        console.error("Could not find parent requirement item");
+        return;
+      }
+
       const analysisDiv = requirementItem.querySelector(".ollama-analysis");
+      if (!analysisDiv) {
+        console.error("Could not find analysis div");
+        return;
+      }
+
       const spinner = analysisDiv.querySelector(".loading-spinner");
       const contentDiv = analysisDiv.querySelector(".analysis-content");
 
+      if (!spinner || !contentDiv) {
+        console.error("Could not find spinner or content div");
+        return;
+      }
+
       // Get requirement ID and find the corresponding tracking result
-      const reqId = requirementItem.getAttribute("data-requirement"); // Make sure this attribute exists
+      const reqId = requirementItem.getAttribute("data-requirement");
+      if (!reqId || !summary.requirementDetails) {
+        console.error("Missing requirement ID or tracking results");
+        return;
+      }
+
       const result = summary.requirementDetails[reqId];
 
       if (!result) {
@@ -1094,6 +1070,86 @@ function updateRequirementsDisplay(summary, requirements) {
       }
     });
   });
+}
+
+/**
+ * Populates a requirement's code references
+ * @param {HTMLLIElement} item - The requirement item element
+ * @param {CodeReference[]} codeReferences - The code references to add
+ * @param {string} reqId - The requirement ID
+ * @param {string} refsContainerId - The ID of the references container
+ */
+function populateCodeReferences(item, codeReferences, reqId, refsContainerId) {
+  if (!codeReferences || codeReferences.length === 0) return;
+
+  const refsContainer = item.querySelector(`#${refsContainerId}`);
+  if (!refsContainer) return;
+
+  const refsHeader = document.createElement("div");
+  refsHeader.textContent = "Code References:";
+  refsHeader.style.fontWeight = "bold";
+  refsHeader.style.marginTop = "10px";
+  refsHeader.style.marginBottom = "5px";
+  refsContainer.appendChild(refsHeader);
+
+  codeReferences.forEach((ref, refIndex) => {
+    const refItem = createCodeReferenceItem(ref, refIndex, reqId);
+    refsContainer.appendChild(refItem);
+  });
+}
+
+/**
+ * Main function to update the requirements display
+ * @param {TrackingSummary} summary - The tracking summary data
+ * @param {Requirement[]} requirements - The requirements data
+ */
+function updateRequirementsDisplay(summary, requirements = []) {
+  const requirementsResults = document.getElementById("requirements-results");
+
+  // Check if requirementsResults exists
+  if (!requirementsResults) {
+    console.error("Requirements results element not found");
+    return;
+  }
+
+  // Generate requirement details
+  requirementsResults.innerHTML = "";
+
+  const details = summary?.requirementDetails || {};
+  const requirementIds = Object.keys(details);
+
+  if (requirementIds.length === 0) {
+    requirementsResults.innerHTML = "<p>No requirements found.</p>";
+    return;
+  }
+
+  const list = document.createElement("ul");
+  list.className = "requirements-list";
+
+  console.log(requirementIds);
+
+  requirementIds.forEach((reqId) => {
+    console.log(reqId);
+    const result = details[reqId];
+    const req = requirements?.find((r) => r?.id === reqId);
+
+    if (!req) return;
+
+    // Create the requirement item element
+    const item = createRequirementItem(reqId, result, req);
+
+    // Add code references to the requirement content
+    const refsContainerId = `refs-${req.id.replace("{", "").replace("}", "")}`;
+    populateCodeReferences(item, result.codeReferences, reqId, refsContainerId);
+
+    list.appendChild(item);
+  });
+
+  requirementsResults.appendChild(list);
+
+  // Set up analyze button event handlers
+  const analyzeButtons = document.querySelectorAll(".analyze-button");
+  setupAnalysisEventHandlers(analyzeButtons, summary, requirements);
 }
 
 /**
@@ -1305,14 +1361,20 @@ function switchToTab(tabId) {
   const tabs = document.querySelectorAll(".tab");
   const tabContents = document.querySelectorAll(".tab-content");
 
-  tabs.forEach((t) => t.classList.remove("active"));
-  if (tabs[tabId]) {
-    tabs[tabId].classList.add("active");
+  // Make sure we have tabs before trying to operate on them
+  if (tabs.length > 0) {
+    tabs.forEach((t) => t.classList.remove("active"));
+    if (tabs[tabId]) {
+      tabs[tabId].classList.add("active");
+    }
   }
 
-  tabContents.forEach((c) => c.classList.remove("active"));
-  if (tabContents[tabId]) {
-    tabContents[tabId].classList.add("active");
+  // Make sure we have tab contents before trying to operate on them
+  if (tabContents.length > 0) {
+    tabContents.forEach((c) => c.classList.remove("active"));
+    if (tabContents[tabId]) {
+      tabContents[tabId].classList.add("active");
+    }
   }
 }
 
@@ -1327,10 +1389,15 @@ function changeActiveTab(tab) {
   tabs.forEach((t) => t.classList.remove("active"));
   tab.classList.add("active");
 
+  // Get the tab ID
+  const tabId = tab.getAttribute("data-tab");
+
   // Show corresponding content
   tabContents.forEach((content) => {
     content.classList.remove("active");
-    if (content.id === `${tab.getAttribute("data-tab")}-tab`) {
+
+    // Check if tab content ID matches expected format
+    if (content.id === `${tabId}-tab`) {
       content.classList.add("active");
     }
   });
@@ -1391,5 +1458,12 @@ if (typeof module !== "undefined" && module.exports) {
     formatSnippet,
     switchToTab,
     changeActiveTab,
+    setReqActions,
+    setFilePath,
+    addDropdownToggleEventHandler,
+    createCodeReferenceItem,
+    createRequirementItem,
+    setupAnalysisEventHandlers,
+    populateCodeReferences,
   };
 }
