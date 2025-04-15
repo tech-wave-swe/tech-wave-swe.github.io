@@ -7,9 +7,10 @@ import { Requirement, RequirementStatus } from "../../../Models/Requirement";
 import { Chunk } from "../../../Models/Chunk";
 import { ConfigServiceFacade } from "../../../Facades/ConfigServiceFacade";
 import * as vscode from "../Mock/vscode";
-import { CodeReference } from "../../../Models/TrackingModels";
+import {CodeReference, TrackingResultSummary} from "../../../Models/TrackingModels";
 import { FileExtensionFilter, PathFilter } from "../../../Models/Filter";
 import { ILanguageModel } from "../../../Interfaces/ILanguageModel";
+import {TrackingResultService} from "../../../Services/TrackingResultService";
 
 describe("RequirementsTrackerService", () => {
   let vectorDatabase: jest.Mocked<IVectorDatabase>;
@@ -18,6 +19,9 @@ describe("RequirementsTrackerService", () => {
   let service: RequirementsTrackerService;
   let mockPathFilter: PathFilter;
   let mockExtensionFilter: FileExtensionFilter;
+  let mockTrackingResultService: TrackingResultService;
+  let mockRequirements: Requirement[];
+  let mockTrackingResultSummary: TrackingResultSummary;
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -36,6 +40,44 @@ describe("RequirementsTrackerService", () => {
       include: ["/test/uno", "test/due"],
       exclude: ["/test/tre", "test/quattro"],
     } as unknown as PathFilter;
+
+    mockRequirements = [
+      {
+        id: "1",
+        name: "Requirement 1",
+        description: "Description 1",
+        type: "requirement",
+        version: "1.0.0",
+        status: RequirementStatus.TRACKED,
+      },
+      {
+        id: "2",
+        name: "Requirement 2",
+        description: "Description 2",
+        type: "requirement",
+        version: "1.0.0",
+        status: RequirementStatus.TRACKED,
+      },
+    ];
+
+    mockTrackingResultSummary = {
+      totalRequirements: 2,
+      confirmedMatches: 0,
+      possibleMatches: 0,
+      unlikelyMatches: 0,
+      requirementDetails: new Map<string, Requirement>([
+        ["REQ-001", mockRequirements[0]],
+        ["REQ-002", mockRequirements[1]],
+      ]),
+    } as unknown as jest.Mocked<TrackingResultSummary>;
+
+    mockTrackingResultService = {
+      getTrakingResultSummary: jest.fn(() => mockTrackingResultSummary),
+      getRequirementDetails: jest.fn(),
+      saveTrackingResult: jest.fn(),
+      confirmResult: jest.fn(),
+      removeCodeReference: jest.fn(),
+    } as unknown as jest.Mocked<TrackingResultService>;
 
     mockExtensionFilter = {
       include: ["c", "cpp"],
@@ -61,6 +103,7 @@ describe("RequirementsTrackerService", () => {
     filterService = {
       getPathFilter: jest.fn(() => mockPathFilter),
       getFileExtensionFilter: jest.fn(() => mockExtensionFilter),
+      hasRequirementsFilters: jest.fn(() => false),
       getRequirementsFilters: jest.fn(),
     } as unknown as jest.Mocked<FilterService>;
 
@@ -85,6 +128,7 @@ describe("RequirementsTrackerService", () => {
       documentServiceFacade,
       filterService,
       mockLanguageModel,
+      mockTrackingResultService,
     );
   });
 
@@ -155,6 +199,7 @@ describe("RequirementsTrackerService", () => {
       expect(result).toEqual(mockChunks);
       expect(vectorDatabase.queryForChunks).toHaveBeenCalledWith(
         requirement.description,
+        undefined
       );
     });
 

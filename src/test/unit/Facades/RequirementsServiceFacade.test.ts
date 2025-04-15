@@ -75,6 +75,7 @@ describe("RequirementsServiceFacade", () => {
       deleteRequirement: jest.fn(),
       getRequirements: jest.fn(),
       clearRequirements: jest.fn(),
+      updateRequirementStatus: jest.fn(),
       getById: jest.fn(),
       updateRequirementCodeReference: jest.fn(),
     } as unknown as jest.Mocked<RequirementsService>;

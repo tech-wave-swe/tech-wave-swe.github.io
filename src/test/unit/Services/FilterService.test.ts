@@ -60,13 +60,16 @@ describe("FilterService", () => {
   });
 
   it("should return specific requirement filter by ID", () => {
-    const requirementFilter = filterService.getRequirementsFilters("req1");
-    expect(requirementFilter).toEqual({key: mockConfig.requirement.req1});
+    const requirementFilter = filterService.getRequirementFilters("req1");
+
+    console.log("Requirement Filter:", requirementFilter);
+
+    expect(requirementFilter).toEqual(mockConfig.requirement.req1);
   });
 
   it("should return empty object for non-existing requirement filter", () => {
-    const requirementFilter = filterService.getRequirementsFilters("non_existing_id");
-    expect(requirementFilter).toEqual({key: undefined});
+    const requirementFilter = filterService.getRequirementFilters("non_existing_id");
+    expect(requirementFilter).toEqual(undefined);
   });
 
 

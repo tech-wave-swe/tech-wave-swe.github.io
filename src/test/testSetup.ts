@@ -14,6 +14,7 @@ import { ConfigServiceFacade } from "../Facades/ConfigServiceFacade";
 import { ChatService } from "../Services/ChatService";
 import { InferenceService } from "../Services/InferenceService";
 import { ILanguageModel } from "../Interfaces/ILanguageModel";
+import {TrackingResultService} from "../Services/TrackingResultService";
 
 export async function setupTestServices(workspacePath: string) {
   const extension = vscode.extensions.getExtension(
@@ -38,6 +39,7 @@ export async function setupTestServices(workspacePath: string) {
   const documentFormatter = new DocumentFormatterService();
   const filterService = new FilterService();
   const parsingService = new ParsingService();
+  const mockTrackingResultService = new TrackingResultService(globalStateService);
 
   const documentServiceFacade = new DocumentServiceFacade(
     documentFormatter,
@@ -64,6 +66,7 @@ export async function setupTestServices(workspacePath: string) {
     documentServiceFacade,
     filterService,
     mockLanguageModel,
+    mockTrackingResultService
   );
 
   const requirementsServiceFacade = new RequirementsServiceFacade(

@@ -314,7 +314,8 @@ REQ-002,Login Performance,Login must complete within 2 seconds,Non-Functional,1.
   test("Should perform vector search on code chunks", async () => {
     const searchResults = await vectorDatabase.queryForChunks(
       "user authentication",
-      2,
+      [],
+      2
     );
 
     assert.ok(searchResults.length > 0);
