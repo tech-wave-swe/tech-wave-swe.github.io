@@ -26,6 +26,7 @@ describe("ChatWebViewProvider", () => {
 
     mockInferenceService = {
       query: jest.fn(),
+      queryStream: jest.fn(),
     } as unknown as jest.Mocked<InferenceService>;
 
     mockChatWebView = {
@@ -69,7 +70,7 @@ describe("ChatWebViewProvider", () => {
   });
 
   describe("resolveWebviewView", () => {
-    it("should configure webview and load chat history", async () => {
+    it("should configure webview without loading chat history", async () => {
       const mockMessages: ChatMessage[] = [
         { sender: "user", text: "Hello", timestamp: Date.now() },
         { sender: "model", text: "Hi there", timestamp: Date.now() },
@@ -97,10 +98,38 @@ describe("ChatWebViewProvider", () => {
       expect(mockChatWebView.getHtmlForWebview).toHaveBeenCalledWith(
         mockWebviewView.webview,
       );
+      
+      // Note: Loading chat history requires a "getMessageHistory" message from the webview
+      // which is not being sent in this test, so no messages should be posted
+    });
+
+    it("should load chat history when requested", async () => {
+      const mockMessages: ChatMessage[] = [
+        { sender: "user", text: "Hello", timestamp: Date.now() },
+        { sender: "model", text: "Hi there", timestamp: Date.now() },
+      ];
+
+      mockChatService.getMessages.mockResolvedValue(mockMessages);
+
+      // Call resolveWebviewView to set up the webview
+      chatWebviewProvider.resolveWebviewView(
+        mockWebviewView,
+        {} as vscode.WebviewViewResolveContext,
+        {} as vscode.CancellationToken,
+      );
+
+      // Simulate the webview requesting message history
+      const message = { type: "getMessageHistory" };
+      
+      // Get the message handler and call it directly
+      const handleMessageMethod = (
+        chatWebviewProvider as any
+      )._handleMessageFromWebview.bind(chatWebviewProvider);
+      await handleMessageMethod(message);
 
       // Verify messages were sent to webview
       expect(mockWebviewView.webview.postMessage).toHaveBeenCalledWith({
-        type: "setHistory",
+        type: "setHistory", 
         messages: mockMessages,
       });
       expect(mockWebviewView.webview.postMessage).toHaveBeenCalledWith({
@@ -109,7 +138,7 @@ describe("ChatWebViewProvider", () => {
       });
     });
 
-    it("should handle empty chat history", async () => {
+    it("should handle empty chat history when requested", async () => {
       mockChatService.getMessages.mockResolvedValue([]);
 
       // Call resolveWebviewView
@@ -119,22 +148,89 @@ describe("ChatWebViewProvider", () => {
         {} as vscode.CancellationToken,
       );
 
-      // Wait for async operations
-      await new Promise((resolve) => setTimeout(resolve, 0));
+      // Simulate the webview requesting message history
+      const message = { type: "getMessageHistory" };
+      
+      // Get the message handler and call it directly
+      const handleMessageMethod = (
+        chatWebviewProvider as any
+      )._handleMessageFromWebview.bind(chatWebviewProvider);
+      await handleMessageMethod(message);
 
+      // Verify clearing was sent to webview
+      expect(mockWebviewView.webview.postMessage).toHaveBeenCalledWith({
+        type: "clearHistory",
+      });
+      
       // Verify loading was set to false
       expect(mockWebviewView.webview.postMessage).toHaveBeenCalledWith({
         type: "setLoading",
         isLoading: false,
       });
     });
+    
+    it("should handle errors when loading chat history", async () => {
+      // Mock an error when getting messages
+      const mockError = new Error("Database error");
+      mockChatService.getMessages.mockRejectedValue(mockError);
+      
+      // Spy on console.error
+      const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
+      // Call resolveWebviewView
+      chatWebviewProvider.resolveWebviewView(
+        mockWebviewView,
+        {} as vscode.WebviewViewResolveContext,
+        {} as vscode.CancellationToken,
+      );
+
+      // Reset mock calls before the test
+      mockWebviewView.webview.postMessage.mockClear();
+      
+      // Simulate the webview requesting message history
+      const message = { type: "getMessageHistory" };
+      
+      // Get the message handler and call it directly
+      const handleMessageMethod = (
+        chatWebviewProvider as any
+      )._handleMessageFromWebview.bind(chatWebviewProvider);
+      await handleMessageMethod(message);
+
+      // Verify error was logged
+      expect(consoleErrorSpy).toHaveBeenCalledWith(
+        "Failed to load chat history:",
+        mockError
+      );
+      
+      // Verify clearing was sent to webview as fallback
+      expect(mockWebviewView.webview.postMessage).toHaveBeenCalledWith({
+        type: "clearHistory",
+      });
+      
+      // Verify loading was set to false in finally block
+      expect(mockWebviewView.webview.postMessage).toHaveBeenCalledWith({
+        type: "setLoading",
+        isLoading: false,
+      });
+      
+      // Restore console.error
+      consoleErrorSpy.mockRestore();
+    });
   });
 
   describe("_onSendMessage", () => {
     it("should send user message and get model response", async () => {
-      // Mock inference service response
+      // Mock inference service streaming
       const mockResponse = "This is a model response";
-      mockInferenceService.query.mockResolvedValue(mockResponse);
+      mockInferenceService.queryStream.mockImplementation((text: string, callback: (token: string) => void) => {
+        // Call the callback to simulate streaming
+        callback("This ");
+        callback("is ");
+        callback("a model ");
+        callback("response");
+        return Promise.resolve();
+      });
+      
       mockChatService.getMessages.mockResolvedValue([]);
 
       // Manually call resolveWebviewView to set up the webview
@@ -148,7 +244,6 @@ describe("ChatWebViewProvider", () => {
       const message = {
         type: "sendMessage",
         text: "Hello, world!",
-        dataType: undefined,
       };
 
       // Call _handleMessageFromWebview directly
@@ -166,7 +261,11 @@ describe("ChatWebViewProvider", () => {
       );
 
       // Verify inference service was called
-      expect(mockInferenceService.query).toHaveBeenCalledWith("Hello, world!");
+      expect(mockInferenceService.queryStream).toHaveBeenCalledWith(
+        "Hello, world!",
+        expect.any(Function)
+      );
+      
       // Verify model message was added
       expect(mockChatService.addMessage).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -183,38 +282,58 @@ describe("ChatWebViewProvider", () => {
       expect(postMessageCalls).toContainEqual([
         { type: "setLoading", isLoading: false },
       ]);
+      
+      // Verify initial empty message was sent
+      expect(mockWebviewView.webview.postMessage).toHaveBeenCalledWith({
+        type: "addMessage",
+        message: expect.objectContaining({
+          sender: "model",
+          text: "",
+        }),
+      });
+      
+      // Verify updateMessage was called with final text
+      expect(mockWebviewView.webview.postMessage).toHaveBeenCalledWith({
+        type: "updateMessage",
+        message: expect.objectContaining({
+          sender: "model",
+          text: mockResponse,
+        }),
+      });
     });
 
     it("should handle inference service errors", async () => {
-      // Mock an error in inference service
-      const mockError = new Error("Connection failed");
-      mockInferenceService.query.mockRejectedValue(mockError);
-      mockChatService.getMessages.mockResolvedValue([]);
-
-      // Manually call resolveWebviewView to set up the webview
+      // Call resolveWebviewView to set up the webview
       chatWebviewProvider.resolveWebviewView(
         mockWebviewView,
         {} as vscode.WebviewViewResolveContext,
         {} as vscode.CancellationToken,
       );
 
+      // Mock an error in inference service
+      const mockError = new Error("Connection failed");
+      mockInferenceService.queryStream.mockImplementationOnce(() => {
+        throw mockError;
+      });
+
       // Simulate sending a message
       const message = {
         type: "sendMessage",
         text: "Hello, world!",
-        dataType: undefined,
       };
 
-      // Use reflection to call private method
+      // Call _handleMessageFromWebview directly
       const handleMessageMethod = (
         chatWebviewProvider as any
       )._handleMessageFromWebview.bind(chatWebviewProvider);
       await handleMessageMethod(message);
 
-      // Verify error handling
+      // Verify error handling - note that the implementation wraps the error text in an object
       expect(mockWebviewView.webview.postMessage).toHaveBeenCalledWith({
         type: "error",
-        message: "Error: Connection failed",
+        message: {
+          text: "Error: Connection failed"
+        },
       });
 
       // Verify loading was set back to false
@@ -225,35 +344,37 @@ describe("ChatWebViewProvider", () => {
     });
 
     it("should handle unknown errors", async () => {
-      // Mock an error in inference service
-      const mockError = { message: "Something went wrong", code: 500 };
-      mockInferenceService.query.mockRejectedValue(mockError);
-      mockChatService.getMessages.mockResolvedValue([]);
-
-      // Manually call resolveWebviewView to set up the webview
+      // Call resolveWebviewView to set up the webview
       chatWebviewProvider.resolveWebviewView(
         mockWebviewView,
         {} as vscode.WebviewViewResolveContext,
         {} as vscode.CancellationToken,
       );
 
+      // Mock an error in inference service with a non-Error object
+      const mockError = { some: "unknown error" };
+      mockInferenceService.queryStream.mockImplementationOnce(() => {
+        throw mockError;
+      });
+
       // Simulate sending a message
       const message = {
         type: "sendMessage",
         text: "Hello, world!",
-        dataType: undefined,
       };
 
-      // Use reflection to call private method
+      // Call _handleMessageFromWebview directly
       const handleMessageMethod = (
         chatWebviewProvider as any
       )._handleMessageFromWebview.bind(chatWebviewProvider);
       await handleMessageMethod(message);
 
-      // Verify error handling
+      // Verify error handling - note that the implementation wraps the error text in an object
       expect(mockWebviewView.webview.postMessage).toHaveBeenCalledWith({
         type: "error",
-        message: "Error: Unknown error",
+        message: {
+          text: "Error: Unknown error"
+        },
       });
 
       // Verify loading was set back to false
