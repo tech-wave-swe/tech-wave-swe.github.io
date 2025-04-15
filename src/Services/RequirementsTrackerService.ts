@@ -1,19 +1,13 @@
-import {Requirement, RequirementStatus} from "../Models/Requirement";
-import {
-  TrackingResult,
-  CodeReference,
-  TrackingResultSummary,
-  ImplementationStatus,
-} from "../Models/TrackingModels";
-import { ILanguageModel } from "../Interfaces/ILanguageModel";
-import { IVectorDatabase } from "../Interfaces/IVectorDatabase";
-import { DocumentServiceFacade } from "../Facades/DocumentServiceFacade";
+import {Requirement} from "../Models/Requirement";
+import {CodeReference, ImplementationStatus, TrackingResult, TrackingResultSummary,} from "../Models/TrackingModels";
+import {ILanguageModel} from "../Interfaces/ILanguageModel";
+import {IVectorDatabase} from "../Interfaces/IVectorDatabase";
+import {DocumentServiceFacade} from "../Facades/DocumentServiceFacade";
 import * as vscode from "vscode";
-import { FilterService } from "./FilterService";
-import { Chunk } from "../Models/Chunk";
+import {FilterService} from "./FilterService";
+import {Chunk} from "../Models/Chunk";
 import {ConfigServiceFacade} from "../Facades/ConfigServiceFacade";
 import {TrackingResultService} from "./TrackingResultService";
-import {RequirementsServiceFacade} from "../Facades/RequirementsServiceFacade";
 
 export class RequirementsTrackerService {
   private _vectorDatabase: IVectorDatabase;
@@ -85,10 +79,11 @@ ${ref.snippet}`,
 
   private async trackRequirementImplementation(
     requirement: Requirement,
+    filePaths?: string[]
   ): Promise<TrackingResult> {
     try {
       // Find related code
-      const queryResults = await this.findRelatedCode(requirement);
+      const queryResults = await this.findRelatedCode(requirement, filePaths);
 
       // Convert results to references
       const codeReferences = this._convertToCodeReferences(queryResults);
@@ -125,13 +120,26 @@ ${ref.snippet}`,
     return codeFiles;
   }
 
-  public async findRelatedCode(requirement: Requirement): Promise<Chunk[]> {
+  private async _processRequirementFile(requirement: Requirement): Promise<string[]> {
+    const codeFiles = await this._findSingleRequirementCodeFiles(requirement.id);
+
+    if (codeFiles.length > 0) {
+      try {
+        await this._documentServiceFacade.processFiles(codeFiles);
+      } catch (error) {
+        console.error("Error processing workspace files:", error);
+        throw error;
+      }
+    }
+
+    return codeFiles;
+  }
+
+  public async findRelatedCode(requirement: Requirement, filePaths?: string[]): Promise<Chunk[]> {
     try {
       const query = requirement.description;
 
-      const results = await this._vectorDatabase.queryForChunks(query);
-
-      return results;
+      return await this._vectorDatabase.queryForChunks(query, filePaths);
     } catch (error) {
       console.error(`Error finding related code: ${error}`);
       throw error;
@@ -168,8 +176,6 @@ ${ref.snippet}`,
           cancellable: true,
         },
         async (progress, token) => {
-          await this.processWorkspaceFiles();
-
           const total = requirements.length;
           const batchSize = 20;
 
@@ -185,6 +191,15 @@ ${ref.snippet}`,
             };
           }
 
+          for (const req of requirements) {
+            if (this._filterService.hasRequirementsFilters(req.id)) {
+              await this._processRequirementFile(req);
+            }
+          }
+
+          await this.processWorkspaceFiles();
+          const filePaths = await this._findWorkspaceCodeFiles();
+
           for (
             let i = 0;
             i < requirements.length && !token.isCancellationRequested;
@@ -195,11 +210,17 @@ ${ref.snippet}`,
               Math.min(i + batchSize, requirements.length),
             );
 
-            const batchPromises = batch.map((requirement) =>
-              this.trackRequirementImplementation(requirement).then(
-                (result) => ({ requirement, result }),
-              ),
-            );
+            const batchPromises = batch.map(async (requirement) => {
+              let result: TrackingResult;
+
+              if (this._filterService.hasRequirementsFilters(requirement.id)) {
+                result = await this.trackRequirementImplementation(requirement, await this._findSingleRequirementCodeFiles(requirement.id));
+              } else {
+                result = await this.trackRequirementImplementation(requirement, filePaths);
+              }
+
+              return ({requirement, result});
+            });
 
             const batchResults = await Promise.all(batchPromises);
 
@@ -325,6 +346,42 @@ ${ref.snippet}`,
 
       codeFiles.push(...folderFiles);
     }
+
+    console.log(`Total files found: ${codeFiles.length}`);
+    return codeFiles;
+  }
+
+  private async _findSingleRequirementCodeFiles(requirementId: string): Promise<string[]> {
+    const codeFiles: string[] = [];
+
+    const workspaceFolders = vscode.workspace.workspaceFolders;
+    if (!workspaceFolders) {
+      console.warn("No workspace folders found");
+      return [];
+    }
+
+    const requirementFilter = this._filterService.getRequirementFilters(requirementId);
+    const pathInclude = requirementFilter?.search_path.join(",") || "**/*.*";
+
+    console.log("------------ Path Include 1 ------------\n", pathInclude);
+
+    console.log(
+      `Scanning workspace folders: ${workspaceFolders.map((f) => f.name).join(", ")}`,
+    );
+
+    for (const folder of workspaceFolders) {
+      const files = await vscode.workspace.findFiles(
+        new vscode.RelativePattern(folder, pathInclude)
+      );
+
+      const folderFiles = files.map((file) => file.fsPath);
+      console.log(`Found ${folderFiles.length} files in ${folder.name}:`);
+      folderFiles.forEach((f) => console.log(` - ${f}`));
+
+      codeFiles.push(...folderFiles);
+    }
+
+    console.log("------------ Path Include 2 ------------\n", codeFiles);
 
     console.log(`Total files found: ${codeFiles.length}`);
     return codeFiles;

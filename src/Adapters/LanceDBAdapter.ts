@@ -276,7 +276,8 @@ export class LanceDBAdapter implements IVectorDatabase {
 
   public async queryForChunks(
     question: string,
-    maxResults = 0,
+    filePaths: string[] = [],
+    maxResults = 0
   ): Promise<Chunk[]> {
     try {
       const table = await this._getTable(COLLECTION_TYPE.chunks);
@@ -286,11 +287,24 @@ export class LanceDBAdapter implements IVectorDatabase {
       const limit =
         maxResults || ConfigServiceFacade.GetInstance().getMaxResults();
 
-      const results = await table
-        .query()
-        .nearestTo(new Float32Array(query))
-        .limit(limit)
-        .toArray();
+      let results;
+
+      if (filePaths.length > 0) {
+        console.log("Querying for chunks in multiple files with a filter!!", filePaths);
+
+        results = await table
+          .query()
+          .nearestTo(new Float32Array(query))
+          .where("file_path IN ('" + filePaths.join("','") + "')")
+          .limit(limit)
+          .toArray();
+      } else {
+        results = await table
+          .query()
+          .nearestTo(new Float32Array(query))
+          .limit(limit)
+          .toArray();
+      }
 
       const chunks: Chunk[] = [];
 

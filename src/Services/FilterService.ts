@@ -17,11 +17,15 @@ export class FilterService {
     return this._filters.file_extension;
   }
 
-  public getRequirementsFilters(reqId?: string): Record<string, RequirementFilter> {
-    if (reqId === undefined) {
-      return this._filters.requirement;
-    }
+  public getRequirementsFilters(): Record<string, RequirementFilter> {
+    return this._filters.requirement;
+  }
 
-    return {key: this._filters.requirement[reqId]};
+  public getRequirementFilters(requirementId: string): RequirementFilter | undefined {
+    return this._filters.requirement[requirementId];
+  }
+
+  public hasRequirementsFilters(requirementId: string): boolean {
+    return !!(this._filters.requirement[requirementId]);
   }
 }

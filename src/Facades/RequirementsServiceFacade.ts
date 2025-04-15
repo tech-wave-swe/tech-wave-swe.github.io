@@ -97,7 +97,7 @@ export class RequirementsServiceFacade {
   }
 
   public async updateRequirementStatus(requirementId: string, status: RequirementStatus): Promise<void> {
-    this._requirementsService.updateRequirementStatus(requirementId, status);
+    await this._requirementsService.updateRequirementStatus(requirementId, status);
   }
 
   public async trackRequirements(
@@ -128,7 +128,7 @@ export class RequirementsServiceFacade {
       const res = await this._trackerService.trackAllRequirements(reqs);
 
       for (const req of reqs) {
-        await this._requirementsService.updateRequirementStatus(req.id, RequirementStatus.PENDING);
+        await this.updateRequirementStatus(req.id, RequirementStatus.PENDING);
       }
 
       return res;

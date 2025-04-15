@@ -39,7 +39,7 @@ export interface IVectorDatabase {
   /**
    * Query the vector database for similar chunks
    */
-  queryForChunks(question: string, maxResults?: number): Promise<Chunk[]>;
+  queryForChunks(question: string, filePaths?: string[], maxResults?: number): Promise<Chunk[]>;
 
   /**
    * Reset the database, removing all stored data
