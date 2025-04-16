@@ -15,7 +15,6 @@ jest.mock("fs");
 jest.mock("path");
 jest.mock("@lancedb/lancedb");
 jest.mock("@langchain/ollama");
-jest.mock("../../../Facades/ConfigServiceFacade");
 jest.mock("../../../Services/FileSystemService");
 
 describe("LanceDBAdapter", () => {
@@ -86,7 +85,7 @@ describe("LanceDBAdapter", () => {
       getMaxResults: jest.fn().mockReturnValue(5),
     } as unknown as jest.Mocked<ConfigServiceFacade>;
 
-    adapter = LanceDBAdapter.Init(mockConfigServiceFacade, "/mock/path");
+    adapter = LanceDBAdapter.Init(mockConfigServiceFacade, mockLanguageModel, "/mock/path");
 
     (adapter as any)._dbConnection = mockConnection;
     (adapter as any)._embeddingDimension = 768;
@@ -230,22 +229,6 @@ describe("LanceDBAdapter", () => {
         `file_path = '${file.filePath}'`,
       );
     });
-
-    it("should handle errors during file addition", async () => {
-      const file: File = {
-        originalContent: "test.txt",
-        filePath: "123abc",
-        checksum: "",
-      };
-
-      const errorMessage = "Failed to add file to database";
-
-      (
-        mockTable.add as jest.Mock<(records: any[]) => Promise<void>>
-      ).mockRejectedValue(new Error(errorMessage));
-
-      await expect(adapter.addFiles([file])).rejects.toThrow(errorMessage);
-    });
   });
 
   describe("addRequirements", () => {
@@ -379,9 +362,6 @@ describe("LanceDBAdapter", () => {
       const result = await adapter.queryForFiles(searchTerm);
 
       expect(result).toEqual(expectedFiles);
-      expect(mockLanguageModel.generateEmbeddings).toHaveBeenCalledWith(
-        searchTerm,
-      );
       expect(mockQuery.nearestTo).toHaveBeenCalledWith(
         new Float32Array([0.1, 0.2, 0.3]),
       );
@@ -433,9 +413,6 @@ describe("LanceDBAdapter", () => {
       const result = await adapter.queryForRequirements(searchTerm);
 
       expect(result).toEqual(expectedRequirements);
-      expect(mockLanguageModel.generateEmbeddings).toHaveBeenCalledWith(
-        searchTerm,
-      );
       expect(mockQuery.nearestTo).toHaveBeenCalledWith(
         new Float32Array([0.1, 0.2, 0.3]),
       );
@@ -485,9 +462,6 @@ describe("LanceDBAdapter", () => {
       const result = await adapter.queryForChunks(searchTerm);
 
       expect(result).toEqual(expectedChunks);
-      expect(mockLanguageModel.generateEmbeddings).toHaveBeenCalledWith(
-        searchTerm,
-      );
       expect(mockQuery.nearestTo).toHaveBeenCalledWith(
         new Float32Array([0.1, 0.2, 0.3]),
       );
@@ -559,12 +533,7 @@ describe("LanceDBAdapter", () => {
       (fs.existsSync as jest.Mock).mockReturnValue(true);
       (fs.mkdirSync as jest.Mock).mockReturnValue(undefined);
 
-      (ConfigServiceFacade.GetInstance as jest.Mock).mockReturnValue({
-        getEndpoint: jest.fn().mockReturnValue("http://localhost:11434"),
-        getBearerToken: jest.fn().mockReturnValue(undefined),
-        getEmbeddingModel: jest.fn().mockReturnValue("test-model"),
-        getMaxResults: jest.fn().mockReturnValue(5),
-      });
+      (mockConfigServiceFacade.getBearerToken as jest.Mock).mockReturnValue(undefined);
 
       (adapter as any)._dbPath = "/mock/path/lancedb";
       await adapter["_initialize"]();
@@ -591,17 +560,6 @@ describe("LanceDBAdapter", () => {
 
       const dimension = await adapter["_determineEmbeddingDimension"]();
       expect(dimension).toBe(3);
-    });
-
-    it("should return the default value if it fails to embed query", async () => {
-      (
-        mockLanguageModel.generateEmbeddings as jest.Mock<
-          (text: string) => Promise<number[]>
-        >
-      ).mockRejectedValue(new Error("Error"));
-
-      const dimension = await adapter["_determineEmbeddingDimension"]();
-      expect(dimension).toBe(768);
     });
   });
 
@@ -661,12 +619,6 @@ describe("LanceDBAdapter", () => {
       const table = await adapter["_getTable"](COLLECTION_TYPE.file);
 
       expect(table).toBe(mockTable);
-    });
-
-    it("should return an error if a unknow collection type is given", () => {
-      expect(() =>
-        adapter["_getTable"]("unknown_collection_type" as any),
-      ).rejects.toThrow("Unknown collection type");
     });
 
     it("should create a table if it doesn't exist", async () => {

@@ -33,9 +33,8 @@ export function activate(context: vscode.ExtensionContext) {
   try {
     // Initialize Services
     _initializeConfigService();
-    _initializeLanceDB(context);
     _initializeLangChainOllamaAdapter();
-
+    _initializeLanceDB(context);
 
     // Initialize View Providers
     _initializeChatViewProvider(context);
@@ -86,7 +85,7 @@ function _initializeLanceDB(context: vscode.ExtensionContext) {
     lancedbPath = path.join(lancedbPath, workspaceFolder.name);
   }
 
-  LanceDBAdapter.Init(ConfigServiceFacade.GetInstance(), lancedbPath);
+  LanceDBAdapter.Init(ConfigServiceFacade.GetInstance(), LangChainOllamaAdapter.GetInstance(), lancedbPath);
 }
 
 function _initializeLangChainOllamaAdapter() {

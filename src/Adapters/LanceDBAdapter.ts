@@ -406,6 +406,8 @@ export class LanceDBAdapter implements IVectorDatabase {
   }
 
   private async _determineEmbeddingDimension(): Promise<number> {
+    console.log(this._embeddingDimension);
+
     try {
       const sampleText = "Sample text for embedding dimension detection";
       const embedding =
