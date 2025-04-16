@@ -18,6 +18,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 <details>
   <summary>Changelog</summary>
+
 <!-- ::: -->
 
 | Data       | Versione | Descrizione                                       | Autore                | Data Verifica | Verificatore        |
@@ -34,10 +35,12 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 Table: Changelog
 
 <!-- ::: {.no-export} -->
+
 </details>
 
 <TOCInlineWrapper toc={toc} numbered={true}/>
 <NumberedWrapper toc={toc}>
+
 <!-- ::: -->
 
 ## Introduzione
@@ -329,7 +332,7 @@ L'interfaccia _File_ ha lo scopo di modellare un file all'interno del progetto. 
 
 ##### Requirement
 
-L'interfaccia _Requirement_ ha lo scopo di modellare un %%requisito software|requisito*software%%. Memorizza, all'interno di campi testuali: l'identificativo univoco (\_id*), il nome (_name_), la descrizione (_description_), la tipologia (_type_) e la versione (_version_). Inoltre vengono memorizzati: lo stato tramite un oggetto del tipo _RequirementStatus_ (_status_) e come campi opzionali il punteggio (_score_) e la porzione di codice dove è stato implementato (_codereference_).
+L'interfaccia _Requirement_ ha lo scopo di modellare un %%requisito software|requisito_software%%. Memorizza, all'interno di campi testuali: l'identificativo univoco (_id_), il nome (_name_), la descrizione (_description_), la tipologia (_type_) e la versione (_version_). Inoltre vengono memorizzati: lo stato tramite un oggetto del tipo _RequirementStatus_ (_status_) e come campi opzionali il punteggio (_score_) e la porzione di codice dove è stato implementato (_codereference_).
 _RequirementStatus_ è un enum definito all'interno che rappresenta lo stato di implementazione di un requisito: tracciato (_TRACKED_), non tracciato (_NOT_TRACKED_), pendente (_PENDING_) e sconosciuto (_UNKNOW_).
 
 ##### Chunk
@@ -378,46 +381,46 @@ La classe _ChatWebView_ è responsabile della generazione e della gestione dell'
 La classe _ChatWebViewProvider_ è responsabile della gestione della _ChatWebView_ che rappresenta la chat.
 Mette a disposizione i metodi:
 
-- resolveWebviewView il quale permette di configurare e inizializzare la vista webview quando viene creata, caricando la cronologia delle chat.
-- webviewViewConfigure (_privato_) il quale permette di configurare le opzioni della webview e imposta l'HTML iniziale.
-- webviewViewHandleEvents (_privato_) il quale permette di registrare i gestori degli eventi per i messaggi ricevuti dalla webview.
-- handleMessageFromWebview il quale permette di elaborare i messaggi ricevuti dalla webview e indirizza ai metodi specifici in base al tipo.
-- onSendMessage (_privato_) il quale permette di gestire l'invio di un messaggio dell'utente, ottenendo e mostrando una risposta dal modello.
-- onClearHistory (_privato_) il quale permette di cancellare la cronologia dei messaggi della chat.
-- sendMessageToWebview (_privato_) il quale permette di inviare un messaggio alla webview per aggiornare l'interfaccia utente.
+- **resolveWebviewView** il quale permette di configurare e inizializzare la vista webview quando viene creata, caricando la cronologia delle chat.
+- **webviewViewConfigure** (_privato_) il quale permette di configurare le opzioni della webview e imposta l'HTML iniziale.
+- **webviewViewHandleEvents** (_privato_) il quale permette di registrare i gestori degli eventi per i messaggi ricevuti dalla webview.
+- **handleMessageFromWebview** il quale permette di elaborare i messaggi ricevuti dalla webview e indirizza ai metodi specifici in base al tipo.
+- **onSendMessage** (_privato_) il quale permette di gestire l'invio di un messaggio dell'utente, ottenendo e mostrando una risposta dal modello.
+- **onClearHistory** (_privato_) il quale permette di cancellare la cronologia dei messaggi della chat.
+- **sendMessageToWebview** (_privato_) il quale permette di inviare un messaggio alla webview per aggiornare l'interfaccia utente.
 
 ##### TrackerWebViewProvider
 
 La classe _TrackerWebViewProvider_ è responsabile della gestione della _TrackerWebView_ che rappresenta il tracciamento dei requisiti.
 Mette a disposizione i metodi:
 
-- resolveWebviewView il quale permette di configurare e inizializzare la vista webview quando viene creata.
-- onChangeTextEditorSelection il quale permette di gestire gli eventi di selezione del testo nell'editor quando in modalità di modifica.
-- onAnalyzeImplementation (_privato_) il quale permette di analizzare l'implementazione di un requisito rispetto ai riferimenti di codice.
-- webviewViewConfiguration (_privato_) il quale permette di configurare le opzioni della webview e imposta l'HTML iniziale.
-- webviewViewHandleEvents (_privato_) il quale permette di registrare i gestori degli eventi per i messaggi ricevuti dalla webview.
-- sendMessageToWebview (_privato_) il quale permette di inviare un messaggio alla webview per aggiornare l'interfaccia utente.
-- handleMessageFromWebview (_privato_) il quale permette di elaborare i messaggi ricevuti dalla webview e indirizza ai metodi specifici.
-- onTabToImport (_privato_) il quale permette di attivare la scheda di importazione dei requisiti.
-- onTabToTrack (_privato_) il quale permette di attivare la scheda di tracciamento dei requisiti.
-- onTabToResults (_privato_) il quale permette attivare la scheda dei risultati del tracciamento.
-- onCancelEditImplementation (_privato_) il quale permette di annullare la modifica dell'implementazione di un requisito.
-- onConfirmEditImplementation (_privato_) il quale permette di confermare la modifica dell'implementazione di un requisito.
-- onStartEditMode (_privato_) il quale permette di avviare la modalità di modifica per un riferimento di codice di un requisito.
-- startEditMode (_privato_) il quale permette di implementare la logica di avvio della modalità di modifica.
-- onEndEditMode (_privato_) il quale permette di terminare la modalità di modifica.
-- onRejectRequirementImplementation (_privato_) il quale permette di rifiutare un'implementazione di requisito specifica.
-- onConfirmRequirementImplementation (_privato_) il quale permette di confermare un'implementazione di requisito specifica.
-- onImportRequirements (_privato_) il quale permette di importare requisiti da un file con formato specifico.
-- onTrackRequirements (_privato_) il quale permette di avviare il tracciamento dei requisiti specificati nel codice.
-- onOpenFile (_privato_) il quale permette di aprire un file specifico nell'editor e si posiziona alla riga indicata.
-- onClearRequirements (_privato_) il quale permette di cancellare tutti i requisiti attualmente tracciati.
-- updateRequirementsDisplay (_privato_) il quale permette di aggiornare la visualizzazione dei requisiti nella webview.
-- updateTrackingResultsDisplay (_privato_) il quale permette di aggiornare la visualizzazione dei risultati di tracciamento nella webview.
-- onEditRequirement (_privato_) il quale permette di avviare la modifica di un requisito specifico.
-- onDeleteRequirement (_privato_) il quale permette di eliminare un requisito specifico.
-- stopEditMode (_privato_) il quale permette di arrestare la modalità di modifica attuale e ripristina lo stato normale.
-- serializeTrackingResults (_privato_) il quale converte in formato leggibile dalla view un oggetto del tipo _TrackingResultSummary_.
+- **resolveWebviewView** il quale permette di configurare e inizializzare la vista webview quando viene creata.
+- **onChangeTextEditorSelection** il quale permette di gestire gli eventi di selezione del testo nell'editor quando in modalità di modifica.
+- **onAnalyzeImplementation** (_privato_) il quale permette di analizzare l'implementazione di un requisito rispetto ai riferimenti di codice.
+- **webviewViewConfiguration** (_privato_) il quale permette di configurare le opzioni della webview e imposta l'HTML iniziale.
+- **webviewViewHandleEvents** (_privato_) il quale permette di registrare i gestori degli eventi per i messaggi ricevuti dalla webview.
+- **sendMessageToWebview** (_privato_) il quale permette di inviare un messaggio alla webview per aggiornare l'interfaccia utente.
+- **handleMessageFromWebview** (_privato_) il quale permette di elaborare i messaggi ricevuti dalla webview e indirizza ai metodi specifici.
+- **onTabToImport** (_privato_) il quale permette di attivare la scheda di importazione dei requisiti.
+- **onTabToTrack** (_privato_) il quale permette di attivare la scheda di tracciamento dei requisiti.
+- **onTabToResults** (_privato_) il quale permette attivare la scheda dei risultati del tracciamento.
+- **onCancelEditImplementation** (_privato_) il quale permette di annullare la modifica dell'implementazione di un requisito.
+- **onConfirmEditImplementation** (_privato_) il quale permette di confermare la modifica dell'implementazione di un requisito.
+- **onStartEditMode** (_privato_) il quale permette di avviare la modalità di modifica per un riferimento di codice di un requisito.
+- **startEditMode** (_privato_) il quale permette di implementare la logica di avvio della modalità di modifica.
+- **onEndEditMode** (_privato_) il quale permette di terminare la modalità di modifica.
+- **onRejectRequirementImplementation** (_privato_) il quale permette di rifiutare un'implementazione di requisito specifica.
+- **onConfirmRequirementImplementation** (_privato_) il quale permette di confermare un'implementazione di requisito specifica.
+- **onImportRequirements** (_privato_) il quale permette di importare requisiti da un file con formato specifico.
+- **onTrackRequirements** (_privato_) il quale permette di avviare il tracciamento dei requisiti specificati nel codice.
+- **onOpenFile** (_privato_) il quale permette di aprire un file specifico nell'editor e si posiziona alla riga indicata.
+- **onClearRequirements** (_privato_) il quale permette di cancellare tutti i requisiti attualmente tracciati.
+- **updateRequirementsDisplay** (_privato_) il quale permette di aggiornare la visualizzazione dei requisiti nella webview.
+- **updateTrackingResultsDisplay** (_privato_) il quale permette di aggiornare la visualizzazione dei risultati di tracciamento nella webview.
+- **onEditRequirement** (_privato_) il quale permette di avviare la modifica di un requisito specifico.
+- **onDeleteRequirement** (_privato_) il quale permette di eliminare un requisito specifico.
+- **stopEditMode** (_privato_) il quale permette di arrestare la modalità di modifica attuale e ripristina lo stato normale.
+- **serializeTrackingResults** (_privato_) il quale converte in formato leggibile dalla view un oggetto del tipo _TrackingResultSummary_.
 
 #### Command
 
@@ -428,26 +431,26 @@ Mette a disposizione i metodi:
 La classe _CommandsRegistry_ si occupa di gestire la registrazione e l'esecuzione dei comandi dell'estensione (_ICommand_). Infatti è responsabile della gestione tra l'interfaccia utente e la business logic.
 Mette a disposizione i metodi:
 
-- registerCommand il quale registra un singolo comando nell'estensione e lo aggiunge al registro interno. Il comando viene collegato alla sua funzione di esecuzione e la sottoscrizione viene aggiunta al contesto dell'estensione.
-- registerCommands il quale registra più comandi contemporaneamente, utilizzando il metodo registerCommand per ciascuno.
-- getCommand il quale restituisce un comando specifico dal registro in base al nome.
+- **registerCommand** il quale registra un singolo comando nell'estensione e lo aggiunge al registro interno. Il comando viene collegato alla sua funzione di esecuzione e la sottoscrizione viene aggiunta al contesto dell'estensione.
+- **registerCommands** il quale registra più comandi contemporaneamente, utilizzando il metodo registerCommand per ciascuno.
+- **getCommand** il quale restituisce un comando specifico dal registro in base al nome.
 
 I comandi implementati nell'estensione sono classi che estendono _ICommand_. Tutti mettono a disposizione i metodi getName, che restituisce il nome del comando, e execute contenente l'effettivo comportamento. Le classi sono:
 
-- _ClearChatHistoryCommand_ permette la cancellazione della cronologia delle conversazioni della chat. È accessibile con il nome "requirementsTracker.clearChatHistory".
-- _ClearRequirementsHistoryCommand_ permette la cancellazione di tutti i requisiti caricati nel sistema. È accessibile con il nome "requirementsTracker.clearRequirementsHistory".
-- _InterrogateDocumentCommand_ permette di analizzare l'intero contenuto del documento attivo nel contesto dei requisiti caricati. È accessibile con il nome "requirementsTracker.interrogateDocument".
-- _InterrogateSelectionCommand_ permette di analizzare solo il testo selezionato nell'editor attivo nel contesto dei requisiti caricati. È accessibile con il nome "requirementsTracker.interrogateSelection".
-- _OpenSettingsCommand_ permette di aprire direttamente la pagina delle impostazioni dell'estensione Requirements Tracker nell'interfaccia delle impostazioni di %%VSCode|vscode%%. È accessibile con il nome "requirementsTracker.openSettings".
-- _OpenSidebarCommand_ permette di aprire la barra laterale dell'estensione Requirements Tracker all'interno di %%VSCode|vscode%%. È accessibile con il nome "requirementsTracker.openSidebar".
-- _ResetDatabaseCommand_ permette di reimpostare il database vettoriale utilizzato per l'indicizzazione di codice e requisiti. È accessibile con il nome "requirementsTracker.resetDatabase".
+- **ClearChatHistoryCommand** permette la cancellazione della cronologia delle conversazioni della chat. È accessibile con il nome "requirementsTracker.clearChatHistory".
+- **ClearRequirementsHistoryCommand** permette la cancellazione di tutti i requisiti caricati nel sistema. È accessibile con il nome "requirementsTracker.clearRequirementsHistory".
+- **InterrogateDocumentCommand** permette di analizzare l'intero contenuto del documento attivo nel contesto dei requisiti caricati. È accessibile con il nome "requirementsTracker.interrogateDocument".
+- **InterrogateSelectionCommand** permette di analizzare solo il testo selezionato nell'editor attivo nel contesto dei requisiti caricati. È accessibile con il nome "requirementsTracker.interrogateSelection".
+- **OpenSettingsCommand** permette di aprire direttamente la pagina delle impostazioni dell'estensione Requirements Tracker nell'interfaccia delle impostazioni di %%VSCode|vscode%%. È accessibile con il nome "requirementsTracker.openSettings".
+- **OpenSidebarCommand** permette di aprire la barra laterale dell'estensione Requirements Tracker all'interno di %%VSCode|vscode%%. È accessibile con il nome "requirementsTracker.openSidebar".
+- **ResetDatabaseCommand** permette di reimpostare il database vettoriale utilizzato per l'indicizzazione di codice e requisiti. È accessibile con il nome "requirementsTracker.resetDatabase".
 
 ##### ICommand
 
 L'interfaccia _ICommand_ ha lo scopo di modellare un comando dell'applicazione. Modella i metodi:
 
-- execute il quale permette l'esecuzione del comando e restituisce un _Promise_.
-- getName il quale permette la restituzione del nome del comando.
+- **execute** il quale permette l'esecuzione del comando e restituisce un _Promise_.
+- **getName** il quale permette la restituzione del nome del comando.
 
 #### Servizi e facade
 
@@ -458,9 +461,9 @@ L'interfaccia _ICommand_ ha lo scopo di modellare un comando dell'applicazione. 
 La classe _FileSystemService_ si occupa delle interazioni con il file system per la gestione dei file.
 Mette a disposizione i metodi:
 
-- read il quale permette la lettura di un file a partire dal suo percorso.
-- setRootFolder il quale permette di indicare la cartella di root.
-- getChucksum il quale calcola il checksum di un file a partire dal suo percorso.
+- **read** il quale permette la lettura di un file a partire dal suo percorso.
+- **setRootFolder** il quale permette di indicare la cartella di root.
+- **getChucksum** il quale calcola il checksum di un file a partire dal suo percorso.
 
 ##### GlobalStateService
 
@@ -469,9 +472,9 @@ Mette a disposizione i metodi:
 La classe _GlobalStateService_ si occupa della gestione dello stato globale dell'estensione usando l'API di stato globale di %%VSCode|vscode%%.
 Mette a disposizione i metodi:
 
-- updateState il quale permette di aggiornare lo stato dell'applicazione riguardo i requisiti o la chat.
-- getState il quale permette di ottenere lo stato dell'applicazione riguardo i requisiti o la chat.
-- clearState il quale permette di cancellare lo stato dell'applicazione riguardo i requisiti o la chat.
+- **updateState** il quale permette di aggiornare lo stato dell'applicazione riguardo i requisiti o la chat.
+- **getState** il quale permette di ottenere lo stato dell'applicazione riguardo i requisiti o la chat.
+- **clearState** il quale permette di cancellare lo stato dell'applicazione riguardo i requisiti o la chat.
 
 ##### Config
 
@@ -483,31 +486,31 @@ La classe _ConfigService_ si occupa di gestire la configurazione dell'estensione
 Al suo interno contiene un'istanza del servizio _FileSystemService_ per l'aggiornamento delle configurazioni dell'%%applicativo|applicativo%%.
 Mette a disposizione i metodi:
 
-- GetConfig il quale ritorna un array di oggetti contenenti lo stato di tutte le configurazioni.
-- setWorkspaceFolder il quale imposta la root folder del filesystem.
-- getLocalConfig (_privato_) il quale ritorna lo stato delle configurazioni locali.
-- validatePathFilters (_privato_) il quale controlla la validità dei percorsi indicati nei filtri.
-- validateFileExtensionFilters (_privato_) il quale controlla la validità delle estensioni indicate nei filtri.
-- validateRequirementFilters (_privato_) il quale controlla la validità dei requisiti indicati nei filtri.
+- **GetConfig** il quale ritorna un array di oggetti contenenti lo stato di tutte le configurazioni.
+- **setWorkspaceFolder** il quale imposta la root folder del filesystem.
+- **getLocalConfig** (_privato_) il quale ritorna lo stato delle configurazioni locali.
+- **validatePathFilters** (_privato_) il quale controlla la validità dei percorsi indicati nei filtri.
+- **validateFileExtensionFilters** (_privato_) il quale controlla la validità delle estensioni indicate nei filtri.
+- **validateRequirementFilters** (_privato_) il quale controlla la validità dei requisiti indicati nei filtri.
 
 ###### ConfigServiceFacade
 
 La classe _ConfigServiceFacade_ fornisce un accesso semplificato alla configurazione del sistema. Implementa il pattern facade e utilizza un singleton per garantire un'unica istanza dell'applicazione.
 Mette a disposizione i metodi:
 
-- Init (_statico_) il quale inizializza l'istanza singleton e la restituisce.
-- GetInstance (_statico_) il quale restituisce l'istanza singleton esistente.
-- sync il quale sincronizza la cache interna con le configurazioni più recenti.
-- getConfigValue (_privato_) il quale restituisce un valore di configurazione specifico, sincronizzando se necessario.
-- getOllamaModel il quale restituisce il nome del modello per la generazione del codice scelto.
-- getEmbeddingModel il quale restituisce il modello di embedding scelto.
-- getMaxResults il quale restituisce il numero massimo di risultati configurato.
-- getTemperature il quale restituisce la temperatura configurata per il modello.
-- getEndpoint il quale restituisce l'endpoint di %%Ollama|ollama%% configurato.
-- getBearerToken il quale restituisce il token di autenticazione configurato.
-- getFilters il quale restituisce i filtri scelti.
-- getPrompt il quale restituisce il prompt scelti.
-- setWorkspaceFolder il quale imposta la root folder del filesystem.
+- **Init** (_statico_) il quale inizializza l'istanza singleton e la restituisce.
+- **GetInstance** (_statico_) il quale restituisce l'istanza singleton esistente.
+- **sync** il quale sincronizza la cache interna con le configurazioni più recenti.
+- **getConfigValue** (_privato_) il quale restituisce un valore di configurazione specifico, sincronizzando se necessario.
+- **getOllamaModel** il quale restituisce il nome del modello per la generazione del codice scelto.
+- **getEmbeddingModel** il quale restituisce il modello di embedding scelto.
+- **getMaxResults** il quale restituisce il numero massimo di risultati configurato.
+- **getTemperature** il quale restituisce la temperatura configurata per il modello.
+- **getEndpoint** il quale restituisce l'endpoint di %%Ollama|ollama%% configurato.
+- **getBearerToken** il quale restituisce il token di autenticazione configurato.
+- **getFilters** il quale restituisce i filtri scelti.
+- **getPrompt** il quale restituisce il prompt scelti.
+- **setWorkspaceFolder** il quale imposta la root folder del filesystem.
 
 ##### Requirement
 
@@ -518,32 +521,32 @@ Mette a disposizione i metodi:
 La classe _RequirementsService_ si occupa della gestione dei requisiti mappati con identificativo e oggetto _Requirement_ e interagisce con il _GlobalStateService_.
 Mette a disposizione i metodi:
 
-- addRequirement i quali permettono l'aggiunta di un singolo requisito.
-- addRequirements i quali permettono l'aggiunta di più requisiti.
-- updateRequirementCodeReference il quale si occupa di aggiornare la posizione del codice che implementa ciascun requisito.
-- updateRequirementStatus il quale si occupa di aggiornare lo status di ciascun requisito.
-- saveRequirements il quale memorizza i requisiti.
-- getRequirements il quale restituisce la lista dei requisiti.
-- clearRequirements il quale cancella la lista dei requisiti.
-- getById il quale restituisce un requisito a partire dal suo id.
-- deleteRequirement il quale cancella un requisito a partire dal suo id.
-- saveRequirements (_privato_) il quale salva nel _GlobalStateService_ i requisiti.
-- loadRequirements (_privato_) il quale aggiorna nel _GlobalStateService_ i requisiti.
+- **addRequirement** i quali permettono l'aggiunta di un singolo requisito.
+- **addRequirements** i quali permettono l'aggiunta di più requisiti.
+- **updateRequirementCodeReference** il quale si occupa di aggiornare la posizione del codice che implementa ciascun requisito.
+- **updateRequirementStatus** il quale si occupa di aggiornare lo status di ciascun requisito.
+- **saveRequirements** il quale memorizza i requisiti.
+- **getRequirements** il quale restituisce la lista dei requisiti.
+- **clearRequirements** il quale cancella la lista dei requisiti.
+- **getById** il quale restituisce un requisito a partire dal suo id.
+- **deleteRequirement** il quale cancella un requisito a partire dal suo id.
+- **saveRequirements** (_privato_) il quale salva nel _GlobalStateService_ i requisiti.
+- **loadRequirements** (_privato_) il quale aggiorna nel _GlobalStateService_ i requisiti.
 
 ###### RequirementsServiceFacade
 
 La classe _RequirementsServiceFacade_ fornisce un accesso semplificato al servizio di tracciamento dei requisiti (_RequirementsTrackerService_, _ParsingService_ e _RequirementsService_).
 Mette a disposizione i metodi:
 
-- importRequirements il quale importa requisiti da file csv o reqif, li salva e crea embeddings.
-- trackRequirements il quale traccia l'implementazione dei requisiti specificati.
-- analyzeImplementation il quale analizza se un riferimento al codice implementa un requisito specifico.
-- getRequirement il quale restituisce un requisito specifico per id.
-- deleteRequirement il quale elimina un requisito specifico per id.
-- getAllRequirements il quale restituisce tutti i requisiti.
-- clearRequirements il quale elimina tutti i requisiti.
-- updateRequirementCodeReference il quale si occupa di aggiornare la posizione del codice che implementa ciascun requisito.
-- updateRequirementStatus il quale si occupa di aggiornare lo status di ciascun requisito.
+- **importRequirements** il quale importa requisiti da file csv o reqif, li salva e crea embeddings.
+- **trackRequirements** il quale traccia l'implementazione dei requisiti specificati.
+- **analyzeImplementation** il quale analizza se un riferimento al codice implementa un requisito specifico.
+- **getRequirement** il quale restituisce un requisito specifico per id.
+- **deleteRequirement** il quale elimina un requisito specifico per id.
+- **getAllRequirements** il quale restituisce tutti i requisiti.
+- **clearRequirements** il quale elimina tutti i requisiti.
+- **updateRequirementCodeReference** il quale si occupa di aggiornare la posizione del codice che implementa ciascun requisito.
+- **updateRequirementStatus** il quale si occupa di aggiornare lo status di ciascun requisito.
 
 ###### ParsingService
 
@@ -551,40 +554,40 @@ La classe _ParsingService_ si occupa dell'analisi e della conversione di file in
 formato csv o reqif in una struttura dati contenente i requisiti memorizzati al loro interno.
 Mette a disposizione i metodi:
 
-- parseCSV il quale gestisce la conversione dei file in formato csv che utilizzano separatori differenti.
-- parseREQIF il quale gestisce la conversione dei file in formato reqif.
-- mapToRequirement (_privato_) il quale restituisce un oggetto del tipo _Requirement_ a partire dai singoli record ottenuti dal file CSV.
-- parseReqIFObject (_privato_) il quale restituisce un oggetto del tipo _Requirement_ a partire dai singoli record ottenuti dal file reqif.
+- **parseCSV** il quale gestisce la conversione dei file in formato csv che utilizzano separatori differenti.
+- **parseREQIF** il quale gestisce la conversione dei file in formato reqif.
+- **mapToRequirement** (_privato_) il quale restituisce un oggetto del tipo _Requirement_ a partire dai singoli record ottenuti dal file CSV.
+- **parseReqIFObject** (_privato_) il quale restituisce un oggetto del tipo _Requirement_ a partire dai singoli record ottenuti dal file reqif.
 
 ###### FilterService
 
 La classe _FilterService_ si occupa della gestione dei filtri ottenuti tramite _ConfigServiceFacade_ e memorizzati in un oggetto _ConfigFilters_.
 Mette a disposizione i metodi:
 
-- getPathFilter il quale restituisce i filtri per path memorizzati all'interno dell'istanza di _ConfigFilters_.
-- getFileExtensionFilter il quale restituisce i filtri per estensione del file memorizzati all'interno dell'istanza di _ConfigFilters_.
-- getRequirementsFilter il quale restituisce i filtri per tutti i requisiti memorizzati all'interno dell'istanza di _ConfigFilters_.
-- getRequirementFilter il quale restituisce il filtro per il requisito specificato memorizzato all'interno dell'istanza di _ConfigFilters_.
-- hasRequirementsFilter il quale restituisce se è presente un filtro, per il requisito specificato, memorizzato all'interno dell'istanza di _ConfigFilters_.
+- **getPathFilter** il quale restituisce i filtri per path memorizzati all'interno dell'istanza di _ConfigFilters_.
+- **getFileExtensionFilter** il quale restituisce i filtri per estensione del file memorizzati all'interno dell'istanza di _ConfigFilters_.
+- **getRequirementsFilter** il quale restituisce i filtri per tutti i requisiti memorizzati all'interno dell'istanza di _ConfigFilters_.
+- **getRequirementFilter** il quale restituisce il filtro per il requisito specificato memorizzato all'interno dell'istanza di _ConfigFilters_.
+- **hasRequirementsFilter** il quale restituisce se è presente un filtro, per il requisito specificato, memorizzato all'interno dell'istanza di _ConfigFilters_.
 
 ###### RequirementsTrackerService
 
 La classe _RequirementsTrackerService_ si occupa della gestione del tracciamento dell'implementazione dei requisiti nel codice sorgente. Interagisce con il database vettoriale (_IVectorDatabase_), il servizio di gestione dei documenti (_DocumentServiceFacade_), i filtri (_FilterService_) e il modello %%LLM|llm%% (_ILanguageModel_).
 Mette a disposizione i metodi:
 
-- analyzeImplementation il quale analizza se il codice fornito implementa effettivamente il requisito creando il prompt con il quale interrogare il modello.
-- trackRequirementImplementation il quale traccia l'implementazione di un singolo requisito, trovando codice correlato, convertendolo in riferimenti e determinando lo stato di implementazione e il punteggio.
-- processWorkspaceFiles il quale elabora tutti i file del workspace applicando filtri, tramite il _DocumentServiceFacade_ e restituendo l'elenco dei file elaborati.
-- findRelatedCode il quale cerca nel database vettoriale porzioni di codice correlate al requisito specificato a partire dalla descrizione del requisito.
-- convertToCodeReferences (_privato_) il quale converte i frammenti di codice (chunks) in riferimenti al codice strutturati, ordinati per punteggio di rilevanza.
-- trackAllRequirements il quale traccia tutti i requisiti forniti e restituisce un riepilogo complessivo.
-- determineImplementationStatus (_privato_) il quale determina lo stato di implementazione in base al punteggio medio dei riferimenti al codice.
-- calculateImplementationScore (_privato_) il quale calcola un punteggio complessivo per l'implementazione basato sui singoli riferimenti al codice trovati.
-- calculateAverageScore (_privato_) il quale calcola il punteggio medio del punteggio dell'implementazione.
-- findWorkspaceCodeFiles (_privato_) il quale trova tutti i file di codice nel workspace %%VSCode|vscode%% applicando i filtri di inclusione ed esclusione configurati.
-- getFilters (_privato_) il quale restituisce i filtri per file e percorsi.
-- processRequirementFile (_privato_) il quale elabora i file associati al requisito applicando filtri.
-- findSingleRequirementCodeFiles (_privato_) il quale trova i file associati al requisito applicando i filtri di inclusione ed esclusione configurati.
+- **analyzeImplementation** il quale analizza se il codice fornito implementa effettivamente il requisito creando il prompt con il quale interrogare il modello.
+- **trackRequirementImplementation** il quale traccia l'implementazione di un singolo requisito, trovando codice correlato, convertendolo in riferimenti e determinando lo stato di implementazione e il punteggio.
+- **processWorkspaceFiles** il quale elabora tutti i file del workspace applicando filtri, tramite il _DocumentServiceFacade_ e restituendo l'elenco dei file elaborati.
+- **findRelatedCode** il quale cerca nel database vettoriale porzioni di codice correlate al requisito specificato a partire dalla descrizione del requisito.
+- **convertToCodeReferences** (_privato_) il quale converte i frammenti di codice (chunks) in riferimenti al codice strutturati, ordinati per punteggio di rilevanza.
+- **trackAllRequirements** il quale traccia tutti i requisiti forniti e restituisce un riepilogo complessivo.
+- **determineImplementationStatus** (_privato_) il quale determina lo stato di implementazione in base al punteggio medio dei riferimenti al codice.
+- **calculateImplementationScore** (_privato_) il quale calcola un punteggio complessivo per l'implementazione basato sui singoli riferimenti al codice trovati.
+- **calculateAverageScore** (_privato_) il quale calcola il punteggio medio del punteggio dell'implementazione.
+- **findWorkspaceCodeFiles** (_privato_) il quale trova tutti i file di codice nel workspace %%VSCode|vscode%% applicando i filtri di inclusione ed esclusione configurati.
+- **getFilters** (_privato_) il quale restituisce i filtri per file e percorsi.
+- **processRequirementFile** (_privato_) il quale elabora i file associati al requisito applicando filtri.
+- **findSingleRequirementCodeFiles** (_privato_) il quale trova i file associati al requisito applicando i filtri di inclusione ed esclusione configurati.
 
 ##### TrackingResultService
 
@@ -593,22 +596,22 @@ Mette a disposizione i metodi:
 La classe _TrackingResultService_ si occupa della gestione della persistenza e della manipolazione dei risultati del tracciamento dei requisiti.
 Mette a disposizione i metodi:
 
-- saveTrackingResult il quale salva i risultati del tracciamento, convertendoli nel formato di archiviazione interno e memorizzandoli nello stato globale.
-- getTrakingResult il quale restituisce tutti i risultati di tracciamento come un array di oggetti TrackingResult.
-- getTrackingDetails il quale restituisce i dettagli di riepilogo del tracciamento.
-- getTrakingResultSummary il quale converte i dati in un oggetto TrackingResultSummary e lo restituisce.
-- clearRequirements il quale elimina tutti i dati di tracciamento sia dalla memoria che dallo stato globale.
-- deleteRequirement il quale elimina i dati di tracciamento di un singolo requisito sia dalla memoria che dallo stato globale.
-- removeCodeReference il quale rimuove uno specifico riferimento al codice dal requisito tracciato, aggiornando i contatori e persistendo le modifiche.
-- getById il quale restituisce un singolo risultato di tracciamento in base all'id del requisito.
-- confirmResult il quale marca un risultato di tracciamento come confermato, aggiornando i contatori e rimuovendolo da quelli in stato pending.
-- deleteRequirement (_privato_) il quale elimina i dati di tracciamento di un singolo requisito sia dalla memoria che dallo stato globale.
-- saveTrackingResult (_privato_) il quale memorizza i dati di tracciamento nello stato globale.
-- loadTrackingResult (_privato_) il quale aggiorna i dati di tracciamento nello stato globale.
-- TRStoDS (_privato_) il quale converte un oggetto TrackingResultSummary nelle strutture dati interne del servizio.
-- DStoTRS (_privato_) il quale converte le strutture dati interne in un oggetto TrackingResultSummary.
-- DStoGS (_privato_) il quale converte le strutture dati interne nel formato richiesto per la persistenza nello stato globale.
-- GStoDS (_privato_) il quale converte i dati provenienti dallo stato globale nelle strutture dati interne del servizio.
+- **saveTrackingResult** il quale salva i risultati del tracciamento, convertendoli nel formato di archiviazione interno e memorizzandoli nello stato globale.
+- **getTrakingResult** il quale restituisce tutti i risultati di tracciamento come un array di oggetti TrackingResult.
+- **getTrackingDetails** il quale restituisce i dettagli di riepilogo del tracciamento.
+- **getTrakingResultSummary** il quale converte i dati in un oggetto TrackingResultSummary e lo restituisce.
+- **clearRequirements** il quale elimina tutti i dati di tracciamento sia dalla memoria che dallo stato globale.
+- **deleteRequirement** il quale elimina i dati di tracciamento di un singolo requisito sia dalla memoria che dallo stato globale.
+- **removeCodeReference** il quale rimuove uno specifico riferimento al codice dal requisito tracciato, aggiornando i contatori e persistendo le modifiche.
+- **getById** il quale restituisce un singolo risultato di tracciamento in base all'id del requisito.
+- **confirmResult** il quale marca un risultato di tracciamento come confermato, aggiornando i contatori e rimuovendolo da quelli in stato pending.
+- **deleteRequirement** (_privato_) il quale elimina i dati di tracciamento di un singolo requisito sia dalla memoria che dallo stato globale.
+- **saveTrackingResult** (_privato_) il quale memorizza i dati di tracciamento nello stato globale.
+- **loadTrackingResult** (_privato_) il quale aggiorna i dati di tracciamento nello stato globale.
+- **TRStoDS** (_privato_) il quale converte un oggetto TrackingResultSummary nelle strutture dati interne del servizio.
+- **DStoTRS** (_privato_) il quale converte le strutture dati interne in un oggetto TrackingResultSummary.
+- **DStoGS** (_privato_) il quale converte le strutture dati interne nel formato richiesto per la persistenza nello stato globale.
+- **GStoDS** (_privato_) il quale converte i dati provenienti dallo stato globale nelle strutture dati interne del servizio.
 
 ##### Document
 
@@ -619,16 +622,16 @@ Mette a disposizione i metodi:
 La classe _DocumentFormatterService_ si occupa della formattazione del codice sorgente in frammenti (_chunks_) a seconda del linguaggio rilevato dal path (_language_).
 Mette a disposizione il metodo:
 
-- getLanguageFromPath (_privato_) il quale restituisce il linguaggio a partire dall'estensione del file.
-- formatSourceCode il quale suddivide il file in chunks.
+- **getLanguageFromPath** (_privato_) il quale restituisce il linguaggio a partire dall'estensione del file.
+- **formatSourceCode** il quale suddivide il file in chunks.
 
 ###### DocumentServiceFacade
 
 La classe _DocumentServiceFacade_ fornisce un accesso semplificato al servizio di gestione dei documenti (_DocumentFormatterService_).
 Mette a disposizione i metodi:
 
-- processFiles il quale elabora un elenco di file, formattandoli e aggiungendoli al database vettoriale. Gestisce controlli di dimensione, calcolo di checksum e verifica dell'esistenza.
-- processWorkspaceFiles il quale trova e processa tutti i file presenti nella cartella del progetto.
+- **processFiles** il quale elabora un elenco di file, formattandoli e aggiungendoli al database vettoriale. Gestisce controlli di dimensione, calcolo di checksum e verifica dell'esistenza.
+- **processWorkspaceFiles** il quale trova e processa tutti i file presenti nella cartella del progetto.
 
 ##### Inference
 
@@ -639,69 +642,73 @@ Mette a disposizione i metodi:
 La classe _InferenceService_ si occupa della gestione delle inference basate sui modelli %%LLM|llm%% a partire da query eseguite sul database vettoriale.
 Mette a disposizione i metodi:
 
-- query il quale permette di effettuare una chiamata a %%LLM|llm%% tramite %%Ollama|ollama%%.
-- checkSystemRequirement il quale permette di effettuare un controllo sulla connessione al servizio %%Ollama|ollama%%.
-- queryStream il quale permette di effettuare una chiamata a %%LLM|llm%% tramite %%Ollama|ollama%% fornendo il risultato come stream.
-- getContextEndPrompt (_privato_) il quale genera il prompt per l'interrogazione al modello a partire dal contesto. 
+- **query** il quale permette di effettuare una chiamata a %%LLM|llm%% tramite %%Ollama|ollama%%.
+- **checkSystemRequirement** il quale permette di effettuare un controllo sulla connessione al servizio %%Ollama|ollama%%.
+- **queryStream** il quale permette di effettuare una chiamata a %%LLM|llm%% tramite %%Ollama|ollama%% fornendo il risultato come stream.
+- **getContextEndPrompt** (_privato_) il quale genera il prompt per l'interrogazione al modello a partire dal contesto. 
 
 ###### ILanguageModel
 
 L'interfaccia _ILanguageModel_ ha lo scopo di modellare l'interazione con i modelli %%LLM|llm%%. Modella i metodi:
 
-- generate il quale genera una risposta testuale a partire da un prompt.
-- generateEmbeddings il quale esegue l'embedding di una stringa.
-- refreshModels il quale aggiorna i modelli in seguito a cambiamenti nella configurazione.
-- generateStream il quale genera una risposta sotto forma di stream a partire da un prompt.
-- checkModelAvailability il quale controlla se il modello è disponibile nell'endpoint indicato.
-- pullModel il quale scarica il modello nell'endpoint indicato.
+- **generate** il quale genera una risposta testuale a partire da un prompt.
+- **generateEmbeddings** il quale esegue l'embedding di una stringa.
+- **refreshModels** il quale aggiorna i modelli in seguito a cambiamenti nella configurazione.
+- **generateStream** il quale genera una risposta sotto forma di stream a partire da un prompt.
+- **checkModelAvailability** il quale controlla se il modello è disponibile nell'endpoint indicato.
+- **pullModel** il quale scarica il modello nell'endpoint indicato.
 
 ###### IVectorDatabase
 
 L'interfaccia _IVectorDatabase_ ha lo scopo di modellare l'interazione con il database vettoriale. Modella i metodi:
 
-- addFiles il quale permette l'aggiunta di un file nel database vettoriale.
-- addRequirements il quale permette l'aggiunta di un requisiti nel database vettoriale.
-- addChunks il quale permette l'aggiunta di frammenti di codice nel database vettoriale.
-- fileExists il quale verifica se un file con un dato percorso e checksum esiste già nel database.
-- queryForFiles il quale cerca file simili semanticamente alla domanda fornita.
-- queryForRequirements il quale cerca requisiti simili semanticamente alla domanda fornita.
-- queryForChunks il quale cerca frammenti di codice simili semanticamente alla domanda fornita.
-- resetDatabase il quale permette di reimpostare il database, eliminando tutti i dati memorizzati.
+- **addFiles** il quale permette l'aggiunta di un file nel database vettoriale.
+- **addRequirements** il quale permette l'aggiunta di un requisiti nel database vettoriale.
+- **addChunks** il quale permette l'aggiunta di frammenti di codice nel database vettoriale.
+- **fileExists** il quale verifica se un file con un dato percorso e checksum esiste già nel database.
+- **queryForFiles** il quale cerca file simili semanticamente alla domanda fornita.
+- **queryForRequirements** il quale cerca requisiti simili semanticamente alla domanda fornita.
+- **queryForChunks** il quale cerca frammenti di codice simili semanticamente alla domanda fornita.
+- **resetDatabase** il quale permette di reimpostare il database, eliminando tutti i dati memorizzati.
 
 ###### LangChainOllamaAdapter
 
 La classe _LangChainOllamaAdapter_ implementa l'interfaccia _ILanguageModel_ e si occupa di fornire un'implementazione per l'interazione dei modelli usando %%Ollama|ollama%%.
 Oltre a fornire l'implementazione dei metodi dell'interfaccia, mette a disposizione:
 
-- initialize (_privato_) il quale permette di configurare le istanze di %%Ollama|ollama%% e OllamaEmbeddings con i parametri di configurazione.
-- getEmbeddings il quale permette di restituire l'istanza di OllamaEmbeddings utilizzata per generare gli embedding.
-- generate il quale genera una risposta testuale a partire da un prompt.
-- generateEmbeddings il quale esegue l'embedding di una stringa.
-- refreshModels il quale aggiorna i modelli in seguito a cambiamenti nella configurazione.
-- generateStream il quale genera una risposta sotto forma di stream a partire da un prompt.
-- checkModelAvailability il quale controlla se il modello è disponibile nell'endpoint indicato.
-- pullModel il quale scarica il modello nell'endpoint indicato.
+- **Init** (_statico_) il quale inizializza l'istanza singleton e la restituisce.
+- **GetInstance** (_statico_) il quale restituisce l'istanza singleton esistente.
+- **initialize** (_privato_) il quale permette di configurare le istanze di %%Ollama|ollama%% e OllamaEmbeddings con i parametri di configurazione.
+- **getEmbeddings** il quale permette di restituire l'istanza di OllamaEmbeddings utilizzata per generare gli embedding.
+- **generate** il quale genera una risposta testuale a partire da un prompt.
+- **generateEmbeddings** il quale esegue l'embedding di una stringa.
+- **refreshModels** il quale aggiorna i modelli in seguito a cambiamenti nella configurazione.
+- **generateStream** il quale genera una risposta sotto forma di stream a partire da un prompt.
+- **checkModelAvailability** il quale controlla se il modello è disponibile nell'endpoint indicato.
+- **pullModel** il quale scarica il modello nell'endpoint indicato.
 
 ###### LanceDBAdapter
 
 La classe _LanceDbAdapter_ implementa l'interfaccia _IVectorDatabase_ e si occupa di fornire un'implementazione per la gestione dei file e dei requisiti usando LanceDB come database vettoriale.
 Oltre a fornire l'implementazione dei metodi dell'interfaccia, mette a disposizione:
 
-- deleteFiles il quale permette di eliminare file dal database.
-- getEmbeddings il quale restituisce l'istanza di _OllamaEmbeddings_ utilizzata per generare gli embedding.
-- addFiles il quale permette l'aggiunta di un file nel database vettoriale.
-- addRequirements il quale permette l'aggiunta di un requisiti nel database vettoriale.
-- addChunks il quale permette l'aggiunta di frammenti di codice nel database vettoriale.
-- fileExists il quale verifica se un file con un dato percorso e checksum esiste già nel database.
-- queryForFiles il quale cerca file simili semanticamente alla domanda fornita.
-- queryForRequirements il quale cerca requisiti simili semanticamente alla domanda fornita.
-- queryForChunks il quale cerca frammenti di codice simili semanticamente alla domanda fornita.
-- resetDatabase il quale permette di reimpostare il database, eliminando tutti i dati memorizzati.
-- initialize (_privato_) il quale permette di inizializzare la connessione al database e configura il servizio di embedding.
-- determineEmbeddingDimension (_privato_) il quale permette di determinare la dimensione degli embedding generando un embedding di prova.
-- getDB (_privato_) il quale permette di ottenere o creare una connessione al database.
-- tableExists (_privato_) il quale permette di verificare se una tabella esiste nel database.
-- getTable (_privato_) il quale permette di ottenere o creare una tabella nel database in base al tipo di collezione.
+- **Init** (_statico_) il quale inizializza l'istanza singleton e la restituisce.
+- **GetInstance** (_statico_) il quale restituisce l'istanza singleton esistente.
+- **deleteFiles** il quale permette di eliminare file dal database.
+- **getEmbeddings** il quale restituisce l'istanza di _OllamaEmbeddings_ utilizzata per generare gli embedding.
+- **addFiles** il quale permette l'aggiunta di un file nel database vettoriale.
+- **addRequirements** il quale permette l'aggiunta di un requisiti nel database vettoriale.
+- **addChunks** il quale permette l'aggiunta di frammenti di codice nel database vettoriale.
+- **fileExists** il quale verifica se un file con un dato percorso e checksum esiste già nel database.
+- **queryForFiles** il quale cerca file simili semanticamente alla domanda fornita.
+- **queryForRequirements** il quale cerca requisiti simili semanticamente alla domanda fornita.
+- **queryForChunks** il quale cerca frammenti di codice simili semanticamente alla domanda fornita.
+- **resetDatabase** il quale permette di reimpostare il database, eliminando tutti i dati memorizzati.
+- **initialize** (_privato_) il quale permette di inizializzare la connessione al database e configura il servizio di embedding.
+- **determineEmbeddingDimension** (_privato_) il quale permette di determinare la dimensione degli embedding generando un embedding di prova.
+- **getDB** (_privato_) il quale permette di ottenere o creare una connessione al database.
+- **tableExists** (_privato_) il quale permette di verificare se una tabella esiste nel database.
+- **getTable** (_privato_) il quale permette di ottenere o creare una tabella nel database in base al tipo di collezione.
 
 ##### ChatService
 
@@ -711,10 +718,10 @@ La classe _ChatService_ rappresenta il servizio di chat fornito dall'estensione.
 Al suo interno contiene un'istanza del servizio _GlobalStateService_ per l'aggiornamento dello stato dell'%%applicativo|applicativo%%.
 Mette a disposizione i metodi asincroni:
 
-- addMessage il quale permette l'aggiunta di nuovi messaggi.
-- saveMessage il quale permette il salvataggio della cronologia della chat.
-- getMessage il quale permette di recuperare un particolare messaggio in arrivo.
-- clearMessage il quale permette di cancellare la cronologia della chat.
+- **addMessage** il quale permette l'aggiunta di nuovi messaggi.
+- **saveMessage** il quale permette il salvataggio della cronologia della chat.
+- **getMessage** il quale permette di recuperare un particolare messaggio in arrivo.
+- **clearMessage** il quale permette di cancellare la cronologia della chat.
 
 ### Progettazione grafica
 
