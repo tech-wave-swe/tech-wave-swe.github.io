@@ -10,6 +10,8 @@ import { COLLECTION_TYPE } from "../Models/CollectionType";
 import { IVectorDatabase } from "../Interfaces/IVectorDatabase";
 
 export class LanceDBAdapter implements IVectorDatabase {
+  private static _instance: LanceDBAdapter;
+
   private _embeddings: OllamaEmbeddings = new OllamaEmbeddings();
   private readonly _dbPath: string;
   private _dbConnection: Connection | null = null;
@@ -17,11 +19,27 @@ export class LanceDBAdapter implements IVectorDatabase {
   private _maxTextLength = 8000;
   private _configServiceFacade: ConfigServiceFacade;
 
-  constructor(configServiceFacade: ConfigServiceFacade, storagePath: string) {
+  private constructor(configServiceFacade: ConfigServiceFacade, storagePath: string) {
     this._configServiceFacade = configServiceFacade;
 
     this._dbPath = path.join(storagePath, "lancedb");
     this._initialize();
+  }
+
+  public static Init(configServiceFacade: ConfigServiceFacade, storagePath: string): LanceDBAdapter {
+    if (!LanceDBAdapter._instance) {
+      LanceDBAdapter._instance = new LanceDBAdapter(configServiceFacade, storagePath);
+    }
+
+    return LanceDBAdapter._instance;
+  }
+
+  public static GetInstance(): LanceDBAdapter {
+    if (!LanceDBAdapter._instance) {
+      throw new Error("LanceDBAdapter must be initialized first!");
+    }
+
+    return LanceDBAdapter._instance;
   }
 
   public async resetDatabase(): Promise<void> {

@@ -33,32 +33,22 @@ export function activate(context: vscode.ExtensionContext) {
   try {
     // Initialize Services
     _initializeConfigService();
-
-    let lancedbPath = context.globalStorageUri.fsPath;
-    const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
-
-    if (workspaceFolder) {
-      lancedbPath = path.join(lancedbPath, workspaceFolder.name);
-    }
-
-    console.log(workspaceFolder);
-    console.log(lancedbPath);
+    _initializeLanceDB(context);
 
     const languageModel = new LangChainOllamaAdapter(ConfigServiceFacade.GetInstance());
-    const lanceDBAdapter = new LanceDBAdapter(ConfigServiceFacade.GetInstance(), lancedbPath);
 
     // Initialize View Providers
-    _initializeChatViewProvider(context, languageModel, lanceDBAdapter);
-    _initializeTrackerViewProvider(context, languageModel, lanceDBAdapter);
+    _initializeChatViewProvider(context, languageModel);
+    _initializeTrackerViewProvider(context, languageModel);
 
     // Initialize Commands
-    _initializeCommands(context, languageModel, lanceDBAdapter);
+    _initializeCommands(context, languageModel);
 
     // Handle Events
-    _handleEvents(context, languageModel, lanceDBAdapter);
+    _handleEvents(context, languageModel);
 
     // Check system requirements on startup
-    _startupCheck(context, languageModel, lanceDBAdapter);
+    _startupCheck(context, languageModel);
 
     console.log("Requirements Tracker extension is now active");
   } catch (error) {
@@ -88,15 +78,25 @@ function _initializeConfigService() {
   ConfigServiceFacade.Init(configService);
 }
 
+function _initializeLanceDB(context: vscode.ExtensionContext) {
+  let lancedbPath = context.globalStorageUri.fsPath;
+  const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
+
+  if (workspaceFolder) {
+    lancedbPath = path.join(lancedbPath, workspaceFolder.name);
+  }
+
+  LanceDBAdapter.Init(ConfigServiceFacade.GetInstance(), lancedbPath);
+}
+
 function _initializeChatViewProvider(
   context: vscode.ExtensionContext,
   languageModel: LangChainOllamaAdapter,
-  lanceDBAdapter: LanceDBAdapter,
 ) {
   const globalStateService = new GlobalStateService(context.globalState);
   const chatService = new ChatService(globalStateService);
 
-  const inferenceService = new InferenceService(languageModel, lanceDBAdapter);
+  const inferenceService = new InferenceService(languageModel, LanceDBAdapter.GetInstance());
 
   const chatWebviewProvider = new ChatWebviewProvider(
     chatService,
@@ -120,7 +120,6 @@ function _initializeChatViewProvider(
 function _initializeTrackerViewProvider(
   context: vscode.ExtensionContext,
   languageModel: LangChainOllamaAdapter,
-  lanceDBAdapter: LanceDBAdapter,
 ) {
   const globalStateService = new GlobalStateService(context.globalState);
   const parsingService = new ParsingService();
@@ -130,13 +129,13 @@ function _initializeTrackerViewProvider(
 
   const documentServiceFacade = new DocumentServiceFacade(
     new DocumentFormatterService(),
-    lanceDBAdapter,
+    LanceDBAdapter.GetInstance(),
   );
 
   const trackingResultService = new TrackingResultService(globalStateService);
 
   const trackerService = new RequirementsTrackerService(
-    lanceDBAdapter,
+    LanceDBAdapter.GetInstance(),
     documentServiceFacade,
     new FilterService(ConfigServiceFacade.GetInstance()),
     languageModel,
@@ -148,7 +147,7 @@ function _initializeTrackerViewProvider(
     parsingService,
     trackerService,
     requirementsService,
-    lanceDBAdapter,
+    LanceDBAdapter.GetInstance(),
   );
 
   const trackerWebviewProvider = new TrackerWebviewProvider(
@@ -187,7 +186,6 @@ function _initializeTrackerViewProvider(
 function _handleEvents(
   context: vscode.ExtensionContext,
   languageModel: LangChainOllamaAdapter,
-  lanceDBAdapter: LanceDBAdapter,
 ) {
   // Handle configuration changes
   context.subscriptions.push(
@@ -246,7 +244,7 @@ function _handleEvents(
         }
 
         await languageModel.refreshModels();
-        await lanceDBAdapter.refreshEmbeddings();
+        await LanceDBAdapter.GetInstance().refreshEmbeddings();
 
         vscode.window.showInformationMessage(
           "Requirements Tracker configuration updated",
@@ -259,14 +257,13 @@ function _handleEvents(
 function _initializeCommands(
   context: vscode.ExtensionContext,
   languageModel: LangChainOllamaAdapter,
-  lanceDBAdapter: LanceDBAdapter,
 ) {
   const globalStateService = new GlobalStateService(context.globalState);
   const chatService = new ChatService(globalStateService);
   const requirementsService = new RequirementsService(
     new GlobalStateService(context.globalState),
   );
-  const inferenceService = new InferenceService(languageModel, lanceDBAdapter);
+  const inferenceService = new InferenceService(languageModel, LanceDBAdapter.GetInstance());
   const fileSystemService = new FileSystemService(context.extensionUri.fsPath);
   const chatWebView = new ChatWebView(context.extensionUri, fileSystemService);
 
@@ -281,7 +278,7 @@ function _initializeCommands(
   const clearRequirementsHistory = new ClearRequirementsHistoryCommand(
     requirementsService,
   );
-  const resetDatabase = new ResetDatabaseCommand(lanceDBAdapter);
+  const resetDatabase = new ResetDatabaseCommand(LanceDBAdapter.GetInstance());
   const interrogateSelection = new InterrogateSelectionCommand(
     chatWebviewProvider,
     requirementsService,
@@ -308,9 +305,8 @@ function _initializeCommands(
 function _startupCheck(
   context: vscode.ExtensionContext,
   languageModel: LangChainOllamaAdapter,
-  lanceDBAdapter: LanceDBAdapter,
 ) {
-  const inferenceService = new InferenceService(languageModel, lanceDBAdapter);
+  const inferenceService = new InferenceService(languageModel, LanceDBAdapter.GetInstance());
 
   inferenceService.checkSystemRequirements().catch((error) => {
     vscode.window.showErrorMessage(`System check failed: ${error.message}`);

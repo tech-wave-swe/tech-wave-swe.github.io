@@ -30,7 +30,7 @@ export async function setupTestServices(workspacePath: string) {
   ConfigServiceFacade.Init(configService);
 
   // Initialize core services
-  const vectorDatabase = new LanceDBAdapter(ConfigServiceFacade.GetInstance(), workspacePath);
+  const vectorDatabase = LanceDBAdapter.Init(ConfigServiceFacade.GetInstance(), workspacePath);
 
   const globalStateService = new GlobalStateService(
     extension.exports.getContext().globalState,
