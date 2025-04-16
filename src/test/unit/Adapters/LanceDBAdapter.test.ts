@@ -75,7 +75,7 @@ describe("LanceDBAdapter", () => {
       getMaxResults: jest.fn().mockReturnValue(5),
     } as unknown as jest.Mocked<ConfigServiceFacade>;
 
-    adapter = new LanceDBAdapter(mockConfigServiceFacade, "/mock/path");
+    adapter = LanceDBAdapter.Init(mockConfigServiceFacade, "/mock/path");
 
     (adapter as any)._dbConnection = mockConnection;
     (adapter as any)._embeddingDimension = 768;

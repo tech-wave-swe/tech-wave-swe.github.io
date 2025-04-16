@@ -7,15 +7,33 @@ import { StringOutputParser } from "@langchain/core/output_parsers";
 import { RunnableSequence } from "@langchain/core/runnables";
 
 export class LangChainOllamaAdapter implements ILanguageModel {
+  private static _instance: LangChainOllamaAdapter;
+
   private _ollama: Ollama = new Ollama();
   private _embeddings: OllamaEmbeddings = new OllamaEmbeddings();
   private _ollamaClient: OllamaClient = new OllamaClient({ host: "" });
   private _configServiceFacade: ConfigServiceFacade;
 
-  constructor(configServiceFacade: ConfigServiceFacade) {
+  private constructor(configServiceFacade: ConfigServiceFacade) {
     this._configServiceFacade = configServiceFacade;
 
     this._initialize();
+  }
+
+  public static Init(configServiceFacade: ConfigServiceFacade): LangChainOllamaAdapter {
+    if (!LangChainOllamaAdapter._instance) {
+      LangChainOllamaAdapter._instance = new LangChainOllamaAdapter(configServiceFacade);
+    }
+
+    return LangChainOllamaAdapter._instance;
+  }
+
+  public static GetInstance(): LangChainOllamaAdapter {
+    if (!LangChainOllamaAdapter._instance) {
+      throw new Error("LanceDBAdapter must be initialized first!");
+    }
+
+    return LangChainOllamaAdapter._instance;
   }
 
   private _initialize(): void {

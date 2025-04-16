@@ -80,7 +80,7 @@ describe("LangChainOllamaAdapter", () => {
       getBearerToken: jest.fn(() => "fake-token"),
     } as unknown as jest.Mocked<ConfigServiceFacade>;
 
-    adapter = new LangChainOllamaAdapter(mockConfigServiceFacade);
+    adapter = LangChainOllamaAdapter.Init(mockConfigServiceFacade);
     // Set the mock Ollama client for testing
     // @ts-expect-error - We're using a simplified mock
     adapter["_ollamaClient"] = mockOllamaClient;
