@@ -1231,7 +1231,7 @@ Table: Requisiti funzionali per l'output dei risultati dell'esecuzione
 
 | ID        | Descrizione                                                                                                     | Fonte                                  |
 | --------- | --------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| **RTO_1** | L'Applicativo deve essere un'estensione di Visual Studio Code. (versione minima 1.96)                           | Capitolato                             |
+| **RTO_1** | L'Applicativo deve essere un'estensione di Visual Studio Code. (versione minima 1.95)                           | Capitolato                             |
 | **RTO_2** | L'Applicativo deve essere eseguibile interamente in locale.                                                     | Capitolato, Riunione con il proponente |
 | **RTO_3** | L'Applicativo deve utilizzare Ollama come interfaccia per l'interrogazione dei modelli. (versione minima 0.6.2) | Capitolato                             |
 | **RTO_4** | I modelli utilizzati sono dei large language model (LLM).                                                       | Capitolato                             |
