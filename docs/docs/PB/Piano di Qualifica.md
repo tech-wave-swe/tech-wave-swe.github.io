@@ -407,7 +407,7 @@ Possiamo osservare che i valori riportati sono rimasti stabili durante questa pr
 
 Possiamo osservare che il numero di errori è stato minimizzato tramite l'utilizzo di "SpellCheck": un'estensione che permette di individuare gli errori ortografici all'interno dei documenti.
 
-### Earned calue, planned value & actual cost
+### Earned value, planned value & actual cost
 
 <iframe width="800" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0txzzEKqHdhrji9fd49Hd7k4zLchkVRCsBk1Oil4yILOSzL3kxO2DtdxCC9W1ni5uqytaJaVwcHAV/pubchart?oid=1002546531&amp;format=interactive" data-image="ev-pv-ac.png" data-title="Earned Value, Planned Value e Actual Cost"></iframe>
 
