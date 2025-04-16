@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as vscode from "vscode";
 import { ChatMessage } from "../Models/ChatMessage";
 import { Requirement } from "../Models/Requirement";

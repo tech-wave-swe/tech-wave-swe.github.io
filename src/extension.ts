@@ -245,7 +245,6 @@ function _handleEvents(
         }
 
         await LangChainOllamaAdapter.GetInstance().refreshModels();
-        await LanceDBAdapter.GetInstance().refreshEmbeddings();
 
         vscode.window.showInformationMessage(
           "Requirements Tracker configuration updated",

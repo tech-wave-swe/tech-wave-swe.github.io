@@ -22,7 +22,7 @@ export class TrackerWebView {
       return this._parseHTML(html, webview);
     } catch (error) {
       console.error(error);
-      vscode.window.showErrorMessage(`Failed to load tracker HTML file: ${error}`,)
+      vscode.window.showErrorMessage(`Failed to load tracker HTML file: ${error}`);
       return "";
     }
   }
