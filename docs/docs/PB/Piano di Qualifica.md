@@ -23,7 +23,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                              | Autore                | Data Verifica | Verificatore          |
 | ---------- | -------- | ---------------------------------------- | --------------------- | ------------- | --------------------- |
-| 10/04/2025 | 1.7.5    | Cambio stato test di accettazione        | Giulia Marcon         | 10/04/2025    |  |
+| 10/04/2025 | 1.7.5    | Cambio stato test di accettazione        | Giulia Marcon         | 10/04/2025    |                       |
 | 30/03/2025 | 1.7.4    | Controllo consistenza maiuscole          | Dal Bianco Riccardo   | 30/03/2025    | Vasquez Manuel Felipe |
 | 07/03/2025 | 1.7.3    | Aggiunta interpretazione dei grafici     | Monetti Luca          | 07/03/2025    | Pistori Gaia          |
 | 06/03/2025 | 1.7.2    | miglioramento metriche                   | Piola Andrea          | 07/03/2025    | Luca Monetti          |
@@ -326,11 +326,11 @@ Table: Metriche di manutenibilità per la qualità di prodotto
 
 ### Portabilità
 
-| Metrica | Nome           | Descrizione                        | Obiettivo              | Valore Accettabile | Valore Desiderabile |
-| ------- | -------------- | ---------------------------------- | ---------------------- | ------------------ | ------------------- |
-| MPRP01  | Adattabilità   | Effort per cambio ambiente (ore)   | Facilitare portabilità | ≤ 2h               | ≤ 1h                |
-| MPRP02  | Installabilità | Tempo medio di installazione       | Semplificare setup     | ≤ 15min            | ≤ 5min              |
-| MPRP03  | Sostituibilità | Effort per sostituire impostazioni | Facilitare modifiche   | ≤ 10m              | ≤ 5min              |
+| Metrica | Nome                      | Descrizione                        | Obiettivo              | Valore Accettabile | Valore Desiderabile |
+| ------- | ------------------------- | ---------------------------------- | ---------------------- | ------------------ | ------------------- |
+| MPRP01  | Adattabilità              | Effort per cambio ambiente (ore)   | Facilitare portabilità | ≤ 2h               | ≤ 1h                |
+| MPRP02  | Velocità di installazione | Tempo medio di installazione       | Semplificare setup     | ≤ 15min            | ≤ 5min              |
+| MPRP03  | Sostituibilità            | Effort per sostituire impostazioni | Facilitare modifiche   | ≤ 10m              | ≤ 5min              |
 
 Table: Metriche di portabilità per la qualità di prodotto
 
@@ -340,52 +340,52 @@ I test di verifica e validazione vengono eseguiti in tutte le fasi del ciclo di 
 
 ### Test di sistema
 
-| ID   | Descrizione                                                            | ID Requisito        | Stato            |
-| ---- | ---------------------------------------------------------------------- | ------------------- | ---------------- |
-| TS01 | Verifica selezione e configurazione dei modelli LLM                    | RFO_1,2,4           | Non Implementato |
-| TS02 | Verifica configurazione modelli custom                                 | RFD_3               | Non Implementato |
-| TS03 | Verifica configurazione temperature                                    | RFD_5               | Non Implementato |
-| TS04 | Verifica gestione Bearer Token per server Ollama esterno               | RFP_6               | Non Implementato |
-| TS05 | Verifica gestione errori input utente                                  | RFO_7               | Non Implementato |
-| TS06 | Verifica selezione cartella progetto e file requisiti                  | RFO_8,9             | Non Implementato |
-| TS07 | Verifica funzionalità di selezione e filtro                            | RFD_10,11,12,RFO_13 | Non Implementato |
-| TS08 | Verifica visualizzazione porzione di codice per requisito implementato | RFO_14              | Non Implementato |
-| TS09 | Verifica parsing documento requisiti                                   | RFO_15              | Non Implementato |
-| TS10 | Verifica embedding dei documenti                                       | RFO_16              | Non Implementato |
-| TS11 | Verifica gestione errori parsing                                       | RFO_17              | Non Implementato |
-| TS12 | Verifica generazione struttura dati sui requisiti                      | RFO_18              | Non Implementato |
-| TS13 | Verifica applicazione filtro sui requisiti                             | RFO_19              | Non Implementato |
-| TS14 | Verifica gestione errori sull'applicazione dei filtri sui requisiti    | RFO_20              | Non Implementato |
-| TS15 | Verifica generazione codice e analisi da parte del modello LLM         | RFO_21,22           | Non Implementato |
-| TS16 | Verifica gestione errori modelli LLM                                   | RFO_23              | Non Implementato |
-| TS17 | Verifica aggiornamento dello stato dei requisiti e struttura dati      | RFO_24              | Non Implementato |
-| TS18 | Verifica interfaccia visualizzazione risultati                         | RFO_25              | Non Implementato |
-| TS19 | Verifica gestione errori generazione codice e analisi                  | RFO_26,28           | Non Implementato |
-| TS20 | Verifica funzionalità di feedback sulla certezza della risposta        | RFP_27,29           | Non Implementato |
+| ID   | Descrizione                                                            | ID Requisito                   | Stato        |
+| ---- | ---------------------------------------------------------------------- | ------------------------------ | ------------ |
+| TS01 | Verifica selezione e configurazione dei modelli LLM                    | RFO_1, RFO_12, RFO_14          | Implementato |
+| TS02 | Verifica configurazione modelli custom                                 | RFD_3                          | Implementato |
+| TS03 | Verifica configurazione temperature                                    | RFD_5                          | Implementato |
+| TS04 | Verifica gestione Bearer Token per server Ollama esterno               | RFP_6                          | Implementato |
+| TS05 | Verifica gestione errori input utente                                  | RFO_7                          | Implementato |
+| TS06 | Verifica selezione cartella progetto e file requisiti                  | RFO_8, RFO_9                   | Implementato |
+| TS07 | Verifica funzionalità di selezione e filtro                            | RFD_10, RFD_11, RFD_12, RFO_13 | Implementato |
+| TS08 | Verifica visualizzazione porzione di codice per requisito implementato | RFO_14                         | Implementato |
+| TS09 | Verifica parsing documento requisiti                                   | RFO_15                         | Implementato |
+| TS10 | Verifica embedding dei documenti                                       | RFO_16                         | Implementato |
+| TS11 | Verifica gestione errori parsing                                       | RFO_17                         | Implementato |
+| TS12 | Verifica generazione struttura dati sui requisiti                      | RFO_18                         | Implementato |
+| TS13 | Verifica applicazione filtro sui requisiti                             | RFO_19                         | Implementato |
+| TS14 | Verifica gestione errori sull'applicazione dei filtri sui requisiti    | RFO_20                         | Implementato |
+| TS15 | Verifica generazione codice e analisi da parte del modello LLM         | RFO_21,RFO_22                  | Implementato |
+| TS16 | Verifica gestione errori modelli LLM                                   | RFO_23                         | Implementato |
+| TS17 | Verifica aggiornamento dello stato dei requisiti e struttura dati      | RFO_24                         | Implementato |
+| TS18 | Verifica interfaccia visualizzazione risultati                         | RFO_25                         | Implementato |
+| TS19 | Verifica gestione errori generazione codice e analisi                  | RFO_26,RFO_28                  | Implementato |
+| TS20 | Verifica funzionalità di feedback sulla certezza della risposta        | RFP_27,RFP_29                  | Implementato |
 
 Table: Test di sistema
 
 ### Test di accettazione
 
-| ID   | Descrizione                                                | ID Requisito                     | Stato        |
-| ---- | -----------------------------------------------------------| -------------------------------- | -------------|
-| TA01 | Verifica funzionalità come estensione in VS Code           | RTO_1                            | Implementato |
-| TA02 | Verifica esecuzione locale dell'applicativo                | RTO_2                            | Implementato |
-| TA03 | Verifica integrazione con Ollama                           | RTO_3 RTO_4                      | Implementato |
-| TA04 | Verifica analisi di codice in linguaggio C/C++             | RTO_5                            | Implementato |
-| TA05 | Verifica analisi di codice in linguaggio Rust              | RTP_6                            | Implementato |
-| TA06 | Verifica supporto formato file requisiti .csv              | RTO_7                            | Implementato |
-| TA07 | Verifica supporto formato file requisiti .reqif            | RTP_8                            | Implementato |
-| TA08 | Verifica usabilità interfaccia grafica                     | RFO_14 RFO_15                    | Implementato |
-| TA09 | Verifica esecuzione dell'applicativo con configurazioni di default | RFO_5 RFO_6 RFD_7 RFP_10 | Implementato |
-| TA10 | Verifica esecuzione dell'aplicativo con configurazioni personallizzate (scelta e gestione modelli) | RFO_1 RFO_2  RFD_3 RFD_4 RFD_7 RFP_10 RFP_11 | Implementato |
-| TA11 | Verifica esecuzione dell'aplicativo con configurazioni personallizzate (filtri: selezione cartelle, file e requisiti) | RFO_17 RFD_19 RFD_20 RFD_21 RFD_22 RFD_23 RFD_24 | Implementato |
-| TA12 | Verifica esecuzione della ricerca dei requisiti | RFD_25 RFO_26 RFO_27 RFO_28 RFO_35 RFO_36  RFD_37 | Implementato |
-| TA13 | Verifica generazione, visualizzazione e aggiornamento dello stato dei requisiti | RFO_29 RFO_32 RFO_39 RFO_41 RFD_42 RFP_43 | Implementato |
-| TA14 | Verifica interazione con il ChatBot                        | RFP_40                           | Implementato |
-| TA15 | Verifica richiesta di feedback                             | RFP_46 RFP_47 RFP_48             | Implementato |
-| TA16 | Verifica copertura dei test superiore a 80%                | RQO_6                            | Implementato |
-| TA17 | Verifica esecuzione dell'aplicativo in presenza di errori  | RFO_12 RFO_13 RFO_14 RFO_15 RFP_16 RFO_30 RFO_31 RFD_34 RFO_38 RFO_44 RFO_45 RFO_49 RFO_50 RFO_51 | Implementato |
+| ID   | Descrizione                                                                                                           | ID Requisito                                                                                                   | Stato        |
+| ---- | --------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------ |
+| TA01 | Verifica funzionalità come estensione in VS Code                                                                      | RTO_1                                                                                                          | Implementato |
+| TA02 | Verifica esecuzione locale dell'applicativo                                                                           | RTO_2                                                                                                          | Implementato |
+| TA03 | Verifica integrazione con Ollama                                                                                      | RTO_3, RTO_4                                                                                                   | Implementato |
+| TA04 | Verifica analisi di codice in linguaggio C/C++                                                                        | RTO_5                                                                                                          | Implementato |
+| TA05 | Verifica analisi di codice in linguaggio Rust                                                                         | RTP_6                                                                                                          | Implementato |
+| TA06 | Verifica supporto formato file requisiti .csv                                                                         | RTO_7                                                                                                          | Implementato |
+| TA07 | Verifica supporto formato file requisiti .reqif                                                                       | RTP_8                                                                                                          | Implementato |
+| TA08 | Verifica usabilità interfaccia grafica                                                                                | RFO_14, RFO_15                                                                                                 | Implementato |
+| TA09 | Verifica esecuzione dell'applicativo con configurazioni di default                                                    | RFO_5, RFO_6, RFD_7, RFP_10                                                                                    | Implementato |
+| TA10 | Verifica esecuzione dell'applicativo con configurazioni personalizzate (scelta e gestione modelli)                    | RFO_1, RFO_2, RFD_3, RFD_4, RFD_7, RFP_10, RFP_11                                                              | Implementato |
+| TA11 | Verifica esecuzione dell'applicativo con configurazioni personalizzate (filtri: selezione cartelle, file e requisiti) | RFO_17, RFD_19, RFD_20, RFD_21, RFD_22, RFD_23, RFD_24                                                         | Implementato |
+| TA12 | Verifica esecuzione della ricerca dei requisiti                                                                       | RFD_25, RFO_26, RFO_27, RFO_28, RFO_35, RFO_36, RFD_37, RFO_52                                                 | Implementato |
+| TA13 | Verifica generazione, visualizzazione e aggiornamento dello stato dei requisiti                                       | RFO_29 RFO_32 RFO_39 RFO_41 RFD_42 RFP_43                                                                      | Implementato |
+| TA14 | Verifica interazione con il ChatBot                                                                                   | RFP_40                                                                                                         | Implementato |
+| TA15 | Verifica richiesta di feedback                                                                                        | RFP_46, RFP_47, RFP_48                                                                                         | Implementato |
+| TA16 | Verifica copertura dei test superiore a 80%                                                                           | RQO_6                                                                                                          | Implementato |
+| TA17 | Verifica esecuzione dell'applicativo in presenza di errori                                                            | RFO_12, RFO_13, RFO_14, RFO_15, RFP_16, RFO_30, RFO_31, RFD_34, RFO_38, RFO_44, RFO_45, RFO_49, RFO_50, RFO_51 | Implementato |
 
 Table: Test di accettazione
 
@@ -413,7 +413,7 @@ Possiamo osservare che il numero di errori è stato minimizzato tramite l'utiliz
 
 #### RTB
 
-Possiamo osservare che, nonostatnte un iniziale sovrastima del carico di lavoro completabile, il progetto risulta al passo con la pianificazione iniziale. Questo è stato possibile attraverso uno %%sprint|sprint%% di recupero durante il quale il gruppo si è concentrato sul completamento delle attività rimaste in arretrato.
+Possiamo osservare che, nonostante un iniziale sovrastima del carico di lavoro completabile, il progetto risulta al passo con la pianificazione iniziale. Questo è stato possibile attraverso uno %%sprint|sprint%% di recupero durante il quale il gruppo si è concentrato sul completamento delle attività rimaste in arretrato.
 
 ### Estimate to complete & estimate at completion
 
@@ -445,7 +445,7 @@ Possiamo osservare che durante gli %%sprint|sprint%% 2, 3 e 4 il valore del SPI 
 
 #### RTB
 
-Possiamo osservare che, allo stato attuale del progetto, non sono stati individuati rischi non previsti. Il gruppo è stato quindi in grado di gestire il progetto in maniera efficiace mitigando la comparse di nuovi rischi non preventivati.
+Possiamo osservare che, allo stato attuale del progetto, non sono stati individuati rischi non previsti. Il gruppo è stato quindi in grado di gestire il progetto in maniera efficace mitigando la comparse di nuovi rischi non preventivati.
 
 ### Requisiti obbligatori
 
