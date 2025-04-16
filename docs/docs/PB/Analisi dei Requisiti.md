@@ -1,6 +1,6 @@
 ---
 id: analisi_dei_requisiti
-title: "Analisi dei Requisiti"
+title: "Analisi dei Requisiti - v2.6.0"
 documentclass: TWDocumentFull
 toc: true
 lof: true
@@ -109,7 +109,7 @@ L'%%Applicativo|applicativo%% si interfaccia con un singolo attore primario:
 
 - **Utente programmatore**: Utente principale dell'%%applicativo|applicativo%%. Ha accesso a tutte le funzionalità previste e utilizza l'%%applicativo|applicativo%% durante il flusso di lavoro.
 
-L'%%Applicativo|applicativo%% si intefaccia con un singolo attore secondario:
+L'%%Applicativo|applicativo%% si interfaccia con un singolo attore secondario:
 
 - **%%Ollama|ollama%%**: Software gratuito e open source che consente di eseguire in locale diversi modelli %%LLM|llm%%.
 
@@ -854,7 +854,7 @@ Come Utente programmatore voglio ricevere un messaggio di errore chiaro e inform
 
 **Attore secondario:**
 
-- %%Ollama|ollama%%
+- %%LanceDB|lancedb%%
 
 **Precondizioni:**
 
@@ -948,7 +948,7 @@ Come Utente programmatore devo poter selezionare tutto il codice del progetto so
 
 **Estende:**
 
-- UC15 - Controllo implementazione requisiti
+- UC15.3 - Controllo implementazione requisiti
 
 **Attore primario:**
 
@@ -1022,6 +1022,41 @@ Come Utente programmatore devo poter selezionare tutti i requisiti per i quali v
 **Postcondizioni:**
 
 - Tutti i risultati forniti dall’%%Applicativo|applicativo%% sono stati revisionati dall’Utente programmatore
+
+**Scenario principale:**
+
+1. L’Utente programmatore visualizza lo stato di implementazione fornito dal controllo
+2. L’Utente programmatore visualizza la porzione di codice proposta (UC19)
+3. L’Utente programmatore revisiona la risposta fornita scegliendo di approvarla, di scartarla o di modificare il puntatore alla porzione di codice
+
+**User story:**
+
+Come Utente programmatore devo poter revisionare la risposta fornita dall’%%Applicativo|applicativo%% durante il controllo dell’implementazione.
+
+---
+
+<img src="/img/UseCases/UC15.3.png" alt="Richiesta controllo implementazione Ollama" data-width="70%" />
+
+#### UC15.3 - "Richiesta controllo implementazione Ollama
+
+**Attore primario:**
+
+- Utente programmatore
+
+**Attore secondario:**
+
+- %%Ollama|ollama%%
+
+**Precondizioni:**
+
+- L’Utente programmatore ha configurato l’estensione (UC1)
+- L’Utente programmatore ha aperto un nuovo progetto software (UC11)
+- L'Utente programmatore ha eseguito, almeno una volta, il controllo dell'implementazione dei requisiti nel codice
+- L’Utente programmatore si trova nella scheda dedicata
+
+**Postcondizioni:**
+
+- L’%%Applicativo|applicativo%% mostra lo stato di implementazione di un requisito fornito da %%Ollama|ollama%%
 
 **Scenario principale:**
 
@@ -1211,7 +1246,7 @@ I requisiti vengono identificati ciascuno da un codice identificativo nel format
 - L'utente deve poter configurare l'%%Applicativo|applicativo%% da interfaccia grafica, in particolare:
 
 | ID         | Descrizione                                                                                                                                                                                                                                                                                       | Use Cases |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | --- |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
 | **RFO_1**  | L'utente può scegliere il modello da utilizzare per generare codice.                                                                                                                                                                                                                              | **UC1.2** |
 | **RFO_2**  | L'utente può scegliere il modello da utilizzare per l'embedding.                                                                                                                                                                                                                                  | **UC1.3** |
 | **RFD_3**  | L'utente può scegliere di utilizzare un modello custom per generare codice. È possibile indicare il nome di un modello personalizzato e installato nel dispositivo dell'utente.                                                                                                                   | **UC5**   |
@@ -1220,7 +1255,7 @@ I requisiti vengono identificati ciascuno da un codice identificativo nel format
 | **RFO_6**  | L'utente può selezionare uno dei modelli proposti per l'embedding selezionando uno dei modelli consigliati. dell'utente.                                                                                                                                                                          | **UC7**   |
 | **RFD_7**  | L'utente può impostare la temperature del modello per generare codice, inserendo un valore decimale compreso tra 0 e 1.                                                                                                                                                                           | **UC1.4** |
 | **RFP_8**  | L'utente può inserire un Bearer Token per usare Ollama in un server esterno.                                                                                                                                                                                                                      | **UC1.5** |
-| **RFP_9**  | L'utente può inserire un endpoint specifico a cui indirizzare le richieste di Ollama.                                                                                                                                                                                                             | **UC1.1** | '   |
+| **RFP_9**  | L'utente può inserire un endpoint specifico a cui indirizzare le richieste di Ollama.                                                                                                                                                                                                             | **UC1.1** |
 | **RFP_10** | L'utente può impostare il numero massimo di risultati da ottenere per ogni ricerca.                                                                                                                                                                                                               | **UC1.6** |
 | **RFP_11** | L'utente può specificare il prompt per la richiesta al modello di generazione del codice.                                                                                                                                                                                                         | **UC1.7** |
 | **RFO_12** | L'Applicativo restituisce un messaggio d'errore se Ollama non risulta installato all'endpoint indicato. Il messaggio deve fornire una possibile soluzione al problema e deve indicare chiaramente il campo che ha generato l'errore.                                                              | **UC2**   |
@@ -1284,6 +1319,7 @@ Table: Requisiti funzionali per l'esecuzione dell'estensione
 | **RFO_49** | L'Applicativo deve generare una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile se il puntatore è scorretto.                                                                                                                                      | **UC20**   |
 | **RFO_50** | L'Applicativo deve generare una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile se file è stato cancellato.                                                                                                                                       | **UC20**   |
 | **RFO_51** | L'Applicativo deve generare una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile se il file è corrotto.                                                                                                                                            | **UC20**   |
+| **RFO_52** | L'Applicativo deve poter eseguire un controllo di implementazione specifico su un requisito interrogando Ollama.                                                                                                                                                                              | **UC15.3** |
 
 Table: Requisiti funzionali per l'output dei risultati dell'esecuzione
 
@@ -1299,6 +1335,7 @@ Table: Requisiti funzionali per l'output dei risultati dell'esecuzione
 | **RTP_6** | Il codice analizzato deve essere in linguaggio Rust.                                                            | Capitolato                             |
 | **RTO_7** | Il file con la lista dei requisiti può essere in formato .csv.                                                  | Capitolato                             |
 | **RTP_8** | Il file con la lista dei requisiti può essere in formato .reqif.                                                | Capitolato                             |
+| **RTO_9** | L'Applicativo deve utilizzare LanceDB per l'interazione con il database vettoriale. (versione minima 0.18)      | Riunione con il proponente             |
 
 Table: Requisiti tecnici e di vincolo
 
@@ -1347,6 +1384,7 @@ Table: Requisiti qualitativi
 | UC15       | RFD_19, RFP_46, RFP_47, RFP_48                                         |
 | UC15.1     | RFD_19                                                                 |
 | UC15.2     | RFP_46, RFP_47, RFP_48                                                 |
+| UC15.3     | RFO_52                                                                 |
 | UC16       | RFD_25                                                                 |
 | UC17       | RFO_26, RFD_33                                                         |
 | UC18       | RFO_38                                                                 |
