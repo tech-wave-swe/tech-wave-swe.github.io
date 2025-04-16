@@ -79,6 +79,12 @@ export async function setupTestServices(workspacePath: string) {
 
   const mockLanguageModel = new MockLanguageModel();
 
+  const vectorDatabase = LanceDBAdapter.Init(
+    ConfigServiceFacade.GetInstance(),
+    mockLanguageModel,
+    workspacePath,
+  );
+
   await extension.activate();
 
   const globalStateService = new GlobalStateService(
@@ -88,8 +94,6 @@ export async function setupTestServices(workspacePath: string) {
   const mockTrackingResultService = new TrackingResultService(
     globalStateService,
   );
-
-  const vectorDatabase = LanceDBAdapter.Init(ConfigServiceFacade.GetInstance(), mockLanguageModel, workspacePath);
 
   const requirementsService = new RequirementsService(globalStateService);
   const documentFormatter = new DocumentFormatterService();

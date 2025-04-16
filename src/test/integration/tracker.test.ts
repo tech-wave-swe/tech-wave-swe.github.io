@@ -7,7 +7,6 @@ import { DocumentServiceFacade } from "../../Facades/DocumentServiceFacade";
 import { setupTestServices } from "../testSetup";
 import { TestWorkspace } from "../testWorkspace";
 import { Requirement, RequirementStatus } from "../../Models/Requirement";
-import { TrackingResultSummary } from "../../Models/TrackingModels";
 
 suite("Tracker Integration Tests", () => {
   let workspace: TestWorkspace;

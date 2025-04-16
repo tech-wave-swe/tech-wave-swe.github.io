@@ -16,10 +16,13 @@ export class LanceDBAdapter implements IVectorDatabase {
   private readonly _dbPath: string;
   private _dbConnection: Connection | null = null;
   private _embeddingDimension = 768;
-  private _maxTextLength = 8000;
   private _configServiceFacade: ConfigServiceFacade;
 
-  private constructor(configServiceFacade: ConfigServiceFacade, languageModel: ILanguageModel, storagePath: string) {
+  private constructor(
+    configServiceFacade: ConfigServiceFacade,
+    languageModel: ILanguageModel,
+    storagePath: string,
+  ) {
     this._configServiceFacade = configServiceFacade;
 
     this._languageModel = languageModel;
@@ -27,9 +30,17 @@ export class LanceDBAdapter implements IVectorDatabase {
     this._initialize();
   }
 
-  public static Init(configServiceFacade: ConfigServiceFacade, languageModel: ILanguageModel, storagePath: string): LanceDBAdapter {
+  public static Init(
+    configServiceFacade: ConfigServiceFacade,
+    languageModel: ILanguageModel,
+    storagePath: string,
+  ): LanceDBAdapter {
     if (!LanceDBAdapter._instance) {
-      LanceDBAdapter._instance = new LanceDBAdapter(configServiceFacade, languageModel, storagePath);
+      LanceDBAdapter._instance = new LanceDBAdapter(
+        configServiceFacade,
+        languageModel,
+        storagePath,
+      );
     }
 
     return LanceDBAdapter._instance;
@@ -216,8 +227,7 @@ export class LanceDBAdapter implements IVectorDatabase {
 
       const embedding = await this._languageModel.generateEmbeddings(question);
 
-      const limit =
-        maxResults || this._configServiceFacade.getMaxResults();
+      const limit = maxResults || this._configServiceFacade.getMaxResults();
 
       const results = await table
         .query()
@@ -260,8 +270,7 @@ export class LanceDBAdapter implements IVectorDatabase {
 
       const query = await this._languageModel.generateEmbeddings(question);
 
-      const limit =
-        maxResults || this._configServiceFacade.getMaxResults();
+      const limit = maxResults || this._configServiceFacade.getMaxResults();
 
       const results = await table
         .query()
@@ -301,20 +310,22 @@ export class LanceDBAdapter implements IVectorDatabase {
   public async queryForChunks(
     question: string,
     filePaths: string[] = [],
-    maxResults = 0
+    maxResults = 0,
   ): Promise<Chunk[]> {
     try {
       const table = await this._getTable(COLLECTION_TYPE.chunks);
 
       const query = await this._languageModel.generateEmbeddings(question);
 
-      const limit =
-        maxResults || this._configServiceFacade.getMaxResults();
+      const limit = maxResults || this._configServiceFacade.getMaxResults();
 
       let results;
 
       if (filePaths.length > 0) {
-        console.log("Querying for chunks in multiple files with a filter!!", filePaths);
+        console.log(
+          "Querying for chunks in multiple files with a filter!!",
+          filePaths,
+        );
 
         results = await table
           .query()
