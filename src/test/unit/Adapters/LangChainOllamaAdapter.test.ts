@@ -67,11 +67,20 @@ jest.mock("@langchain/core/runnables", () => {
 
 describe("LangChainOllamaAdapter", () => {
   let adapter: LangChainOllamaAdapter;
+  let mockConfigServiceFacade: jest.Mocked<ConfigServiceFacade>;
 
   beforeEach(() => {
     jest.clearAllMocks();
 
-    adapter = new LangChainOllamaAdapter();
+    mockConfigServiceFacade = {
+      getEndpoint: jest.fn(() => "http://fake-endpoint"),
+      getOllamaModel: jest.fn(() => "fake-ollama-model"),
+      getEmbeddingModel: jest.fn(() => "fake-embedding-model"),
+      getTemperature: jest.fn(() => 0.7),
+      getBearerToken: jest.fn(() => "fake-token"),
+    } as unknown as jest.Mocked<ConfigServiceFacade>;
+
+    adapter = new LangChainOllamaAdapter(mockConfigServiceFacade);
     // Set the mock Ollama client for testing
     // @ts-expect-error - We're using a simplified mock
     adapter["_ollamaClient"] = mockOllamaClient;
@@ -94,13 +103,7 @@ describe("LangChainOllamaAdapter", () => {
     });
 
     it("should initialize Ollama and Embeddings without bearer token", () => {
-      (ConfigServiceFacade.GetInstance as jest.Mock).mockReturnValue({
-        getEndpoint: jest.fn().mockReturnValue("http://localhost:11434"),
-        getOllamaModel: jest.fn(() => "fake-ollama-model"),
-        getEmbeddingModel: jest.fn(() => "fake-embedding-model"),
-        getTemperature: jest.fn(() => 0.7),
-        getBearerToken: jest.fn().mockReturnValue(undefined),
-      });
+      (mockConfigServiceFacade.getBearerToken as jest.Mock).mockReturnValue(undefined);
       adapter["_initialize"]();
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

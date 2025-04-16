@@ -9,6 +9,7 @@ describe("FilterService", () => {
 
   let filterService: FilterService;
   let mockConfig: ConfigFilters;
+  let mockConfigServiceFacade: jest.Mocked<ConfigServiceFacade>;
 
   beforeEach(() => {
 
@@ -31,12 +32,14 @@ describe("FilterService", () => {
       },
     };
 
-    (ConfigServiceFacade.GetInstance as jest.Mock).mockReturnValue({
+    mockConfigServiceFacade = {
       getFilters: jest.fn(),
-    });
-    (ConfigServiceFacade.GetInstance().getFilters as jest.Mock).mockReturnValue(mockConfig);
+    } as unknown as jest.Mocked<ConfigServiceFacade>;
 
-    filterService = new FilterService();
+
+    (mockConfigServiceFacade.getFilters as jest.Mock).mockReturnValue(mockConfig);
+
+    filterService = new FilterService(mockConfigServiceFacade);
   });
 
   it("should retrive filters from config service", () => {

@@ -22,19 +22,15 @@ describe("RequirementsTrackerService", () => {
   let mockTrackingResultService: TrackingResultService;
   let mockRequirements: Requirement[];
   let mockTrackingResultSummary: TrackingResultSummary;
+  let mockConfigServiceFacade: jest.Mocked<ConfigServiceFacade>;
 
   beforeEach(() => {
     jest.clearAllMocks();
 
     // Mock ConfigServiceFacade
-    const mockConfigServiceFacade = {
+    mockConfigServiceFacade = {
       getPrompt: jest.fn().mockReturnValue("Test prompt"),
-    };
-    jest
-      .spyOn(ConfigServiceFacade, "GetInstance")
-      .mockReturnValue(
-        mockConfigServiceFacade as unknown as ConfigServiceFacade,
-      );
+    } as unknown as jest.Mocked<ConfigServiceFacade>;
 
     mockPathFilter = {
       include: ["/test/uno", "test/due"],
@@ -129,6 +125,7 @@ describe("RequirementsTrackerService", () => {
       filterService,
       mockLanguageModel,
       mockTrackingResultService,
+      mockConfigServiceFacade
     );
   });
 

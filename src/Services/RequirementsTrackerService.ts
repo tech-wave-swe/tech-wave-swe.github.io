@@ -15,6 +15,7 @@ export class RequirementsTrackerService {
   private _filterService: FilterService;
   private _languageModel: ILanguageModel;
   private _trackingResultService: TrackingResultService;
+  private _configServiceFacade: ConfigServiceFacade;
 
   constructor(
     vectorDatabase: IVectorDatabase,
@@ -22,12 +23,14 @@ export class RequirementsTrackerService {
     filterService: FilterService,
     languageModel: ILanguageModel,
     trackingResultService: TrackingResultService,
+    configServiceFacade: ConfigServiceFacade,
   ) {
     this._vectorDatabase = vectorDatabase;
     this._documentServiceFacade = documentServiceFacade;
     this._filterService = filterService;
     this._languageModel = languageModel;
     this._trackingResultService = trackingResultService;
+    this._configServiceFacade = configServiceFacade;
   }
 
   public async analyzeImplementation(
@@ -38,7 +41,7 @@ export class RequirementsTrackerService {
     console.log(requirement);
     console.log(codeReferences);
 
-    const initPrompt = ConfigServiceFacade.GetInstance().getPrompt();
+    const initPrompt = this._configServiceFacade.getPrompt();
 
     try {
       const prompt = `${initPrompt}

@@ -15,8 +15,11 @@ export class LanceDBAdapter implements IVectorDatabase {
   private _dbConnection: Connection | null = null;
   private _embeddingDimension = 768;
   private _maxTextLength = 8000;
+  private _configServiceFacade: ConfigServiceFacade;
 
-  constructor(storagePath: string) {
+  constructor(configServiceFacade: ConfigServiceFacade, storagePath: string) {
+    this._configServiceFacade = configServiceFacade;
+
     this._dbPath = path.join(storagePath, "lancedb");
     this._initialize();
   }
@@ -193,7 +196,7 @@ export class LanceDBAdapter implements IVectorDatabase {
       const embedding = await this._embeddings.embedQuery(question);
 
       const limit =
-        maxResults || ConfigServiceFacade.GetInstance().getMaxResults();
+        maxResults || this._configServiceFacade.getMaxResults();
 
       const results = await table
         .query()
@@ -237,7 +240,7 @@ export class LanceDBAdapter implements IVectorDatabase {
       const query = await this._embeddings.embedQuery(question);
 
       const limit =
-        maxResults || ConfigServiceFacade.GetInstance().getMaxResults();
+        maxResults || this._configServiceFacade.getMaxResults();
 
       const results = await table
         .query()
@@ -285,7 +288,7 @@ export class LanceDBAdapter implements IVectorDatabase {
       const query = await this._embeddings.embedQuery(question);
 
       const limit =
-        maxResults || ConfigServiceFacade.GetInstance().getMaxResults();
+        maxResults || this._configServiceFacade.getMaxResults();
 
       let results;
 
@@ -382,10 +385,10 @@ export class LanceDBAdapter implements IVectorDatabase {
       fs.mkdirSync(this._dbPath, { recursive: true });
     }
 
-    const baseUrl = ConfigServiceFacade.GetInstance().getEndpoint();
+    const baseUrl = this._configServiceFacade.getEndpoint();
     const embeddingModel =
-      ConfigServiceFacade.GetInstance().getEmbeddingModel();
-    const bearerToken = ConfigServiceFacade.GetInstance().getBearerToken();
+      this._configServiceFacade.getEmbeddingModel();
+    const bearerToken = this._configServiceFacade.getBearerToken();
     const headers = bearerToken
       ? new Headers({ Authorization: `Bearer ${bearerToken}` })
       : undefined;

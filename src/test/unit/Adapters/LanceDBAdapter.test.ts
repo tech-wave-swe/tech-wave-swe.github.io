@@ -24,6 +24,7 @@ describe("LanceDBAdapter", () => {
   let mockTable: jest.Mocked<Table>;
   let mockConnection: jest.Mocked<Connection>;
   let mockEmbeddings: jest.Mocked<OllamaEmbeddings>;
+  let mockConfigServiceFacade: jest.Mocked<ConfigServiceFacade>;
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -67,14 +68,14 @@ describe("LanceDBAdapter", () => {
 
     (OllamaEmbeddings as jest.Mock).mockReturnValue(mockEmbeddings);
 
-    (ConfigServiceFacade.GetInstance as jest.Mock).mockReturnValue({
+    mockConfigServiceFacade = {
       getEndpoint: jest.fn().mockReturnValue("http://localhost:11434"),
       getBearerToken: jest.fn().mockReturnValue("test-token"),
       getEmbeddingModel: jest.fn().mockReturnValue("test-model"),
       getMaxResults: jest.fn().mockReturnValue(5),
-    });
+    } as unknown as jest.Mocked<ConfigServiceFacade>;
 
-    adapter = new LanceDBAdapter("/mock/path");
+    adapter = new LanceDBAdapter(mockConfigServiceFacade, "/mock/path");
 
     (adapter as any)._dbConnection = mockConnection;
     (adapter as any)._embeddingDimension = 768;

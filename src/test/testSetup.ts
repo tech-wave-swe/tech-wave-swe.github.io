@@ -30,14 +30,14 @@ export async function setupTestServices(workspacePath: string) {
   ConfigServiceFacade.Init(configService);
 
   // Initialize core services
-  const vectorDatabase = new LanceDBAdapter(workspacePath);
+  const vectorDatabase = new LanceDBAdapter(ConfigServiceFacade.GetInstance(), workspacePath);
 
   const globalStateService = new GlobalStateService(
     extension.exports.getContext().globalState,
   );
   const requirementsService = new RequirementsService(globalStateService);
   const documentFormatter = new DocumentFormatterService();
-  const filterService = new FilterService();
+  const filterService = new FilterService(ConfigServiceFacade.GetInstance());
   const parsingService = new ParsingService();
   const mockTrackingResultService = new TrackingResultService(globalStateService);
 
@@ -66,7 +66,8 @@ export async function setupTestServices(workspacePath: string) {
     documentServiceFacade,
     filterService,
     mockLanguageModel,
-    mockTrackingResultService
+    mockTrackingResultService,
+    ConfigServiceFacade.GetInstance(),
   );
 
   const requirementsServiceFacade = new RequirementsServiceFacade(

@@ -44,8 +44,8 @@ export function activate(context: vscode.ExtensionContext) {
     console.log(workspaceFolder);
     console.log(lancedbPath);
 
-    const languageModel = new LangChainOllamaAdapter();
-    const lanceDBAdapter = new LanceDBAdapter(lancedbPath);
+    const languageModel = new LangChainOllamaAdapter(ConfigServiceFacade.GetInstance());
+    const lanceDBAdapter = new LanceDBAdapter(ConfigServiceFacade.GetInstance(), lancedbPath);
 
     // Initialize View Providers
     _initializeChatViewProvider(context, languageModel, lanceDBAdapter);
@@ -138,9 +138,10 @@ function _initializeTrackerViewProvider(
   const trackerService = new RequirementsTrackerService(
     lanceDBAdapter,
     documentServiceFacade,
-    new FilterService(),
+    new FilterService(ConfigServiceFacade.GetInstance()),
     languageModel,
     trackingResultService,
+    ConfigServiceFacade.GetInstance()
   );
 
   const requirementsServiceFacade = new RequirementsServiceFacade(

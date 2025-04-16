@@ -4,9 +4,11 @@ import {FileExtensionFilter, PathFilter, RequirementFilter} from "../Models/Filt
 
 export class FilterService {
   private _filters: ConfigFilters;
+  private _configServiceFacade: ConfigServiceFacade;
 
-  constructor() {
-    this._filters = ConfigServiceFacade.GetInstance().getFilters();
+  constructor(configServiceFacade: ConfigServiceFacade) {
+    this._configServiceFacade = configServiceFacade;
+    this._filters = this._configServiceFacade.getFilters();
   }
 
   public getPathFilter(): PathFilter {
