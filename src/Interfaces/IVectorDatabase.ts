@@ -45,9 +45,4 @@ export interface IVectorDatabase {
    * Reset the database, removing all stored data
    */
   resetDatabase(): Promise<void>;
-
-  /**
-   * Refresh the embeddings model or connection
-   */
-  refreshEmbeddings(): Promise<void>;
 }

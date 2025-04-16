@@ -45,7 +45,7 @@ export function activate(context: vscode.ExtensionContext) {
     console.log(lancedbPath);
 
     const languageModel = new LangChainOllamaAdapter();
-    const lanceDBAdapter = new LanceDBAdapter(lancedbPath);
+    const lanceDBAdapter = new LanceDBAdapter(lancedbPath, languageModel);
 
     // Initialize View Providers
     _initializeChatViewProvider(context, languageModel, lanceDBAdapter);
@@ -55,7 +55,7 @@ export function activate(context: vscode.ExtensionContext) {
     _initializeCommands(context, languageModel, lanceDBAdapter);
 
     // Handle Events
-    _handleEvents(context, languageModel, lanceDBAdapter);
+    _handleEvents(context, languageModel);
 
     // Check system requirements on startup
     _startupCheck(context, languageModel, lanceDBAdapter);
@@ -186,7 +186,6 @@ function _initializeTrackerViewProvider(
 function _handleEvents(
   context: vscode.ExtensionContext,
   languageModel: LangChainOllamaAdapter,
-  lanceDBAdapter: LanceDBAdapter,
 ) {
   // Handle configuration changes
   context.subscriptions.push(
@@ -245,7 +244,6 @@ function _handleEvents(
         }
 
         await languageModel.refreshModels();
-        await lanceDBAdapter.refreshEmbeddings();
 
         vscode.window.showInformationMessage(
           "Requirements Tracker configuration updated",

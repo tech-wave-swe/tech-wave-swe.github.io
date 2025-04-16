@@ -14,59 +14,99 @@ import { ConfigServiceFacade } from "../Facades/ConfigServiceFacade";
 import { ChatService } from "../Services/ChatService";
 import { InferenceService } from "../Services/InferenceService";
 import { ILanguageModel } from "../Interfaces/ILanguageModel";
-import {TrackingResultService} from "../Services/TrackingResultService";
+import { TrackingResultService } from "../Services/TrackingResultService";
+import * as sinon from "sinon";
+
+class MockLanguageModel implements ILanguageModel {
+  constructor() {}
+
+  public async checkModelAvailability(): Promise<boolean> {
+    return true;
+  }
+
+  public async pullModel(): Promise<boolean> {
+    return true;
+  }
+
+  public async generate(prompt: string): Promise<string> {
+    return `Mock response for: ${prompt}`;
+  }
+
+  public async generateStream(
+    prompt: string,
+    _context: string,
+    onToken: (token: string) => void,
+  ): Promise<void> {
+    onToken(`Mock stream response for: ${prompt}`);
+    return Promise.resolve();
+  }
+
+  public async generateEmbeddings(_text: string): Promise<number[]> {
+    return [0.1, 0.2, 0.3];
+  }
+
+  public async refreshModels(): Promise<void> {
+    return Promise.resolve();
+  }
+}
 
 export async function setupTestServices(workspacePath: string) {
   const extension = vscode.extensions.getExtension(
     "tech-wave-swe.requirements-tracker",
   )!;
-  await extension.activate();
 
-  // Initialize config
-  const fileSystemService = new FileSystemService(
-    extension.extensionUri.fsPath,
-  );
+  const fileSystemService = new FileSystemService(workspacePath);
+  fileSystemService.setRootFolder(workspacePath);
+
   const configService = new ConfigService(fileSystemService);
   ConfigServiceFacade.Init(configService);
 
-  // Initialize core services
-  const vectorDatabase = new LanceDBAdapter(workspacePath);
+  sinon.stub(configService, "GetConfig").callsFake(() => ({
+    endpoint: "http://localhost:11434",
+    bearerToken: "",
+    model: "qwen2.5-coder:7b",
+    embeddingModel: "nomic-embed-text:latest",
+    temperature: 0.7,
+    maxResults: 5,
+    promptRequirementAnalysis:
+      "Analyze if this code implements the requirement. Be specific and concise.",
+    filters: {
+      path: { type: "path", include: [], exclude: [] },
+      file_extension: { type: "file_extension", include: [], exclude: [] },
+      requirement: {},
+    },
+  }));
+
+  const mockLanguageModel = new MockLanguageModel();
+
+  await extension.activate();
 
   const globalStateService = new GlobalStateService(
     extension.exports.getContext().globalState,
   );
+
+  const mockTrackingResultService = new TrackingResultService(
+    globalStateService,
+  );
+
+  const vectorDatabase = new LanceDBAdapter(workspacePath, mockLanguageModel);
+
   const requirementsService = new RequirementsService(globalStateService);
   const documentFormatter = new DocumentFormatterService();
   const filterService = new FilterService();
   const parsingService = new ParsingService();
-  const mockTrackingResultService = new TrackingResultService(globalStateService);
 
   const documentServiceFacade = new DocumentServiceFacade(
     documentFormatter,
     vectorDatabase,
   );
 
-  const mockLanguageModel: ILanguageModel = {
-    generate: async (prompt: string) => `Mock response for: ${prompt}`,
-    generateEmbeddings: async (_text: string) => [0.1, 0.2, 0.3],
-    refreshModels: async () => {},
-    generateStream: async (
-      prompt: string,
-      _context: string,
-      onToken: (token: string) => void,
-    ) => {
-      onToken(`Mock stream response for: ${prompt}`);
-    },
-    checkModelAvailability: async () => true,
-    pullModel: async (_model: string) => true,
-  };
-
   const trackerService = new RequirementsTrackerService(
     vectorDatabase,
     documentServiceFacade,
     filterService,
     mockLanguageModel,
-    mockTrackingResultService
+    mockTrackingResultService,
   );
 
   const requirementsServiceFacade = new RequirementsServiceFacade(
@@ -76,7 +116,6 @@ export async function setupTestServices(workspacePath: string) {
     vectorDatabase,
   );
 
-  // Initialize chat service
   const chatService = new ChatService(globalStateService);
 
   const inferenceService = new InferenceService(
@@ -90,5 +129,6 @@ export async function setupTestServices(workspacePath: string) {
     documentServiceFacade,
     chatService,
     inferenceService,
+    fileSystemService,
   };
 }

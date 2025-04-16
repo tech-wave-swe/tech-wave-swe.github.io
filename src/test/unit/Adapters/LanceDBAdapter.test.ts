@@ -4,11 +4,11 @@ import { LanceDBAdapter } from "../../../Adapters/LanceDBAdapter";
 import { ConfigServiceFacade } from "../../../Facades/ConfigServiceFacade";
 import * as fs from "fs";
 import { connect, Table, Connection, Query } from "@lancedb/lancedb";
-import { OllamaEmbeddings } from "@langchain/ollama";
 import { COLLECTION_TYPE } from "../../../Models/CollectionType";
 import { File } from "../../../Models/File";
 import { Requirement, RequirementStatus } from "../../../Models/Requirement";
 import { Chunk } from "../../../Models/Chunk";
+import { ILanguageModel } from "../../../Interfaces/ILanguageModel";
 
 // Mock external dependencies
 jest.mock("fs");
@@ -23,7 +23,7 @@ describe("LanceDBAdapter", () => {
   let mockQuery: jest.Mocked<Query>;
   let mockTable: jest.Mocked<Table>;
   let mockConnection: jest.Mocked<Connection>;
-  let mockEmbeddings: jest.Mocked<OllamaEmbeddings>;
+  let mockLanguageModel: jest.Mocked<ILanguageModel>;
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -59,13 +59,24 @@ describe("LanceDBAdapter", () => {
       connect as unknown as jest.Mock<(uri: string) => Promise<Connection>>
     ).mockResolvedValue(mockConnection);
 
-    mockEmbeddings = {
-      embedQuery: jest
-        .fn<(text: string) => Promise<number[]>>()
-        .mockResolvedValue([0.1, 0.2, 0.3]),
-    } as unknown as jest.Mocked<OllamaEmbeddings>;
-
-    (OllamaEmbeddings as jest.Mock).mockReturnValue(mockEmbeddings);
+    mockLanguageModel = {
+      generate: jest.fn(
+        async (prompt: string) => `Mock response for: ${prompt}`,
+      ),
+      generateEmbeddings: jest.fn(async (_text: string) => [0.1, 0.2, 0.3]),
+      refreshModels: jest.fn(async () => {}),
+      generateStream: jest.fn(
+        async (
+          prompt: string,
+          _context: string,
+          onToken: (token: string) => void,
+        ) => {
+          onToken(`Mock stream response for: ${prompt}`);
+        },
+      ),
+      checkModelAvailability: jest.fn(async () => true),
+      pullModel: jest.fn(async (_model: string) => true),
+    } as unknown as jest.Mocked<ILanguageModel>;
 
     (ConfigServiceFacade.GetInstance as jest.Mock).mockReturnValue({
       getEndpoint: jest.fn().mockReturnValue("http://localhost:11434"),
@@ -74,7 +85,7 @@ describe("LanceDBAdapter", () => {
       getMaxResults: jest.fn().mockReturnValue(5),
     });
 
-    adapter = new LanceDBAdapter("/mock/path");
+    adapter = new LanceDBAdapter("/mock/path", mockLanguageModel);
 
     (adapter as any)._dbConnection = mockConnection;
     (adapter as any)._embeddingDimension = 768;
@@ -362,12 +373,14 @@ describe("LanceDBAdapter", () => {
       (mockQuery.toArray as jest.Mock<() => Promise<any[]>>).mockResolvedValue(
         queryResults,
       );
-      mockEmbeddings.embedQuery.mockResolvedValue([0.1, 0.2, 0.3]);
+      // mockLanguageModel.generateEmbeddings.mockResolvedValue([0.1, 0.2, 0.3]);
 
       const result = await adapter.queryForFiles(searchTerm);
 
       expect(result).toEqual(expectedFiles);
-      expect(mockEmbeddings.embedQuery).toHaveBeenCalledWith(searchTerm);
+      expect(mockLanguageModel.generateEmbeddings).toHaveBeenCalledWith(
+        searchTerm,
+      );
       expect(mockQuery.nearestTo).toHaveBeenCalledWith(
         new Float32Array([0.1, 0.2, 0.3]),
       );
@@ -414,12 +427,14 @@ describe("LanceDBAdapter", () => {
       (mockQuery.toArray as jest.Mock<() => Promise<any[]>>).mockResolvedValue(
         queryResults,
       );
-      mockEmbeddings.embedQuery.mockResolvedValue([0.1, 0.2, 0.3]);
+      // mockLanguageModel.generateEmbeddings.mockResolvedValue([0.1, 0.2, 0.3]);
 
       const result = await adapter.queryForRequirements(searchTerm);
 
       expect(result).toEqual(expectedRequirements);
-      expect(mockEmbeddings.embedQuery).toHaveBeenCalledWith(searchTerm);
+      expect(mockLanguageModel.generateEmbeddings).toHaveBeenCalledWith(
+        searchTerm,
+      );
       expect(mockQuery.nearestTo).toHaveBeenCalledWith(
         new Float32Array([0.1, 0.2, 0.3]),
       );
@@ -469,7 +484,9 @@ describe("LanceDBAdapter", () => {
       const result = await adapter.queryForChunks(searchTerm);
 
       expect(result).toEqual(expectedChunks);
-      expect(mockEmbeddings.embedQuery).toHaveBeenCalledWith(searchTerm);
+      expect(mockLanguageModel.generateEmbeddings).toHaveBeenCalledWith(
+        searchTerm,
+      );
       expect(mockQuery.nearestTo).toHaveBeenCalledWith(
         new Float32Array([0.1, 0.2, 0.3]),
       );
@@ -485,13 +502,6 @@ describe("LanceDBAdapter", () => {
       await expect(adapter.queryForChunks(searchTerm)).rejects.toThrow(
         "Database error",
       );
-    });
-  });
-
-  describe("getEmbeddings", () => {
-    it("should return the embeddings instance", () => {
-      const embeddings = adapter.getEmbeddings();
-      expect(embeddings).toBe(mockEmbeddings);
     });
   });
 
@@ -522,15 +532,6 @@ describe("LanceDBAdapter", () => {
       await expect(adapter.deleteFiles(filePaths)).rejects.toThrow(
         "Failed to delete files",
       );
-    });
-  });
-
-  describe("refreshEmbeddings", () => {
-    it("should refresh the embeddings", async () => {
-      const initializeSpy = jest.spyOn(adapter as any, "_initialize");
-      await adapter.refreshEmbeddings();
-
-      expect(initializeSpy).toHaveBeenCalled();
     });
   });
 
@@ -585,7 +586,7 @@ describe("LanceDBAdapter", () => {
 
   describe("_determineEmbeddingDimension", () => {
     it("should determine the embedding dimension", async () => {
-      mockEmbeddings.embedQuery.mockResolvedValue([0.1, 0.2, 0.3]);
+      // mockLanguageModel.generateEmbeddings.mockResolvedValue([0.1, 0.2, 0.3]);
 
       const dimension = await adapter["_determineEmbeddingDimension"]();
       expect(dimension).toBe(3);
@@ -593,7 +594,7 @@ describe("LanceDBAdapter", () => {
 
     it("should return the default value if it fails to embed query", async () => {
       (
-        mockEmbeddings.embedQuery as jest.Mock<
+        mockLanguageModel.generateEmbeddings as jest.Mock<
           (text: string) => Promise<number[]>
         >
       ).mockRejectedValue(new Error("Error"));

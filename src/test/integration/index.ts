@@ -4,19 +4,16 @@ import { glob } from "glob";
 import * as fs from "fs";
 
 export function run(): Promise<void> {
-  // Create the test report directory if it doesn't exist
   const reportDir = path.resolve(__dirname, "../../../test-reports");
   if (!fs.existsSync(reportDir)) {
     fs.mkdirSync(reportDir, { recursive: true });
   }
 
-  // Create the mocha test
   const mocha = new Mocha({
     ui: "tdd",
     color: true,
   });
 
-  // Use the reporter from environment variables if specified
   if (process.env.MOCHA_REPORTER) {
     mocha.reporter(
       process.env.MOCHA_REPORTER,

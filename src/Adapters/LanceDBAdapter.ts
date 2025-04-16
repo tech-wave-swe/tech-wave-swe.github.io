@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import { connect, Table, Connection } from "@lancedb/lancedb";
-import { OllamaEmbeddings } from "@langchain/ollama";
+import { ILanguageModel } from "../Interfaces/ILanguageModel";
 import { ConfigServiceFacade } from "../Facades/ConfigServiceFacade";
 import { File } from "../Models/File";
 import { Requirement } from "../Models/Requirement";
@@ -10,13 +10,14 @@ import { COLLECTION_TYPE } from "../Models/CollectionType";
 import { IVectorDatabase } from "../Interfaces/IVectorDatabase";
 
 export class LanceDBAdapter implements IVectorDatabase {
-  private _embeddings: OllamaEmbeddings = new OllamaEmbeddings();
+  private _languageModel: ILanguageModel;
   private readonly _dbPath: string;
   private _dbConnection: Connection | null = null;
   private _embeddingDimension = 768;
   private _maxTextLength = 8000;
 
-  constructor(storagePath: string) {
+  constructor(storagePath: string, languageModel: ILanguageModel) {
+    this._languageModel = languageModel;
     this._dbPath = path.join(storagePath, "lancedb");
     this._initialize();
   }
@@ -121,7 +122,7 @@ export class LanceDBAdapter implements IVectorDatabase {
 
     for (const requirement of requirements) {
       try {
-        const embedding = await this._embeddings.embedQuery(
+        const embedding = await this._languageModel.generateEmbeddings(
           requirement.description,
         );
 
@@ -157,7 +158,9 @@ export class LanceDBAdapter implements IVectorDatabase {
 
     for (const chunk of chunks) {
       try {
-        const embedding = await this._embeddings.embedQuery(chunk.lineContent);
+        const embedding = await this._languageModel.generateEmbeddings(
+          chunk.lineContent,
+        );
 
         await table.add([
           {
@@ -190,7 +193,7 @@ export class LanceDBAdapter implements IVectorDatabase {
     try {
       const table = await this._getTable(COLLECTION_TYPE.file);
 
-      const embedding = await this._embeddings.embedQuery(question);
+      const embedding = await this._languageModel.generateEmbeddings(question);
 
       const limit =
         maxResults || ConfigServiceFacade.GetInstance().getMaxResults();
@@ -234,7 +237,7 @@ export class LanceDBAdapter implements IVectorDatabase {
     try {
       const table = await this._getTable(COLLECTION_TYPE.requirements);
 
-      const query = await this._embeddings.embedQuery(question);
+      const query = await this._languageModel.generateEmbeddings(question);
 
       const limit =
         maxResults || ConfigServiceFacade.GetInstance().getMaxResults();
@@ -282,7 +285,7 @@ export class LanceDBAdapter implements IVectorDatabase {
     try {
       const table = await this._getTable(COLLECTION_TYPE.chunks);
 
-      const query = await this._embeddings.embedQuery(question);
+      const query = await this._languageModel.generateEmbeddings(question);
 
       const limit =
         maxResults || ConfigServiceFacade.GetInstance().getMaxResults();
@@ -367,34 +370,11 @@ export class LanceDBAdapter implements IVectorDatabase {
     }
   }
 
-  public getEmbeddings(): OllamaEmbeddings {
-    return this._embeddings;
-  }
-
-  public async refreshEmbeddings(): Promise<void> {
-    this._dbConnection = null;
-    await this._initialize();
-  }
-
   private async _initialize(): Promise<void> {
     // Ensure directory exists
     if (!fs.existsSync(this._dbPath)) {
       fs.mkdirSync(this._dbPath, { recursive: true });
     }
-
-    const baseUrl = ConfigServiceFacade.GetInstance().getEndpoint();
-    const embeddingModel =
-      ConfigServiceFacade.GetInstance().getEmbeddingModel();
-    const bearerToken = ConfigServiceFacade.GetInstance().getBearerToken();
-    const headers = bearerToken
-      ? new Headers({ Authorization: `Bearer ${bearerToken}` })
-      : undefined;
-
-    this._embeddings = new OllamaEmbeddings({
-      baseUrl: baseUrl,
-      model: embeddingModel,
-      headers: headers,
-    });
 
     try {
       this._dbConnection = await connect(this._dbPath);
@@ -407,7 +387,8 @@ export class LanceDBAdapter implements IVectorDatabase {
   private async _determineEmbeddingDimension(): Promise<number> {
     try {
       const sampleText = "Sample text for embedding dimension detection";
-      const embedding = await this._embeddings.embedQuery(sampleText);
+      const embedding =
+        await this._languageModel.generateEmbeddings(sampleText);
       return embedding.length;
     } catch (error) {
       console.error("Error determining embedding dimension:", error);
