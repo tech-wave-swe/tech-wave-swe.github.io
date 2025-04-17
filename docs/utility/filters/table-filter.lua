@@ -1,7 +1,7 @@
 local layout = pandoc.layout
 
 function generate_tabularray(tbl)
-	local table_class = 'longtblr'
+	local table_class = 'tblr'
   
 	if (tbl.attributes['tablename'] ~= nil) then
 	  table_class = tbl.attributes['tablename']
@@ -39,7 +39,8 @@ function generate_tabularray(tbl)
 	  col_specs_latex = col_specs_latex .. ']'
 	end
   
-	local result = pandoc.List:new{pandoc.RawBlock("latex", '\\noindent\\begin{table}[H]\\centering\\caption{' .. caption .. '}\\begin{'..table_class..'}{width=1\\linewidth,colspec={'..col_specs_latex..'}}')}
+	-- local result = pandoc.List:new{pandoc.RawBlock("latex", '\\noindent\\begin{longtable}\\caption{' .. caption .. '}\\begin{'..table_class..'}{width=1\\linewidth,colspec={'..col_specs_latex..'}}')}
+	local result = pandoc.List:new{pandoc.RawBlock("latex", '\\noindent\\begin{longtblr}[caption = {' .. caption .. '}]{width=1\\linewidth, colspec={'..col_specs_latex..'}, long}')}
   
 	-- HEADER
 	local header_latex = get_rows_data(tbl.head.rows)
@@ -58,7 +59,8 @@ function generate_tabularray(tbl)
 	local footer_latex = get_rows_data(tbl.foot.rows)
 	result = result .. pandoc.List:new{pandoc.RawBlock("latex", footer_latex)}
   
-	result = result .. pandoc.List:new{pandoc.RawBlock("latex", '\\end{'..table_class..'}\\end{table}')}
+	-- result = result .. pandoc.List:new{pandoc.RawBlock("latex", '\\end{'..table_class..'}\\end{longtable}')}
+	result = result .. pandoc.List:new{pandoc.RawBlock("latex", '\\end{longtable}')}
 
 	if caption == "Changelog" then
 		result = result .. pandoc.List:new{pandoc.RawBlock("latex", "\\newpage")}
