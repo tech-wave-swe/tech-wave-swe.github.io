@@ -254,4 +254,41 @@ describe("RequirementsService", () => {
       expect(mockGlobalStateService.updateState).not.toHaveBeenCalled();
     });
   });
+
+  describe("updateRequirementStatus", () => {
+    it("should update status for an existing requirement", async () => {
+      mockGlobalStateService.updateState.mockClear();
+
+      await requirementService.updateRequirementStatus(
+        "1",
+        RequirementStatus.TRACKED,
+      );
+
+      const updatedRequirement = requirementService.getById("1");
+      expect(updatedRequirement?.status).toBe(RequirementStatus.TRACKED);
+
+      expect(mockGlobalStateService.updateState).toHaveBeenCalledWith(
+        StateKeys.REQUIREMENTS,
+        expect.arrayContaining([
+          expect.objectContaining({
+            id: "1",
+            status: RequirementStatus.TRACKED,
+          }),
+        ]),
+      );
+    });
+
+    it("should do nothing for non-existent requirement id", async () => {
+      mockGlobalStateService.updateState.mockClear();
+
+      await requirementService.updateRequirementStatus(
+        "999",
+        RequirementStatus.TRACKED,
+      );
+
+      expect(requirementService.getById("999")).toBeUndefined();
+
+      expect(mockGlobalStateService.updateState).not.toHaveBeenCalled();
+    });
+  });
 });

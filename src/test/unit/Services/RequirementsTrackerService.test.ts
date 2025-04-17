@@ -7,10 +7,13 @@ import { Requirement, RequirementStatus } from "../../../Models/Requirement";
 import { Chunk } from "../../../Models/Chunk";
 import { ConfigServiceFacade } from "../../../Facades/ConfigServiceFacade";
 import * as vscode from "../Mock/vscode";
-import {CodeReference, TrackingResultSummary} from "../../../Models/TrackingModels";
+import {
+  CodeReference,
+  TrackingResultSummary,
+} from "../../../Models/TrackingModels";
 import { FileExtensionFilter, PathFilter } from "../../../Models/Filter";
 import { ILanguageModel } from "../../../Interfaces/ILanguageModel";
-import {TrackingResultService} from "../../../Services/TrackingResultService";
+import { TrackingResultService } from "../../../Services/TrackingResultService";
 
 describe("RequirementsTrackerService", () => {
   let vectorDatabase: jest.Mocked<IVectorDatabase>;
@@ -27,7 +30,6 @@ describe("RequirementsTrackerService", () => {
   beforeEach(() => {
     jest.clearAllMocks();
 
-    // Mock ConfigServiceFacade
     mockConfigServiceFacade = {
       getPrompt: jest.fn().mockReturnValue("Test prompt"),
     } as unknown as jest.Mocked<ConfigServiceFacade>;
@@ -101,6 +103,7 @@ describe("RequirementsTrackerService", () => {
       getFileExtensionFilter: jest.fn(() => mockExtensionFilter),
       hasRequirementsFilters: jest.fn(() => false),
       getRequirementsFilters: jest.fn(),
+      getRequirementFilters: jest.fn(),
     } as unknown as jest.Mocked<FilterService>;
 
     const mockLanguageModel: ILanguageModel = {
@@ -125,7 +128,7 @@ describe("RequirementsTrackerService", () => {
       filterService,
       mockLanguageModel,
       mockTrackingResultService,
-      mockConfigServiceFacade
+      mockConfigServiceFacade,
     );
   });
 
@@ -196,7 +199,7 @@ describe("RequirementsTrackerService", () => {
       expect(result).toEqual(mockChunks);
       expect(vectorDatabase.queryForChunks).toHaveBeenCalledWith(
         requirement.description,
-        undefined
+        undefined,
       );
     });
 
@@ -324,6 +327,207 @@ describe("RequirementsTrackerService", () => {
       expect(documentServiceFacade.processFiles).toHaveBeenCalled();
     });
 
+    it("should create new summary when none exists", async () => {
+      (
+        mockTrackingResultService.getTrakingResultSummary as jest.Mock<
+          () => undefined
+        >
+      ).mockReturnValue(undefined);
+
+      const requirements: Requirement[] = [
+        {
+          id: "REQ-001",
+          name: "Test Requirement",
+          description: "Test description",
+          type: "functional",
+          version: "1.0",
+          status: RequirementStatus.NOT_TRACKED,
+        },
+      ];
+
+      vectorDatabase.queryForChunks.mockResolvedValue([]);
+      (vscode.workspace.findFiles as jest.Mock).mockReturnValue([]);
+
+      interface TrackResultReference {
+        filePath: string;
+        lineNumber: number;
+        snippet: string;
+        score: number;
+      }
+
+      interface TrackResult {
+        implementationStatus: string;
+        references: TrackResultReference[];
+      }
+
+      jest
+        .spyOn(
+          service as unknown as {
+            trackRequirementImplementation: (
+              req: Requirement,
+              files: string[],
+            ) => Promise<TrackResult>;
+          },
+          "trackRequirementImplementation",
+        )
+        .mockResolvedValue({
+          implementationStatus: "unlikely-match",
+          references: [],
+        });
+
+      await service.trackAllRequirements(requirements);
+
+      expect(
+        mockTrackingResultService.getTrakingResultSummary,
+      ).toHaveBeenCalled();
+    });
+
+    it("should process requirement files with filters", async () => {
+      const requirement: Requirement = {
+        id: "REQ-001",
+        name: "Filtered Requirement",
+        description: "Test description",
+        type: "functional",
+        version: "1.0",
+        status: RequirementStatus.NOT_TRACKED,
+      };
+
+      filterService.hasRequirementsFilters.mockReturnValue(true);
+
+      jest
+        .spyOn(
+          service as unknown as {
+            _processRequirementFile: (req: Requirement) => Promise<string[]>;
+          },
+          "_processRequirementFile",
+        )
+        .mockResolvedValue(["/test/filtered-file.c"]);
+
+      jest
+        .spyOn(
+          service as unknown as {
+            _findSingleRequirementCodeFiles: (id: string) => Promise<string[]>;
+          },
+          "_findSingleRequirementCodeFiles",
+        )
+        .mockResolvedValue(["/test/filtered-file.c"]);
+
+      interface TrackResultReference {
+        filePath: string;
+        lineNumber: number;
+        snippet: string;
+        score: number;
+      }
+
+      interface TrackResult {
+        implementationStatus: string;
+        references: TrackResultReference[];
+      }
+
+      jest
+        .spyOn(
+          service as unknown as {
+            trackRequirementImplementation: (
+              req: Requirement,
+              files: string[],
+            ) => Promise<TrackResult>;
+          },
+          "trackRequirementImplementation",
+        )
+        .mockResolvedValue({
+          implementationStatus: "unlikely-match",
+          references: [],
+        });
+
+      (vscode.workspace.findFiles as jest.Mock).mockReturnValue([]);
+
+      await service.trackAllRequirements([requirement]);
+
+      expect(filterService.hasRequirementsFilters).toHaveBeenCalledWith(
+        "REQ-001",
+      );
+
+      expect(service["_processRequirementFile"]).toHaveBeenCalledWith(
+        requirement,
+      );
+    });
+
+    it("should track requirements with filters using filtered code files", async () => {
+      const requirement: Requirement = {
+        id: "REQ-001",
+        name: "Filtered Requirement",
+        description: "Test description",
+        type: "functional",
+        version: "1.0",
+        status: RequirementStatus.NOT_TRACKED,
+      };
+
+      filterService.hasRequirementsFilters.mockReturnValue(true);
+
+      const filteredFiles = ["/test/filtered-file.c"];
+      jest
+        .spyOn(
+          service as unknown as {
+            _findSingleRequirementCodeFiles: (id: string) => Promise<string[]>;
+          },
+          "_findSingleRequirementCodeFiles",
+        )
+        .mockResolvedValue(filteredFiles);
+
+      interface TrackResultReference {
+        filePath: string;
+        lineNumber: number;
+        snippet: string;
+        score: number;
+      }
+
+      interface TrackResult {
+        implementationStatus: string;
+        references: TrackResultReference[];
+      }
+
+      const trackResult: TrackResult = {
+        implementationStatus: "confirmed-match",
+        references: [
+          {
+            filePath: "/test/filtered-file.c",
+            lineNumber: 1,
+            snippet: "Test code",
+            score: 0.9,
+          },
+        ],
+      };
+
+      jest
+        .spyOn(
+          service as unknown as {
+            trackRequirementImplementation: (
+              req: Requirement,
+              files: string[],
+            ) => Promise<TrackResult>;
+          },
+          "trackRequirementImplementation",
+        )
+        .mockResolvedValue(trackResult);
+
+      (vscode.workspace.findFiles as jest.Mock).mockReturnValue([]);
+
+      await service.trackAllRequirements([requirement]);
+
+      expect(filterService.hasRequirementsFilters).toHaveBeenCalledWith(
+        "REQ-001",
+      );
+
+      expect(service["_findSingleRequirementCodeFiles"]).toHaveBeenCalledWith(
+        "REQ-001",
+      );
+
+      expect(service["trackRequirementImplementation"]).toHaveBeenCalledWith(
+        requirement,
+        filteredFiles,
+      );
+    });
+
     it("should cover possible-match", async () => {
       const requirements: Requirement[] = [
         {
@@ -443,7 +647,6 @@ describe("RequirementsTrackerService", () => {
     });
 
     it("should handle workspace without folders", async () => {
-      // Mock workspace without folders
       vscode.workspace.workspaceFolders = [];
 
       await expect(service.processWorkspaceFiles()).resolves.toEqual([]);
@@ -457,6 +660,201 @@ describe("RequirementsTrackerService", () => {
 
       const result = await service["_findWorkspaceCodeFiles"]();
       expect(result).toEqual([]);
+    });
+  });
+
+  describe("_findSingleRequirementCodeFiles", () => {
+    beforeEach(() => {
+      vscode.workspace.workspaceFolders = [
+        { name: "folder1", uri: { fsPath: "/test/folder1" } },
+        { name: "folder2", uri: { fsPath: "/test/folder2" } },
+      ];
+      (vscode.workspace.findFiles as jest.Mock).mockReset();
+    });
+
+    it("should return empty array when no workspace folders are found", async () => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      vscode.workspace.workspaceFolders = null as any;
+
+      const result =
+        await service["_findSingleRequirementCodeFiles"]("REQ-001");
+
+      expect(result).toEqual([]);
+    });
+
+    it("should use requirement filters when available", async () => {
+      const mockRequirementFilter = {
+        type: "requirement" as const,
+        search_path: ["src/components/**/*.ts", "src/utils/**/*.js"],
+      };
+
+      (filterService.getRequirementFilters as jest.Mock).mockReturnValue(
+        mockRequirementFilter,
+      );
+
+      (vscode.workspace.findFiles as jest.Mock).mockImplementation(
+        (pattern) => {
+          const patternObj = pattern as { pattern: string };
+          if (patternObj.pattern === "src/components/**/*.ts") {
+            return [
+              { fsPath: "/test/folder1/src/components/Button.ts" },
+              { fsPath: "/test/folder1/src/components/Input.ts" },
+            ];
+          } else if (patternObj.pattern === "src/utils/**/*.js") {
+            return [{ fsPath: "/test/folder1/src/utils/format.js" }];
+          }
+          return [];
+        },
+      );
+
+      const result =
+        await service["_findSingleRequirementCodeFiles"]("REQ-001");
+
+      expect(filterService.getRequirementFilters).toHaveBeenCalledWith(
+        "REQ-001",
+      );
+
+      expect(vscode.workspace.findFiles).toHaveBeenCalledTimes(4);
+
+      expect(result).toContain("/test/folder1/src/components/Button.ts");
+      expect(result).toContain("/test/folder1/src/components/Input.ts");
+      expect(result).toContain("/test/folder1/src/utils/format.js");
+      expect(result.length).toBe(3);
+    });
+
+    it("should use default pattern when no requirement filters are found", async () => {
+      (filterService.getRequirementFilters as jest.Mock).mockReturnValue(
+        undefined,
+      );
+
+      (vscode.workspace.findFiles as jest.Mock).mockImplementation(
+        (pattern) => {
+          const patternObj = pattern as { pattern: string };
+          if (patternObj.pattern === "**/*.*") {
+            return [
+              { fsPath: "/test/folder1/file1.ts" },
+              { fsPath: "/test/folder1/file2.js" },
+            ];
+          }
+          return [];
+        },
+      );
+
+      const result =
+        await service["_findSingleRequirementCodeFiles"]("REQ-002");
+
+      expect(filterService.getRequirementFilters).toHaveBeenCalledWith(
+        "REQ-002",
+      );
+
+      expect(vscode.workspace.findFiles).toHaveBeenCalledTimes(2);
+
+      expect(result).toContain("/test/folder1/file1.ts");
+      expect(result).toContain("/test/folder1/file2.js");
+      expect(result.length).toBe(2);
+    });
+
+    it("should aggregate files from all workspace folders", async () => {
+      (filterService.getRequirementFilters as jest.Mock).mockReturnValue({
+        type: "requirement" as const,
+        search_path: ["*.txt"],
+      });
+
+      (vscode.workspace.findFiles as jest.Mock)
+        .mockImplementationOnce(() => [
+          { fsPath: "/test/folder1/file1.txt" },
+          { fsPath: "/test/folder1/file2.txt" },
+        ])
+        .mockImplementationOnce(() => [
+          { fsPath: "/test/folder2/file3.txt" },
+          { fsPath: "/test/folder2/file4.txt" },
+        ]);
+
+      const result =
+        await service["_findSingleRequirementCodeFiles"]("REQ-003");
+
+      expect(result).toContain("/test/folder1/file1.txt");
+      expect(result).toContain("/test/folder1/file2.txt");
+      expect(result).toContain("/test/folder2/file3.txt");
+      expect(result).toContain("/test/folder2/file4.txt");
+      expect(result.length).toBe(4);
+    });
+  });
+
+  describe("_processRequirementFile", () => {
+    it("should process files for a requirement with code files", async () => {
+      const mockCodeFiles = ["/test/file1.c", "/test/file2.c"];
+      jest
+        .spyOn(
+          service as unknown as {
+            _findSingleRequirementCodeFiles: (id: string) => Promise<string[]>;
+          },
+          "_findSingleRequirementCodeFiles",
+        )
+        .mockResolvedValue(mockCodeFiles);
+
+      const result = await service["_processRequirementFile"](
+        mockRequirements[0],
+      );
+
+      expect(service["_findSingleRequirementCodeFiles"]).toHaveBeenCalledWith(
+        mockRequirements[0].id,
+      );
+
+      expect(documentServiceFacade.processFiles).toHaveBeenCalledWith(
+        mockCodeFiles,
+      );
+
+      expect(result).toEqual(mockCodeFiles);
+    });
+
+    it("should not process files when no code files are found", async () => {
+      jest
+        .spyOn(
+          service as unknown as {
+            _findSingleRequirementCodeFiles: (id: string) => Promise<string[]>;
+          },
+          "_findSingleRequirementCodeFiles",
+        )
+        .mockResolvedValue([]);
+
+      const result = await service["_processRequirementFile"](
+        mockRequirements[0],
+      );
+
+      expect(service["_findSingleRequirementCodeFiles"]).toHaveBeenCalledWith(
+        mockRequirements[0].id,
+      );
+
+      expect(documentServiceFacade.processFiles).not.toHaveBeenCalled();
+
+      expect(result).toEqual([]);
+    });
+
+    it("should propagate errors from processFiles", async () => {
+      const mockCodeFiles = ["/test/file1.c", "/test/file2.c"];
+      jest
+        .spyOn(
+          service as unknown as {
+            _findSingleRequirementCodeFiles: (id: string) => Promise<string[]>;
+          },
+          "_findSingleRequirementCodeFiles",
+        )
+        .mockResolvedValue(mockCodeFiles);
+
+      const testError = new Error("Test processing error");
+      documentServiceFacade.processFiles.mockRejectedValue(testError);
+
+      await expect(
+        service["_processRequirementFile"](mockRequirements[0]),
+      ).rejects.toThrow("Test processing error");
+
+      expect(service["_findSingleRequirementCodeFiles"]).toHaveBeenCalledWith(
+        mockRequirements[0].id,
+      );
+      expect(documentServiceFacade.processFiles).toHaveBeenCalledWith(
+        mockCodeFiles,
+      );
     });
   });
 
@@ -636,7 +1034,6 @@ describe("RequirementsTrackerService", () => {
           .mockResolvedValue(mockResponse),
       };
 
-      // Replace the language model with our mock
       Object.defineProperty(service, "_languageModel", {
         value: mockLanguageModel,
       });

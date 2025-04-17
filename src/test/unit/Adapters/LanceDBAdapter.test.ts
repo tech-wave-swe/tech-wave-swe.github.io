@@ -85,7 +85,11 @@ describe("LanceDBAdapter", () => {
       getMaxResults: jest.fn().mockReturnValue(5),
     } as unknown as jest.Mocked<ConfigServiceFacade>;
 
-    adapter = LanceDBAdapter.Init(mockConfigServiceFacade, mockLanguageModel, "/mock/path");
+    adapter = LanceDBAdapter.Init(
+      mockConfigServiceFacade,
+      mockLanguageModel,
+      "/mock/path",
+    );
 
     (adapter as any)._dbConnection = mockConnection;
     (adapter as any)._embeddingDimension = 768;
@@ -210,7 +214,6 @@ describe("LanceDBAdapter", () => {
         checksum: "new-checksum",
       };
 
-      // Mock fileExists to first return true for path check, then false for checksum check
       jest
         .spyOn(adapter, "fileExists")
         .mockImplementationOnce(() => Promise.resolve(true)) // First call - file exists
@@ -228,6 +231,33 @@ describe("LanceDBAdapter", () => {
       expect(mockTable.delete).toHaveBeenCalledWith(
         `file_path = '${file.filePath}'`,
       );
+    });
+
+    it("should throw an error when _getTable fails", async () => {
+      const file: File = {
+        originalContent: "test.txt",
+        filePath: "123abc",
+        checksum: "",
+      };
+
+      const originalConsoleError = console.error;
+      console.error = jest.fn();
+
+      try {
+        const error = new Error("Database connection failed");
+        jest.spyOn(adapter as any, "_getTable").mockRejectedValueOnce(error);
+
+        await expect(adapter.addFiles([file])).rejects.toThrow(
+          "Database connection failed",
+        );
+
+        expect(console.error).toHaveBeenCalledWith(
+          "Error adding files to LanceDB:",
+          error,
+        );
+      } finally {
+        console.error = originalConsoleError;
+      }
     });
   });
 
@@ -357,7 +387,6 @@ describe("LanceDBAdapter", () => {
       (mockQuery.toArray as jest.Mock<() => Promise<any[]>>).mockResolvedValue(
         queryResults,
       );
-      // mockLanguageModel.generateEmbeddings.mockResolvedValue([0.1, 0.2, 0.3]);
 
       const result = await adapter.queryForFiles(searchTerm);
 
@@ -408,7 +437,6 @@ describe("LanceDBAdapter", () => {
       (mockQuery.toArray as jest.Mock<() => Promise<any[]>>).mockResolvedValue(
         queryResults,
       );
-      // mockLanguageModel.generateEmbeddings.mockResolvedValue([0.1, 0.2, 0.3]);
 
       const result = await adapter.queryForRequirements(searchTerm);
 
@@ -467,6 +495,60 @@ describe("LanceDBAdapter", () => {
       );
     });
 
+    it("should handle multiple filePaths", async () => {
+      const searchTerm = "test";
+
+      const queryResults = [
+        {
+          content: "Chunk 1",
+          filePath: "file1.txt",
+          fileType: "text",
+          lineNumber: 1,
+          _distance: 0.3, // Distance score of 0.3 should become a score of 0.7
+          vector: [0.1, 0.2, 0.3],
+        },
+        {
+          content: "Chunk 2",
+          filePath: "file2.txt",
+          fileType: "text",
+          lineNumber: 2,
+          _distance: 0.4, // Distance score of 0.4 should become a score of 0.6
+          vector: [0.4, 0.5, 0.6],
+        },
+      ];
+
+      const expectedChunks = [
+        {
+          content: "Chunk 1",
+          filePath: "file1.txt",
+          fileType: "text",
+          lineNumber: 1,
+          score: 0.7, // 1 - 0.3 = 0.7
+        },
+        {
+          content: "Chunk 2",
+          filePath: "file2.txt",
+          fileType: "text",
+          lineNumber: 2,
+          score: 0.6, // 1 - 0.4 = 0.6
+        },
+      ];
+
+      (mockQuery.toArray as jest.Mock<() => Promise<any[]>>).mockResolvedValue(
+        queryResults,
+      );
+
+      const result = await adapter.queryForChunks(searchTerm, [
+        "file1.txt",
+        "file2.txt",
+      ]);
+
+      expect(result).toEqual(expectedChunks);
+      expect(mockQuery.nearestTo).toHaveBeenCalledWith(
+        new Float32Array([0.1, 0.2, 0.3]),
+      );
+    });
+
     it("should handle errors during chunk query", async () => {
       const searchTerm = "test";
 
@@ -512,7 +594,6 @@ describe("LanceDBAdapter", () => {
 
   describe("_initialize", () => {
     it("should initialize the database connection and table", async () => {
-      // Reset the connect mock to track calls specifically in this test
       (connect as jest.Mock)
         .mockReset()
         .mockImplementation(() => Promise.resolve(mockConnection));
@@ -520,12 +601,10 @@ describe("LanceDBAdapter", () => {
       (fs.existsSync as jest.Mock).mockReturnValue(true);
       (fs.mkdirSync as jest.Mock).mockReturnValue(undefined);
 
-      // Make sure the path is set correctly before _initialize is called
       (adapter as any)._dbPath = "/mock/path/lancedb";
 
       await adapter["_initialize"]();
 
-      // Verify connect was called with the correct path
       expect(connect).toHaveBeenCalledWith("/mock/path/lancedb");
     });
 
@@ -533,7 +612,9 @@ describe("LanceDBAdapter", () => {
       (fs.existsSync as jest.Mock).mockReturnValue(true);
       (fs.mkdirSync as jest.Mock).mockReturnValue(undefined);
 
-      (mockConfigServiceFacade.getBearerToken as jest.Mock).mockReturnValue(undefined);
+      (mockConfigServiceFacade.getBearerToken as jest.Mock).mockReturnValue(
+        undefined,
+      );
 
       (adapter as any)._dbPath = "/mock/path/lancedb";
       await adapter["_initialize"]();
@@ -556,10 +637,39 @@ describe("LanceDBAdapter", () => {
 
   describe("_determineEmbeddingDimension", () => {
     it("should determine the embedding dimension", async () => {
-      // mockLanguageModel.generateEmbeddings.mockResolvedValue([0.1, 0.2, 0.3]);
-
       const dimension = await adapter["_determineEmbeddingDimension"]();
       expect(dimension).toBe(3);
+    });
+
+    it("should return default dimension (768) when embedding generation fails", async () => {
+      const originalConsoleError = console.error;
+      console.error = jest.fn();
+
+      try {
+        (LanceDBAdapter as unknown as { _instance: unknown })._instance =
+          undefined;
+
+        const error = new Error("Failed to generate embeddings");
+
+        mockLanguageModel.generateEmbeddings.mockRejectedValueOnce(error);
+
+        adapter = LanceDBAdapter.Init(
+          mockConfigServiceFacade,
+          mockLanguageModel,
+          "/mock/path",
+        );
+
+        const dimension = await adapter["_determineEmbeddingDimension"]();
+
+        expect(console.error).toHaveBeenCalledWith(
+          "Error determining embedding dimension:",
+          error,
+        );
+
+        expect(dimension).toBe(768);
+      } finally {
+        console.error = originalConsoleError;
+      }
     });
   });
 
@@ -647,6 +757,60 @@ describe("LanceDBAdapter", () => {
       await expect(adapter["_getTable"](COLLECTION_TYPE.file)).rejects.toThrow(
         "Database error",
       );
+    });
+
+    it("should throw an error for unknown collection type", async () => {
+      const originalConsoleError = console.error;
+      console.error = jest.fn();
+
+      try {
+        (adapter as any)._tableExists = jest
+          .fn<(collectionName: string) => Promise<boolean>>()
+          .mockResolvedValue(false);
+        (adapter as any)._determineEmbeddingDimension = jest
+          .fn<() => Promise<number>>()
+          .mockResolvedValue(768);
+
+        const unknownType = "unknown_collection" as COLLECTION_TYPE;
+
+        await expect(adapter["_getTable"](unknownType)).rejects.toThrow(
+          `Unknown collection type: ${unknownType}`,
+        );
+
+        expect(console.error).toHaveBeenCalledWith(
+          `Error getting table ${unknownType}:`,
+          expect.any(Error),
+        );
+      } finally {
+        console.error = originalConsoleError;
+      }
+    });
+  });
+
+  describe("GetInstance", () => {
+    let originalInstance: LanceDBAdapter | null;
+
+    beforeEach(() => {
+      originalInstance = (LanceDBAdapter as any)._instance;
+    });
+
+    afterEach(() => {
+      (LanceDBAdapter as any)._instance = originalInstance;
+    });
+
+    it("should throw an error if the instance has not been initialized", () => {
+      (LanceDBAdapter as any)._instance = null;
+
+      expect(() => LanceDBAdapter.GetInstance()).toThrow(
+        "LanceDBAdapter must be initialized first!",
+      );
+    });
+
+    it("should return the singleton instance when initialized", () => {
+      (LanceDBAdapter as any)._instance = adapter;
+
+      const instance = LanceDBAdapter.GetInstance();
+      expect(instance).toBe(adapter);
     });
   });
 });

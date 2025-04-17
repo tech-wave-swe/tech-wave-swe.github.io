@@ -355,7 +355,7 @@ ${ref.snippet}`,
   }
 
   private async _findSingleRequirementCodeFiles(requirementId: string): Promise<string[]> {
-    const codeFiles: string[] = [];
+    const fileSet = new Set<string>(); // Use a Set to avoid duplicates
 
     const workspaceFolders = vscode.workspace.workspaceFolders;
     if (!workspaceFolders) {
@@ -364,29 +364,32 @@ ${ref.snippet}`,
     }
 
     const requirementFilter = this._filterService.getRequirementFilters(requirementId);
-    const pathInclude = requirementFilter?.search_path.join(",") || "**/*.*";
+    const searchPaths = requirementFilter?.search_path || ["**/*.*"];
 
-    console.log("------------ Path Include 1 ------------\n", pathInclude);
+    console.log("------------ Search Paths ------------\n", searchPaths);
 
     console.log(
       `Scanning workspace folders: ${workspaceFolders.map((f) => f.name).join(", ")}`,
     );
 
     for (const folder of workspaceFolders) {
-      const files = await vscode.workspace.findFiles(
-        new vscode.RelativePattern(folder, pathInclude)
-      );
+      for (const pattern of searchPaths) {
+        const files = await vscode.workspace.findFiles(
+          new vscode.RelativePattern(folder, pattern)
+        );
 
-      const folderFiles = files.map((file) => file.fsPath);
-      console.log(`Found ${folderFiles.length} files in ${folder.name}:`);
-      folderFiles.forEach((f) => console.log(` - ${f}`));
+        const folderFiles = files.map((file) => file.fsPath);
+        console.log(`Found ${folderFiles.length} files in ${folder.name} for pattern ${pattern}:`);
+        folderFiles.forEach((f) => console.log(` - ${f}`));
 
-      codeFiles.push(...folderFiles);
+        folderFiles.forEach(file => fileSet.add(file));
+      }
     }
 
-    console.log("------------ Path Include 2 ------------\n", codeFiles);
-
+    const codeFiles = Array.from(fileSet);
+    console.log("------------ Files Found ------------\n", codeFiles);
     console.log(`Total files found: ${codeFiles.length}`);
+    
     return codeFiles;
   }
 

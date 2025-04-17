@@ -86,8 +86,19 @@ describe("LangChainOllamaAdapter", () => {
     adapter["_ollamaClient"] = mockOllamaClient;
   });
 
+  describe("GetInstance", () => {
+    it("should return the initialized instance", () => {
+      const instance = LangChainOllamaAdapter.GetInstance();
+      expect(instance).toBe(adapter);
+    });
+  });
+
   describe("_initialize", () => {
     it("should initialize Ollama and Embeddings with correct parameters", () => {
+      jest.clearAllMocks();
+
+      adapter["_initialize"]();
+
       expect(Ollama).toHaveBeenCalledWith({
         baseUrl: "http://fake-endpoint",
         model: "fake-ollama-model",
@@ -102,12 +113,23 @@ describe("LangChainOllamaAdapter", () => {
       });
     });
 
-    it("should initialize Ollama and Embeddings without bearer token", () => {
-      (mockConfigServiceFacade.getBearerToken as jest.Mock).mockReturnValue(undefined);
+    it("should initialize Ollama and Embeddings without headers when bearer token is undefined", () => {
+      jest.clearAllMocks();
+      (LangChainOllamaAdapter as unknown as { _instance: unknown })._instance =
+        undefined;
+      (mockConfigServiceFacade.getBearerToken as jest.Mock).mockReturnValue(
+        undefined,
+      );
+      adapter = LangChainOllamaAdapter.Init(mockConfigServiceFacade);
+
       adapter["_initialize"]();
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      expect((adapter as any)._ollama).not.toBe(null);
+      expect(Ollama).toHaveBeenCalledWith({
+        baseUrl: "http://fake-endpoint",
+        model: "fake-ollama-model",
+        temperature: 0.7,
+        headers: undefined,
+      });
     });
   });
 
@@ -204,7 +226,7 @@ describe("LangChainOllamaAdapter", () => {
 
       // Get mock runnable sequence implementation from our mock
       const mockStreamFn = jest.fn().mockResolvedValue(mockStream);
-      
+
       // Setup the mock for use in the test
       const mockFrom = jest.fn();
       RunnableSequence.from = mockFrom;
@@ -228,8 +250,10 @@ describe("LangChainOllamaAdapter", () => {
 
     it("should handle errors in generateStream method", async () => {
       // Setup mock to throw an error
-      const mockStreamFn = jest.fn().mockRejectedValue(new Error("Stream error"));
-      
+      const mockStreamFn = jest
+        .fn()
+        .mockRejectedValue(new Error("Stream error"));
+
       // Configure the mock for use in the test
       const mockFrom = jest.fn();
       RunnableSequence.from = mockFrom;
@@ -283,5 +307,30 @@ describe("LangChainOllamaAdapter", () => {
       expect(mockedOllama).toHaveBeenCalledTimes(initialOllamaCalls + 1);
       expect(mockedEmbeddings).toHaveBeenCalledTimes(initialEmbeddingCalls + 1);
     });
+  });
+});
+
+describe("LangChainOllamaAdapter GetInstance Error", () => {
+  let originalInstance: unknown;
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+    originalInstance = (
+      LangChainOllamaAdapter as unknown as { _instance: unknown }
+    )._instance;
+
+    (LangChainOllamaAdapter as unknown as { _instance: unknown })._instance =
+      undefined;
+  });
+
+  afterEach(() => {
+    (LangChainOllamaAdapter as unknown as { _instance: unknown })._instance =
+      originalInstance;
+  });
+
+  it("should throw an error when instance is not initialized", () => {
+    expect(() => {
+      LangChainOllamaAdapter.GetInstance();
+    }).toThrow("LanceDBAdapter must be initialized first!");
   });
 });
