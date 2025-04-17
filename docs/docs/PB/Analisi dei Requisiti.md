@@ -96,6 +96,7 @@ L'estensione **Requirements Tracker** permetterà agli sviluppatori di controlla
 - **CSV e Reqif**: Tipologia di formati per i file dei requisiti.
 - **Vector Embeddings**: Rappresentazione numerica, sotto forma di array, di dati non matematici, come parole o immagini, che possono essere interpretati dai modelli %%LLM|llm%%.
 - **VS Code Extension API**: Set di strumenti e interfacce che consente agli sviluppatori di creare estensioni per Visual Studio Code.
+- **LanceDB**: Database open-source per dati vettoriali.
 
 ## Casi d'uso
 
@@ -109,9 +110,10 @@ L'%%Applicativo|applicativo%% si interfaccia con un singolo attore primario:
 
 - **Utente programmatore**: Utente principale dell'%%applicativo|applicativo%%. Ha accesso a tutte le funzionalità previste e utilizza l'%%applicativo|applicativo%% durante il flusso di lavoro.
 
-L'%%Applicativo|applicativo%% si interfaccia con un singolo attore secondario:
+L'%%Applicativo|applicativo%% si interfaccia con un due attori secondari:
 
 - **%%Ollama|ollama%%**: Software gratuito e open source che consente di eseguire in locale diversi modelli %%LLM|llm%%.
+- **%%LanceDB|lancedb%%**: Database open-source per dati vettoriali.
 
 ### Elenco casi d'uso
 
@@ -873,10 +875,6 @@ Come Utente programmatore voglio ricevere un messaggio di errore chiaro e inform
 3. L’Utente programmatore fornisce feedback sui risultati forniti dal sistema (UC15.2)
 4. L’%%Applicativo|applicativo%% aggiorna la struttura dati
 
-**Estensioni:**
-
-- UC18 - Visualizzazione errore di richiesta al modello
-
 **User story:**
 
 Come Utente programmatore devo poter avviare un controllo dello stato di implementazione dei requisiti caricati al fine di aggiornare la struttura dati.
@@ -941,38 +939,6 @@ Come Utente programmatore devo poter selezionare una porzione di codice in cui e
 **User story:**
 
 Come Utente programmatore devo poter selezionare tutto il codice del progetto software per eseguire il controllo dell’implementazione dei requisiti al fine di aggiornare la struttura dati.
-
----
-
-#### UC18 - Visualizzazione errore di richiesta al modello
-
-**Estende:**
-
-- UC15.3 - Controllo implementazione requisiti
-
-**Attore primario:**
-
-- Utente programmatore
-
-**Precondizioni:**
-
-- L’Utente programmatore ha configurato l’estensione (UC1)
-- L’Utente programmatore ha aperto un nuovo progetto software (UC11)
-- L’%%Applicativo|applicativo%% ha avviato un Controllo di implementazione dei requisiti (UC15)
-- L’attore secondario %%Ollama|ollama%% non è riuscito ad elaborare la richiesta.
-
-**Postcondizioni:**
-
-- L’Utente programmatore visualizza un messaggio di errore significativo.
-
-**Scenario principale:**
-
-1. L’%%Applicativo|applicativo%% invia la richiesta ad %%Ollama|ollama%%
-2. Se viene restituito un errore viene visualizzato un messaggio contenente l’errore riportato.
-
-**User story:**
-
-Come Utente programmatore voglio ricevere un messaggio di errore chiaro e informativo se la richiesta al modello non può essere soddisfatta.
 
 ---
 
@@ -1064,9 +1030,45 @@ Come Utente programmatore devo poter revisionare la risposta fornita dall’%%Ap
 2. L’Utente programmatore visualizza la porzione di codice proposta (UC19)
 3. L’Utente programmatore revisiona la risposta fornita scegliendo di approvarla, di scartarla o di modificare il puntatore alla porzione di codice
 
+**Estensioni:**
+
+- UC18 - Visualizzazione errore di richiesta al modello
+
 **User story:**
 
 Come Utente programmatore devo poter revisionare la risposta fornita dall’%%Applicativo|applicativo%% durante il controllo dell’implementazione.
+
+---
+
+#### UC18 - Visualizzazione errore di richiesta al modello
+
+**Estende:**
+
+- UC15.3 - Controllo implementazione requisiti
+
+**Attore primario:**
+
+- Utente programmatore
+
+**Precondizioni:**
+
+- L’Utente programmatore ha configurato l’estensione (UC1)
+- L’Utente programmatore ha aperto un nuovo progetto software (UC11)
+- L’%%Applicativo|applicativo%% ha avviato un Controllo di implementazione dei requisiti (UC15)
+- L’attore secondario %%Ollama|ollama%% non è riuscito ad elaborare la richiesta.
+
+**Postcondizioni:**
+
+- L’Utente programmatore visualizza un messaggio di errore significativo.
+
+**Scenario principale:**
+
+1. L’%%Applicativo|applicativo%% invia la richiesta ad %%Ollama|ollama%%
+2. Se viene restituito un errore viene visualizzato un messaggio contenente l’errore riportato.
+
+**User story:**
+
+Come Utente programmatore voglio ricevere un messaggio di errore chiaro e informativo se la richiesta al modello non può essere soddisfatta.
 
 ---
 
