@@ -9,22 +9,33 @@ version: 1.0.0
 classification: Esterno
 ---
 
+<!-- ::: {.no-export} -->
+
 import TOCInlineWrapper from "@site/src/components/TOCInlineWrapper.jsx";
 import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
-# Specifica Tecnica
+# Manuale Utente
 
 <details>
   <summary>Changelog</summary>
+
+<!-- ::: -->
 
 | Data       | Versione | Descrizione                 | Autore         | Data Verifica | Verificatore   |
 | ---------- | -------- | --------------------------- | -------------- | ------------- | -------------- |
 | 14/04/2025 | 1.0.0    | Prima stesura del documento | Cognome? Nome? | ??/04/2025    | Cognome? Nome? |
 
+Table: Changelog
+
+<!-- ::: {.no-export} -->
+
 </details>
 
 <TOCInlineWrapper toc={toc} numbered={true}/>
 <NumberedWrapper toc={toc}>
+
+<!-- ::: -->
+
 
 ## Introduzione
 
@@ -92,7 +103,6 @@ Per evitare incomprensioni riguardanti la terminologia utilizzata all'interno de
 
 ### Gestione errori
 [Screen e/o lista degli errori]
-
 
 <!-- ::: {.no-export} -->
 </NumberedWrapper>
