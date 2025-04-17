@@ -57,9 +57,15 @@ Per evitare incomprensioni riguardanti la terminologia utilizzata all'interno de
 ## Manuale utente
 
 ### Prerequisiti
-[riferimenti all'installazione di software esterni:]
-[VS Code, node.js, Ollama]
-[Riferimenti alla documentazione dei prodotti / guida di installazione]
+Per poter utilizzare l'estensione Requirement Tracker - Plug-in per VS Code, è necessario che sul sistema siano presenti alcuni strumenti software di base. Di seguito sono elencati i requisiti minimi e i riferimenti per l'installazione.
+
+### Software richiesto
+
+| Software           | Versione consigliata | Descrizione | Link installazione |
+| -------------------|----------------------|-------------|--------------------|
+| Visual Studio Code | 1.95 | Editor di codice sorgente utilizzato per l'esecuzione dell'estensione | [Download VS Code](https://code.visualstudio.com) |
+| Node.js            | ? | Ambiente di esecuzione JavaScript necessario per il backend dell'estensione | [Download Node.js](https://nodejs.org/en) |
+| Ollama             | 0.6.2 | Sistema locale per l’esecuzione di modelli LLM, utile per la funzionalità Chat | [Download Ollama](https://ollama.com) |
 
 
 ### Avvio
@@ -86,7 +92,26 @@ Per evitare incomprensioni riguardanti la terminologia utilizzata all'interno de
 
 #### Importare requisiti
 [screen tab "import" dell'estensione]
-[descrizione procedura per reqif e csv]
+
+Per iniziare a utilizzare il Requirement Tracker, è necessario importare dei requisiti. L'estensione supporta i formati CSV e ReqIF, che possono essere caricati da file o incollati direttamente.
+
+##### Accesso alla sezione Import
+Apri l’estensione dal pannello laterale di VS Code e seleziona il tab "Import" nella parte superiore dell’interfaccia.
+
+##### Scelta del formato
+Nel menu a tendina "Format", selezionare il tipo di file da importare:
+- CSV: file delimitati da virgola (o altro separatore personalizzabile)
+- ReqIF: formato standard utilizzato per documenti di requisiti
+
+##### Opzioni per l’importazione
+È possibile importare i requisiti in due modi:
+- Caricando un file: cliccare su "Choose File" e selezionare il file dal proprio sistema
+- Incollando il contenuto: incollare direttamente i dati nel campo "Or Paste Content"
+
+Se si seleziona il formato CSV, è possibile specificare un delimitatore personalizzato (es. , o $) tramite il campo "CSV Delimiter".
+
+##### Confermare l’importazione
+Una volta inseriti i dati, cliccare sul pulsante "Import Requirements" per completare l’operazione. I requisiti verranno salvati e resi disponibili nella sezione Track per la successiva analisi.
 
 #### Tracciamento
 [screen tab "track" dell'estensione]
