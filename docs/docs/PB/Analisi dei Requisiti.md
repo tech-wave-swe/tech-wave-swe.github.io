@@ -1260,13 +1260,20 @@ I requisiti vengono identificati ciascuno da un codice identificativo nel format
 | **RFP_9**  | L'utente può inserire un endpoint specifico a cui indirizzare le richieste di Ollama.                                                                                                                                                                                                             | **UC1.1** |
 | **RFP_10** | L'utente può impostare il numero massimo di risultati da ottenere per ogni ricerca.                                                                                                                                                                                                               | **UC1.6** |
 | **RFP_11** | L'utente può specificare il prompt per la richiesta al modello di generazione del codice.                                                                                                                                                                                                         | **UC1.7** |
+
+Table: Requisiti funzionali per la configurazione dell'estensione
+
+- Messaggi di errore per la configurazione
+
+| ID         | Descrizione                                                                                                                                                                                                                                                                                       | Use Cases |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
 | **RFO_12** | L'Applicativo restituisce un messaggio d'errore se Ollama non risulta installato all'endpoint indicato. Il messaggio deve fornire una possibile soluzione al problema e deve indicare chiaramente il campo che ha generato l'errore.                                                              | **UC2**   |
 | **RFO_13** | L'Applicativo restituisce un messaggio d'errore se l'endpoint indicato non è raggiungibile. Il messaggio deve fornire una possibile soluzione al problema e deve indicare chiaramente il campo che ha generato l'errore.                                                                          | **UC3**   |
 | **RFO_14** | L'Applicativo restituisce un messaggio d'errore se il modello, scelto tra quelli proposti o custom, non è installato nel dispositivo. Il messaggio deve fornire una possibile soluzione al problema e deve indicare chiaramente il campo che ha generato l'errore.                                | **UC8**   |
 | **RFO_15** | L'Applicativo restituisce un messaggio d'errore se il modello custom indicato non esiste. Il messaggio deve fornire una possibile soluzione al problema e deve indicare chiaramente il campo che ha generato l'errore.                                                                            | **UC9**   |
 | **RFP_16** | L'Applicativo restituisce un messaggio d'errore se il bearer token indicato fallisce l'autenticazione e non viene autorizzato al collegamento con il server esterno. Il messaggio deve fornire una possibile soluzione al problema e deve indicare chiaramente il campo che ha generato l'errore. | **UC10**  |
 
-Table: Requisiti funzionali per la configurazione dell'estensione
+Table: Requisiti funzionali per gli errori di configurazione dell'estensione
 
 - L'utente per utilizzare l'%%Applicativo|applicativo%% deve indicare da interfaccia grafica le specifiche del progetto software, in particolare:
 
@@ -1313,17 +1320,24 @@ Table: Requisiti funzionali per l'esecuzione dell'estensione
 | **RFO_41** | L'Applicativo deve fornire un'interfaccia grafica per la visualizzazione della struttura dati in forma tabellare. Per ogni requisito devono essere mostrati: sigla identificativa, descrizione testuale, puntatore alla porzione di codice, stato di implementazione e stato di approvazione. | **UC21**   |
 | **RFD_42** | L'interfaccia grafica per la visualizzazione della struttura dati deve permettere di selezionare o escludere un requisito dalla ricerca.                                                                                                                                                      | **UC21**   |
 | **RFP_43** | La struttura dati deve essere esportabile in formato .csv e deve memorizzare l'hash code della commit per il versionamento.                                                                                                                                                                   | **UC21**   |
-| **RFO_44** | L'Applicativo deve generare una notifica di errore se la struttura dati non è leggibile se il file risulta cancellato.                                                                                                                                                                        | **UC22**   |
-| **RFO_45** | L'Applicativo deve generare una notifica di errore se la struttura dati non è leggibile se il file risulta corrotto.                                                                                                                                                                          | **UC22**   |
 | **RFP_46** | L'Applicativo richiede all'utente di fornire un feedback riguardo la correttezza dei risultati della ricerca memorizzati nella struttura dati mostrata: può approvare la proposta.                                                                                                            | **UC15.2** |
 | **RFP_47** | L'Applicativo richiede all'utente di fornire un feedback riguardo la correttezza dei risultati della ricerca memorizzati nella struttura dati mostrata: può scartare la proposta.                                                                                                             | **UC15.2** |
 | **RFP_48** | L'Applicativo richiede all'utente di fornire un feedback riguardo la correttezza dei risultati della ricerca memorizzati nella struttura dati mostrata: può modificare il puntatore alla porzione di codice.                                                                                  | **UC15.2** |
-| **RFO_49** | L'Applicativo deve generare una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile se il puntatore è scorretto.                                                                                                                                      | **UC20**   |
-| **RFO_50** | L'Applicativo deve generare una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile se file è stato cancellato.                                                                                                                                       | **UC20**   |
-| **RFO_51** | L'Applicativo deve generare una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile se il file è corrotto.                                                                                                                                            | **UC20**   |
 | **RFO_52** | L'Applicativo deve poter eseguire un controllo di implementazione specifico su un requisito interrogando Ollama.                                                                                                                                                                              | **UC15.3** |
 
 Table: Requisiti funzionali per l'output dei risultati dell'esecuzione
+
+- Errori
+
+| ID         | Descrizione                                                                                                                                                                                                                                                                                   | Use Cases  |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **RFO_44** | L'Applicativo deve generare una notifica di errore se la struttura dati non è leggibile se il file risulta cancellato.                                                                                                                                                                        | **UC22**   |
+| **RFO_45** | L'Applicativo deve generare una notifica di errore se la struttura dati non è leggibile se il file risulta corrotto.                                                                                                                                                                          | **UC22**   |
+| **RFO_49** | L'Applicativo deve generare una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile se il puntatore è scorretto.                                                                                                                                      | **UC20**   |
+| **RFO_50** | L'Applicativo deve generare una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile se file è stato cancellato.                                                                                                                                       | **UC20**   |
+| **RFO_51** | L'Applicativo deve generare una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile se il file è corrotto.                                                                                                                                            | **UC20**   |
+
+Table: Requisiti funzionali per gli errori dei risultati dell'esecuzione
 
 ### Requisiti tecnici e di vincolo
 
@@ -1383,6 +1397,11 @@ Table: Requisiti qualitativi
 | UC12       | RFO_28, RF0_30 , RF0_31                                                |
 | UC13       | RFD_34                                                                 |
 | UC14       | RFD_34                                                                 |
+
+Table: Tracciamento caso d'uso e requisito associato - Parte 1
+
+| Caso d'uso | Requisito                                                              |
+| ---------- | ---------------------------------------------------------------------- |
 | UC15       | RFD_19, RFP_46, RFP_47, RFP_48                                         |
 | UC15.1     | RFD_19                                                                 |
 | UC15.2     | RFP_46, RFP_47, RFP_48                                                 |
@@ -1396,7 +1415,7 @@ Table: Requisiti qualitativi
 | UC22       | RFO_44, RFO_45                                                         |
 | UC23       | RFP_40                                                                 |
 
-Table: Tracciamento caso d'uso e requisito associato
+Table: Tracciamento caso d'uso e requisito associato - Parte 2
 
 <!-- ::: {.no-export} -->
 
