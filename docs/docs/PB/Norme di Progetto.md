@@ -1,6 +1,6 @@
 ---
 id: norme_di_progetto
-title: "Norme di Progetto - v1.8.4"
+title: "Norme di Progetto - v1.8.5"
 documentclass: TWDocumentFull
 toc: true
 lof: true
@@ -23,6 +23,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                                        | Autore              | Data Verifica | Verificatore          |
 | ---------- | -------- | -------------------------------------------------- | ------------------- | ------------- | --------------------- |
+| 15/04/2025 | 1.8.5    | Integrazione sezione 2 e 3                         | Dal Bianco Riccardo |               |                       |
 | 30/03/2025 | 1.8.4    | Riscrittura sezione 1, 4 e 5. Scrittura sezione 6  | Carraro Agnese      | 30/03/2025    | Marcon Giulia         |
 | 30/03/2025 | 1.8.3    | Riscrittura sezione 2 e 3                          | Dal Bianco Riccardo | 30/03/2025    | Marcon Giulia         |
 | 30/03/2025 | 1.8.2    | Controllo consistenza maiuscole                    | Dal Bianco Riccardo | 30/03/2025    | Vasquez Manuel Felipe |
@@ -224,41 +225,83 @@ dove:
 - Numero: indica il numero progressivo del requisito.
 
 
-#### Progettazione 
+#### Progettazione
 
 ##### Descrizione e scopo
-Prima di avviare la progettazione vera e propia, si intraprende una fase preliminare che prevede la creazione di un %%PoC|poc%% (Proof of Concept). Questa fase serve a confermare le tecnologie da adottare e a definire insieme al %%proponente|proponente%% le componenti che costituiranno l'MVP (Minimum Viable Product).
+
+Prima di avviare la progettazione vera e propria, si intraprende una fase preliminare che prevede la creazione di un %%PoC|poc%% (Proof of Concept). Questa fase serve a confermare le tecnologie da adottare e a definire insieme al %%proponente|proponente%% le componenti che costituiranno l'MVP (Minimum Viable Product).
 La fase di progettazione è fondamentale nel %%processo|processo%% di sviluppo software, poiché ha il compito di tradurre i %%requisiti|requisito_software%% individuati nell''%%Analisi dei Requisiti|analisi_dei_requisiti%% in una struttura architetturale chiara, completa e realizzabile. Essa fornisce una visione tecnica del sistema da costruire, supportando scelte consapevoli in termini di tecnologie, organizzazione dei componenti e modalità di implementazione.
 
 ##### Obbiettivi
+
 L'obiettivo principale della fase di progettazione è garantire che tutti i %%requisiti|requisito_software%% identificati vengano tradotti in specifiche tecniche chiare, coerenti e realizzabili. A tal fine, è fondamentale definire un'architettura solida e ben strutturata che rappresenti una base affidabile per lo sviluppo, favorendo al contempo come chiesto dal %%proponente|proponente%% modularità e mantenibilità.
 Un altro aspetto importante è la selezione delle tecnologie più adatte, esplorate nella fase di Proof of Concept. La progettazione inoltre ha il compito di gestire la complessità dell'intero sistema, suddividendolo in componenti autonomi ben definiti così da semplificare le %%attività|attività%% di codifica, verifica e manutenzione.
 Inoltre come esplicitamente chiesto dal %%proponente|proponente%% progettare una visione orientata al futuro e utilizzabile, assicurando flessibilità e coerenza con i problemi che il sistema vuole risolvere.
 
-##### Diagramma delle classi 
+##### Qualità dell'architettura
+
+Durante la fase di progettazione va portata particolare attenzione alle seguenti qualità architetturali:
+- Modularità: componenti indipendenti per favorire il riuso e l’estendibilità;
+- Robustezza e affidabilità: gestione efficace degli errori e dei casi limite;
+- Efficienza: uso ottimale delle risorse locali (esecuzione in locale dei modelli LLM);
+- Flessibilità: capacità di adattarsi a nuovi requisiti o estensioni future;
+- Sicurezza: gestione del token di accesso e isolamento dei dati utente;
+
+
+##### Diagramma delle classi
+
 Una tipologia di diagramma UML utile a rappresentare la struttura statica del sistema software. Questi diagrammi visualizzano le classi del sistema, i loro attributi, metodi e la relazione tra esse.
 Rappresentazione:
+
 1. Nome: Contiene il nome della classe, se la classe è astratta il nome viene scritto in corsivo
-2. Attributi: 
-**Visibilità Nome : tipo \[molteplicità\] = default**
+2. Attributi:
+   **Visibilità Nome : tipo \[molteplicità\] = default**
+   - Visibilità: Se privata viene indicata con il- , se protetta viene indicata con il # e se pubblica viene indicata con il + .
+   - Nome: Il nome dell’attributo, se statico viene sottolineato.
+   - Tipo: Rappresenta il tipo di dato dell’elemento.
+   - Molteplicità: Quante istanze dell’elemento possono esistere in relazione ad altri elementi.
+   - Default: Se configurato, indica il valore predefinito per l’elemento.
 3. Metodi:
-**Visibilità Nome (lista-parametri) : tipo-ritorno**
+   **Visibilità Nome (lista-parametri) : tipo-ritorno**
+    - Visibilità: Segue quanto definito sopra.
+    - Nome: Nome del metodo, se statico viene sottolineato.
+    - Lista-Parametri: Se la funzione prevede più di un parametro.
+    - Tipo-ritorno: Il tipo restituito dal metodo.
 
 ##### Design pattern
 
+I design pattern rappresentano soluzioni riusabili a problemi ricorrenti di progettazione software. La loro adozione consente di migliorare la qualità architetturale del sistema, favorendo coerenza, manutenibilità e chiarezza del codice.
+Ogni pattern utilizzato deve essere documentato attraverso una descrizione testuale, uno schema grafico esplicativo e una breve spiegazione del suo ruolo all'interno dell'architettura del progetto.
+
 ##### Strumenti
-* StarUML: applicazione software utilizzata per la realizzazione dei diagrammi delle classi.
+
+- StarUML: applicazione software utilizzata per la realizzazione dei diagrammi delle classi.
 
 
 #### Codifica
 
 ##### Descrizione e scopo
+
 La fase di codifica rappresenta il momento centrale in cui le %%funzionalità|funzionalità%% richieste dal %%proponente|proponente%% vengono concretamente realizzate. In questa fase, i programmatori traducono le specifiche definite dai progettisti in codice eseguibile, seguendo con rigore le norme di %%progetto|progetto%% e le linee guida stabilite. Il codice %%prodotto|prodotto%% deve rispecchiare fedelmente i %%requisiti|requisito_software%% analizzati, garantendo qualità, coerenza e manutenibilità nel tempo.
 
 ##### Obbiettivi
+
 L’obiettivo principale di questa %%attività|attività%% è la realizzazione di un %%prodotto|prodotto%% software conforme alle richieste del committente, rispettando gli accordi contrattuali e assicurando la piena corrispondenza tra ciò che è stato progettato e quanto viene implementato. Si mira alla produzione di un codice chiaro, leggibile ed %%efficiente|efficienza%%, facilmente estendibile e testabile.
 
+##### Norme di codifica
 
+Per garantire uno sviluppo del codice coerente e di alta qualità sono state adottate le seguenti regole:
+
+- Nomi significativi: usare nomi significativi per variabili, funzioni, classi e metodi, evitando ambiguità e aumentando la leggibilità del codice.
+- Commenti: evitare commenti superflui e non necessari, applicarli solo dove è necessario fornire contesto
+- Indentazione e formattazione: utilizzo di tab per ciascun livello di annidamento del codice per assicurare una migliore comprensione e leggibilità del codice.
+- Lingua: usare la lingua inglese per tutti i nominativi e i commenti.
+- Lunghezza dei metodi: i metodi devono essere brevi e focalizzati su una singola responsabilità.
+
+##### Strumenti
+
+- Visual Studio Code: IDE utilizzato dal team di sviluppo per la codifica del prodotto.
+  
 
 ## Processi di Supporto
 
@@ -631,6 +674,10 @@ Ad ogni %%test|test%% viene associato uno stato che ne riflette il risultato di 
 - **NI**: Non implementato
 - **S**: Superato
 - **NS**: Non Superato
+
+###### Strumenti
+
+- Jest: framework di testing JavaScript open source sviluppato da Meta, utilizzato per la scrittura e l'esecuzione di %%test|test%% unitari e di integrazione. Offre funzionalità avanzate come il mocking, l’analisi della copertura del codice e l’esecuzione parallela %%efficienza|efficienza%% nei processi di verifica del software.
 
 ### Validazione
 
