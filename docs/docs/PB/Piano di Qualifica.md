@@ -339,30 +339,67 @@ I test di verifica e validazione vengono eseguiti in tutte le fasi del ciclo di 
 
 ### Test di sistema
 
-| ID   | Descrizione                                                            | ID Requisito        | Stato            |
-| ---- | ---------------------------------------------------------------------- | ------------------- | ---------------- |
-| TS01 | Verifica selezione e configurazione dei modelli LLM                    | RFO_1,2,4           | Non Implementato |
-| TS02 | Verifica configurazione modelli custom                                 | RFD_3               | Non Implementato |
-| TS03 | Verifica configurazione temperature                                    | RFD_5               | Non Implementato |
-| TS04 | Verifica gestione Bearer Token per server Ollama esterno               | RFP_6               | Non Implementato |
-| TS05 | Verifica gestione errori input utente                                  | RFO_7               | Non Implementato |
-| TS06 | Verifica selezione cartella progetto e file requisiti                  | RFO_8,9             | Non Implementato |
-| TS07 | Verifica funzionalità di selezione e filtro                            | RFD_10,11,12,RFO_13 | Non Implementato |
-| TS08 | Verifica visualizzazione porzione di codice per requisito implementato | RFO_14              | Non Implementato |
-| TS09 | Verifica parsing documento requisiti                                   | RFO_15              | Non Implementato |
-| TS10 | Verifica embedding dei documenti                                       | RFO_16              | Non Implementato |
-| TS11 | Verifica gestione errori parsing                                       | RFO_17              | Non Implementato |
-| TS12 | Verifica generazione struttura dati sui requisiti                      | RFO_18              | Non Implementato |
-| TS13 | Verifica applicazione filtro sui requisiti                             | RFO_19              | Non Implementato |
-| TS14 | Verifica gestione errori sull'applicazione dei filtri sui requisiti    | RFO_20              | Non Implementato |
-| TS15 | Verifica generazione codice e analisi da parte del modello LLM         | RFO_21,22           | Non Implementato |
-| TS16 | Verifica gestione errori modelli LLM                                   | RFO_23              | Non Implementato |
-| TS17 | Verifica aggiornamento dello stato dei requisiti e struttura dati      | RFO_24              | Non Implementato |
-| TS18 | Verifica interfaccia visualizzazione risultati                         | RFO_25              | Non Implementato |
-| TS19 | Verifica gestione errori generazione codice e analisi                  | RFO_26,28           | Non Implementato |
-| TS20 | Verifica funzionalità di feedback sulla certezza della risposta        | RFP_27,29           | Non Implementato |
+| ID   | Descrizione                                                                                                              | ID Requisito        | Stato        |
+| ---- | ------------------------------------------------------------------------------------------------------------------------ | ------------------- | ------------ |
+| TS01 | Verifica che l'utente possa scegliere il modello LLM per generare il codice                                              | RFO_1              | Superato |
+| TS02 | Verifica che l'utente possa scegliere il modello LLM per l'embedding                                                     | RFO_2              | Superato |
+| TS03 | Verifica che l'utente possa scegliere un modello custom per generare codice anche indicando il nome di uno già installato nel suo dispositivo | RFD_3              | Superato |
+| TS04 | Verifica che l'utente possa scegliere un modello custom per l'embedding anche indicando il nome di uno già installato nel suo dispositivo | RFD_4              | Superato |
+| TS05 | Verifica che l'utente possa scegliere uno dei modelli proposti per generare codice                                       | RFO_5              | Superato |
+| TS06 | Verifica che l'utente possa scegliere uno dei modelli proposti per l'embedding                                           | RFO_6              | Superato |
+| TS07 | Verifica che l'utente possa impostare la temperature del modello per generare codice inserendo un valore decimale compreso tra 0 e 1 | RFD_7              | Superato |
+| TS08 | Verifica che l'utente possa inserire un Bearer Token per usare Ollama in un server esterno                               | RFP_8              | Superato |
+| TS09 | Verifica che l'utente possa inserire un endpoint specifico a cui indirizzare le richieste di Ollama                      | RFP_9              | Superato |
+| TS10 | Verifica che l'utente possa impostare il numero massimo di risultati da ottenere per ogni ricerca                        | RFP_10             | Superato |
+| TS11 | Verifica che l'utente possa specificare il prompt per la richiesta al modello di generazione del codice                  | RFP_11             | Superato |
+| TS12 | Verifica che l'Applicativo restituisca un messaggio d'errore che fornisca una possibile soluzione al problema e indichi chiaramente il campo che ha generato l'errore se Ollama non risulta installato all'endpoint indicato | RFO_12             | Superato |
+| TS13 | Verifica che l'Applicativo restituisca un messaggio d'errore che fornisca una possibile soluzione al problema e indichi chiaramente il campo che ha generato l'errore se l'endpoint indicato non è raggiungibile | RFO_13             | Superato |
+| TS14 | Verifica che l'Applicativo restituisca un messaggio d'errore che fornisca una possibile soluzione al problema e indichi chiaramente il campo che ha generato l'errore se il modello, scelto tra quelli proposti o custom, non è installato nel dispositivo | RFO_14             | Superato |
+| TS15 | Verifica che l'Applicativo restituisca un messaggio d'errore che fornisca una possibile soluzione al problema e indichi chiaramente il campo che ha generato l'errore se il modello custom indicato non esiste | RFO_15             | Superato |
+| TS16 | Verifica che l'Applicativo restituisca un messaggio d'errore che fornisca una possibile soluzione al problema e indichi chiaramente il campo che ha generato l'errore se il bearer token indicato fallisce l'autenticazione e non viene autorizzato al collegamento con il server esterno | RFP_16             | Superato |
+| TS17 | Verifica che l'utente, tramite l'interfaccia grafica, possa indicare la cartella del progetto software                   | RFO_17             | Superato |
+| TS18 | Verifica che l'utente, tramite l'interfaccia grafica, possa indicare il file con presente la lista dei requisiti         | RFO_18             | Superato |
+| TS19 | Verifica che l'utente, tramite l'interfaccia grafica, possa effettuare una selezione dei requisiti da analizzare         | RFD_19             | Superato |
+| TS20 | Verifica che l'utente, tramite l'interfaccia grafica, possa specificare dei filtri per selezionare quali requisiti ricercare nel codice e quali ignorare | RFD_20             | Superato |
+| TS21 | Verifica che l'utente, tramite l'interfaccia grafica, possa specificare dei filtri per indicare quali cartelle includere o escludere nella ricerca del codice | RFD_21             | Superato |
+| TS22 | Verifica che l'utente, tramite l'interfaccia grafica, possa specificare dei filtri per indicare quali file includere o escludere nella ricerca del codice | RFD_22             | Superato |
+| TS23 | Verifica che l'utente, tramite l'interfaccia grafica, possa specificare dei filtri per indicare quali file includere o escludere nella ricerca del codice | RFD_23             | Superato |
+| TS24 | Verifica che l'utente, tramite l'interfaccia grafica, possa specificare dei filtri per indicare un file nel quale ricercare l'implementazione di un preciso requisito | RFD_24             | Superato |
+| TS25 | Verifica che l'utente, tramite l'interfaccia grafica, possa selezionare una porzione di codice sulla quale eseguire nuovamente la ricerca | RFD_25             | Superato |
+| TS26 | Verifica che l'utente, tramite l'interfaccia grafica, possa effettuare una nuova ricerca su tutto il codice              | RFO_26             | Superato |
 
-Table: Test di sistema
+Table: Test di sistema parte 1
+
+| ID   | Descrizione                                                                                                              | ID Requisito        | Stato        |
+| ---- | ------------------------------------------------------------------------------------------------------------------------ | ------------------- | ------------ |
+| TS27 | Verifica che l'utente, tramite l'interfaccia grafica, possa visualizzare la porzione di codice che implementa un requisito tramite il puntatore indicato nella tabella che lo riporta al file | RFO_27             | Superato |
+| TS28 | Verifica che l'Applicativo effettui il parsing del documento dei requisiti                                               | RFO_28             | Superato |
+| TS29 | Verifica che l'Applicativo generi una struttura dati a partire dal parsing del documento dei requisiti                   | RFO_29             | Superato |
+| TS30 | Verifica che l'Applicativo generi una notifica di errore se il parsing non è andato a buon fine a causa del formato file scorretto | RFO_30             | Superato |
+| TS31 | Verifica che l'Applicativo generi una notifica di errore se il parsing non è andato a buon fine a causa del formato non supportato | RFO_31             | Superato |
+| TS32 | Verifica che la struttura dati memorizzi per ogni requisito: codice identificativo, testo del requisito, stato di implementazione (implementato o non implementato) e il puntatore al frammento di codice (funzione o parte di essa) dove presume sia implementato | RFO_32             | Superato |
+| TS33 | Verifica che l'Applicativo per ogni requisito applichi il filtro corrispondente, se presente                              | RFD_33             | Superato |
+| TS34 | Verifica che l'Applicativo generi una notifica di errore se i filtri indicati dall'utente non sono applicabili           | RFD_34             | Non implementato |
+| TS35 | Verifica che l'Applicativo, per ogni requisito selezionato, produca il codice corrispondente interrogando il modello selezionato per la generazione del codice | RFO_35             | Superato |
+| TS36 | Verifica che l'Applicativo effettui, per ogni requisito selezionato, il pattern matching tra il codice generato e il codice del progetto utilizzando il modello selezionato | RFO_36             | Superato |
+| TS37 | Verifica che l'Applicativo invalidi i requisiti associati a un file che ha subito modifiche in seguito alla ricerca      | RFD_37             | Non implementato |
+| TS38 | Verifica che l'Applicativo generi una notifica di errore se una o più richieste ai modelli sono fallite                  | RFO_38             | Superato |
+| TS39 | Verifica che l'Applicativo, alla fine dell'esecuzione, aggiorni la struttura dati, modificando lo stato di implementazione e il puntatore al codice | RFO_39             | Superato |
+| TS40 | Verifica che l'Applicativo fornisca un chatbot per porre domande al modello di generazione del codice                    | RFP_40             | Superato |
+| TS41 | Verifica che l'Applicativo fornisca un'interfaccia grafica per la visualizzazione della struttura dati in forma tabellare e che per ogni requisito vengano mostrati: sigla identificativa, descrizione testuale, puntatore alla porzione di codice, stato di implementazione e stato di approvazione | RFO_41             | Superato |
+| TS42 | Verifica che l'interfaccia grafica per la visualizzazione della struttura dati permetta di selezionare o escludere un requisito | RFD_42             | Superato |
+| TS43 | Verifica che la struttura dati sia esportabile in formato .csv e memorizzi l'hash code della commit per il versionamento | RFP_43             | Non implementato |
+| TS44 | Verifica che l'Applicativo generi una notifica di errore se la struttura dati non è leggibile se il file risulta cancellato | RFO_44             | Superato |
+| TS45 | Verifica che l'Applicativo generi una notifica di errore se la struttura dati non è leggibile se il file risulta corrotto | RFO_45             | Superato |
+| TS46 | Verifica che l'Applicativo richieda all'utente di fornire un feedback riguardo la correttezza dei risultati della ricerca memorizzati nella struttura dati mostrata e che l'utente possa approvare la proposta | RFP_46             | Superato |
+| TS47 | Verifica che l'Applicativo richieda all'utente di fornire un feedback riguardo la correttezza dei risultati della ricerca memorizzati nella struttura dati mostrata e che l'utente possa scartare la proposta | RFP_47             | Superato |
+| TS48 | Verifica che l'Applicativo richieda all'utente di fornire un feedback riguardo la correttezza dei risultati della ricerca memorizzati nella struttura dati mostrata e che l'utente possa modificare il puntatore alla porzione di codice | RFP_48             | Superato |
+| TS49 | Verifica che l'Applicativo generi una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile se il puntatore è scorretto | RFO_49             | Superato |
+| TS50 | Verifica che l'Applicativo generi una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile se il file è stato cancellato | RFO_50             | Superato |
+| TS51 | Verifica che l'Applicativo generi una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile se il file è corrotto | RFO_51             | Superato |
+| TS52 | Verifica che l'Applicativo possa eseguire un controllo di implementazione specifico su un requisito interrogando Ollama  | RFO_52             | Superato |
+
+Table: Test di sistema parte 2
 
 ### Test di accettazione
 
