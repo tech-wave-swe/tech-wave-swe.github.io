@@ -93,42 +93,35 @@ Per accedervi:
 
 Dettaglio delle impostazioni disponibili
 1. Endpoint:
-
 URL dell'endpoint del server Ollama a cui l'estensione si connette per effettuare le richieste.
   - Default: http://127.0.0.1:11434 (esecuzione locale)
   - Può essere sostituito con un URL remoto se si usa server esterno
 
 2. Model: 
-
 Permette di selezionare, tramite un menu a tendina, il modello LLM da utilizzare come predefinito per le funzionalità dell'estensione. 
 Il menù propone una lista di modelli preinstallati disponibili localmente tramite Ollama e oltre a questi è possibile selezionare "custom", in questo caso l'estensione userà un modello specificato manualmente dall'utente nel campo Custom-model.
 
 3. Custom-model:
-
 Campo utilizzato per indicare manualmente il nome di un modello LLM da usare, nel caso in cui si voglia utilizzare un modello non incluso tra quelli proposti nell'opzione Model. Il modello deve essere installato localmente in Ollama.
 Questo valore viene utilizzato solo se nel campo Model è selezionato "custom".
 
 4. Embedding Model:
-
 Permette di selezionare, tramite un menu a tendina, il modello da utilizzare per la generazione degli embedding  per la rappresentazione vettoriale dei requisiti
 Il menu propone una lista di modelli preinstallati localmente tramite Ollama.
 Oltre a questi, è possibile selezionare l’opzione "custom", in tal caso, l’estensione utilizzerà il modello specificato manualmente nel campo Custom-embedding Model.
 
 5. Custom-embedding Model:
-
 Campo utilizzato per indicare manualmente il nome di un modello embedding da usare, nel caso in cui si voglia utilizzare un modello non incluso tra quelli proposti nell'opzione Embedding Model.
 Il modello deve essere installato localmente in Ollama.
 Questo valore viene utilizzato solo se nel campo Embedding Model è selezionato "custom".
 
 6. Temperature:
-
 Imposta il livello di creatività del modello LLM durante la generazione del testo. Valori più alti producono risposte più variate e creative, mentre valori più bassi rendono le risposte più coerenti e deterministiche.
 Esempi:
   - 0.2 -> Risposte precise e ripetibili.
   - 0.7 -> Risposte più libere e diversificate.
 
 7. Bearer Token:
-
 Campo facoltativo per inserire un token di autenticazione da utilizzare per comunicare con un server esterno sicuro, utile se l'Endpoint punta a un server remoto protetto.
 Se si utilizza Ollama in locale e senza autenticazione, questo campo può essere lasciato vuoto.
 
@@ -137,42 +130,35 @@ Se si utilizza Ollama in locale e senza autenticazione, questo campo può essere
 
 [SCREEN CONF PROGETTO]
 
-
 Oltre alle impostazioni globali, Requirement Tracker consente di definire configurazioni specifiche per ogni progetto. Queste impostazioni locali risiedono nel file 
 "config.json" all'interno del progetto stesso, e permettono di personalizzare il comportamento dell’estensione in maniera più mirata, adattandolo alle esigenze del singolo contesto di sviluppo.
 Tutti i campi descritti di seguito sono opzionali, ad eccezione di quelli utilizzati all'interno della sezione filters (che verranno approfonditi in una sezione dedicata).
 Dettgli delle imposazioni disponibili.
 1. endpoint: 
-
 URL dell'endpoint del server Ollama a cui l'estensione si connette per effettuare le richieste.
   - Default: http://127.0.0.1:11434 (esecuzione locale)
   - Può essere sostituito con un URL remoto se si usa server esterno
 
 2. model: 
-
 Permette di selezionare, tramite un menu a tendina, il modello LLM da utilizzare come predefinito per le funzionalità dell'estensione. 
 Il menù propone una lista di modelli preinstallati disponibili localmente tramite Ollama e oltre a questi è possibile selezionare "custom", in questo caso l'estensione userà un modello specificato manualmente dall'utente nel campo Custom-model.
 
 3. Embedding Model:
-
 Permette di selezionare, tramite un menu a tendina, il modello da utilizzare per la generazione degli embedding  per la rappresentazione vettoriale dei requisiti
 Il menu propone una lista di modelli preinstallati localmente tramite Ollama.
 Oltre a questi, è possibile selezionare l’opzione "custom", in tal caso, l’estensione utilizzerà il modello specificato manualmente nel campo Custom-embedding Model.
 
 4. Bearer Token:
-
 Campo facoltativo per inserire un token di autenticazione da utilizzare per comunicare con un server esterno sicuro, utile se l'Endpoint punta a un server remoto protetto.
 Se si utilizza Ollama in locale e senza autenticazione, questo campo può essere lasciato vuoto.
 
 5. Temperature:
-
 Imposta il livello di creatività del modello LLM durante la generazione del testo. Valori più alti producono risposte più variate e creative, mentre valori più bassi rendono le risposte più coerenti e deterministiche.
 Esempi:
   - 0.2 -> Risposte precise e ripetibili.
   - 0.7 -> Risposte più libere e diversificate.
 
 6. promptRequirementAnalysis: 
-
 definisce il prompt utilizzato dal modello per analizzare i requisiti rispetto al codice sorgente.
 Questo prompt guida il comportamento del modello nella fase in cui, partendo da un file CSV contenente i requisiti, l’estensione verifica se questi sono stati implementati nel codice.
 Il testo può essere personalizzato per adattarsi al contesto del progetto per ricevere risposte più puntuali.
@@ -180,7 +166,6 @@ Il testo può essere personalizzato per adattarsi al contesto del progetto per r
 7. maxResults: Definisce il numero massimo di risultati restituiti dal modello durante l'analisi dei requisiti.
 Questo valore serve a limitare il numero di possibili corrispondenze tra requisiti e codice sorgente, evitando un sovraccarico di informazioni non rilevanti.
 Per esempio, se il valore è impostato a 5, il modello restituirà al massimo cinque possibili implementazioni o riferimenti nel codice per ciascun requisito.
-
 
 #### Configurazione filtri
 
@@ -194,33 +179,33 @@ Tipologie di filtri disponibili.
 
 `path`:
 Consente di specificare quali file o cartelle includere o escludere dall’analisi.
-<pre> <code> ``` "path": {
-      "include": ["Src/main.c"],
-      "exclude": []
-    },  ``` </code> </pre>
+<pre> <code>  "path": {
+      	"include": ["Src/main.c"],
+      	"exclude": []
+    },   </code> </pre>
 - include: elenco di file o directory da considerare.
 - exclude: elenco di file o directory da ignorare.
 Se entrambi sono presenti, il filtro exclude ha priorità.
 
 `file_extension`:
 Filtra i file in base alla loro estensione.
-<pre> <code> ``` "file_extension": {  
-      "include": ["c", "h"],  
-      "exclude": ["md", "txt"]
-    }  ``` </code> </pre>
+<pre> <code>  "file_extension": {  
+     	 "include": ["c", "h"],  
+     	 "exclude": ["md", "txt"]
+    }   </code> </pre>
 - include: solo i file con queste estensioni verranno analizzati.
 - exclude: i file con queste estensioni verranno ignorati.
 
 `requirements`:
 Permette di associare ogni requisito (identificato tramite ID) a uno o più percorsi specifici del codice in cui cercarne l’implementazione.
-<pre> <code> ``` "requirements": {
-      "{DEA4AB3D-B7F5-4ac6-A522-27D8FD6DA667}": {
-        "search_path": ["Src/main.c"]
-      },
-      "{1CC22054-EC4F-4a9b-9FAC-A4288B537E32}": {
-        "search_path": ["Src/stm32g0xx_it.c"]
-      }
-    }``` </code> </pre>
+<pre> <code>  "requirements": {
+      	"{DEA4AB3D-B7F5-4ac6-A522-27D8FD6DA667}": {
+        	"search_path": ["Src/main.c"]
+      	},
+      		"{1CC22054-EC4F-4a9b-9FAC-A4288B537E32}": {
+        	"search_path": ["Src/stm32g0xx_it.c"]
+      	}
+    	} </code> </pre>
 - Ogni chiave corrisponde all’ID di un requisito.
 - search_path: elenco dei file nei quali verificare l’implementazione del requisito.
 
