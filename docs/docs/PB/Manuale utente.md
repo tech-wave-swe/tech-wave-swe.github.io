@@ -21,9 +21,12 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 <!-- ::: -->
 
-| Data       | Versione | Descrizione                 | Autore         | Data Verifica | Verificatore   |
-| ---------- | -------- | --------------------------- | -------------- | ------------- | -------------- |
-| 14/04/2025 | 1.0.0    | Prima stesura del documento | Cognome? Nome? | ??/04/2025    | Cognome? Nome? |
+| Data       | Versione | Descrizione                 | Autore              | Data Verifica | Verificatore   |
+| ---------- | -------- | --------------------------- | ------------------- | ------------- | -------------- |
+| 17/04/2025 | 1.0.0    | Sezione Gestione errori     | Marcon Giulia       | 18/04/2025    |                |
+| 17/04/2025 | 0.3.0    | Sezione Avvio               | Dal Bianco Riccardo | 17/04/2025    |                |
+| 15/04/2025 | 0.2.0    | Sezione Utilizzo            | Marcon Giulia       | 16/04/2025    |                |
+| 14/04/2025 | 0.1.0    | Prima stesura del documento | Pistori Gaia        | 15/04/2025    | Marcon Giulia  |
 
 Table: Changelog
 
@@ -179,25 +182,30 @@ Tipologie di filtri disponibili:
 
 `path`:
 Consente di specificare quali file o cartelle includere o escludere dall’analisi.
+```
 <pre> <code>  "path": {
       	"include": ["Src/main.c"],
       	"exclude": []
     },   </code> </pre>
+```
 - **include**: elenco di file o directory da considerare.
 - **exclude**: elenco di file o directory da ignorare.
 Se entrambi sono presenti, il filtro exclude ha priorità.
 
 `file_extension`:
 Filtra i file in base alla loro estensione.
+```
 <pre> <code>  "file_extension": {  
      	 "include": ["c", "h"],  
      	 "exclude": ["md", "txt"]
     }   </code> </pre>
+```
 - **include**: solo i file con queste estensioni verranno analizzati.
 - **exclude**: i file con queste estensioni verranno ignorati.
 
 `requirements`:
 Permette di associare ogni requisito (identificato tramite ID) a uno o più percorsi specifici del codice in cui cercarne l’implementazione.
+```
 <pre> <code>  "requirements": {
       	"{DEA4AB3D-B7F5-4ac6-A522-27D8FD6DA667}": {
         	"search_path": ["Src/main.c"]
@@ -206,9 +214,9 @@ Permette di associare ogni requisito (identificato tramite ID) a uno o più perc
         	"search_path": ["Src/stm32g0xx_it.c"]
       	}
     } </code> </pre>
+```
 - Ogni chiave corrisponde all’ID di un requisito.
 - **search_path**: elenco dei file nei quali verificare l’implementazione del requisito.
-
 
 ### Utilizzo
 
@@ -357,7 +365,91 @@ Alla riapertura dell’editor, sarà quindi possibile riprendere il lavoro esatt
 
 
 ### Gestione errori
-[Screen e/o lista degli errori]
+
+Gestione degli errori
+Durante l’utilizzo dell’estensione possono comparire diversi messaggi di errore. Di seguito trovi un elenco dei più comuni, con una breve descrizione e cosa fare per risolverli.
+
+#### Token mancante o non valido
+
+<img src="/img/Errors/chat-missing-bearer-token-error.png" alt="Invalid or missing authentication token" data-width="70%" />
+
+Descrizione: Il messaggio è restituito dal modello LLM direttamente nella chat. Indica che non è stato possibile generare embeddings per la richiesta a causa di un token mancante o non valido.
+Origine possibile: il backend del modello richiede un token per l’elaborazione semantica delle richieste, ma tale token non è stato fornito o è scaduto/non corretto.
+
+#### Modello non trovato (all’avvio dell’estensione)
+
+<img src="/img/Errors/extension-init-model-not-found-error.png" alt="System check failed: Failed to generate response" data-width="70%" />
+
+Descrizione: L’estensione non è riuscita ad avviare correttamente il modello specificato (gemma3) durante il controllo iniziale.
+Origine possibile: il modello non è presente localmente o non è stato correttamente scaricato (comando: ollama pull gemma3).
+
+#### Nessun file aperto
+
+<img src="/img/Errors/interrogate-command-without-file-open-error.png" alt="No active editor found" data-width="70%" />
+
+Descrizione: Il comando richiede un file aperto nell’editor, ma nessun file è attivo.
+Origine possibile: l’editor di Visual Studio Code non ha un file sorgente attualmente aperto.
+
+#### Nessun file requisiti caricato
+
+<img src="/img/Errors/interrogate-without-requirements-error.png" alt="Please load requirements file first in the Requirements Tracker view" data-width="70%" />
+
+Descrizione: Non è stato caricato un file contenente i requisiti nel tracker.
+Origine possibile: l’interazione è avvenuta prima di importare un file di requisiti (CSV o ReqIF).
+
+#### Modello mancante in chat
+
+<img src="/img/Errors/model-not-found-chat-error.png" alt="model not found" data-width="70%" />
+
+Descrizione: La generazione della risposta non è riuscita perché il modello non è stato trovato.
+Origine possibile: il modello indicato non è disponibile o non è stato caricato nel sistema.
+
+#### Connessione a Ollama fallita
+
+<img src="/img/Errors/model-not-found-error.png" alt="Failed to connect to Ollama service" data-width="70%" />
+
+Descrizione: Il sistema non riesce a connettersi al servizio Ollama per il modello specificato.
+Origine possibile: il servizio è attivo, ma il modello richiesto non è stato trovato.
+
+#### Errore durante il download del modello
+
+<img src="/img/Errors/model-pull-error.png" alt="Failed to pull model" data-width="70%" />
+
+Descrizione: Il tentativo di scaricare il modello è fallito perché non è stato trovato.
+Origine possibile: il nome del modello è errato o non è disponibile nei repository remoti.
+
+#### Nessun testo selezionato per il puntatore
+
+<img src="/img/Errors/no-selected-test-in-document-selection-command-error.png" alt="No text selected" data-width="70%" />
+
+Descrizione: Nessun testo è stato selezionato al momento dell’esecuzione del comando.
+Origine possibile: il comando richiede la selezione di almeno una riga di codice.
+
+#### CSV non valido
+
+<img src="/img/Errors/parsing-error.png" alt="Invalid CSV format: Missing header or data" data-width="70%" />
+
+Descrizione: Il file CSV importato non ha un formato valido: mancano intestazioni o dati.
+Origine possibile: il file è incompleto, vuoto o strutturato in modo non conforme.
+
+<img src="/img/Errors/parsing-error-2.png" alt="Invalid CSV format: Expected 2 columns but found 4 at line 2" data-width="70%" />
+
+Descrizione: Il file CSV non ha il numero di colonne previsto.
+Origine possibile: Il file contiene una struttura diversa da quella attesa (ad esempio, più colonne del previsto).
+
+#### ReqIF non valido
+
+<img src="/img/Errors/reqif-parsing-error.png" alt="Failed to parse ReqIF" data-width="70%" />
+
+Descrizione: Il file ReqIF non è stato interpretato correttamente a causa di un formato XML non valido.
+Origine possibile: Sono presenti caratteri non ammessi prima dell’inizio del documento XML o il contenuto non è conforme alla sintassi ReqIF.
+
+#### Nessun modello selezionato
+
+<img src="/img/Errors/unavailable-custom-model-error.png" alt="Cannot proceed without model, please select an available model" data-width="70%" />
+
+Descrizione: L’azione richiede un modello, ma nessun modello è stato selezionato.
+Origine possibile: nessun modello è attualmente configurato nell’estensione.
 
 <!-- ::: {.no-export} -->
 </NumberedWrapper>
