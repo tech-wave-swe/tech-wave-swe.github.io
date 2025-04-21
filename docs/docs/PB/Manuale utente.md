@@ -44,7 +44,7 @@ Table: Changelog
 
 ### Scopo del documento
 
-Il presente documento ha lo scopo di fornire una guida dettagliata all'utilizzo dell'estensione di VS Code creata.
+Il presente documento ha lo scopo di fornire una guida dettagliata all'utilizzo dell'estensione di %%VSCode|vscode%% creata.
 
 ### Scopo del prodotto
 
@@ -60,13 +60,13 @@ Per evitare incomprensioni riguardanti la terminologia utilizzata all'interno de
 ## Manuale utente
 
 ### Prerequisiti
-Per poter utilizzare l'estensione Requirement Tracker - Plug-in per VS Code, è necessario che sul sistema siano presenti alcuni strumenti software di base. Di seguito sono elencati i requisiti minimi e i riferimenti per l'installazione.
+Per poter utilizzare l'estensione **Requirement Tracker - Plug-in per VSCode**, è necessario che sul sistema siano presenti alcuni strumenti software di base. Di seguito sono elencati i requisiti minimi e i riferimenti per l'installazione.
 
 ### Software richiesto
 
 | Software           | Versione consigliata | Descrizione | Link installazione |
 | -------------------|----------------------|-------------|--------------------|
-| Visual Studio Code | 1.95 | Editor di codice sorgente utilizzato per l'esecuzione dell'estensione | [Download VS Code](https://code.visualstudio.com) |
+| Visual Studio Code | 1.95 | Editor di codice sorgente utilizzato per l'esecuzione dell'estensione | [Download VSCode](https://code.visualstudio.com) |
 | Node.js            | ? | Ambiente di esecuzione JavaScript necessario per il backend dell'estensione | [Download Node.js](https://nodejs.org/en) |
 | Ollama             | 0.6.2 | Sistema locale per l’esecuzione di modelli LLM, utile per la funzionalità Chat | [Download Ollama](https://ollama.com) |
 
@@ -79,13 +79,13 @@ Per poter utilizzare l'estensione Requirement Tracker - Plug-in per VS Code, è 
 
 [SREEN EXPLORER]
 
-Per poter utilizzare l'estensione Requirement Tracker, è fondamentale che un progetto sia attivo all’interno di Visual Studio Code. L’estensione è progettata per operare nel contesto di una cartella progetto aperta.
+Per poter utilizzare l'estensione Requirement Tracker, è fondamentale che un progetto sia attivo all’interno di %%Visual Studio Code|vscode%%. L’estensione è progettata per operare nel contesto di una cartella progetto aperta.
 
-Se la struttura delle cartelle e dei file sarà visibile nella sezione Explorer di Visual Studio Code (Icona dei file nella barra laterale sinistra) il progetto è aperto correttamente e 
+Se la struttura delle cartelle e dei file sarà visibile nella sezione Explorer di %%Visual Studio Code|vscode%% (Icona dei file nella barra laterale sinistra) il progetto è aperto correttamente e 
 l’estensione è pronta per essere utilizzata nel contesto di lavoro attivo.
 
 #### Configurazioni globali
-L’estensione Requirement Tracker mette a disposizione una serie di impostazioni personalizzabili, accessibili dal pannello Settings di Visual Studio Code. Queste configurazioni, definite a livello globale, determinano il comportamento dell’estensione in tutti i progetti aperti nell’editor, indipendentemente dal contesto specifico.
+L’estensione Requirement Tracker mette a disposizione una serie di impostazioni personalizzabili, accessibili dal pannello Settings di %%Visual Studio Code|vscode%%. Queste configurazioni, definite a livello globale, determinano il comportamento dell’estensione in tutti i progetti aperti nell’editor, indipendentemente dal contesto specifico.
 Per accedervi: 
 1. Vai su File > Preferences > Settings, oppure simbolo ingranaggio in basso a sinistra > Settings
 2. Nella barra di ricerca, digita "Req Tracker".
@@ -96,37 +96,37 @@ Per accedervi:
 
 Dettaglio delle impostazioni disponibili
 1. **Endpoint**:
-URL dell'endpoint del server Ollama a cui l'estensione si connette per effettuare le richieste.
+URL dell'endpoint del server %%Ollama|ollama%% a cui l'estensione si connette per effettuare le richieste.
   - Default: http://127.0.0.1:11434 (esecuzione locale)
   - Può essere sostituito con un URL remoto se si usa server esterno
 
 2. **Model**: 
-Permette di selezionare, tramite un menu a tendina, il modello LLM da utilizzare come predefinito per le funzionalità dell'estensione. 
-Il menù propone una lista di modelli preinstallati disponibili localmente tramite Ollama e oltre a questi è possibile selezionare "custom", in questo caso l'estensione userà un modello specificato manualmente dall'utente nel campo Custom-model.
+Permette di selezionare, tramite un menu a tendina, il modello %%LLM|llm%% da utilizzare come predefinito per le funzionalità dell'estensione. 
+Il menù propone una lista di modelli preinstallati disponibili localmente tramite %%Ollama|ollama%% e oltre a questi è possibile selezionare "custom", in questo caso l'estensione userà un modello specificato manualmente dall'utente nel campo Custom-model.
 
 3. **Custom-model**:
-Campo utilizzato per indicare manualmente il nome di un modello LLM da usare, nel caso in cui si voglia utilizzare un modello non incluso tra quelli proposti nell'opzione Model. Il modello deve essere installato localmente in Ollama.
+Campo utilizzato per indicare manualmente il nome di un modello %%LLM|llm%% da usare, nel caso in cui si voglia utilizzare un modello non incluso tra quelli proposti nell'opzione Model. Il modello deve essere installato localmente in %%Ollama|ollama%%.
 Questo valore viene utilizzato solo se nel campo Model è selezionato "custom".
 
 4. **Embedding Model**:
 Permette di selezionare, tramite un menu a tendina, il modello da utilizzare per la generazione degli embedding  per la rappresentazione vettoriale dei requisiti
-Il menu propone una lista di modelli preinstallati localmente tramite Ollama.
+Il menu propone una lista di modelli preinstallati localmente tramite %%Ollama|ollama%%.
 Oltre a questi, è possibile selezionare l’opzione "custom", in tal caso, l’estensione utilizzerà il modello specificato manualmente nel campo Custom-embedding Model.
 
 5. **Custom-embedding Model**:
 Campo utilizzato per indicare manualmente il nome di un modello embedding da usare, nel caso in cui si voglia utilizzare un modello non incluso tra quelli proposti nell'opzione Embedding Model.
-Il modello deve essere installato localmente in Ollama.
+Il modello deve essere installato localmente in %%Ollama|ollama%%.
 Questo valore viene utilizzato solo se nel campo Embedding Model è selezionato "custom".
 
 6. **Temperature**:
-Imposta il livello di creatività del modello LLM durante la generazione del testo. Valori più alti producono risposte più variate e creative, mentre valori più bassi rendono le risposte più coerenti e deterministiche.
+Imposta il livello di creatività del modello %%LLM|llm%% durante la generazione del testo. Valori più alti producono risposte più variate e creative, mentre valori più bassi rendono le risposte più coerenti e deterministiche.
 Esempi:
   - 0.2 -> Risposte precise e ripetibili.
   - 0.7 -> Risposte più libere e diversificate.
 
 7. **Bearer Token**:
 Campo facoltativo per inserire un token di autenticazione da utilizzare per comunicare con un server esterno sicuro, utile se l'Endpoint punta a un server remoto protetto.
-Se si utilizza Ollama in locale e senza autenticazione, questo campo può essere lasciato vuoto.
+Se si utilizza %%Ollama|ollama%% in locale e senza autenticazione, questo campo può essere lasciato vuoto.
 
 
 #### Configurazioni del progetto
@@ -138,25 +138,25 @@ Oltre alle impostazioni globali, Requirement Tracker consente di definire config
 Tutti i campi descritti di seguito sono opzionali, ad eccezione di quelli utilizzati all'interno della sezione filters (che verranno approfonditi in una sezione dedicata).
 Dettgli delle imposazioni disponibili.
 1. **endpoint**: 
-URL dell'endpoint del server Ollama a cui l'estensione si connette per effettuare le richieste.
+URL dell'endpoint del server %%Ollama|ollama%% a cui l'estensione si connette per effettuare le richieste.
   - Default: http://127.0.0.1:11434 (esecuzione locale)
   - Può essere sostituito con un URL remoto se si usa server esterno
 
 2. **model**: 
-Permette di selezionare, tramite un menu a tendina, il modello LLM da utilizzare come predefinito per le funzionalità dell'estensione. 
-Il menù propone una lista di modelli preinstallati disponibili localmente tramite Ollama e oltre a questi è possibile selezionare "custom", in questo caso l'estensione userà un modello specificato manualmente dall'utente nel campo Custom-model.
+Permette di selezionare, tramite un menu a tendina, il modello %%LLM|llm%% da utilizzare come predefinito per le funzionalità dell'estensione. 
+Il menù propone una lista di modelli preinstallati disponibili localmente tramite %%Ollama|ollama%% e oltre a questi è possibile selezionare "custom", in questo caso l'estensione userà un modello specificato manualmente dall'utente nel campo Custom-model.
 
 3. **Embedding Model**:
 Permette di selezionare, tramite un menu a tendina, il modello da utilizzare per la generazione degli embedding  per la rappresentazione vettoriale dei requisiti
-Il menu propone una lista di modelli preinstallati localmente tramite Ollama.
+Il menu propone una lista di modelli preinstallati localmente tramite %%Ollama|ollama%%.
 Oltre a questi, è possibile selezionare l’opzione "custom", in tal caso, l’estensione utilizzerà il modello specificato manualmente nel campo Custom-embedding Model.
 
 4. **Bearer Token**:
 Campo facoltativo per inserire un token di autenticazione da utilizzare per comunicare con un server esterno sicuro, utile se l'Endpoint punta a un server remoto protetto.
-Se si utilizza Ollama in locale e senza autenticazione, questo campo può essere lasciato vuoto.
+Se si utilizza %%Ollama|ollama%% in locale e senza autenticazione, questo campo può essere lasciato vuoto.
 
 5. **Temperature**:
-Imposta il livello di creatività del modello LLM durante la generazione del testo. Valori più alti producono risposte più variate e creative, mentre valori più bassi rendono le risposte più coerenti e deterministiche.
+Imposta il livello di creatività del modello %%LLM|llm%% durante la generazione del testo. Valori più alti producono risposte più variate e creative, mentre valori più bassi rendono le risposte più coerenti e deterministiche.
 Esempi:
   - 0.2 -> Risposte precise e ripetibili.
   - 0.7 -> Risposte più libere e diversificate.
@@ -228,7 +228,7 @@ Per iniziare a utilizzare il Requirement Tracker, è necessario importare un ins
 
 ##### Accesso alla sezione Import
 
-Aprire l’estensione dal pannello laterale di VSCode(1) e selezionare il tab **Import**(2) nella parte superiore dell’interfaccia.
+Aprire l’estensione dal pannello laterale di %%VSCode|vscode%%(1) e selezionare il tab **Import**(2) nella parte superiore dell’interfaccia.
 
 ##### Scelta del formato
 
@@ -326,14 +326,14 @@ Ogni riferimento include:
 
 ##### Analisi semantica con Ollama
 
-Per ogni requisito è presente il pulsante **Analyze Implementation**(4). Cliccandolo, l’estensione interroga Ollama per un’analisi semantica del codice.
+Per ogni requisito è presente il pulsante **Analyze Implementation**(4). Cliccandolo, l’estensione interroga %%Ollama|ollama%% per un’analisi semantica del codice.
 
 Al termine dell'analisi viene mostrato un commento, che descrive come il codice soddisfa (o meno) il requisito in linguaggio naturale.
 Viene evidenziata la porzione di codice ritenuta più rilevante, accompagnata dal puntatore alla riga corrispondente.
 
 ##### Azioni disponibili sui risultati
 
-Per ogni riga di codice suggerita (sia tramite Vector Embeddings sia tramite Ollama), l’utente può:
+Per ogni riga di codice suggerita (sia tramite Vector Embeddings sia tramite %%Ollama|ollama%%), l’utente può:
 - **Modificare manualmente il puntatore**(9): attiva la Modalità Editing per collegare il requisito a una riga diversa
 - **Accettare il risultato**(10): il requisito viene marcato come **Tracked** nella sezione Track e il match viene spostato nella categoria Confirmed Match
 - Eliminare il risultato(11): rimuove il suggerimento dall'elenco
@@ -354,7 +354,7 @@ La chat è utile per chiarimenti specifici, approfondimenti tecnici o per riceve
 
 #### Persistenza dei dati
 
-I dati dell’estensione sono **salvati automaticamente**, anche in caso di chiusura di VSCode.
+I dati dell’estensione sono **salvati automaticamente**, anche in caso di chiusura di %%VSCode|vscode%%.
 
 Vengono mantenuti:
 - La **tabella dei requisiti** importati
@@ -373,7 +373,7 @@ Durante l’utilizzo dell’estensione possono comparire diversi messaggi di err
 
 <img src="/img/Errors/chat-missing-bearer-token-error.png" alt="Invalid or missing authentication token" data-width="70%" />
 
-Descrizione: Il messaggio è restituito dal modello LLM direttamente nella chat. Indica che non è stato possibile generare embeddings per la richiesta a causa di un token mancante o non valido.
+Descrizione: Il messaggio è restituito dal modello %%LLM|llm%% direttamente nella chat. Indica che non è stato possibile generare embeddings per la richiesta a causa di un token mancante o non valido.
 Origine possibile: il backend del modello richiede un token per l’elaborazione semantica delle richieste, ma tale token non è stato fornito o è scaduto/non corretto.
 
 #### Modello non trovato (all’avvio dell’estensione)
@@ -388,7 +388,7 @@ Origine possibile: il modello non è presente localmente o non è stato corretta
 <img src="/img/Errors/interrogate-command-without-file-open-error.png" alt="No active editor found" data-width="70%" />
 
 Descrizione: Il comando richiede un file aperto nell’editor, ma nessun file è attivo.
-Origine possibile: l’editor di Visual Studio Code non ha un file sorgente attualmente aperto.
+Origine possibile: l’editor di %%Visual Studio Code|vscode%% non ha un file sorgente attualmente aperto.
 
 #### Nessun file requisiti caricato
 
@@ -408,7 +408,7 @@ Origine possibile: il modello indicato non è disponibile o non è stato caricat
 
 <img src="/img/Errors/model-not-found-error.png" alt="Failed to connect to Ollama service" data-width="70%" />
 
-Descrizione: Il sistema non riesce a connettersi al servizio Ollama per il modello specificato.
+Descrizione: Il sistema non riesce a connettersi al servizio %%Ollama|ollama%% per il modello specificato.
 Origine possibile: il servizio è attivo, ma il modello richiesto non è stato trovato.
 
 #### Errore durante il download del modello
