@@ -23,7 +23,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                                        | Autore              | Data Verifica | Verificatore          |
 | ---------- | -------- | -------------------------------------------------- | ------------------- | ------------- | --------------------- |
-| 15/04/2025 | 1.8.5    | Integrazione sezione 2 e 3                         | Dal Bianco Riccardo |               |                       |
+| 15/04/2025 | 1.8.5    | Integrazione sezione 2 e 3                         | Dal Bianco Riccardo | 19/04/2024    | Pistori Gaia          |
 | 30/03/2025 | 1.8.4    | Riscrittura sezione 1, 4 e 5. Scrittura sezione 6  | Carraro Agnese      | 30/03/2025    | Marcon Giulia         |
 | 30/03/2025 | 1.8.3    | Riscrittura sezione 2 e 3                          | Dal Bianco Riccardo | 30/03/2025    | Marcon Giulia         |
 | 30/03/2025 | 1.8.2    | Controllo consistenza maiuscole                    | Dal Bianco Riccardo | 30/03/2025    | Vasquez Manuel Felipe |
@@ -53,26 +53,26 @@ Table: Changelog
 
 ## Introduzione
 
-### Scopo del documento 
+### Scopo del documento
 
-Lo scopo del documento è quello di definire le norme che ogni componente del gruppo TechWave dovrà rispettare per ottenere un %%prodotto|prodotto%% finale fatto a regola d'arte. In questo documento vengono descritte le convenzioni da rispettare nell'utilizzo degli strumenti e vengono esposti i %%processi|processo%% che saranno adottati dal gruppo prendendo come punto di riferimento lo standard ISO/IEC 12207:2008. Questo standard definisce tre tipologie di %%processi|processo%%: i %%processi|processo%% primari, i %%processi|processo%% di supporto e i %%processi|processo%% organizzativi, ognuno dei quali verrà approfondito seguendo il corrispettivo ordine. 
+Lo scopo del documento è quello di definire le norme che ogni componente del gruppo TechWave dovrà rispettare per ottenere un %%prodotto|prodotto%% finale fatto a regola d'arte. In questo documento vengono descritte le convenzioni da rispettare nell'utilizzo degli strumenti e vengono esposti i %%processi|processo%% che saranno adottati dal gruppo prendendo come punto di riferimento lo standard ISO/IEC 12207:2008. Questo standard definisce tre tipologie di %%processi|processo%%: i %%processi|processo%% primari, i %%processi|processo%% di supporto e i %%processi|processo%% organizzativi, ognuno dei quali verrà approfondito seguendo il corrispettivo ordine.
 
 Questo documento è redatto seguendo un approccio incrementale, in quanto durante tutta la durata del %%progetto|progetto%% possono cambiare oppure si possono aggiungere o rimuovere le norme a seconda delle necessità.
 
-### Scopo del prodotto 
+### Scopo del prodotto
 
 Nello sviluppo di software per sistemi embedded la parte di controllo dell'implementazione di tutti i %%requisiti|requisito_software%% necessari al corretto funzionamento dello stesso risulta costosa e ripetitiva da parte dello sviluppatore, inoltre può risultare non esaustiva a causa di distrazioni o dimenticanze. Il %%capitolato|capitolato%% **Requirement Tracker - Plug-in VSCode** propone lo sviluppo di un %%plugin|plugin%% per %%VSCode|vscode%% che permetta di tracciare i %%requisiti|requisito_software%% derivanti da documenti tecnici di sistemi embedded, valutare se il codice del software scritto da sviluppatori implementi i vari %%requisiti|requisito_software%% in modo esaustivo, ed in caso di mancata implementazione dia un avviso per avvertire dell'effettiva assenza.
 
 ### Glossario
 
 Per evitare incomprensioni riguardanti la terminologia utilizzata all’interno dei vari documenti, viene fornito un Glossario che racchiude tutti i vari termini tecnici, potenzialmente ambigui, con la propria definizione precisa. I termini presenti all’interno del glossario verranno evidenziati nei documenti tramite:
-- Sito Web: Grassetto Colorato. 
-- PDF: Corsivo con pendice [G].
 
+- Sito Web: Grassetto Colorato.
+- PDF: Corsivo con pendice [G].
 
 ### Riferimenti
 
-Riferimenti normativi: 
+Riferimenti normativi:
 
 - %%Capitolato|capitolato%% d'appalto C8 (ultimo accesso: 29/03/2025)
 
@@ -154,10 +154,9 @@ Il Glossario ha lo scopo di definire in modo chiaro i termini tecnici e gli acro
 
 La lettera di Presentazione è un documento che accompagna la consegna di un %%prodotto|prodotto%% software e della relativa documentazione durante le fasi di revisione del %%progetto|progetto%%. Questo documento contiene l'elenco della documentazione redatta, la quale sarà consegnata ai committenti. Sono presenti diverse lettere di presentazione, il cui contesto è determinato dalla cartella in cui sono collocate.
 
-##### Verbali interni 
+##### Verbali interni
 
 Sono Verbali delle riunioni svolte senza la presenza di persone esterne al gruppo, contengono il riassunto di quello che è stato discusso e le decisioni prese.
-
 
 #### Strumenti
 
@@ -174,9 +173,9 @@ Lo scambio di informazioni avviene tramite l'uso di molteplici piattaforme:
 
 #### Descrizione e scopo
 
-Lo scopo del %%processo|processo%% di sviluppo è definire i compiti e le %%attività|attività%% necessarie per realizzare il %%prodotto|prodotto%% software, garantendo così un'implementazione accurata e conforme alle specifiche definite con il %%proponente|proponente%%. 
+Lo scopo del %%processo|processo%% di sviluppo è definire i compiti e le %%attività|attività%% necessarie per realizzare il %%prodotto|prodotto%% software, garantendo così un'implementazione accurata e conforme alle specifiche definite con il %%proponente|proponente%%.
 L'obiettivo è consegnare un %%prodotto|prodotto%% software di alta qualità, che soddisfi le esigenze richieste, rispettando le tempistiche e garantendo il successo del %%progetto|progetto%%.
-Nello specifico, sono dettagliate le seguenti %%attività|attività%%: 
+Nello specifico, sono dettagliate le seguenti %%attività|attività%%:
 
 #### Analisi dei Requisiti
 
@@ -186,18 +185,21 @@ L''%%Analisi dei Requisiti|analisi_dei_requisiti%% rappresenta una fase fondamen
 Questa %%attività|attività%% consente di documentare e validare le aspettative del committente, facilitare la comunicazione all’interno del team e supportare la pianificazione del %%progetto|progetto%% in termini di tempi, costi e qualità. Il risultato dell’analisi è raccolto nell’apposito documento che è un riferimento chiave per tutte le %%attività|attività%% del %%progetto|progetto%%.
 
 ##### Struttura dei casi d'uso
-I casi d'uso hanno una struttura ben definita: 
+
+I casi d'uso hanno una struttura ben definita:
+
 - Attore primario: Utente programmatore che interagisce attivamente con il sistema.
 - Precondizioni: Stato in cui si deve trovare il sistema affinche la %%funzionalità|funzionalità%% sia disponibile all'attore.
 - Postcondizioni: Stato in cui si trova il sistema dopo l'esecuzione dello scenario.
 - Scenario principale: Eventi che si verificano quando l'attore interagisce con il sistema per raggiungere l'obiettivo del caso d'uso.
 - User story associata: Breve descrizione delle %%funzionalità|funzionalità%% relativa al caso d'uso associato.
 
-##### Denominazione dei casi d'uso 
+##### Denominazione dei casi d'uso
 
 Ogni caso d'uso deve essere costituito da un identificativo:
 **UC\[Numero\].\[Numero sottocaso\]-\[Titolo\]**
-dove: 
+dove:
+
 - Numero: È il numero del caso d'uso in questione.
 - Numero sottocaso: È il sottocaso del caso d'uso in questione.
 - Titolo: breve titolo che descrive il caso d'uso
@@ -205,31 +207,34 @@ dove:
 ##### Struttura dei requisiti
 
 I %%requisiti|requisito_software%% individuati nell''%%Analisi dei Requisiti|analisi_dei_requisiti%% sono strutturati nel seguente modo:
-- Tipologia del requisito:
-  * Funzionale (F): Specificano le %%funzionalità|funzionalità%% del sistema.
-  * Tecnico (T): Indicano vincoli riguardo le tecnologie che l’Applicativo deve utilizzare.
-  * Qualitativo (Q): Indicano vincoli riguardo obbiettivi minimi di qualità.
-- Obbligatorietà del requisito:
-  * Obbligatorio (O): Requisito irrinunciabile.
-  * Desiderabile (D): Non strettamente necessario ma con valore aggiunto riconoscibile.
-  * Opzionale (P): Utile o contrattabile più avanti.
 
-- Numero : Numero progressivo 
+- Tipologia del requisito:
+  - Funzionale (F): Specificano le %%funzionalità|funzionalità%% del sistema.
+  - Tecnico (T): Indicano vincoli riguardo le tecnologie che l’Applicativo deve utilizzare.
+  - Qualitativo (Q): Indicano vincoli riguardo obbiettivi minimi di qualità.
+- Obbligatorietà del requisito:
+
+  - Obbligatorio (O): Requisito irrinunciabile.
+  - Desiderabile (D): Non strettamente necessario ma con valore aggiunto riconoscibile.
+  - Opzionale (P): Utile o contrattabile più avanti.
+
+- Numero : Numero progressivo
 
 ##### Denominazione dei requisiti
-Ogni requisito è identificato in modo univoco secondo lo schema: 
-**R\[ Tipo \]\[ Obb \]_\[ Numero \]**
-dove: 
+
+Ogni requisito è identificato in modo univoco secondo lo schema:
+**R\[ Tipo \]\[ Obb \]\_\[ Numero \]**
+dove:
+
 - Tipo: indica la tipologia del requisito.
 - Obb: indica l'obbligatorietà del requisito.
 - Numero: indica il numero progressivo del requisito.
-
 
 #### Progettazione
 
 ##### Descrizione e scopo
 
-Prima di avviare la progettazione vera e propria, si intraprende una fase preliminare che prevede la creazione di un %%PoC|poc%% (Proof of Concept). Questa fase serve a confermare le tecnologie da adottare e a definire insieme al %%proponente|proponente%% le componenti che costituiranno l'MVP (Minimum Viable Product).
+Prima di avviare la progettazione vera e propria, si intraprende una fase preliminare che prevede la creazione di un %%PoC|poc%% (Proof of Concept). Questa fase serve a confermare le tecnologie da adottare e a definire insieme al %%proponente|proponente%% le componenti che costituiranno l'%%MVP|mvp%% (Minimum Viable Product).
 La fase di progettazione è fondamentale nel %%processo|processo%% di sviluppo software, poiché ha il compito di tradurre i %%requisiti|requisito_software%% individuati nell''%%Analisi dei Requisiti|analisi_dei_requisiti%% in una struttura architetturale chiara, completa e realizzabile. Essa fornisce una visione tecnica del sistema da costruire, supportando scelte consapevoli in termini di tecnologie, organizzazione dei componenti e modalità di implementazione.
 
 ##### Obbiettivi
@@ -241,32 +246,32 @@ Inoltre come esplicitamente chiesto dal %%proponente|proponente%% progettare una
 ##### Qualità dell'architettura
 
 Durante la fase di progettazione va portata particolare attenzione alle seguenti qualità architetturali:
-- Modularità: componenti indipendenti per favorire il riuso e l’estendibilità;
-- Robustezza e affidabilità: gestione efficace degli errori e dei casi limite;
-- Efficienza: uso ottimale delle risorse locali (esecuzione in locale dei modelli LLM);
-- Flessibilità: capacità di adattarsi a nuovi requisiti o estensioni future;
-- Sicurezza: gestione del token di accesso e isolamento dei dati utente;
 
+- Modularità: componenti indipendenti per favorire il riuso e l’estendibilità.
+- Robustezza e affidabilità: gestione efficace degli errori e dei casi limite.
+- Efficienza: uso ottimale delle risorse locali (esecuzione in locale dei modelli LLM).
+- Flessibilità: capacità di adattarsi a nuovi requisiti o estensioni future.
+- Sicurezza: gestione del token di accesso e isolamento dei dati utente.
 
 ##### Diagramma delle classi
 
-Una tipologia di diagramma UML utile a rappresentare la struttura statica del sistema software. Questi diagrammi visualizzano le classi del sistema, i loro attributi, metodi e la relazione tra esse.
+Utilizziamo il diagramma UML, utile a rappresentare la struttura statica del sistema software. Questi diagrammi descrivono le interfacce e le classi del sistema, i loro attributi, metodi e la relazione tra esse.
 Rappresentazione:
 
 1. Nome: Contiene il nome della classe, se la classe è astratta il nome viene scritto in corsivo
 2. Attributi:
    **Visibilità Nome : tipo \[molteplicità\] = default**
-   - Visibilità: Se privata viene indicata con il- , se protetta viene indicata con il # e se pubblica viene indicata con il + .
-   - Nome: Il nome dell’attributo, se statico viene sottolineato.
-   - Tipo: Rappresenta il tipo di dato dell’elemento.
-   - Molteplicità: Quante istanze dell’elemento possono esistere in relazione ad altri elementi.
-   - Default: Se configurato, indica il valore predefinito per l’elemento.
+   - Visibilità: se privata viene indicata con il **-** , se protetta viene indicata con il **#** e se pubblica viene indicata con il **+** .
+   - Nome: il nome dell’attributo, se statico viene sottolineato.
+   - Tipo: rappresenta il tipo di dato dell’elemento.
+   - Molteplicità: quante istanze dell’elemento possono esistere in relazione ad altri elementi.
+   - Default: se configurato, indica il valore predefinito per l’elemento.
 3. Metodi:
    **Visibilità Nome (lista-parametri) : tipo-ritorno**
-    - Visibilità: Segue quanto definito sopra.
-    - Nome: Nome del metodo, se statico viene sottolineato.
-    - Lista-Parametri: Se la funzione prevede più di un parametro.
-    - Tipo-ritorno: Il tipo restituito dal metodo.
+   - Visibilità: segue quanto definito sopra.
+   - Nome: nome del metodo, se statico viene sottolineato.
+   - Lista-Parametri: elenco dei parametri della funzione per i quali viene specificato il nome e il tipo.
+   - Tipo-ritorno: il tipo restituito dal metodo.
 
 ##### Design pattern
 
@@ -276,7 +281,6 @@ Ogni pattern utilizzato deve essere documentato attraverso una descrizione testu
 ##### Strumenti
 
 - StarUML: applicazione software utilizzata per la realizzazione dei diagrammi delle classi.
-
 
 #### Codifica
 
@@ -293,15 +297,14 @@ L’obiettivo principale di questa %%attività|attività%% è la realizzazione d
 Per garantire uno sviluppo del codice coerente e di alta qualità sono state adottate le seguenti regole:
 
 - Nomi significativi: usare nomi significativi per variabili, funzioni, classi e metodi, evitando ambiguità e aumentando la leggibilità del codice.
-- Commenti: evitare commenti superflui e non necessari, applicarli solo dove è necessario fornire contesto
+- Commenti: evitare commenti superflui e non necessari, applicarli solo dove è necessario fornire contesto.
 - Indentazione e formattazione: utilizzo di tab per ciascun livello di annidamento del codice per assicurare una migliore comprensione e leggibilità del codice.
 - Lingua: usare la lingua inglese per tutti i nominativi e i commenti.
-- Lunghezza dei metodi: i metodi devono essere brevi e focalizzati su una singola responsabilità.
+- Lunghezza dei metodi: i metodi devono essere focalizzato su una singola responsabilità.
 
 ##### Strumenti
 
 - Visual Studio Code: IDE utilizzato dal team di sviluppo per la codifica del prodotto.
-  
 
 ## Processi di Supporto
 
@@ -535,9 +538,9 @@ Il Glossario contiene tutte le definizioni dei termini utilizzati all'interno de
 
 #### Regole tipografiche
 
-##### Nome del file 
+##### Nome del file
 
-I nomi dei file hanno una notazione omogena tra di loro, le lettere sono maiuscole fatta eccezione per le preposizioni che hanno lettera minuscola. Diverso è il titolo dei verbali che è composto dalla data in cui si è svolto e il numero progressivo del verbale. La data viene scritta in formato AAAA-MM-DD
+I nomi dei file hanno una notazione omogenea tra di loro, le lettere sono maiuscole fatta eccezione per le preposizioni che hanno lettera minuscola. Diverso è il titolo dei verbali che è composto dalla data in cui si è svolto e il numero progressivo del verbale. La data viene scritta in formato AAAA-MM-DD
 
 ##### Stile del testo
 
@@ -567,18 +570,21 @@ Per i documenti in versione pdf:
 
 ##### Elementi grafici
 
-###### Tabelle 
-Le tabelle presenti all'interno dei documenti sono contrassegnate da il numero della tabella relativa al documento e un titolo che descrive il contenuto della tabella posta al di sopra di essa con sintassi: 
+###### Tabelle
+
+Le tabelle presenti all'interno dei documenti sono contrassegnate da il numero della tabella relativa al documento e un titolo che descrive il contenuto della tabella posta al di sopra di essa con sintassi:
 **table \[n\]: Titolo**
+
 - n: Numero della tabella nel documento di riferimento.
 - titolo: Titolo posto che descrive il contenuto della tabella.
 
 ###### Immagini e grafici
-Le immagini presenti all'interno dei documenti sono contrassegnate da il numero dell'immagine relativa al documento e un titolo che descrive il contenuto dell'immagine posta al disotto di essa con sintassi: 
+
+Le immagini presenti all'interno dei documenti sono contrassegnate da il numero dell'immagine relativa al documento e un titolo che descrive il contenuto dell'immagine posta al disotto di essa con sintassi:
 **Figure \[n\]: Titolo**
+
 - n: Numero dell'immagine nel documento di riferimento.
 - titolo: Titolo posto che descrive il contenuto dell'immagine.
-
 
 #### Strumenti
 
@@ -677,7 +683,7 @@ Ad ogni %%test|test%% viene associato uno stato che ne riflette il risultato di 
 
 ###### Strumenti
 
-- Jest: framework di testing JavaScript open source sviluppato da Meta, utilizzato per la scrittura e l'esecuzione di %%test|test%% unitari e di integrazione. Offre funzionalità avanzate come il mocking, l’analisi della copertura del codice e l’esecuzione parallela %%efficienza|efficienza%% nei processi di verifica del software.
+- Jest: framework di testing JavaScript open source sviluppato da Meta, utilizzato per la scrittura e l'esecuzione di %%test|test%% unitari e di integrazione. Offre funzionalità avanzate come il mocking, l’analisi della copertura del codice e l’esecuzione parallela, garantendo %%efficienza|efficienza%% nei processi di verifica del software.
 
 ### Validazione
 
@@ -858,13 +864,14 @@ Ad ogni metrica è inoltre associato:
 
 ## Processi Organizzativi
 
-### Introduzione 
+### Introduzione
 
 I %%processi|processo%% organizzativi sono trasversali rispetto al %%progetto|progetto%% e vengono applicati in modo tale da stabilire, controllare e migliorare i %%processi|processo%% del ciclo di vita del software, ai quali, quindi, forniscono il supporto necessario. Questa sezione del Piano di %%Progetto|progetto%% definisce i seguenti %%processi|processo%% organizzativi: gestione dei %%processi|processo%%, infrastruttura, miglioramento dei %%processi|processo%% e formazione.
 
 ### Gestione dei processi
 
 #### Introduzione
+
 La gestione dei %%processi|processo%% comprende le %%attività|attività%% che definiscono il modo in cui bisogna implementare i %%processi|processo%% primari del ciclo di vita del software. Le %%attività|attività%% che lo costituiscono sono la definizione dei %%processi|processo%%, la loro pianificazione, la loro esecuzione e controllo, la revisione e la valutazione dei %%prodotti|prodotto%%, e la chiusura dei %%processi|processo%%.
 
 La definizione dei %%processi|processo%% è la prima %%attività|attività%% della gestione dei %%processi|processo%%. Tramite questa %%attività|attività%% vengono stabiliti i %%processi|processo%% necessari allo svolgimento del %%progetto|progetto%% e vengono identificati i loro %%requisiti|requisito_software%%, controllandone la fattibilità.
@@ -877,7 +884,6 @@ La revisione e la valutazione dei %%prodotti|prodotto%% è necessaria per assicu
 
 Quando tutti i %%task|task%% e tutte le %%attività|attività%% vengono conclusi e si ha un %%prodotto|prodotto%% completo, è possibile completare e chiudere il %%processo|processo%%.
 
-
 #### Pianificazione
 
 ##### Introduzione
@@ -885,7 +891,6 @@ Quando tutti i %%task|task%% e tutte le %%attività|attività%% vengono conclusi
 L'%%attività|attività%% di pianificazione è essenziale per poter svolgere al meglio le %%attività|attività%% del ciclo di vita del software. Infatti, durante questa %%attività|attività%% il responsabile è incaricato di definire le %%attività|attività%% e i %%task|task%% a loro associati effettuando delle stime dei tempi necessari al loro completamento e un'%%analisi dei requisiti|analisi_dei_requisiti%% e delle risorse necessarie per completare i %%task|task%%, e stabilendo i %%rischi|rischio%% a loro associati.
 
 La pianificazione viene documentata nel Piano di %%Progetto|progetto%%, aggiornato di volta in volta dal responsabile corrente.
-
 
 ##### Ruoli di progetto
 
@@ -1016,8 +1021,7 @@ Le **riunioni esterne** avvengono tra gruppo e %%committente|committente%% o %%p
 
 ##### Disponibilità
 
-Il lavoro personale è organizzato individualmente da ogni componente del gruppo per poter lasciare libertà in quanto impegnati con questioni accademiche, personali e seguendo quanto dichiarato nella candidatura nella sezione di dichiarazione impegni. Ovviamente l'organizzazione dovrà essere consona agli impegni totali del gruppo per evitare ritardi dovuti ad un singolo elemento. In caso di problematiche di indisponibilità che porteranno al non compimento degli impegni di %%progetto|progetto%% presi in carico dal singolo membro, questo si impegna ad avvisare prontamente il Responsabile che cercherà di ridistribuire il lavoro contattando singolarmente i membri oppure indicendo una riunione di gruppo.
-
+Il lavoro personale è organizzato individualmente da ogni componente del gruppo per poter lasciare libertà in quanto impegnati con questioni accademiche, personali e seguendo quanto dichiarato nella candidatura nella sezione di dichiarazione impegni. Ovviamente l'organizzazione dovrà essere consona agli impegni totali del gruppo per evitare ritardi dovuti ad un singolo elemento. In caso di problematiche di indisponibilità che porteranno al non compimento degli impegni di %%progetto|progetto%% presi in carico dal singolo membro, questo si impegna ad avvisare prontamente il Responsabile che cercherà di ridistribuire il lavoro contattando singolarmente i membri oppure pianificando una riunione di gruppo.
 
 ### Tracciamento e rendicontazione delle ore
 
@@ -1052,18 +1056,22 @@ Ogni ora lavorativa deve essere associata a un ruolo specifico:
 - **Responsabile di %%Progetto|progetto%%**: per %%attività|attività%% di coordinamento e gestione del %%progetto|progetto%%.
 
 #### Rendicontazione delle ore nel cruscotto
+
 Tramite un documento Google Sheets _cruscotto-avanzamento_, presente nella cartella Google Drive condivisa, il team è in grado di ottenere informazioni riguardo lo stato di avanzamento del progetto. Questo è di particolare importanza per il ruolo del Responsabile durante la compilazione del Piano di %%Progetto|progetto%%.
 
 ##### Inserimento ore svolte
+
 Per inserire la rendicontazione delle ore effettivamente svolte all'interno dello %%sprint|sprint%% bisogna:
+
 - **Scaricare il report da Timetracker (%%Jira|jira%%)**:
   - Dalla dashboard di %%Jira|jira%% selezionare, dal menu in alto, le voci _"App"_, poi _"Timetracker"_
   - Dal menu laterale selezionare la voce _"Saved Reports"_, poi _"Shared with me"_ e aprire il report denominato "visualizzazione ore registrate (totali)"
-  - Qui modificare il range delle date con quelle corrispettive dello %%sprint|sprint%%, eseguire e scaricare (_Excell_) il report
+  - Qui modificare il range delle date con quelle corrispettive dello %%sprint|sprint%%, eseguire e scaricare (_Excel_) il report
 - **Inserire i dati nel documento Google Sheets _cruscotto-avanzamento_**
   - Nella pagina _"parser-jira"_ incollare le ultime righe prese dal report scaricato. In automatico verranno usate per aggiornare i grafici di andamento e statistiche.
 
 #### Inserimento ore preventivate
+
 - **Inserire i dati nel documento Google Sheets _cruscotto-avanzamento_**
   - Nella pagina _"inserimento-preventivo-ruoli"_ specificare per ogni %%_issue_|issue%% le ore preventivate per ciascun ruolo.
 
@@ -1143,7 +1151,6 @@ LaTeX: [https://www.overleaf.com/learn](https://www.overleaf.com/learn).
 
 Framework %%SCRUM|scrum%%: [https://scrumguides.org/scrum-guide.html](https://scrumguides.org/scrum-guide.html).
 
-
 ## Standard per la qualità
 
 ### Qualità dei processi
@@ -1157,11 +1164,12 @@ In particolare è necessario individuare delle metriche che indicano l'avanzamen
 Per garantire la %%qualità|qualità%% del %%prodotto|prodotto%%, il team adotta il modello di riferimento ISO/IEC 25010 (unione di ISO/IEC 9126 e ISO/IEC 14598) che definisce un modello di %%qualità|qualità%% del software basato su sei caratteristiche fondamentali: %%funzionalità|funzionalità%%, affidabilità, usabilità, %%efficienza|efficienza%%, manutenibilità e portabilità.
 
 In particolare è necessario individuare delle metriche rappresentanti:
+
 - la **funzionalità**: grado in cui il %%prodotto|prodotto%% fornisce %%funzionalità|funzionalità%% complete, corrette e adeguate.
 - l'**affidabilità**: grado in cui il %%prodotto|prodotto%% svolge specifiche funzioni in termini di assenza di guasti, disponibilità, tolleranza ai guasti e riparabilità.
 - l'**usabilità**: grado di interazione con il %%prodotto|prodotto%% da parte degli utenti in termini di appropriatezza, apprendibilità, operabilità, protezione da errori, _user experience_ e accessibilità.
 - l'**%%efficienza|efficienza%%**: grado in cui il %%prodotto|prodotto%% esegue le sue funzioni in termini di risorse di tempo, di memoria, ecc.
-- la **manutenibilità**: costo della correzione dei difetti e dell'aggiunta di %%funzionalità|funzionalità%%. 
+- la **manutenibilità**: costo della correzione dei difetti e dell'aggiunta di %%funzionalità|funzionalità%%.
 - la **portabilità**: grado in cui il %%prodotto|prodotto%% è legato all'ambiente di esecuzione in termini di installabilità e sostituibilità.
 
 I **%%test|test%% di %%verifica|verifica%% e validazione** vengono eseguiti in tutte le fasi del ciclo di sviluppo, garantendo la conformità del %%prodotto|prodotto%% con i %%requisiti|requisito_software%% specificati e gli standard qualitativi prestabiliti dal team. I %%test|test%% vengono classificati in quattro categorie principali: %%test|test%% di unità, %%test|test%% di integrazione, %%test|test%% di sistema e %%test|test%% di accettazione.
