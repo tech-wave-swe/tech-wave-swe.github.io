@@ -1,11 +1,11 @@
 ---
 id: piano_di_qualifica
-title: "Piano di Qualifica - v1.7.4"
+title: "Piano di Qualifica - v1.7.6"
 documentclass: TWDocumentFull
 toc: true
 lof: true
 numbersections: true
-version: 1.7.4
+version: 1.7.6
 classification: Esterno
 ---
 
@@ -23,7 +23,8 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                              | Autore                | Data Verifica | Verificatore          |
 |------------|----------|------------------------------------------|-----------------------|---------------|-----------------------|
-| 18/04/2025 | 1.7.5    | Fix link tabelle                         | Vasquez Manuel Felipe | 19/04/2025    | Agnese Carraro        |
+| 18/04/2025 | 1.7.6    | Fix link tabelle                         | Vasquez Manuel Felipe | 19/04/2025    | Agnese Carraro        |
+| 18/04/2025 | 1.7.5    | Aggiornamento test di sistema            | Agnese Carraro        | 18/04/2025    | Vasquez Manuel Felipe |
 | 30/03/2025 | 1.7.4    | Controllo consistenza maiuscole          | Dal Bianco Riccardo   | 30/03/2025    | Vasquez Manuel Felipe |
 | 07/03/2025 | 1.7.3    | Aggiunta interpretazione dei grafici     | Monetti Luca          | 07/03/2025    | Pistori Gaia          |
 | 06/03/2025 | 1.7.2    | Miglioramento metriche                   | Piola Andrea          | 07/03/2025    | Luca Monetti          |
