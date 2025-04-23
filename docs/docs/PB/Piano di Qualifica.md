@@ -22,18 +22,19 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 <!-- ::: -->
 
 | Data       | Versione | Descrizione                              | Autore                | Data Verifica | Verificatore          |
-| ---------- | -------- | ---------------------------------------- | --------------------- | ------------- | --------------------- |
-| 30/03/2025 | 1.7.4    | Controllo consistenza maiuscile          | Dal Bianco Riccardo   | 30/03/2025    | Vasquez Manuel Felipe |
+|------------|----------|------------------------------------------|-----------------------|---------------|-----------------------|
+| 18/04/2025 | 1.7.5    | Fix link tabelle                         | Vasquez Manuel Felipe | 19/04/2025    | Agnese Carraro        |
+| 30/03/2025 | 1.7.4    | Controllo consistenza maiuscole          | Dal Bianco Riccardo   | 30/03/2025    | Vasquez Manuel Felipe |
 | 07/03/2025 | 1.7.3    | Aggiunta interpretazione dei grafici     | Monetti Luca          | 07/03/2025    | Pistori Gaia          |
-| 06/03/2025 | 1.7.2    | miglioramento metriche                   | Piola Andrea          | 07/03/2025    | Luca Monetti          |
-| 24/02/2025 | 1.7.1    | fix indici tabelle                       | Piola Andrea          | 25/02/2025    | Gaia Pistori          |
+| 06/03/2025 | 1.7.2    | Miglioramento metriche                   | Piola Andrea          | 07/03/2025    | Luca Monetti          |
+| 24/02/2025 | 1.7.1    | Fix indici tabelle                       | Piola Andrea          | 25/02/2025    | Gaia Pistori          |
 | 09/02/2025 | 1.7.0    | Note di auto-miglioramento               | Manuel Felipe Vasquez | 12/02/2025    | Luca Monetti          |
 | 31/01/2025 | 1.6.0    | Inserimento cruscotto                    | Gaia Pistori          | 05/02/2025    | Manuel Felipe Vasquez |
 | 24/01/2025 | 1.5.0    | Aggiunti test                            | Giulia Marcon         | 26/01/2025    | Gaia Pistori          |
 | 16/01/2025 | 1.4.0    | Aggiunte misure                          | Luca Monetti          | 17/01/2025    | Manuel Felipe Vasquez |
 | 03/01/2025 | 1.3.0    | Modifica descrizione e riferimenti       | Manuel Felipe Vasquez | 06/01/2025    | Luca Monetti          |
 | 22/12/2024 | 1.2.0    | Aggiunte metriche di qualità di Prodotto | Gaia Pistori          | 24/12/2024    | Manuel Felipe Vasquez |
-| 16/12/2024 | 1.1.0    | aggiunta qualità di processo             | Giulia Marcon         | 17/12/2024    | Agnese Carraro        |
+| 16/12/2024 | 1.1.0    | Aggiunta qualità di processo             | Giulia Marcon         | 17/12/2024    | Agnese Carraro        |
 | 08/12/2024 | 1.0.0    | Prima stesura del documento              | Manuel Felipe Vasquez | 10/12/2024    | Luca Monetti          |
 
 Table: Changelog
@@ -90,7 +91,7 @@ Per garantire la qualità dei processi, il team adotta il modello di riferimento
 ### Processi primari
 
 | Metrica | Nome                           | Descrizione                                                | Obiettivo                                           | Valore Accettabile | Valore Desiderabile |
-| ------- | ------------------------------ | ---------------------------------------------------------- | --------------------------------------------------- | ------------------ | ------------------- |
+|---------|--------------------------------|------------------------------------------------------------|-----------------------------------------------------|--------------------|---------------------|
 | MPCR01  | **Planned Value**              | Valore del lavoro pianificato fino a una data specifica    | Comparare il progresso pianificato con quello reale | ≤ Budget previsto  | < Budget previsto   |
 | MPCR02  | **Actual Cost**                | Costo effettivo sostenuto per il lavoro svolto             | Controllare le spese del progetto                   | ≤ Budget previsto  | < Budget previsto   |
 | MPCR03  | **Earned Value**               | Valore del lavoro effettivamente svolto                    | Monitorare l'avanzamento economico del progetto     | ≥ Actual Cost      | -                   |
@@ -179,7 +180,7 @@ Table: Metriche per i processi primari
 ### Processi di supporto
 
 | Metrica | Nome                       | Descrizione                                        | Obiettivo                                                       | Valore Accettabile         | Valore Desiderabile          |
-| ------- | -------------------------- | -------------------------------------------------- | --------------------------------------------------------------- | -------------------------- | ---------------------------- |
+|---------|----------------------------|----------------------------------------------------|-----------------------------------------------------------------|----------------------------|------------------------------|
 | MPCS01  | **Budget At Completion**   | Totale del budget allocato per il progetto         | Gestire e controllare le risorse finanziarie complessive        | ≤ +10% del budget iniziale | Corrispondente al preventivo |
 | MPCS02  | **Estimate At Completion** | Stima dei costi per il completamento del progetto  | Prevedere i costi rimanenti e pianificare le risorse necessarie | ≤ Budget At Completion     | Corrispondente al preventivo |
 | MPCS03  | **Estimate To Complete**   | Costo stimato per completare le attività rimanenti | Supportare la pianificazione finanziaria e delle risorse        | ≤ Budget At Completion     | ≤ Estimate At Completion     |
@@ -238,7 +239,7 @@ Table: Metriche per i processi di supporto
 ### Processi Organizzativi
 
 | Metrica | Nome                        | Descrizione                                                   | Obiettivo                                                  | Valore Accettabile | Valore Desiderabile |
-| ------- | --------------------------- | ------------------------------------------------------------- | ---------------------------------------------------------- | ------------------ | ------------------- |
+|---------|-----------------------------|---------------------------------------------------------------|------------------------------------------------------------|--------------------|---------------------|
 | MPCO01  | **Rischi non preventivati** | Numero di rischi emersi non pianificati inizialmente          | Identificare e gestire tempestivamente nuovi rischi        | ≤ 3                | 0                   |
 | MPCO02  | **Errori ortografici**      | Numero di errori ortografici individuati in ciascun documento | Garantire la qualità e l'affidabilità della documentazione | ≤20                | 0                   |
 
@@ -274,7 +275,7 @@ Per garantire la qualità del prodotto, il team adotta il modello di riferimento
 ### Funzionalità
 
 | Metrica | Nome                   | Descrizione                                      | Obiettivo                         | Valore Accettabile | Valore Desiderabile |
-| ------- | ---------------------- | ------------------------------------------------ | --------------------------------- | ------------------ | ------------------- |
+|---------|------------------------|--------------------------------------------------|-----------------------------------|--------------------|---------------------|
 | MPRF01  | Requisiti Obbligatori  | Percentuale soddisfazione requisiti obbligatori  | Garantire funzionalità essenziali | 100%               | 100%                |
 | MPRF02  | Requisiti Desiderabili | Percentuale soddisfazione requisiti desiderabili | Fornire funzionalità aggiuntive   | ≥ 0%               | ≥ 80%               |
 | MPRF03  | Requisiti Opzionali    | Percentuale soddisfazione requisiti opzionali    | Implementare funzionalità extra   | ≥ 0%               | ≥ 50%               |
@@ -284,7 +285,7 @@ Table: Metriche di funzionalità per la qualità di prodotto
 ### Affidabilità
 
 | Metrica | Nome               | Descrizione                                 | Obiettivo                   | Valore Accettabile | Valore Desiderabile |
-| ------- | ------------------ | ------------------------------------------- | --------------------------- | ------------------ | ------------------- |
+|---------|--------------------|---------------------------------------------|-----------------------------|--------------------|---------------------|
 | MPRA01  | Statement Coverage | Copertura dei test per gli statement        | Assicurare testing completo | ≥ 80%              | ≥ 90%               |
 | MPRA02  | Branch Coverage    | Copertura dei test per i branch del codice  | Garantire test completi     | ≥ 80%              | ≥ 90%               |
 | MPRA03  | Condition Coverage | Copertura dei test le condition             | Assicurare testing completo | ≥ 80%              | ≥ 90%               |
@@ -295,7 +296,7 @@ Table: Metriche di affidabilità per la qualità di prodotto
 ### Usabilità
 
 | Metrica | Nome               | Descrizione                                   | Obiettivo            | Valore Accettabile | Valore Desiderabile |
-| ------- | ------------------ | --------------------------------------------- | -------------------- | ------------------ | ------------------- |
+|---------|--------------------|-----------------------------------------------|----------------------|--------------------|---------------------|
 | MPRU01  | Tempo di Risposta  | Tempo medio di risposta del modello           | Garantire reattività | ≤ 10s              | ≤ 5s                |
 | MPRU02  | Errori Utente      | Tasso di errori utente per operazione         | Minimizzare errori   | ≤ 10%              | ≤ 5%                |
 | MPRU03  | Prevenzione Errori | Percentuale di azioni utente errate prevenute | Proteggere da errori | ≥ 80%              | ≥ 90%               |
@@ -305,7 +306,7 @@ Table: Metriche di usabilità per la qualità di prodotto
 ### Efficienza
 
 | Metrica | Nome                 | Descrizione                           | Obiettivo             | Valore Accettabile | Valore Desiderabile |
-| ------- | -------------------- | ------------------------------------- | --------------------- | ------------------ | ------------------- |
+|---------|----------------------|---------------------------------------|-----------------------|--------------------|---------------------|
 | MPRE01  | Profondità Gerarchie | Livelli di profondità delle gerarchie | Ottimizzare struttura | ≤ 7                | ≤ 5                 |
 | MPRE02  | Utilizzo Risorse     | Consumo medio CPU/memoria             | Minimizzare risorse   | ≤ 30%              | ≤ 20%               |
 | MPRE03  | Capacità             | Numero massimo di requisiti gestibili | Garantire scalabilità | ≥ 50               | ≥ 100               |
@@ -315,7 +316,7 @@ Table: Metriche di efficienza per la qualità di prodotto
 ### Manutenibilità
 
 | Metrica | Nome        | Descrizione                              | Obiettivo            | Valore Accettabile | Valore Desiderabile |
-| ------- | ----------- | ---------------------------------------- | -------------------- | ------------------ | ------------------- |
+|---------|-------------|------------------------------------------|----------------------|--------------------|---------------------|
 | MPRM01  | Modularità  | Grado di accoppiamento tra moduli        | Ridurre dipendenze   | ≤ 0.5              | ≤ 0.3               |
 | MPRM02  | Riusabilità | Percentuale di componenti riutilizzabili | Promuovere riuso     | ≥ 50%              | ≥ 70%               |
 | MPRM03  | Complessità | Complessità ciclomatica media per modulo | Mantenere semplicità | ≤ 10               | ≤ 7                 |
@@ -326,7 +327,7 @@ Table: Metriche di manutenibilità per la qualità di prodotto
 ### Portabilità
 
 | Metrica | Nome           | Descrizione                        | Obiettivo              | Valore Accettabile | Valore Desiderabile |
-| ------- | -------------- | ---------------------------------- | ---------------------- | ------------------ | ------------------- |
+|---------|----------------|------------------------------------|------------------------|--------------------|---------------------|
 | MPRP01  | Adattabilità   | Effort per cambio ambiente (ore)   | Facilitare portabilità | ≤ 2h               | ≤ 1h                |
 | MPRP02  | Installabilità | Tempo medio di installazione       | Semplificare setup     | ≤ 15min            | ≤ 5min              |
 | MPRP03  | Sostituibilità | Effort per sostituire impostazioni | Facilitare modifiche   | ≤ 10m              | ≤ 5min              |
@@ -339,72 +340,72 @@ I test di verifica e validazione vengono eseguiti in tutte le fasi del ciclo di 
 
 ### Test di sistema
 
-| ID   | Descrizione                                                                                                              | ID Requisito        | Stato        |
-| ---- | ------------------------------------------------------------------------------------------------------------------------ | ------------------- | ------------ |
-| TS01 | Verifica che l'utente possa scegliere il modello %%LLM|llm%% per generare il codice                                              | RFO_1              | Superato |
-| TS02 | Verifica che l'utente possa scegliere il modello %%LLM|llm%% per l'embedding                                                     | RFO_2              | Superato |
-| TS03 | Verifica che l'utente possa scegliere un modello custom per generare codice anche indicando il nome di uno già installato nel suo dispositivo | RFD_3              | Superato |
-| TS04 | Verifica che l'utente possa scegliere un modello custom per l'embedding anche indicando il nome di uno già installato nel suo dispositivo | RFD_4              | Superato |
-| TS05 | Verifica che l'utente possa scegliere uno dei modelli proposti per generare codice                                       | RFO_5              | Superato |
-| TS06 | Verifica che l'utente possa scegliere uno dei modelli proposti per l'embedding                                           | RFO_6              | Superato |
-| TS07 | Verifica che l'utente possa impostare la temperature del modello per generare codice inserendo un valore decimale compreso tra 0 e 1 | RFD_7              | Superato |
-| TS08 | Verifica che l'utente possa inserire un Bearer Token per usare %%Ollama|ollama%% in un server esterno                               | RFP_8              | Superato |
-| TS09 | Verifica che l'utente possa inserire un endpoint specifico a cui indirizzare le richieste di %%Ollama|ollama%%                      | RFP_9              | Superato |
-| TS10 | Verifica che l'utente possa impostare il numero massimo di risultati da ottenere per ogni ricerca                        | RFP_10             | Superato |
-| TS11 | Verifica che l'utente possa specificare il %%prompt|prompting%% per la richiesta al modello di generazione del codice                  | RFP_11             | Superato |
-| TS12 | Verifica che l'%%Applicativo|applicativo%% restituisca un messaggio d'errore che fornisca una possibile soluzione al problema e indichi chiaramente il campo che ha generato l'errore se %%Ollama|ollama%% non risulta installato all'endpoint indicato | RFO_12             | Superato |
-| TS13 | Verifica che l'%%Applicativo|applicativo%% restituisca un messaggio d'errore che fornisca una possibile soluzione al problema e indichi chiaramente il campo che ha generato l'errore se l'endpoint indicato non è raggiungibile | RFO_13             | Superato |
-| TS14 | Verifica che l'%%Applicativo|applicativo%% restituisca un messaggio d'errore che fornisca una possibile soluzione al problema e indichi chiaramente il campo che ha generato l'errore se il modello, scelto tra quelli proposti o custom, non è installato nel dispositivo | RFO_14             | Superato |
-| TS15 | Verifica che l'%%Applicativo|applicativo%% restituisca un messaggio d'errore che fornisca una possibile soluzione al problema e indichi chiaramente il campo che ha generato l'errore se il modello custom indicato non esiste | RFO_15             | Superato |
-| TS16 | Verifica che l'%%Applicativo|applicativo%% restituisca un messaggio d'errore che fornisca una possibile soluzione al problema e indichi chiaramente il campo che ha generato l'errore se il bearer token indicato fallisce l'autenticazione e non viene autorizzato al collegamento con il server esterno | RFP_16             | Superato |
-| TS17 | Verifica che l'utente, tramite l'interfaccia grafica, possa indicare la cartella del progetto software                   | RFO_17             | Superato |
-| TS18 | Verifica che l'utente, tramite l'interfaccia grafica, possa indicare il file con presente la lista dei %%requisiti|requisito_software%%         | RFO_18             | Superato |
-| TS19 | Verifica che l'utente, tramite l'interfaccia grafica, possa effettuare una selezione dei %%requisiti|requisito_software%% da analizzare         | RFD_19             | Superato |
-| TS20 | Verifica che l'utente, tramite l'interfaccia grafica, possa specificare dei filtri per selezionare quali %%requisiti|requisito_software%% ricercare nel codice e quali ignorare | RFD_20             | Superato |
-| TS21 | Verifica che l'utente, tramite l'interfaccia grafica, possa specificare dei filtri per indicare quali cartelle includere o escludere nella ricerca del codice | RFD_21             | Superato |
-| TS22 | Verifica che l'utente, tramite l'interfaccia grafica, possa specificare dei filtri per indicare quali file includere o escludere nella ricerca del codice | RFD_22             | Superato |
-| TS23 | Verifica che l'utente, tramite l'interfaccia grafica, possa specificare dei filtri per indicare quali estensioni di file includere o escludere nella ricerca del codice | RFD_23             | Superato |
-| TS24 | Verifica che l'utente, tramite l'interfaccia grafica, possa specificare dei filtri per indicare un file nel quale ricercare l'implementazione di un preciso %%requisito|requisito_software%% | RFD_24             | Superato |
-| TS25 | Verifica che l'utente, tramite l'interfaccia grafica, possa selezionare una porzione di codice sulla quale eseguire nuovamente la ricerca | RFD_25             | Superato |
-| TS26 | Verifica che l'utente, tramite l'interfaccia grafica, possa effettuare una nuova ricerca su tutto il codice              | RFO_26             | Superato |
+| ID   | Descrizione                                                                                                                                                                                                                                                                               | ID Requisito | Stato    |
+|------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|----------|
+| TS01 | Verifica che l'utente possa scegliere il modello LLM per generare il codice                                                                                                                                                                                                               | RFO_1        | Superato |
+| TS02 | Verifica che l'utente possa scegliere il modello LLM per l'embedding                                                                                                                                                                                                                      | RFO_2        | Superato |
+| TS03 | Verifica che l'utente possa scegliere un modello custom per generare codice anche indicando il nome di uno già installato nel suo dispositivo                                                                                                                                             | RFD_3        | Superato |
+| TS04 | Verifica che l'utente possa scegliere un modello custom per l'embedding anche indicando il nome di uno già installato nel suo dispositivo                                                                                                                                                 | RFD_4        | Superato |
+| TS05 | Verifica che l'utente possa scegliere uno dei modelli proposti per generare codice                                                                                                                                                                                                        | RFO_5        | Superato |
+| TS06 | Verifica che l'utente possa scegliere uno dei modelli proposti per l'embedding                                                                                                                                                                                                            | RFO_6        | Superato |
+| TS07 | Verifica che l'utente possa impostare la temperature del modello per generare codice inserendo un valore decimale compreso tra 0 e 1                                                                                                                                                      | RFD_7        | Superato |
+| TS08 | Verifica che l'utente possa inserire un Bearer Token per usare Ollama in un server esterno                                                                                                                                                                                                | RFP_8        | Superato |
+| TS09 | Verifica che l'utente possa inserire un endpoint specifico a cui indirizzare le richieste di Ollama                                                                                                                                                                                       | RFP_9        | Superato |
+| TS10 | Verifica che l'utente possa impostare il numero massimo di risultati da ottenere per ogni ricerca                                                                                                                                                                                         | RFP_10       | Superato |
+| TS11 | Verifica che l'utente possa specificare il prompt per la richiesta al modello di generazione del codice                                                                                                                                                                                   | RFP_11       | Superato |
+| TS12 | Verifica che l'applicativo restituisca un messaggio d'errore che fornisca una possibile soluzione al problema e indichi chiaramente il campo che ha generato l'errore se Ollama non risulta installato all'endpoint indicato                                                              | RFO_12       | Superato |
+| TS13 | Verifica che l'applicativo restituisca un messaggio d'errore che fornisca una possibile soluzione al problema e indichi chiaramente il campo che ha generato l'errore se l'endpoint indicato non è raggiungibile                                                                          | RFO_13       | Superato |
+| TS14 | Verifica che l'applicativo restituisca un messaggio d'errore che fornisca una possibile soluzione al problema e indichi chiaramente il campo che ha generato l'errore se il modello, scelto tra quelli proposti o custom, non è installato nel dispositivo                                | RFO_14       | Superato |
+| TS15 | Verifica che l'applicativo restituisca un messaggio d'errore che fornisca una possibile soluzione al problema e indichi chiaramente il campo che ha generato l'errore se il modello custom indicato non esiste                                                                            | RFO_15       | Superato |
+| TS16 | Verifica che l'applicativo restituisca un messaggio d'errore che fornisca una possibile soluzione al problema e indichi chiaramente il campo che ha generato l'errore se il bearer token indicato fallisce l'autenticazione e non viene autorizzato al collegamento con il server esterno | RFP_16       | Superato |
+| TS17 | Verifica che l'utente, tramite l'interfaccia grafica, possa indicare la cartella del progetto software                                                                                                                                                                                    | RFO_17       | Superato |
+| TS18 | Verifica che l'utente, tramite l'interfaccia grafica, possa indicare il file con presente la lista dei requisiti                                                                                                                                                                          | RFO_18       | Superato |
+| TS19 | Verifica che l'utente, tramite l'interfaccia grafica, possa effettuare una selezione dei requisiti da analizzare                                                                                                                                                                          | RFD_19       | Superato |
+| TS20 | Verifica che l'utente, tramite l'interfaccia grafica, possa specificare dei filtri per selezionare quali requisiti ricercare nel codice e quali ignorare                                                                                                                                  | RFD_20       | Superato |
+| TS21 | Verifica che l'utente, tramite l'interfaccia grafica, possa specificare dei filtri per indicare quali cartelle includere o escludere nella ricerca del codice                                                                                                                             | RFD_21       | Superato |
+| TS22 | Verifica che l'utente, tramite l'interfaccia grafica, possa specificare dei filtri per indicare quali file includere o escludere nella ricerca del codice                                                                                                                                 | RFD_22       | Superato |
+| TS23 | Verifica che l'utente, tramite l'interfaccia grafica, possa specificare dei filtri per indicare quali estensioni di file includere o escludere nella ricerca del codice                                                                                                                   | RFD_23       | Superato |
+| TS24 | Verifica che l'utente, tramite l'interfaccia grafica, possa specificare dei filtri per indicare un file nel quale ricercare l'implementazione di un preciso requisito                                                                                                                     | RFD_24       | Superato |
+| TS25 | Verifica che l'utente, tramite l'interfaccia grafica, possa selezionare una porzione di codice sulla quale eseguire nuovamente la ricerca                                                                                                                                                 | RFD_25       | Superato |
+| TS26 | Verifica che l'utente, tramite l'interfaccia grafica, possa effettuare una nuova ricerca su tutto il codice                                                                                                                                                                               | RFO_26       | Superato |
 
 Table: Test di sistema parte 1
 
-| ID   | Descrizione                                                                                                              | ID Requisito        | Stato        |
-| ---- | ------------------------------------------------------------------------------------------------------------------------ | ------------------- | ------------ |
-| TS27 | Verifica che l'utente, tramite l'interfaccia grafica, possa visualizzare la porzione di codice che implementa un %%requisito|requisito_software%% tramite il puntatore indicato nella tabella che lo riporta al file | RFO_27             | Superato |
-| TS28 | Verifica che l'%%Applicativo|applicativo%% effettui il parsing del documento dei %%requisiti|requisito_software%%                                               | RFO_28             | Superato |
-| TS29 | Verifica che l'%%Applicativo|applicativo%% generi una struttura dati a partire dal parsing del documento dei %%requisiti|requisito_software%%                   | RFO_29             | Superato |
-| TS30 | Verifica che l'%%Applicativo|applicativo%% generi una notifica di errore se il parsing non è andato a buon fine a causa del formato file scorretto | RFO_30             | Superato |
-| TS31 | Verifica che l'%%Applicativo|applicativo%% generi una notifica di errore se il parsing non è andato a buon fine a causa del formato non supportato | RFO_31             | Superato |
-| TS32 | Verifica che la struttura dati memorizzi per ogni %%requisito|requisito_software%%: codice identificativo, testo del %%requisito|requisito_software%%, stato di implementazione (implementato o non implementato) e il puntatore al frammento di codice (funzione o parte di essa) dove presume sia implementato | RFO_32             | Superato |
-| TS33 | Verifica che l'%%Applicativo|applicativo%% per ogni %%requisito|requisito_software%% applichi il filtro corrispondente, se presente                              | RFD_33             | Superato |
-| TS34 | Verifica che l'%%Applicativo|applicativo%% generi una notifica di errore se i filtri indicati dall'utente non sono applicabili           | RFD_34             | Non implementato |
-| TS35 | Verifica che l'%%Applicativo|applicativo%%, per ogni %%requisito|requisito_software%% selezionato, produca il codice corrispondente interrogando il modello selezionato per la generazione del codice | RFO_35             | Superato |
-| TS36 | Verifica che l'%%Applicativo|applicativo%% effettui, per ogni %%requisito|requisito_software%% selezionato, il pattern matching tra il codice generato e il codice del progetto utilizzando il modello selezionato | RFO_36             | Superato |
-| TS37 | Verifica che l'%%Applicativo|applicativo%% invalidi i %%requisiti|requisito_software%% associati a un file che ha subito modifiche in seguito alla ricerca      | RFD_37             | Non implementato |
-| TS38 | Verifica che l'%%Applicativo|applicativo%% generi una notifica di errore se una o più richieste ai modelli sono fallite                  | RFO_38             | Superato |
-| TS39 | Verifica che l'%%Applicativo|applicativo%%, alla fine dell'esecuzione, aggiorni la struttura dati, modificando lo stato di implementazione e il puntatore al codice | RFO_39             | Superato |
-| TS40 | Verifica che l'%%Applicativo|applicativo%% fornisca un chatbot per porre domande al modello di generazione del codice                    | RFP_40             | Superato |
-| TS41 | Verifica che l'%%Applicativo|applicativo%% fornisca un'interfaccia grafica per la visualizzazione della struttura dati in forma tabellare e che per ogni %%requisito|requisito_software%% vengano mostrati: sigla identificativa, descrizione testuale, puntatore alla porzione di codice, stato di implementazione e stato di approvazione | RFO_41             | Superato |
-| TS42 | Verifica che l'interfaccia grafica per la visualizzazione della struttura dati permetta di selezionare o escludere un %%requisito|requisito_software%% | RFD_42             | Superato |
-| TS43 | Verifica che la struttura dati sia esportabile in formato .csv e memorizzi l'hash code della commit per il %%versionamento|versionamento%% | RFP_43             | Non implementato |
-| TS44 | Verifica che l'%%Applicativo|applicativo%% generi una notifica di errore se la struttura dati non è leggibile se il file risulta cancellato | RFO_44             | Superato |
-| TS45 | Verifica che l'%%Applicativo|applicativo%% generi una notifica di errore se la struttura dati non è leggibile se il file risulta corrotto | RFO_45             | Superato |
-| TS46 | Verifica che l'%%Applicativo|applicativo%% richieda all'utente di fornire un feedback riguardo la correttezza dei risultati della ricerca memorizzati nella struttura dati mostrata e che l'utente possa approvare la proposta | RFP_46             | Superato |
-| TS47 | Verifica che l'%%Applicativo|applicativo%% richieda all'utente di fornire un feedback riguardo la correttezza dei risultati della ricerca memorizzati nella struttura dati mostrata e che l'utente possa scartare la proposta | RFP_47             | Superato |
-| TS48 | Verifica che l'%%Applicativo|applicativo%% richieda all'utente di fornire un feedback riguardo la correttezza dei risultati della ricerca memorizzati nella struttura dati mostrata e che l'utente possa modificare il puntatore alla porzione di codice | RFP_48             | Superato |
-| TS49 | Verifica che l'%%Applicativo|applicativo%% generi una notifica di errore se la porzione di codice che implementa un %%requisito|requisito_software%% non è raggiungibile se il puntatore è scorretto | RFO_49             | Superato |
-| TS50 | Verifica che l'%%Applicativo|applicativo%% generi una notifica di errore se la porzione di codice che implementa un %%requisito|requisito_software%% non è raggiungibile se il file è stato cancellato | RFO_50             | Superato |
-| TS51 | Verifica che l'%%Applicativo|applicativo%% generi una notifica di errore se la porzione di codice che implementa un %%requisito|requisito_software%% non è raggiungibile se il file è corrotto | RFO_51             | Superato |
-| TS52 | Verifica che l'%%Applicativo|applicativo%% possa eseguire un controllo di implementazione specifico su un %%requisito|requisito_software%% interrogando %%Ollama|ollama%%  | RFO_52             | Superato |
+| ID   | Descrizione                                                                                                                                                                                                                                                                                          | ID Requisito | Stato            |
+|------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|------------------|
+| TS27 | Verifica che l'utente, tramite l'interfaccia grafica, possa visualizzare la porzione di codice che implementa un requisito tramite il puntatore indicato nella tabella che lo riporta al file                                                                                                        | RFO_27       | Superato         |
+| TS28 | Verifica che l'applicativo effettui il parsing del documento dei requisiti                                                                                                                                                                                                                           | RFO_28       | Superato         |
+| TS29 | Verifica che l'applicativo generi una struttura dati a partire dal parsing del documento dei requisiti                                                                                                                                                                                               | RFO_29       | Superato         |
+| TS30 | Verifica che l'applicativo generi una notifica di errore se il parsing non è andato a buon fine a causa del formato file scorretto                                                                                                                                                                   | RFO_30       | Superato         |
+| TS31 | Verifica che l'applicativo generi una notifica di errore se il parsing non è andato a buon fine a causa del formato non supportato                                                                                                                                                                   | RFO_31       | Superato         |
+| TS32 | Verifica che la struttura dati memorizzi per ogni requisito: codice identificativo, testo del requisito, stato di implementazione (implementato o non implementato) e il puntatore al frammento di codice (funzione o parte di essa) dove presume sia implementato                                   | RFO_32       | Superato         |
+| TS33 | Verifica che l'applicativo per ogni requisito applichi il filtro corrispondente, se presente                                                                                                                                                                                                         | RFD_33       | Superato         |
+| TS34 | Verifica che l'applicativo generi una notifica di errore se i filtri indicati dall'utente non sono applicabili                                                                                                                                                                                       | RFD_34       | Non implementato |
+| TS35 | Verifica che l'applicativo, per ogni requisito selezionato, produca il codice corrispondente interrogando il modello selezionato per la generazione del codice                                                                                                                                       | RFO_35       | Superato         |
+| TS36 | Verifica che l'applicativo effettui, per ogni requisito selezionato, il pattern matching tra il codice generato e il codice del progetto utilizzando il modello selezionato                                                                                                                          | RFO_36       | Superato         |
+| TS37 | Verifica che l'applicativo invalidi i requisiti associati a un file che ha subito modifiche in seguito alla ricerca                                                                                                                                                                                  | RFD_37       | Non implementato |
+| TS38 | Verifica che l'applicativo generi una notifica di errore se una o più richieste ai modelli sono fallite                                                                                                                                                                                              | RFO_38       | Superato         |
+| TS39 | Verifica che l'applicativo, alla fine dell'esecuzione, aggiorni la struttura dati, modificando lo stato di implementazione e il puntatore al codice                                                                                                                                                  | RFO_39       | Superato         |
+| TS40 | Verifica che l'applicativo fornisca un chatbot per porre domande al modello di generazione del codice                                                                                                                                                                                                | RFP_40       | Superato         |
+| TS41 | Verifica che l'applicativo fornisca un'interfaccia grafica per la visualizzazione della struttura dati in forma tabellare e che per ogni requisito vengano mostrati: sigla identificativa, descrizione testuale, puntatore alla porzione di codice, stato di implementazione e stato di approvazione | RFO_41       | Superato         |
+| TS42 | Verifica che l'interfaccia grafica per la visualizzazione della struttura dati permetta di selezionare o escludere un requisito                                                                                                                                                                      | RFD_42       | Superato         |
+| TS43 | Verifica che la struttura dati sia esportabile in formato .csv e memorizzi l'hash code della commit per il versionamento                                                                                                                                                                             | RFP_43       | Non implementato |
+| TS44 | Verifica che l'applicativo generi una notifica di errore se la struttura dati non è leggibile se il file risulta cancellato                                                                                                                                                                          | RFO_44       | Superato         |
+| TS45 | Verifica che l'applicativo generi una notifica di errore se la struttura dati non è leggibile se il file risulta corrotto                                                                                                                                                                            | RFO_45       | Superato         |
+| TS46 | Verifica che l'applicativo richieda all'utente di fornire un feedback riguardo la correttezza dei risultati della ricerca memorizzati nella struttura dati mostrata e che l'utente possa approvare la proposta                                                                                       | RFP_46       | Superato         |
+| TS47 | Verifica che l'applicativo richieda all'utente di fornire un feedback riguardo la correttezza dei risultati della ricerca memorizzati nella struttura dati mostrata e che l'utente possa scartare la proposta                                                                                        | RFP_47       | Superato         |
+| TS48 | Verifica che l'applicativo richieda all'utente di fornire un feedback riguardo la correttezza dei risultati della ricerca memorizzati nella struttura dati mostrata e che l'utente possa modificare il puntatore alla porzione di codice                                                             | RFP_48       | Superato         |
+| TS49 | Verifica che l'applicativo generi una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile se il puntatore è scorretto                                                                                                                                        | RFO_49       | Superato         |
+| TS50 | Verifica che l'applicativo generi una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile se il file è stato cancellato                                                                                                                                      | RFO_50       | Superato         |
+| TS51 | Verifica che l'applicativo generi una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile se il file è corrotto                                                                                                                                              | RFO_51       | Superato         |
+| TS52 | Verifica che l'applicativo possa eseguire un controllo di implementazione specifico su un requisito interrogando Ollama                                                                                                                                                                              | RFO_52       | Superato         |
 
 Table: Test di sistema parte 2
 
 ### Test di accettazione
 
 | ID   | Descrizione                                      | ID Requisito | Stato            |
-| ---- | ------------------------------------------------ | ------------ | ---------------- |
+|------|--------------------------------------------------|--------------|------------------|
 | TA01 | Verifica funzionalità come estensione in VS Code | RTO_1        | Non Implementato |
 | TA02 | Verifica esecuzione locale dell'applicativo      | RTO_2        | Non Implementato |
 | TA03 | Verifica integrazione con Ollama                 | RTO_3,4      | Non Implementato |
@@ -510,7 +511,7 @@ L'adozione di un processo di valutazione di miglioramento continuo permette di m
 ### Valutazione sull'organizzazione
 
 | Problema                | Descrizione                                                                                                         | Gravità | Soluzione                                                                                                                                 |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+|-------------------------|---------------------------------------------------------------------------------------------------------------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------|
 | Rotazione dei ruoli     | Difficoltà nel mantenere una rotazione efficace dei ruoli tra i membri del team, con squilibri nel carico di lavoro | Media   | Adottare un sistema di rotazione per ricoprire ruoli differenti ad ogni sprint, permettendo così l'acquisizione di competenze trasversali |
 | Coordinamento asincrono | Sfide nella comunicazione e nel coordinamento quando i membri lavorano in momenti diversi                           | Alta    | Adottare strumenti di collaborazione asincrona e stabilire procedure chiare per la documentazione delle attività                          |
 
@@ -519,7 +520,7 @@ Table: Valutazione organizzazione
 ### Valutazione sui ruoli
 
 | Problema     | Descrizione                                                                                                      | Gravità | Soluzione                                                                                        |
-| ------------ | ---------------------------------------------------------------------------------------------------------------- | ------- | ------------------------------------------------------------------------------------------------ |
+|--------------|------------------------------------------------------------------------------------------------------------------|---------|--------------------------------------------------------------------------------------------------|
 | Analista     | Difficoltà nell'identificazione e documentazione corretta dei requisiti di sistema                               | Media   | Si è deciso di porre maggiore attenzione alla fase di analisi attraverso revisioni più frequenti |
 | Verificatore | Criticità nell'esecuzione delle verifiche formali, con conseguente necessità di multiple iterazioni di revisione | Bassa   | Implementato un processo di verifica più approfondito in sviluppo e rilascio                     |
 
@@ -528,7 +529,7 @@ Table: Valutazione sui ruoli
 ### Valutazione sugli strumenti e le tecnologie utilizzate
 
 | Problema    | Descrizione                                                                                            | Gravità | Soluzione                                                                                      |
-| ----------- | ------------------------------------------------------------------------------------------------------ | ------- | ---------------------------------------------------------------------------------------------- |
+|-------------|--------------------------------------------------------------------------------------------------------|---------|------------------------------------------------------------------------------------------------|
 | Typescript  | La maggior parte dei membri del gruppo non è ancora familiare con questo linguaggio di programmazione. | Bassa   | Ogni membro ha seguito autonomamente un breve tutorial per acquisire le nozioni di base.       |
 | API VS Code | La maggior parte dei membri del gruppo non conosce a fondo l'integrazione delle API in VS Code.        | Media   | Fornire documentazione dedicata e workshop per supportare l’integrazione delle API in VS Code. |
 
