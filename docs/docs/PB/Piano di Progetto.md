@@ -14,7 +14,7 @@ classification: Esterno
 import TOCInlineWrapper from "@site/src/components/TOCInlineWrapper.jsx";
 import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
-# Documento del Piano di %%Progetto|progetto%%
+# Documento del Piano di Progetto
 
 <details>
   <summary>Changelog</summary>
