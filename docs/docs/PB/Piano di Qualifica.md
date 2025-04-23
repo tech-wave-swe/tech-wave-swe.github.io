@@ -1,11 +1,11 @@
 ---
 id: piano_di_qualifica
-title: "Piano di Qualifica - v1.7.6"
+title: "Piano di Qualifica - v1.7.7"
 documentclass: TWDocumentFull
 toc: true
 lof: true
 numbersections: true
-version: 1.7.6
+version: 1.7.7
 classification: Esterno
 ---
 
@@ -23,8 +23,9 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                              | Autore                | Data Verifica | Verificatore          |
 |------------|----------|------------------------------------------|-----------------------|---------------|-----------------------|
-| 18/04/2025 | 1.7.6    | Fix link tabelle                         | Vasquez Manuel Felipe | 19/04/2025    | Agnese Carraro        |
-| 18/04/2025 | 1.7.5    | Aggiornamento test di sistema            | Agnese Carraro        | 18/04/2025    | Vasquez Manuel Felipe |
+| 18/04/2025 | 1.7.7    | Fix link tabelle                         | Vasquez Manuel Felipe | 19/04/2025    | Agnese Carraro        |
+| 18/04/2025 | 1.7.6    | Aggiornamento test di sistema            | Agnese Carraro        | 18/04/2025    | Vasquez Manuel Felipe |
+| 10/04/2025 | 1.7.5    | Cambio stato test di accettazione        | Giulia Marcon         | 10/04/2025    | Carraro Agnese        |
 | 30/03/2025 | 1.7.4    | Controllo consistenza maiuscole          | Dal Bianco Riccardo   | 30/03/2025    | Vasquez Manuel Felipe |
 | 07/03/2025 | 1.7.3    | Aggiunta interpretazione dei grafici     | Monetti Luca          | 07/03/2025    | Pistori Gaia          |
 | 06/03/2025 | 1.7.2    | Miglioramento metriche                   | Piola Andrea          | 07/03/2025    | Luca Monetti          |
@@ -405,22 +406,31 @@ Table: Test di sistema parte 2
 
 ### Test di accettazione
 
-| ID   | Descrizione                                      | ID Requisito | Stato            |
-|------|--------------------------------------------------|--------------|------------------|
-| TA01 | Verifica funzionalità come estensione in VS Code | RTO_1        | Non Implementato |
-| TA02 | Verifica esecuzione locale dell'applicativo      | RTO_2        | Non Implementato |
-| TA03 | Verifica integrazione con Ollama                 | RTO_3,4      | Non Implementato |
-| TA04 | Verifica analisi di codice in linguaggio C/C++   | RTO_5        | Non Implementato |
-| TA05 | Verifica analisi di codice in linguaggio Rust    | RTP_6        | Non Implementato |
-| TA06 | Verifica supporto formato file requisiti .csv    | RTO_7        | Non Implementato |
-| TA07 | Verifica supporto formato file requisiti .reqif  | RTP_8        | Non Implementato |
-| TA08 | Verifica usabilità interfaccia grafica           | RFO_14,15    | Non Implementato |
+| ID   | Descrizione                                                                                                           | ID Requisito                                                                                                   | Stato        |
+| ---- | --------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------ |
+| TA01 | Verifica funzionalità come estensione in VS Code                                                                      | RTO_1                                                                                                          | Implementato |
+| TA02 | Verifica esecuzione locale dell'applicativo                                                                           | RTO_2                                                                                                          | Implementato |
+| TA03 | Verifica integrazione con Ollama                                                                                      | RTO_3, RTO_4                                                                                                   | Implementato |
+| TA04 | Verifica analisi di codice in linguaggio C/C++                                                                        | RTO_5                                                                                                          | Implementato |
+| TA05 | Verifica analisi di codice in linguaggio Rust                                                                         | RTP_6                                                                                                          | Implementato |
+| TA06 | Verifica supporto formato file requisiti .csv                                                                         | RTO_7                                                                                                          | Implementato |
+| TA07 | Verifica supporto formato file requisiti .reqif                                                                       | RTP_8                                                                                                          | Implementato |
+| TA08 | Verifica usabilità interfaccia grafica                                                                                | RFO_14, RFO_15                                                                                                 | Implementato |
+| TA09 | Verifica esecuzione dell'applicativo con configurazioni di default                                                    | RFO_5, RFO_6, RFD_7, RFP_10                                                                                    | Implementato |
+| TA10 | Verifica esecuzione dell'applicativo con configurazioni personalizzate (scelta e gestione modelli)                    | RFO_1, RFO_2, RFD_3, RFD_4, RFD_7, RFP_10, RFP_11                                                              | Implementato |
+| TA11 | Verifica esecuzione dell'applicativo con configurazioni personalizzate (filtri: selezione cartelle, file e requisiti) | RFO_17, RFD_19, RFD_20, RFD_21, RFD_22, RFD_23, RFD_24                                                         | Implementato |
+| TA12 | Verifica esecuzione della ricerca dei requisiti                                                                       | RFD_25, RFO_26, RFO_27, RFO_28, RFO_35, RFO_36, RFD_37, RFO_52                                                 | Implementato |
+| TA13 | Verifica generazione, visualizzazione e aggiornamento dello stato dei requisiti                                       | RFO_29 RFO_32 RFO_39 RFO_41 RFD_42 RFP_43                                                                      | Implementato |
+| TA14 | Verifica interazione con il ChatBot                                                                                   | RFP_40                                                                                                         | Implementato |
+| TA15 | Verifica richiesta di feedback                                                                                        | RFP_46, RFP_47, RFP_48                                                                                         | Implementato |
+| TA16 | Verifica copertura dei test superiore a 80%                                                                           | RQO_6                                                                                                          | Implementato |
+| TA17 | Verifica esecuzione dell'applicativo in presenza di errori                                                            | RFO_12, RFO_13, RFO_14, RFO_15, RFP_16, RFO_30, RFO_31, RFD_34, RFO_38, RFO_44, RFO_45, RFO_49, RFO_50, RFO_51 | Implementato |
 
 Table: Test di accettazione
 
 ## Cruscotto di valutazione
 
-### Indice gulpease
+### Indice Gulpease
 
 <iframe width="800" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0txzzEKqHdhrji9fd49Hd7k4zLchkVRCsBk1Oil4yILOSzL3kxO2DtdxCC9W1ni5uqytaJaVwcHAV/pubchart?oid=1654995613&amp;format=interactive" data-image="ig.png" data-title="Indice Gulpease"></iframe>
 
@@ -436,13 +446,13 @@ Possiamo osservare che i valori riportati sono rimasti stabili durante questa pr
 
 Possiamo osservare che il numero di errori è stato minimizzato tramite l'utilizzo di "SpellCheck": un'estensione che permette di individuare gli errori ortografici all'interno dei documenti.
 
-### Earned calue, planned value & actual cost
+### Earned value, planned value & actual cost
 
 <iframe width="800" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0txzzEKqHdhrji9fd49Hd7k4zLchkVRCsBk1Oil4yILOSzL3kxO2DtdxCC9W1ni5uqytaJaVwcHAV/pubchart?oid=1002546531&amp;format=interactive" data-image="ev-pv-ac.png" data-title="Earned Value, Planned Value e Actual Cost"></iframe>
 
 #### RTB
 
-Possiamo osservare che, nonostatnte un iniziale sovrastima del carico di lavoro completabile, il progetto risulta al passo con la pianificazione iniziale. Questo è stato possibile attraverso uno %%sprint|sprint%% di recupero durante il quale il gruppo si è concentrato sul completamento delle attività rimaste in arretrato.
+Possiamo osservare che, nonostante un iniziale sovrastima del carico di lavoro completabile, il progetto risulta al passo con la pianificazione iniziale. Questo è stato possibile attraverso uno %%sprint|sprint%% di recupero durante il quale il gruppo si è concentrato sul completamento delle attività rimaste in arretrato.
 
 ### Estimate to complete & estimate at completion
 
@@ -474,7 +484,7 @@ Possiamo osservare che durante gli %%sprint|sprint%% 2, 3 e 4 il valore del SPI 
 
 #### RTB
 
-Possiamo osservare che, allo stato attuale del progetto, non sono stati individuati rischi non previsti. Il gruppo è stato quindi in grado di gestire il progetto in maniera efficiace mitigando la comparse di nuovi rischi non preventivati.
+Possiamo osservare che, allo stato attuale del progetto, non sono stati individuati rischi non previsti. Il gruppo è stato quindi in grado di gestire il progetto in maniera efficace mitigando la comparse di nuovi rischi non preventivati.
 
 ### Requisiti obbligatori
 
