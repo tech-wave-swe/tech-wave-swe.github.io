@@ -761,11 +761,11 @@ In questo periodo, il gruppo si concentrerà sulla progettazione e sul miglioram
 
 - _RT2_: Apprendimento e utilizzo di nuove tecnologie.
 - _RT3_: Mancanza di esperienza con Jest per i test unitari.
-- _TO6_: Difficoltà nella scrittura della documentazione tecnica.
+- _RO6_: Difficoltà nella scrittura della documentazione tecnica.
 
 **Rischi occorsi**
 
-Durante lo %%sprint|sprint%% 8, il team ha affrontato il rischio TO6, relativo alla difficoltà nella stesura della documentazione tecnica, in particolare nella redazione del documento delle specifiche tecniche. La complessità e la quantità di dettagli richiesti hanno rallentato il lavoro inizialmente. Per velocizzare la redazione e aumentare l'efficienza nella risoluzione dei dubbi, il gruppo incaricato ha suddiviso il documento in sezioni, distribuendo il lavoro e agevolando il confronto tra i membri.
+Durante lo %%sprint|sprint%% 8, il team ha affrontato il rischio RO6, relativo alla difficoltà nella stesura della documentazione tecnica, in particolare nella redazione del documento delle specifiche tecniche. La complessità e la quantità di dettagli richiesti hanno rallentato il lavoro inizialmente. Per velocizzare la redazione e aumentare l'efficienza nella risoluzione dei dubbi, il gruppo incaricato ha suddiviso il documento in sezioni, distribuendo il lavoro e agevolando il confronto tra i membri.
 Si sono verificati anche i rischi RT2 e RT3, entrambi legati all’uso di tecnologie, in particolare Jest per i test unitari. La difficoltà iniziale è stata superata grazie al supporto dei membri con maggiore esperienza, sono stati organizzati test di gruppo, durante i quali i dubbi sono stati chiariti in tempo reale. Questo approccio ha permesso un rapido apprendimento e una maggiore sicurezza nell’utilizzo dello strumento.
 Infine, si è manifestato anche il rischio RO2, relativo agli impegni personali. Alcuni membri del team hanno avuto difficoltà a garantire la piena disponibilità durante lo %%sprint|sprint%%.
 
@@ -845,11 +845,11 @@ In questo periodo, il gruppo si concentrerà nel completare i test e sul complet
 
 - _RO4_: Ritardi dovuti a problemi di comunicazione con l'azienda.
 - _RT3_: Mancanza di esperienza con Jest per i test unitari.
-- _TO6_: Difficoltà nella scrittura della documentazione tecnica.
+- _RO6_: Difficoltà nella scrittura della documentazione tecnica.
 
 **Rischi occorsi**
 
-Durante lo %%sprint|sprint%% 9, il team ha affrontato il rischio TO6, relativo alla difficoltà nella stesura della documentazione tecnica, in particolare nella scrittura del documento del piano di qualifica. Il numero elevato di test presenti e il livello di dettaglio molto alto hanno rallentato il lavoro. Per ottimizzare la scrittura il gruppo incaricato ha suddiviso il documento in sezioni.
+Durante lo %%sprint|sprint%% 9, il team ha affrontato il rischio RO6, relativo alla difficoltà nella stesura della documentazione tecnica, in particolare nella scrittura del documento del piano di qualifica. Il numero elevato di test presenti e il livello di dettaglio molto alto hanno rallentato il lavoro. Per ottimizzare la scrittura il gruppo incaricato ha suddiviso il documento in sezioni.
 Si è verificato il rischio RT3, legato all'uso di Jest per i test. La difficoltà iniziale è stata superata grazie al supporto dei membri con maggiore esperienza e allo studio della tecnologia.
 
 ###### Ruoli
@@ -873,7 +873,7 @@ A seguito si riporta la tabella del preventivo per il nono %%sprint|sprint%%:
 
 | Ruolo                     | Ore svolte (h) | Costo (€) |
 | ------------------------- | -------------- | --------- |
-| Responsabile di progetto  | 26,5           | 495       |
+| Responsabile di progetto  | 16,5           | 495       |
 | Analista                  | 0              | 0         |
 | Progettista               | 25             | 625       |
 | Amministratore di sistema | 10,83          | 216,6     |
