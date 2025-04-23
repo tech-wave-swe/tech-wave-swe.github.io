@@ -55,7 +55,7 @@ suite("Chat Integration Tests", () => {
 
       await extension.activate();
       globalStateService = new GlobalStateService(
-        extension.exports.getContext().globalState,
+        extension.exports.getContext().workspaceState,
       );
     } catch (error) {
       console.error("Suite setup error:", error);

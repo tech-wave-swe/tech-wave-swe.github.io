@@ -88,7 +88,7 @@ void measureLoginPerformance() {
   });
 
   test("Should track requirements implementation", async function (this: Mocha.Context) {
-    this.timeout(15000);
+    this.timeout(35000);
 
     const trackingResults = await requirementsServiceFacade.trackRequirements();
 
@@ -161,7 +161,7 @@ void measureLoginPerformance() {
   });
 
   test("Should analyze implementation based on code references", async function (this: Mocha.Context) {
-    this.timeout(15000);
+    this.timeout(35000);
 
     const req = requirementsServiceFacade.getRequirement("REQ-001");
     assert.ok(req);

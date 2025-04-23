@@ -22,7 +22,39 @@ export class TestWorkspace {
 
   cleanup() {
     if (fs.existsSync(this.workspacePath)) {
-      fs.rmSync(this.workspacePath, { recursive: true, force: true });
+      try {
+        // Try to remove with retries on Windows
+        if (process.platform === 'win32') {
+          this.removeWithRetries(this.workspacePath);
+        } else {
+          // Original behavior for non-Windows
+          fs.rmSync(this.workspacePath, { recursive: true, force: true });
+        }
+      } catch (err: any) {
+        console.warn(`Warning: Could not completely clean up ${this.workspacePath}: ${err.message}`);
+      }
+    }
+  }
+
+  removeWithRetries(dirPath: string, maxRetries = 5) {
+    for (let attempt = 0; attempt < maxRetries; attempt++) {
+      try {
+        fs.rmSync(dirPath, { recursive: true, force: true });
+        return;
+      } catch (err) {
+        if (attempt === maxRetries - 1) {
+          throw err; // Rethrow on last attempt
+        }
+
+        // Exponential backoff
+        const delay = 100 * Math.pow(2, attempt);
+
+        // Synchronous sleep
+        const start = Date.now();
+        while (Date.now() - start < delay) {
+          // Empty busy wait
+        }
+      }
     }
   }
 

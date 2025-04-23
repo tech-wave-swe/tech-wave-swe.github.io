@@ -46,7 +46,7 @@ suite("Commands Integration Tests", () => {
     const api = extension?.exports;
     const context = api?.getContext();
 
-    const globalStateService = new GlobalStateService(context.globalState);
+    const globalStateService = new GlobalStateService(context.workspaceState);
     await globalStateService.updateState(StateKeys.CHAT_MESSAGES, [
       { sender: "user", text: "Test message", timestamp: Date.now() },
     ]);
@@ -81,7 +81,7 @@ suite("Commands Integration Tests", () => {
     const api = extension?.exports;
     const context = api?.getContext();
 
-    const globalStateService = new GlobalStateService(context.globalState);
+    const globalStateService = new GlobalStateService(context.workspaceState);
     await globalStateService.updateState(StateKeys.REQUIREMENTS, [
       {
         id: "REQ-001",

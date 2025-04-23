@@ -88,7 +88,7 @@ export async function setupTestServices(workspacePath: string) {
   await extension.activate();
 
   const globalStateService = new GlobalStateService(
-    extension.exports.getContext().globalState,
+    extension.exports.getContext().workspaceState,
   );
 
   const mockTrackingResultService = new TrackingResultService(
