@@ -95,7 +95,7 @@ function _initializeLangChainOllamaAdapter() {
 function _initializeChatViewProvider(
   context: vscode.ExtensionContext,
 ) {
-  const globalStateService = new GlobalStateService(context.globalState);
+  const globalStateService = new GlobalStateService(context.workspaceState);
   const chatService = new ChatService(globalStateService);
 
   const inferenceService = new InferenceService(LangChainOllamaAdapter.GetInstance(), LanceDBAdapter.GetInstance());
@@ -122,7 +122,7 @@ function _initializeChatViewProvider(
 function _initializeTrackerViewProvider(
   context: vscode.ExtensionContext,
 ) {
-  const globalStateService = new GlobalStateService(context.globalState);
+  const globalStateService = new GlobalStateService(context.workspaceState);
   const parsingService = new ParsingService();
   const requirementsService = new RequirementsService(
     globalStateService,
@@ -256,10 +256,10 @@ function _handleEvents(
 function _initializeCommands(
   context: vscode.ExtensionContext,
 ) {
-  const globalStateService = new GlobalStateService(context.globalState);
+  const globalStateService = new GlobalStateService(context.workspaceState);
   const chatService = new ChatService(globalStateService);
   const requirementsService = new RequirementsService(
-    new GlobalStateService(context.globalState),
+    new GlobalStateService(context.workspaceState),
   );
   const inferenceService = new InferenceService(LangChainOllamaAdapter.GetInstance(), LanceDBAdapter.GetInstance());
   const fileSystemService = new FileSystemService(context.extensionUri.fsPath);

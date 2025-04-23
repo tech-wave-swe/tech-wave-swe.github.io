@@ -2,6 +2,7 @@
 import * as vscode from "vscode";
 import { ChatMessage } from "../Models/ChatMessage";
 import { Requirement } from "../Models/Requirement";
+import {Memento} from "vscode";
 
 export enum StateKeys {
   CHAT_MESSAGES = "chatMessages",
@@ -10,9 +11,9 @@ export enum StateKeys {
 }
 
 export class GlobalStateService {
-  private _globalState: vscode.ExtensionContext["globalState"];
+  private _globalState: Memento;
 
-  constructor(globalState: vscode.ExtensionContext["globalState"]) {
+  constructor(globalState: Memento) {
     this._globalState = globalState;
   }
 

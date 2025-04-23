@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import { ICommand } from "../Interfaces/ICommand";
-import {ChatService} from "../Services/ChatService";
+import { ChatService } from "../Services/ChatService";
 
 export class ClearChatHistoryCommand implements ICommand {
   private _chatService: ChatService;
