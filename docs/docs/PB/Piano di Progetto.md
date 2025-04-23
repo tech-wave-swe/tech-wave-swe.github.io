@@ -5,7 +5,7 @@ documentclass: TWDocumentFull
 toc: true
 lof: true
 numbersections: true
-version: 2.4.4
+version: 2.4.7
 classification: Esterno
 ---
 
@@ -23,8 +23,11 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                                                                            | Autore                | Data Verifica | Verificatore          |
 | ---------- | -------- | -------------------------------------------------------------------------------------- | --------------------- | ------------- | --------------------- |
+| 10/04/2025 | 2.4.7    | Aggiornamento sezioni rischi negli sprint                                              | Dal Bianco Riccardo   | 11/04/2025    | Pistori Gaia          |
+| 31/03/2025 | 2.4.6    | Aggiunta consuntivo sprint 8                                                           | Carraro Agnese        | 31/03/2025    | Marcon Giulia         |
+| 30/03/2025 | 2.4.5    | Controllo consistenza maiuscole                                                        | Dal Bianco Riccardo   | 30/03/2025    | Vasquez Manuel Felipe |
 | 17/03/2025 | 2.4.4    | Aggiunta preventivo sprint 8                                                           | Carraro Agnese        | 18/03/2025    | Marcon Giulia         |
-| 30/03/2025 | 2.4.3    | Controllo consistenza maiuscole                                                        | Dal Bianco Riccardo   | 30/03/2025    | Vasquez Manuel Felipe |
+| 17/03/2025 | 2.4.3    | Aggiunta consuntivo sprint 7                                                           | Manuel Felipe Vasquez | 14/03/2025    | Pistori Gaia          |
 | 10/03/2025 | 2.4.2    | Aggiunta preventivo sprint 7                                                           | Manuel Felipe Vasquez | 14/03/2025    | Monetti Luca          |
 | 07/03/2025 | 2.4.1    | Aggiunta consuntivo sprint 6                                                           | Marcon Giulia         | 07/03/2025    | Monetti Luca          |
 | 28/02/2025 | 2.4.0    | Aggiunta diagrammi Gantt                                                               | Piola Andrea          | 28/02/2025    | Marcon Giulia         |
@@ -104,8 +107,11 @@ Di seguito viene riportata la tabella contenente i rischi relativi all'organizza
 | ------- | ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ------------ |
 | **RO1** | **Avanzamento lento per mancanza di esperienza**             | Soprattutto durante il primo periodo, i membri del gruppo non sono abituati alla parte organizzativa del progetto; ciò può ovviamente portare a un rallentamento dell'avanzamento dei lavori, che con il tempo si ridurrà. | 5                | Media/Alta   |
 | **RO2** | **Ritardi dovuti a problemi individuali**                    | Uno o più elementi del gruppo potrebbero non essere in grado di completare il lavoro pianificato entro la data prevista, per cause di qualsiasi natura, creando rallentamenti nel flusso di lavoro.                        | 2                | Media        |
-| **RO3** | **Problemi personali tra membri del gruppo**                 | Uno o più elementi del gruppo potrebbero non essere in grado di completare il lavoro pianificato entro la data prevista, per cause legati a problemi personali con un altro membro, creando rallentamenti nel flusso.      | 1                | Alta         |
+| **RO3** | **Problemi personali tra membri del gruppo**                 | Uno o più elementi del gruppo potrebbero non essere in grado di completare il lavoro pianificato entro la data prevista, per cause legate a problemi personali con un altro membro, creando rallentamenti nel flusso.      | 1                | Alta         |
 | **RO4** | **Ritardi dovuti a problemi di comunicazione con l'azienda** | Il gruppo potrebbe ritrovarsi a dover rallentare il ritmo delle attività a causa della necessità di attendere un feedback dall'azienda, che non viene fornito in tempi brevi.                                              | 2                | Alta         |
+| **RO5** | **Rischio derivato dalla sottostima delle attività**                               | Lo svolgimento di un'attività da parte di uno o più componenti nel gruppo potrebbe richiedere più tempo del previsto.                                                                                                      | 4                | Alta         |
+| **RO6** | **Rischio derivato dalla difficoltà nella scrittura della documentazione tecnica** | Difficoltà iniziale nella scrittura di documenti tecnici, in quanto può risultare difficile redigere un documento completo e chiaro.                                                                                        | 2                | Bassa        |
+
 
 Table: Rischi organizzativi e interpersonali
 
@@ -114,6 +120,8 @@ Table: Rischi organizzativi e interpersonali
 | Codice  | Rischio                             | Descrizione                                                                                                                                 | Grado di rischio | Pericolosità |
 | ------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ------------ |
 | **RT1** | **Mancanza di conoscenze tecniche** | Alcuni membri del gruppo potrebbero non aver familiarità con tutte le tecnologie utilizzate durante lo sviluppo o la gestione del progetto. | 4                | Bassa        |
+| **RT2** | **Apprendimento e utilizzo di nuove tecnologie**      | L’apprendimento e l’applicazione delle tecnologie individuate possono costituire un rischio significativo per l’avanzamento del progetto, poiché è possibile che l’approfondimento necessario richieda tempi superiori a quelli inizialmente stimati. | 3                | Media        |
+| **RT3** | **Mancanza di esperienza con Jest per i test unitari** | Alcuni membri del team non hanno mai utilizzato il framework Jest per scrivere test unitari in ambiente TypeScript, il che può portare a ritardi o test poco efficaci. | 3      | Media        |
 
 Table: Rischi tecnologici
 
@@ -125,6 +133,9 @@ Table: Rischi tecnologici
 | **RO2** | **Ritardi dovuti a problemi individuali**                    | Questo rischio può essere mitigato attraverso la comunicazione costante tra i vari membri del gruppo. Questo ci permetterà di individuare difficoltà o ritardi prima che essi possano trasformarsi in problemi.                                                                                 |
 | **RO3** | **Problemi personali tra membri del gruppo**                 | Questo rischio può essere mitigato creando un tavolo di confronto tra i membri coinvolti, al fine di risolvere le problematiche emerse. Ci si affida anche al buonsenso dei membri nella cooperazione, per il bene del gruppo.                                                                  |
 | **RO4** | **Ritardi dovuti a problemi di comunicazione con l'azienda** | Questo rischio può essere mitigato accordandosi sulla data dell'incontro successivo con l'azienda prima dell'inizio dell'incontro presente.                                                                                                                                                     |
+| **RO5** | **Rischio derivato dalla sottostima delle attività**                               | Per mitigare questo rischio, il progetto prevede una pianificazione flessibile con margini temporali per le attività più incerte. Inoltre, si favorisce una distribuzione bilanciata dei compiti e un monitoraggio costante dell’avanzamento, in modo da poter intervenire tempestivamente con eventuali riassegnazioni o supporto da parte di altri membri del team. |
+| **RO6** | **Rischio derivato dalla difficoltà nella scrittura della documentazione tecnica** | Per mitigare questo rischio, la documentazione è stata redatta progressivamente durante lo sviluppo da più membri del team. Questo approccio collaborativo ha permesso un confronto continuo, facilitando la stesura di un documento più chiaro, coerente e comprensibile.                                                                                            |
+
 
 Table: Mitigazione rischi organizzativi ed interpersonali
 
@@ -133,6 +144,8 @@ Table: Mitigazione rischi organizzativi ed interpersonali
 | Codice  | Rischio                             | Mitigazione                                                                                                                                                                                                               |
 | ------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **RT1** | **Mancanza di conoscenze tecniche** | Questo rischio può essere mitigato attraverso una stretta collaborazione tra i membri del team e l'azienda proponente, mirando alla creazione di un ambiente di collaborazione e condivisione delle conoscenze acquisite. |
+| **RT2** | **Apprendimento ed utilizzo di nuove tecnologie** | Per mitigare questo rischio, si prevede una fase iniziale di studio strutturato delle tecnologie. Inoltre, verranno utilizzate risorse già disponibili come documentazione ufficiale, tutorial e casi d’uso, e sarà favorito il confronto continuo all’interno del team per condividere conoscenze e risolvere eventuali difficoltà in modo tempestivo. |
+| **RT3** | **Mancanza di esperienza con Jest per i test unitari**     | Per mitigare questo rischio, i membri più esperti hanno spiegato nel dettaglio il funzionamento di Jest agli altri componenti del team. Sono state svolte sessioni di test in gruppo, durante le quali chi aveva dubbi poteva ricevere supporto diretto, favorendo un apprendimento pratico e collaborativo.                                            |
 
 Table: Mitigazione rischi tecnologici
 
@@ -657,6 +670,20 @@ In conclusione, lo %%sprint|sprint%% ha permesso di raggiungere gli obiettivi pr
 
 In questo periodo, il gruppo si concentrerà sul completamento della documentazione e sul recupero delle task ancora incomplete.
 
+###### Gestione dei rischi
+
+**Rischi attesi**
+
+- _RO1_: Avanzamento lento per mancanza di esperienza.
+- _RO2_: Ritardi dovuti a problemi individuali.
+
+**Rischi occorsi**
+
+Durante lo %%sprint|sprint%% 7, il gruppo ha incontrato diversi rischi previsti in fase di pianificazione. In particolare, il rischio RO1 "avanzamento lento per mancanza di esperienza" si è concretizzato nella difficoltà di conciliare le attività di progetto con la preparazione della presentazione RTB e la finalizzazione dei documenti. Questo ha rallentato l’avanzamento generale dei lavori, ma il gruppo è riuscito a recuperare nei giorni successivi grazie a una riorganizzazione delle attività.
+Si è manifestato anche il rischio RO5, legato alla sottostima delle attività. I compiti di completamento e revisione della documentazione hanno richiesto più tempo del previsto, rendendo necessario uno sforzo aggiuntivo nelle fasi finali dello %%sprint|sprint%%.
+Infine, si è verificato anche il rischio RO2, relativo a problemi individuali, in forma di discontinuità nella partecipazione alle riunioni. Non tutti i membri sono riusciti a essere presenti agli incontri di gruppo. Il problema è stato mitigato aggiornando singolarmente i membri assenti con brevi resoconti di quanto discusso.
+
+
 ###### Ruoli
 
 A seguito si riporta la tabella con la suddivisione dei ruoli:
@@ -674,7 +701,7 @@ Table: Suddivisione ruoli Sprint 7
 
 ###### Preventivo
 
-A seguito si riporta la tabella del preventivo per il sesto %%sprint|sprint%%
+A seguito si riporta la tabella del preventivo per il settimo %%sprint|sprint%%
 
 | Ruolo                     | Ore svolte (h) | Costo (€)  |
 | ------------------------- | -------------- | ---------- |
@@ -705,7 +732,7 @@ Di seguito vengono indicate le spese effettive del settimo %%sprint|sprint%%
 
 Table: Consuntivo Sprint 7
 
-Considerando il costo di **637,4** il residuo disponibile ammonta a **7.667,3€**.
+Considerando il costo di **637,4** il residuo disponibile ammonta a **8202,2€**.
 
 ###### Retrospettiva
 
@@ -719,26 +746,41 @@ In conclusione, lo %%sprint|sprint%% ha evidenziato alcune variazioni rispetto a
 
 <img src="/img/Gantt/Sprint7.png" alt="Diagramma Gantt sprint 7" data-width="70%" />
 
+
 ##### Sprint 8
 
 - Periodo 17/03/2025 - 30/03/2025
 
 ###### Pianificazione
 
-In questo periodo, il gruppo si concentrerà sulla progettazione e sul miglioramento della documentazione.
+In questo periodo, il gruppo si concentrerà sulla progettazione e sul miglioramento della documentazione. 
+
+###### Gestione dei rischi
+
+**Rischi attesi**
+
+- _RT2_: Apprendimento e utilizzo di nuove tecnologie.
+- _RT3_: Mancanza di esperienza con Jest per i test unitari.
+- _TO6_: Difficoltà nella scrittura della documentazione tecnica.
+
+**Rischi occorsi**
+
+Durante lo %%sprint|sprint%% 8, il team ha affrontato il rischio TO6, relativo alla difficoltà nella stesura della documentazione tecnica, in particolare nella redazione del documento delle specifiche tecniche. La complessità e la quantità di dettagli richiesti hanno rallentato il lavoro inizialmente. Per velocizzare la redazione e aumentare l'efficienza nella risoluzione dei dubbi, il gruppo incaricato ha suddiviso il documento in sezioni, distribuendo il lavoro e agevolando il confronto tra i membri.
+Si sono verificati anche i rischi RT2 e RT3, entrambi legati all’uso di tecnologie, in particolare Jest per i test unitari. La difficoltà iniziale è stata superata grazie al supporto dei membri con maggiore esperienza, sono stati organizzati test di gruppo, durante i quali i dubbi sono stati chiariti in tempo reale. Questo approccio ha permesso un rapido apprendimento e una maggiore sicurezza nell’utilizzo dello strumento.
+Infine, si è manifestato anche il rischio RO2, relativo agli impegni personali. Alcuni membri del team hanno avuto difficoltà a garantire la piena disponibilità durante lo %%sprint|sprint%%.
 
 ###### Ruoli
 
 A seguito si riporta la tabella con la suddivisione dei ruoli:
 
-| **Ruolo**                 | **Membri**                 |
-| ------------------------- | -------------------------- |
-| Responsabile di progetto  | Carraro Agnese             |
-| Analista                  | Pistori Gaia, Piola Andrea |
-| Progettista               | Monetti Luca               |
-| Amministratore di sistema | Dal Bianco Riccardo        |
-| Programmatore             | Manuel Felipe Vasquez      |
-| Verificatore              | Marcon Giulia              |
+| **Ruolo**                 | **Membri**                          |
+|---------------------------|-------------------------------------|
+| Responsabile di progetto  | Carraro Agnese                      |
+| Analista                  | Pistori Gaia, Piola Andrea          |
+| Progettista               | Monetti Luca                        |
+| Amministratore di sistema | Dal Bianco Riccardo                 |
+| Programmatore             | Manuel Felipe Vasquez               |
+| Verificatore              | Marcon Giulia                       |
 
 Table: Suddivisione ruoli Sprint 8
 
@@ -746,18 +788,47 @@ Table: Suddivisione ruoli Sprint 8
 
 A seguito si riporta la tabella del preventivo per l'ottavo %%sprint|sprint%%:
 
-| Ruolo                     | Ore svolte (h) | Costo (€) |
-| ------------------------- | -------------- | --------- |
-| Responsabile di progetto  | 4,5            | 135       |
-| Analista                  | 20             | 500       |
-| Progettista               | 13             | 325       |
-| Amministratore di sistema | 14,7           | 294       |
-| Programmatore             | 12             | 180       |
-| Verificatore              | 2,82           | 42,3      |
-| _Totale_                  | _67,02_        | _1476,3_  |
-| _Bilancio_                |                | \_\_      |
+| Ruolo                     | Ore svolte (h) | Costo (€)  |
+|---------------------------|----------------|------------|
+| Responsabile di progetto  | 8              | 240        |
+| Analista                  | 24             | 600        |
+| Progettista               | 42,5           | 1062,50    |
+| Amministratore di sistema | 34             | 680        |
+| Programmatore             | 33             | 495        |
+| Verificatore              | 23,34          | 350,1      |
+| _Totale_                  | _164,84_       | _3427,6_   |
+| _Bilancio_                |                | _4775,2_   |
 
 Table: Preventivo Sprint 8
+
+
+###### Consuntivo
+
+Di seguito vengono indicate le spese effettive dell'ottavo %%sprint|sprint%%
+
+| Ruolo                     | Totale ore ruolo (h) | Diff. ore (h) | Costo orario (€) | Costo (€) | Diff. costo (€) |
+|---------------------------|----------------------|---------------|------------------|-----------|-----------------|
+| Responsabile di progetto  | 8,5                  | +0,5          | 30               | 255       | +15             |
+| Analista                  | 26                   | +2            | 25               | 650       | +50             |
+| Progettista               | 42,5                 | 0             | 25               | 1062,5    | 0               |
+| Amministratore di sistema | 37,17                | +3,17         | 20               | 743,4     | +63,4           |
+| Programmatore             | 33                   | 0             | 15               | 495       | 0               |
+| Verificatore              | 24,25                | +0,91         | 15               | 363,75    | +13,65          |
+| _Totale consuntivo_       | _171,42_             | _+6,58_       |                  | _3569,65_ | _+142,05_       |
+
+Table: Consuntivo Sprint 8
+
+Considerando il costo di **3569,65€** il residuo disponibile ammonta a **4632,55€**.
+
+###### Retrospettiva
+L'ottavo %%sprint|sprint%% ha visto un considerevole avanzamento, principalmente nell'%%attività|attività%% di progettazione, ma anche nel miglioramento della documentazione e nell'%%attività|attività%% di codifica. Sono state completate tutte le %%attività|attività%% previste, incluse quelle arretrate del settimo %%sprint|sprint%%.
+
+###### Conclusione
+In conclusione, l'ottavo %%sprint|sprint%% ha segnato un grande avanzamento. Infatti, il costo finale di 3569,65€ mostra un notevole aumento della produttività. Il tempo richiesto per il completamento delle %%attività|attività%% ha leggermente superato quello previsto (+6,58 ore), ma tutti gli obiettivi prefissati sono stati raggiunti.
+
+###### Gantt
+
+<img src="/img/Gantt/Sprint8.png" alt="Diagramma Gantt sprint 8" data-width="70%" />
 
 <!-- ::: {.no-export} -->
 
