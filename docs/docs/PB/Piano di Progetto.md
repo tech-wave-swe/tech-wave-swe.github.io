@@ -850,7 +850,7 @@ In questo periodo, il gruppo si concentrerà nel completare i test e sul complet
 **Rischi occorsi**
 
 Durante lo %%sprint|sprint%% 9, il team ha affrontato il rischio TO6, relativo alla difficoltà nella stesura della documentazione tecnica, in particolare nella scrittura del documento del piano di qualifica. Il numero elevato di test presenti e il livello di dettaglio molto alto hanno rallentato il lavoro. Per ottimizzare la scrittura il gruppo incaricato ha suddiviso il documento in sezioni.
-Si è verificato il rischio RT3, legato all'uso di Jest per i test. La difficoltà iniziale è stata superata grazie al supporto dei membri con maggiore esperienza e ad uno studio della tecnologia.
+Si è verificato il rischio RT3, legato all'uso di Jest per i test. La difficoltà iniziale è stata superata grazie al supporto dei membri con maggiore esperienza e allo studio della tecnologia.
 
 ###### Ruoli
 
