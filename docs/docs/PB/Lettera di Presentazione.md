@@ -17,9 +17,9 @@ import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
 <details>
   <summary>Changelog</summary>
 
-| Data       | Versione | Descrizione                 | Autore                | Data Verifica | Verificatore  |
-| ---------- | -------- | --------------------------- | --------------------- | ------------- | ------------- |
-| 23/04/2025 | 1.0.0    | Prima stesura del documento | Marcon Giulia         | 23/04/2025    | |
+| Data       | Versione | Descrizione                 | Autore                | Data Verifica | Verificatore   |
+| ---------- | -------- | --------------------------- | --------------------- | ------------- | -------------- |
+| 23/04/2025 | 1.0.0    | Prima stesura del documento | Marcon Giulia         | 24/04/2025    | Carraro Agnese |
 
 </details>
 
