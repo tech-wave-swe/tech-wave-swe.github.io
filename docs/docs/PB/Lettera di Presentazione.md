@@ -12,7 +12,7 @@ classification: Esterno
 import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
 
 
-# Lettera di Presentazione RTB
+# Lettera di Presentazione PB
 
 <details>
   <summary>Changelog</summary>
