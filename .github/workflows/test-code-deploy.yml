@@ -43,7 +43,7 @@ jobs:
 
       - name: Run Tests
         run: |
-          npm run test:jest
+          npm run test:all
 
       - name: Coveralls
         uses: coverallsapp/github-action@v2
