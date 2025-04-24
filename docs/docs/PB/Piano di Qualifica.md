@@ -1,6 +1,6 @@
 ---
 id: piano_di_qualifica
-title: "Piano di Qualifica - v1.8.2"
+title: "Piano di qualifica - v1.8.2"
 documentclass: TWDocumentFull
 toc: true
 lof: true
@@ -14,7 +14,7 @@ classification: Esterno
 import TOCInlineWrapper from "@site/src/components/TOCInlineWrapper.jsx";
 import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
-# Documento del Piano di Qualifica
+# Documento del piano di qualifica
 
 <details>
   <summary>Changelog</summary>

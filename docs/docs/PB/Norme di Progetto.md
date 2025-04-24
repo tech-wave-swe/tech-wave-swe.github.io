@@ -1,6 +1,6 @@
 ---
 id: norme_di_progetto
-title: "Norme di Progetto - v1.8.5"
+title: "Norme di progetto - v1.8.5"
 documentclass: TWDocumentFull
 toc: true
 numbersections: true
@@ -14,7 +14,7 @@ classification: Interno
 import TOCInlineWrapper from "@site/src/components/TOCInlineWrapper.jsx";
 import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
-# Documento delle Norme di Progetto
+# Documento delle norme di progetto
 
 <details>
   <summary>Changelog</summary>

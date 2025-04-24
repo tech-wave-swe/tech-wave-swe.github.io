@@ -1,6 +1,6 @@
 ---
 id: piano_di_progetto
-title: "Piano di Progetto - v2.5.0"
+title: "Piano di progetto - v2.5.0"
 documentclass: TWDocumentFull
 toc: true
 lof: true
@@ -15,7 +15,7 @@ classification: Esterno
 import TOCInlineWrapper from "@site/src/components/TOCInlineWrapper.jsx";
 import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
-# Documento del Piano di Progetto
+# Documento del piano di progetto
 
 <details>
   <summary>Changelog</summary>

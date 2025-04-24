@@ -1,6 +1,6 @@
 ---
 id: specifica_tecnica
-title: "Specifica Tecnica - v1.0.0"
+title: "Specifica tecnica - v1.0.0"
 documentclass: TWDocumentFull
 toc: true
 lof: true
@@ -14,7 +14,7 @@ classification: Esterno
 import TOCInlineWrapper from "@site/src/components/TOCInlineWrapper.jsx";
 import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
-# Specifica Tecnica
+# Specifica tecnica
 
 <details>
   <summary>Changelog</summary>
@@ -332,7 +332,7 @@ L'interfaccia _File_ ha lo scopo di modellare un file all'interno del progetto. 
 
 ##### Requirement
 
-L'interfaccia _Requirement_ ha lo scopo di modellare un %%requisito software|requisito_software%%. Memorizza, all'interno di campi testuali: l'identificativo univoco (_id_), il nome (_name_), la descrizione (_description_), la tipologia (_type_) e la versione (_version_). Inoltre vengono memorizzati: lo stato tramite un oggetto del tipo _RequirementStatus_ (_status_) e come campi opzionali il punteggio (_score_) e la porzione di codice dove è stato implementato (_codereference_).
+L'interfaccia _Requirement_ ha lo scopo di modellare un %%requisito software|requisito*software%%. Memorizza, all'interno di campi testuali: l'identificativo univoco (\_id*), il nome (_name_), la descrizione (_description_), la tipologia (_type_) e la versione (_version_). Inoltre vengono memorizzati: lo stato tramite un oggetto del tipo _RequirementStatus_ (_status_) e come campi opzionali il punteggio (_score_) e la porzione di codice dove è stato implementato (_codereference_).
 _RequirementStatus_ è un enum definito all'interno che rappresenta lo stato di implementazione di un requisito: tracciato (_TRACKED_), non tracciato (_NOT_TRACKED_), pendente (_PENDING_) e sconosciuto (_UNKNOW_).
 
 ##### Chunk
@@ -645,7 +645,7 @@ Mette a disposizione i metodi:
 - **query** il quale permette di effettuare una chiamata a %%LLM|llm%% tramite %%Ollama|ollama%%.
 - **checkSystemRequirement** il quale permette di effettuare un controllo sulla connessione al servizio %%Ollama|ollama%%.
 - **queryStream** il quale permette di effettuare una chiamata a %%LLM|llm%% tramite %%Ollama|ollama%% fornendo il risultato come stream.
-- **getContextEndPrompt** (_privato_) il quale genera il prompt per l'interrogazione al modello a partire dal contesto. 
+- **getContextEndPrompt** (_privato_) il quale genera il prompt per l'interrogazione al modello a partire dal contesto.
 
 ###### ILanguageModel
 

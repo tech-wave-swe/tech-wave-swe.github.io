@@ -1,6 +1,6 @@
 ---
 id: lettera-di-presentazione
-title: "Lettera di Presentazione - v1.0.0"
+title: "Lettera di presentazione - v1.0.0"
 documentclass: TWDocumentFull
 toc: true
 numbersections: false
@@ -10,7 +10,7 @@ classification: Esterno
 
 <!-- ::: {.no-export} -->
 
-# Lettera di Presentazione PB
+# Lettera di presentazione PB
 
 <details>
   <summary>Changelog</summary>
