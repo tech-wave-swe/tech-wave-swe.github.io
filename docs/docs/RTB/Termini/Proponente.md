@@ -4,8 +4,11 @@ title: Proponente
 hoverText: Figura che avanza una proposta o un progetto.
 ---
 
+<!-- ::: {.no-export} -->
+
 import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
 
+<!-- ::: -->
 
 ### Spiegazione del termine
 

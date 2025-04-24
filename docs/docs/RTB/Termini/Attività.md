@@ -4,8 +4,11 @@ title: Attività
 hoverText: Azioni da compiere per attuare un processo.
 ---
 
+<!-- ::: {.no-export} -->
+
 import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
 
+<!-- ::: -->
 
 ### Spiegazione del termine
 

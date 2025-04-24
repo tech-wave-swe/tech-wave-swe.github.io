@@ -4,7 +4,11 @@ title: RTB
 hoverText: Requirements and Technology Baseline. Documentazione che definisce i requisiti e le tecnologie di base necessarie per un progetto, utilizzata come riferimento per monitorare lo sviluppo.
 ---
 
+<!-- ::: {.no-export} -->
+
 import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
+
+<!-- ::: -->
 
 
 ### Spiegazione del termine

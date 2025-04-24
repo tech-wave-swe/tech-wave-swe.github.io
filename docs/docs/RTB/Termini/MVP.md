@@ -4,8 +4,11 @@ title: MVP
 hoverText: Minimum Viable Product. Una versione base del prodotto finale, con le funzionalità minime necessarie per essere funzionante.
 ---
 
+<!-- ::: {.no-export} -->
+
 import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
 
+<!-- ::: -->
 
 ### Spiegazione del termine
 

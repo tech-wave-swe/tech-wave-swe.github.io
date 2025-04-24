@@ -9,19 +9,28 @@ version: 1.0.0
 classification: Esterno
 ---
 
-import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
+<!-- ::: {.no-export} -->
 
+import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
 
 # Lettera di Presentazione RTB
 
 <details>
   <summary>Changelog</summary>
 
+<!-- ::: -->
+
 | Data       | Versione | Descrizione                 | Autore                | Data Verifica | Verificatore        |
 | ---------- | -------- | --------------------------- | --------------------- | ------------- | ------------------- |
 | 03/03/2025 | 1.0.0    | Prima stesura del documento | Vasquez Manuel Felipe | 3/03/2025     | Riccardo Dal Bianco |
 
+Table: Changelog
+
+<!-- ::: {.no-export} -->
+
 </details>
+
+<!-- ::: -->
 
 ## Componenti del gruppo
 

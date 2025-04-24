@@ -3,17 +3,12 @@ id: lettera-di-presentazione
 title: "Lettera di Presentazione - v1.0.0"
 documentclass: TWDocumentFull
 toc: true
-lof: true
 numbersections: false
 version: 1.0.0
 classification: Esterno
 ---
 
 <!-- ::: {.no-export} -->
-
-import TOCInlineWrapper from "@site/src/components/TOCInlineWrapper.jsx";
-import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
-
 
 # Lettera di Presentazione PB
 
@@ -29,9 +24,6 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 <!-- ::: {.no-export} -->
 
 </details>
-
-<TOCInlineWrapper toc={toc} numbered={true}/>
-<NumberedWrapper toc={toc}>
 
 <!-- ::: -->
 
@@ -70,11 +62,7 @@ Al suo interno si trovano i seguenti documenti:
 - [Documento di accettazione](https://tech-wave-swe.github.io/assets/files/DocAccettazione-7b7b9f84e265620aa2c0af8302db8aca.pdf)
 - Verbali [Esterni](https://tech-wave-swe.github.io/docs/PB/Verbali_Esterni/Verbali%20Esterni) e [Interni](https://tech-wave-swe.github.io/docs/category/verbali-interni)
 
-Il costo complessivo sostenuto dal gruppo per la realizzazione del progetto è pari a 12199,85€, a fronte dei 12800€ preventivati inizialmente. Le ore svolte da ogni componente del gruppo possono essere trovate alla fine del documento di Piano di Qualifica.
+Il costo complessivo sostenuto dal gruppo per la realizzazione del progetto è pari a 12302,30€, a fronte dei 12800€ preventivati inizialmente. Le ore svolte da ogni componente del gruppo possono essere trovate alla fine del documento di Piano di Qualifica.
 
 Cordiali Saluti,
 Gruppo TechWave.
-
-<!-- ::: {.no-export} -->
-</NumberedWrapper>
-<!-- ::: -->

@@ -4,7 +4,11 @@ title: GitHub Action
 hoverText: Piattaforma di integrazione continua e consegna continua (CI/CD) che consente di automatizzare il processo di build, test e distribuzione.
 ---
 
+<!-- ::: {.no-export} -->
+
 import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
+
+<!-- ::: -->
 
 
 ### Spiegazione del termine

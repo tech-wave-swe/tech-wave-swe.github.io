@@ -4,8 +4,11 @@ title: Test
 hoverText: Prove effettuate per controllare il funzionamento di un prodotto software con l'obiettivo di trovare possibili anomalie. 
 ---
 
+<!-- ::: {.no-export} -->
+
 import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
 
+<!-- ::: -->
 
 ### Spiegazione del termine
 

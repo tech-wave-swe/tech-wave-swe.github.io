@@ -4,8 +4,11 @@ title: Issue
 hoverText: Azione da svolgere definita per poter pianificare e monitorare lo svolgimento di un progetto (ticket).
 ---
 
+<!-- ::: {.no-export} -->
+
 import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
 
+<!-- ::: -->
 
 ### Spiegazione del termine
 

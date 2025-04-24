@@ -4,8 +4,11 @@ title: Repository
 hoverText: Archivio digitale in cui il codice sorgente e altri file di progetto vengono conservati e gestiti.
 ---
 
+<!-- ::: {.no-export} -->
+
 import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
 
+<!-- ::: -->
 
 ### Spiegazione del termine
 

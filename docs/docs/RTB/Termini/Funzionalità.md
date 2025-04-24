@@ -4,8 +4,11 @@ title: Funzionalità
 hoverText: Caratteristica funzionale propria di un prodotto software.
 ---
 
+<!-- ::: {.no-export} -->
+
 import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
 
+<!-- ::: -->
 
 ### Spiegazione del termine
 

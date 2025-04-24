@@ -4,8 +4,11 @@ title: Use Case
 hoverText: Tecnica per individuare i requisiti funzionali di un prodotto software analizzando il modo in cui gli attori interagiscono con il sistema.
 ---
 
+<!-- ::: {.no-export} -->
+
 import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
 
+<!-- ::: -->
 
 ### Spiegazione del termine
 

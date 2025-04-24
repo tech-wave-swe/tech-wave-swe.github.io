@@ -4,8 +4,11 @@ title: Plugin
 hoverText: Componente software aggiuntivo che estende le funzionalità di un'applicazione principale.
 ---
 
+<!-- ::: {.no-export} -->
+
 import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
 
+<!-- ::: -->
 
 ### Spiegazione del termine
 

@@ -4,7 +4,11 @@ title: Task
 hoverText: Azioni da svolgere per realizzare le attività di un processo.
 ---
 
+<!-- ::: {.no-export} -->
+
 import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
+
+<!-- ::: -->
 
 
 ### Spiegazione del termine

@@ -4,8 +4,11 @@ title: Capitolato
 hoverText: Documento che descrive in modo dettagliato i requisiti, le specifiche e le aspettative di un progetto.
 ---
 
+<!-- ::: {.no-export} -->
+
 import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
 
+<!-- ::: -->
 
 ### Spiegazione del termine
 
