@@ -1348,7 +1348,7 @@ Possiamo osservare che, nonostante una iniziale crescita delle stime di completa
 
 #### PB
 
-Possiamo osservare che
+Possiamo osservare che la curva Estimate to Complete ci avvisa che se avessimo mantenuto lo stesso livello di efficienza avuto nella %%RTB|rtb%%, avremmo concluso il progetto solo sforando il budget. Questo non è avvenuto in quanto è migliorata nettamente la produttività e la capacità di organizzarsi in modo efficiente.
 
 ### Schedule variance & cost variance
 
