@@ -1051,3 +1051,8 @@ Table: Tabella Ore Individuali
 </NumberedWrapper>
 
 <!-- ::: -->
+
+
+## Versione PDF
+
+> <a target='\_blank' href={ require('/pdfs/PB/Piano di Progetto.pdf').default } download>Versione PDF</a>

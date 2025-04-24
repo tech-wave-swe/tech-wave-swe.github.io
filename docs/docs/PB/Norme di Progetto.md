@@ -5,7 +5,7 @@ documentclass: TWDocumentFull
 toc: true
 numbersections: true
 toc-depth: 4
-version: 1.8.4
+version: 1.8.5
 classification: Interno
 ---
 
@@ -21,28 +21,28 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 <!-- ::: -->
 
-| Data       | Versione | Descrizione                                        | Autore              | Data Verifica | Verificatore          |
-| ---------- | -------- | -------------------------------------------------- | ------------------- | ------------- | --------------------- |
-| 15/04/2025 | 1.8.5    | Integrazione sezione 2 e 3                         | Dal Bianco Riccardo | 19/04/2024    | Pistori Gaia          |
-| 30/03/2025 | 1.8.4    | Riscrittura sezione 1, 4 e 5. Scrittura sezione 6  | Carraro Agnese      | 30/03/2025    | Marcon Giulia         |
-| 30/03/2025 | 1.8.3    | Riscrittura sezione 2 e 3                          | Dal Bianco Riccardo | 30/03/2025    | Marcon Giulia         |
-| 30/03/2025 | 1.8.2    | Controllo consistenza maiuscole                    | Dal Bianco Riccardo | 30/03/2025    | Vasquez Manuel Felipe |
-| 07/03/2025 | 1.8.1    | Aggiunta sezione PoC                               | Monetti Luca        | 07/03/2025    | Marcon Giulia         |
-| 27/02/2025 | 1.8.0    | Revisione del documento                            | Carraro Agnese      | 28/02/2025    | Monetti Luca          |
-| 23/02/2025 | 1.7.1    | Procedure per la rendicontazione delle ore         | Pistori Gaia        | 25/02/2025    | Carraro Agnese        |
+| Data       | Versione | Descrizione                                       | Autore              | Data Verifica | Verificatore          |
+| ---------- | -------- | ------------------------------------------------- | ------------------- | ------------- | --------------------- |
+| 15/04/2025 | 1.8.5    | Integrazione sezione 2 e 3                        | Dal Bianco Riccardo | 19/04/2024    | Pistori Gaia          |
+| 30/03/2025 | 1.8.4    | Riscrittura sezione 1, 4 e 5. Scrittura sezione 6 | Carraro Agnese      | 30/03/2025    | Marcon Giulia         |
+| 30/03/2025 | 1.8.3    | Riscrittura sezione 2 e 3                         | Dal Bianco Riccardo | 30/03/2025    | Marcon Giulia         |
+| 30/03/2025 | 1.8.2    | Controllo consistenza maiuscole                   | Dal Bianco Riccardo | 30/03/2025    | Vasquez Manuel Felipe |
+| 07/03/2025 | 1.8.1    | Aggiunta sezione PoC                              | Monetti Luca        | 07/03/2025    | Marcon Giulia         |
+| 27/02/2025 | 1.8.0    | Revisione del documento                           | Carraro Agnese      | 28/02/2025    | Monetti Luca          |
+| 23/02/2025 | 1.7.1    | Procedure per la rendicontazione delle ore        | Pistori Gaia        | 25/02/2025    | Carraro Agnese        |
 
 Table: Changelog prima parte
 
-| Data       | Versione | Descrizione                                        | Autore              | Data Verifica | Verificatore          |
-| ---------- | -------- | -------------------------------------------------- | ------------------- | ------------- | --------------------- |
-| 20/02/2025 | 1.7.0    | Aggiunto tracciamento e rendicontazione delle ore  | Marcon Giulia       | 25/02/2025    | Carraro Agnese        |
-| 06/02/2025 | 1.6.0    | Aggiunta processi di Supporto                      | Monetti Luca        | 08/02/2025    | Carraro Agnese        |
-| 20/01/2025 | 1.5.0    | Aggiunta processi Primari                          | Pistori Gaia        | 21/01/2025    | Monetti Luca          |
-| 30/12/2024 | 1.4.0    | Completamento processi Organizzativi               | Carraro Agnese      | 30/12/2024    | Pistori Gaia          |
-| 27/12/2024 | 1.3.0    | Corretta la formattazione del documento            | Monetti Luca        | 28/12/2025    | Pistori Gaia          |
-| 19/12/2024 | 1.2.0    | Revisione struttura + Aggiunta sezione GitHub      | Monetti Luca        | 22/12/2024    | Vasquez Manuel Felipe |
-| 20/11/2024 | 1.1.0    | Aggiunta sezione 4                                 | Piola Andrea        | 03/12/2024    | Pistori Gaia          |
-| 14/11/2024 | 1.0.0    | Prima stesura del documento con indice e sezione 1 | Piola Andrea        | 19/11/2024    | Pistori Gaia          |
+| Data       | Versione | Descrizione                                        | Autore         | Data Verifica | Verificatore          |
+| ---------- | -------- | -------------------------------------------------- | -------------- | ------------- | --------------------- |
+| 20/02/2025 | 1.7.0    | Aggiunto tracciamento e rendicontazione delle ore  | Marcon Giulia  | 25/02/2025    | Carraro Agnese        |
+| 06/02/2025 | 1.6.0    | Aggiunta processi di Supporto                      | Monetti Luca   | 08/02/2025    | Carraro Agnese        |
+| 20/01/2025 | 1.5.0    | Aggiunta processi Primari                          | Pistori Gaia   | 21/01/2025    | Monetti Luca          |
+| 30/12/2024 | 1.4.0    | Completamento processi Organizzativi               | Carraro Agnese | 30/12/2024    | Pistori Gaia          |
+| 27/12/2024 | 1.3.0    | Corretta la formattazione del documento            | Monetti Luca   | 28/12/2025    | Pistori Gaia          |
+| 19/12/2024 | 1.2.0    | Revisione struttura + Aggiunta sezione GitHub      | Monetti Luca   | 22/12/2024    | Vasquez Manuel Felipe |
+| 20/11/2024 | 1.1.0    | Aggiunta sezione 4                                 | Piola Andrea   | 03/12/2024    | Pistori Gaia          |
+| 14/11/2024 | 1.0.0    | Prima stesura del documento con indice e sezione 1 | Piola Andrea   | 19/11/2024    | Pistori Gaia          |
 
 Table: Changelog
 
@@ -1210,3 +1210,7 @@ Tutte le metriche vengono definite e spiegate nel documento [Piano di Qualifica 
 </NumberedWrapper>
 
 <!-- ::: -->
+
+## Versione PDF
+
+> <a target='\_blank' href={ require('/pdfs/PB/Norme di Progetto.pdf').default } download>Versione PDF</a>
