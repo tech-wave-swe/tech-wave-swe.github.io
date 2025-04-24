@@ -70,6 +70,8 @@ Al suo interno si trovano i seguenti documenti:
 - [Documento di accettazione](https://tech-wave-swe.github.io/assets/files/DocAccettazione-7b7b9f84e265620aa2c0af8302db8aca.pdf)
 - Verbali [Esterni](https://tech-wave-swe.github.io/docs/PB/Verbali_Esterni/Verbali%20Esterni) e [Interni](https://tech-wave-swe.github.io/docs/category/verbali-interni)
 
+Il costo complessivo sostenuto dal gruppo per la realizzazione del progetto è pari a 12199,85€, a fronte dei 12800€ preventivati inizialmente. Le ore svolte da ogni componente del gruppo possono essere trovate alla fine del documento di Piano di Qualifica.
+
 Cordiali Saluti,
 Gruppo TechWave.
 
