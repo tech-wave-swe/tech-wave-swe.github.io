@@ -9,7 +9,10 @@ version: 1.0.0
 classification: Esterno
 ---
 
-import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
+<!-- ::: {.no-export} -->
+
+import TOCInlineWrapper from "@site/src/components/TOCInlineWrapper.jsx";
+import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 
 # Lettera di Presentazione PB
@@ -17,11 +20,20 @@ import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
 <details>
   <summary>Changelog</summary>
 
+<!-- ::: -->
+
 | Data       | Versione | Descrizione                 | Autore                | Data Verifica | Verificatore   |
 | ---------- | -------- | --------------------------- | --------------------- | ------------- | -------------- |
 | 23/04/2025 | 1.0.0    | Prima stesura del documento | Marcon Giulia         | 24/04/2025    | Carraro Agnese |
 
+<!-- ::: {.no-export} -->
+
 </details>
+
+<TOCInlineWrapper toc={toc} numbered={true}/>
+<NumberedWrapper toc={toc}>
+
+<!-- ::: -->
 
 ## Componenti del gruppo
 
@@ -60,3 +72,7 @@ Al suo interno si trovano i seguenti documenti:
 
 Cordiali Saluti,
 Gruppo TechWave.
+
+<!-- ::: {.no-export} -->
+</NumberedWrapper>
+<!-- ::: -->
