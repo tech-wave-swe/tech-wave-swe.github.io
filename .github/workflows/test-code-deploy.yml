@@ -41,9 +41,13 @@ jobs:
         run: |
           npm ci
 
-      - name: Run Tests
-        run: |
-          npm run test:all
+      - name: Run tests
+        run: xvfb-run -a npm run test:all
+        if: runner.os == 'Linux'
+
+      - name: Run tests
+        run: npm run test:all
+        if: runner.os != 'Linux'
 
       - name: Coveralls
         uses: coverallsapp/github-action@v2
