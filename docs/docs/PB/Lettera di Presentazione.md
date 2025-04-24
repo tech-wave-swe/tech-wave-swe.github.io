@@ -43,9 +43,6 @@ Con la presente, il gruppo TechWave desidera comunicarVi la propria candidatura 
 
 A seguito dell’approvazione del Minimum Viable Product da parte del %%proponente|proponente%%, come indicato nel relativo [Documento di accettazione](https://tech-wave-swe.github.io/assets/files/DocAccettazione-7b7b9f84e265620aa2c0af8302db8aca.pdf), e dell’ottenimento del semaforo verde in data 19/04/2025, il gruppo presenta il %%prodotto|prodotto%% finale per la seconda parte della %%Product Baseline|pb%%.
 
-È possibile visionare il codice sorgente completo nella seguente %%repository|repository%%:
-[https://github.com/tech-wave-swe/tech-wave-swe.github.io/tree/develop/src](https://github.com/tech-wave-swe/tech-wave-swe.github.io/tree/develop/src)
-
 La documentazione completa e aggiornata alla fase %%PB|pb%% è disponibile al link:
 [https://tech-wave-swe.github.io/docs/intro](https://tech-wave-swe.github.io/docs/intro)
 
@@ -53,15 +50,13 @@ Al suo interno si trovano i seguenti documenti:
 
 - [Analisi dei Requisiti - v2.6.0](https://tech-wave-swe.github.io/docs/PB/analisi_dei_requisiti)
 - [Norme di Progetto - v1.8.5](https://tech-wave-swe.github.io/docs/PB/norme_di_progetto)
-- [Piano di Progetto - v2.4.7](https://tech-wave-swe.github.io/docs/PB/piano_di_progetto)
+- [Piano di Progetto - v2.4.9](https://tech-wave-swe.github.io/docs/PB/piano_di_progetto)
 - [Piano di Qualifica - v1.8.1](https://tech-wave-swe.github.io/docs/PB/piano_di_qualifica)
 - [Specifica Tecnica - v1.0.0](https://tech-wave-swe.github.io/docs/PB/specifica_tecnica)
 - [Manuale Utente - v1.0.0](https://tech-wave-swe.github.io/docs/PB/manuale_utente)
-- [Glossario - v?](https://tech-wave-swe.github.io/docs/glossario)
+- [Glossario - v2.3.0](https://tech-wave-swe.github.io/docs/glossario)
 - [Documento di accettazione](https://tech-wave-swe.github.io/assets/files/DocAccettazione-7b7b9f84e265620aa2c0af8302db8aca.pdf)
 - Verbali [Esterni](https://tech-wave-swe.github.io/docs/PB/Verbali_Esterni/Verbali%20Esterni) e [Interni](https://tech-wave-swe.github.io/docs/category/verbali-interni)
-
-Il costo complessivo sostenuto dal gruppo per la realizzazione del progetto è pari a € ?, a fronte dei € ? preventivati inizialmente.
 
 Cordiali Saluti,
 Gruppo TechWave.
