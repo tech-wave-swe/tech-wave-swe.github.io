@@ -1,6 +1,6 @@
 ---
 id: manuale_utente
-title: "Manuale Utente - v1.0.0"
+title: "Manuale utente - v1.0.0"
 documentclass: TWDocumentFull
 toc: true
 lof: true
@@ -14,7 +14,7 @@ classification: Esterno
 import TOCInlineWrapper from "@site/src/components/TOCInlineWrapper.jsx";
 import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
-# Manuale Utente
+# Manuale utente
 
 <details>
   <summary>Changelog</summary>

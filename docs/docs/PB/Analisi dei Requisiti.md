@@ -1,6 +1,6 @@
 ---
 id: analisi_dei_requisiti
-title: "Analisi dei Requisiti - v2.6.0"
+title: "Analisi dei requisiti - v2.6.0"
 documentclass: TWDocumentFull
 toc: true
 lof: true
@@ -14,7 +14,7 @@ classification: Esterno
 import TOCInlineWrapper from "@site/src/components/TOCInlineWrapper.jsx";
 import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
-# Analisi dei Requisiti
+# Analisi dei requisiti
 
 <details>
   <summary>Changelog</summary>
@@ -1247,19 +1247,19 @@ I requisiti vengono identificati ciascuno da un codice identificativo nel format
 
 - L'utente deve poter configurare l'%%Applicativo|applicativo%% da interfaccia grafica, in particolare:
 
-| ID         | Descrizione                                                                                                                                                                                                                                                                                       | Use Cases |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
-| **RFO_1**  | L'utente può scegliere il modello da utilizzare per generare codice.                                                                                                                                                                                                                              | **UC1.2** |
-| **RFO_2**  | L'utente può scegliere il modello da utilizzare per l'embedding.                                                                                                                                                                                                                                  | **UC1.3** |
-| **RFD_3**  | L'utente può scegliere di utilizzare un modello custom per generare codice. È possibile indicare il nome di un modello personalizzato e installato nel dispositivo dell'utente.                                                                                                                   | **UC5**   |
-| **RFD_4**  | L'utente può scegliere di utilizzare un modello custom per l'embedding. È possibile indicare il nome di un modello personalizzato e installato nel dispositivo dell'utente.                                                                                                                       | **UC6**   |
-| **RFO_5**  | L'utente può selezionare uno dei modelli proposti per generare codice selezionando uno dei modelli consigliati. dell'utente.                                                                                                                                                                      | **UC4**   |
-| **RFO_6**  | L'utente può selezionare uno dei modelli proposti per l'embedding selezionando uno dei modelli consigliati. dell'utente.                                                                                                                                                                          | **UC7**   |
-| **RFD_7**  | L'utente può impostare la temperature del modello per generare codice, inserendo un valore decimale compreso tra 0 e 1.                                                                                                                                                                           | **UC1.4** |
-| **RFP_8**  | L'utente può inserire un Bearer Token per usare Ollama in un server esterno.                                                                                                                                                                                                                      | **UC1.5** |
-| **RFP_9**  | L'utente può inserire un endpoint specifico a cui indirizzare le richieste di Ollama.                                                                                                                                                                                                             | **UC1.1** |
-| **RFP_10** | L'utente può impostare il numero massimo di risultati da ottenere per ogni ricerca.                                                                                                                                                                                                               | **UC1.6** |
-| **RFP_11** | L'utente può specificare il prompt per la richiesta al modello di generazione del codice.                                                                                                                                                                                                         | **UC1.7** |
+| ID         | Descrizione                                                                                                                                                                     | Use Cases |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| **RFO_1**  | L'utente può scegliere il modello da utilizzare per generare codice.                                                                                                            | **UC1.2** |
+| **RFO_2**  | L'utente può scegliere il modello da utilizzare per l'embedding.                                                                                                                | **UC1.3** |
+| **RFD_3**  | L'utente può scegliere di utilizzare un modello custom per generare codice. È possibile indicare il nome di un modello personalizzato e installato nel dispositivo dell'utente. | **UC5**   |
+| **RFD_4**  | L'utente può scegliere di utilizzare un modello custom per l'embedding. È possibile indicare il nome di un modello personalizzato e installato nel dispositivo dell'utente.     | **UC6**   |
+| **RFO_5**  | L'utente può selezionare uno dei modelli proposti per generare codice selezionando uno dei modelli consigliati. dell'utente.                                                    | **UC4**   |
+| **RFO_6**  | L'utente può selezionare uno dei modelli proposti per l'embedding selezionando uno dei modelli consigliati. dell'utente.                                                        | **UC7**   |
+| **RFD_7**  | L'utente può impostare la temperature del modello per generare codice, inserendo un valore decimale compreso tra 0 e 1.                                                         | **UC1.4** |
+| **RFP_8**  | L'utente può inserire un Bearer Token per usare Ollama in un server esterno.                                                                                                    | **UC1.5** |
+| **RFP_9**  | L'utente può inserire un endpoint specifico a cui indirizzare le richieste di Ollama.                                                                                           | **UC1.1** |
+| **RFP_10** | L'utente può impostare il numero massimo di risultati da ottenere per ogni ricerca.                                                                                             | **UC1.6** |
+| **RFP_11** | L'utente può specificare il prompt per la richiesta al modello di generazione del codice.                                                                                       | **UC1.7** |
 
 Table: Requisiti funzionali per la configurazione dell'estensione
 
@@ -1329,13 +1329,13 @@ Table: Requisiti funzionali per l'output dei risultati dell'esecuzione
 
 - Errori
 
-| ID         | Descrizione                                                                                                                                                                                                                                                                                   | Use Cases  |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| **RFO_44** | L'Applicativo deve generare una notifica di errore se la struttura dati non è leggibile se il file risulta cancellato.                                                                                                                                                                        | **UC22**   |
-| **RFO_45** | L'Applicativo deve generare una notifica di errore se la struttura dati non è leggibile se il file risulta corrotto.                                                                                                                                                                          | **UC22**   |
-| **RFO_49** | L'Applicativo deve generare una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile se il puntatore è scorretto.                                                                                                                                      | **UC20**   |
-| **RFO_50** | L'Applicativo deve generare una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile se file è stato cancellato.                                                                                                                                       | **UC20**   |
-| **RFO_51** | L'Applicativo deve generare una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile se il file è corrotto.                                                                                                                                            | **UC20**   |
+| ID         | Descrizione                                                                                                                                              | Use Cases |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| **RFO_44** | L'Applicativo deve generare una notifica di errore se la struttura dati non è leggibile se il file risulta cancellato.                                   | **UC22**  |
+| **RFO_45** | L'Applicativo deve generare una notifica di errore se la struttura dati non è leggibile se il file risulta corrotto.                                     | **UC22**  |
+| **RFO_49** | L'Applicativo deve generare una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile se il puntatore è scorretto. | **UC20**  |
+| **RFO_50** | L'Applicativo deve generare una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile se file è stato cancellato.  | **UC20**  |
+| **RFO_51** | L'Applicativo deve generare una notifica di errore se la porzione di codice che implementa un requisito non è raggiungibile se il file è corrotto.       | **UC20**  |
 
 Table: Requisiti funzionali per gli errori dei risultati dell'esecuzione
 
@@ -1400,20 +1400,20 @@ Table: Requisiti qualitativi
 
 Table: Tracciamento caso d'uso e requisito associato - Parte 1
 
-| Caso d'uso | Requisito                                                              |
-| ---------- | ---------------------------------------------------------------------- |
-| UC15       | RFD_19, RFP_46, RFP_47, RFP_48                                         |
-| UC15.1     | RFD_19                                                                 |
-| UC15.2     | RFP_46, RFP_47, RFP_48                                                 |
-| UC15.3     | RFO_52                                                                 |
-| UC16       | RFD_25                                                                 |
-| UC17       | RFO_26, RFD_33                                                         |
-| UC18       | RFO_38                                                                 |
-| UC19       | RFO_27                                                                 |
-| UC20       | RFO_49, RFO_50, RFO_51                                                 |
-| UC21       | RFO_29, RFO_32, RF0_39, RFO_41, RFD_42, RFP_43                         |
-| UC22       | RFO_44, RFO_45                                                         |
-| UC23       | RFP_40                                                                 |
+| Caso d'uso | Requisito                                      |
+| ---------- | ---------------------------------------------- |
+| UC15       | RFD_19, RFP_46, RFP_47, RFP_48                 |
+| UC15.1     | RFD_19                                         |
+| UC15.2     | RFP_46, RFP_47, RFP_48                         |
+| UC15.3     | RFO_52                                         |
+| UC16       | RFD_25                                         |
+| UC17       | RFO_26, RFD_33                                 |
+| UC18       | RFO_38                                         |
+| UC19       | RFO_27                                         |
+| UC20       | RFO_49, RFO_50, RFO_51                         |
+| UC21       | RFO_29, RFO_32, RF0_39, RFO_41, RFD_42, RFP_43 |
+| UC22       | RFO_44, RFO_45                                 |
+| UC23       | RFP_40                                         |
 
 Table: Tracciamento caso d'uso e requisito associato - Parte 2
 
