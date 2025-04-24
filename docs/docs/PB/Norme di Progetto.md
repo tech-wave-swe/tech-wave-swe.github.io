@@ -645,12 +645,24 @@ Ogni %%test|test%% deve essere ben definito, deterministico e automatizzato al f
 
 I %%Test|test%% di Unità sono progettati per verificare una singola %%funzionalità|funzionalità%%, in modo isolato dal sistema, al fine di garantire il corretto funzionamento e l'aderenza alle specifiche. Questi %%test|test%% vengono pianificati durante la **Progettazione di Dettaglio**, sono completamente automatizzabili e devono essere eseguiti per primi in quanto verificano il corretto funzionamento della singola unità.
 
+Per l'esecuzione dei %%test|test%% di unità si deve eseguire il seguente comando all'interno della cartella del progetto:
+
+```bash
+npm run test:unit
+```
+
 ###### Test di integrazione
 
 I %%Test|test%% di Integrazione sono progettati per verificare il corretto funzionamento delle diverse %%funzionalità|funzionalità%% quando sono integrate tra loro. Questi %%test|test%% vengono pianificati durante la fase di Progettazione Architetturale tramite approccio:
 
 - **Top-Down**: Si inizia integrando le componenti di maggior valore esterno effettuando %%test|test%% prolungati sulle %%funzionalità|funzionalità%% principali. Necessita della simulazione di tutte le parti non ancora implementate tramite l'utilizzo di Mock.
 - **Bottom-Up**: Si inizia integrando le componenti di basso livello, più lontane dell'utente. Questo riduce la necessità di Mock ma ritarda la %%verifica|verifica%% sulle %%funzionalità|funzionalità%% principali.
+
+Per l'esecuzione dei %%test|test%% di unità si deve eseguire il seguente comando all'interno della cartella del progetto:
+
+```bash
+npm run test:integration
+```
 
 ###### Test di sistema
 
@@ -684,6 +696,14 @@ Ad ogni %%test|test%% viene associato uno stato che ne riflette il risultato di 
 ###### Strumenti
 
 - Jest: framework di testing JavaScript open source sviluppato da Meta, utilizzato per la scrittura e l'esecuzione di %%test|test%% unitari e di integrazione. Offre funzionalità avanzate come il mocking, l’analisi della copertura del codice e l’esecuzione parallela, garantendo %%efficienza|efficienza%% nei processi di verifica del software.
+
+- vscode/test-electron: libreria che consente di eseguire %%test|test%% di integrazione in un ambiente di sviluppo. Permette di simulare l'interazione con l'interfaccia utente dell'applicazione, facilitando la verifica del corretto funzionamento delle %%funzionalità|funzionalità%% in scenari reali.
+
+Per l'esecuzione di tutti i %%test|test%%, sia di unità e di integrazione si deve eseguire il seguente comando all'interno della cartella del progetto:
+
+```bash
+npm run test:all
+```
 
 ### Validazione
 
