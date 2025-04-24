@@ -2,26 +2,133 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
         <meta
             http-equiv="Content-Security-Policy"
-            content="default-src 'none'; style-src {{styleSrc}}; script-src 'nonce-{{nonce}}';"
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link href="{{styleResetUri}}" rel="stylesheet" />
-        <link href="{{styleVSCodeUri}}" rel="stylesheet" />
-        <link href="{{styleMainUri}}" rel="stylesheet" />
-        <title>Requirement Tracker</title>
-    </head>
-    <body>
-        <div class="content-wrapper">
-            <h1>Requirement Tracker</h1>
-            <label for="myfile">Select a file to insert the requirements:</label>
-            <input type="file" id="requirements-file-input" name="requirements-file-input" />
-            <label for="delimiter-input">Delimiter:</label>
-            <input type="text" id="delimiter-input" value="$" placeholder="Enter delimiter" />
-            <button id="requirements-confirmation-button">Apply requirements</button>
-            <table id="requirements-table"></table>
+    />
+    <title>Requirements Tracker</title>
+    <link href="{{styleResetUri}}" rel="stylesheet"/>
+    <link href="{{styleVSCodeUri}}" rel="stylesheet"/>
+    <link href="{{styleTrackerUri}}" rel="stylesheet"/>
+    <link href="{{styleCodiconsUri}}" rel="stylesheet"/>
+    <link href="{{styleEditModeUri}}" rel="stylesheet"/>
+</head>
+<body>
+<div id="tracker-ui" class="container">
+    <div class="tab-container">
+        <button class="tab active" id="tab-import" data-tab="import">Import</button>
+        <button class="tab" id="tab-track" data-tab="track">Track</button>
+        <button class="tab" id="tab-results" data-tab="results">Results</button>
+    </div>
+
+            <div class="loading" id="loading" style="display: none">
+                <div class="loading-spinner"></div>
+            </div>
+
+            <div id="import-tab" class="tab-content active">
+                <h2>Import Requirements</h2>
+                <div class="form-group">
+                    <label for="import-format">Format:</label>
+                    <select id="import-format">
+                        <option value="csv">CSV</option>
+                        <option value="reqif">ReqIF</option>
+                    </select>
+                </div>
+
+                <!-- Add CSV delimiter option -->
+                <div class="form-group" id="csv-options">
+                    <label for="csv-delimiter">CSV Delimiter:</label>
+                    <input id="csv-delimiter" maxlength="1" style="width: 40px" type="text" value="," />
+                    <p style="font-size: 0.8em; color: var(--vscode-descriptionForeground)">
+                        Default is comma (,). Use $ or other character for custom separators.
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label for="file-input">Choose File:</label>
+                    <input id="file-input" type="file" />
+                </div>
+
+                <div class="form-group">
+                    <label for="text-content">Or Paste Content:</label>
+                    <textarea id="text-content" rows="10" style="width: 100%; resize: none"></textarea>
+                </div>
+
+                <button id="import-button">Import Requirements</button>
+            </div>
+
+            <div class="tab-content" id="track-tab">
+                <h2>Track Requirements</h2>
+                <p>Track implementation status of requirements in your codebase.</p>
+
+                <div class="controls-wrapper">
+                    <button id="track-button">Start Tracking</button>
+                    <button id="clear-requirements">Clear Requirements</button>
+                </div>
+
+                <div class="form-group">
+                    <label> <input checked id="track-all" type="checkbox" /> Track all requirements </label>
+                </div>
+                <div id="requirements-table-wrapper"></div>
+            </div>
+            <div class="tab-content" id="results-tab">
+                <h2>Tracking Results</h2>
+
+                <div id="summary-section" style="display: none">
+                    <h3>Code Match Summary</h3>
+
+                    <p>
+                        To confirm the code implementation, click on the code reference, select the code implementation
+                        and click on "Interrogate on the Selected Code button on the top left corner of the screen. The
+                        response will be visible in the chat panel." and click on the
+                    </p>
+
+                    <div class="summary-chart">
+                        <div id="chart-confirmed-match" class="chart-confirmed-match" style="width: 0%"></div>
+                        <div id="chart-possible-match" class="chart-possible-match" style="width: 0%"></div>
+                        <div id="chart-unlikely-match" class="chart-unlikely-match" style="width: 0%"></div>
+                    </div>
+
+                    <div class="summary-legend">
+                        <div class="legend-item">
+                            <div class="legend-color chart-confirmed-match"></div>
+                            <span id="legend-confirmed-match">Confirmed: 0</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color chart-possible-match"></div>
+                            <span id="legend-possible-match">Possible: 0</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color chart-unlikely-match"></div>
+                            <span id="legend-unlikely-match">Unlikely: 0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="requirements-results">
+                    <p>No tracking results yet. Go to the Track tab to analyze requirements.</p>
+                </div>
+            </div>
         </div>
-        <script nonce="{{nonce}}" src="{{scriptUri}}"></script>
+        <div id="edit-mode-ui" class="hidden edit-mode-container">
+            <div class="edit-mode-header">
+                <div class="edit-mode-title">Modalità Editing</div>
+                <div class="edit-mode-subtitle">Seleziona nuove linee di codice come puntatore</div>
+            </div>
+            <div class="edit-mode-instructions">
+                <p>Riferimento originale:</p>
+                <div class="edit-mode-original">
+                    <span id="edit-mode-original-path"></span>:<span id="edit-mode-original-line"></span>
+                </div>
+                <p>Seleziona una o più righe in un file per impostare un nuovo puntatore</p>
+            </div>
+            <div class="edit-mode-selection" id="current-selection">Nessuna selezione</div>
+            <div class="edit-mode-actions">
+                <button id="confirm-edit" class="action-button confirm" disabled>Conferma</button>
+                <button id="cancel-edit" class="action-button cancel">Annulla</button>
+            </div>
+        </div>
+
+        <script nonce="{{nonce}}" src="{{scriptTrackerUri}}"></script>
     </body>
 </html>

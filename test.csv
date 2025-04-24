@@ -1,5 +1,4 @@
 GUID$Name$Notes$Type$Version
-{31A38164-4AD9-4ec4-BF4F-7877AB2FC7B1}$REQ-0$$Requirement$1.0
 {DEA4AB3D-B7F5-4ac6-A522-27D8FD6DA667}$REQ-1$The system shall enable the ADC1 internal voltage regulator before any conversions are performed.$Requirement$1.0
 {1CC22054-EC4F-4a9b-9FAC-A4288B537E32}$REQ-2$The ADC1 system shall perform self-calibration and verify its completion using `LL_ADC_IsCalibrationOnGoing()` before activation.$Requirement$1.0
 {24D8A651-AE32-4959-BA13-5249A01EB060}$REQ-3$The ADC1 activation process shall confirm the ADC is disabled using `LL_ADC_IsEnabled()` before proceeding to enable the ADC.$Requirement$1.0
