@@ -63,7 +63,7 @@ Al suo interno si trovano i seguenti documenti:
 - [Analisi dei Requisiti - v2.6.0](https://tech-wave-swe.github.io/docs/PB/analisi_dei_requisiti)
 - [Norme di Progetto - v1.8.5](https://tech-wave-swe.github.io/docs/PB/norme_di_progetto)
 - [Piano di Progetto - v2.4.9](https://tech-wave-swe.github.io/docs/PB/piano_di_progetto)
-- [Piano di Qualifica - v1.8.1](https://tech-wave-swe.github.io/docs/PB/piano_di_qualifica)
+- [Piano di Qualifica - v1.8.2](https://tech-wave-swe.github.io/docs/PB/piano_di_qualifica)
 - [Specifica Tecnica - v1.0.0](https://tech-wave-swe.github.io/docs/PB/specifica_tecnica)
 - [Manuale Utente - v1.0.0](https://tech-wave-swe.github.io/docs/PB/manuale_utente)
 - [Glossario - v2.3.0](https://tech-wave-swe.github.io/docs/glossario)
