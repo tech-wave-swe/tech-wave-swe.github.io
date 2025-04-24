@@ -4,8 +4,11 @@ title: Versionamento
 hoverText: Processo di gestione delle diverse versioni delle componenti di un progetto software, per tenere traccia delle modifiche e consentire la collaborazione.
 ---
 
+<!-- ::: {.no-export} -->
+
 import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
 
+<!-- ::: -->
 
 ### Spiegazione del termine
 

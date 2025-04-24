@@ -4,8 +4,11 @@ title: GitHub Pages
 hoverText: Servizio di hosting che prende file HTML, CSS e JavaScript direttamente da un repository su GitHub e pubblica un sito web.
 ---
 
+<!-- ::: {.no-export} -->
+
 import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
 
+<!-- ::: -->
 
 ### Spiegazione del termine
 

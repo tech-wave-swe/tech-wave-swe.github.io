@@ -4,8 +4,11 @@ title: Architettura
 hoverText: Design. Consiste nell'individuazione e nella definizione del funzionamento delle parti di un prodotto software.
 ---
 
+<!-- ::: {.no-export} -->
+
 import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
 
+<!-- ::: -->
 
 ### Spiegazione del termine
 

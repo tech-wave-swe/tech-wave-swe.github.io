@@ -4,8 +4,11 @@ title: Backlog
 hoverText: Elenco di requisiti che il team di sviluppo deve completare durante il progetto.
 ---
 
+<!-- ::: {.no-export} -->
+
 import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
 
+<!-- ::: -->
 
 ### Spiegazione del termine
 

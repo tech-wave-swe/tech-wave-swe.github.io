@@ -31,6 +31,11 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 | 10/04/2025 | 1.7.5    | Cambio stato test di accettazione                        | Marcon Giulia         | 10/04/2025    | Carraro Agnese        |
 | 30/03/2025 | 1.7.4    | Controllo consistenza maiuscole                          | Dal Bianco Riccardo   | 30/03/2025    | Vasquez Manuel Felipe |
 | 07/03/2025 | 1.7.3    | Aggiunta interpretazione dei grafici                     | Monetti Luca          | 07/03/2025    | Pistori Gaia          |
+
+Table: Changelog prima parte
+
+| Data       | Versione | Descrizione                                              | Autore                | Data Verifica | Verificatore          |
+| ---------- | -------- | -------------------------------------------------------- | --------------------- | ------------- | --------------------- |
 | 06/03/2025 | 1.7.2    | Miglioramento metriche                                   | Piola Andrea          | 07/03/2025    | Monetti Luca          |
 | 24/02/2025 | 1.7.1    | Fix indici tabelle                                       | Piola Andrea          | 25/02/2025    | Pistori Gaia          |
 | 09/02/2025 | 1.7.0    | Note di auto-miglioramento                               | Vasquez Manuel Felipe | 12/02/2025    | Monetti Luca          |
@@ -839,13 +844,13 @@ Table: Test di unità sulla classe _TrackerWebviewProvider_ prima parte
 | TU324 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_handleMessageFromWebview_ gestisca correttamente gli errori di tipo oggetto                              | Superato |
 | TU325 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onAnalyzeImplementation_ gestisca correttamente l'analisi dell'implementazione                           | Superato |
 | TU326 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onAnalyzeImplementation_ gestisca correttamente gli errori durante l'analisi dell'implementazione        | Superato |
-| TU327 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _onChangeTextEditorSelection_ gestisca i cambiamenti di selezione nell'editor di testo in modalità modifica | Superato |
-| TU328 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _onChangeTextEditorSelection_ non gestisca i cambiamenti di selezione quando non è in modalità modifica     | Superato |
 
 Table: Test di unità sulla classe _TrackerWebviewProvider_ seconda parte
 
 | ID    | Descrizione                                                                                                                                                                        | Stato    |
-| ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| ----- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| -------- |
+| TU327 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _onChangeTextEditorSelection_ gestisca i cambiamenti di selezione nell'editor di testo in modalità modifica       | Superato |
+| TU328 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _onChangeTextEditorSelection_ non gestisca i cambiamenti di selezione quando non è in modalità modifica           | Superato |
 | TU329 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onConfirmRequirementImplementation_ gestisca correttamente la conferma dell'implementazione dei requisiti      | Superato |
 | TU330 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onRejectRequirementImplementation_ gestisca correttamente il rifiuto dell'implementazione dei requisiti        | Superato |
 | TU331 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onStartEditMode_ gestisca correttamente l'avvio della modalità modifica                                        | Superato |
@@ -854,35 +859,35 @@ Table: Test di unità sulla classe _TrackerWebviewProvider_ seconda parte
 | TU334 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onConfirmEditImplementation_ gestisca gli errori durante la conferma quando non c'è un riferimento corrente    | Superato |
 | TU335 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onConfirmEditImplementation_ gestisca gli errori durante la conferma quando non c'è un riferimento selezionato | Superato |
 | TU336 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onCancelEditImplementation_ gestisca correttamente l'annullamento della modifica dell'implementazione          | Superato |
-| TU337 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onCancelEditImplementation_ gestisca gli errori durante l'annullamento quando non c'è un riferimento corrente  | Superato |
-| TU338 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_updateRequirementsDisplay_ gestisca correttamente l'aggiornamento della vista per requisiti non vuoti          | Superato |
-| TU339 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_handleMessageFromWebview_ gestisca correttamente gli errori con formattazione personalizzata dei messaggi      | Superato |
-| TU340 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_stopEditMode_ gestisca correttamente l'arresto della modalità modifica e la pulizia dei riferimenti            | Superato |
 
 Table: Test di unità sulla classe _TrackerWebviewProvider_ terza parte
 
-| ID    | Descrizione                                                                                                                                                                   | Stato    |
-| ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| TU341 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onTabToImport_ gestisca correttamente il passaggio alla scheda di importazione                            | Superato |
-| TU342 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onTabToTrack_ gestisca correttamente il passaggio alla scheda di tracciamento                             | Superato |
-| TU343 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onTabToResults_ gestisca correttamente il passaggio alla scheda dei risultati                             | Superato |
-| TU344 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onTabToResults_ non invii messaggi quando non ci sono risultati di tracciamento                           | Superato |
-| TU345 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onConfirmRequirementImplementation_ arresti la modalità modifica durante la conferma dell'implementazione | Superato |
-| TU346 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onImportRequirements_ arresti la modalità modifica durante l'importazione dei requisiti                   | Superato |
-| TU347 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onTrackRequirements_ arresti la modalità modifica durante il tracciamento dei requisiti                   | Superato |
-| TU348 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onOpenFile_ arresti la modalità modifica durante l'apertura di un file                                    | Superato |
-| TU349 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onClearRequirements_ arresti la modalità modifica durante la pulizia dei requisiti                        | Superato |
-| TU350 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_updateRequirementsDisplay_ arresti la modalità modifica durante l'aggiornamento della visualizzazione     | Superato |
-| TU351 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onEditRequirement_ arresti la modalità modifica durante la modifica di un requisito                       | Superato |
-| TU352 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onDeleteRequirement_ arresti la modalità modifica durante l'eliminazione di un requisito                  | Superato |
+| ID    | Descrizione                                                                                                                                                                         | Stato    |
+| ----- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| -------- |
+| TU337 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onCancelEditImplementation_ gestisca gli errori durante l'annullamento quando non c'è un riferimento corrente   | Superato |
+| TU338 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_updateRequirementsDisplay_ gestisca correttamente l'aggiornamento della vista per requisiti non vuoti           | Superato |
+| TU339 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_handleMessageFromWebview_ gestisca correttamente gli errori con formattazione personalizzata dei messaggi       | Superato |
+| TU340 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_stopEditMode_ gestisca correttamente l'arresto della modalità modifica e la pulizia dei riferimenti             | Superato |
+| TU341 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onTabToImport_ gestisca correttamente il passaggio alla scheda di importazione                                  | Superato |
+| TU342 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onTabToTrack_ gestisca correttamente il passaggio alla scheda di tracciamento                                   | Superato |
+| TU343 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onTabToResults_ gestisca correttamente il passaggio alla scheda dei risultati                                   | Superato |
+| TU344 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onTabToResults_ non invii messaggi quando non ci sono risultati di tracciamento                                 | Superato |
+| TU345 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onConfirmRequirementImplementation_ arresti la modalità modifica durante la conferma dell'implementazione       | Superato |
+| TU346 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onImportRequirements_ arresti la modalità modifica durante l'importazione dei requisiti                         | Superato |
 
 Table: Test di unità sulla classe _TrackerWebviewProvider_ quarta parte
 
-| ID    | Descrizione                                                                                                                                                                 | Stato    |
-| ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| TU353 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onRejectRequirementImplementation_ arresti la modalità modifica durante il rifiuto dell'implementazione | Superato |
-| TU354 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_serializeTrackingResults_ gestisca correttamente la serializzazione dei risultati di tracciamento       | Superato |
-| TU355 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_startEditMode_ gestisca correttamente il riferimento corrente durante la modalità modifica              | Superato |
+| ID    | Descrizione                                                                                                                                                                    | Stato    |
+| ----- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| -------- |
+| TU347 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onTrackRequirements_ arresti la modalità modifica durante il tracciamento dei requisiti                    | Superato |
+| TU348 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onOpenFile_ arresti la modalità modifica durante l'apertura di un file                                     | Superato |
+| TU349 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onClearRequirements_ arresti la modalità modifica durante la pulizia dei requisiti                         | Superato |
+| TU350 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_updateRequirementsDisplay_ arresti la modalità modifica durante l'aggiornamento della visualizzazione      | Superato |
+| TU351 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onEditRequirement_ arresti la modalità modifica durante la modifica di un requisito                        | Superato |
+| TU352 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onDeleteRequirement_ arresti la modalità modifica durante l'eliminazione di un requisito                   | Superato |
+| TU353 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_onRejectRequirementImplementation_ arresti la modalità modifica durante il rifiuto dell'implementazione    | Superato |
+| TU354 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_serializeTrackingResults_ gestisca correttamente la serializzazione dei risultati di tracciamento          | Superato |
+| TU355 | Verifica, sulla classe _TrackerWebviewProvider_, che la funzione _\_startEditMode_ gestisca correttamente il riferimento corrente durante la modalità modifica                 | Superato |
 
 Table: Test di unità sulla classe _TrackerWebviewProvider_ quinta parte
 
@@ -1022,13 +1027,13 @@ Table: Test di unità sulla classe _RequirementsService_
 | TU437 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_determineImplementationStatus_ ritorni "unlikely-match" nel caso di punteggi bassi                    | Superato |
 | TU438 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _trackAllRequirements_ gestisca correttamente gli errori durante il tracciamento                         | Superato |
 | TU439 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _trackAllRequirements_ tracci i requisiti e ritorni un riassunto                                         | Superato |
-| TU440 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _trackAllRequirements_ crei un nuovo riepilogo quando non ne esiste uno                                  | Superato |
-| TU441 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _trackAllRequirements_ elabori i file dei requisiti con i filtri                                         | Superato |
 
 Table: Test di unità sulla classe _RequirementsTrackerService_ prima parte
 
 | ID    | Descrizione                                                                                                                                                                   | Stato    |
 | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| TU440 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _trackAllRequirements_ crei un nuovo riepilogo quando non ne esiste uno                                  | Superato |
+| TU441 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _trackAllRequirements_ elabori i file dei requisiti con i filtri                                         | Superato |
 | TU442 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _trackAllRequirements_ tracci i requisiti con filtri usando file di codice filtrati                      | Superato |
 | TU443 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _trackAllRequirements_ copra il caso "possible-match"                                                    | Superato |
 | TU444 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _trackAllRequirements_ copra il caso "unlikely-match"                                                    | Superato |
@@ -1036,37 +1041,42 @@ Table: Test di unità sulla classe _RequirementsTrackerService_ prima parte
 | TU446 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_findSingleRequirementCodeFiles_ utilizzi i filtri dei requisiti quando disponibili                    | Superato |
 | TU447 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_findSingleRequirementCodeFiles_ utilizzi il pattern predefinito quando non trova filtri dei requisiti | Superato |
 | TU448 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_findSingleRequirementCodeFiles_ aggreghi i file da tutte le cartelle del workspace                    | Superato |
-| TU449 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_processRequirementFile_ elabori i file per un requisito con file di codice                            | Superato |
-| TU450 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_processRequirementFile_ non elabori i file quando non trova file di codice                            | Superato |
-| TU451 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_processRequirementFile_ propaghi gli errori da processFiles                                           | Superato |
-| TU452 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_getFilters_ ritorni i filtri corretti con solo i path inclusi                                         | Superato |
-| TU453 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_getFilters_ ritorni i filtri corretti con entrambi i path e le estensioni incluse                     | Superato |
 
 Table: Test di unità sulla classe _RequirementsTrackerService_ seconda parte
 
 | ID    | Descrizione                                                                                                                                                                     | Stato    |
-| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| ----- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| -------- |
+| TU449 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_processRequirementFile_ elabori i file per un requisito con file di codice                              | Superato |
+| TU450 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_processRequirementFile_ non elabori i file quando non trova file di codice                              | Superato |
+| TU451 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_processRequirementFile_ propaghi gli errori da processFiles                                             | Superato |
+| TU452 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_getFilters_ ritorni i filtri corretti con solo i path inclusi                                           | Superato |
+| TU453 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_getFilters_ ritorni i filtri corretti con entrambi i path e le estensioni incluse                       | Superato |
 | TU454 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_getFilters_ gestisca correttamente i path con singoli include                                           | Superato |
 | TU455 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_getFilters_ gestisca correttamente l'assenza di filtri                                                  | Superato |
 | TU456 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_getFilters_ combini correttamente filtri multipli per path ed estensioni                                | Superato |
 | TU457 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_getFilters_ mantenga l'ordine dei filtri durante il merge                                               | Superato |
+
+Table: Test di unità sulla classe _RequirementsTrackerService_ terza parte
+
+| ID    | Descrizione                                                                                                                                                                     | Stato    |
+| ----- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| -------- |
 | TU458 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _processWorkspaceFiles_ elabori tutti i files del workspace                                                | Superato |
 | TU459 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _processWorkspaceFiles_ gestisca il caso in cui il workspace non abbia cartelle                            | Superato |
 | TU460 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_findWorkspaceCodeFiles_ ritorni un warning se non sono state trovate cartelle nel workspace             | Superato |
 | TU461 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_calculateImplementationScore_ calcoli correttamente il punteggio di implementazione                     | Superato |
 | TU462 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_calculateImplementationScore_ ritorni zero se i riferimenti sono vuoti                                  | Superato |
 | TU463 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_calculateAverageScore_ ritorni zero se il punteggio medio è indefinito                                  | Superato |
-| TU464 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_convertToCodeReferences_ ordini al contrario                                                            | Superato |
-| TU465 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_convertToCodeReferences_ gestisca correttamente il calcolo del numero di linea per il range di contesto | Superato |
-
-Table: Test di unità sulla classe _RequirementsTrackerService_ terza parte
-
-| ID    | Descrizione                                                                                                                                             | Stato    |
-| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| TU466 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _analyzeImplementation_ analizzi l'implementazione con successo                    | Superato |
-| TU467 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _analyzeImplementation_ gestisca gli errori durante l'analisi dell'implementazione | Superato |
 
 Table: Test di unità sulla classe _RequirementsTrackerService_ quarta parte
+
+| ID    | Descrizione                                                                                                                                                                     | Stato    |
+| ----- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| -------- |
+| TU464 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_convertToCodeReferences_ ordini al contrario                                                            | Superato |
+| TU465 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _\_convertToCodeReferences_ gestisca correttamente il calcolo del numero di linea per il range di contesto | Superato |
+| TU466 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _analyzeImplementation_ analizzi l'implementazione con successo                                            | Superato |
+| TU467 | Verifica, sulla classe _RequirementsTrackerService_, che la funzione _analyzeImplementation_ gestisca gli errori durante l'analisi dell'implementazione                         | Superato |
+
+Table: Test di unità sulla classe _RequirementsTrackerService_ quinta parte
 
 | ID    | Descrizione                                                                                                                                                                      | Stato    |
 | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
@@ -1095,24 +1105,24 @@ Table: Test di unità sulla classe _TrackingResultService_ prima parte
 | TU485 | Verifica, sulla classe _TrackingResultService_, che la funzione _getById_ ritorni il risultato di tracciamento per un ID esistente                                            | Superato |
 | TU486 | Verifica, sulla classe _TrackingResultService_, che la funzione _getTrackingResultSummary_ ritorni undefined quando si verifica un errore nel recupero del riepilogo          | Superato |
 | TU487 | Verifica, sulla classe _TrackingResultService_, che la funzione _getTrackingResultSummary_ ritorni il riepilogo dei risultati di tracciamento quando i dati esistono          | Superato |
-| TU488 | Verifica, sulla classe _TrackingResultService_, che la funzione _getTrackingResultSummary_ gestisca uno stato memorizzato mancante nel recupero del riepilogo                 | Superato |
 
 Table: Test di unità sulla classe _TrackingResultService_ seconda parte
 
-| ID    | Descrizione                                                                                                                                        | Stato    |
-| ----- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| TU489 | Verifica, sulla classe _TrackingResultService_, che gestisca correttamente il caricamento di uno stato memorizzato valido                          | Superato |
-| TU490 | Verifica, sulla classe _TrackingResultService_, che lanci un errore quando tenta di salvare con dettagli undefined                                 | Superato |
-| TU491 | Verifica, sulla classe _TrackingResultService_, che gestisca un formato di stato memorizzato non valido                                            | Superato |
-| TU492 | Verifica, sulla classe _TrackingResultService_, che gestisca uno stato memorizzato con risultati                                                   | Superato |
-| TU493 | Verifica, sulla classe _TrackingResultService_, che gestisca risultati mancanti nello stato memorizzato                                            | Superato |
-| TU494 | Verifica, sulla classe _TrackingResultService_, che gestisca uno stato memorizzato mancante                                                        | Superato |
-| TU495 | Verifica, sulla classe _TrackingResultService_, che gestisca uno stato memorizzato parziale                                                        | Superato |
-| TU496 | Verifica, sulla classe _TrackingResultService_, che carichi e memorizzi i requisiti dallo stato                                                    | Superato |
-| TU497 | Verifica, sulla classe _TrackingResultService_, che aggiorni i dettagli esistenti durante il salvataggio di un nuovo risultato di tracciamento     | Superato |
-| TU498 | Verifica, sulla classe _TrackingResultService_, che la funzione _deleteRequirement_ elimini un requisito e aggiorni i conteggi                     | Superato |
-| TU499 | Verifica, sulla classe _TrackingResultService_, che la funzione _deleteRequirement_ non faccia nulla quando i dettagli sono undefined              | Superato |
-| TU500 | Verifica, sulla classe _TrackingResultService_, che la funzione _getTrackingResultSummary_ ritorni undefined quando un errore occorre in \_DStoTRS | Superato |
+| ID    | Descrizione                                                                                                                                                                  | Stato    |
+| ----- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| -------- |
+| TU488 | Verifica, sulla classe _TrackingResultService_, che la funzione _getTrackingResultSummary_ gestisca uno stato memorizzato mancante nel recupero del riepilogo                | Superato |
+| TU489 | Verifica, sulla classe _TrackingResultService_, che gestisca correttamente il caricamento di uno stato memorizzato valido                                                    | Superato |
+| TU490 | Verifica, sulla classe _TrackingResultService_, che lanci un errore quando tenta di salvare con dettagli undefined                                                           | Superato |
+| TU491 | Verifica, sulla classe _TrackingResultService_, che gestisca un formato di stato memorizzato non valido                                                                      | Superato |
+| TU492 | Verifica, sulla classe _TrackingResultService_, che gestisca uno stato memorizzato con risultati                                                                             | Superato |
+| TU493 | Verifica, sulla classe _TrackingResultService_, che gestisca risultati mancanti nello stato memorizzato                                                                      | Superato |
+| TU494 | Verifica, sulla classe _TrackingResultService_, che gestisca uno stato memorizzato mancante                                                                                  | Superato |
+| TU495 | Verifica, sulla classe _TrackingResultService_, che gestisca uno stato memorizzato parziale                                                                                  | Superato |
+| TU496 | Verifica, sulla classe _TrackingResultService_, che carichi e memorizzi i requisiti dallo stato                                                                              | Superato |
+| TU497 | Verifica, sulla classe _TrackingResultService_, che aggiorni i dettagli esistenti durante il salvataggio di un nuovo risultato di tracciamento                               | Superato |
+| TU498 | Verifica, sulla classe _TrackingResultService_, che la funzione _deleteRequirement_ elimini un requisito e aggiorni i conteggi                                               | Superato |
+| TU499 | Verifica, sulla classe _TrackingResultService_, che la funzione _deleteRequirement_ non faccia nulla quando i dettagli sono undefined                                        | Superato |
+| TU500 | Verifica, sulla classe _TrackingResultService_, che la funzione _getTrackingResultSummary_ ritorni undefined quando un errore occorre in \_DStoTRS                           | Superato |
 
 Table: Test di unità sulla classe _TrackingResultService_ terza parte
 
@@ -1227,12 +1237,12 @@ Table: Test di sistema seconda parte
 | TS24 | Verifica che l'utente, tramite l'interfaccia grafica, possa specificare dei filtri per indicare un file nel quale ricercare l'implementazione di un preciso requisito                         | RFD_24       | Superato |
 | TS25 | Verifica che l'utente, tramite l'interfaccia grafica, possa selezionare una porzione di codice sulla quale eseguire nuovamente la ricerca                                                     | RFD_25       | Superato |
 | TS26 | Verifica che l'utente, tramite l'interfaccia grafica, possa effettuare una nuova ricerca su tutto il codice                                                                                   | RFO_26       | Superato |
-| TS27 | Verifica che l'utente, tramite l'interfaccia grafica, possa visualizzare la porzione di codice che implementa un requisito tramite il puntatore indicato nella tabella che lo riporta al file | RFO_27       | Superato |
 
 Table: Test di sistema terza parte
 
 | ID   | Descrizione                                                                                                                                                                                                                                                        | ID Requisito | Stato            |
-| ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------ | ---------------- |
+| ---- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| ------------ |------------------|
+| TS27 | Verifica che l'utente, tramite l'interfaccia grafica, possa visualizzare la porzione di codice che implementa un requisito tramite il puntatore indicato nella tabella che lo riporta al file                                                                      | RFO_27       | Superato         |
 | TS28 | Verifica che l'applicativo effettui il parsing del documento dei requisiti                                                                                                                                                                                         | RFO_28       | Superato         |
 | TS29 | Verifica che l'applicativo generi una struttura dati a partire dal parsing del documento dei requisiti                                                                                                                                                             | RFO_29       | Superato         |
 | TS30 | Verifica che l'applicativo generi una notifica di errore se il parsing non è andato a buon fine a causa del formato file scorretto                                                                                                                                 | RFO_30       | Superato         |

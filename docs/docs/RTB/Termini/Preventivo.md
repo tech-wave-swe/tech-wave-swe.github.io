@@ -4,8 +4,11 @@ title: Preventivo
 hoverText: Documento in cui si trovano le stime del costo di determinate attività.
 ---
 
+<!-- ::: {.no-export} -->
+
 import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
 
+<!-- ::: -->
 
 ### Spiegazione del termine
 

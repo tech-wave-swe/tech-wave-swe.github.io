@@ -21,33 +21,38 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 <!-- ::: -->
 
-| Data       | Versione | Descrizione                                                                            | Autore                 | Data Verifica | Verificatore          |
-|------------|----------|----------------------------------------------------------------------------------------|------------------------|---------------|-----------------------|
-| 24/04/2025 | 2.5.0    | Report finali                                                                          | Monetti Luca           | 24/04/2025    | Carraro Agnese        |
-| 24/04/2025 | 2.4.11   | Aggiunta consuntivo sprint 10                                                          | Monetti Luca           | 24/04/2025    | Carraro Agnese        |
-| 22/04/2025 | 2.4.10   | Aggiunta preventivo sprint 10                                                          | Monetti Luca           | 23/04/2025    | Carraro Agnese        |
-| 22/04/2025 | 2.4.9    | Aggiunta consuntivo sprint 9                                                           | Pistori Gaia           | 22/04/2025    | Monetti Luca          |
-| 12/04/2025 | 2.4.8    | Aggiunta preventivo sprint 9                                                           | Pistori Gaia           | 13/04/2025    | Monetti Luca          |
-| 10/04/2025 | 2.4.7    | Aggiornamento sezioni rischi negli sprint                                              | Dal Bianco Riccardo    | 11/04/2025    | Pistori Gaia          |
-| 31/03/2025 | 2.4.6    | Aggiunta consuntivo sprint 8                                                           | Carraro Agnese         | 31/03/2025    | Marcon Giulia         |
-| 30/03/2025 | 2.4.5    | Controllo consistenza maiuscole                                                        | Dal Bianco Riccardo    | 30/03/2025    | Vasquez Manuel Felipe |
-| 17/03/2025 | 2.4.4    | Aggiunta preventivo sprint 8                                                           | Carraro Agnese         | 18/03/2025    | Marcon Giulia         |
-| 17/03/2025 | 2.4.3    | Aggiunta consuntivo sprint 7                                                           | Manuel Felipe Vasquez  | 14/03/2025    | Pistori Gaia          |
-| 10/03/2025 | 2.4.2    | Aggiunta preventivo sprint 7                                                           | Manuel Felipe Vasquez  | 14/03/2025    | Monetti Luca          |
-| 07/03/2025 | 2.4.1    | Aggiunta consuntivo sprint 6                                                           | Marcon Giulia          | 07/03/2025    | Monetti Luca          |
-| 28/02/2025 | 2.4.0    | Aggiunta diagrammi Gantt                                                               | Piola Andrea           | 28/02/2025    | Marcon Giulia         |
-| 28/02/2025 | 2.3.1    | Correzioni grammaticali e sintattiche                                                  | Marcon Giulia          | 28/02/2025    | Piola Andrea          |
-| 23/02/2025 | 2.3.0    | Aggiunta preventivo sprint 6                                                           | Marcon Giulia          | 24/02/2025    | Carraro Agnese        |
-| 22/02/2025 | 2.2.1    | Aggiunta rendicontazione sprint 5                                                      | Pistori Gaia           | 23/02/2025    | Luca Monetti          |
-| 12/02/2025 | 2.2.0    | Refactoring                                                                            | Piola Andrea           | 17/02/2025    | Pistori Gaia          |
-| 05/02/2025 | 2.1.1    | Minor fix                                                                              | Piola Andrea           | 17/02/2025    | Pistori Gaia          |
-| 26/01/2025 | 2.1.0    | Aggiunta consuntivo sprint 3 e preventivo sprint 4                                     | Dal Bianco Riccardo    | 26/01/2025    | Piola Andrea          |
-| 10/01/2025 | 2.0.1    | Aggiunta termini Glossario                                                             | Monetti Luca           | 16/01/2025    | Dal Bianco Riccardo   |
-| 09/01/2025 | 2.0.0    | Ristrutturazione documento, sistemazione consuntivi 1° e 2° Sprint, aggiunta 3° Sprint | Monetti Luca           | 16/01/2025    | Dal Bianco Riccardo   |
-| 21/12/2024 | 1.3.0    | Integrazione sezione 3, 4, 5 con secondo sprint                                        | Dal Bianco Riccardo    | 22/12/2024    | Carraro Agnese        |
-| 02/12/2024 | 1.2.0    | Aggiunta sezione 2                                                                     | Piola Andrea           | 04/12/2024    | Pistori Gaia          |
-| 27/11/2024 | 1.1.0    | Aggiunta sezione 3 e 4 con primo sprint                                                | Piola Andrea           | 28/11/2024    | Pistori Gaia          |
-| 24/11/2024 | 1.0.0    | Prima stesura del documento con indice e sezione 1                                     | Piola Andrea           | 25/11/2024    | Pistori Gaia          |
+| Data       | Versione | Descrizione                                                                            | Autore                | Data Verifica | Verificatore          |
+|------------|----------|----------------------------------------------------------------------------------------|-----------------------|---------------|-----------------------|
+| 24/04/2025 | 2.5.0    | Report finali                                                                          | Monetti Luca          | 24/04/2025    | Carraro Agnese        |
+| 24/04/2025 | 2.4.11   | Aggiunta consuntivo sprint 10                                                          | Monetti Luca          | 24/04/2025    | Carraro Agnese        |
+| 22/04/2025 | 2.4.10   | Aggiunta preventivo sprint 10                                                          | Monetti Luca          | 23/04/2025    | Carraro Agnese        |
+| 22/04/2025 | 2.4.9    | Aggiunta consuntivo sprint 9                                                           | Pistori Gaia          | 22/04/2025    | Monetti Luca          |
+| 12/04/2025 | 2.4.8    | Aggiunta preventivo sprint 9                                                           | Pistori Gaia          | 13/04/2025    | Monetti Luca          |
+| 10/04/2025 | 2.4.7    | Aggiornamento sezioni rischi negli sprint                                              | Dal Bianco Riccardo   | 11/04/2025    | Pistori Gaia          |
+| 31/03/2025 | 2.4.6    | Aggiunta consuntivo sprint 8                                                           | Carraro Agnese        | 31/03/2025    | Marcon Giulia         |
+| 30/03/2025 | 2.4.5    | Controllo consistenza maiuscole                                                        | Dal Bianco Riccardo   | 30/03/2025    | Vasquez Manuel Felipe |
+| 17/03/2025 | 2.4.4    | Aggiunta preventivo sprint 8                                                           | Carraro Agnese        | 18/03/2025    | Marcon Giulia         |
+| 17/03/2025 | 2.4.3    | Aggiunta consuntivo sprint 7                                                           | Vasquez Manuel Felipe | 14/03/2025    | Pistori Gaia          |
+| 10/03/2025 | 2.4.2    | Aggiunta preventivo sprint 7                                                           | Vasquez Manuel Felipe | 14/03/2025    | Monetti Luca          |
+| 07/03/2025 | 2.4.1    | Aggiunta consuntivo sprint 6                                                           | Marcon Giulia         | 07/03/2025    | Monetti Luca          |
+
+Table: Changelog prima parte
+
+| Data       | Versione | Descrizione                                                                            | Autore                | Data Verifica | Verificatore          |
+|------------|----------|----------------------------------------------------------------------------------------|-----------------------|---------------|-----------------------|
+| 28/02/2025 | 2.4.0    | Aggiunta diagrammi Gantt                                                               | Piola Andrea          | 28/02/2025    | Marcon Giulia         |
+| 28/02/2025 | 2.3.1    | Correzioni grammaticali e sintattiche                                                  | Marcon Giulia         | 28/02/2025    | Piola Andrea          |
+| 23/02/2025 | 2.3.0    | Aggiunta preventivo sprint 6                                                           | Marcon Giulia         | 24/02/2025    | Carraro Agnese        |
+| 22/02/2025 | 2.2.1    | Aggiunta rendicontazione sprint 5                                                      | Pistori Gaia          | 23/02/2025    | Monetti Luca          |
+| 12/02/2025 | 2.2.0    | Refactoring                                                                            | Piola Andrea          | 17/02/2025    | Pistori Gaia          |
+| 05/02/2025 | 2.1.1    | Minor fix                                                                              | Piola Andrea          | 17/02/2025    | Pistori Gaia          |
+| 26/01/2025 | 2.1.0    | Aggiunta consuntivo sprint 3 e preventivo sprint 4                                     | Dal Bianco Riccardo   | 26/01/2025    | Piola Andrea          |
+| 10/01/2025 | 2.0.1    | Aggiunta termini Glossario                                                             | Monetti Luca          | 16/01/2025    | Dal Bianco Riccardo   |
+| 09/01/2025 | 2.0.0    | Ristrutturazione documento, sistemazione consuntivi 1° e 2° Sprint, aggiunta 3° Sprint | Monetti Luca          | 16/01/2025    | Dal Bianco Riccardo   |
+| 21/12/2024 | 1.3.0    | Integrazione sezione 3, 4, 5 con secondo sprint                                        | Dal Bianco Riccardo   | 22/12/2024    | Carraro Agnese        |
+| 02/12/2024 | 1.2.0    | Aggiunta sezione 2                                                                     | Piola Andrea          | 04/12/2024    | Pistori Gaia          |
+| 27/11/2024 | 1.1.0    | Aggiunta sezione 3 e 4 con primo sprint                                                | Piola Andrea          | 28/11/2024    | Pistori Gaia          |
+| 24/11/2024 | 1.0.0    | Prima stesura del documento con indice e sezione 1                                     | Piola Andrea          | 25/11/2024    | Pistori Gaia          |
 
 Table: Changelog
 

@@ -3,8 +3,8 @@ id: norme_di_progetto
 title: "Norme di Progetto - v1.8.5"
 documentclass: TWDocumentFull
 toc: true
-lof: true
 numbersections: true
+toc-depth: 4
 version: 1.8.4
 classification: Interno
 ---
@@ -30,6 +30,11 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 | 07/03/2025 | 1.8.1    | Aggiunta sezione PoC                               | Monetti Luca        | 07/03/2025    | Marcon Giulia         |
 | 27/02/2025 | 1.8.0    | Revisione del documento                            | Carraro Agnese      | 28/02/2025    | Monetti Luca          |
 | 23/02/2025 | 1.7.1    | Procedure per la rendicontazione delle ore         | Pistori Gaia        | 25/02/2025    | Carraro Agnese        |
+
+Table: Changelog prima parte
+
+| Data       | Versione | Descrizione                                        | Autore              | Data Verifica | Verificatore          |
+| ---------- | -------- | -------------------------------------------------- | ------------------- | ------------- | --------------------- |
 | 20/02/2025 | 1.7.0    | Aggiunto tracciamento e rendicontazione delle ore  | Marcon Giulia       | 25/02/2025    | Carraro Agnese        |
 | 06/02/2025 | 1.6.0    | Aggiunta processi di Supporto                      | Monetti Luca        | 08/02/2025    | Carraro Agnese        |
 | 20/01/2025 | 1.5.0    | Aggiunta processi Primari                          | Pistori Gaia        | 21/01/2025    | Monetti Luca          |
@@ -1198,7 +1203,7 @@ I **%%test|test%% di %%verifica|verifica%% e validazione** vengono eseguiti in t
 
 Le metriche sono strumenti di misurazione della qualità di un prodotto o di un processo. Tramite queste metriche viene monitorata e valutata l'efficacia e l'efficienza del lavoro effettuato, per poi capire dove e come migliorarlo.
 
-Tutte le metriche vengono definite e spiegate nel documento [Piano di Qualifica](https://tech-wave-swe.github.io/docs/PB/piano_di_qualifica).
+Tutte le metriche vengono definite e spiegate nel documento [Piano di Qualifica - v1.8.5](https://tech-wave-swe.github.io/docs/PB/piano_di_qualifica).
 
 <!-- ::: {.no-export} -->
 

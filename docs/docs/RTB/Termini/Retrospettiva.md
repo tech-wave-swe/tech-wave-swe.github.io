@@ -4,8 +4,11 @@ title: Retrospettiva
 hoverText: Tecnica Agile messa in atto alla fine di uno sprint per capire cosa è andato bene durante esso e cosa si può migliorare in quelli successivi.
 ---
 
+<!-- ::: {.no-export} -->
+
 import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
 
+<!-- ::: -->
 
 ### Spiegazione del termine
 

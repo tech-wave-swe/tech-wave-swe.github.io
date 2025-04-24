@@ -9,10 +9,9 @@ version: 1.7.3
 classification: Esterno
 ---
 
-import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
-
-
 <!-- ::: {.no-export} -->
+
+import Term from "@lunaticmuch/docusaurus-terminology/components/tooltip.js";
 
 import TOCInlineWrapper from "@site/src/components/TOCInlineWrapper.jsx";
 import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
