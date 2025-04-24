@@ -14,7 +14,7 @@ classification: Esterno
 import TOCInlineWrapper from "@site/src/components/TOCInlineWrapper.jsx";
 import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
-# Analisi dei requisiti
+# Analisi dei Requisiti
 
 <details>
   <summary>Changelog</summary>
