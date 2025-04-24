@@ -1,11 +1,11 @@
 ---
 id: piano_di_progetto
-title: "Piano di Progetto - v2.4.9"
+title: "Piano di Progetto - v2.5.0"
 documentclass: TWDocumentFull
 toc: true
 lof: true
 numbersections: true
-version: 2.4.9
+version: 2.5.0
 classification: Esterno
 ---
 
@@ -23,7 +23,7 @@ import NumberedWrapper from "@site/src/components/NumberedWrapper.jsx";
 
 | Data       | Versione | Descrizione                                                                            | Autore                 | Data Verifica | Verificatore          |
 |------------|----------|----------------------------------------------------------------------------------------|------------------------|---------------|-----------------------|
-| 24/04/2025 | 2.5      | Report finali                                                                          | Monetti Luca           | 24/04/2025    | Carraro Agnese        |
+| 24/04/2025 | 2.5.0    | Report finali                                                                          | Monetti Luca           | 24/04/2025    | Carraro Agnese        |
 | 24/04/2025 | 2.4.11   | Aggiunta consuntivo sprint 10                                                          | Monetti Luca           | 24/04/2025    | Carraro Agnese        |
 | 22/04/2025 | 2.4.10   | Aggiunta preventivo sprint 10                                                          | Monetti Luca           | 23/04/2025    | Carraro Agnese        |
 | 22/04/2025 | 2.4.9    | Aggiunta consuntivo sprint 9                                                           | Pistori Gaia           | 22/04/2025    | Monetti Luca          |
@@ -966,7 +966,7 @@ A seguito si riporta la tabella del preventivo per il nono %%sprint|sprint%%:
 | _Totale_                  | _27,84_        | _550,95_  |
 | _Bilancio_                |                | _569,2_   |
 
-Table: Preventivo Sprint 9
+Table: Preventivo Sprint 10
 
 ###### Consuntivo
 
@@ -982,7 +982,7 @@ Di seguito vengono indicate le spese effettive del nono %%sprint|sprint%%
 | Verificatore              | 2,92                 | -4,25         | 15               | 43,8      | -63,75          |
 | _Totale consuntivo_       | _24,25_              | _-3,59_       |                  | _520_     | _-30,95_        |
 
-Table: Consuntivo Sprint 9
+Table: Consuntivo Sprint 10
 
 Considerando il costo di **520€** il residuo disponibile ammonta a **600,15€**.
 
