@@ -1,0 +1,27 @@
+{
+  "endpoint": "http://localhost:11434",
+  "model": "qwen2.5-coder:7b",
+  "embeddingModel": "nomic-embed-text:latest",
+  "bearerToken": "bearer-token",
+  "temperature": 0.5,
+  "promptRequirementAnalysis": "Analyze the following code and provide a list of requirements, including any missing or incomplete ones.",
+  "maxResults": 5,
+  "filters": {
+    "path": {
+      "include": ["Src/main.c"],
+      "exclude": []
+    },
+    "file_extension": {
+      "include": [],
+      "exclude": ["md"]
+    },
+    "requirements": {
+      "{DEA4AB3D-B7F5-4ac6-A522-27D8FD6DA667}": {
+        "search_path": ["Src/main.c"]
+      },
+      "{1CC22054-EC4F-4a9b-9FAC-A4288B537E32}": {
+        "search_path": ["Src/stm32g0xx_it.c"]
+      }
+    }
+  }
+}

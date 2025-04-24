@@ -1,6 +1,6 @@
 ---
 id: manuale_utente
-title: "Manuale utente - v1.0.0"
+title: "Manuale Utente - v1.0.0"
 documentclass: TWDocumentFull
 toc: true
 lof: true

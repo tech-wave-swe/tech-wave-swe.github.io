@@ -4,7 +4,7 @@ title: Glossario
 position: 2
 documentclass: TWDocumentFull
 toc: true
-version: 2.2.0
+version: 2.3.0
 classification: Esterno
 ---
 
@@ -17,6 +17,7 @@ classification: Esterno
 
 | Data       | Versione | Descrizione                               | Autore         | Data Approvazione | Approvatore           |
 | ---------- | -------- | ----------------------------------------- | -------------- | ----------------- | --------------------- |
+| 10/04/2025 | 2.3.0    | Aggiunti nuovi termini                    | Monetti Luca   | 10/04/2025        | Marcon Giulia         |
 | 04/02/2025 | 2.2.0    | Aggiunta versione PDF                     | Monetti Luca   | 04/02/2025        | Vasquez Manuel Felipe |
 | 13/01/2025 | 2.1.0    | Aggiunti nuovi termini                    | Carraro Agnese | 13/01/2025        | Marcon Giulia         |
 | 16/12/2024 | 2.0.0    | Implementazione di docusaurus-terminology | Monetti Luca   | 19/12/2024        | Pistori Gaia          |
