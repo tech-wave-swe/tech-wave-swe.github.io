@@ -1210,7 +1210,3 @@ Tutte le metriche vengono definite e spiegate nel documento [Piano di Qualifica 
 </NumberedWrapper>
 
 <!-- ::: -->
-
-## Versione PDF
-
-> <a target='\_blank' href={ require('/pdfs/PB/Norme di Progetto.pdf').default } download>Versione PDF</a>

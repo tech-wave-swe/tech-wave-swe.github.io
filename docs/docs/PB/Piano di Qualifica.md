@@ -1506,7 +1506,3 @@ Table: Valutazione delle tecnologie
 </NumberedWrapper>
 
 <!-- ::: -->
-
-## Versione PDF
-
-> <a target='\_blank' href={ require('/pdfs/PB/Piano di Qualifica.pdf').default } download>Versione PDF</a>
